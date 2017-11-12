@@ -1,12 +1,21 @@
 module.exports = function(grunt) {
 
-    var rollupPluginNodeResolve = require('rollup-plugin-node-resolve');
-    var rollupPluginCommonjs = require('rollup-plugin-commonjs');
-    var rollupPluginJson = require('rollup-plugin-json');
-    var rollupPluginBuble = require('rollup-plugin-buble');
+    let rollupPluginNodeResolve = require('rollup-plugin-node-resolve');
+    let rollupPluginCommonjs = require('rollup-plugin-commonjs');
+    let rollupPluginJson = require('rollup-plugin-json');
+    let rollupPluginBuble = require('rollup-plugin-buble');
 
 
     grunt.initConfig({
+        watch: {
+            scripts: {
+                files: ['**/*.js'],
+                tasks: ['rollup'],
+                options: {
+                    spawn: false,
+                },
+            },
+        },
         rollup: {
             options: {
                 format: 'iife',
@@ -25,13 +34,14 @@ module.exports = function(grunt) {
             },
             pm: {
                 files: {
-                    'vendors/prosemirror.js': ['src/prosemirror.bundle.js']
+                    'dist/editor.js': ['src/editor/index.js']
                 }
             }
         }
     });
 
 
+    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-rollup');
     grunt.registerTask('default', ['rollup']);
 

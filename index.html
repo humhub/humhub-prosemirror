@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <title>Test</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"
-            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="dist/editor.js"></script>
+    <script src="dist/test.js"></script>
 </head>
 <body>
 
@@ -33,64 +33,15 @@
 </div>
 <br>
 <div class="row">
-    <div class="column" style="text-align:center"><button id="render">Render</button></div>
-    <div class="column" style="text-align:center"><button id="serialize">Serialize</button></div>
-    <div class="column" style="text-align:center"><button id="parse">Parse</button></div>
+    <div class="column" style="text-align:center">
+        <button id="render">Render</button>
+    </div>
+    <div class="column" style="text-align:center">
+        <button id="serialize">Serialize</button>
+    </div>
+    <div class="column" style="text-align:center">
+        <button id="parse">Parse</button>
+    </div>
 </div>
-
-
-<script src="vendors/prosemirror.js"></script>
-<script type="application/javascript">
-
-    //var content = $('#content').text().trim();
-
-    //var test = "[![Alt text](https://www.humhub.org/static/img/logo.png =30%x200)](https://www.humhub.org/) :) :interrobang: :blush: :monkey_face:  :tiger: <scr"+"ipt>alert('asdf');</" +"script>";
-
-    var editor;
-    var markdown;
-
-    var render = function(md) {
-        md = md || $('#markdown').val().trim();
-
-        if(editor) {
-            editor.destroy();
-        }
-
-        editor = new pm.EditorView(document.querySelector("#editor"), {
-            state: pm.EditorState.create({
-                doc: pm.extendedMarkdownParser.parse(md),
-                plugins: pm.exampleSetup({schema: pm.extendedMarkdownSchema})
-            }),
-            editable() { return true } // Enables read-only behavior
-        });
-    };
-
-    var serialize = function() {
-        markdown = pm.extendedMarkdownSerializer.serialize(editor.state.doc);
-        $('#result').html($(pm.markdown.render(markdown)));
-        $('#markdown').val(markdown);
-    };
-
-    var parse = function() {
-        render(markdown);
-    };
-
-    $('#serialize').on('click', function() {
-         serialize();
-    });
-
-    $('#parse').on('click', function() {
-        parse();
-    });
-
-    $('#render').on('click', function() {
-        render();
-        serialize();
-    });
-
-    render();
-    serialize();
-
-</script>
 </body>
 </html>
