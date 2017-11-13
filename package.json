@@ -53,8 +53,8 @@
   },
   "scripts": {
     "test": "true",
-    "build": "rollup -c",
-    "watch": "rollup -c -w",
+    "build": "grunt",
+    "watch": "grunt watch",
     "prepare": "npm run build"
   }
 }

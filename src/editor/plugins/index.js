@@ -6,6 +6,11 @@ import {dropCursor} from "prosemirror-dropcursor"
 import {gapCursor} from "prosemirror-gapcursor"
 import {menuBar} from "prosemirror-menu"
 
+import {tableEditing, columnResizing} from "prosemirror-tables";
+import {addColumnAfter, addColumnBefore, deleteColumn, addRowAfter, addRowBefore, deleteRow,
+    mergeCells, splitCell, setCellAttr, toggleHeaderRow, toggleHeaderColumn, toggleHeaderCell,
+    goToNextCell, deleteTable}  from "prosemirror-tables"
+
 import {buildMenuItems} from "./menu"
 import {buildKeymap} from "./keymap"
 import {buildInputRules} from "./inputrules"
@@ -49,22 +54,32 @@ export {buildMenuItems, buildKeymap, buildInputRules}
 //     menuContent:: [[MenuItem]]
 //     Can be used to override the menu content.
 export function setupPlugins(options) {
-  let plugins = [
-    buildInputRules(options.schema),
-    keymap(buildKeymap(options.schema, options.mapKeys)),
-    keymap(baseKeymap),
-    dropCursor(),
-    gapCursor()
-  ]
-  if (options.menuBar !== false)
-    plugins.push(menuBar({floating: options.floatingMenu !== false,
-                          content: options.menuContent || buildMenuItems(options.schema).fullMenu}))
-  if (options.history !== false)
-    plugins.push(history())
+    let plugins = [
+        buildInputRules(options.schema),
+        keymap(buildKeymap(options.schema, options.mapKeys)),
+        keymap(baseKeymap),
+        dropCursor(),
+        gapCursor(),
+        //columnResizing(),
+        tableEditing(),
+        keymap({
+            "Tab": goToNextCell(1),
+            "Shift-Tab": goToNextCell(-1)
+        })
+    ];
 
-  return plugins.concat(new Plugin({
-    props: {
-      attributes: {class: "ProseMirror-example-setup-style"}
-    }
-  }))
+
+    if (options.menuBar !== false)
+        plugins.push(menuBar({
+            floating: options.floatingMenu !== false,
+            content: options.menuContent || buildMenuItems(options.schema).fullMenu
+        }))
+    if (options.history !== false)
+        plugins.push(history())
+
+    return plugins.concat(new Plugin({
+        props: {
+            attributes: {class: "ProseMirror-example-setup-style"}
+        }
+    }))
 }

@@ -7,6 +7,50 @@
 
 import {MarkdownSerializer} from "prosemirror-markdown"
 
+let renderTable = function(state, node, withHead) {
+    debugger;
+    if(typeof withHead === 'undefined') {
+        withHead = true;
+    }
+
+    node.forEach(function (child, _, i) {
+        if(child.type.name === 'table_body' || child.type.name === 'table_head') {
+            renderTable(state, child, i === 0);
+        } else if(withHead && i === 0) {
+            renderHeadRow(state,child);
+        } else {
+            renderRow(state, child);
+        }
+
+        if(i !== (node.childCount -1)) {
+            state.write("\n");
+        }
+    });
+};
+
+let renderHeadRow = function(state, node) {
+    renderRow(state,node);
+    state.write("\n");
+    renderRow(state,node, true);
+};
+
+let renderRow = function(state, node, headMarker) {
+    state.write('|');
+    node.forEach(function (child, _, i) {
+        renderCell(state, child, headMarker);
+    });
+};
+
+let renderCell = function(state, node, headMarker) {
+    state.write(' ');
+    if(headMarker) {
+        state.write(state.repeat('-', node.textContent.length));
+    } else {
+        state.text(node.textContent);
+    }
+    state.write(' |');
+};
+
 // :: MarkdownSerializer
 // A serializer for the [basic schema](#schema).
 let markdownSerializer = new MarkdownSerializer({
@@ -23,6 +67,27 @@ let markdownSerializer = new MarkdownSerializer({
             state.write("```");
             state.closeBlock(node);
         }
+    },
+    table: function table(state, node) {
+        renderTable(state,node);
+    },
+    table_row: function tableRow(state, node) {
+        state.write('');
+    },
+    table_body: function tableRow(state, node) {
+        state.write('');
+    },
+    table_head: function tableRow(state, node) {
+        state.write('');
+    },
+    table_footer: function tableRow(state, node) {
+        state.write('');
+    },
+    table_header: function tableHeader(state, node) {
+        state.write('');
+    },
+    table_cell: function tableCell(state, node) {
+        state.write('');
     },
     heading: function heading(state, node) {
         state.write(state.repeat("#", node.attrs.level) + " ");
@@ -74,6 +139,7 @@ let markdownSerializer = new MarkdownSerializer({
 }, {
     em: {open: "*", close: "*", mixable: true, expelEnclosingWhitespace: true},
     strong: {open: "**", close: "**", mixable: true, expelEnclosingWhitespace: true},
+    strikethrough: {open: "~~", close: "~~", mixable: true, expelEnclosingWhitespace: true},
     link: {
         open: "[",
         close: function close(state, mark) {

@@ -14,7 +14,12 @@
     <div class="column">
         <div style="padding:5px">
             <textarea id="markdown" style="box-sizing:border-box;width:100%;height:100%" rows="10">
-                ![Alt text](https://www.humhub.org/static/img/logo.png =30%x200) :monkey_face: :)</textarea>
+| Option | Description |
+| ------ | ----------- |
+| data   | path to data files to supply the data that will be passed into templates. |
+| engine | engine to be used for processing templates. Handlebars is the default. |
+| ext    | extension to be used for dest files. |
+            </textarea>
         </div>
 
     </div>
@@ -31,6 +36,7 @@
 
     </div>
 </div>
+
 <br>
 <div class="row">
     <div class="column" style="text-align:center">
@@ -43,5 +49,8 @@
         <button id="parse">Parse</button>
     </div>
 </div>
+<br>
+<button id="test">Test</button>
+<div id="testContent"></div>
 </body>
 </html>
