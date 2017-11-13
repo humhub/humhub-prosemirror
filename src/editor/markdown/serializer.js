@@ -8,7 +8,6 @@
 import {MarkdownSerializer} from "prosemirror-markdown"
 
 let renderTable = function(state, node, withHead) {
-    debugger;
     if(typeof withHead === 'undefined') {
         withHead = true;
     }
@@ -44,7 +43,7 @@ let renderRow = function(state, node, headMarker) {
 let renderCell = function(state, node, headMarker) {
     state.write(' ');
     if(headMarker) {
-        state.write(state.repeat('-', node.textContent.length));
+        (node.textContent.length) ? state.write(state.repeat('-', node.textContent.length)) : state.write('---');
     } else {
         state.text(node.textContent);
     }
