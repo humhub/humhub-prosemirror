@@ -52,7 +52,7 @@ let renderCell = function(state, node, headMarker) {
     } else {
         // TODO: this currently kills inline elements but is required regarding table break issue in markdown etc
         state.text(node.textContent);
-        
+
         state.write(' ');
     }
     state.write('|');
@@ -126,9 +126,17 @@ let markdownSerializer = new MarkdownSerializer({
     },
 
     image: function image(state, node) {
+        let resizeAddition = "";
+
+        if(node.attrs.width || node.attrs.height) {
+            resizeAddition += " =";
+            resizeAddition += (node.attrs.width) ? node.attrs.width : '';
+            resizeAddition += 'x';
+            resizeAddition += (node.attrs.height) ? node.attrs.height : '';
+        }
+
         state.write("![" + state.esc(node.attrs.alt || "") + "](" + state.esc(node.attrs.src) +
-            (node.attrs.title ? " " + state.quote(node.attrs.title) : "") +
-            (node.attrs.width ? " ="+ state.esc(node.attrs.width)+'x'+state.esc(node.attrs.height) : "") + ")");
+            (node.attrs.title ? " " + state.quote(node.attrs.title) : "") + resizeAddition + ")");
     },
     emoji: function emoji(state, node) {
         state.write(':'+state.esc(node.attrs.name)+':')
