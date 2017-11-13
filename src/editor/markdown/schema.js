@@ -13,15 +13,17 @@ let nodes = schema.spec.nodes
     .remove('image')
     .append(tableNodes({
         tableGroup: "block",
-        cellContent: "block",
+        cellContent: "block+",
         cellAttributes: {
-            background: {
+            style: {
                 default: null,
                 getFromDOM(dom) {
-                    return dom.style.backgroundColor || null
+                    return dom.style;
                 },
                 setDOMAttr(value, attrs) {
-                    if (value) attrs.style = (attrs.style || "") + `background-color: ${value};`
+                    if (value) {
+                        attrs.style = value
+                    }
                 }
             }
         }
@@ -57,6 +59,30 @@ let nodes = schema.spec.nodes
         toDOM: function toDOM() {
             return ["tfoot", 0]
         }
+    }).addToEnd('emoji', {
+        attrs: {
+            class: {default: 'emoji'},
+            draggable: {default: 'false'},
+            width: {default: '18'},
+            height: {default: '18'},
+            'data-name': {default: null},
+            alt: {default: null},
+            src: {default: null},
+        },
+        inline: true,
+        group: "inline",
+        parseDOM: [{
+            tag: "img.emoji", getAttrs: function getAttrs(dom) {
+                return {
+                    src: dom.getAttribute("src"),
+                    alt: dom.getAttribute("alt"),
+                    name: dom.getAttribute('data-emoji')
+                }
+            }
+        }],
+        toDOM: function toDOM(node) {
+            return ['img', node.attrs]
+        }
     }).addToEnd('image', {
         inline: true,
         attrs: {
@@ -81,16 +107,6 @@ let nodes = schema.spec.nodes
         }],
         toDOM: function toDOM(node) {
             return ["img", node.attrs]
-        }
-    }).addToEnd('emoji', {
-        attrs: {
-            text: {},
-            markup: {},
-        },
-        inline: true,
-        group: "inline",
-        toDOM: function toDOM(node) {
-            return ['span', node.attrs.text]
         }
     });
 

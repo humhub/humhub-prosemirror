@@ -4,18 +4,15 @@ import {baseKeymap} from "prosemirror-commands"
 import {Plugin} from "prosemirror-state"
 import {dropCursor} from "prosemirror-dropcursor"
 import {gapCursor} from "prosemirror-gapcursor"
-import {menuBar} from "prosemirror-menu"
 
-import {tableEditing, columnResizing} from "prosemirror-tables";
-import {addColumnAfter, addColumnBefore, deleteColumn, addRowAfter, addRowBefore, deleteRow,
-    mergeCells, splitCell, setCellAttr, toggleHeaderRow, toggleHeaderColumn, toggleHeaderCell,
-    goToNextCell, deleteTable}  from "prosemirror-tables"
+import {tableEditing} from "prosemirror-tables";
 
-import {buildMenuItems} from "./menu"
+import {buildMenu} from "./menu"
 import {buildKeymap} from "./keymap"
 import {buildInputRules} from "./inputrules"
 
-export {buildMenuItems, buildKeymap, buildInputRules}
+import {goToNextCell} from "prosemirror-tables"
+
 
 // !! This module exports helper functions for deriving a set of basic
 // menu items, input rules, or key bindings from a schema. These
@@ -60,22 +57,17 @@ export function setupPlugins(options) {
         keymap(baseKeymap),
         dropCursor(),
         gapCursor(),
-        //columnResizing(),
         tableEditing(),
+        buildMenu(options),
         keymap({
             "Tab": goToNextCell(1),
             "Shift-Tab": goToNextCell(-1)
         })
     ];
 
-
-    if (options.menuBar !== false)
-        plugins.push(menuBar({
-            floating: options.floatingMenu !== false,
-            content: options.menuContent || buildMenuItems(options.schema).fullMenu
-        }))
-    if (options.history !== false)
+    if (options.history !== false) {
         plugins.push(history())
+    }
 
     return plugins.concat(new Plugin({
         props: {

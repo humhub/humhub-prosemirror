@@ -36,7 +36,8 @@
     "prosemirror-state": "^1.0.0",
     "prosemirror-tables": "^0.4.1",
     "prosemirror-transform": "^1.0.0",
-    "prosemirror-view": "^1.0.0"
+    "prosemirror-view": "^1.0.0",
+    "twemoji": "^2.5.0"
   },
   "devDependencies": {
     "grunt": "~0.4.5",

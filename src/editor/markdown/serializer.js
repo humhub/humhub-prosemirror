@@ -44,10 +44,18 @@ let renderCell = function(state, node, headMarker) {
     state.write(' ');
     if(headMarker) {
         (node.textContent.length) ? state.write(state.repeat('-', node.textContent.length)) : state.write('---');
+        if(node.attrs.style && node.attrs.style.indexOf("text-align:right") >= 0) {
+            state.write(':');
+        } else {
+            state.write(' ');
+        }
     } else {
+        // TODO: this currently kills inline elements but is required regarding table break issue in markdown etc
         state.text(node.textContent);
+        
+        state.write(' ');
     }
-    state.write(' |');
+    state.write('|');
 };
 
 // :: MarkdownSerializer
@@ -122,8 +130,8 @@ let markdownSerializer = new MarkdownSerializer({
             (node.attrs.title ? " " + state.quote(node.attrs.title) : "") +
             (node.attrs.width ? " ="+ state.esc(node.attrs.width)+'x'+state.esc(node.attrs.height) : "") + ")");
     },
-    emoji: function heading(state, node) {
-        state.write(':'+state.esc(node.attrs.markup)+':')
+    emoji: function emoji(state, node) {
+        state.write(':'+state.esc(node.attrs.name)+':')
     },
     hard_break: function hard_break(state, node, parent, index) {
         for (let i = index + 1; i < parent.childCount; i++)

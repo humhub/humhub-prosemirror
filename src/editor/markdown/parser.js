@@ -8,6 +8,7 @@
 import {MarkdownParser} from "prosemirror-markdown"
 import {markdownSchema} from "./schema"
 import {markdownRenderer as tokenizer} from "./renderer"
+import twemoji from "twemoji"
 
 let markdownParser = new MarkdownParser(markdownSchema, tokenizer, {
     blockquote: {block: "blockquote"},
@@ -33,9 +34,11 @@ let markdownParser = new MarkdownParser(markdownSchema, tokenizer, {
     hr: {node: "horizontal_rule"},
     emoji: {
         node: "emoji", getAttrs: function (tok) {
+            let $dom = $(twemoji.parse(tok.content));
             return ({
-                text: tok.content,
-                markup: tok.markup
+                name: $dom.data('name'),
+                alt: $dom.attr('alt'),
+                src: $dom.attr('src')
             })
         }
     },
@@ -43,9 +46,17 @@ let markdownParser = new MarkdownParser(markdownSchema, tokenizer, {
     thead: {block: "table_head"},
     tbody: {block: "table_body"},
     tfoot: {block: "table_foot"},
-    th: {block: "table_header"},
     tr: {block: "table_row"},
-    td: {block: "table_cell"},
+    th: {block: "table_header", getAttrs: function(tok) {
+        return {
+            style: tok.attrGet("style")
+        }
+    }},
+    td: {block: "table_cell", getAttrs: function(tok) {
+        return {
+            style: tok.attrGet("style")
+        }
+    }},
     image: {
         node: "image", getAttrs: function (tok) {
             return ({

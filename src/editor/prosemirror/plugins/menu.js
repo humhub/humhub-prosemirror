@@ -1,9 +1,13 @@
 import {wrapItem, blockTypeItem, Dropdown, DropdownSubmenu, joinUpItem, liftItem,
-       selectParentNodeItem, undoItem, redoItem, icons, MenuItem} from "prosemirror-menu"
+       selectParentNodeItem, undoItem, redoItem, icons, MenuItem, menuBar} from "prosemirror-menu"
 import {NodeSelection} from "prosemirror-state"
 import {toggleMark} from "prosemirror-commands"
 import {wrapInList} from "prosemirror-schema-list"
 import {TextField, openPrompt} from "./prompt"
+
+import {addColumnAfter, addColumnBefore, deleteColumn, addRowAfter, addRowBefore, deleteRow,
+    setCellAttr, toggleHeaderRow, toggleHeaderColumn, toggleHeaderCell, deleteTable}  from "prosemirror-tables"
+
 
 // Helpers to create specific types of items
 
@@ -233,3 +237,31 @@ export function buildMenuItems(schema) {
 
   return r
 }
+
+export function buildMenu(options) {
+    let menu = buildMenuItems(options.schema).fullMenu;
+    let tableMenu = buildTableMenu(options);
+    menu.splice(2, 0, [new Dropdown(tableMenu, {label: "Table"})]);
+    return menuBar({
+        content: menu,
+        floating: options.floatingMenu !== false
+    });
+}
+
+let buildTableMenu = function(options) {
+    function item(label, cmd) { return new MenuItem({label, select: cmd, run: cmd}) }
+    return [
+        item("Insert column before", addColumnBefore),
+        item("Insert column after", addColumnAfter),
+        item("Delete column", deleteColumn),
+        item("Insert row before", addRowBefore),
+        item("Insert row after", addRowAfter),
+        item("Delete row", deleteRow),
+        item("Delete table", deleteTable),
+        item("Toggle header column", toggleHeaderColumn),
+        item("Toggle header row", toggleHeaderRow),
+        item("Toggle header cells", toggleHeaderCell),
+        //item("Make cell green", setCellAttr("background", "#dfd")),
+        //item("Make cell not-green", setCellAttr("background", null))
+    ];
+};
