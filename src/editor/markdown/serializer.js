@@ -88,12 +88,12 @@ let markdownSerializer = new MarkdownSerializer({
             (node.attrs.title ? " " + state.quote(node.attrs.title) : "") + resizeAddition + ")");
     },
     emoji: function emoji(state, node) {
-        state.write(':'+state.esc(node.attrs.name)+':')
+        state.write(':'+state.esc(node.attrs['data-name'])+':')
     },
     hard_break: function hard_break(state, node, parent, index) {
         for (let i = index + 1; i < parent.childCount; i++)
         { if (parent.child(i).type != node.type) {
-            state.write("\\\n");
+            (state.table) ? state.write('<br>') : state.write("\\\n");
             return
         } }
     },
@@ -114,6 +114,7 @@ let markdownSerializer = new MarkdownSerializer({
 });
 
 let renderTable = function(state, node, withHead) {
+    state.table = true;
     if(typeof withHead === 'undefined') {
         withHead = true;
     }
@@ -131,6 +132,7 @@ let renderTable = function(state, node, withHead) {
             state.write("\n");
         }
     });
+    state.table = false;
 };
 
 let renderHeadRow = function(state, node) {
@@ -158,6 +160,7 @@ let renderCell = function(state, node, headMarker) {
     } else {
         // TODO: this currently kills inline elements but is required regarding table break issue in markdown etc
         state.text(node.textContent);
+        //state.renderContent(node);
 
         state.write(' ');
     }

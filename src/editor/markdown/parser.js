@@ -34,9 +34,10 @@ let markdownParser = new MarkdownParser(markdownSchema, tokenizer, {
     hr: {node: "horizontal_rule"},
     emoji: {
         node: "emoji", getAttrs: function (tok) {
+            debugger;
             let $dom = $(twemoji.parse(tok.content));
             return ({
-                name: $dom.data('name'),
+                'data-name': tok.markup,
                 alt: $dom.attr('alt'),
                 src: $dom.attr('src')
             })
