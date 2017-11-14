@@ -1,8 +1,12 @@
 // GFM table, non-standard
-
-'use strict';
-
-var isSpace = require('../common/utils').isSpace;
+function isSpace(code) {
+    switch (code) {
+        case 0x09:
+        case 0x20:
+            return true;
+    }
+    return false;
+}
 
 
 function getLine(state, line) {

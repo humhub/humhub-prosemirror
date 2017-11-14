@@ -7,57 +7,6 @@
 
 import {MarkdownSerializer} from "prosemirror-markdown"
 
-let renderTable = function(state, node, withHead) {
-    if(typeof withHead === 'undefined') {
-        withHead = true;
-    }
-
-    node.forEach(function (child, _, i) {
-        if(child.type.name === 'table_body' || child.type.name === 'table_head') {
-            renderTable(state, child, i === 0);
-        } else if(withHead && i === 0) {
-            renderHeadRow(state,child);
-        } else {
-            renderRow(state, child);
-        }
-
-        if(i !== (node.childCount -1)) {
-            state.write("\n");
-        }
-    });
-};
-
-let renderHeadRow = function(state, node) {
-    renderRow(state,node);
-    state.write("\n");
-    renderRow(state,node, true);
-};
-
-let renderRow = function(state, node, headMarker) {
-    state.write('|');
-    node.forEach(function (child, _, i) {
-        renderCell(state, child, headMarker);
-    });
-};
-
-let renderCell = function(state, node, headMarker) {
-    state.write(' ');
-    if(headMarker) {
-        (node.textContent.length) ? state.write(state.repeat('-', node.textContent.length)) : state.write('---');
-        if(node.attrs.style && node.attrs.style.indexOf("text-align:right") >= 0) {
-            state.write(':');
-        } else {
-            state.write(' ');
-        }
-    } else {
-        // TODO: this currently kills inline elements but is required regarding table break issue in markdown etc
-        state.text(node.textContent);
-
-        state.write(' ');
-    }
-    state.write('|');
-};
-
 // :: MarkdownSerializer
 // A serializer for the [basic schema](#schema).
 let markdownSerializer = new MarkdownSerializer({
@@ -163,5 +112,57 @@ let markdownSerializer = new MarkdownSerializer({
     },
     code: {open: "`", close: "`"}
 });
+
+let renderTable = function(state, node, withHead) {
+    if(typeof withHead === 'undefined') {
+        withHead = true;
+    }
+
+    node.forEach(function (child, _, i) {
+        if(child.type.name === 'table_body' || child.type.name === 'table_head') {
+            renderTable(state, child, i === 0);
+        } else if(withHead && i === 0) {
+            renderHeadRow(state,child);
+        } else {
+            renderRow(state, child);
+        }
+
+        if(i !== (node.childCount -1)) {
+            state.write("\n");
+        }
+    });
+};
+
+let renderHeadRow = function(state, node) {
+    renderRow(state,node);
+    state.write("\n");
+    renderRow(state,node, true);
+};
+
+let renderRow = function(state, node, headMarker) {
+    state.write('|');
+    node.forEach(function (child, _, i) {
+        renderCell(state, child, headMarker);
+    });
+};
+
+let renderCell = function(state, node, headMarker) {
+    state.write(' ');
+    if(headMarker) {
+        (node.textContent.length) ? state.write(state.repeat('-', node.textContent.length)) : state.write('---');
+        if(node.attrs.style && node.attrs.style.indexOf("text-align:right") >= 0) {
+            state.write(':');
+        } else {
+            state.write(' ');
+        }
+    } else {
+        // TODO: this currently kills inline elements but is required regarding table break issue in markdown etc
+        debugger;
+        state.text(node.textContent);
+
+        state.write(' ');
+    }
+    state.write('|');
+};
 
 export {markdownSerializer}
