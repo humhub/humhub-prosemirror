@@ -157,7 +157,6 @@ let renderCell = function(state, node, headMarker) {
         }
     } else {
         // TODO: this currently kills inline elements but is required regarding table break issue in markdown etc
-        debugger;
         state.text(node.textContent);
 
         state.write(' ');
