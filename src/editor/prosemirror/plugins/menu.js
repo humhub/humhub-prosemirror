@@ -258,9 +258,9 @@ let buildTableMenu = function(options) {
         item("Insert row after", addRowAfter),
         item("Delete row", deleteRow),
         item("Delete table", deleteTable),
-        item("Toggle header column", toggleHeaderColumn),
-        item("Toggle header row", toggleHeaderRow),
-        item("Toggle header cells", toggleHeaderCell),
+        //item("Toggle header column", toggleHeaderColumn),
+        //item("Toggle header row", toggleHeaderRow),
+        //item("Toggle header cells", toggleHeaderCell),
         //item("Make cell green", setCellAttr("background", "#dfd")),
         //item("Make cell not-green", setCellAttr("background", null))
     ];

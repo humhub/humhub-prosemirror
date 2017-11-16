@@ -29,7 +29,8 @@ let markdownSerializer = new MarkdownSerializer({
     },
     table: function table(state, node) {
         renderTable(state,node);
-        state.ensureNewLine();
+        //state.ensureNewLine();
+        state.closeBlock(node);
     },
     table_row: function tableRow(state, node) {
         state.write('');
