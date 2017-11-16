@@ -13,7 +13,7 @@ let nodes = schema.spec.nodes
     .remove('image')
     .append(tableNodes({
         tableGroup: "block",
-        cellContent: "block+",
+        cellContent: "paragraph+",
         cellAttributes: {
             style: {
                 default: null,
@@ -76,7 +76,7 @@ let nodes = schema.spec.nodes
                 return {
                     src: dom.getAttribute("src"),
                     alt: dom.getAttribute("alt"),
-                    name: dom.getAttribute('data-emoji')
+                    'data-name': dom.getAttribute('data-name')
                 }
             }
         }],
@@ -108,7 +108,17 @@ let nodes = schema.spec.nodes
         toDOM: function toDOM(node) {
             return ["img", node.attrs]
         }
-    });
+    }).addToEnd('html_block', {
+    inline: true,
+    group: "inline",
+    draggable: true,
+    parseDOM: [{
+        tag: "br"
+    }],
+    toDOM: function toDOM(node) {
+        return ["br", node.attrs]
+    }
+});
 
 let marks = schema.spec.marks.addToEnd('strikethrough', {
     parseDOM: [{tag: "s"}],

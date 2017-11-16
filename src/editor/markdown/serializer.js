@@ -11,10 +11,13 @@ import {MarkdownSerializer} from "prosemirror-markdown"
 // A serializer for the [basic schema](#schema).
 let markdownSerializer = new MarkdownSerializer({
     blockquote: function blockquote(state, node) {
+        if(state.table) return state.renderContent(node);
         state.wrapBlock("> ", null, node, function () { return state.renderContent(node); });
     },
     code_block: function code_block(state, node) {
-        if (!node.attrs.params) {
+        if(state.table) {
+            state.wrapBlock("`", "`", node, function () { return state.text(node.textContent, false); });
+        }else if (!node.attrs.params) {
             state.wrapBlock("    ", null, node, function () { return state.text(node.textContent, false); });
         } else {
             state.write("```" + node.attrs.params + "\n");
@@ -26,6 +29,7 @@ let markdownSerializer = new MarkdownSerializer({
     },
     table: function table(state, node) {
         renderTable(state,node);
+        state.ensureNewLine();
     },
     table_row: function tableRow(state, node) {
         state.write('');
@@ -58,6 +62,11 @@ let markdownSerializer = new MarkdownSerializer({
         state.renderList(node, "  ", function () { return (node.attrs.bullet || "*") + " "; });
     },
     ordered_list: function ordered_list(state, node) {
+        if(state.table) {
+            state.text(node.textContent);
+            return;
+        }
+
         let start = node.attrs.order || 1;
         let maxW = String(start + node.childCount - 1).length;
         let space = state.repeat(" ", maxW + 2);
@@ -71,7 +80,7 @@ let markdownSerializer = new MarkdownSerializer({
     },
     paragraph: function paragraph(state, node) {
         state.renderInline(node);
-        state.closeBlock(node);
+        if(!state.table) state.closeBlock(node);
     },
 
     image: function image(state, node) {
@@ -159,8 +168,8 @@ let renderCell = function(state, node, headMarker) {
         }
     } else {
         // TODO: this currently kills inline elements but is required regarding table break issue in markdown etc
-        state.text(node.textContent);
-        //state.renderContent(node);
+        //state.text(node.textContent);
+        state.renderContent(node);
 
         state.write(' ');
     }

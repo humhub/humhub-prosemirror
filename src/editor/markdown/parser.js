@@ -32,6 +32,12 @@ let markdownParser = new MarkdownParser(markdownSchema, tokenizer, {
         }
     },
     hr: {node: "horizontal_rule"},
+    html_block: {
+        node: "html_block", getAttrs: function (tok) {
+            debugger;
+            return ({params: tok.info || ""});
+        }
+    },
     emoji: {
         node: "emoji", getAttrs: function (tok) {
             debugger;
