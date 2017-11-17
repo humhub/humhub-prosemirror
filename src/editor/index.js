@@ -24,6 +24,10 @@ class MarkdownEditor {
             this.options.schema = markdownSchema;
         }
 
+        if(!this.options.menuMode) {
+            this.options.menuMode = 'hover';
+        }
+
         this.$ = $(selector);
 
     }

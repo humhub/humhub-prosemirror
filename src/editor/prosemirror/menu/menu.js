@@ -4,7 +4,7 @@ import {undo, redo} from "prosemirror-history"
 
 import {getIcon} from "./icons"
 
-const prefix = "ProseMirror-menu"
+const prefix = "ProseMirror-menu";
 
 // ::- An icon or label that, when clicked, executes a command.
 export class MenuItem {
@@ -32,8 +32,8 @@ export class MenuItem {
             this.dom.setAttribute("title", translate(view, title));
         }
 
-        if (options.class) this.dom.classList.add(options.class)
-        if (options.css) this.dom.style.cssText += options.css
+        if (options.class) this.dom.classList.add(options.class);
+        if (options.css) this.dom.style.cssText += options.css;
 
         this.dom.addEventListener("mousedown", e => {
             e.preventDefault();
@@ -51,7 +51,7 @@ export class MenuItem {
     adoptItemState(state, forceEnable, forceActive) {
         this.selected = true;
         if (this.options.select) {
-            this.selected = this.options.select(state)
+            this.selected = this.options.select(state);
             this.dom.style.display = this.selected || forceEnable ? "" : "none";
             if (!this.selected) return false
         }
@@ -64,7 +64,7 @@ export class MenuItem {
 
         this.active = false;
         if (this.options.active) {
-            this.active = this.enabled && (this.options.active(state) || forceActive) || false;
+            this.active = (this.options.active(state) || forceActive) || false;
             setClass(this.dom, prefix + "-active", this.active)
         }
     }
@@ -128,10 +128,10 @@ function translate(view, text) {
 //   Defines which event on the command's DOM representation should
 //   trigger the execution of the command. Defaults to mousedown.
 
-let lastMenuEvent = {time: 0, node: null}
+let lastMenuEvent = {time: 0, node: null};
 
 function markMenuEvent(e) {
-    lastMenuEvent.time = Date.now()
+    lastMenuEvent.time = Date.now();
     lastMenuEvent.node = e.target
 }
 
@@ -210,16 +210,14 @@ export class Dropdown extends MenuItemGroup {
     //   : When given, adds an extra set of CSS styles to the menu control.
     constructor(content, options) {
         super(content, options);
-        this.content = {
-            update: (state) => {
-                let result = false;
-                this.content.items.forEach((item) => {
-                    let updateResult = item.update(state);
-                    item.dom.style.display = updateResult ? "" : "none";
-                    result = result || updateResult;
-                });
-                return result;
-            }
+        this.content.update = (state) => {
+            let result = false;
+            this.content.items.forEach((item) => {
+                let updateResult = item.update(state);
+                item.dom.style.display = updateResult ? "" : "none";
+                result = result || updateResult;
+            });
+            return result;
         };
     }
 
@@ -228,21 +226,21 @@ export class Dropdown extends MenuItemGroup {
     render(view) {
         let contentDom = this.renderItems(view);
 
-        this.dom = this.options.icon ? getIcon(this.options.icon)
+        let innerDom = this.options.icon ? getIcon(this.options.icon)
             : this.options.label ? crel("div", {style: this.options.css}, translate(view, this.options.label))
             : null;
 
-        if (!this.dom) {
+        if (!innerDom) {
             throw new RangeError("Dropdown without icon or label property")
         }
 
-        this.dom.className += " "+ prefix + "-dropdown " + (this.options.class || "");
+        innerDom.className += " "+ prefix + "-dropdown " + (this.options.class || "");
 
         if (this.options.title) {
-            this.dom.setAttribute("title", translate(view, this.options.title));
+            innerDom.setAttribute("title", translate(view, this.options.title));
         }
 
-        this.wrapper = crel("div", {class: prefix + "-dropdown-wrap"}, this.dom);
+        this.dom = crel("div", {class: prefix + "-dropdown-wrap"}, innerDom);
 
         let open = null, listeningOnClose = null;
         let close = () => {
@@ -252,16 +250,16 @@ export class Dropdown extends MenuItemGroup {
             }
         };
 
-        this.dom.addEventListener("mousedown", e => {
+        innerDom.addEventListener("mousedown", e => {
             e.preventDefault();
             if (!this.selected || !this.enabled) return;
             markMenuEvent(e);
             if (open) {
                 close()
             } else {
-                open = this.expand(this.wrapper, contentDom);
+                open = this.expand(this.dom, contentDom);
                 window.addEventListener("mousedown", listeningOnClose = () => {
-                    if (!isMenuEvent(this.wrapper)) close()
+                    if (!isMenuEvent(this.dom)) close()
                 })
             }
         });
@@ -282,7 +280,7 @@ export class Dropdown extends MenuItemGroup {
 
     update(state) {
         let contentUpdateResult = this.content.update(state);
-        this.wrapper.style.display = contentUpdateResult ? "" : "none";
+        this.dom.style.display = contentUpdateResult ? "" : "none";
 
         let innerEnabled = false;
         let innerActive = false;
@@ -297,18 +295,18 @@ export class Dropdown extends MenuItemGroup {
     }
 
     expand(dom, contentDom) {
-        let menuDOM = crel("div", {class: prefix + "-dropdown-menu " + (this.options.class || "")}, contentDom)
+        let menuDOM = crel("div", {class: prefix + "-dropdown-menu " + (this.options.class || "")}, contentDom);
 
-        let done = false
+        let done = false;
 
         function close() {
-            if (done) return
-            done = true
-            dom.removeChild(menuDOM)
+            if (done) return;
+            done = true;
+            dom.removeChild(menuDOM);
             return true
         }
 
-        dom.appendChild(menuDOM)
+        dom.appendChild(menuDOM);
         return {close, node: menuDOM}
     }
 }
@@ -331,31 +329,31 @@ export class DropdownSubmenu extends Dropdown {
     render(view) {
         let itemDom = this.renderItems(view);
 
-        this.dom = crel("div", {class: prefix + "-submenu-label"}, translate(view, this.options.label));
-        this.wrapper = crel("div", {class: prefix + "-submenu-wrap"}, this.dom,
+        let innerDom = crel("div", {class: prefix + "-submenu-label"}, translate(view, this.options.label));
+        this.dom = crel("div", {class: prefix + "-submenu-wrap"}, innerDom,
             crel("div", {class: prefix + "-submenu"}, itemDom));
         let listeningOnClose = null;
 
-        this.dom.addEventListener("mousedown", e => {
+        innerDom.addEventListener("mousedown", e => {
             e.preventDefault();
             markMenuEvent(e);
-            setClass(this.wrapper, prefix + "-submenu-wrap-active");
+            setClass(this.dom, prefix + "-submenu-wrap-active");
             if (!listeningOnClose)
                 window.addEventListener("mousedown", listeningOnClose = () => {
-                    if (!isMenuEvent(this.wrapper)) {
-                        this.wrapper.classList.remove(prefix + "-submenu-wrap-active");
+                    if (!isMenuEvent(this.dom)) {
+                        this.dom.classList.remove(prefix + "-submenu-wrap-active");
                         window.removeEventListener("mousedown", listeningOnClose);
                         listeningOnClose = null
                     }
                 })
         });
 
-        return dom;
+        return this.dom;
     }
 
     update(state) {
         let contentUpdateResult = this.content.update(state);
-        this.wrapper.style.display = contentUpdateResult ? "" : "none";
+        this.dom.style.display = contentUpdateResult ? "" : "none";
         return contentUpdateResult;
     }
 }
@@ -368,8 +366,12 @@ export class DropdownSubmenu extends Dropdown {
 // `MenuItem`.
 export const icons = {
     headline: {
-        width: 28, height: 28,
+        width: 27, height: 27,
         path: "M26.281 26c-1.375 0-2.766-0.109-4.156-0.109-1.375 0-2.75 0.109-4.125 0.109-0.531 0-0.781-0.578-0.781-1.031 0-1.391 1.563-0.797 2.375-1.328 0.516-0.328 0.516-1.641 0.516-2.188l-0.016-6.109c0-0.172 0-0.328-0.016-0.484-0.25-0.078-0.531-0.063-0.781-0.063h-10.547c-0.266 0-0.547-0.016-0.797 0.063-0.016 0.156-0.016 0.313-0.016 0.484l-0.016 5.797c0 0.594 0 2.219 0.578 2.562 0.812 0.5 2.656-0.203 2.656 1.203 0 0.469-0.219 1.094-0.766 1.094-1.453 0-2.906-0.109-4.344-0.109-1.328 0-2.656 0.109-3.984 0.109-0.516 0-0.75-0.594-0.75-1.031 0-1.359 1.437-0.797 2.203-1.328 0.5-0.344 0.516-1.687 0.516-2.234l-0.016-0.891v-12.703c0-0.75 0.109-3.156-0.594-3.578-0.781-0.484-2.453 0.266-2.453-1.141 0-0.453 0.203-1.094 0.75-1.094 1.437 0 2.891 0.109 4.328 0.109 1.313 0 2.641-0.109 3.953-0.109 0.562 0 0.781 0.625 0.781 1.094 0 1.344-1.547 0.688-2.312 1.172-0.547 0.328-0.547 1.937-0.547 2.5l0.016 5c0 0.172 0 0.328 0.016 0.5 0.203 0.047 0.406 0.047 0.609 0.047h10.922c0.187 0 0.391 0 0.594-0.047 0.016-0.172 0.016-0.328 0.016-0.5l0.016-5c0-0.578 0-2.172-0.547-2.5-0.781-0.469-2.344 0.156-2.344-1.172 0-0.469 0.219-1.094 0.781-1.094 1.375 0 2.75 0.109 4.125 0.109 1.344 0 2.688-0.109 4.031-0.109 0.562 0 0.781 0.625 0.781 1.094 0 1.359-1.609 0.672-2.391 1.156-0.531 0.344-0.547 1.953-0.547 2.516l0.016 14.734c0 0.516 0.031 1.875 0.531 2.188 0.797 0.5 2.484-0.141 2.484 1.219 0 0.453-0.203 1.094-0.75 1.094z"
+    },
+    plus: {
+        width: 32, height: 32,
+        path: "M31 12h-11v-11c0-0.552-0.448-1-1-1h-6c-0.552 0-1 0.448-1 1v11h-11c-0.552 0-1 0.448-1 1v6c0 0.552 0.448 1 1 1h11v11c0 0.552 0.448 1 1 1h6c0.552 0 1-0.448 1-1v-11h11c0.552 0 1-0.448 1-1v-6c0-0.552-0.448-1-1-1z"
     },
     table: {
         width: 32, height: 32,
@@ -404,6 +406,14 @@ export const icons = {
         width: 896, height: 1024,
         path: "M608 192l-96 96 224 224-224 224 96 96 288-320-288-320zM288 192l-288 320 288 320 96-96-224-224 224-224-96-96z"
     },
+    embed: {
+        width: 40, height: 32,
+        path: [
+            'M26 23l3 3 10-10-10-10-3 3 7 7z',
+            'M14 9l-3-3-10 10 10 10 3-3-7-7z',
+            'M21.916 4.704l2.171 0.592-6 22.001-2.171-0.592 6-22.001z'
+        ]
+    },
     link: {
         width: 951, height: 1024,
         path: "M832 694q0-22-16-38l-118-118q-16-16-38-16-24 0-41 18 1 1 10 10t12 12 8 10 7 14 2 15q0 22-16 38t-38 16q-8 0-15-2t-14-7-10-8-12-12-10-10q-18 17-18 41 0 22 16 38l117 118q15 15 38 15 22 0 38-14l84-83q16-16 16-38zM430 292q0-22-16-38l-117-118q-16-16-38-16-22 0-38 15l-84 83q-16 16-16 38 0 22 16 38l118 118q15 15 38 15 24 0 41-17-1-1-10-10t-12-12-8-10-7-14-2-15q0-22 16-38t38-16q8 0 15 2t14 7 10 8 12 12 10 10q18-17 18-41zM941 694q0 68-48 116l-84 83q-47 47-116 47-69 0-116-48l-117-118q-47-47-47-116 0-70 50-119l-50-50q-49 50-118 50-68 0-116-48l-118-118q-48-48-48-116t48-116l84-83q47-47 116-47 69 0 116 48l117 118q47 47 47 116 0 70-50 119l50 50q49-50 118-50 68 0 116 48l118 118q48 48 48 116z"
@@ -420,7 +430,7 @@ export const icons = {
         width: 640, height: 896,
         path: "M0 448v256h256v-256h-128c0 0 0-128 128-128v-128c0 0-256 0-256 256zM640 320v-128c0 0-256 0-256 256v256h256v-256h-128c0 0 0-128 128-128z"
     }
-}
+};
 
 // :: MenuItem
 // Menu item for the `joinUp` command.
@@ -429,7 +439,7 @@ export const joinUpItem = new MenuItem({
     run: joinUp,
     select: state => joinUp(state),
     icon: icons.join
-})
+});
 
 // :: MenuItem
 // Menu item for the `lift` command.
@@ -438,7 +448,7 @@ export const liftItem = new MenuItem({
     run: lift,
     select: state => lift(state),
     icon: icons.lift
-})
+});
 
 // :: MenuItem
 // Menu item for the `selectParentNode` command.
@@ -447,7 +457,7 @@ export const selectParentNodeItem = new MenuItem({
     run: selectParentNode,
     select: state => selectParentNode(state),
     icon: icons.selectParentNode
-})
+});
 
 // :: (Object) → MenuItem
 // Menu item for the `undo` command.
@@ -456,7 +466,7 @@ export let undoItem = new MenuItem({
     run: undo,
     enable: state => undo(state),
     icon: icons.undo
-})
+});
 
 // :: (Object) → MenuItem
 // Menu item for the `redo` command.
@@ -465,7 +475,7 @@ export let redoItem = new MenuItem({
     run: redo,
     enable: state => redo(state),
     icon: icons.redo
-})
+});
 
 // :: (NodeType, Object) → MenuItem
 // Build a menu item for wrapping the selection in a given node type.
@@ -481,7 +491,7 @@ export function wrapItem(nodeType, options) {
         select(state) {
             return wrapIn(nodeType, options.attrs instanceof Function ? null : options.attrs)(state)
         }
-    }
+    };
     for (let prop in options) passedOptions[prop] = options[prop]
     return new MenuItem(passedOptions)
 }
@@ -503,7 +513,7 @@ export function blockTypeItem(nodeType, options) {
             if (node) return node.hasMarkup(nodeType, options.attrs)
             return to <= $from.end() && $from.parent.hasMarkup(nodeType, options.attrs)
         }
-    }
+    };
     for (let prop in options) passedOptions[prop] = options[prop]
     return new MenuItem(passedOptions)
 }
