@@ -29,27 +29,13 @@ let markdownSerializer = new MarkdownSerializer({
     },
     table: function table(state, node) {
         renderTable(state,node);
-        //state.ensureNewLine();
-        state.closeBlock(node);
     },
-    table_row: function tableRow(state, node) {
-        state.write('');
-    },
-    table_body: function tableRow(state, node) {
-        state.write('');
-    },
-    table_head: function tableRow(state, node) {
-        state.write('');
-    },
-    table_footer: function tableRow(state, node) {
-        state.write('');
-    },
-    table_header: function tableHeader(state, node) {
-        state.write('');
-    },
-    table_cell: function tableCell(state, node) {
-        state.write('');
-    },
+    table_row: function tableRow(state, node) {},
+    table_body: function table_body(state, node) {},
+    table_head: function table_head(state, node) {},
+    table_footer: function table_footer(state, node) {},
+    table_header: function table_header(state, node) {},
+    table_cell: function tableCell(state, node) {},
     heading: function heading(state, node) {
         state.write(state.repeat("#", node.attrs.level) + " ");
         state.renderInline(node);
@@ -125,6 +111,7 @@ let markdownSerializer = new MarkdownSerializer({
 
 let renderTable = function(state, node, withHead) {
     state.table = true;
+
     if(typeof withHead === 'undefined') {
         withHead = true;
     }
@@ -142,7 +129,9 @@ let renderTable = function(state, node, withHead) {
             state.write("\n");
         }
     });
+
     state.table = false;
+    state.closeBlock(node);
 };
 
 let renderHeadRow = function(state, node) {
@@ -168,8 +157,6 @@ let renderCell = function(state, node, headMarker) {
             state.write(' ');
         }
     } else {
-        // TODO: this currently kills inline elements but is required regarding table break issue in markdown etc
-        //state.text(node.textContent);
         state.renderContent(node);
 
         state.write(' ');

@@ -1,7 +1,7 @@
 import {wrapItem, blockTypeItem, Dropdown, DropdownSubmenu, joinUpItem, liftItem,
-       selectParentNodeItem, undoItem, redoItem, icons, MenuItem, menuBar} from "prosemirror-menu"
+       selectParentNodeItem, undoItem, redoItem, icons, MenuItem, menuBar} from "./menu/"
 import {NodeSelection} from "prosemirror-state"
-import {toggleMark} from "prosemirror-commands"
+import {chainCommands,selectParentNode, setBlockType, toggleMark, wrapIn} from "prosemirror-commands"
 import {wrapInList} from "prosemirror-schema-list"
 import {TextField, openPrompt} from "./prompt"
 
@@ -171,6 +171,9 @@ function wrapListItem(nodeType, options) {
 //     for, for example the [menu bar](https://github.com/prosemirror/prosemirror-menu#user-content-menubar).
 export function buildMenuItems(schema) {
   let r = {}, type
+
+  let cut = arr => arr.filter(x => x)
+
   if (type = schema.marks.strong)
     r.toggleStrong = markItem(type, {title: "Toggle strong style", icon: icons.strong})
   if (type = schema.marks.em)
@@ -192,6 +195,14 @@ export function buildMenuItems(schema) {
       title: "Wrap in ordered list",
       icon: icons.orderedList
     })
+  if (type = schema.nodes.table) {
+      r.insertTable = wrapTableItem(schema, {
+          title: "Create table",
+          icon: icons.table
+      });
+
+      r.tableDropDown = new Dropdown(buildTableMenu(), {icon: icons.table});
+  }
   if (type = schema.nodes.blockquote)
     r.wrapBlockQuote = wrapItem(type, {
       title: "Wrap in block quote",
@@ -224,31 +235,78 @@ export function buildMenuItems(schema) {
     })
   }
 
-  let cut = arr => arr.filter(x => x)
-  r.insertMenu = new Dropdown(cut([r.insertImage, r.insertHorizontalRule]), {label: "Insert"})
-  r.typeMenu = new Dropdown(cut([r.makeParagraph, r.makeCodeBlock, r.makeHead1 && new DropdownSubmenu(cut([
-    r.makeHead1, r.makeHead2, r.makeHead3, r.makeHead4, r.makeHead5, r.makeHead6
-  ]), {label: "Heading"})]), {label: "Type..."})
+  if (type = schema.nodes.heading) {
 
-  r.inlineMenu = [cut([r.toggleStrong, r.toggleEm, r.toggleCode, r.toggleLink])]
+    let options = blockTypeItem(type, {
+      icon: icons.headline
+    }).options;
+
+    debugger;
+    r.headLineMenu = new Dropdown(cut([r.makeHead1, r.makeHead2, r.makeHead3, r.makeHead4, r.makeHead5, r.makeHead6]), options);
+  }
+
+  r.insertMenu = new Dropdown(cut([r.insertImage, r.insertHorizontalRule]), {label: "Insert"})
+ /* r.typeMenu = new Dropdown(cut([r.makeParagraph, r.makeCodeBlock, r.makeHead1 && new DropdownSubmenu(cut([
+    r.makeHead1, r.makeHead2, r.makeHead3, r.makeHead4, r.makeHead5, r.makeHead6
+  ]), {label: "Heading"})]), {label: "Type..."})*/
+
+  r.typeMenu = new Dropdown(cut([r.makeParagraph, r.makeCodeBlock]), {label: "Type..."})
+
+  r.inlineMenu = [cut([r.headLineMenu, r.toggleStrong, r.toggleEm, r.toggleCode, r.toggleLink])]
   r.blockMenu = [cut([r.wrapBulletList, r.wrapOrderedList, r.wrapBlockQuote, joinUpItem,
                       liftItem, selectParentNodeItem])]
-  r.fullMenu = r.inlineMenu.concat([[r.insertMenu, r.typeMenu]], [[undoItem, redoItem]], r.blockMenu)
+  r.fullMenu = r.inlineMenu.concat([[r.insertTable, r.tableDropDown, r.insertMenu, r.typeMenu]], r.blockMenu)
 
   return r
 }
 
+export function wrapTableItem(schema, options) {
+    let command = wrapIn(schema.nodes.table_header);
+    let passedOptions = {
+        run(state, dispatch, view) {
+            openPrompt({
+                title: "Insert table",
+                fields: {
+                    rowCount: new TextField({label: "Rows", required: true, value: 1}),
+                    columnCount: new TextField({label: "Columns", value: 1})
+                },
+                callback(attrs) {
+                    wrapIn(schema.nodes.table_header)(view.state, dispatch);
+
+                    for(let i = 1; i < attrs.columnCount; i++) {
+                        addColumnAfter(view.state, dispatch);
+                    }
+
+                    toggleHeaderRow(view.state, dispatch);
+                    toggleHeaderRow(view.state, dispatch);
+
+                    for(let i = 1; i < attrs.rowCount; i++) {
+                        addRowAfter(view.state, dispatch);
+                        //toggleHeaderRow();
+                    }
+
+                    view.focus()
+                }
+            })
+        },
+        enable(state) { return command(state) },
+        select(state) { return command(state) }
+    }
+    for (let prop in options) passedOptions[prop] = options[prop]
+    return new MenuItem(passedOptions)
+}
+
 export function buildMenu(options) {
     let menu = buildMenuItems(options.schema).fullMenu;
-    let tableMenu = buildTableMenu(options);
-    menu.splice(2, 0, [new Dropdown(tableMenu, {label: "Table"})]);
+   /** let tableMenu = ;
+    menu.splice(2, 0, [new Dropdown(tableMenu, {icon: icons.table})]); **/
     return menuBar({
         content: menu,
         floating: options.floatingMenu !== false
     });
 }
 
-let buildTableMenu = function(options) {
+let buildTableMenu = function() {
     function item(label, cmd) { return new MenuItem({label, select: cmd, run: cmd}) }
     return [
         item("Insert column before", addColumnBefore),

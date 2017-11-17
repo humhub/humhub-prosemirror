@@ -12,7 +12,7 @@ import {EditorView} from "prosemirror-view"
 import {fixTables} from "prosemirror-tables"
 
 import {markdownParser, markdownSchema, markdownSerializer, markdownRenderer} from "./markdown/index";
-import {setupPlugins} from "./prosemirror/plugins/index"
+import {setupPlugins} from "./prosemirror/index"
 
 
 
@@ -45,9 +45,26 @@ class MarkdownEditor {
             state: state
         });
 
+
+        this.$menuBar = this.$.find('.ProseMirror-menubar').hide();
+
+        this.$editor = $(this.editor.dom).on('focus', () => {
+            this.updateMenu();
+        }).on('blur', () => {
+            this.$menuBar.hide();
+        });
+
         this.trigger('init');
     }
 
+    updateMenu() {
+        let rect = this.$editor[0].getBoundingClientRect();
+        this.$menuBar.css({
+            top: (rect.top - this.$menuBar.outerHeight()),
+            left: rect.left
+        }).show();
+    }
+    
     serialize() {
         return markdownSerializer.serialize(this.editor.state.doc);
     }
