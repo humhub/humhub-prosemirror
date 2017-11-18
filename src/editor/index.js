@@ -62,6 +62,7 @@ class MarkdownEditor {
     }
 
     updateMenu() {
+        debugger;
         let rect = this.$editor[0].getBoundingClientRect();
         this.$menuBar.css({
             top: (rect.top - this.$menuBar.outerHeight()),

@@ -83,6 +83,9 @@ let markdownSerializer = new MarkdownSerializer({
         state.write("![" + state.esc(node.attrs.alt || "") + "](" + state.esc(node.attrs.src) +
             (node.attrs.title ? " " + state.quote(node.attrs.title) : "") + resizeAddition + ")");
     },
+    oembed: function oembed(state,node) {
+        state.write('['+node.attrs.href+'](oembed:'+node.attrs.href+')');
+    },
     emoji: function emoji(state, node) {
         state.write(':'+state.esc(node.attrs['data-name'])+':')
     },

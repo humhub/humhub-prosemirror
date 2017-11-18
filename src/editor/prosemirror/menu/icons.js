@@ -51,8 +51,6 @@ function buildSVG(name, data) {
 
     let pathData = Array.isArray(data.path) ? data.path : [data.path];
 
-    debugger;
-
     pathData.forEach((path) => {
         let pathDom = sym.appendChild(document.createElementNS(SVG, "path"))
         pathDom.setAttribute("d", path)

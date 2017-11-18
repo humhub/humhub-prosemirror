@@ -34,13 +34,18 @@ let markdownParser = new MarkdownParser(markdownSchema, tokenizer, {
     hr: {node: "horizontal_rule"},
     html_block: {
         node: "html_block", getAttrs: function (tok) {
-            debugger;
             return ({params: tok.info || ""});
+        }
+    },
+    oembed: {
+        node: "oembed", getAttrs: function(tok) {
+            return ({
+                href: tok.attrGet("href")
+            })
         }
     },
     emoji: {
         node: "emoji", getAttrs: function (tok) {
-            debugger;
             let $dom = $(twemoji.parse(tok.content));
             return ({
                 'data-name': tok.markup,

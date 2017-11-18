@@ -263,7 +263,7 @@ export function buildMenuItems(schema) {
     r.inlineMenu = [cut([getItemBySchema(schema.marks.strong), getItemBySchema(schema.marks.em), getItemBySchema(schema.marks.code), getItemBySchema(schema.marks.link)])];
 
     r.blockMenu = [cut([r.headLineMenu, r.wrapBulletList, r.wrapOrderedList, r.wrapBlockQuote, joinUpItem, liftItem, selectParentNodeItem])];
-    debugger;
+
     r.fullMenu = r.inlineMenu.concat([[r.insertTable, r.tableDropDown, r.typeMenu]], r.blockMenu, [[r.insertMenu]]);
 
     return r
@@ -382,7 +382,7 @@ export function buildMenu(options) {
      menu.splice(2, 0, [new Dropdown(tableMenu, {icon: icons.table})]); **/
     return menuBar({
         content: menu,
-        floating: options.floatingMenu !== false
+        floating: false
     });
 }
 
