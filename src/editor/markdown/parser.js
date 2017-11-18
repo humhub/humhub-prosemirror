@@ -32,11 +32,6 @@ let markdownParser = new MarkdownParser(markdownSchema, tokenizer, {
         }
     },
     hr: {node: "horizontal_rule"},
-    html_block: {
-        node: "html_block", getAttrs: function (tok) {
-            return ({params: tok.info || ""});
-        }
-    },
     oembed: {
         node: "oembed", getAttrs: function(tok) {
             return ({

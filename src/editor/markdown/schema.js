@@ -38,20 +38,26 @@ let schema = new Schema({
             content: "(inline* | embed)",
             group: "block",
             parseDOM: [{tag: "p"}],
-            toDOM: function toDOM() { return ["p", 0] }
+            toDOM: function toDOM() {
+                return ["p", 0]
+            }
         },
 
         blockquote: {
             content: "block+",
             group: "block",
             parseDOM: [{tag: "blockquote"}],
-            toDOM: function toDOM() { return ["blockquote", 0] }
+            toDOM: function toDOM() {
+                return ["blockquote", 0]
+            }
         },
 
         horizontal_rule: {
             group: "block",
             parseDOM: [{tag: "hr"}],
-            toDOM: function toDOM() { return ["div", ["hr"]] }
+            toDOM: function toDOM() {
+                return ["div", ["hr"]]
+            }
         },
 
         heading: {
@@ -65,7 +71,9 @@ let schema = new Schema({
                 {tag: "h4", attrs: {level: 4}},
                 {tag: "h5", attrs: {level: 5}},
                 {tag: "h6", attrs: {level: 6}}],
-            toDOM: function toDOM(node) { return ["h" + node.attrs.level, 0] }
+            toDOM: function toDOM(node) {
+                return ["h" + node.attrs.level, 0]
+            }
         },
 
         code_block: {
@@ -74,21 +82,33 @@ let schema = new Schema({
             code: true,
             defining: true,
             attrs: {params: {default: ""}},
-            parseDOM: [{tag: "pre", preserveWhitespace: true, getAttrs: function (node) { return ({params: node.getAttribute("data-params")}); }}],
-            toDOM: function toDOM(node) { return ["pre", node.attrs.params ? {"data-params": node.attrs.params} : {}, ["code", 0]] }
+            parseDOM: [{
+                tag: "pre", preserveWhitespace: true, getAttrs: function (node) {
+                    return ({params: node.getAttribute("data-params")});
+                }
+            }],
+            toDOM: function toDOM(node) {
+                return ["pre", node.attrs.params ? {"data-params": node.attrs.params} : {}, ["code", 0]]
+            }
         },
 
         ordered_list: {
             content: "list_item+",
             group: "block",
             attrs: {order: {default: 1}, tight: {default: false}},
-            parseDOM: [{tag: "ol", getAttrs: function getAttrs(dom) {
-                return {order: dom.hasAttribute("start") ? +dom.getAttribute("start") : 1,
-                    tight: dom.hasAttribute("data-tight")}
-            }}],
+            parseDOM: [{
+                tag: "ol", getAttrs: function getAttrs(dom) {
+                    return {
+                        order: dom.hasAttribute("start") ? +dom.getAttribute("start") : 1,
+                        tight: dom.hasAttribute("data-tight")
+                    }
+                }
+            }],
             toDOM: function toDOM(node) {
-                return ["ol", {start: node.attrs.order == 1 ? null : node.attrs.order,
-                    "data-tight": node.attrs.tight ? "true" : null}, 0]
+                return ["ol", {
+                    start: node.attrs.order == 1 ? null : node.attrs.order,
+                    "data-tight": node.attrs.tight ? "true" : null
+                }, 0]
             }
         },
 
@@ -96,20 +116,30 @@ let schema = new Schema({
             content: "list_item+",
             group: "block",
             attrs: {tight: {default: false}},
-            parseDOM: [{tag: "ul", getAttrs: function (dom) { return ({tight: dom.hasAttribute("data-tight")}); }}],
-            toDOM: function toDOM(node) { return ["ul", {"data-tight": node.attrs.tight ? "true" : null}, 0] }
+            parseDOM: [{
+                tag: "ul", getAttrs: function (dom) {
+                    return ({tight: dom.hasAttribute("data-tight")});
+                }
+            }],
+            toDOM: function toDOM(node) {
+                return ["ul", {"data-tight": node.attrs.tight ? "true" : null}, 0]
+            }
         },
 
         list_item: {
             content: "paragraph block*",
             defining: true,
             parseDOM: [{tag: "li"}],
-            toDOM: function toDOM() { return ["li", 0] }
+            toDOM: function toDOM() {
+                return ["li", 0]
+            }
         },
 
         text: {
             group: "inline",
-            toDOM: function toDOM(node) { return node.text }
+            toDOM: function toDOM(node) {
+                return node.text
+            }
         },
 
         image: {
@@ -117,18 +147,26 @@ let schema = new Schema({
             attrs: {
                 src: {},
                 alt: {default: null},
-                title: {default: null}
+                title: {default: null},
+                width: {default: null},
+                height: {default: null}
             },
             group: "inline",
             draggable: true,
-            parseDOM: [{tag: "img[src]", getAttrs: function getAttrs(dom) {
-                return {
-                    src: dom.getAttribute("src"),
-                    title: dom.getAttribute("title"),
-                    alt: dom.getAttribute("alt")
+            parseDOM: [{
+                tag: "img[src]", getAttrs: function getAttrs(dom) {
+                    return {
+                        src: dom.getAttribute("src"),
+                        title: dom.getAttribute("title"),
+                        alt: dom.getAttribute("alt"),
+                        width: dom.getAttribute("width"),
+                        height: dom.getAttribute("height")
+                    }
                 }
-            }}],
-            toDOM: function toDOM(node) { return ["img", node.attrs] }
+            }],
+            toDOM: function toDOM(node) {
+                return ["img", node.attrs]
+            }
         },
 
         hard_break: {
@@ -136,35 +174,64 @@ let schema = new Schema({
             group: "inline",
             selectable: false,
             parseDOM: [{tag: "br"}],
-            toDOM: function toDOM() { return ["br"] }
+            toDOM: function toDOM() {
+                return ["br"]
+            }
         },
+
         oembed: {
             attrs: {
                 href: {},
                 dom: {default: null}
             },
             isolating: true,
-                atom: true,
-                draggable: false,
-                inline: true,
-                group: "embed",
-                parseDOM: [{tag: "[data-oembed]"}],
-                toDOM: function toDOM(node) {
+            atom: true,
+            draggable: false,
+            inline: true,
+            group: "embed",
+            parseDOM: [{tag: "[data-oembed]"}],
+            toDOM: function toDOM(node) {
                 //todo: call humhub.oembed.get(url)
-                if(!node.attrs.dom) {
-                    let $oembed = $('[data-oembed="'+node.attrs.href+'"]');
+                if (!node.attrs.dom) {
+                    let $oembed = $('[data-oembed="' + node.attrs.href + '"]');
 
-                    if($oembed.length) {
+                    if ($oembed.length) {
                         $oembed = $oembed.clone().show();
                         node.attrs.dom = $oembed[0];
                     }
                 }
 
-                if(!node.attrs.dom) {
-                    return $('<a href="'+escapeHtml(node.attrs.href)+'" target="_blank" rel="noopener">'+escapeHtml(node.attrs.href)+'</a>')[0];
+                if (!node.attrs.dom) {
+                    return $('<a href="' + escapeHtml(node.attrs.href) + '" target="_blank" rel="noopener">' + escapeHtml(node.attrs.href) + '</a>')[0];
                 }
 
                 return node.attrs.dom;
+            }
+        },
+
+        emoji: {
+            attrs: {
+                class: {default: 'emoji'},
+                draggable: {default: 'false'},
+                width: {default: '18'},
+                height: {default: '18'},
+                'data-name': {default: null},
+                alt: {default: null},
+                src: {default: null},
+            },
+            inline: true,
+            group: "inline",
+            parseDOM: [{
+                tag: "img.emoji", getAttrs: function getAttrs(dom) {
+                    return {
+                        src: dom.getAttribute("src"),
+                        alt: dom.getAttribute("alt"),
+                        'data-name': dom.getAttribute('data-name')
+                    }
+                }
+            }],
+            toDOM: function toDOM(node) {
+                return ['img', node.attrs]
             }
         }
     },
@@ -172,14 +239,33 @@ let schema = new Schema({
     marks: {
         em: {
             parseDOM: [{tag: "i"}, {tag: "em"},
-                {style: "font-style", getAttrs: function (value) { return value == "italic" && null; }}],
-            toDOM: function toDOM() { return ["em"] }
+                {
+                    style: "font-style", getAttrs: function (value) {
+                    return value == "italic" && null;
+                }
+                }],
+            toDOM: function toDOM() {
+                return ["em"]
+            }
         },
 
         strong: {
             parseDOM: [{tag: "b"}, {tag: "strong"},
-                {style: "font-weight", getAttrs: function (value) { return /^(bold(er)?|[5-9]\d{2,})$/.test(value) && null; }}],
-            toDOM: function toDOM() { return ["strong"] }
+                {
+                    style: "font-weight", getAttrs: function (value) {
+                    return /^(bold(er)?|[5-9]\d{2,})$/.test(value) && null;
+                }
+                }],
+            toDOM: function toDOM() {
+                return ["strong"]
+            }
+        },
+
+        strikethrough: {
+            parseDOM: [{tag: "s"}],
+            toDOM: function toDOM() {
+                return ["s"]
+            }
         },
 
         link: {
@@ -188,21 +274,26 @@ let schema = new Schema({
                 title: {default: null}
             },
             inclusive: false,
-            parseDOM: [{tag: "a[href]", getAttrs: function getAttrs(dom) {
-                return {href: dom.getAttribute("href"), title: dom.getAttribute("title")}
-            }}],
-            toDOM: function toDOM(node) { return ["a", node.attrs] }
+            parseDOM: [{
+                tag: "a[href]", getAttrs: function getAttrs(dom) {
+                    return {href: dom.getAttribute("href"), title: dom.getAttribute("title")}
+                }
+            }],
+            toDOM: function toDOM(node) {
+                return ["a", node.attrs]
+            }
         },
 
         code: {
             parseDOM: [{tag: "code"}],
-            toDOM: function toDOM() { return ["code"] }
+            toDOM: function toDOM() {
+                return ["code"]
+            }
         }
     }
 });
 
 let nodes = schema.spec.nodes
-    .remove('image')
     .append(tableNodes({
         tableGroup: "block",
         cellContent: "paragraph+",
@@ -251,79 +342,13 @@ let nodes = schema.spec.nodes
         toDOM: function toDOM() {
             return ["tfoot", 0]
         }
-    }).addToEnd('emoji', {
-        attrs: {
-            class: {default: 'emoji'},
-            draggable: {default: 'false'},
-            width: {default: '18'},
-            height: {default: '18'},
-            'data-name': {default: null},
-            alt: {default: null},
-            src: {default: null},
-        },
-        inline: true,
-        group: "inline",
-        parseDOM: [{
-            tag: "img.emoji", getAttrs: function getAttrs(dom) {
-                return {
-                    src: dom.getAttribute("src"),
-                    alt: dom.getAttribute("alt"),
-                    'data-name': dom.getAttribute('data-name')
-                }
-            }
-        }],
-        toDOM: function toDOM(node) {
-            return ['img', node.attrs]
-        }
-    }).addToEnd('image', {
-        inline: true,
-        attrs: {
-            src: {},
-            alt: {default: null},
-            title: {default: null},
-            width: {default: null},
-            height: {default: null}
-        },
-        group: "inline",
-        draggable: true,
-        parseDOM: [{
-            tag: "img[src]", getAttrs: function getAttrs(dom) {
-                return {
-                    src: dom.getAttribute("src"),
-                    title: dom.getAttribute("title"),
-                    alt: dom.getAttribute("alt"),
-                    width: dom.getAttribute("width"),
-                    height: dom.getAttribute("height")
-                }
-            }
-        }],
-        toDOM: function toDOM(node) {
-            return ["img", node.attrs]
-        }
-    }).addToEnd('html_block', {
-    inline: true,
-    group: "inline",
-    draggable: true,
-    parseDOM: [{
-        tag: "br"
-    }],
-    toDOM: function toDOM(node) {
-        return ["br", node.attrs]
-    }
-});
-
-let marks = schema.spec.marks.addToEnd('strikethrough', {
-    parseDOM: [{tag: "s"}],
-    toDOM: function toDOM() {
-        return ["s"]
-    }
-});
+    });
 
 // TODO: link => blank
 
 let markdownSchema = new Schema({
     nodes: nodes,
-    marks: marks
+    marks: schema.spec.marks
 });
 
 export {markdownSchema};
