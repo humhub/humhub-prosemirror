@@ -1,5 +1,9 @@
-import {inputRules, wrappingInputRule, textblockTypeInputRule,
-        smartQuotes, emDash, ellipsis} from "prosemirror-inputrules"
+import {
+    inputRules, wrappingInputRule, textblockTypeInputRule,
+    smartQuotes, emDash, ellipsis, InputRule
+} from "prosemirror-inputrules"
+
+import {PluginKey} from "prosemirror-state"
 
 // : (NodeType) → InputRule
 // Given a blockquote node type, returns an input rule that turns `"> "`
@@ -41,6 +45,17 @@ export function headingRule(nodeType, maxLevel) {
                                 nodeType, match => ({level: match[1].length}))
 }
 
+export const leafNodeReplacementCharacter = '\ufffc';
+
+export function mentionRule(schema) {
+    return new InputRule(new RegExp('(^|[\\s\('+leafNodeReplacementCharacter+'])@$'), function (state, match, start, end) {
+
+        const mentionText = schema.text('@xxx');
+
+        return state.tr.replaceSelectionWith(mentionText, false);
+    })
+}
+
 // : (Schema) → Plugin
 // A set of input rules for creating the basic block quotes, lists,
 // code blocks, and heading.
@@ -50,6 +65,9 @@ export function buildInputRules(schema) {
   if (type = schema.nodes.ordered_list) rules.push(orderedListRule(type))
   if (type = schema.nodes.bullet_list) rules.push(bulletListRule(type))
   if (type = schema.nodes.code_block) rules.push(codeBlockRule(type))
-  if (type = schema.nodes.heading) rules.push(headingRule(type, 6))
+  if (type = schema.nodes.heading) rules.push(headingRule(type, 6));
+
+  rules.push(mentionRule(schema));
+
   return inputRules({rules})
 }

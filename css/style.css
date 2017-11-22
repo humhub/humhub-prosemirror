@@ -187,7 +187,7 @@ li.ProseMirror-selectednode:after {
 }
 
 .ProseMirror iframe {
-  /* pointer-events: none; */
+   pointer-events: none;
   display: block;
 }
 

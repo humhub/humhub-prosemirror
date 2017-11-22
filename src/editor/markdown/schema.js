@@ -35,7 +35,7 @@ let schema = new Schema({
         },
 
         paragraph: {
-            content: "(inline* | embed)",
+            content: "inline*",
             group: "block",
             parseDOM: [{tag: "p"}],
             toDOM: function toDOM() {
@@ -182,30 +182,31 @@ let schema = new Schema({
         oembed: {
             attrs: {
                 href: {},
-                dom: {default: null}
+                dom: {default: null},
+                txt: {default: 'test'}
             },
-            isolating: true,
             atom: true,
-            draggable: false,
+            draggable: true,
             inline: true,
-            group: "embed",
-            parseDOM: [{tag: "[data-oembed]"}],
-            toDOM: function toDOM(node) {
-                //todo: call humhub.oembed.get(url)
-                if (!node.attrs.dom) {
-                    let $oembed = $('[data-oembed="' + node.attrs.href + '"]');
+            group: "inline",
+            parseDOM: [{
+                tag: "[data-oembed]", getAttrs: function getAttrs(dom) {
 
-                    if ($oembed.length) {
-                        $oembed = $oembed.clone().show();
-                        node.attrs.dom = $oembed[0];
-                    }
+                    return {
+                        href: dom.getAttribute("data-oembed")
+                    };
                 }
+            }],
+            toDOM: function toDOM(node) {
+                console.log('asdf');
+                //todo: call humhub.oembed.get(url)
+                let $oembed = $('[data-oembed="' + node.attrs.href + '"]');
 
-                if (!node.attrs.dom) {
+                if ($oembed.length) {
+                    return $oembed.clone().show()[0];
+                } else {
                     return $('<a href="' + escapeHtml(node.attrs.href) + '" target="_blank" rel="noopener">' + escapeHtml(node.attrs.href) + '</a>')[0];
                 }
-
-                return node.attrs.dom;
             }
         },
 
