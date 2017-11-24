@@ -11,8 +11,9 @@ import {EditorState} from "prosemirror-state"
 import {EditorView} from "prosemirror-view"
 import {fixTables} from "prosemirror-tables"
 
-import {markdownParser, markdownSchema, markdownSerializer, markdownRenderer} from "./markdown/index";
-import {setupPlugins} from "./prosemirror/index"
+import {markdownParser, markdownSerializer, markdownRenderer} from "./markdown/index";
+import {schema} from "./core/schema"
+import {setupPlugins} from "./core/index"
 
 
 
@@ -21,7 +22,7 @@ class MarkdownEditor {
         this.options = options || {};
 
         if(!this.options.schema) {
-            this.options.schema = markdownSchema;
+            this.options.schema = schema;
         }
 
         if(!this.options.menuMode) {
@@ -84,5 +85,6 @@ class MarkdownEditor {
 
 window.pm = {
     MarkdownEditor: MarkdownEditor,
+    EditorState: EditorState,
     markdownRenderer: markdownRenderer
 };

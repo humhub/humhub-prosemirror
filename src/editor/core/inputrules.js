@@ -3,8 +3,6 @@ import {
     smartQuotes, emDash, ellipsis, InputRule
 } from "prosemirror-inputrules"
 
-import {PluginKey} from "prosemirror-state"
-
 // : (NodeType) → InputRule
 // Given a blockquote node type, returns an input rule that turns `"> "`
 // at the start of a textblock into a blockquote.
@@ -50,7 +48,8 @@ export const leafNodeReplacementCharacter = '\ufffc';
 export function mentionRule(schema) {
     return new InputRule(new RegExp('(^|[\\s\('+leafNodeReplacementCharacter+'])@$'), function (state, match, start, end) {
 
-        const mentionText = schema.text('@xxx');
+        const mark = schema.mark('mentionQuery');
+        const mentionText = schema.text('@', [mark]);
 
         return state.tr.replaceSelectionWith(mentionText, false);
     })

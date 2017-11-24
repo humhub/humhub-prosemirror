@@ -24,6 +24,8 @@ $(document).ready(function() {
 
         editor.init(md);
 
+        ProseMirrorDevTools.applyDevTools(editor.editor, { EditorState: pm.EditorState });
+
     };
 
     var serialize = function() {

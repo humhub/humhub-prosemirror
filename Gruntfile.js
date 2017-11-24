@@ -4,6 +4,7 @@ module.exports = function(grunt) {
     let rollupPluginCommonjs = require('rollup-plugin-commonjs');
     let rollupPluginJson = require('rollup-plugin-json');
     let rollupPluginBuble = require('rollup-plugin-buble');
+    let rollupPluginReplace = require('rollup-plugin-replace');
 
 
     grunt.initConfig({
@@ -27,14 +28,22 @@ module.exports = function(grunt) {
                             preferBuiltins: false
                         }),
                         rollupPluginJson(),
-                        rollupPluginCommonjs(),
-                        rollupPluginBuble()
+                        rollupPluginCommonjs({
+                                namedExports: {
+                                    'node_modules/react/react.js': ['Children', 'Component', 'PropTypes', 'createElement'],
+                                    'node_modules/react-dom/index.js': ['render']
+                                }
+                            }),
+                        rollupPluginBuble(),
+                        rollupPluginReplace({
+                            'process.env.NODE_ENV': JSON.stringify( 'development' )
+                        })
                     ];
                 }
             },
             pm: {
                 files: {
-                    'dist/editor.js': ['src/editor/index.js']
+                    'dist/humhub-editor.js': ['src/editor/index.js']
                 }
             }
         }

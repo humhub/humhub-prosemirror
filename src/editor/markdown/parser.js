@@ -6,11 +6,11 @@
  */
 
 import {MarkdownParser} from "prosemirror-markdown"
-import {markdownSchema} from "./schema"
+import {schema} from "../core/schema"
 import {markdownRenderer as tokenizer} from "./renderer"
 import twemoji from "twemoji"
 
-let markdownParser = new MarkdownParser(markdownSchema, tokenizer, {
+let markdownParser = new MarkdownParser(schema, tokenizer, {
     blockquote: {block: "blockquote"},
     paragraph: {block: "paragraph"},
     list_item: {block: "list_item"},

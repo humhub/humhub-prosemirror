@@ -5,10 +5,8 @@
  *
  */
 
-import {markdownSchema} from "./schema"
-import {markdownParser} from "./parser"
-import {markdownSerializer} from "./serializer"
-import {markdownRenderer} from "./renderer"
+export {markdownParser} from "./parser"
+export {markdownSerializer} from "./serializer"
+export {markdownRenderer} from "./renderer"
 
-export {markdownSchema, markdownParser, markdownRenderer, markdownSerializer}
 
