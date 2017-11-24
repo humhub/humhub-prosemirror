@@ -1,5 +1,5 @@
 
-const mentionSchema = {
+const schema = {
     nodes: {
         mention: {
             inline: true,
@@ -50,4 +50,4 @@ const mentionSchema = {
     }
 };
 
-export {mentionSchema}
+export {schema}

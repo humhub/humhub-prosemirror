@@ -1,3 +1,5 @@
+import twemoji from "twemoji"
+
 let emoji = {
     attrs: {
         class: {default: 'emoji'},
@@ -21,13 +23,26 @@ let emoji = {
     }],
     toDOM: function toDOM(node) {
         return ['img', node.attrs]
+    },
+    parseMarkdown:  {
+        node: "emoji", getAttrs: function (tok) {
+            let $dom = $(twemoji.parse(tok.content));
+            return ({
+                'data-name': tok.markup,
+                alt: $dom.attr('alt'),
+                src: $dom.attr('src')
+            })
+        }
+    },
+    toMarkdown: (state, node) => {
+        state.write(':'+state.esc(node.attrs['data-name'])+':')
     }
 };
 
-const emojiSchema = {
+const schema = {
     nodes: {
         emoji: emoji
     }
 };
 
-export {emojiSchema};
+export {schema};

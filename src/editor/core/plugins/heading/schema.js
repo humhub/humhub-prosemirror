@@ -1,6 +1,7 @@
-const headingSchema = {
+const schema = {
     nodes: {
         heading:  {
+            sortOrder: 400,
             attrs: {level: {default: 1}},
             content: "inline*",
             group: "block",
@@ -13,9 +14,19 @@ const headingSchema = {
                 {tag: "h6", attrs: {level: 6}}],
             toDOM: (node) => {
                 return ["h" + node.attrs.level, 0]
+            },
+            parseMarkdown: {
+                block: "heading", getAttrs: function (tok) {
+                    return ({level: +tok.tag.slice(1)});
+                }
+            },
+            toMarkdown: (state, node) => {
+                state.write(state.repeat("#", node.attrs.level) + " ");
+                state.renderInline(node);
+                state.closeBlock(node);
             }
         }
     }
 };
 
-export {headingSchema}
+export {schema}

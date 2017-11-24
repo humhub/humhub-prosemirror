@@ -1,3 +1,10 @@
+/*
+ * @link https://www.humhub.org/
+ * @copyright Copyright (c) 2017 HumHub GmbH & Co. KG
+ * @license https://www.humhub.com/licences
+ *
+ */
+
 // Process [link](oembed:<to> "stuff")
 
 import MarkdownIt from "markdown-it"
@@ -7,7 +14,7 @@ var normalizeReference = inst.utils.normalizeReference;
 var isSpace = inst.utils.isSpace;
 
 
-function oembed(state, silent) {
+function oembed_plugin(state, silent) {
     var attrs,
         code,
         label,
@@ -174,4 +181,4 @@ function oembed(state, silent) {
     return true;
 };
 
-export {oembed}
+export {oembed_plugin}

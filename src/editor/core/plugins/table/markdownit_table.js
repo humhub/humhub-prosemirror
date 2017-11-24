@@ -1,3 +1,10 @@
+/*
+ * @link https://www.humhub.org/
+ * @copyright Copyright (c) 2017 HumHub GmbH & Co. KG
+ * @license https://www.humhub.com/licences
+ *
+ */
+
 // GFM table, non-standard
 function isSpace(code) {
     switch (code) {
@@ -68,7 +75,7 @@ function escapedSplit(str) {
 }
 
 
-module.exports = function table(state, startLine, endLine, silent) {
+module.exports = function table_plugin(state, startLine, endLine, silent) {
   var ch, lineText, pos, i, nextLine, columns, columnCount, token,
       aligns, t, tableLines, tbodyLines;
 

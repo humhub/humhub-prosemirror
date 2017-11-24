@@ -21,9 +21,9 @@
     "markdown-it": "latest",
     "markdown-it-emoji": "latest",
     "markdown-it-imsize": "latest",
-    "prosemirror-commands": "^1.0.0",
+    "prosemirror-commands": "^1.0.2",
     "prosemirror-dropcursor": "^1.0.0",
-    "prosemirror-example-setup": "^1.0.0",
+    "prosemirror-example-setup": "^1.0.1",
     "prosemirror-gapcursor": "^1.0.0",
     "prosemirror-history": "^1.0.0",
     "prosemirror-inputrules": "^1.0.0",
@@ -36,7 +36,7 @@
     "prosemirror-state": "^1.0.0",
     "prosemirror-tables": "^0.4.1",
     "prosemirror-transform": "^1.0.0",
-    "prosemirror-view": "^1.0.0",
+    "prosemirror-view": "^1.0.3",
     "twemoji": "^2.5.0"
   },
   "devDependencies": {
@@ -50,7 +50,8 @@
     "rollup-plugin-buble": "^0.15.0",
     "rollup-plugin-commonjs": "latest",
     "rollup-plugin-json": "latest",
-    "rollup-plugin-node-resolve": "latest"
+    "rollup-plugin-node-resolve": "latest",
+    "rollup-plugin-replace": "^2.0.0"
   },
   "scripts": {
     "test": "true",

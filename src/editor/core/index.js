@@ -9,7 +9,7 @@ import {tableEditing} from "prosemirror-tables";
 
 import {buildMenu} from "./menu"
 import {buildKeymap} from "./keymap"
-import {buildInputRules} from "./inputrules"
+import {buildInputRules, buildPlugins} from "./plugins"
 
 import {goToNextCell} from "prosemirror-tables"
 
@@ -52,7 +52,7 @@ import {goToNextCell} from "prosemirror-tables"
 //     Can be used to override the menu content.
 export function setupPlugins(options) {
     let plugins = [
-        buildInputRules(options.schema),
+        buildInputRules(options),
         keymap(buildKeymap(options.schema, options.mapKeys)),
         keymap(baseKeymap),
         dropCursor(),
@@ -65,11 +65,13 @@ export function setupPlugins(options) {
         })
     ];
 
+    debugger;
+
     if (options.history !== false) {
         plugins.push(history())
     }
 
-    return plugins.concat(new Plugin({
+    return plugins.concat(buildPlugins(options)).concat(new Plugin({
         props: {
             attributes: {class: "ProseMirror-example-setup-style"}
         }

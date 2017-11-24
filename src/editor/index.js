@@ -11,18 +11,15 @@ import {EditorState} from "prosemirror-state"
 import {EditorView} from "prosemirror-view"
 import {fixTables} from "prosemirror-tables"
 
-import {markdownParser, markdownSerializer, markdownRenderer} from "./markdown/index";
-import {schema} from "./core/schema"
+import {getParser, getSerializer, getRenderer} from "./markdown";
+import {getSchema} from "./core/schema"
 import {setupPlugins} from "./core/index"
 
-
-
 class MarkdownEditor {
-    constructor(selector, options) {
-        this.options = options || {};
-
+    constructor(selector, options = {}) {
+        this.options = options;
         if(!this.options.schema) {
-            this.options.schema = schema;
+            this.options.schema = getSchema(options);
         }
 
         if(!this.options.menuMode) {
@@ -30,7 +27,9 @@ class MarkdownEditor {
         }
 
         this.$ = $(selector);
-
+        this.parser = getParser(this.options);
+        this.serializer = getSerializer(this.options);
+        this.renderer = getRenderer(this.options);
     }
 
     init(md) {
@@ -39,7 +38,7 @@ class MarkdownEditor {
         }
 
         let state = EditorState.create({
-            doc: markdownParser.parse(md),
+            doc: this.parser.parse(md),
             plugins: setupPlugins(this.options)
         });
 
@@ -71,7 +70,7 @@ class MarkdownEditor {
     }
     
     serialize() {
-        return markdownSerializer.serialize(this.editor.state.doc);
+        return this.serializer.serialize(this.editor.state.doc);
     }
 
     trigger(trigger, args) {
@@ -86,5 +85,5 @@ class MarkdownEditor {
 window.pm = {
     MarkdownEditor: MarkdownEditor,
     EditorState: EditorState,
-    markdownRenderer: markdownRenderer
+    getRenderer: getRenderer
 };

@@ -6,89 +6,52 @@
  */
 
 import {MarkdownParser} from "prosemirror-markdown"
-import {schema} from "../core/schema"
-import {markdownRenderer as tokenizer} from "./renderer"
-import twemoji from "twemoji"
+import {getPlugins} from "../core/plugins"
+import {getRenderer} from "./renderer"
+import {getSchema} from "../core/schema"
 
-let markdownParser = new MarkdownParser(schema, tokenizer, {
-    blockquote: {block: "blockquote"},
-    paragraph: {block: "paragraph"},
-    list_item: {block: "list_item"},
-    bullet_list: {block: "bullet_list"},
-    ordered_list: {
-        block: "ordered_list", getAttrs: function (tok) {
-            return ({order: +tok.attrGet("order") || 1});
-        }
-    },
-    heading: {
-        block: "heading", getAttrs: function (tok) {
-            return ({level: +tok.tag.slice(1)});
-        }
-    },
-    code_block: {block: "code_block"},
-    fence: {
-        block: "code_block", getAttrs: function (tok) {
-            return ({params: tok.info || ""});
-        }
-    },
-    hr: {node: "horizontal_rule"},
-    oembed: {
-        node: "oembed", getAttrs: function(tok) {
-            return ({
-                href: tok.attrGet("href")
-            })
-        }
-    },
-    emoji: {
-        node: "emoji", getAttrs: function (tok) {
-            let $dom = $(twemoji.parse(tok.content));
-            return ({
-                'data-name': tok.markup,
-                alt: $dom.attr('alt'),
-                src: $dom.attr('src')
-            })
-        }
-    },
-    table: {block: "table"},
-    thead: {block: "table_head"},
-    tbody: {block: "table_body"},
-    tfoot: {block: "table_foot"},
-    tr: {block: "table_row"},
-    th: {block: "table_header", getAttrs: function(tok) {
-        return {
-            style: tok.attrGet("style")
-        }
-    }},
-    td: {block: "table_cell", getAttrs: function(tok) {
-        return {
-            style: tok.attrGet("style")
-        }
-    }},
-    image: {
-        node: "image", getAttrs: function (tok) {
-            return ({
-                src: tok.attrGet("src"),
-                title: tok.attrGet("title") || null,
-                width: tok.attrGet("width") || null,
-                height: tok.attrGet("height") || null,
-                alt: tok.children[0] && tok.children[0].content || null
-            });
-        }
-    },
-    hardbreak: {node: "hard_break"},
+let presets = {};
 
-    em: {mark: "em"},
-    strong: {mark: "strong"},
-    link: {
-        mark: "link", getAttrs: function (tok) {
-            return ({
-                href: tok.attrGet("href"),
-                title: tok.attrGet("title") || null
-            });
-        }
-    },
-    code_inline: {mark: "code"},
-    s: {mark: "strikethrough"},
-});
+let getParser = (options = {}) => {
+    if (options.preset && presets[options.preset]) {
+        return presets[options.preset];
+    }
 
-export {markdownParser}
+    let parser = createParser(options);
+
+    if(options.preset) {
+        presets[options.preset] = parser;
+    }
+
+    return parser;
+};
+
+let createParser = (options) => {
+    const plugins = getPlugins(options);
+
+    let tokens = {};
+    plugins.forEach((plugin) => {
+        if (!plugin.schema) {
+            return;
+        }
+
+        let schemaSpecs = Object.assign({}, plugin.schema.nodes || {}, plugin.schema.marks || {});
+
+        for (let key in schemaSpecs) {
+            let spec = schemaSpecs[key];
+            if (spec.parseMarkdown) {
+
+                if(spec.parseMarkdown.block || spec.parseMarkdown.node || spec.parseMarkdown.mark || spec.parseMarkdown.ignore) {
+                    tokens[key] = spec.parseMarkdown;
+                } else {
+                    let tokenKey = Object.keys(spec.parseMarkdown)[0];
+                    tokens[tokenKey] = spec.parseMarkdown[tokenKey]
+                }
+            }
+        }
+    });
+
+    return new MarkdownParser(getSchema(options), getRenderer(options), tokens);
+};
+
+export {getParser}

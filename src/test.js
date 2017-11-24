@@ -30,7 +30,7 @@ $(document).ready(function() {
 
     var serialize = function() {
         markdown = editor.serialize();
-        $('#result').html($(pm.markdownRenderer.render(markdown)));
+        $('#result').html($(editor.renderer.render(markdown)));
         $('#markdown').val(markdown);
     };
 
@@ -44,7 +44,7 @@ $(document).ready(function() {
 
     $('#test').on('click', function() {
         var md = $('#markdown').val().trim();
-        var html = pm.markdownRenderer.render(md);
+        var html = editor.renderer.render(md);
         console.log(html);
         $('#testContent').html($(html));
     });
@@ -59,5 +59,4 @@ $(document).ready(function() {
     });
 
     render();
-    //serialize();
 });

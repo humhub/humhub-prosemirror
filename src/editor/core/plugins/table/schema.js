@@ -18,6 +18,10 @@ let nodes = tableNodes({
     }
 });
 
+nodes.table_row.parseMarkdown = {tr: {block: "table_row"}};
+nodes.table_header.parseMarkdown = {th: {block: "table_header"}};
+nodes.table_cell.parseMarkdown = {td: {block: "table_cell"}};
+
 nodes = Object.assign(nodes, {
     table: {
         content: "(table_row+ | table_head | table_body | table_foot)",
@@ -27,7 +31,11 @@ nodes = Object.assign(nodes, {
         parseDOM: [{tag: "table"}],
         toDOM: function toDOM() {
             return ["table", ["tbody", 0]]
-        }
+        },
+        toMarkdown: (state, node) => {
+            renderTable(state,node);
+        },
+        parseMarkdown: {block: "table"}
     },
     table_head: {
         content: "table_row*",
@@ -35,7 +43,8 @@ nodes = Object.assign(nodes, {
         parseDOM: [{tag: "thead"}],
         toDOM: function toDOM() {
             return ["thead", 0]
-        }
+        },
+        parseMarkdown: {thead: {block: "table_head"}}
     },
     table_body: {
         content: "table_row*",
@@ -43,7 +52,8 @@ nodes = Object.assign(nodes, {
         parseDOM: [{tag: "tbody"}],
         toDOM: function toDOM() {
             return ["tbody", 0]
-        }
+        },
+        parseMarkdown: {tbody: {block: "table_body"}}
     },
     table_foot: {
         content: "table_row*",
@@ -51,12 +61,69 @@ nodes = Object.assign(nodes, {
         parseDOM: [{tag: "tfoot"}],
         toDOM: function toDOM() {
             return ["tfoot", 0]
-        }
+        },
+        parseMarkdown: {tfoot: {block: "table_foot"}}
     }
 });
 
-const tableSchema = {
+let renderTable = function(state, node, withHead) {
+    state.table = true;
+
+    if(typeof withHead === 'undefined') {
+        withHead = true;
+    }
+
+    node.forEach(function (child, _, i) {
+        if(child.type.name === 'table_body' || child.type.name === 'table_head') {
+            renderTable(state, child, i === 0);
+        } else if(withHead && i === 0) {
+            renderHeadRow(state,child);
+        } else {
+            renderRow(state, child);
+        }
+
+        if(i !== (node.childCount -1)) {
+            state.write("\n");
+        }
+    });
+
+    state.table = false;
+    state.closeBlock(node);
+};
+
+let renderHeadRow = function(state, node) {
+    renderRow(state,node);
+    state.write("\n");
+    renderRow(state,node, true);
+};
+
+let renderRow = function(state, node, headMarker) {
+    state.write('|');
+    node.forEach(function (child, _, i) {
+        renderCell(state, child, headMarker);
+    });
+};
+
+let renderCell = function(state, node, headMarker) {
+    state.write(' ');
+    if(headMarker) {
+        (node.textContent.length) ? state.write(state.repeat('-', node.textContent.length)) : state.write('---');
+        if(node.attrs.style && node.attrs.style.indexOf("text-align:right") >= 0) {
+            state.write(':');
+        } else {
+            state.write(' ');
+        }
+    } else {
+        state.renderContent(node);
+
+        state.write(' ');
+    }
+    state.write('|');
+};
+
+
+const schema = {
     nodes: nodes
 };
 
-export {tableSchema}
+export {schema}

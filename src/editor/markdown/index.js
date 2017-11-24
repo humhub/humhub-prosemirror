@@ -5,8 +5,8 @@
  *
  */
 
-export {markdownParser} from "./parser"
-export {markdownSerializer} from "./serializer"
-export {markdownRenderer} from "./renderer"
+export {getParser} from "./parser"
+export {getSerializer} from "./serializer"
+export {getRenderer} from "./renderer"
 
 
