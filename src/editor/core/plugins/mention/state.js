@@ -6,23 +6,29 @@
  */
 
 export class MentionState {
-    constructor(state) {
+    constructor(state, options) {
         this.state = state;
+        this.provider = options.mention.provider;
     }
 
     init(config, instance) {
-        debugger;
         console.log('init');
     }
 
     apply(tr, value, oldState, newState) {
-        debugger;
         console.log('apply')
     }
 
-    update(state) {
-        debugger;
-        console.log('update')
+    update(state, view) {
+        const { mentionQuery } = state.schema.marks;
+        const { doc, selection } = state;
+        const { $from, from, to } = selection;
+        if (!doc.rangeHasMark(from - 1, to, mentionQuery)) {
+            return this.provider.dismiss();
+        }
+
+        let query = selection.$from.nodeBefore.text.substr(1);
+        this.provider.query(query, $('[data-mention-query]')[0]);
     }
 
 

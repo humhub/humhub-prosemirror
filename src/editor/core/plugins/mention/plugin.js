@@ -3,29 +3,30 @@ import { MentionState } from './state';
 
 const pluginKey = new PluginKey('mention');
 
-const plugin = new Plugin({
-    state: {
-        init(config, state) {
-            return new MentionState(state);
-        },
-        apply(tr, prevPluginState, oldState, newState) {
-            prevPluginState.apply(tr, newState);
-            return prevPluginState;
-        }
-    },
-    key: pluginKey,
-    view: (view) => {
-        const pluginState = pluginKey.getState(view.state);
-        debugger;
-
-        return {
-            update(view, prevState) {
-                debugger;
-                pluginState.update(view.state);
+const mentionPlugin = (options) => {
+    return new Plugin({
+        state: {
+            init(config, state) {
+                return new MentionState(state, options);
             },
-            destroy() {}
-        };
-    }
-});
+            apply(tr, prevPluginState, oldState, newState) {
+                prevPluginState.apply(tr, newState);
+                return prevPluginState;
+            }
+        },
+        key: pluginKey,
+        view: (view) => {
+            const pluginState = pluginKey.getState(view.state);
 
-export {plugin, pluginKey}
+            return {
+                update(view, prevState) {
+                    pluginState.update(view.state, view);
+                },
+                destroy() {
+                }
+            };
+        }
+    });
+}
+
+export {mentionPlugin, pluginKey}

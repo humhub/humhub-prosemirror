@@ -65,8 +65,6 @@ export function setupPlugins(options) {
         })
     ];
 
-    debugger;
-
     if (options.history !== false) {
         plugins.push(history())
     }

@@ -46,12 +46,14 @@ let createSerializer = (options) => {
 
         for (let key in marks) {
             let mark = marks[key];
-            if(marks.toMarkdown) {
-                markSpec[key] = marks.toMarkdown
+            if(mark.toMarkdown) {
+                markSpec[key] = mark.toMarkdown
+            } else {
+                markSpec[key] = {open: '', close: ''};
             }
         }
     });
-
+    
     return new MarkdownSerializer(nodeSpec, markSpec);
 };
 

@@ -6,15 +6,20 @@
  */
 import {schema} from './schema'
 import {mentionRule} from './input-rules'
-import {plugin} from './plugin'
+import {mentionPlugin} from './plugin'
 
 const mention = {
     id: 'mention',
     schema: schema,
-    plugins: [plugin],
-    inputRule: (schema) => {
-        mentionRule(schema)
-    }
+    plugins: (options = {}) => {
+        if(!options.mention || !options.mention.provider) {
+            return [];
+        }
+        return [
+            mentionPlugin(options)
+        ]
+    },
+    inputRules: (schema) => {return [mentionRule(schema)]}
 };
 
 export default mention;

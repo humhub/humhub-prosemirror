@@ -10,9 +10,7 @@ import {headingRule} from './input-rules'
 const heading = {
     id: 'heading',
     schema: schema,
-    inputRules: (schema) => {
-        headingRule(schema)
-    }
+    inputRules: (schema) => {return [headingRule(schema)]}
 };
 
 export default heading;

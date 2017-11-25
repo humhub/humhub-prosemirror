@@ -1,5 +1,0 @@
-export {em} from "./em"
-export {strong} from "./strong"
-export {strikethrough} from "./strikethrough"
-export {link} from "./link"
-export {code} from "./code"

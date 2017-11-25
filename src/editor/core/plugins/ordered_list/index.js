@@ -10,9 +10,7 @@ import {orderedListRule} from './input-rules'
 const ordered_list = {
     id: 'ordered_list',
     schema: schema,
-    inputRules: (schema) => {
-        orderedListRule(schema)
-    }
+    inputRules: (schema) => {return [orderedListRule(schema)]}
 };
 
 export default ordered_list;

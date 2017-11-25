@@ -10,9 +10,7 @@ import {bulletListRule} from './input-rules'
 const bullet_list = {
     id: 'bullet_list',
     schema: schema,
-    inputRules: (schema) => {
-        bulletListRule(schema)
-    }
+    inputRules: (schema) => {return [bulletListRule(schema)]}
 };
 
 export default bullet_list;

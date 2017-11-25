@@ -10,9 +10,7 @@ import {codeBlockRule} from './input-rules'
 const code_block = {
     id: 'code_block',
     schema: schema,
-    inputRules: (schema) => {
-        codeBlockRule(schema)
-    }
+    inputRules: (schema) => {return [codeBlockRule(schema)]}
 };
 
 export default code_block;

@@ -10,11 +10,7 @@ import {blockquoteRule} from './input-rules'
 const blockquote = {
     id: 'blockquote',
     schema: schema,
-    inputRules: (schema) => {
-        return [
-            blockquoteRule(schema)
-        ]
-    }
+    inputRules: (schema) => {return [blockquoteRule(schema)]}
 };
 
 export default blockquote;

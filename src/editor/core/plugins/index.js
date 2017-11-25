@@ -95,10 +95,10 @@ let buildInputRules = function(options) {
     let plugins = getPlugins(options);
     let schema = options.schema;
 
-    let rules = [smartQuotes, ellipsis, emDash];
+    let rules = smartQuotes.concat([ellipsis, emDash]);
     plugins.forEach((plugin) => {
         if(plugin.inputRules) {
-            rules.push(plugin.inputRules(schema));
+            rules = rules.concat(plugin.inputRules(schema));
         }
     });
 
@@ -110,9 +110,11 @@ let buildPlugins = function(options) {
 
     let result = [];
     plugins.forEach((plugin) => {
-        debugger;
         if(plugin.plugins) {
-            result = result.concat(plugin.plugins);
+            let pl = plugin.plugins(options);
+            if(pl && pl.length) {
+                result = result.concat(pl);
+            }
         }
     });
 
