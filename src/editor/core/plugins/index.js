@@ -37,6 +37,7 @@ let registerPlugin = function(plugin) {
 };
 
 registerPlugin(doc);
+registerPlugin(paragraph);
 registerPlugin(blockquote);
 registerPlugin(bullet_list);
 registerPlugin(code);
@@ -50,7 +51,6 @@ registerPlugin(list_item);
 registerPlugin(mention);
 registerPlugin(oembed);
 registerPlugin(ordered_list);
-registerPlugin(paragraph);
 registerPlugin(heading);
 registerPlugin(strikethrough);
 registerPlugin(strong);

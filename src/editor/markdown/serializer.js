@@ -53,7 +53,7 @@ let createSerializer = (options) => {
             }
         }
     });
-    
+
     return new MarkdownSerializer(nodeSpec, markSpec);
 };
 
