@@ -20,7 +20,7 @@ const schema = {
                         return {href: dom.getAttribute("href"), title: dom.getAttribute("title")}
                     }
                 }],
-            toDOM: () => {
+            toDOM: (node) => {
                 return ["a", node.attrs]
             },
             parseMarkdown: {

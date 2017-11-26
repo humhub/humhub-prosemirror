@@ -25,7 +25,8 @@ module.exports = function(grunt) {
                     return [
                         rollupPluginNodeResolve({
                             main: true,
-                            preferBuiltins: false
+                            preferBuiltins: false,
+                            extensions: ['.js', '.json'],
                         }),
                         rollupPluginJson(),
                         rollupPluginCommonjs({

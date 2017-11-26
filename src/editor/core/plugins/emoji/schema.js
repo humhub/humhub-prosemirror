@@ -1,11 +1,11 @@
-import twemoji from "twemoji"
+import twemoji from "../../twemoji"
 
 let emoji = {
     attrs: {
         class: {default: 'emoji'},
         draggable: {default: 'false'},
-        width: {default: '18'},
-        height: {default: '18'},
+        width: {default: '16'},
+        height: {default: '16'},
         'data-name': {default: null},
         alt: {default: null},
         src: {default: null},

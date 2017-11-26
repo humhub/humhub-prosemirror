@@ -422,3 +422,26 @@ li.ProseMirror-selectednode:after {
   display: table;
   clear: both;
 }
+
+.atwho-view .cur {
+  border-left: 3px solid #59d6e4;
+  background-color: #f7f7f7 !important;
+}
+
+.atwho-user,
+.atwho-space,
+.atwho-input a {
+  color: #59d6e4;
+}
+
+.atwho-input a:hover {
+  color: #59d6e4;
+}
+
+.atwho-view strong {
+  background-color: #f9f0d2;
+}
+
+.atwho-view .cur strong {
+  background-color: #f9f0d2;
+}

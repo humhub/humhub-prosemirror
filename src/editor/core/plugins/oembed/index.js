@@ -25,8 +25,6 @@ const oembed = {
             $oembed = $oembed.clone();
             return $oembed.html();
         };
-
-
     }
 };
 

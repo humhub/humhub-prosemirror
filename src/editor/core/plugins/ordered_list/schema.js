@@ -10,7 +10,7 @@ const schema = {
             sortOrder: 600,
             content: "list_item+",
             group: "block",
-            attrs: {order: {default: 1}, tight: {default: false}},
+            attrs: {order: {default: 1}, tight: {default: true}},
             parseDOM: [{
                 tag: "ol", getAttrs: function getAttrs(dom) {
                     return {

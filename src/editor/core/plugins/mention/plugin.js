@@ -16,14 +16,13 @@ const mentionPlugin = (options) => {
         },
         key: pluginKey,
         view: (view) => {
-            const pluginState = pluginKey.getState(view.state);
+            const mentionState = pluginKey.getState(view.state);
 
             return {
                 update(view, prevState) {
-                    pluginState.update(view.state, view);
+                    mentionState.update(view.state, view);
                 },
-                destroy() {
-                }
+                destroy() {}
             };
         }
     });

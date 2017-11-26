@@ -17,6 +17,7 @@
     "url": "git://github.com/prosemirror/prosemirror.git"
   },
   "dependencies": {
+    "emoji-unicode-map": "^1.1.7",
     "entities": "latest",
     "markdown-it": "latest",
     "markdown-it-emoji": "latest",

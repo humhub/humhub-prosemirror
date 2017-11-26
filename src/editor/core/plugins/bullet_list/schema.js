@@ -10,7 +10,7 @@ const schema = {
             sortOrder: 700,
             content: "list_item+",
             group: "block",
-            attrs: {tight: {default: false}},
+            attrs: {tight: {default: true}},
             parseDOM: [{
                 tag: "ul", getAttrs: function (dom) {
                     return ({tight: dom.hasAttribute("data-tight")});

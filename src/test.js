@@ -46,10 +46,10 @@ $(document).ready(function() {
         ];
     };
 
-    TestMentionProvider.prototype.query = function(query, node) {
-        debugger;
-        this.queryStr = query;
+    TestMentionProvider.prototype.query = function(state, node) {
+        this.state = state;
         this.$node = $(node);
+        var query = this.state.query;
         this.result = this.user.filter(function(user) {
             return user.name.indexOf(query) >= 0;
         });
@@ -57,15 +57,38 @@ $(document).ready(function() {
         this.update();
     };
 
-    TestMentionProvider.prototype.dismiss = function(query, node) {
+    TestMentionProvider.prototype.reset = function(query, node) {
         if(this.$container) {
             this.$container.remove();
         }
     };
 
+    TestMentionProvider.prototype.prev = function() {
+        let $cur = this.$container.find('.cur');
+        let $prev = $cur.prev();
+        if($prev.length) {
+            $prev.addClass('cur');
+            $cur.removeClass('cur');
+        }
+    };
+
+    TestMentionProvider.prototype.next = function() {
+        let $cur = this.$container.find('.cur');
+        let $next = $cur.next();
+        if($next.length) {
+            $next.addClass('cur');
+            $cur.removeClass('cur');
+        }
+    };
+
+    TestMentionProvider.prototype.select = function() {
+        let $cur = this.$container.find('.cur');
+        this.state.addMention($cur.data('item'));
+    };
+
     TestMentionProvider.prototype.update = function() {
         if(!this.$container) {
-            this.$container = $('<div>').css({
+            this.$container = $('<div class="atwho-view">').css({
                 position: 'absolute',
                 'background-color': 'white',
                 'border': '1px solid black',
@@ -87,8 +110,10 @@ $(document).ready(function() {
             $list = $('<ul style="list-style-type: none;padding:0px;margin:0px;">');
 
             this.result.forEach(function(item) {
-                $list.append($('<li>'+item.name+'</li>'));
+                $list.append($('<li>'+item.image+' '+item.name+'</li>').data('item', item));
             });
+
+            $list.find('li').first().addClass('cur');
 
             this.$container.append($list);
         } else {

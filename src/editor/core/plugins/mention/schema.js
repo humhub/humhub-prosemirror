@@ -4,9 +4,11 @@ const schema = {
         mention: {
             inline: true,
             group: 'inline',
+            selectable: false,
             attrs: {
-                guid: { default: '' },
                 name: { default: '' },
+                guid: { default: '' },
+                href: { default: '' },
             },
             parseDOM: [{
                 tag: 'span[data-mention]',
@@ -18,33 +20,53 @@ const schema = {
                 },
             }],
             toDOM(node) {
-                const {guid, name} = node.attrs;
-
                 const attrs = {
-                    guid: guid,
+                    'data-mention': node.attrs.guid,
                     contentEditable: 'false'
                 };
 
-                return ['span', attrs, name];
-            }
+                return ['span', attrs, '@'+node.attrs.name];
+            },
+            parseMarkdown: {
+                node: "mention", getAttrs: function(tok) {
+                    return ({
+                        name: tok.attrGet("name"),
+                        guid: tok.attrGet("guid"),
+                        href: tok.attrGet("href")
+                    })
+                }
+            },
+            toMarkdown: (state, node) => {
+                let {guid, name, href} = node.attrs;
+                state.write("["+state.esc(name)+"](mention:" + state.esc(guid) +" "+ state.quote(href)+ ")");
+            },
         }
     },
     marks: {
+       mentionMark: {
+            excludes: "_",
+            inclusive: true,
+            parseDOM: [
+                { tag: 'span[data-mention-mark]' }
+            ],
+           toDOM(node) {
+               return ['span', {
+                   'data-mention-mark': true,
+                   'contentEditable': false
+               }];
+           }
+        },
         mentionQuery: {
+            excludes: "_",
+            inclusive: true,
             parseDOM: [
                 { tag: 'span[data-mention-query]' }
             ],
             toDOM(node) {
                 return ['span', {
                     'data-mention-query': true,
-                    'data-active': node.attrs.active,
                     style: `color: #0078D7`
                 }];
-            },
-            attrs: {
-                active: {
-                    default: true
-                }
             }
         }
     }

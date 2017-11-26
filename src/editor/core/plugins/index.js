@@ -6,6 +6,7 @@
  */
 
 import {inputRules, smartQuotes, emDash, ellipsis, InputRule} from "prosemirror-inputrules"
+import {keymap} from "prosemirror-keymap"
 import doc from "./doc"
 import blockquote from "./blockquote"
 import bullet_list from "./bullet_list"
@@ -121,5 +122,21 @@ let buildPlugins = function(options) {
     return result;
 };
 
+let buildPluginKeymap = function(options) {
+    let plugins = getPlugins(options);
 
-export {buildPlugins, buildInputRules, registerPlugin, getPlugins}
+    let result = [];
+    plugins.forEach((plugin) => {
+        if(plugin.keymap) {
+            result.push(keymap(plugin.keymap(options)));
+        }
+    });
+
+    return result;
+};
+
+
+// https://github.com/ProseMirror/prosemirror/issues/710
+const isChromeWithSelectionBug = !!navigator.userAgent.match(/Chrome\/(5[89]|6[012])/);
+
+export {isChromeWithSelectionBug, buildPlugins, buildPluginKeymap, buildInputRules, registerPlugin, getPlugins}

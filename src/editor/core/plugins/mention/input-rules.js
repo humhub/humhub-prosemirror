@@ -1,4 +1,4 @@
-import {inputRules, smartQuotes, emDash, ellipsis, InputRule} from "prosemirror-inputrules"
+import {InputRule} from "prosemirror-inputrules"
 
 // https://github.com/ProseMirror/prosemirror/issues/262
 const objectReplacementCharacter = '\ufffc';
@@ -9,7 +9,9 @@ let mentionRule = function(schema) {
         const mark = schema.mark('mentionQuery');
         const mentionText = schema.text('@', [mark]);
 
-        return state.tr.replaceSelectionWith(mentionText, false);
+        return state.tr
+            .removeMark(0, state.doc.nodeSize -2, mark)
+            .replaceSelectionWith(mentionText, false);
     })
 };
 
