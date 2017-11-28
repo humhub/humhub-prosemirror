@@ -179,5 +179,14 @@ $(document).ready(function() {
         serialize();
     });
 
+    $('#submitQuery').on('click', function() {
+        let view = editor.editor;
+        let state = view.state;
+        let doc = state.doc;
+        let schema = state.schema;
+        let result = eval($('#query').val());
+        console.log(result);
+    })
+
     render();
 });

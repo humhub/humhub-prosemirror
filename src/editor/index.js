@@ -14,6 +14,7 @@ import {fixTables} from "prosemirror-tables"
 import {getParser, getSerializer, getRenderer} from "./markdown";
 import {getSchema} from "./core/schema"
 import {setupPlugins} from "./core/index"
+import {$node} from "./core/util"
 
 class MarkdownEditor {
     constructor(selector, options = {}) {
@@ -85,5 +86,7 @@ class MarkdownEditor {
 window.pm = {
     MarkdownEditor: MarkdownEditor,
     EditorState: EditorState,
-    getRenderer: getRenderer
+    getRenderer: getRenderer,
+    find:find,
+    $node: $node
 };
