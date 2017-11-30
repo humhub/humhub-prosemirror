@@ -56,7 +56,7 @@ class MarkdownEditor {
         this.$editor = $(this.editor.dom).on('focus', () => {
             this.updateMenu();
         }).on('blur', () => {
-            //this.$menuBar.hide();
+            this.$menuBar.fadeOut('fast');
         });
 
         this.trigger('init');
@@ -65,6 +65,7 @@ class MarkdownEditor {
     updateMenu() {
         let rect = this.$editor[0].getBoundingClientRect();
         this.$menuBar.css({
+            'max-width': rect.width,
             top: (rect.top - this.$menuBar.outerHeight()),
             left: rect.left
         }).show();

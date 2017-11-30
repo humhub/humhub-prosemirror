@@ -250,7 +250,7 @@ export function buildMenuItems(schema) {
         //r.headLineMenu = new Dropdown(cut([r.makeHead1, r.makeHead2, r.makeHead3, r.makeHead4, r.makeHead5, r.makeHead6]), options);
     }
 
-    r.insertMenu = new Dropdown(cut([r.insertImage, r.insertHorizontalRule]), {label: "Insert", icon: icons.image, class: 'ProseMirror-doprdown-right'});
+    r.insertMenu = new Dropdown(cut([r.insertImage, r.insertHorizontalRule]), {label: "Insert", icon: icons.add, class: 'ProseMirror-doprdown-right'});
     r.typeMenu = new Dropdown(cut([r.makeParagraph, r.makeCodeBlock, r.makeHead1 && new DropdownSubmenu(cut([
        r.makeHead1, r.makeHead2, r.makeHead3, r.makeHead4, r.makeHead5, r.makeHead6
      ]), {label: "Heading"})]), {icon: icons.text})
