@@ -287,7 +287,7 @@ $node.prototype.where = function (filter, includeSelf = true) {
 
             if (checkFilter(this.filters, childNode, pos, parent)) {
                 let nodePos = new NodePos(childNode, pos);
-                $result.push(nodePos, findParentLevelBranch(branchMatch, level));
+                $result.push(nodePos, findBranchMatch(branchMatch, level));
                 branchMatch[level] = nodePos;
             }
 
@@ -296,6 +296,7 @@ $node.prototype.where = function (filter, includeSelf = true) {
 
     });
 
+    this.notFlag = false;
     this.findFlag = false;
     return $result;
 };
@@ -308,7 +309,7 @@ let clearLevelBranch = function(branchMatches, level) {
     return result;
 };
 
-let findParentLevelBranch = function(branchMatches, level) {
+let findBranchMatch = function(branchMatches, level) {
     for(let i = level - 1; i >= 0; i--) {
         if(branchMatches[i]) {
             return branchMatches[i];
