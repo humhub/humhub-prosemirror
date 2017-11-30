@@ -300,15 +300,6 @@ $node.prototype.where = function (filter, includeSelf = true) {
     return $result;
 };
 
-let iterate = function(node, pos = 0, f, parent, level = 1) {
-    node.content.nodesBetween(0, node.content.size, (childNode, childPos, parent, i) => {
-        f(childNode, childPos , parent, i, level);
-        iterate(childNode, childPos + 1, f, parent, ++level);
-        level--;
-        return false;
-    }, pos, node);
-};
-
 let clearLevelBranch = function(branchMatches, level) {
     let result = [];
     branchMatches.forEach((val, index) => {

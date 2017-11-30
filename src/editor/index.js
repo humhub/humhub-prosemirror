@@ -56,7 +56,7 @@ class MarkdownEditor {
         this.$editor = $(this.editor.dom).on('focus', () => {
             this.updateMenu();
         }).on('blur', () => {
-            this.$menuBar.hide();
+            //this.$menuBar.hide();
         });
 
         this.trigger('init');

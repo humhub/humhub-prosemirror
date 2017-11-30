@@ -21,9 +21,14 @@ export class MenuItem {
     // executes the command when the representation is clicked.
     render(view) {
         let options = this.options;
-        this.dom = options.icon ? getIcon(options.icon)
+
+        /*this.dom = options.icon ? getIcon(options.icon)
             : options.label ? crel("div", null, translate(view, options.label))
-                : null;
+                : null;*/
+
+        this.dom = options.icon ? getIcon(options.icon)
+                    : options.label ? $('<div>').html(translate(view, options.label))[0]
+                    : null;
 
         if (!this.dom) throw new RangeError("MenuItem without icon or label property");
 
@@ -329,7 +334,10 @@ export class DropdownSubmenu extends Dropdown {
     render(view) {
         let itemDom = this.renderItems(view);
 
-        let innerDom = crel("div", {class: prefix + "-submenu-label"}, translate(view, this.options.label));
+        debugger;
+        let innerDom = $('<div>').addClass(prefix + "-submenu-label").html(translate(view, this.options.label))[0];
+
+        //let innerDom = crel("div", {class: prefix + "-submenu-label"}, translate(view, this.options.label));
         this.dom = crel("div", {class: prefix + "-submenu-wrap"}, innerDom,
             crel("div", {class: prefix + "-submenu"}, itemDom));
         let listeningOnClose = null;
@@ -412,6 +420,21 @@ export const icons = {
             'M26 23l3 3 10-10-10-10-3 3 7 7z',
             'M14 9l-3-3-10 10 10 10 3-3-7-7z',
             'M21.916 4.704l2.171 0.592-6 22.001-2.171-0.592 6-22.001z'
+        ]
+    },
+    text: {
+        width: 768, height: 768,
+        path: [
+            'M688.5 288v96h-96v223.5h-96v-223.5h-96v-96h288z',
+            'M79.5 127.5h417v96h-160.5v384h-96v-384h-160.5v-96z'
+        ]
+    },
+    image: {
+        width: 512, height: 512,
+        path: [
+            'M479.942 64c0.020 0.017 0.041 0.038 0.058 0.058v383.885c-0.017 0.020-0.038 0.041-0.058 0.058h-447.885c-0.020-0.017-0.041-0.038-0.057-0.058v-383.886c0.017-0.020 0.038-0.041 0.057-0.057h447.885zM480 32h-448c-17.6 0-32 14.4-32 32v384c0 17.6 14.4 32 32 32h448c17.6 0 32-14.4 32-32v-384c0-17.6-14.4-32-32-32v0z',
+            'M416 144c0 26.51-21.49 48-48 48s-48-21.49-48-48 21.49-48 48-48 48 21.49 48 48z',
+            'M448 416h-384v-64l112-192 128 160h32l112-96z'
         ]
     },
     link: {

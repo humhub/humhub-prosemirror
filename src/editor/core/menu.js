@@ -7,10 +7,7 @@ import {chainCommands, selectParentNode, setBlockType, toggleMark, wrapIn} from 
 import {wrapInList} from "prosemirror-schema-list"
 import {TextField, openPrompt} from "./prompt"
 
-import {
-    addColumnAfter, addColumnBefore, deleteColumn, addRowAfter, addRowBefore, deleteRow,
-    setCellAttr, toggleHeaderRow, toggleHeaderColumn, toggleHeaderCell, deleteTable
-} from "prosemirror-tables"
+import {addColumnAfter, addColumnBefore, deleteColumn, addRowAfter, addRowBefore, deleteRow, deleteTable,toggleHeaderRow} from "prosemirror-tables"
 
 
 // Helpers to create specific types of items
@@ -216,7 +213,7 @@ export function buildMenuItems(schema) {
     if (type = schema.nodes.paragraph)
         r.makeParagraph = blockTypeItem(type, {
             title: "Change to paragraph",
-            label: "Plain"
+            label: "Paragraph"
         })
     if (type = schema.nodes.code_block)
         r.makeCodeBlock = blockTypeItem(type, {
@@ -227,7 +224,7 @@ export function buildMenuItems(schema) {
         for (let i = 1; i <= 10; i++)
             r["makeHead" + i] = blockTypeItem(type, {
                 title: "Change to heading " + i,
-                label: "Level " + i,
+                label: "H" + i+' <small>('+Array(i+1).join("#")+')</small>',
                 attrs: {level: i}
             })
     if (type = schema.nodes.horizontal_rule) {
@@ -250,21 +247,23 @@ export function buildMenuItems(schema) {
             icon: icons.headline
         }).options;
 
-        r.headLineMenu = new Dropdown(cut([r.makeHead1, r.makeHead2, r.makeHead3, r.makeHead4, r.makeHead5, r.makeHead6]), options);
+        //r.headLineMenu = new Dropdown(cut([r.makeHead1, r.makeHead2, r.makeHead3, r.makeHead4, r.makeHead5, r.makeHead6]), options);
     }
 
-    r.insertMenu = new Dropdown(cut([r.insertImage, r.insertHorizontalRule]), {label: "Insert", icon: icons.plus});
-    /* r.typeMenu = new Dropdown(cut([r.makeParagraph, r.makeCodeBlock, r.makeHead1 && new DropdownSubmenu(cut([
+    r.insertMenu = new Dropdown(cut([r.insertImage, r.insertHorizontalRule]), {label: "Insert", icon: icons.image, class: 'ProseMirror-doprdown-right'});
+    r.typeMenu = new Dropdown(cut([r.makeParagraph, r.makeCodeBlock, r.makeHead1 && new DropdownSubmenu(cut([
        r.makeHead1, r.makeHead2, r.makeHead3, r.makeHead4, r.makeHead5, r.makeHead6
-     ]), {label: "Heading"})]), {label: "Type..."})*/
+     ]), {label: "Heading"})]), {icon: icons.text})
 
-    r.typeMenu = new Dropdown(cut([r.makeParagraph, r.makeCodeBlock]), {label: "Block Type", icon:icons.embed});
+   // r.typeMenu = new Dropdown(cut([r.makeParagraph, r.makeCodeBlock]), {label: "Block Type", icon:icons.embed});
 
-    r.inlineMenu = [cut([getItemBySchema(schema.marks.strong), getItemBySchema(schema.marks.em), getItemBySchema(schema.marks.code), getItemBySchema(schema.marks.link)])];
+    r.inlineMenu = [cut([r.typeMenu, getItemBySchema(schema.marks.strong), getItemBySchema(schema.marks.em), getItemBySchema(schema.marks.code), getItemBySchema(schema.marks.link)])];
 
-    r.blockMenu = [cut([r.headLineMenu, r.wrapBulletList, r.wrapOrderedList, r.wrapBlockQuote, joinUpItem, liftItem, selectParentNodeItem])];
+    //selectParentNodeItem -> don't know if we should add this one
 
-    r.fullMenu = r.inlineMenu.concat([[r.insertTable, r.tableDropDown, r.typeMenu]], r.blockMenu, [[r.insertMenu]]);
+    r.blockMenu = [cut([r.wrapBulletList, r.wrapOrderedList, r.wrapBlockQuote, joinUpItem, liftItem])];
+
+    r.fullMenu = r.inlineMenu.concat(r.blockMenu, [[r.insertTable, r.tableDropDown, r.insertMenu]]);
 
     return r
 }
@@ -309,14 +308,14 @@ let getItemBySchema = function (type) {
         case 'paragraph':
             return blockTypeItem(type, {
                 title: "Change to paragraph",
-                label: "Plain"
+                label: "Paragraph"
             });
         case 'heading':
             let result = [];
             for (let i = 1; i <= 10; i++) {
                 result["makeHead" + i] = blockTypeItem(type, {
                     title: "Change to heading " + i,
-                    label: "Level " + i,
+                    label: "H" + i+' ('+Array(i).join("#")+')',
                     attrs: {level: i}
                 })
             }
@@ -378,8 +377,6 @@ export function wrapTableItem(schema, options) {
 
 export function buildMenu(options) {
     let menu = buildMenuItems(options.schema).fullMenu;
-    /** let tableMenu = ;
-     menu.splice(2, 0, [new Dropdown(tableMenu, {icon: icons.table})]); **/
     return menuBar({
         content: menu,
         floating: false
