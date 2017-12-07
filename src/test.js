@@ -132,7 +132,10 @@ $(document).ready(function() {
         }
 
         if(!editor) {
-            editor = new pm.MarkdownEditor('#editor', {
+            editor = new prosemirror.MarkdownEditor('#editor', {
+                placeholder: {
+                    text: 'Test Placeholder',
+                },
                 mention: {
                     provider: new TestMentionProvider()
                 }
@@ -145,7 +148,7 @@ $(document).ready(function() {
 
         editor.init(md);
 
-        ProseMirrorDevTools.applyDevTools(editor.editor, { EditorState: pm.EditorState });
+        ProseMirrorDevTools.applyDevTools(editor.editor, { EditorState: prosemirror.EditorState });
 
     };
 
@@ -186,7 +189,7 @@ $(document).ready(function() {
         let schema = state.schema;
         let result = eval($('#query').val());
         console.log(result);
-    })
+    });
 
     render();
 });

@@ -16,7 +16,7 @@ let keymap = function () {
     result['ArrowDown'] = (state, dispatch) => {
         let mentionState = pluginKey.getState(state);
 
-        if(mentionState.active) {
+        if(mentionState && mentionState.active) {
             mentionState.provider.next();
             return true;
         }
@@ -27,7 +27,7 @@ let keymap = function () {
     result['Enter'] = (state, dispatch) => {
         let mentionState = pluginKey.getState(state);
 
-        if(mentionState.active) {
+        if(mentionState && mentionState.active) {
             mentionState.provider.select();
             return true;
         }

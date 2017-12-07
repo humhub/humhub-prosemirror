@@ -11,13 +11,18 @@ const schema = {
         link: {
             attrs: {
                 href: {},
-                title: {default: null}
+                title: {default: null},
+                active: {default: true}
             },
             inclusive: false,
             parseDOM:
                 [{
                     tag: "a[href]", getAttrs: function getAttrs(dom) {
-                        return {href: dom.getAttribute("href"), title: dom.getAttribute("title")}
+                        return {
+                            href: dom.getAttribute("href"),
+                            title: dom.getAttribute("title"),
+                            class: (!active) ? 'inactive' : null,
+                        }
                     }
                 }],
             toDOM: (node) => {

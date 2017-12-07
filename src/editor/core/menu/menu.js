@@ -334,7 +334,6 @@ export class DropdownSubmenu extends Dropdown {
     render(view) {
         let itemDom = this.renderItems(view);
 
-        debugger;
         let innerDom = $('<div>').addClass(prefix + "-submenu-label").html(translate(view, this.options.label))[0];
 
         //let innerDom = crel("div", {class: prefix + "-submenu-label"}, translate(view, this.options.label));
@@ -545,4 +544,13 @@ export function blockTypeItem(nodeType, options) {
 function setClass(dom, cls, on) {
     if (on) dom.classList.add(cls)
     else dom.classList.remove(cls)
+}
+
+export function canInsert(state, nodeType) {
+    let $from = state.selection.$from
+    for (let d = $from.depth; d >= 0; d--) {
+        let index = $from.index(d)
+        if ($from.node(d).canReplaceWith(index, index, nodeType)) return true
+    }
+    return false
 }
