@@ -7,7 +7,7 @@ const emojiPlugin = (options) => {
     let parser = getParser(options);
     return new Plugin({
         props: {
-            transformPastedHTML: (html) => {
+            /*transformPastedHTML: (html) => {
                 let $html = $(html);
                 let $dom = $('<body>').append($html);
                 let test = $('<html>').append(twemoji.parse($dom[0])).html();
@@ -16,8 +16,8 @@ const emojiPlugin = (options) => {
             },
             transformPastedText: (text) => {
                 debugger;
-                return $(twemoji.parse(text, {output: 'markdown'})).html();
-            },
+                return twemoji.parse(text, {output: 'markdown'});
+            },*/
             clipboardTextParser: $.proxy(parser.parse, parser),
             transformPasted: (slice) => {
                 if(slice && slice instanceof Node && slice.type == options.schema.nodes.doc) {

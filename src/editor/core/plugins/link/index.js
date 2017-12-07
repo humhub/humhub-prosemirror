@@ -5,10 +5,16 @@
  *
  */
 import {schema} from './schema'
+import {linkPlugin} from './plugin'
 
 const link = {
     id: 'link',
-    schema: schema
+    schema: schema,
+    plugins: (options = {}) => {
+        return [
+            linkPlugin
+        ]
+    },
 };
 
 export default link;
