@@ -14,7 +14,7 @@ import {fixTables} from "prosemirror-tables"
 import {getParser, getSerializer, getRenderer} from "./markdown";
 import {getSchema} from "./core/schema"
 import {setupPlugins} from "./core/index"
-import {$node} from "./core/util"
+import {$node} from "./core/util/node"
 
 class MarkdownEditor {
     constructor(selector, options = {}) {

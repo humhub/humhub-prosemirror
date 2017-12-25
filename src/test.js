@@ -134,11 +134,17 @@ $(document).ready(function() {
         if(!editor) {
             editor = new prosemirror.MarkdownEditor('#editor', {
                 placeholder: {
-                    text: 'Test Placeholder',
+                    text: 'Test Placeholderr',
+                    'class' : 'placeholder atwho-placeholder'
                 },
                 mention: {
                     provider: new TestMentionProvider()
-                }
+                },
+                attributes:  {
+                    'class': 'atwho-input form-control humhub-ui-richtext',
+                    'data-ui-markdown': true
+                },
+
             });
             editor.on('init', serialize);
         }

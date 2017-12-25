@@ -6,6 +6,19 @@ import {getIcon} from "./icons"
 
 const prefix = "ProseMirror-menu";
 
+// Helpers to create specific types of items
+export function cmdItem(cmd, options) {
+    let passedOptions = {
+        label: options.title,
+        run: cmd
+    };
+    for (let prop in options) passedOptions[prop] = options[prop]
+    if ((!options.enable || options.enable === true) && !options.select)
+        passedOptions[options.enable ? "enable" : "select"] = state => cmd(state)
+
+    return new MenuItem(passedOptions)
+}
+
 // ::- An icon or label that, when clicked, executes a command.
 export class MenuItem {
     // :: (MenuItemSpec)
@@ -13,6 +26,7 @@ export class MenuItem {
         // :: MenuItemSpec
         // The options used to create the menu item.
         this.options = options || {}
+        this.sortOrder = this.options.sortOrder;
     }
 
     // :: (EditorView) → {dom: dom.Node, update: (EditorState) → bool}
@@ -145,20 +159,36 @@ function isMenuEvent(wrapper) {
         lastMenuEvent.node && wrapper.contains(lastMenuEvent.node)
 }
 
+function sort(items) {
+    let result = [];
+    items.forEach((item) => {
+        if(item.type && item.type === 'dropdown') {
+            result.push(new Dropdown(sort(item.items), item));
+        } else {
+            result.push(item);
+        }
+    });
+
+    return result.sort(function(a, b) {
+        if(typeof a.sortOrder === 'undefined') {return 1;}
+        if(typeof b.sortOrder === 'undefined') {return -1; }
+        return a.sortOrder - b.sortOrder;
+    });
+}
+
+
 export class MenuItemGroup extends MenuItem {
     constructor(content, options) {
         super(options);
         this.content = {
-            items: Array.isArray(content) ? content : [content],
+            items: sort(Array.isArray(content) ? content : [content]),
             update: (state) => {
                 let result = false;
-                this.content.items.forEach((items, i) => {
-                    items.forEach((item) => {
+
+                sort(this.content.items).forEach((item, i) => {
                         let updateResult = item.update(state);
                         item.dom.style.display = updateResult ? "" : "none";
                         result = result || updateResult;
-                    });
-
                 });
                 return result;
             }
@@ -182,11 +212,9 @@ export class MenuItemGroup extends MenuItem {
     renderItems(view) {
         let rendered = [];
 
-        this.content.items.forEach((items) => {
-            items.forEach((item) => {
+        this.content.items.forEach((item) => {
                 let dom = item.render(view);
                 rendered.push(crel("span", {class: prefix + "item"}, dom));
-            });
         });
 
         return rendered;

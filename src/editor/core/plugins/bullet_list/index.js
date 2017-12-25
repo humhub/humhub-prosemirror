@@ -6,10 +6,12 @@
  */
 import {schema} from './schema'
 import {bulletListRule} from './input-rules'
+import {menu} from './menu'
 
 const bullet_list = {
     id: 'bullet_list',
     schema: schema,
+    menu: (options) => menu(options),
     inputRules: (schema) => {return [bulletListRule(schema)]}
 };
 
