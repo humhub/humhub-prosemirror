@@ -1,5 +1,6 @@
 import { Plugin, PluginKey } from 'prosemirror-state';
 import { MentionState } from './state';
+import { $node } from '../../util'
 
 const pluginKey = new PluginKey('mention');
 
@@ -24,6 +25,9 @@ const mentionPlugin = (options) => {
                 },
                 destroy() {}
             };
+        },
+        appendTransaction: (transactions, oldState, newState) => {
+            return $node(newState.doc).find('mention').mark('link').removeMark('link', newState);
         }
     });
 }

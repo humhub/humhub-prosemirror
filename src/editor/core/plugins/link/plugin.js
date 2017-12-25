@@ -4,13 +4,7 @@ import {Slice, Fragment} from "prosemirror-model"
 let linkPlugin = new Plugin({
     props: {
         transformPasted: (slice) => {
-            debugger;
-            let fragment = linkify(slice.content);
-            let node = fragment.content[0];
-            let test = node.type.validContent(node.content);
-            let testSlice = new Slice(linkify(slice.content), slice.openStart, slice.openEnd)
-            debugger;
-            return testSlice;
+            return new Slice(linkify(slice.content), slice.openStart, slice.openEnd);
         }
     }
 });
@@ -24,7 +18,6 @@ let linkify = function(fragment) {
             var pos = 0, match
 
             while (match = HTTP_LINK_REGEX.exec(text)) {
-                debugger;
                 var start = match.index
                 var end = start + match[0].length
                 var link = child.type.schema.marks['link']

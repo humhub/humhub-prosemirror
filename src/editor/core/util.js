@@ -23,6 +23,35 @@ class NodePos {
         }
     }
 
+    removeMark(mark) {
+        let markInstance = this.getMark(mark);
+        let index = this.node.marks.indexOf(markInstance);
+
+        if (index > -1) {
+            this.node.marks.splice(index, 1);
+        }
+    }
+
+    hasMark(mark) {
+        return this.getMark(mark) != null;
+    };
+
+    getMark(mark) {
+        let result = null;
+
+        if(mark instanceof MarkType) {
+            mark = mark.name;
+        }
+
+        this.node.marks.forEach((activeMark) => {
+            if(activeMark.type.name === mark) {
+                result = activeMark;
+            }
+        });
+
+        return result;
+    }
+
     nodesBetween(from = 0, to, f, pos = 0, level = 1) {
         this.content.nodesBetween(from, to, (childNode, childPos, parent, i, level) => {
             f(childNode, childPos , parent, i, level);
@@ -253,6 +282,23 @@ $node.prototype.append = function (node, view) {
     })
 
     view.dispatch(tr);
+};
+
+$node.prototype.removeMark = function (mark, state) {
+    let tr = state.tr;
+    let doc = state.doc;
+    this.flat.forEach((nodePos) => {
+        nodePos.removeMark(mark);
+        tr = tr.setSelection(new TextSelection(doc.resolve(nodePos.start())), doc.resolve(nodePos.end())).replaceSelectionWith(nodePos.node, false)
+    });
+};
+
+$node.prototype.getMark = function(mark) {
+    if(!this.flat.length) {
+        return;
+    }
+
+    return this.flat[0].getMark(mark);
 };
 
 $node.prototype.where = function (filter, includeSelf = true) {

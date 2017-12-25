@@ -10,11 +10,9 @@ import {linkPlugin} from './plugin'
 const link = {
     id: 'link',
     schema: schema,
-    plugins: (options = {}) => {
-        return [
-            linkPlugin
-        ]
-    },
+    plugins: (options) => {
+        return [linkPlugin];
+    }
 };
 
 export default link;

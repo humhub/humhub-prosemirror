@@ -68,13 +68,13 @@ export class MentionState {
 
     addMention(item) {
         const { mention } = this.state.schema.nodes;
-        const { mentionQuery, mentionMark } = this.state.schema.marks;
+        const { mentionQuery} = this.state.schema.marks;
 
         const nodes = [mention.create({
             name: item.name,
             guid: item.guid,
             href: item.link
-        }, null, [mentionMark.create()]), this.state.schema.text(' ')];
+        }, null), this.state.schema.text(' ')];
 
 
         let tr = this.state.tr

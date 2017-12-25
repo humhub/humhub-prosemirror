@@ -1,4 +1,5 @@
-
+import {$node} from "../../util"
+import {schema as linkSchema} from "../link/schema"
 
 const schema = {
     nodes: {
@@ -38,8 +39,18 @@ const schema = {
                 }
             },
             toMarkdown: (state, node) => {
+                debugger;
+                let linkMark = $node(node).getMark('link');
+                if(linkMark) {
+                    state.write(linkSchema.marks.link.toMarkdown.close(state, linkMark));
+                }
+
                 let {guid, name, href} = node.attrs;
                 state.write("["+state.esc(name)+"](mention:" + state.esc(guid) +" "+ state.quote(href)+ ")");
+
+                if(linkMark) {
+                    state.write(linkSchema.marks.link.toMarkdown.open);
+                }
             },
         }
     },

@@ -132,7 +132,7 @@ function createLinkExtension(id, options) {
             debugger;
             label = state.src.substring(labelStart, labelEnd);
 
-            token = state.push(id, options.node, 1);
+            token = state.push(id, options.node, 0);
             token.attrs = attrs = [[options.hrefAttr, href]];
 
             if(label) {
