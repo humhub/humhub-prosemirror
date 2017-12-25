@@ -132,10 +132,19 @@ $(document).ready(function() {
         }
 
         if(!editor) {
-            editor = new pm.MarkdownEditor('#editor', {
+            editor = new prosemirror.MarkdownEditor('#editor', {
+                placeholder: {
+                    text: 'Test Placeholderr',
+                    'class' : 'placeholder atwho-placeholder'
+                },
                 mention: {
                     provider: new TestMentionProvider()
-                }
+                },
+                attributes:  {
+                    'class': 'atwho-input form-control humhub-ui-richtext',
+                    'data-ui-markdown': true
+                },
+
             });
             editor.on('init', serialize);
         }
@@ -145,7 +154,7 @@ $(document).ready(function() {
 
         editor.init(md);
 
-        ProseMirrorDevTools.applyDevTools(editor.editor, { EditorState: pm.EditorState });
+        ProseMirrorDevTools.applyDevTools(editor.editor, { EditorState: prosemirror.EditorState });
 
     };
 
@@ -186,7 +195,7 @@ $(document).ready(function() {
         let schema = state.schema;
         let result = eval($('#query').val());
         console.log(result);
-    })
+    });
 
     render();
 });

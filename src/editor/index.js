@@ -14,7 +14,7 @@ import {fixTables} from "prosemirror-tables"
 import {getParser, getSerializer, getRenderer} from "./markdown";
 import {getSchema} from "./core/schema"
 import {setupPlugins} from "./core/index"
-import {$node} from "./core/util"
+import {$node} from "./core/util/node"
 
 class MarkdownEditor {
     constructor(selector, options = {}) {
@@ -23,9 +23,9 @@ class MarkdownEditor {
             this.options.schema = getSchema(options);
         }
 
-        if(!this.options.menuMode) {
+        /*if(!this.options.menuMode) {
             this.options.menuMode = 'hover';
-        }
+        }*/
 
         this.$ = $(selector);
         this.parser = getParser(this.options);
@@ -54,21 +54,12 @@ class MarkdownEditor {
         this.$menuBar = this.$.find('.ProseMirror-menubar').hide();
 
         this.$editor = $(this.editor.dom).on('focus', () => {
-            this.updateMenu();
+            this.$menuBar.show();
         }).on('blur', () => {
-            this.$menuBar.fadeOut('fast');
+            this.$menuBar.hide();
         });
 
         this.trigger('init');
-    }
-
-    updateMenu() {
-        let rect = this.$editor[0].getBoundingClientRect();
-        this.$menuBar.css({
-            'max-width': rect.width,
-            top: (rect.top - this.$menuBar.outerHeight()),
-            left: rect.left
-        }).show();
     }
     
     serialize() {
@@ -84,10 +75,11 @@ class MarkdownEditor {
     }
 }
 
-window.pm = {
+window.prosemirror = {
     MarkdownEditor: MarkdownEditor,
     EditorState: EditorState,
     getRenderer: getRenderer,
     find:find,
     $node: $node
 };
+

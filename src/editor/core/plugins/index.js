@@ -28,6 +28,8 @@ import strikethrough from "./strikethrough"
 import strong from "./strong"
 import table from "./table"
 import text from "./text"
+import attributes from "./attributes"
+import placeholder from "./placeholder"
 
 const plugins = [];
 
@@ -58,6 +60,8 @@ registerPlugin(strikethrough);
 registerPlugin(table);
 registerPlugin(text);
 registerPlugin(link);
+registerPlugin(attributes);
+registerPlugin(placeholder);
 
 let getPlugins = function(options = {}) {
 

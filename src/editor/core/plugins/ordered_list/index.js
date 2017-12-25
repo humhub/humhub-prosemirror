@@ -6,9 +6,11 @@
  */
 import {schema} from './schema'
 import {orderedListRule} from './input-rules'
+import {menu} from './menu'
 
 const ordered_list = {
     id: 'ordered_list',
+    menu: (options) => menu(options),
     schema: schema,
     inputRules: (schema) => {return [orderedListRule(schema)]}
 };

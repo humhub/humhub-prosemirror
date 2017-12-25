@@ -4,7 +4,7 @@ const XLINK = "http://www.w3.org/1999/xlink"
 const prefix = "ProseMirror-icon"
 
 function hashPath(path) {
-    if(Array.isArray(path)) {
+    if (Array.isArray(path)) {
         let paths = path;
         path = '';
         paths.forEach((pathItem) => {

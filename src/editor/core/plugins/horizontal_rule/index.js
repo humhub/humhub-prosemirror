@@ -5,10 +5,12 @@
  *
  */
 import {schema} from './schema'
+import {menu} from './menu'
 
 const horizontal_rule = {
     id: 'horizontal_rule',
-    schema: schema
+    schema: schema,
+    menu: (options) => menu(options)
 };
 
 export default horizontal_rule;
