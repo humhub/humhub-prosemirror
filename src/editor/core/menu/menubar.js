@@ -1,9 +1,68 @@
 import crel from "crel"
 import {Plugin} from "prosemirror-state"
 
-import {MenuItemGroup} from "./menu"
+import {MenuItemGroup, icons, joinUpItem, liftItem, selectParentNodeItem} from "./menu"
+import {getPlugins} from "../plugins/"
 
 const prefix = "ProseMirror-menubar"
+
+function buildMenuItems(options) {
+    let groups = {
+        insert: {type: 'dropdown', sortOrder: 800, label: "Insert", icon: icons.image, class: 'ProseMirror-doprdown-right', items: []},
+        types:  {type: 'dropdown', sortOrder: 100, label: "Type", icon: icons.text, items: []}
+    };
+
+    let definitions = [groups.types, groups.insert];
+
+    getPlugins(options).forEach(function (plugin) {
+        if(plugin.menu) {
+            plugin.menu(options).forEach(function(menuDefinition) {
+                if(checkMenuDefinition(options, menuDefinition)) {
+                    if(menuDefinition.group && groups[menuDefinition.group]) {
+                        groups[menuDefinition.group].items.push(menuDefinition.item);
+                    } else if(!menuDefinition.group) {
+                        definitions.push(menuDefinition.item);
+                    }
+                }
+            });
+        }
+    });
+
+    //selectParentNodeItem -> don't know if we should add this one
+    // redo/undo?
+
+    // TODO: fire event
+
+    definitions.push(joinUpItem);
+    definitions.push(liftItem);
+    definitions.push(selectParentNodeItem);
+
+    return definitions;
+}
+
+function checkMenuDefinition(options, menuDefinition) {
+    if(!menuDefinition || menuDefinition.node && !options.schema.nodes[menuDefinition.node]) {
+        return false;
+    }
+
+    if(menuDefinition.mark && !options.schema.marks[menuDefinition.mark]) {
+        return false;
+    }
+
+    if(options.menu && options.menu.exclude && options.menu.exclude[nodeName]) {
+        return false;
+    }
+
+    return true;
+}
+
+export function buildMenuBar(options) {
+    return menuBar({
+        content: buildMenuItems(options),
+        floating: false
+    });
+}
+
 
 function isIOS() {
     if (typeof navigator == "undefined") return false

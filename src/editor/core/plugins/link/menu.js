@@ -1,0 +1,61 @@
+/*
+ * @link https://www.humhub.org/
+ * @copyright Copyright (c) 2017 HumHub GmbH & Co. KG
+ * @license https://www.humhub.com/licences
+ *
+ */
+
+import {MenuItem, icons, markActive} from "../../menu/menu"
+import {openPrompt, TextField} from "../../prompt"
+import {toggleMark} from "prosemirror-commands"
+
+function linkItem(options) {
+    let mark = options.schema.marks.link;
+    return new MenuItem({
+        title: "Add or remove link",
+        sortOrder: 500,
+        icon: icons.link,
+        active(state) {
+            return markActive(state, mark)
+        },
+        enable(state) {
+            return !state.selection.empty
+        },
+        run(state, dispatch, view) {
+            if (markActive(state, mark)) {
+                toggleMark(mark)(state, dispatch)
+                return true
+            }
+            openPrompt({
+                title: "Create a link",
+                fields: {
+                    href: new TextField({
+                        label: "Link target",
+                        required: true,
+                        clean: (val) => {
+                            if (!/^https?:\/\//i.test(val))
+                                val = 'http://' + val
+                            return val
+                        }
+                    }),
+                    title: new TextField({label: "Title"})
+                },
+                callback(attrs) {
+                    toggleMark(mark, attrs)(view.state, view.dispatch)
+                    view.focus()
+                }
+            })
+        }
+    })
+}
+
+export function menu(options) {
+    return [
+        {
+            id: 'linkItem',
+            mark: 'link',
+            item: linkItem(options)
+        }
+    ]
+}
+

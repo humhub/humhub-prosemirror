@@ -6,10 +6,12 @@
  */
 import {schema} from './schema'
 import {blockquoteRule} from './input-rules'
+import {menu} from "./menu"
 
 const blockquote = {
     id: 'blockquote',
     schema: schema,
+    menu: (options) => menu(options),
     inputRules: (schema) => {return [blockquoteRule(schema)]}
 };
 

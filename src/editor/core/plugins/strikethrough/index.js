@@ -5,10 +5,12 @@
  *
  */
 import {schema} from './schema'
+import {menu} from "./menu"
 
 const strikethrough = {
     id: 'strikethrough',
-    schema: schema
+    schema: schema,
+    menu: (options) => menu(options)
 };
 
 export default strikethrough;

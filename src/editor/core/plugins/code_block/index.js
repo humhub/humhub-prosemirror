@@ -6,10 +6,12 @@
  */
 import {schema} from './schema'
 import {codeBlockRule} from './input-rules'
+import {menu} from "./menu"
 
 const code_block = {
     id: 'code_block',
     schema: schema,
+    menu: (options) => menu(options),
     inputRules: (schema) => {return [codeBlockRule(schema)]}
 };
 

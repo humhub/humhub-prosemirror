@@ -1,5 +1,5 @@
 import crel from "crel"
-import {lift, joinUp, selectParentNode, wrapIn, setBlockType} from "prosemirror-commands"
+import {lift, joinUp, selectParentNode, wrapIn, setBlockType, toggleMark} from "prosemirror-commands"
 import {undo, redo} from "prosemirror-history"
 
 import {getIcon} from "./icons"
@@ -17,6 +17,27 @@ export function cmdItem(cmd, options) {
         passedOptions[options.enable ? "enable" : "select"] = state => cmd(state)
 
     return new MenuItem(passedOptions)
+}
+
+export function markItem(markType, options) {
+    let passedOptions = {
+        active(state) {
+            return markActive(state, markType)
+        },
+        enable: true
+    }
+    for (let prop in options) passedOptions[prop] = options[prop]
+    return cmdItem(toggleMark(markType), passedOptions)
+}
+
+export function markActive(state, type) {
+    let {from, $from, to, empty} = state.selection
+    if (empty) return type.isInSet(state.storedMarks || $from.marks())
+    else return state.doc.rangeHasMark(from, to, type)
+}
+
+export function wrapListItem(nodeType, options) {
+    return cmdItem(wrapInList(nodeType, options.attrs), options)
 }
 
 // ::- An icon or label that, when clicked, executes a command.
@@ -483,6 +504,10 @@ export const icons = {
     blockquote: {
         width: 640, height: 896,
         path: "M0 448v256h256v-256h-128c0 0 0-128 128-128v-128c0 0-256 0-256 256zM640 320v-128c0 0-256 0-256 256v256h256v-256h-128c0 0 0-128 128-128z"
+    },
+    strikethrough: {
+        width: 28, height: 28,
+        path: "M27.5 14c0.281 0 0.5 0.219 0.5 0.5v1c0 0.281-0.219 0.5-0.5 0.5h-27c-0.281 0-0.5-0.219-0.5-0.5v-1c0-0.281 0.219-0.5 0.5-0.5h27zM7.547 13c-0.297-0.375-0.562-0.797-0.797-1.25-0.5-1.016-0.75-2-0.75-2.938 0-1.906 0.703-3.5 2.094-4.828s3.437-1.984 6.141-1.984c0.594 0 1.453 0.109 2.609 0.297 0.688 0.125 1.609 0.375 2.766 0.75 0.109 0.406 0.219 1.031 0.328 1.844 0.141 1.234 0.219 2.187 0.219 2.859 0 0.219-0.031 0.453-0.078 0.703l-0.187 0.047-1.313-0.094-0.219-0.031c-0.531-1.578-1.078-2.641-1.609-3.203-0.922-0.953-2.031-1.422-3.281-1.422-1.188 0-2.141 0.313-2.844 0.922s-1.047 1.375-1.047 2.281c0 0.766 0.344 1.484 1.031 2.188s2.141 1.375 4.359 2.016c0.75 0.219 1.641 0.562 2.703 1.031 0.562 0.266 1.062 0.531 1.484 0.812h-11.609zM15.469 17h6.422c0.078 0.438 0.109 0.922 0.109 1.437 0 1.125-0.203 2.234-0.641 3.313-0.234 0.578-0.594 1.109-1.109 1.625-0.375 0.359-0.938 0.781-1.703 1.266-0.781 0.469-1.563 0.828-2.391 1.031-0.828 0.219-1.875 0.328-3.172 0.328-0.859 0-1.891-0.031-3.047-0.359l-2.188-0.625c-0.609-0.172-0.969-0.313-1.125-0.438-0.063-0.063-0.125-0.172-0.125-0.344v-0.203c0-0.125 0.031-0.938-0.031-2.438-0.031-0.781 0.031-1.328 0.031-1.641v-0.688l1.594-0.031c0.578 1.328 0.844 2.125 1.016 2.406 0.375 0.609 0.797 1.094 1.25 1.469s1 0.672 1.641 0.891c0.625 0.234 1.328 0.344 2.063 0.344 0.656 0 1.391-0.141 2.172-0.422 0.797-0.266 1.437-0.719 1.906-1.344 0.484-0.625 0.734-1.297 0.734-2.016 0-0.875-0.422-1.687-1.266-2.453-0.344-0.297-1.062-0.672-2.141-1.109z"
     }
 };
 

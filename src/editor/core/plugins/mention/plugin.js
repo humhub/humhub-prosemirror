@@ -1,6 +1,6 @@
 import { Plugin, PluginKey } from 'prosemirror-state';
 import { MentionState } from './state';
-import { $node } from '../../util'
+import {$node} from "../../util/node"
 
 const pluginKey = new PluginKey('mention');
 

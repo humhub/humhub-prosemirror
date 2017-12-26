@@ -6,10 +6,12 @@
  */
 import {schema} from './schema'
 import {linkPlugin} from './plugin'
+import {menu} from './menu'
 
 const link = {
     id: 'link',
     schema: schema,
+    menu: (options) => menu(options),
     plugins: (options) => {
         return [linkPlugin];
     }

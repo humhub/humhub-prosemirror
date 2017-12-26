@@ -6,13 +6,13 @@
  */
 
 import {wrapInList} from "prosemirror-schema-list"
-import {wrapListItem} from "../../util/commands"
-import {icons, cmdItem} from "../../menu/menu"
+import {icons, cmdItem, wrapListItem} from "../../menu/menu"
 
 function wrapOrderedList(options) {
     return cmdItem(wrapInList(options.schema.nodes.ordered_list), {
         title: "Wrap in ordered list",
-        icon: icons.orderedList
+        icon: icons.orderedList,
+        sortOrder: 700
     });
 }
 

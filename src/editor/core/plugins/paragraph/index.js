@@ -5,10 +5,11 @@
  *
  */
 import {schema} from './schema'
-
+import {menu} from './menu'
 const paragraph = {
     id: 'paragraph',
-    schema: schema
+    schema: schema,
+    menu: (options) => menu(options)
 };
 
 export default paragraph;

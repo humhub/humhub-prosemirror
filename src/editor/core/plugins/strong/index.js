@@ -5,10 +5,12 @@
  *
  */
 import {schema} from './schema'
+import {menu} from './menu'
 
 const strong = {
     id: 'strong',
-    schema: schema
+    schema: schema,
+    menu: (options) => menu(options)
 };
 
 export default strong;

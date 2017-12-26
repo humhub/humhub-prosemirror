@@ -5,10 +5,12 @@
  *
  */
 import {schema} from './schema'
+import {menu} from "./menu"
 
 const em = {
     id: 'em',
-    schema: schema
+    schema: schema,
+    menu: (options) => menu(options)
 };
 
 export default em;

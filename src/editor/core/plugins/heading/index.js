@@ -6,10 +6,13 @@
  */
 import {schema} from './schema'
 import {headingRule} from './input-rules'
+import {menu} from "./menu"
+
 
 const heading = {
     id: 'heading',
     schema: schema,
+    menu: (options) => menu(options),
     inputRules: (schema) => {return [headingRule(schema)]}
 };
 

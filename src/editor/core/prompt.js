@@ -8,7 +8,7 @@ export function openPrompt(options) {
     let $prompt = $('<div>').addClass(prefix);
 
 
-    setTimeout(() => $promt.on('mousedown', e => {
+    setTimeout(() => $prompt.on('mousedown', e => {
         if (!$prompt.contains(e.target)) {
             $prompt.remove();
         }
@@ -49,7 +49,7 @@ export function openPrompt(options) {
     let submit = () => {
         let params = getValues(options.fields, domFields)
         if (params) {
-            close()
+            $(wrapper).remove();
             options.callback(params)
         }
     }

@@ -6,13 +6,13 @@
  */
 
 import {wrapInList} from "prosemirror-schema-list"
-import {wrapListItem} from "../../util/commands"
-import {icons, cmdItem} from "../../menu/menu"
+import {icons, cmdItem, wrapListItem} from "../../menu/menu"
 
 function wrapBulletList(options) {
     return cmdItem(wrapInList(options.schema.nodes.bullet_list), {
         title: "Wrap in bullet list",
-        icon: icons.bulletList
+        icon: icons.bulletList,
+        sortOrder: 600
     });
 }
 

@@ -7,7 +7,7 @@ import {gapCursor} from "prosemirror-gapcursor"
 
 import {tableEditing} from "prosemirror-tables";
 
-import {buildMenu} from "./menu"
+import {buildMenuBar} from "./menu/menubar"
 import {buildKeymap} from "./keymap"
 import {buildInputRules, buildPlugins, buildPluginKeymap} from "./plugins"
 
@@ -61,7 +61,7 @@ export function setupPlugins(options) {
         dropCursor(),
         gapCursor(),
         tableEditing(),
-        buildMenu(options),
+        buildMenuBar(options),
         keymap({
             "Tab": goToNextCell(1),
             "Shift-Tab": goToNextCell(-1)
@@ -73,10 +73,4 @@ export function setupPlugins(options) {
     }
 
     return plugins.concat(buildPluginKeymap()).concat(buildPlugins(options));
-
-    /*return plugins.concat(new Plugin({
-        props: {
-            attributes: {class: "ProseMirror-example-setup-style"}
-        }
-    }))*/
 }

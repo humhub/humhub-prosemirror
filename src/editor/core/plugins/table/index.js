@@ -6,10 +6,12 @@
  */
 import {schema} from './schema'
 import table_plugin from './markdownit_table'
+import {menu} from "./menu"
 
 const table = {
     id: 'table',
     schema: schema,
+    menu: (options) => menu(options),
     registerMarkdownIt: (markdownIt) => {
         markdownIt.block.ruler.at('table', table_plugin);
     }

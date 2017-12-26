@@ -1,4 +1,4 @@
-import {$node} from "../../util"
+import {$node} from "../../util/node"
 import {schema as linkSchema} from "../link/schema"
 
 const schema = {
