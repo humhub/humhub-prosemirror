@@ -448,6 +448,8 @@ function parseString(str, options) {
                     ret = '<img '.concat(
                         'class="', options.className, '" ',
                         'draggable="false" ',
+                        'width="', options.width || '16', '" ',
+                        'height="', options.height || '16', '" ',
                         // needs to preserve user original intent
                         // when variants should be copied and pasted too
                         'alt="',

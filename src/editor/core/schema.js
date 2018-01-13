@@ -28,13 +28,15 @@ let getSchema = function(options = {}) {
         return options.schema;
     }
 
+    debugger;
+
     if(options.preset && presets[options.preset]) {
         return options.schema = presets[options.preset];
     }
 
     let schema = new Schema(mergeSchema({}, getPlugins(options)));
     if(options.preset) {
-        presets[option.preset] = schema;
+        presets[options.preset] = schema;
     }
 
     return options.schema = schema;

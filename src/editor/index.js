@@ -15,10 +15,18 @@ import {getParser, getSerializer, getRenderer} from "./markdown";
 import {getSchema} from "./core/schema"
 import {setupPlugins} from "./core/index"
 import {$node} from "./core/util/node"
+import {registerPreset, registerPlugin} from "./core/plugins"
+
+import MentionProvider from "./core/plugins/mention/provider"
+
+import * as menu from './core/menu'
 
 class MarkdownEditor {
     constructor(selector, options = {}) {
         this.options = options;
+
+        this.options.preset = this.options.preset || 'full';
+
         if(!this.options.schema) {
             this.options.schema = getSchema(options);
         }
@@ -73,13 +81,23 @@ class MarkdownEditor {
     on(event, handler) {
         this.$.on(event, handler);
     }
+
+    render() {
+        return this.renderer.render(this.$.text());
+    }
 }
 
 window.prosemirror = {
     MarkdownEditor: MarkdownEditor,
     EditorState: EditorState,
     getRenderer: getRenderer,
+    plugin: {
+        registerPreset: registerPreset,
+        registerPlugin: registerPlugin
+    },
+    menu: menu,
     find:find,
-    $node: $node
+    $node: $node,
+    MentionProvider: MentionProvider
 };
 

@@ -32,41 +32,154 @@ import attributes from "./attributes"
 import placeholder from "./placeholder"
 
 const plugins = [];
+const pluginMap = {};
 
 const presets = {};
 
-let registerPlugin = function(plugin) {
+let registerPlugin = function(plugin, options) {
+    options = options || {};
+
     plugins.push(plugin);
+    pluginMap[plugin.id] = plugin;
+
+    if(typeof options === 'string') {
+        options = {preset:options};
+    }
+
+    if(options.preset) {
+        addToPreset(plugin, options.preset, options);
+    }
 };
 
-registerPlugin(doc);
-registerPlugin(paragraph);
-registerPlugin(blockquote);
-registerPlugin(bullet_list);
-registerPlugin(strong);
-registerPlugin(code);
-registerPlugin(code_block);
+let addToPreset = function(plugin, presetId,  options) {
+    if(typeof plugin === 'string') {
+        plugin = pluginMap[plugin];
+    }
+
+    let preset = presets[presetId] ? presets[presetId].slice(0) : [];
+
+    if(options['before'] && pluginMap[options['before']]) {
+        let index = preset.indexOf(pluginMap[options['before']]);
+        if (index >= 0) {
+            preset.splice(index, 0, plugin);
+        } else {
+            console.warn('Tried appending plugin before non existing preset plugin: '+presetId+' before:'+options['before']);
+            preset.push(plugin);
+        }
+    } else if(options['after'] && pluginMap[options['after']]) {
+        let index = preset.indexOf(pluginMap[options['after']]);
+        if (index >= 0) {
+            preset.splice(index+1, 0, plugin);
+        } else {
+            console.warn('Tried appending plugin after non existing preset plugin: '+presetId+' after:'+options['after']);
+            preset.push(plugin);
+        }
+    } else {
+        preset.push(plugin);
+    }
+
+    presets[presetId] = preset;
+};
+
+let registerPreset = function(id, plugins) {
+
+    let result = [];
+
+    if(Array.isArray(plugins)) {
+        plugins.forEach((pluginId) => {
+            let plugin = pluginMap[pluginId];
+            if(plugin) {
+                result.push(plugin);
+            }
+        });
+    } else if(plugins.extend) {
+        let toExtend =  presets[plugins.extend];
+
+        if(!toExtend) {
+            console.error('Could not extend richtext preset '+plugins.extend+' preset not registered!');
+            return;
+        }
+
+        if(plugins.exclude && Array.isArray(plugins.exclude)) {
+            toExtend.forEach((plugin) => {
+                if(plugin && !plugins.exclude.includes(plugin.id)) {
+                    result.push(plugin);
+                }
+            });
+        } else {
+            result = toExtend.slice(0);
+        }
+
+        if(plugins.include && Array.isArray(plugins.include)) {
+            plugins.include.forEach((plugin) => {
+                if(!pluginMap[plugin]) {
+                    console.error('Could not include plugin '+plugin+' to preset '+id+' plugin not found!');
+                } else {
+                    result.push(pluginMap[plugin]);
+                }
+            });
+        }
+    }
+
+    presets[id] = result;
+
+    if(plugins.callback) {
+        plugins.callback.apply(result, [addToPreset])
+    }
+};
+
+registerPlugin(doc, 'markdown');
+registerPlugin(paragraph, 'markdown');
+registerPlugin(blockquote, 'markdown');
+registerPlugin(bullet_list, 'markdown');
+registerPlugin(strong, 'markdown');
+registerPlugin(code, 'markdown');
+registerPlugin(code_block, 'markdown');
 registerPlugin(emoji);
-registerPlugin(hard_break);
-registerPlugin(em);
-registerPlugin(horizontal_rule);
-registerPlugin(image);
-registerPlugin(list_item);
+registerPlugin(hard_break, 'markdown');
+registerPlugin(em, 'markdown');
+registerPlugin(horizontal_rule, 'markdown');
+registerPlugin(image, 'markdown');
+registerPlugin(list_item, 'markdown');
 registerPlugin(mention);
 registerPlugin(oembed);
-registerPlugin(ordered_list);
-registerPlugin(heading);
-registerPlugin(strikethrough);
-registerPlugin(table);
-registerPlugin(text);
-registerPlugin(link);
-registerPlugin(attributes);
-registerPlugin(placeholder);
+registerPlugin(ordered_list, 'markdown');
+registerPlugin(heading, 'markdown');
+registerPlugin(strikethrough, 'markdown');
+registerPlugin(table, 'markdown');
+registerPlugin(text, 'markdown');
+registerPlugin(link, 'markdown');
+registerPlugin(attributes, 'markdown');
+registerPlugin(placeholder, 'markdown');
+
+registerPreset('normal', {
+    extend: 'markdown',
+    callback: function(addToPreset) {
+
+        addToPreset('emoji', 'normal', {
+            'before': 'hard_break'
+        });
+
+        addToPreset('mention', 'normal', {
+            'before': 'ordered_list'
+        });
+
+        addToPreset('oembed', 'normal', {
+            'before': 'ordered_list'
+        });
+    }
+});
+
+registerPreset('full', {
+    extend: 'normal'
+});
+
+console.log(presets);
 
 let getPlugins = function(options = {}) {
 
     if(options.preset && presets[options.preset]) {
-        return  presets[options.preset].slice(0);
+        return presets[options.preset].slice(0);
     }
 
     let result = [];
@@ -143,4 +256,4 @@ let buildPluginKeymap = function(options) {
 // https://github.com/ProseMirror/prosemirror/issues/710
 const isChromeWithSelectionBug = !!navigator.userAgent.match(/Chrome\/(5[89]|6[012])/);
 
-export {isChromeWithSelectionBug, buildPlugins, buildPluginKeymap, buildInputRules, registerPlugin, getPlugins}
+export {isChromeWithSelectionBug, buildPlugins, buildPluginKeymap, buildInputRules, registerPlugin, registerPreset, getPlugins}

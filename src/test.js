@@ -6,6 +6,17 @@
  */
 
 $(document).ready(function() {
+    var inherits = function(Sub, Parent) {
+        for(var i in Parent) {
+            Sub[i] = Parent[i];
+        }
+
+        Sub.prototype = Object.create(Parent.prototype);
+        Sub._super = Parent.prototype;
+        Sub._superConst = Parent;
+    }
+
+
     var TestMentionProvider = function() {
         this.user = [
             {
@@ -46,81 +57,12 @@ $(document).ready(function() {
         ];
     };
 
-    TestMentionProvider.prototype.query = function(state, node) {
-        this.state = state;
-        this.$node = $(node);
-        var query = this.state.query;
-        this.result = this.user.filter(function(user) {
+    inherits(TestMentionProvider, prosemirror.MentionProvider);
+
+    TestMentionProvider.prototype.find = function(query, node) {
+        return this.user.filter(function(user) {
             return user.name.indexOf(query) >= 0;
         });
-
-        this.update();
-    };
-
-    TestMentionProvider.prototype.reset = function(query, node) {
-        if(this.$container) {
-            this.$container.remove();
-        }
-    };
-
-    TestMentionProvider.prototype.prev = function() {
-        let $cur = this.$container.find('.cur');
-        let $prev = $cur.prev();
-        if($prev.length) {
-            $prev.addClass('cur');
-            $cur.removeClass('cur');
-        }
-    };
-
-    TestMentionProvider.prototype.next = function() {
-        let $cur = this.$container.find('.cur');
-        let $next = $cur.next();
-        if($next.length) {
-            $next.addClass('cur');
-            $cur.removeClass('cur');
-        }
-    };
-
-    TestMentionProvider.prototype.select = function() {
-        let $cur = this.$container.find('.cur');
-        this.state.addMention($cur.data('item'));
-    };
-
-    TestMentionProvider.prototype.update = function() {
-        if(!this.$container) {
-            this.$container = $('<div class="atwho-view">').css({
-                position: 'absolute',
-                'background-color': 'white',
-                'border': '1px solid black',
-                'padding':'5px'
-            });
-        } else {
-            this.$container.empty();
-        }
-
-        if(this.result && this.result.length) {
-            var position = this.$node[0].getBoundingClientRect();
-
-
-            this.$container.css({
-                top: position.top + this.$node.outerHeight() + 2,
-                left: position.left,
-            });
-
-            $list = $('<ul style="list-style-type: none;padding:0px;margin:0px;">');
-
-            this.result.forEach(function(item) {
-                $list.append($('<li>'+item.image+' '+item.name+'</li>').data('item', item));
-            });
-
-            $list.find('li').first().addClass('cur');
-
-            this.$container.append($list);
-        } else {
-            this.$container.append($('<span>No Result</span>'));
-        }
-
-        $('body').append(this.$container);
     };
 
     var editor;

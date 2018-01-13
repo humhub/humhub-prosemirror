@@ -53,7 +53,6 @@ import {goToNextCell} from "prosemirror-tables"
 export function setupPlugins(options) {
     let plugins = buildPluginKeymap();
 
-
     plugins = plugins.concat([
         buildInputRules(options),
         keymap(buildKeymap(options.schema, options.mapKeys)),

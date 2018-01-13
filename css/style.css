@@ -663,17 +663,6 @@ ProsemirrorEditor img {
   font-weight: bold;
   text-align: left;
 }
-/* NOT REQUIRED FOR EDITOR !!!!*/
-.column {
-  float: left;
-  width: 33.33%;
-}
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
 .atwho-view .cur {
   border-left: 3px solid #59d6e4;
   background-color: #f7f7f7 !important;
@@ -697,4 +686,16 @@ ProsemirrorEditor img {
 }
 .atwho-placeholder {
   color: #bebebe !important;
+}
+
+/* NOT REQUIRED FOR EDITOR !!!!*/
+.column {
+  float: left;
+  width: 33.33%;
+}
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
 }
