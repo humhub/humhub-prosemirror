@@ -6,22 +6,17 @@
  */
 
 import {MarkdownSerializer} from "prosemirror-markdown"
-import {getPlugins} from "../core/plugins"
+import {getPlugins, PresetManager} from "../core/plugins"
 
-let presets = {};
+let presets = new PresetManager({
+    name: 'serializer',
+    create: (options) => {
+        return createSerializer(options);
+    }
+});
 
 let getSerializer = (options = {}) => {
-    if (options.preset && presets[options.preset]) {
-        return presets[options.preset];
-    }
-
-    let serializer = createSerializer(options);
-
-    if(options.preset) {
-        presets[options.preset] = serializer;
-    }
-
-    return serializer;
+    return presets.check(options);
 };
 
 let createSerializer = (options) => {

@@ -39,7 +39,6 @@ const schema = {
                 }
             },
             toMarkdown: (state, node) => {
-                debugger;
                 let linkMark = $node(node).getMark('link');
                 if(linkMark) {
                     state.write(linkSchema.marks.link.toMarkdown.close(state, linkMark));

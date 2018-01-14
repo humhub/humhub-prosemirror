@@ -9,6 +9,7 @@ import {wrapInList} from "prosemirror-schema-list"
 import {icons, cmdItem, wrapListItem} from "../../menu/menu"
 
 function wrapBulletList(options) {
+
     return cmdItem(wrapInList(options.schema.nodes.bullet_list), {
         title: "Wrap in bullet list",
         icon: icons.bulletList,
@@ -17,6 +18,7 @@ function wrapBulletList(options) {
 }
 
 export function menu(options) {
+
     return [
         {
             id: 'wrapBulletList',

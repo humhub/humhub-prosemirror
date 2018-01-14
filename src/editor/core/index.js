@@ -12,6 +12,7 @@ import {buildKeymap} from "./keymap"
 import {buildInputRules, buildPlugins, buildPluginKeymap} from "./plugins"
 
 import {goToNextCell} from "prosemirror-tables"
+import {getPlugins} from "./plugins/index";
 
 
 // !! This module exports helper functions for deriving a set of basic
@@ -51,9 +52,9 @@ import {goToNextCell} from "prosemirror-tables"
 //     menuContent:: [[MenuItem]]
 //     Can be used to override the menu content.
 export function setupPlugins(options) {
-    let plugins = buildPluginKeymap();
+    let result = buildPluginKeymap(options);
 
-    plugins = plugins.concat([
+    result = result.concat([
         buildInputRules(options),
         keymap(buildKeymap(options.schema, options.mapKeys)),
         keymap(baseKeymap),
@@ -68,8 +69,8 @@ export function setupPlugins(options) {
     ]);
 
     if (options.history !== false) {
-        plugins.push(history())
+        result.push(history())
     }
 
-    return plugins.concat(buildPluginKeymap()).concat(buildPlugins(options));
+    return result.concat(buildPluginKeymap(options)).concat(buildPlugins(options));
 }

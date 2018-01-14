@@ -129,7 +129,6 @@ function createLinkExtension(id, options) {
             state.pos = labelStart;
             state.posMax = labelEnd;
 
-            debugger;
             label = state.src.substring(labelStart, labelEnd);
 
             token = state.push(id, options.node, 0);

@@ -204,6 +204,7 @@ export class MenuItemGroup extends MenuItem {
         this.content = {
             items: sort(Array.isArray(content) ? content : [content]),
             update: (state) => {
+
                 let result = false;
 
                 sort(this.content.items).forEach((item, i) => {

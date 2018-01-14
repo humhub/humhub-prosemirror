@@ -56,7 +56,7 @@ let addToPreset = function(plugin, presetId,  options) {
         plugin = pluginMap[plugin];
     }
 
-    let preset = presets[presetId] ? presets[presetId].slice(0) : [];
+    let preset = presets[presetId] ? presets[presetId].slice() : [];
 
     if(options['before'] && pluginMap[options['before']]) {
         let index = preset.indexOf(pluginMap[options['before']]);
@@ -174,43 +174,82 @@ registerPreset('full', {
     extend: 'normal'
 });
 
-console.log(presets);
+class PresetManager {
+    constructor(options) {
+        this.map = {};
+        this.options = options;
+    }
+
+    add(options, value) {
+        this.map[options.preset] = value;
+    }
+
+    create(options) {
+        return this.options.create.apply(null, [options]);
+    }
+
+    static isCustomPluginSet(options) {
+        return !!options.exclude || !!options.include;
+    }
+
+    check(options) {
+        if(this.options.name && options[this.options.name]) {
+            return options[this.options.name];
+        }
+
+        if(!PresetManager.isCustomPluginSet(options) && this.map[options.preset]) {
+            return this.map[options.preset];
+        }
+
+        let value = this.create(options);
+
+        if(!PresetManager.isCustomPluginSet(options)) {
+            this.add(options, value);
+        }
+
+        if(this.options.name) {
+            options[this.options.name] = value;
+        }
+
+        return value;
+    }
+}
 
 let getPlugins = function(options = {}) {
+    if(options.plugins) {
+        return options.plugins;
+    }
 
-    if(options.preset && presets[options.preset]) {
-        return presets[options.preset].slice(0);
+    let toExtend = presets[options.preset] ?  presets[options.preset] : plugins;
+
+    if(!PresetManager.isCustomPluginSet(options)) {
+        return options.plugins = toExtend.slice();
     }
 
     let result = [];
-    if(!options.plugins || !options.plugins.exclude || !Array.isArray(options.plugins.exclude)) {
-        result = plugins.slice(0);
-    } else {
-        let pluginFilter = (Array.isArray(options.plugins.exclude)) ? (plugin) => {
-            return !options.plugins.exclude.includes(plugin.id)
-        } : null;
-
-        plugins.forEach((plugin) => {
-            if(plugin && pluginFilter(plugin)) {
+    if(options.exclude) {
+        toExtend.forEach((plugin) => {
+            if(plugin && !options.exclude.includes(plugin.id)) {
                 result.push(plugin);
             }
         });
     }
 
-    if(options.plugins && options.plugins.include && Array.isArray(options.plugins.include)) {
-        result = result.concat(options.plugins.include);
+    if(options.include) {
+        options.include.forEach((include) => {
+            if(plugins[include]) {
+                result.push(plugins[include]);
+            } else {
+                console.error('Could not include plugin '+include+' plugin not registered!');
+            }
+        });
     }
 
-    if(options.preset) {
-        presets[options.preset] = result;
-        return result.slice(0);
-    }
-
-    return result;
+    return options.plugins = result;
 };
 
 let buildInputRules = function(options) {
-    let plugins = getPlugins(options);
+    let plugins = options.plugins;
     let schema = options.schema;
 
     let rules = smartQuotes.concat([ellipsis, emDash]);
@@ -224,7 +263,7 @@ let buildInputRules = function(options) {
 };
 
 let buildPlugins = function(options) {
-    let plugins = getPlugins(options);
+    let plugins = options.plugins;
 
     let result = [];
     plugins.forEach((plugin) => {
@@ -240,7 +279,7 @@ let buildPlugins = function(options) {
 };
 
 let buildPluginKeymap = function(options) {
-    let plugins = getPlugins(options);
+    let plugins = options.plugins;
 
     let result = [];
     plugins.forEach((plugin) => {
@@ -256,4 +295,4 @@ let buildPluginKeymap = function(options) {
 // https://github.com/ProseMirror/prosemirror/issues/710
 const isChromeWithSelectionBug = !!navigator.userAgent.match(/Chrome\/(5[89]|6[012])/);
 
-export {isChromeWithSelectionBug, buildPlugins, buildPluginKeymap, buildInputRules, registerPlugin, registerPreset, getPlugins}
+export {isChromeWithSelectionBug, PresetManager, buildPlugins, buildPluginKeymap, buildInputRules, registerPlugin, registerPreset, getPlugins}

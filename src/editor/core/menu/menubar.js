@@ -14,7 +14,7 @@ function buildMenuItems(options) {
 
     let definitions = [groups.types, groups.insert];
 
-    getPlugins(options).forEach(function (plugin) {
+    options.plugins.forEach(function (plugin) {
         if(plugin.menu) {
             plugin.menu(options).forEach(function(menuDefinition) {
                 if(checkMenuDefinition(options, menuDefinition)) {

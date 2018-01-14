@@ -11,7 +11,9 @@ import {menu} from './menu'
 const bullet_list = {
     id: 'bullet_list',
     schema: schema,
-    menu: (options) => menu(options),
+    menu: (options) => {
+        return menu(options);
+    },
     inputRules: (schema) => {return [bulletListRule(schema)]}
 };
 

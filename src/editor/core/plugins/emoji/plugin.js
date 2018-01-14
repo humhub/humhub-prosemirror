@@ -11,11 +11,11 @@ const emojiPlugin = (options) => {
                 let $html = $(html);
                 let $dom = $('<body>').append($html);
                 let test = $('<html>').append(twemoji.parse($dom[0])).html();
-                debugger;
+
                 return test
             },
             transformPastedText: (text) => {
-                debugger;
+
                 return twemoji.parse(text, {output: 'markdown'});
             },*/
             clipboardTextParser: $.proxy(parser.parse, parser),

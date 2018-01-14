@@ -20,6 +20,7 @@ import {registerPreset, registerPlugin} from "./core/plugins"
 import MentionProvider from "./core/plugins/mention/provider"
 
 import * as menu from './core/menu'
+import {getPlugins} from "./core/plugins/index";
 
 class MarkdownEditor {
     constructor(selector, options = {}) {
@@ -27,9 +28,18 @@ class MarkdownEditor {
 
         this.options.preset = this.options.preset || 'full';
 
-        if(!this.options.schema) {
-            this.options.schema = getSchema(options);
+        if(Array.isArray(this.options.exclude) && !this.options.exclude.length) {
+            this.options.exclude = undefined;
         }
+
+        if(Array.isArray(this.options.include) && !this.options.include.length) {
+            this.options.include = undefined;
+        }
+
+        // Make sure there is no plugin option
+        options.plugins = undefined;
+        getPlugins(options);
+        getSchema(options);
 
         /*if(!this.options.menuMode) {
             this.options.menuMode = 'hover';
@@ -46,10 +56,13 @@ class MarkdownEditor {
             this.editor.destroy();
         }
 
+        debugger;
         let state = EditorState.create({
             doc: this.parser.parse(md),
             plugins: setupPlugins(this.options)
         });
+
+
 
         let fix = fixTables(state);
         state = (fix) ? state.apply(fix.setMeta("addToHistory", false)) : state;

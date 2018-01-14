@@ -6,24 +6,19 @@
  */
 
 import {MarkdownParser} from "prosemirror-markdown"
-import {getPlugins} from "../core/plugins"
+import {getPlugins, PresetManager} from "../core/plugins"
 import {getRenderer} from "./renderer"
 import {getSchema} from "../core/schema"
 
-let presets = {};
+let presets = new PresetManager({
+    name: 'parser',
+    create: (options) => {
+        return createParser(options);
+    }
+});
 
 let getParser = (options = {}) => {
-    if (options.preset && presets[options.preset]) {
-        return presets[options.preset];
-    }
-
-    let parser = createParser(options);
-
-    if(options.preset) {
-        presets[options.preset] = parser;
-    }
-
-    return parser;
+    return presets.check(options);
 };
 
 let createParser = (options) => {
@@ -51,7 +46,7 @@ let createParser = (options) => {
         }
     });
 
-    return new MarkdownParser(getSchema(options), getRenderer(options), tokens);
+    return new MarkdownParser(options.schema || getSchema(options), getRenderer(options), tokens);
 };
 
 export {getParser}

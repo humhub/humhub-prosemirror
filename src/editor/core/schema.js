@@ -6,7 +6,7 @@
  */
 
 import {Schema} from "prosemirror-model"
-import {getPlugins} from "./plugins/"
+import {PresetManager} from "./plugins/"
 
 let mergeSchema = function(schema, plugin) {
     if(Array.isArray(plugin)) {
@@ -21,25 +21,15 @@ let mergeSchema = function(schema, plugin) {
     return schema;
 };
 
-let presets = {};
+let presets = new PresetManager({
+    name: 'schema',
+    create: (options) => {
+        return new Schema(mergeSchema({}, options.plugins));
+    }
+});
 
 let getSchema = function(options = {}) {
-    if(options.schema) {
-        return options.schema;
-    }
-
-    debugger;
-
-    if(options.preset && presets[options.preset]) {
-        return options.schema = presets[options.preset];
-    }
-
-    let schema = new Schema(mergeSchema({}, getPlugins(options)));
-    if(options.preset) {
-        presets[options.preset] = schema;
-    }
-
-    return options.schema = schema;
+    return presets.check(options);
 };
 
 export {getSchema};
