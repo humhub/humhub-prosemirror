@@ -4,10 +4,12 @@
  * @license https://www.humhub.com/licences
  *
  */
-import {placeholderPlugin} from './plugin'
+//import {placeholderPlugin} from './plugin'
+import {menu} from './menu'
 
-const placeholder = {
+const upload = {
     id: 'upload',
+    menu:  (options) => menu(options)
 };
 
-export default placeholder;
+export default upload;

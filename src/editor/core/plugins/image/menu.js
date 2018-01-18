@@ -17,7 +17,7 @@ function insertImageItem(options) {
             return canInsert(state, options.schema.nodes.image)
         },
         run(state, _, view) {
-            let {from, to} = state.selection, attrs = null
+            let {from, to} = state.selection, attrs = null;
             if (state.selection instanceof NodeSelection && state.selection.node.type === options.schema.nodes.image) {
                 attrs = state.selection.node.attrs
             }

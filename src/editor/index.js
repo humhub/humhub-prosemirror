@@ -24,7 +24,10 @@ import {getPlugins} from "./core/plugins/index";
 
 class MarkdownEditor {
     constructor(selector, options = {}) {
+        this.$ = $(selector);
         this.options = options;
+        this.options.editor = this;
+        this.options.id = this.$.attr('id');
 
         this.options.preset = this.options.preset || 'full';
 
@@ -45,7 +48,6 @@ class MarkdownEditor {
             this.options.menuMode = 'hover';
         }*/
 
-        this.$ = $(selector);
         this.parser = getParser(this.options);
         this.serializer = getSerializer(this.options);
         this.renderer = getRenderer(this.options);
@@ -56,13 +58,10 @@ class MarkdownEditor {
             this.editor.destroy();
         }
 
-        debugger;
         let state = EditorState.create({
             doc: this.parser.parse(md),
             plugins: setupPlugins(this.options)
         });
-
-
 
         let fix = fixTables(state);
         state = (fix) ? state.apply(fix.setMeta("addToHistory", false)) : state;

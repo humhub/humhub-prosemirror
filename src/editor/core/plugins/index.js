@@ -30,6 +30,8 @@ import table from "./table"
 import text from "./text"
 import attributes from "./attributes"
 import placeholder from "./placeholder"
+import loader from "./loader"
+import upload from "./upload"
 
 const plugins = [];
 const pluginMap = {};
@@ -129,6 +131,7 @@ let registerPreset = function(id, plugins) {
 };
 
 registerPlugin(doc, 'markdown');
+registerPlugin(loader, 'markdown');
 registerPlugin(paragraph, 'markdown');
 registerPlugin(blockquote, 'markdown');
 registerPlugin(bullet_list, 'markdown');
@@ -151,6 +154,7 @@ registerPlugin(text, 'markdown');
 registerPlugin(link, 'markdown');
 registerPlugin(attributes, 'markdown');
 registerPlugin(placeholder, 'markdown');
+registerPlugin(upload, 'markdown');
 
 registerPreset('normal', {
     extend: 'markdown',
@@ -197,21 +201,26 @@ class PresetManager {
             return options[this.options.name];
         }
 
+        let result = [];
+
         if(!PresetManager.isCustomPluginSet(options) && this.map[options.preset]) {
-            return this.map[options.preset];
+            result = this.map[options.preset];
         }
 
-        let value = this.create(options);
+        if(!result || !result.length) {
+            result = this.create(options);
 
-        if(!PresetManager.isCustomPluginSet(options)) {
-            this.add(options, value);
+            if(!PresetManager.isCustomPluginSet(options)) {
+                this.add(options, result);
+            }
         }
+
 
         if(this.options.name) {
-            options[this.options.name] = value;
+            options[this.options.name] = result;
         }
 
-        return value;
+        return result;
     }
 }
 

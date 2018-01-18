@@ -57,9 +57,9 @@ export class MenuItem {
     render(view) {
         let options = this.options;
 
-        /*this.dom = options.icon ? getIcon(options.icon)
-            : options.label ? crel("div", null, translate(view, options.label))
-                : null;*/
+        if(typeof this.options.render === 'function') {
+            return this.options.render.apply(this, [options]);
+        }
 
         this.dom = options.icon ? getIcon(options.icon)
                     : options.label ? $('<div>').html(translate(view, options.label))[0]
@@ -183,9 +183,9 @@ function isMenuEvent(wrapper) {
 function sort(items) {
     let result = [];
     items.forEach((item) => {
-        if(item.type && item.type === 'dropdown') {
+        if(item && item.type && item.type === 'dropdown') {
             result.push(new Dropdown(sort(item.items), item));
-        } else {
+        } else if(item) {
             result.push(item);
         }
     });

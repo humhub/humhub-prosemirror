@@ -4,102 +4,140 @@ let close = ($node) => {
     $node.remove();
 };
 
-export function openPrompt(options) {
-    let $prompt = $('<div>').addClass(prefix);
+class Promt {
+    constructor(options) {
+        this.options = options;
+        this.render();
+    }
 
+    render() {
+        this.$wrapper = $('<div>').addClass(prefix).appendTo($('body'));
+        this.buildForm();
+        this.initEvents();
+        this.initWrapper();
+    }
 
-    setTimeout(() => $prompt.on('mousedown', e => {
-        if (!$prompt.contains(e.target)) {
-            $prompt.remove();
+    initWrapper() {
+        let box = this.$wrapper[0].getBoundingClientRect();
+        this.$wrapper.css({
+            top: ((window.innerHeight - box.height) / 2)+ "px",
+            left: ((window.innerWidth - box.width) / 2) + "px"
+        });
+
+        this.$wrapper.find('select:visible, input[type="text"]:visible, textarea:visible, [contenteditable="true"]:visible').first().focus();
+    }
+
+    buildForm() {
+        this.$form = $('<form>').appendTo(this.$wrapper);
+
+        if (this.options.title) {
+            this.$form.append('<h5>'+this.options.title+'</h5>');
         }
-    }));
 
+        this.buildFormFields();
 
-    let wrapper = document.body.appendChild(document.createElement("div"))
-    wrapper.className = prefix
+        this.domFields.forEach(field => {
+            this.$form.append($('<div>').append(field));
+        });
 
-    let domFields = []
-    for (let name in options.fields) domFields.push(options.fields[name].render())
+        this.$form.on('submit', (e) => {
+            e.preventDefault();
+            this.submit();
+        })
 
-    let submitButton = document.createElement("button")
-    submitButton.type = "submit"
-    submitButton.className = prefix + "-submit"
-    submitButton.textContent = "OK"
-    let cancelButton = document.createElement("button")
-    cancelButton.type = "button"
-    cancelButton.className = prefix + "-cancel"
-    cancelButton.textContent = "Cancel"
-    cancelButton.addEventListener("click", close)
+        this.buildButtons();
+    }
 
-    let form = wrapper.appendChild(document.createElement("form"))
-    if (options.title) form.appendChild(document.createElement("h5")).textContent = options.title
-    domFields.forEach(field => {
-        form.appendChild(document.createElement("div")).appendChild(field)
-    })
-    let buttons = form.appendChild(document.createElement("div"))
-    buttons.className = prefix + "-buttons"
-    buttons.appendChild(submitButton)
-    buttons.appendChild(document.createTextNode(" "))
-    buttons.appendChild(cancelButton)
+    buildFormFields() {
+        this.domFields = [];
+        for (let name in this.options.fields) {
+            this.domFields.push(this.options.fields[name].render())
+        }
+    }
 
-    let box = wrapper.getBoundingClientRect()
-    wrapper.style.top = ((window.innerHeight - box.height) / 2) + "px"
-    wrapper.style.left = ((window.innerWidth - box.width) / 2) + "px"
+    buildButtons() {
+        this.$buttons = $('<div>').addClass(prefix + "-buttons");
+        // TODO: translate text!
+        $('<button type="submit" class="btn btn-primary">').addClass(prefix + "-submit").text('OK').appendTo(this.$buttons);
 
-    let submit = () => {
-        let params = getValues(options.fields, domFields)
+        this.$buttons.append(document.createTextNode(' '));
+
+        $('<button type="button" class="btn btn-default">').addClass(prefix + "-cancel").text('Cancel').appendTo(this.$buttons)
+            .on('click', () => {this.close()});
+
+        this.$form.append(this.$buttons);
+    }
+
+    submit() {
+        let params = getValues();
         if (params) {
-            $(wrapper).remove();
-            options.callback(params)
+            this.close();
+            this.options.callback(params);
         }
     }
 
-    form.addEventListener("submit", e => {
-        e.preventDefault()
-        submit()
-    })
+    getValues() {
+        let result = Object.create(null);
+        let i = 0;
 
-    form.addEventListener("keydown", e => {
-        if (e.keyCode == 27) {
-            e.preventDefault()
-            close()
-        } else if (e.keyCode == 13 && !(e.ctrlKey || e.metaKey || e.shiftKey)) {
-            e.preventDefault()
-            submit()
-        } else if (e.keyCode == 9) {
-            window.setTimeout(() => {
-                if (!wrapper.contains(document.activeElement)) close()
-            }, 500)
+        for (let name in this.options.fields) {
+            let field = this.options.fields[name];
+            let dom = this.domFields[i++];
+
+            let value = field.read(dom);
+            let bad = field.validate(value);
+
+            if (bad) {
+                reportInvalid(dom, bad);
+                return null
+            }
+            result[name] = field.clean(value)
         }
-    })
 
-    let input = form.elements[0]
-    if (input) input.focus()
-}
-
-function getValues(fields, domFields) {
-    let result = Object.create(null), i = 0
-    for (let name in fields) {
-        let field = fields[name], dom = domFields[i++]
-        let value = field.read(dom), bad = field.validate(value)
-        if (bad) {
-            reportInvalid(dom, bad)
-            return null
-        }
-        result[name] = field.clean(value)
+        return result
     }
-    return result
+
+    reportInvalid(dom, message) {
+        // FIXME this is awful and needs a lot more work
+        let parent = dom.parentNode;
+        let msg = parent.appendChild(document.createElement("div"));
+        msg.style.left = (dom.offsetLeft + dom.offsetWidth + 2) + "px";
+        msg.style.top = (dom.offsetTop - 5) + "px";
+        msg.className = "ProseMirror-invalid";
+        msg.textContent = message;
+        setTimeout(() => parent.removeChild(msg), 1500)
+    }
+
+    initEvents() {
+        this.$form.on("keydown", e => {
+            if (e.keyCode == 27) {
+                e.preventDefault();
+                this.close()
+            } else if (e.keyCode == 13 && !(e.ctrlKey || e.metaKey || e.shiftKey)) {
+                e.preventDefault();
+                this.submit()
+            } else if (e.keyCode == 9) {
+                window.setTimeout(() => {
+                    if (!$.contains(this.$wrapper[0], document.activeElement)) {
+                        this.close();
+                    }
+                }, 500)
+            }
+        }).on('mousedown', (e) => {
+            if (!$.contains(this.$wrapper[0], e.target)) {
+                this.close();
+            }
+        })
+    }
+
+    close() {
+        this.$wrapper.remove();
+    }
+
 }
 
-function reportInvalid(dom, message) {
-    // FIXME this is awful and needs a lot more work
-    let parent = dom.parentNode
-    let msg = parent.appendChild(document.createElement("div"))
-    msg.style.left = (dom.offsetLeft + dom.offsetWidth + 2) + "px"
-    msg.style.top = (dom.offsetTop - 5) + "px"
-    msg.className = "ProseMirror-invalid"
-    msg.textContent = message
-    setTimeout(() => parent.removeChild(msg), 1500)
+export function openPrompt(options) {
+    return new Promt(options);
 }
 
 // ::- The type of field that `FieldPrompt` expects to be passed to it.
