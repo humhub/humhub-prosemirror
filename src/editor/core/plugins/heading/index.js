@@ -12,7 +12,7 @@ import {menu} from "./menu"
 const heading = {
     id: 'heading',
     schema: schema,
-    menu: (options) => menu(options),
+    menu: (context) => menu(context),
     inputRules: (schema) => {return [headingRule(schema)]}
 };
 

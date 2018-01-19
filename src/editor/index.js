@@ -25,32 +25,32 @@ import {getPlugins} from "./core/plugins/index";
 class MarkdownEditor {
     constructor(selector, options = {}) {
         this.$ = $(selector);
-        this.options = options;
-        this.options.editor = this;
-        this.options.id = this.$.attr('id');
+        this.initContext(options);
+        this.parser = getParser(this.context);
+        this.serializer = getSerializer(this.context);
+        this.renderer = getRenderer(this.context);
+    }
 
-        this.options.preset = this.options.preset || 'full';
+    initContext(options) {
+        this.context = {
+            options: options
+        };
 
-        if(Array.isArray(this.options.exclude) && !this.options.exclude.length) {
-            this.options.exclude = undefined;
+        this.context.editor = this;
+        this.context.id = this.$.attr('id');
+
+        this.context.options.preset = options.preset || 'full';
+
+        if(Array.isArray(options.exclude) && !options.exclude.length) {
+            this.context.options.exclude = undefined;
         }
 
-        if(Array.isArray(this.options.include) && !this.options.include.length) {
-            this.options.include = undefined;
+        if(Array.isArray(options.include) && !options.include.length) {
+            this.context.options.include = undefined;
         }
 
-        // Make sure there is no plugin option
-        options.plugins = undefined;
-        getPlugins(options);
-        getSchema(options);
-
-        /*if(!this.options.menuMode) {
-            this.options.menuMode = 'hover';
-        }*/
-
-        this.parser = getParser(this.options);
-        this.serializer = getSerializer(this.options);
-        this.renderer = getRenderer(this.options);
+        getPlugins(this.context);
+        getSchema(this.context);
     }
 
     init(md) {
@@ -60,7 +60,7 @@ class MarkdownEditor {
 
         let state = EditorState.create({
             doc: this.parser.parse(md),
-            plugins: setupPlugins(this.options)
+            plugins: setupPlugins(this.context)
         });
 
         let fix = fixTables(state);
@@ -69,7 +69,6 @@ class MarkdownEditor {
         this.editor =  new EditorView(this.$[0], {
             state: state
         });
-
 
         this.$menuBar = this.$.find('.ProseMirror-menubar').hide();
 

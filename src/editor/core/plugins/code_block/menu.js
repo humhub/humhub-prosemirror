@@ -7,20 +7,20 @@
 
 import {blockTypeItem} from "../../menu/menu"
 
-function makeCodeBlock(options) {
-    return blockTypeItem(options.schema.nodes.code_block, {
+function makeCodeBlock(context) {
+    return blockTypeItem(context.schema.nodes.code_block, {
         title: "Change to code block",
         label: "Code"
     })
 }
 
-export function menu(options) {
+export function menu(context) {
     return [
         {
             id: 'makeCodeBlock',
             node: 'code_block',
             group: 'types',
-            item: makeCodeBlock(options)
+            item: makeCodeBlock(context)
         }
     ]
 }

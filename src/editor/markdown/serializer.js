@@ -10,17 +10,17 @@ import {getPlugins, PresetManager} from "../core/plugins"
 
 let presets = new PresetManager({
     name: 'serializer',
-    create: (options) => {
-        return createSerializer(options);
+    create: (context) => {
+        return createSerializer(context);
     }
 });
 
-let getSerializer = (options = {}) => {
-    return presets.check(options);
+let getSerializer = (context) => {
+    return presets.check(context);
 };
 
-let createSerializer = (options) => {
-    const plugins = getPlugins(options);
+let createSerializer = (context) => {
+    const plugins = getPlugins(context);
     let nodeSpec = {};
     let markSpec = {};
     plugins.forEach((plugin) => {

@@ -3,8 +3,8 @@ import { Node, Slice } from 'prosemirror-model'
 import twemoji from "../../twemoji"
 import {getParser} from "../../../markdown/parser"
 
-const emojiPlugin = (options) => {
-    let parser = getParser(options);
+const emojiPlugin = (context) => {
+    let parser = getParser(context);
     return new Plugin({
         props: {
             /*transformPastedHTML: (html) => {
@@ -20,7 +20,7 @@ const emojiPlugin = (options) => {
             },*/
             clipboardTextParser: $.proxy(parser.parse, parser),
             transformPasted: (slice) => {
-                if(slice && slice instanceof Node && slice.type == options.schema.nodes.doc) {
+                if(slice && slice instanceof Node && slice.type == context.schema.nodes.doc) {
                     return new Slice(slice.content, 0, 0)
                 }
 

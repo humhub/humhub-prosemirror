@@ -1,12 +1,12 @@
 import crel from "crel"
+
 import {Plugin} from "prosemirror-state"
 
 import {MenuItemGroup, icons, joinUpItem, liftItem, selectParentNodeItem} from "./menu"
-import {getPlugins} from "../plugins/"
 
 const prefix = "ProseMirror-menubar"
 
-function buildMenuItems(options) {
+function buildMenuItems(context) {
     let groups = {
         insert: {type: 'dropdown', sortOrder: 800, label: "Insert", icon: icons.image, class: 'ProseMirror-doprdown-right', items: []},
         types:  {type: 'dropdown', sortOrder: 100, label: "Type", icon: icons.text, items: []}
@@ -14,10 +14,10 @@ function buildMenuItems(options) {
 
     let definitions = [groups.types, groups.insert];
 
-    options.plugins.forEach(function (plugin) {
+    context.plugins.forEach(function (plugin) {
         if(plugin.menu) {
-            plugin.menu(options).forEach(function(menuDefinition) {
-                if(checkMenuDefinition(options, menuDefinition)) {
+            plugin.menu(context).forEach(function(menuDefinition) {
+                if(checkMenuDefinition(context, menuDefinition)) {
                     if(menuDefinition.group && groups[menuDefinition.group]) {
                         groups[menuDefinition.group].items.push(menuDefinition.item);
                     } else if(!menuDefinition.group) {
@@ -40,25 +40,25 @@ function buildMenuItems(options) {
     return definitions;
 }
 
-function checkMenuDefinition(options, menuDefinition) {
-    if(!menuDefinition || menuDefinition.node && !options.schema.nodes[menuDefinition.node]) {
+function checkMenuDefinition(context, menuDefinition) {
+    if(!menuDefinition || menuDefinition.node && !context.schema.nodes[menuDefinition.node]) {
         return false;
     }
 
-    if(menuDefinition.mark && !options.schema.marks[menuDefinition.mark]) {
+    if(menuDefinition.mark && !context.schema.marks[menuDefinition.mark]) {
         return false;
     }
 
-    if(options.menu && options.menu.exclude && options.menu.exclude[nodeName]) {
+    if(context.options.menu && Array.isArray(context.options.menu.exclude) && context.options.menu.exclude[menuDefinition.id]) {
         return false;
     }
 
     return true;
 }
 
-export function buildMenuBar(options) {
+export function buildMenuBar(context) {
     return menuBar({
-        content: buildMenuItems(options),
+        content: buildMenuItems(context),
         floating: false
     });
 }

@@ -23,13 +23,13 @@ let mergeSchema = function(schema, plugin) {
 
 let presets = new PresetManager({
     name: 'schema',
-    create: (options) => {
-        return new Schema(mergeSchema({}, options.plugins));
+    create: (context) => {
+        return new Schema(mergeSchema({}, context.plugins));
     }
 });
 
-let getSchema = function(options = {}) {
-    return presets.check(options);
+let getSchema = function(context) {
+    return presets.check(context);
 };
 
 export {getSchema};

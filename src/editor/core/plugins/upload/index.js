@@ -4,12 +4,12 @@
  * @license https://www.humhub.com/licences
  *
  */
-//import {placeholderPlugin} from './plugin'
+
 import {menu} from './menu'
 
 const upload = {
     id: 'upload',
-    menu:  (options) => menu(options)
+    menu:  (context) => menu(context)
 };
 
 export default upload;

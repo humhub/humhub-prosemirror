@@ -13,16 +13,16 @@ import {createLinkExtension} from "../../../markdown/linkExtensionTokenizer"
 const mention = {
     id: 'mention',
     schema: schema,
-    plugins: (options = {}) => {
-        if(!options.mention || !options.mention.provider) {
+    plugins: (context) => {
+        if(!context.options.mention || !context.options.mention.provider) {
             return [];
         }
         return [
-            mentionPlugin(options)
+            mentionPlugin(context)
         ]
     },
     inputRules: (schema) => {return [mentionRule(schema)]},
-    keymap: (options) => { return keymap(options)},
+    keymap: (context) => { return keymap()},
     registerMarkdownIt: (markdownIt) => {
         // [name](mention:guid "href")
         markdownIt.inline.ruler.before('link','mention', createLinkExtension('mention', {

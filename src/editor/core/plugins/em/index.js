@@ -10,7 +10,7 @@ import {menu} from "./menu"
 const em = {
     id: 'em',
     schema: schema,
-    menu: (options) => menu(options)
+    menu: (context) => menu(context)
 };
 
 export default em;

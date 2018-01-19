@@ -8,13 +8,13 @@ import {placeholderPlugin} from './plugin'
 
 const placeholder = {
     id: 'placeholder',
-    plugins: (options) => {
-        if(!options.placeholder || !options.placeholder.text) {
+    plugins: (context) => {
+        if(!context.options.placeholder || !context.options.placeholder.text) {
             return [];
         }
 
         return [
-            placeholderPlugin(options)
+            placeholderPlugin(context.options.placeholder)
         ]
     },
 };

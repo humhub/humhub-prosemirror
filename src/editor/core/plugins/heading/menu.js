@@ -7,10 +7,10 @@
 
 import {DropdownSubmenu, blockTypeItem} from "../../menu/menu"
 
-function makeHeading(options) {
+function makeHeading(context) {
     let r = {};
     for (let i = 1; i <= 6; i++) {
-        r["makeHead" + i] = blockTypeItem(options.schema.nodes.heading, {
+        r["makeHead" + i] = blockTypeItem(context.schema.nodes.heading, {
             label: "H" + i,
             title: "Change to heading " + i + ' (' + Array(i + 1).join("#") + ')',
             sortOrder: i,
@@ -21,13 +21,13 @@ function makeHeading(options) {
     return new DropdownSubmenu([r.makeHead1, r.makeHead2, r.makeHead3, r.makeHead4, r.makeHead5, r.makeHead6], {label: "Heading"});
 }
 
-export function menu(options) {
+export function menu(context) {
     return [
         {
             id: 'makeHeading',
             node: 'heading',
             group: 'types',
-            item: makeHeading(options)
+            item: makeHeading(context)
         }
     ]
 }

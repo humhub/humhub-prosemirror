@@ -9,8 +9,8 @@ import {MenuItem, markActive} from "../../menu"
 import {loaderPlugin, findPlaceholder} from "../loader/plugin"
 import {TextSelection} from 'prosemirror-state'
 
-let uploadFile = (options) => {
-    let mark = options.schema.marks.link;
+let uploadFile = (context) => {
+    let mark = context.schema.marks.link;
     return new MenuItem({
         title: "Upload and include a File",
         label: "Upload File",
@@ -20,14 +20,14 @@ let uploadFile = (options) => {
         },
         run(state, dispatch, view) {
             if (view.state.selection.$from.parent.inlineContent) {
-                triggerUpload(state, dispatch, view, options);
+                triggerUpload(state, dispatch, view, context);
             }
         }
     });
 };
 
-const triggerUpload = (state, dispatch, view, options) => {
-    let upload = humhub.require('ui.widget.Widget').instance($('#'+options.id+'-file-upload'));
+const triggerUpload = (state, dispatch, view, context) => {
+    let upload = humhub.require('ui.widget.Widget').instance($('#'+context.id+'-file-upload'));
 
     // A fresh object to act as the ID for this upload
     let id = {};
@@ -44,7 +44,6 @@ const triggerUpload = (state, dispatch, view, options) => {
     view.dispatch(tr);
 
     upload.off('uploadEnd.richtext').on('uploadEnd.richtext', function(evt, response) {
-        debugger;
         let pos = findPlaceholder(view.state, id);
 
         // If the content around the placeholder has been deleted, drop the image
@@ -52,7 +51,7 @@ const triggerUpload = (state, dispatch, view, options) => {
             return;
         }
 
-        let schema = options.schema;
+        let schema = context.schema;
         let nodes = [];
 
         // Otherwise, insert it at the placeholder's position, and remove the placeholder
@@ -70,20 +69,19 @@ const triggerUpload = (state, dispatch, view, options) => {
 
         view.dispatch(view.state.tr.replaceWith(pos, pos, nodes).setMeta(loaderPlugin, {remove: {id}}));
     }).off('uploadFinish.richtext').on('uploadFinish.richtext', function() {
-        debugger;
         //view.dispatch(tr.setMeta(loaderPlugin, {remove: {id}}));
     });
 
     upload.run();
 };
 
-export function menu(options) {
+export function menu(context) {
     return [
         {
             id: 'uploadFile',
             mark: 'link',
             group: 'insert',
-            item: uploadFile(options)
+            item: uploadFile(context)
         }
     ]
 }

@@ -6,15 +6,11 @@
  */
 
 import { Plugin } from 'prosemirror-state';
-import { Node, Slice } from 'prosemirror-model'
-import twemoji from "../../twemoji"
-import {getParser} from "../../../markdown/parser"
 
-const attributesPlugin = (options) => {
-
+const attributesPlugin = (context) => {
     return new Plugin({
         props: {
-            attributes: options.attributes
+            attributes: context.options.attributes
         }
     });
 };

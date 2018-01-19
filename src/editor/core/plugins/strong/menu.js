@@ -8,16 +8,16 @@
 import {icons, markItem} from "../../menu/menu"
 
 
-function markStrong(options) {
-    return markItem(options.schema.marks.strong, {title: "Toggle strong style", icon: icons.strong, sortOrder: 200});
+function markStrong(context) {
+    return markItem(context.schema.marks.strong, {title: "Toggle strong style", icon: icons.strong, sortOrder: 200});
 }
 
-export function menu(options) {
+export function menu(context) {
     return [
         {
             id: 'markStrong',
             mark: 'strong',
-            item: markStrong(options)
+            item: markStrong(context)
         }
     ]
 }

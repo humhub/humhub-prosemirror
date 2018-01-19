@@ -4,11 +4,11 @@ import {$node} from "../../util/node"
 
 const pluginKey = new PluginKey('mention');
 
-const mentionPlugin = (options) => {
+const mentionPlugin = (context) => {
     return new Plugin({
         state: {
             init(config, state) {
-                return new MentionState(state, options);
+                return new MentionState(state, context.options.mention);
             },
             apply(tr, prevPluginState, oldState, newState) {
                 prevPluginState.apply(tr, newState);

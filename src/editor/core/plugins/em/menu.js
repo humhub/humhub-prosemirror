@@ -8,16 +8,16 @@
 import {icons, markItem} from "../../menu/menu"
 
 
-function markEm(options) {
-    return markItem(options.schema.marks.em, {title: "Toggle emphasis", icon: icons.em, sortOrder: 300});
+function markEm(context) {
+    return markItem(context.schema.marks.em, {title: "Toggle emphasis", icon: icons.em, sortOrder: 300});
 }
 
-export function menu(options) {
+export function menu(context) {
     return [
         {
             id: 'markEm',
             mark: 'em',
-            item: markEm(options)
+            item: markEm(context)
         }
     ]
 }

@@ -11,7 +11,7 @@ import {menu} from './menu'
 const link = {
     id: 'link',
     schema: schema,
-    menu: (options) => menu(options),
+    menu: (context) => menu(context),
     registerMarkdownIt: (md) => {
         var defaultRender = md.renderer.rules.link_open || function(tokens, idx, options, env, self) {
             return self.renderToken(tokens, idx, options);
@@ -33,7 +33,7 @@ const link = {
             return defaultRender(tokens, idx, options, env, self);
         };
     },
-    plugins: (options) => {
+    plugins: (context) => {
         return [linkPlugin];
     }
 };

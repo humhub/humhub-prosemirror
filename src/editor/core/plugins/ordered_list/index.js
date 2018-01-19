@@ -10,7 +10,7 @@ import {menu} from './menu'
 
 const ordered_list = {
     id: 'ordered_list',
-    menu: (options) => menu(options),
+    menu: (context) => menu(context),
     schema: schema,
     inputRules: (schema) => {return [orderedListRule(schema)]}
 };

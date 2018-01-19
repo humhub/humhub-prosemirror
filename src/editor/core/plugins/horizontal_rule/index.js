@@ -10,7 +10,7 @@ import {menu} from './menu'
 const horizontal_rule = {
     id: 'horizontal_rule',
     schema: schema,
-    menu: (options) => menu(options)
+    menu: (context) => menu(context)
 };
 
 export default horizontal_rule;

@@ -14,9 +14,9 @@ import {emojiAutoCompleteRule} from "./input-rules"
 const emoji = {
     id: 'emoji',
     schema: schema,
-    plugins: (options = {}) => {
+    plugins: (context) => {
         return [
-            emojiPlugin(options)
+            emojiPlugin(context)
         ]
     },
     inputRules: (schema) => {

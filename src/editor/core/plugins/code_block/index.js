@@ -11,7 +11,7 @@ import {menu} from "./menu"
 const code_block = {
     id: 'code_block',
     schema: schema,
-    menu: (options) => menu(options),
+    menu: (context) => menu(context),
     inputRules: (schema) => {return [codeBlockRule(schema)]}
 };
 

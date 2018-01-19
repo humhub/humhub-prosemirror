@@ -9,7 +9,7 @@ import {menu} from './menu'
 const paragraph = {
     id: 'paragraph',
     schema: schema,
-    menu: (options) => menu(options)
+    menu: (context) => menu(context)
 };
 
 export default paragraph;

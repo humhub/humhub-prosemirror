@@ -8,22 +8,20 @@
 import {wrapInList} from "prosemirror-schema-list"
 import {icons, cmdItem, wrapListItem} from "../../menu/menu"
 
-function wrapBulletList(options) {
-
-    return cmdItem(wrapInList(options.schema.nodes.bullet_list), {
+function wrapBulletList(context) {
+    return cmdItem(wrapInList(context.schema.nodes.bullet_list), {
         title: "Wrap in bullet list",
         icon: icons.bulletList,
         sortOrder: 600
     });
 }
 
-export function menu(options) {
-
+export function menu(context) {
     return [
         {
             id: 'wrapBulletList',
             node: 'bullet_list',
-            item: wrapBulletList(options)
+            item: wrapBulletList(context)
         }
     ]
 }

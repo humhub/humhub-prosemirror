@@ -10,8 +10,8 @@ import {wrapIn} from "prosemirror-commands"
 import {TextField, openPrompt} from "../../prompt"
 import {addColumnAfter, addColumnBefore, deleteColumn, addRowAfter, addRowBefore, deleteRow, deleteTable,toggleHeaderRow} from "prosemirror-tables"
 
-function wrapTableItem(options) {
-    let schema = options.schema;
+function wrapTableItem(context) {
+    let schema = context.schema;
     let command = wrapIn(schema.nodes.table_header);
     let itemOptions = {
         title: "Create table",
@@ -54,12 +54,12 @@ function wrapTableItem(options) {
     return new MenuItem(itemOptions);
 }
 
-export function menu(options) {
+export function menu(context) {
     return [
         {
             id: 'insertTable',
             node: 'table',
-            item: wrapTableItem(options)
+            item: wrapTableItem(context)
         },
         {
             id: 'tableOptions',

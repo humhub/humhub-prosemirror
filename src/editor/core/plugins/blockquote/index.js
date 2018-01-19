@@ -11,7 +11,7 @@ import {menu} from "./menu"
 const blockquote = {
     id: 'blockquote',
     schema: schema,
-    menu: (options) => menu(options),
+    menu: (context) => menu(context),
     inputRules: (schema) => {return [blockquoteRule(schema)]}
 };
 

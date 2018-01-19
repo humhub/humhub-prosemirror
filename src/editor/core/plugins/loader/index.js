@@ -9,7 +9,7 @@ import {loaderPlugin} from './plugin'
 
 const loader = {
     id: 'loader',
-    plugins: (options = {}) => {
+    plugins: (context) => {
         return [loaderPlugin]
     },
 };

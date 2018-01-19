@@ -188,17 +188,19 @@ class PresetManager {
         this.map[options.preset] = value;
     }
 
-    create(options) {
-        return this.options.create.apply(null, [options]);
+    create(context) {
+        return this.options.create.apply(null, [context]);
     }
 
     static isCustomPluginSet(options) {
         return !!options.exclude || !!options.include;
     }
 
-    check(options) {
-        if(this.options.name && options[this.options.name]) {
-            return options[this.options.name];
+    check(context) {
+        let options = context.options;
+
+        if(this.options.name && context[this.options.name]) {
+            return context[this.options.name];
         }
 
         let result = [];
@@ -208,7 +210,7 @@ class PresetManager {
         }
 
         if(!result || !result.length) {
-            result = this.create(options);
+            result = this.create(context);
 
             if(!PresetManager.isCustomPluginSet(options)) {
                 this.add(options, result);
@@ -217,22 +219,24 @@ class PresetManager {
 
 
         if(this.options.name) {
-            options[this.options.name] = result;
+            context[this.options.name] = result;
         }
 
         return result;
     }
 }
 
-let getPlugins = function(options = {}) {
-    if(options.plugins) {
-        return options.plugins;
+let getPlugins = function(context) {
+    let options = context.options;
+
+    if(context.plugins) {
+        return context.plugins;
     }
 
     let toExtend = presets[options.preset] ?  presets[options.preset] : plugins;
 
     if(!PresetManager.isCustomPluginSet(options)) {
-        return options.plugins = toExtend.slice();
+        return context.plugins = toExtend.slice();
     }
 
     let result = [];
@@ -254,12 +258,12 @@ let getPlugins = function(options = {}) {
         });
     }
 
-    return options.plugins = result;
+    return context.plugins = result;
 };
 
-let buildInputRules = function(options) {
-    let plugins = options.plugins;
-    let schema = options.schema;
+let buildInputRules = function(context) {
+    let plugins = context.plugins;
+    let schema = context.schema;
 
     let rules = smartQuotes.concat([ellipsis, emDash]);
     plugins.forEach((plugin) => {
@@ -271,13 +275,13 @@ let buildInputRules = function(options) {
     return inputRules({rules})
 };
 
-let buildPlugins = function(options) {
-    let plugins = options.plugins;
+let buildPlugins = function(context) {
+    let plugins = context.plugins;
 
     let result = [];
     plugins.forEach((plugin) => {
         if(plugin.plugins) {
-            let pl = plugin.plugins(options);
+            let pl = plugin.plugins(context);
             if(pl && pl.length) {
                 result = result.concat(pl);
             }
@@ -287,13 +291,13 @@ let buildPlugins = function(options) {
     return result;
 };
 
-let buildPluginKeymap = function(options) {
-    let plugins = options.plugins;
+let buildPluginKeymap = function(context) {
+    let plugins = context.plugins;
 
     let result = [];
     plugins.forEach((plugin) => {
         if(plugin.keymap) {
-            result.push(keymap(plugin.keymap(options)));
+            result.push(keymap(plugin.keymap(context)));
         }
     });
 

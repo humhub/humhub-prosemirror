@@ -69,7 +69,7 @@ class Promt {
     }
 
     submit() {
-        let params = getValues();
+        let params = this.getValues();
         if (params) {
             this.close();
             this.options.callback(params);
@@ -88,7 +88,7 @@ class Promt {
             let bad = field.validate(value);
 
             if (bad) {
-                reportInvalid(dom, bad);
+                this.reportInvalid(dom, bad);
                 return null
             }
             result[name] = field.clean(value)

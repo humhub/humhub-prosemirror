@@ -8,16 +8,16 @@
 import {icons, markItem} from "../../menu/menu"
 
 
-function markStrikethrough(options) {
-    return markItem(options.schema.marks.strikethrough, {title: "Toggle strikethrough", icon: icons.strikethrough, sortOrder: 400});
+function markStrikethrough(context) {
+    return markItem(context.schema.marks.strikethrough, {title: "Toggle strikethrough", icon: icons.strikethrough, sortOrder: 400});
 }
 
-export function menu(options) {
+export function menu(context) {
     return [
         {
             id: 'markStrikethrough',
             mark: 'strikethrough',
-            item: markStrikethrough(options)
+            item: markStrikethrough(context)
         }
     ]
 }

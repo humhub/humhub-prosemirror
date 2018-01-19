@@ -15,15 +15,15 @@ let presets = new PresetManager({
     }
 });
 
-let getRenderer = (options) => {
-    return presets.check(options);
+let getRenderer = (context) => {
+    return presets.check(context);
 };
 
-let createRenderer = function(options) {
-    let markdownItOptions = options && options.markdownIt || {html: false, breaks: true};
+let createRenderer = function(context) {
+    let markdownItOptions = context && context.options.markdownIt || {html: false, breaks: true};
     let renderer = markdownit(markdownItOptions);
 
-    const plugins = getPlugins(options);
+    const plugins = getPlugins(context);
     plugins.forEach((plugin) => {
         if(plugin.registerMarkdownIt) {
             plugin.registerMarkdownIt(renderer);

@@ -12,17 +12,17 @@ import {getSchema} from "../core/schema"
 
 let presets = new PresetManager({
     name: 'parser',
-    create: (options) => {
-        return createParser(options);
+    create: (context) => {
+        return createParser(context);
     }
 });
 
-let getParser = (options = {}) => {
-    return presets.check(options);
+let getParser = (context) => {
+    return presets.check(context);
 };
 
-let createParser = (options) => {
-    const plugins = getPlugins(options);
+let createParser = (context) => {
+    const plugins = getPlugins(context);
 
     let tokens = {};
     plugins.forEach((plugin) => {
@@ -46,7 +46,7 @@ let createParser = (options) => {
         }
     });
 
-    return new MarkdownParser(options.schema || getSchema(options), getRenderer(options), tokens);
+    return new MarkdownParser(context.schema || getSchema(context), getRenderer(context), tokens);
 };
 
 export {getParser}

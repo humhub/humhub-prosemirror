@@ -7,20 +7,20 @@
 
 import {blockTypeItem} from "../../menu/menu"
 
-function makeParagraph(options) {
-    return blockTypeItem(options.schema.nodes.paragraph, {
+function makeParagraph(context) {
+    return blockTypeItem(context.schema.nodes.paragraph, {
         title: "Change to paragraph",
         label: "Paragraph"
     })
 }
 
-export function menu(options) {
+export function menu(context) {
     return [
         {
             id: 'makeParagraph',
             node: 'paragraph',
             group: 'types',
-            item: makeParagraph(options)
+            item: makeParagraph(context)
         }
     ]
 }

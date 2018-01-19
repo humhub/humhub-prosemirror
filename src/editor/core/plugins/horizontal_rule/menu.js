@@ -6,8 +6,8 @@
  */
 import {MenuItem, canInsert} from "../../menu/"
 
-function insertHorizontalRule(options) {
-    let hr = options.schema.nodes.horizontal_rule;
+function insertHorizontalRule(context) {
+    let hr = context.schema.nodes.horizontal_rule;
     return new MenuItem({
         title: "Insert horizontal rule",
         label: "Horizontal rule",
@@ -21,13 +21,13 @@ function insertHorizontalRule(options) {
     })
 }
 
-export function menu(options) {
+export function menu(context) {
     return [
         {
             id: 'insertHorizontalRule',
             node: 'horizontal_rule',
             group: 'insert',
-            item: insertHorizontalRule(options)
+            item: insertHorizontalRule(context)
         }
     ]
 }

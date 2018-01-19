@@ -11,7 +11,7 @@ import {menu} from "./menu"
 const table = {
     id: 'table',
     schema: schema,
-    menu: (options) => menu(options),
+    menu: (context) => menu(context),
     registerMarkdownIt: (markdownIt) => {
         markdownIt.block.ruler.at('table', table_plugin);
     }

@@ -26,8 +26,8 @@ const placeholderPlugin = (options) => {
                 }
 
                 const node = document.createElement('div');
-                node.textContent = options.placeholder.text;
-                node.className = options.placeholder['class'] || 'placeholder';
+                node.textContent = options.text;
+                node.className = options['class'] || 'placeholder';
 
                 return DecorationSet.create(state.doc, [
                     Decoration.widget(1, node)

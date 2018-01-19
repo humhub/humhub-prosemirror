@@ -51,26 +51,26 @@ import {getPlugins} from "./plugins/index";
 //
 //     menuContent:: [[MenuItem]]
 //     Can be used to override the menu content.
-export function setupPlugins(options) {
-    let result = buildPluginKeymap(options);
+export function setupPlugins(context) {
+    let result = buildPluginKeymap(context);
 
     result = result.concat([
-        buildInputRules(options),
-        keymap(buildKeymap(options.schema, options.mapKeys)),
+        buildInputRules(context),
+        keymap(buildKeymap(context.schema, context.options.mapKeys)),
         keymap(baseKeymap),
         dropCursor(),
         gapCursor(),
         tableEditing(),
-        buildMenuBar(options),
+        buildMenuBar(context),
         keymap({
             "Tab": goToNextCell(1),
             "Shift-Tab": goToNextCell(-1)
         })
     ]);
 
-    if (options.history !== false) {
+    if (context.options.history !== false) {
         result.push(history())
     }
 
-    return result.concat(buildPluginKeymap(options)).concat(buildPlugins(options));
+    return result.concat(buildPlugins(context));
 }

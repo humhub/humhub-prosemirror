@@ -10,7 +10,7 @@ import {isChromeWithSelectionBug} from "../index"
 export class MentionState {
     constructor(state, options) {
         this.state = state;
-        this.provider = options.mention.provider;
+        this.provider = options.provider;
         this.reset();
     }
 

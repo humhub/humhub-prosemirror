@@ -8,9 +8,9 @@ import {attributesPlugin} from './plugin'
 
 const attributes = {
     id: 'attributes',
-    plugins: (options = {}) => {
+    plugins: (context) => {
         return [
-            attributesPlugin(options)
+            attributesPlugin(context)
         ]
     },
 };

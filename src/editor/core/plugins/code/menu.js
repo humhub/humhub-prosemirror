@@ -8,16 +8,16 @@
 import {icons, markItem} from "../../menu/menu"
 
 
-function markCode(options) {
-    return markItem(options.schema.marks.code, {title: "Toggle code font", icon: icons.code, sortOrder: 500});
+function markCode(context) {
+    return markItem(context.schema.marks.code, {title: "Toggle code font", icon: icons.code, sortOrder: 500});
 }
 
-export function menu(options) {
+export function menu(context) {
     return [
         {
             id: 'markCode',
             mark: 'code',
-            item: markCode(options)
+            item: markCode(context)
         }
     ]
 }

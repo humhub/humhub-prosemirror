@@ -11,7 +11,7 @@ import {menu} from './menu'
 const image = {
     id: 'image',
     schema: schema,
-    menu: (options) => menu(options),
+    menu: (context) => menu(context),
     registerMarkdownIt: (markdownIt) => {
         markdownIt.use(imsize_plugin);
     }

@@ -9,8 +9,8 @@ import {MenuItem, icons, markActive} from "../../menu/menu"
 import {openPrompt, TextField} from "../../prompt"
 import {toggleMark} from "prosemirror-commands"
 
-function linkItem(options) {
-    let mark = options.schema.marks.link;
+function linkItem(context) {
+    let mark = context.schema.marks.link;
     return new MenuItem({
         title: "Add or remove link",
         sortOrder: 500,
@@ -49,12 +49,12 @@ function linkItem(options) {
     })
 }
 
-export function menu(options) {
+export function menu(context) {
     return [
         {
             id: 'linkItem',
             mark: 'link',
-            item: linkItem(options)
+            item: linkItem(context)
         }
     ]
 }
