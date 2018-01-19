@@ -1,7 +1,6 @@
 import {keymap} from "prosemirror-keymap"
 import {history} from "prosemirror-history"
 import {baseKeymap} from "prosemirror-commands"
-import {Plugin} from "prosemirror-state"
 import {dropCursor} from "prosemirror-dropcursor"
 import {gapCursor} from "prosemirror-gapcursor"
 
@@ -12,7 +11,6 @@ import {buildKeymap} from "./keymap"
 import {buildInputRules, buildPlugins, buildPluginKeymap} from "./plugins"
 
 import {goToNextCell} from "prosemirror-tables"
-import {getPlugins} from "./plugins/index";
 
 
 // !! This module exports helper functions for deriving a set of basic

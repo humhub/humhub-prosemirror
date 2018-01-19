@@ -3,8 +3,45 @@ import {wrapIn, setBlockType, chainCommands, toggleMark, exitCode,
 import {wrapInList, splitListItem, liftListItem, sinkListItem} from "prosemirror-schema-list"
 import {undo, redo} from "prosemirror-history"
 import {undoInputRule} from "prosemirror-inputrules"
+import {Selection} from "prosemirror-state"
 
-const mac = typeof navigator != "undefined" ? /Mac/.test(navigator.platform) : false
+const mac = typeof navigator != "undefined" ? /Mac/.test(navigator.platform) : false;
+
+function exitCodeAtLast(state, dispatch) {
+    let ref = state.selection;
+    let $head = ref.$head;
+    let $anchor = ref.$anchor;
+    let parent = $head.parent;
+
+    if (!parent.type.spec.code
+        || $anchor.parentOffset != $head.parentOffset
+        || !$head.sameParent($anchor)
+        || $head.parent.content.size != $head.parentOffset) {
+
+        return false;
+    }
+
+    let nodeAfter = state.doc.resolve($head.pos - $head.parentOffset + parent.nodeSize - 1).nodeAfter;
+    if(nodeAfter) {
+        return false;
+    }
+
+    let above = $head.node(-1);
+    let after = $head.indexAfter(-1);
+    let type = above.defaultContentType(after);
+
+    if (!above.canReplaceWith(after, after, type)) {
+      return false;
+    }
+
+    if (dispatch) {
+        var pos = $head.after(), tr = state.tr.replaceWith(pos, pos, type.createAndFill());
+        tr.setSelection(Selection.near(tr.doc.resolve(pos), 1));
+        dispatch(tr.scrollIntoView());
+    }
+
+    return true;
+}
 
 // :: (Schema, ?Object) → Object
 // Inspect the given schema looking for marks and nodes from the
@@ -73,7 +110,8 @@ export function buildKeymap(schema, mapKeys) {
     let br = type, cmd = chainCommands(exitCode, (state, dispatch) => {
       dispatch(state.tr.replaceSelectionWith(br.create()).scrollIntoView())
       return true
-    })
+    });
+    bind('ArrowDown', exitCodeAtLast)
     bind("Mod-Enter", cmd)
     bind("Shift-Enter", cmd)
     if (mac) bind("Ctrl-Enter", cmd)
