@@ -53,9 +53,14 @@ class MarkdownEditor {
         getSchema(this.context);
     }
 
-    init(md) {
-        if(this.editor) {
-            this.editor.destroy();
+    clear() {
+        this.view.destroy();
+        this.init();
+    }
+
+    init(md = "") {
+        if(this.view) {
+            this.view.destroy();
         }
 
         let state = EditorState.create({
@@ -66,13 +71,13 @@ class MarkdownEditor {
         let fix = fixTables(state);
         state = (fix) ? state.apply(fix.setMeta("addToHistory", false)) : state;
 
-        this.editor =  new EditorView(this.$[0], {
+        this.view =  new EditorView(this.$[0], {
             state: state
         });
 
         this.$menuBar = this.$.find('.ProseMirror-menubar').hide();
 
-        this.$editor = $(this.editor.dom).on('focus', () => {
+        this.$editor = $(this.view.dom).on('focus', () => {
             this.$menuBar.show();
         }).on('blur', () => {
             this.$menuBar.hide();
@@ -82,7 +87,7 @@ class MarkdownEditor {
     }
     
     serialize() {
-        return this.serializer.serialize(this.editor.state.doc);
+        return this.serializer.serialize(this.view.state.doc);
     }
 
     trigger(trigger, args) {

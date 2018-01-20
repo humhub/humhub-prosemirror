@@ -8,33 +8,49 @@
 import { Plugin } from 'prosemirror-state';
 import { DecorationSet, Decoration } from 'prosemirror-view'
 
-const isEmpty = doc => (
-    doc.childCount === 1 &&
-    doc.firstChild.type.name === 'paragraph' &&
-    doc.firstChild.content.size === 0
-);
-
-const placeholderPlugin = (options) => {
+const placeholderPlugin = (context) => {
     return new Plugin({
-        props: {
-            decorations: state => {
+        state: {
+            init(config, state) {
+                if(!isEmpty(state.doc, context)) {
+                    return DecorationSet.empty
+                } else {
+                    return DecorationSet.create(state.doc, [createDecoration(state.doc, context)]);
+                }
+            },
+            apply(tr, set) {
+
+                debugger;
                 // TODO: Currently if we leafe the node with an empty e.g heading there is no placeholder
                 // We should check when focusout, if the node is empty and change the first child to a paragraph
-
-                if (!isEmpty(state.doc)) {
-                    return null;
+                if (!isEmpty(tr.doc, context)) {
+                    return DecorationSet.empty;
                 }
 
-                const node = document.createElement('div');
-                node.textContent = options.text;
-                node.className = options['class'] || 'placeholder';
-
-                return DecorationSet.create(state.doc, [
-                    Decoration.widget(1, node)
-                ])
+                return set.add(tr.doc, [createDecoration(tr.doc, context)]);
             }
+        },
+        props: {
+            decorations(state) { return this.getState(state) }
         }
     })
+};
+
+const isEmpty = (doc, context) => {
+    let cssClass = context.options.placeholder['class'] || 'placeholder';
+    //let test = context.view.$.find('.ProseMirror').find('p').find(':not(.'+cssClass+')').length;
+
+    return doc.childCount === 1 &&
+    doc.firstChild.type.name === 'paragraph' &&
+    doc.firstChild.content.size === 0
+   // !context.editor.$.find('.ProseMirror').find('p').find(':not(.'+cssClass+')').length
+};
+
+let createDecoration = function(doc, context) {
+    const node = document.createElement('div');
+    node.textContent = context.options.placeholder.text;
+    node.className = context.options.placeholder['class'] || 'placeholder';
+    return Decoration.widget(1, node);
 };
 
 export {placeholderPlugin}

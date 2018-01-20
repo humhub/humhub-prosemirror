@@ -14,7 +14,7 @@ const placeholder = {
         }
 
         return [
-            placeholderPlugin(context.options.placeholder)
+            placeholderPlugin(context)
         ]
     },
 };

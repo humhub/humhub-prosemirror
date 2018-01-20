@@ -15,6 +15,7 @@ const loaderPlugin = new Plugin({
             return DecorationSet.empty
         },
         apply(tr, set) {
+            debugger;
             // Adjust decoration positions to changes made by the transaction
             set = set.map(tr.mapping, tr.doc);
             // See if the transaction adds or removes any placeholders
@@ -28,7 +29,7 @@ const loaderPlugin = new Plugin({
                         width: '60px'
                     }
                 })[0];
-                let deco = Decoration.widget(action.add.pos, widget, {id: action.add.id});
+                let deco = Decoration.widget(action.add.pos, widget, {id: action.add.id, content: true});
                 set = set.add(tr.doc, [deco])
             } else if (action && action.remove) {
                 set = set.remove(set.find(null, null,
@@ -49,4 +50,54 @@ function findPlaceholder(state, id) {
     return found.length ? found[0].from : null
 }
 
-export {loaderPlugin, findPlaceholder}
+function loaderStart(view, id, dispatch) {
+    let tr = view.state.tr;
+
+    if (!tr.selection.empty) {
+        tr.deleteSelection();
+    }
+
+    tr.setMeta(loaderPlugin, {add: {id, pos: tr.selection.from}});
+
+    if(dispatch) {
+        view.dispatch(tr);
+    }
+
+    return tr;
+}
+
+function replaceLoader(view, id, content, dispatch) {
+    let pos = findPlaceholder(view.state, id);
+
+    // If the content around the placeholder has been deleted, drop the image
+    if (pos == null) {
+        return;
+    }
+
+    let tr = view.state.tr.replaceWith(pos, pos, content).setMeta(loaderPlugin, {remove: {id}});
+
+    if(dispatch) {
+        view.dispatch(tr);
+    }
+
+    return tr;
+}
+
+function removeLoader(view, id, dispatch) {
+    let pos = findPlaceholder(view.state, id);
+
+    // If the content around the placeholder has been deleted, drop the image
+    if (pos == null) {
+        return;
+    }
+
+    let tr = view.state.tr.setMeta(loaderPlugin, {remove: {id}});
+
+    if(dispatch) {
+        view.dispatch(tr);
+    }
+
+    return tr;
+}
+
+export {loaderPlugin, findPlaceholder, loaderStart, replaceLoader, removeLoader}

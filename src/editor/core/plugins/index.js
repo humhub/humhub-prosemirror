@@ -153,8 +153,8 @@ registerPlugin(table, 'markdown');
 registerPlugin(text, 'markdown');
 registerPlugin(link, 'markdown');
 registerPlugin(attributes, 'markdown');
-registerPlugin(placeholder, 'markdown');
 registerPlugin(upload, 'markdown');
+registerPlugin(placeholder, 'markdown');
 
 registerPreset('normal', {
     extend: 'markdown',

@@ -2,7 +2,7 @@ import crel from "crel"
 
 import {Plugin} from "prosemirror-state"
 
-import {MenuItemGroup, icons, joinUpItem, liftItem, selectParentNodeItem} from "./menu"
+import {MenuItemGroup, icons, joinUpItem, liftItem, redoItem, undoItem, selectParentNodeItem} from "./menu"
 
 const prefix = "ProseMirror-menubar"
 
@@ -35,7 +35,9 @@ function buildMenuItems(context) {
 
     definitions.push(joinUpItem);
     definitions.push(liftItem);
-    definitions.push(selectParentNodeItem);
+    definitions.push(redoItem);
+    definitions.push(undoItem);
+    //definitions.push(selectParentNodeItem);
 
     return definitions;
 }

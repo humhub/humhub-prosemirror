@@ -12,7 +12,9 @@ const schema = {
             attrs: {
                 href: {},
                 title: {default: null},
-                active: {default: true}
+                active: {default: true},
+                target: {default: '_blank'},
+                rel: {default: 'noopener'}
             },
             inclusive: false,
             parseDOM:

@@ -5,9 +5,8 @@
  *
  */
 
-import {MenuItem, markActive} from "../../menu"
-import {loaderPlugin, findPlaceholder} from "../loader/plugin"
-import {TextSelection} from 'prosemirror-state'
+import {MenuItem} from "../../menu"
+import {loaderStart, replaceLoader, removeLoader} from "../loader/plugin"
 
 let uploadFile = (context) => {
     let mark = context.schema.marks.link;
@@ -27,52 +26,42 @@ let uploadFile = (context) => {
 };
 
 const triggerUpload = (state, dispatch, view, context) => {
-    let upload = humhub.require('ui.widget.Widget').instance($('#'+context.id+'-file-upload'));
-
     // A fresh object to act as the ID for this upload
     let id = {};
 
-    // Replace the selection with a placeholder
-    let tr = view.state.tr;
+    let uploadWidget = humhub.require('ui.widget.Widget').instance($('#'+context.id+'-file-upload'));
 
-    if (!tr.selection.empty) {
-        tr.deleteSelection();
-    }
-
-    tr.setMeta(loaderPlugin, {add: {id, pos: tr.selection.from}});
-
-    view.dispatch(tr);
-
-    upload.off('uploadEnd.richtext').on('uploadEnd.richtext', function(evt, response) {
-        let pos = findPlaceholder(view.state, id);
-
-        // If the content around the placeholder has been deleted, drop the image
-        if (pos == null) {
-            return;
-        }
-
-        let schema = context.schema;
-        let nodes = [];
-
-        // Otherwise, insert it at the placeholder's position, and remove the placeholder
-        response.result.files.forEach((file) => {
-            let linkMark = schema.marks.link.create({href: file.url});
-            let node;
-            if(file.thumbnailUrl) {
-                node = schema.nodes.image.create({src : file.thumbnailUrl, title: file.name, alt: file.name}, null, [linkMark]);
-            } else {
-                node = schema.text(file.name, [linkMark]);
-            }
-
-            nodes.push(node);
-        });
-
-        view.dispatch(view.state.tr.replaceWith(pos, pos, nodes).setMeta(loaderPlugin, {remove: {id}}));
-    }).off('uploadFinish.richtext').on('uploadFinish.richtext', function() {
-        //view.dispatch(tr.setMeta(loaderPlugin, {remove: {id}}));
+    uploadWidget.off('uploadStart.richtext').on('uploadStart.richtext', (evt, response) => {
+        // Replace the selection with a placeholder
+        loaderStart(view, id, true);
+    }).off('uploadEnd.richtext').on('uploadEnd.richtext', (evt, response) => {
+        replaceLoader(view, id, createNodesFromResponse(context, response), true);
+    }).off('uploadFinish.richtext').on('uploadFinish.richtext', () => {
+        // Make sure our loader is removed after upload
+        removeLoader(view, id, true);
     });
 
-    upload.run();
+    uploadWidget.run();
+};
+
+let createNodesFromResponse = function(context, response) {
+    let schema = context.schema;
+    let nodes = [];
+
+    // Otherwise, insert it at the placeholder's position, and remove the placeholder
+    response.result.files.forEach((file) => {
+        let linkMark = schema.marks.link.create({href: file.url});
+        let node;
+        if(file.mimeIcon === 'mime-image') {
+            node = schema.nodes.image.create({src : file.url, title: file.name, alt: file.name}, null, [linkMark]);
+        } else {
+            node = schema.text(file.name, [linkMark]);
+        }
+
+        nodes.push(node);
+    });
+
+    return nodes;
 };
 
 export function menu(context) {
