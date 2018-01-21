@@ -32,6 +32,7 @@ import attributes from "./attributes"
 import placeholder from "./placeholder"
 import loader from "./loader"
 import upload from "./upload"
+import clipboard from "./clipboard/index";
 
 const plugins = [];
 const pluginMap = {};
@@ -131,6 +132,7 @@ let registerPreset = function(id, plugins) {
 };
 
 registerPlugin(doc, 'markdown');
+registerPlugin(clipboard, 'markdown');
 registerPlugin(loader, 'markdown');
 registerPlugin(paragraph, 'markdown');
 registerPlugin(blockquote, 'markdown');

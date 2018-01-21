@@ -15,7 +15,6 @@ const loaderPlugin = new Plugin({
             return DecorationSet.empty
         },
         apply(tr, set) {
-            debugger;
             // Adjust decoration positions to changes made by the transaction
             set = set.map(tr.mapping, tr.doc);
             // See if the transaction adds or removes any placeholders

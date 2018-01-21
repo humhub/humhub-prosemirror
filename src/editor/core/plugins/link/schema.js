@@ -22,8 +22,7 @@ const schema = {
                     tag: "a[href]", getAttrs: function getAttrs(dom) {
                         return {
                             href: dom.getAttribute("href"),
-                            title: dom.getAttribute("title"),
-                            class: (!active) ? 'inactive' : null,
+                            title: dom.getAttribute("title")
                         }
                     }
                 }],

@@ -8,17 +8,11 @@
 import {schema} from './schema'
 import emoji_plugin from "markdown-it-emoji"
 import twemoji from "../../twemoji"
-import {emojiPlugin} from "./plugin"
 import {emojiAutoCompleteRule} from "./input-rules"
 
 const emoji = {
     id: 'emoji',
     schema: schema,
-    plugins: (context) => {
-        return [
-            emojiPlugin(context)
-        ]
-    },
     inputRules: (schema) => {
         return [emojiAutoCompleteRule(schema)]
     },
@@ -31,8 +25,3 @@ const emoji = {
 };
 
 export default emoji;
-
-/*
-
-
- */
