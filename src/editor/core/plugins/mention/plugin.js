@@ -11,7 +11,6 @@ const mentionPlugin = (context) => {
                 return new MentionState(state, context.options.mention);
             },
             apply(tr, prevPluginState, oldState, newState) {
-                prevPluginState.apply(tr, newState);
                 return prevPluginState;
             }
         },
@@ -30,6 +29,6 @@ const mentionPlugin = (context) => {
             return $node(newState.doc).find('mention').mark('link').removeMark('link', newState);
         }
     });
-}
+};
 
 export {mentionPlugin, pluginKey}

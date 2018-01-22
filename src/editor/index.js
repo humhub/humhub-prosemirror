@@ -22,6 +22,12 @@ import MentionProvider from "./core/plugins/mention/provider"
 import * as menu from './core/menu'
 import {getPlugins} from "./core/plugins/index";
 
+$(document).on('click', function(evt) {
+    if(!$(evt.target).closest('.humhub-richtext-provider').length) {
+        $('.humhub-richtext-provider').hide();
+    }
+});
+
 class MarkdownEditor {
     constructor(selector, options = {}) {
         this.$ = $(selector);

@@ -107,7 +107,7 @@ MentionProvider.prototype.select = function() {
 
 MentionProvider.prototype.update = function(loading) {
     if(!this.$container) {
-        this.$container = $('<div class="atwho-view">').css({'margin-top': '5px'});
+        this.$container = $('<div class="atwho-view humhub-richtext-provider">').css({'margin-top': '5px'});
     } else {
         this.$container.empty();
     }

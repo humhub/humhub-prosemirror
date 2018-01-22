@@ -1,13 +1,13 @@
 /*
  * @link https://www.humhub.org/
- * @copyright Copyright (c) 2017 HumHub GmbH & Co. KG
+ * @copyright Copyright (c) 2018 HumHub GmbH & Co. KG
  * @license https://www.humhub.com/licences
  *
  */
 
 import {isChromeWithSelectionBug} from "../index"
 
-export class MentionState {
+export class EmojiState {
     constructor(state, options) {
         this.state = state;
         this.provider = options.provider;
@@ -15,17 +15,17 @@ export class MentionState {
     }
 
     findQueryNode() {
-        return $(this.view.dom).find('[data-mention-query]');
+        return $(this.view.dom).find('[data-emoji-query]');
     }
 
     update(state, view) {
         this.view = view;
         this.state = state;
-        const { mentionQuery } = state.schema.marks;
+        const { emojiQuery } = state.schema.marks;
         const { doc, selection } = state;
         const { $from, from, to } = selection;
 
-        this.active = doc.rangeHasMark(from - 1, to, mentionQuery);
+        this.active = doc.rangeHasMark(from - 1, to, emojiQuery);
 
         if (!this.active) {
             return this.reset();
@@ -33,7 +33,7 @@ export class MentionState {
 
         let $query = this.findQueryNode();
         if(endsWith($query.text(), '  ')) {
-            this.view.dispatch(this.state.tr.removeMark(0, this.state.doc.nodeSize -2, mentionQuery));
+            this.view.dispatch(this.state.tr.removeMark(0, this.state.doc.nodeSize -2, emojiQuery));
             return this.reset();
         }
 
@@ -44,7 +44,20 @@ export class MentionState {
             end: to
         };
 
-        let query = $from.nodeBefore.text.substr(1);
+        let nodeBefore = $from.nodeBefore;
+
+        if(!nodeBefore.text.length || nodeBefore.text.length > 1) {
+            debugger;
+            this.provider.reset();
+            let tr = state.tr.removeMark(0, state.doc.nodeSize -2, emojiQuery);
+            this.view.dispatch(tr);
+            this.view.focus();
+            return;
+        }
+
+        let query = nodeBefore.text.substr(1);
+
+        debugger;
 
         if(query != this.query) {
             this.query = query;
@@ -58,19 +71,19 @@ export class MentionState {
         this.provider.reset();
     }
 
-    addMention(item) {
-        const { mention } = this.state.schema.nodes;
-        const { mentionQuery} = this.state.schema.marks;
+    addEmoji(item) {
+        const { emoji } = this.state.schema.nodes;
+        const { emojiQuery } = this.state.schema.marks;
 
-        const nodes = [mention.create({
-            name: item.name,
-            guid: item.guid,
-            href: item.link
-        }, null), this.state.schema.text(' ')];
+        const nodes = [emoji.create({
+            'data-name': item.name,
+            alt: item.alt,
+            src: item.src
+        }, null)];
 
 
         let tr = this.state.tr
-            .removeMark(0, this.state.doc.nodeSize -2, mentionQuery)
+            .removeMark(0, this.state.doc.nodeSize -2, emojiQuery)
             .replaceWith(this.queryMark.start, this.queryMark.end, nodes);
 
         if(isChromeWithSelectionBug) {

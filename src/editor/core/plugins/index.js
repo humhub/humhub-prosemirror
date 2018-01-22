@@ -282,6 +282,11 @@ let buildPlugins = function(context) {
 
     let result = [];
     plugins.forEach((plugin) => {
+
+        if(plugin.init) {
+            plugin.init(context);
+        }
+
         if(plugin.plugins) {
             let pl = plugin.plugins(context);
             if(pl && pl.length) {

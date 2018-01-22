@@ -20,7 +20,6 @@ const placeholderPlugin = (context) => {
             },
             apply(tr, set) {
 
-                debugger;
                 // TODO: Currently if we leafe the node with an empty e.g heading there is no placeholder
                 // We should check when focusout, if the node is empty and change the first child to a paragraph
                 if (!isEmpty(tr.doc, context)) {

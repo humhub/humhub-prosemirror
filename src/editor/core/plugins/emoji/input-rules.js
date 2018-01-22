@@ -1,7 +1,5 @@
 import {InputRule} from "prosemirror-inputrules"
-import emoji_shortcuts from "markdown-it-emoji/lib/data/shortcuts"
-import emoji_defs from "markdown-it-emoji/lib/data/full"
-import twemoji from "../../twemoji"
+import * as util from "./util"
 
 // https://github.com/ProseMirror/prosemirror/issues/262
 const objectReplacementCharacter = '\ufffc';
@@ -10,44 +8,26 @@ function quoteRE(str) {
     return str.replace(/[.?*+^$[\]\\(){}|-]/g, '\\$&');
 }
 
-// Flatten shortcuts to simple object: { alias: emoji_name }
-let shortcutsFlat = Object.keys(emoji_shortcuts).reduce(function (acc, key) {
-    if (Array.isArray(emoji_shortcuts[key])) {
-        emoji_shortcuts[key].forEach(function (alias) {
-            acc[alias] = key;
-        });
-        return acc;
-    }
-
-    acc[emoji_shortcuts[key]] = key;
-    return acc;
-}, {});
-
-var names = Object.keys(shortcutsFlat)
+// all emoji shortcuts in string seperated by |
+let shortcutStr = Object.keys(util.shortcuts)
     .sort()
     .reverse()
     .map(function (name) { return quoteRE(name); })
     .join('|');
 
-var scanRE = RegExp('(^|[\\s\(' + objectReplacementCharacter + '])'+names+'$');
+let scanRE = new RegExp('(^|[\\s\(' + objectReplacementCharacter + '])'+shortcutStr+'$');
 
 let emojiAutoCompleteRule = function(schema) {
 
     return new InputRule(scanRE, function (state, match, start, end) {
 
         // Match e.g. :) => smiley
-        let emoji = shortcutsFlat[match[0]];
-        let unicode = emoji_defs[emoji];
-
-        if(unicode) {
-            //let dom = $(twemoji.parse(':'+emoji+':'));
-            let dom = twemoji.parse(unicode);
-            let $dom = $(dom);
-
+        let emojiDef = util.getEmojiDefinitionByShortcut(match[0]);
+        if(emojiDef.name && emojiDef.emoji && emojiDef.$dom) {
             let node = state.schema.nodes.emoji.create({
-                'data-name': emoji,
-                alt: $dom.attr('alt'),
-                src: $dom.attr('src')
+                'data-name': emojiDef.name,
+                alt: emojiDef.$dom.attr('alt'),
+                src: emojiDef.$dom.attr('src')
             });
 
             return state.tr.delete(start, end).replaceSelectionWith(node, false);
@@ -57,4 +37,16 @@ let emojiAutoCompleteRule = function(schema) {
     })
 };
 
-export {emojiAutoCompleteRule}
+let emojiChooser = function(schema) {
+    return new InputRule(new RegExp('(:$)'), function (state, match, start, end) {
+        debugger;
+        const mark = schema.mark('emojiQuery');
+        const emojiText = schema.text(':', [mark]);
+
+        return state.tr
+            .removeMark(0, state.doc.nodeSize -2, mark)
+            .replaceSelectionWith(emojiText, false);
+    })
+};
+
+export {emojiAutoCompleteRule, emojiChooser}

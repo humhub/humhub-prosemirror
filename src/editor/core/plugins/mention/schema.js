@@ -54,19 +54,6 @@ const schema = {
         }
     },
     marks: {
-       mentionMark: {
-            excludes: "_",
-            inclusive: true,
-            parseDOM: [
-                { tag: 'span[data-mention-mark]' }
-            ],
-           toDOM(node) {
-               return ['span', {
-                   'data-mention-mark': true,
-                   'contentEditable': false
-               }];
-           }
-        },
         mentionQuery: {
             excludes: "_",
             inclusive: true,
