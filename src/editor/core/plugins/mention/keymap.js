@@ -35,6 +35,17 @@ let keymap = function () {
         return false;
     };
 
+    result['Escape'] = (state, dispatch) => {
+        let mentionState  = pluginKey.getState(state);
+
+        if(mentionState  && mentionState.active) {
+            mentionState.provider.reset();
+            return true;
+        }
+
+        return false;
+    };
+
     return result;
 };
 

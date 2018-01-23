@@ -4,7 +4,7 @@ import {Plugin} from "prosemirror-state"
 
 import {MenuItemGroup, icons, joinUpItem, liftItem, redoItem, undoItem, selectParentNodeItem} from "./menu"
 
-const prefix = "ProseMirror-menubar"
+const prefix = "ProseMirror-menubar";
 
 function buildMenuItems(context) {
     let groups = {
@@ -29,7 +29,6 @@ function buildMenuItems(context) {
     });
 
     //selectParentNodeItem -> don't know if we should add this one
-    // redo/undo?
 
     // TODO: fire event
 

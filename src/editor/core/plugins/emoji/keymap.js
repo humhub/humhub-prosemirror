@@ -64,6 +64,17 @@ let keymap = function () {
         return false;
     };
 
+    result['Escape'] = (state, dispatch) => {
+        let emojiState  = pluginKey.getState(state);
+
+        if(emojiState  && emojiState.active) {
+            emojiState.provider.reset();
+            return true;
+        }
+
+        return false;
+    };
+
     return result;
 };
 

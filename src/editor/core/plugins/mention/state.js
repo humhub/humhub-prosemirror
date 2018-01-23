@@ -44,6 +44,10 @@ export class MentionState {
             end: to
         };
 
+        if(!$from.nodeBefore || !$from.nodeBefore.text) {
+            return;
+        }
+
         let query = $from.nodeBefore.text.substr(1);
 
         if(query != this.query) {

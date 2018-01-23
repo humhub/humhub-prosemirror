@@ -1,0 +1,70 @@
+/*
+ * @link https://www.humhub.org/
+ * @copyright Copyright (c) 2018 HumHub GmbH & Co. KG
+ * @license https://www.humhub.com/licences
+ *
+ */
+import {getPlugins} from "./plugins/index";
+import {getSchema} from "./schema";
+
+export default class Context {
+    constructor(editor, options) {
+        this.event = $({});
+        this.editor = editor;
+        this.id = this.editor.$.attr('id');
+        this.init(options);
+
+        // This is used to indicate active decorations relevant for some content related assumptions (e.g placeholder plugin)
+        this.contentDecorations = [];
+
+        // Map of related prosemirror plugin array by plugin id
+        this.prosemirrorPlugins = {};
+    }
+
+    init(options) {
+        this.options = options;
+        this.options.preset = options.preset || 'full';
+
+        if(Array.isArray(options.exclude) && !options.exclude.length) {
+            this.options.exclude = undefined;
+        }
+
+        if(Array.isArray(options.include) && !options.include.length) {
+            this.options.include = undefined;
+        }
+
+        getPlugins(this);
+        getSchema(this);
+    }
+
+    getProsemirrorPlugins(id, prosemirror) {
+        return this.prosemirrorPlugins[id];
+    }
+
+    getPlugin(id, prosemirror) {
+        for(let i = 0; i < this.plugins.length; i++) {
+            let plugin = this.plugins[i];
+            if(plugin.id === id) {
+                return plugin;
+            }
+        }
+    }
+
+    addContentDecoration(id) {
+        if(this.contentDecorations.indexOf(id) < 0) {
+            this.contentDecorations.push(id);
+        }
+    }
+
+    removeContentDecoration(id) {
+        let index = this.contentDecorations.indexOf();
+        if(index >= 0) {
+            this.contentDecorations.splice(index, 1);
+        }
+    }
+
+    hasContentDecorations() {
+        return !!this.contentDecorations.length;
+    }
+}
+

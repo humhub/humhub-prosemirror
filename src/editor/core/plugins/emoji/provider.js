@@ -8,6 +8,7 @@
 import * as util from './util';
 
 let EmojiProvider = function () {
+    this.event = $({});
     this.emojis = [
         "☺️","😋","😌","😍","🆒","😏","😚","😛","😜","😝","😞","☹",
         "😰","😫","😁","😭","😮","😲","😆","😂","😁","😆","😇","😉",
@@ -35,6 +36,8 @@ EmojiProvider.prototype.updateResult = function (result) {
 EmojiProvider.prototype.reset = function (query, node) {
     if (this.$container) {
         this.$container.remove();
+        this.$container = null;
+        this.event.trigger('closed');
     }
 };
 
@@ -103,12 +106,12 @@ EmojiProvider.prototype.select = function () {
 
 EmojiProvider.prototype.update = function (loading) {
     if (!this.$container) {
-        this.$container = $('<div class="atwho-view humhub-richtext-provider">').css({'margin-top': '5px', 'max-width': '243px'});
+        this.$container = $('<div class="atwho-view humhub-richtext-provider">').css({'margin-top': '5px', 'max-width': '243px'}).data('provider', this);
     } else {
         this.$container.empty();
     }
 
-    let position = this.$node[0].getBoundingClientRect();
+    let position = this.$node.offset();
     this.$container.css({
         top: position.top + this.$node.outerHeight() + 2,
         left: position.left,

@@ -33,12 +33,12 @@ const triggerUpload = (state, dispatch, view, context) => {
 
     uploadWidget.off('uploadStart.richtext').on('uploadStart.richtext', (evt, response) => {
         // Replace the selection with a placeholder
-        loaderStart(view, id, true);
+        loaderStart(context, id, true);
     }).off('uploadEnd.richtext').on('uploadEnd.richtext', (evt, response) => {
-        replaceLoader(view, id, createNodesFromResponse(context, response), true);
+        replaceLoader(context, id, createNodesFromResponse(context, response), true);
     }).off('uploadFinish.richtext').on('uploadFinish.richtext', () => {
         // Make sure our loader is removed after upload
-        removeLoader(view, id, true);
+        removeLoader(context, id, true);
     });
 
     uploadWidget.run();
@@ -50,11 +50,12 @@ let createNodesFromResponse = function(context, response) {
 
     // Otherwise, insert it at the placeholder's position, and remove the placeholder
     response.result.files.forEach((file) => {
-        let linkMark = schema.marks.link.create({href: file.url});
+
         let node;
         if(file.mimeIcon === 'mime-image') {
-            node = schema.nodes.image.create({src : file.url, title: file.name, alt: file.name}, null, [linkMark]);
+            node = schema.nodes.image.create({src : file.url, title: file.name, alt: file.name});
         } else {
+            let linkMark = schema.marks.link.create({href: file.url});
             node = schema.text(file.name, [linkMark]);
         }
 

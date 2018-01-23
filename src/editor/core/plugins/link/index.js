@@ -34,7 +34,7 @@ const link = {
         };
     },
     plugins: (context) => {
-        return [linkPlugin];
+        return [linkPlugin(context)];
     }
 };
 

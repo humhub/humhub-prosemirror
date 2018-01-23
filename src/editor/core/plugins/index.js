@@ -291,6 +291,7 @@ let buildPlugins = function(context) {
             let pl = plugin.plugins(context);
             if(pl && pl.length) {
                 result = result.concat(pl);
+                context.prosemirrorPlugins[plugin.id] = pl;
             }
         }
     });

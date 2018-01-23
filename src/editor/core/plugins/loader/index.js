@@ -10,7 +10,7 @@ import {loaderPlugin} from './plugin'
 const loader = {
     id: 'loader',
     plugins: (context) => {
-        return [loaderPlugin]
+        return [loaderPlugin(context)]
     },
 };
 

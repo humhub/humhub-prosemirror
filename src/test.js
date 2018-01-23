@@ -18,6 +18,7 @@ $(document).ready(function() {
 
 
     var TestMentionProvider = function() {
+        prosemirror.MentionProvider.call(this, {});
         this.user = [
             {
                 guid: 'a',

@@ -11,6 +11,12 @@ export class EmojiState {
     constructor(state, options) {
         this.state = state;
         this.provider = options.provider;
+        this.provider.event.on('closed', () => {
+            if(this.active) {
+                const { emojiQuery } = this.state.schema.marks;
+                this.view.dispatch(this.state.tr.removeMark(0, this.state.doc.nodeSize -2, emojiQuery));
+            }
+        });
         this.reset();
     }
 
@@ -32,11 +38,6 @@ export class EmojiState {
         }
 
         let $query = this.findQueryNode();
-        if(endsWith($query.text(), '  ')) {
-            this.view.dispatch(this.state.tr.removeMark(0, this.state.doc.nodeSize -2, emojiQuery));
-            return this.reset();
-        }
-
         let $pos = doc.resolve(from - 1);
 
         this.queryMark = {
@@ -47,17 +48,11 @@ export class EmojiState {
         let nodeBefore = $from.nodeBefore;
 
         if(!nodeBefore.text.length || nodeBefore.text.length > 1) {
-            debugger;
             this.provider.reset();
-            let tr = state.tr.removeMark(0, state.doc.nodeSize -2, emojiQuery);
-            this.view.dispatch(tr);
-            this.view.focus();
             return;
         }
 
         let query = nodeBefore.text.substr(1);
-
-        debugger;
 
         if(query != this.query) {
             this.query = query;
@@ -68,7 +63,10 @@ export class EmojiState {
     reset() {
         this.active = false;
         this.query = null;
-        this.provider.reset();
+        if(this.view) {
+            this.provider.reset();
+            this.view.focus();
+        }
     }
 
     addEmoji(item) {

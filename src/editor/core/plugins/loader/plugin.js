@@ -9,54 +9,59 @@ import {Plugin} from "prosemirror-state"
 import {Decoration, DecorationSet} from "prosemirror-view"
 
 
-const loaderPlugin = new Plugin({
-    state: {
-        init() {
-            return DecorationSet.empty
-        },
-        apply(tr, set) {
-            // Adjust decoration positions to changes made by the transaction
-            set = set.map(tr.mapping, tr.doc);
-            // See if the transaction adds or removes any placeholders
-            let action = tr.getMeta(this);
-            if (action && action.add) {
-                let widget = humhub.require('ui.loader').set($('<span class="ProseMirror-placeholder">'), {
-                    span: true,
-                    size: '8px',
-                    css: {
-                        padding: '0px',
-                        width: '60px'
-                    }
-                })[0];
-                let deco = Decoration.widget(action.add.pos, widget, {id: action.add.id, content: true});
-                set = set.add(tr.doc, [deco])
-            } else if (action && action.remove) {
-                set = set.remove(set.find(null, null,
-                    spec => spec.id == action.remove.id))
+const loaderPlugin = (context) => {
+    return new Plugin({
+        state: {
+            init() {
+                return DecorationSet.empty
+            },
+            apply(tr, set) {
+                // Adjust decoration positions to changes made by the transaction
+                set = set.map(tr.mapping, tr.doc);
+                // See if the transaction adds or removes any placeholders
+                let action = tr.getMeta(this);
+                if (action && action.add) {
+                    let widget = humhub.require('ui.loader').set($('<span class="ProseMirror-placeholder">'), {
+                        span: true,
+                        size: '8px',
+                        css: {
+                            padding: '0px',
+                            width: '60px'
+                        }
+                    })[0];
+                    let deco = Decoration.widget(action.add.pos, widget, {id: action.add.id, content: true});
+                    set = set.add(tr.doc, [deco]);
+                    context.addContentDecoration('loader');
+                } else if (action && action.remove) {
+                    set = set.remove(set.find(null, null, spec => spec.id === action.remove.id));
+                    context.removeContentDecoration('loader');
+                }
+                return set
             }
-            return set
+        },
+        props: {
+            decorations(state) {
+                return this.getState(state)
+            }
         }
-    },
-    props: {
-        decorations(state) { return this.getState(state) }
-    }
-});
+    });
+};
 
-
-function findPlaceholder(state, id) {
-    let decos = loaderPlugin.getState(state);
-    let found = decos.find(null, null, spec => spec.id == id)
+function findLoader(context, id) {
+    let decos = context.getProsemirrorPlugins('loader')[0].getState(context.editor.view.state);
+    let found = decos.find(null, null, spec => spec.id === id);
     return found.length ? found[0].from : null
 }
 
-function loaderStart(view, id, dispatch) {
+function loaderStart(context, id, dispatch) {
+    let view = context.editor.view;
     let tr = view.state.tr;
 
     if (!tr.selection.empty) {
         tr.deleteSelection();
     }
 
-    tr.setMeta(loaderPlugin, {add: {id, pos: tr.selection.from}});
+    tr.setMeta(context.getProsemirrorPlugins('loader')[0], {add: {id, pos: tr.selection.from}});
 
     if(dispatch) {
         view.dispatch(tr);
@@ -65,15 +70,16 @@ function loaderStart(view, id, dispatch) {
     return tr;
 }
 
-function replaceLoader(view, id, content, dispatch) {
-    let pos = findPlaceholder(view.state, id);
+function replaceLoader(context, id, content, dispatch) {
+    let view = context.editor.view;
+    let pos = findLoader(context, id);
 
     // If the content around the placeholder has been deleted, drop the image
-    if (pos == null) {
+    if (pos === null) {
         return;
     }
 
-    let tr = view.state.tr.replaceWith(pos, pos, content).setMeta(loaderPlugin, {remove: {id}});
+    let tr = view.state.tr.replaceWith(pos, pos, content).setMeta(context.getProsemirrorPlugins('loader')[0], {remove: {id}});
 
     if(dispatch) {
         view.dispatch(tr);
@@ -82,15 +88,16 @@ function replaceLoader(view, id, content, dispatch) {
     return tr;
 }
 
-function removeLoader(view, id, dispatch) {
-    let pos = findPlaceholder(view.state, id);
+function removeLoader(context, id, dispatch) {
+    let view = context.editor.view;
+    let pos = findLoader(context, id);
 
     // If the content around the placeholder has been deleted, drop the image
-    if (pos == null) {
+    if (pos === null) {
         return;
     }
 
-    let tr = view.state.tr.setMeta(loaderPlugin, {remove: {id}});
+    let tr = view.state.tr.setMeta(context.getProsemirrorPlugins('loader')[0], {remove: {id}});
 
     if(dispatch) {
         view.dispatch(tr);
@@ -99,4 +106,4 @@ function removeLoader(view, id, dispatch) {
     return tr;
 }
 
-export {loaderPlugin, findPlaceholder, loaderStart, replaceLoader, removeLoader}
+export {loaderPlugin, loaderStart,  replaceLoader, removeLoader}

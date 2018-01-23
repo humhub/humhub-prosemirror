@@ -19,7 +19,6 @@ const placeholderPlugin = (context) => {
                 }
             },
             apply(tr, set) {
-
                 // TODO: Currently if we leafe the node with an empty e.g heading there is no placeholder
                 // We should check when focusout, if the node is empty and change the first child to a paragraph
                 if (!isEmpty(tr.doc, context)) {
@@ -36,13 +35,10 @@ const placeholderPlugin = (context) => {
 };
 
 const isEmpty = (doc, context) => {
-    let cssClass = context.options.placeholder['class'] || 'placeholder';
-    //let test = context.view.$.find('.ProseMirror').find('p').find(':not(.'+cssClass+')').length;
-
     return doc.childCount === 1 &&
-    doc.firstChild.type.name === 'paragraph' &&
-    doc.firstChild.content.size === 0
-   // !context.editor.$.find('.ProseMirror').find('p').find(':not(.'+cssClass+')').length
+        doc.firstChild.type.name === 'paragraph' &&
+        doc.firstChild.content.size === 0 &&
+        !context.hasContentDecorations()
 };
 
 let createDecoration = function(doc, context) {

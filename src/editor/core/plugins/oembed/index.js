@@ -10,6 +10,12 @@ import {oembed_plugin} from './markdownit_oembed'
 const oembed = {
     id: 'oembed',
     schema: schema,
+    init: (context) => {
+        context.event.on('linkified', (evt, urls) => {
+            //TODO:
+            console.log(urls);
+        });
+    },
     registerMarkdownIt: (markdownIt) => {
         markdownIt.inline.ruler.before('link','oembed', oembed_plugin);
 

@@ -5,49 +5,24 @@
  *
  */
 
-let MentionProvider = function() {
-    this.user = [
-        {
-            guid: 'a',
-            type: 'u',
-            name: 'Lucas Bartholemy',
-            image: '<img height="20" widht="20" src="img/default_user.jpg" />',
-            link: '#'
-        },
-        {
-            guid: 'b',
-            type: 'u',
-            name: 'Julian Harrer',
-            image: '<img height="20" widht="20" src="img/default_user.jpg" />',
-            link: '#'
-        },
-        {
-            guid: 'c',
-            type: 'u',
-            name: 'Semir Salihovic',
-            image: '<img height="20" widht="20" src="img/default_user.jpg" />',
-            link: '#'
-        },
-        {
-            guid: 'd',
-            type: 'u',
-            name: 'Peter Schmohl',
-            image: '<img height="20" widht="20" src="img/default_user.jpg" />',
-            link: '#'
-        },
-        {
-            guid: 'e',
-            type: 'u',
-            name: 'Evy Müller',
-            image: '<img height="20" widht="20" src="img/default_user.jpg" />',
-            link: '#'
-        },
-    ];
+let MentionProvider = function(options) {
+    this.event = $({});
+    this.options = options;
+    this.options.minInput = this.options.minInput || 2;
+    this.options.minInputText = this.options.minInputText || 'Please type at least '+this.options.minInput+' characters';
 };
 
 MentionProvider.prototype.query = function(state, node) {
     this.state = state;
     this.$node = $(node);
+
+    debugger;
+
+    if(this.state.query.length < this.options.minInput) {
+        this.result = {text: this.options.minInputText};
+        this.update();
+        return;
+    }
 
     this.loading();
     let queryResult = this.find(this.state.query, node);
@@ -62,7 +37,7 @@ MentionProvider.prototype.query = function(state, node) {
 };
 
 MentionProvider.prototype.loading = function() {
-    this.result = {text: 'Loading...'};
+    this.result = {loader: true};
     this.update();
 };
 
@@ -78,6 +53,8 @@ MentionProvider.prototype.find = function(query, node) {
 MentionProvider.prototype.reset = function(query, node) {
     if(this.$container) {
         this.$container.remove();
+        this.$container = null;
+        this.event.trigger('closed');
     }
 };
 
@@ -112,22 +89,27 @@ MentionProvider.prototype.update = function(loading) {
         this.$container.empty();
     }
 
-    let position = this.$node[0].getBoundingClientRect();
+    let position = this.$node.offset();
     this.$container.css({
         top: position.top + this.$node.outerHeight() + 2,
         left: position.left,
     });
 
+
+    var that = this;
     if(this.result && this.result.length) {
         let $list = $('<ul style="list-style-type: none;padding:0px;margin:0px;">');
 
         this.result.forEach(function (item) {
-            if (item.image) {
-                $list.append($('<li>' + item.image + ' ' + item.name + '</li>').data('item', item));
-            } else {
-                $list.append($('<li>' + item.name + '</li>').data('item', item));
-            }
+            var $li = (item.image) ? $('<li>' + item.image + ' ' + item.name + '</li>') : $('<li>' + item.name + '</li>');
 
+            $li.data('item', item).on('click', () => {
+                that.$container.find('.cur').removeClass('cur');
+                $li.addClass('cur');
+                that.select();
+            });
+
+            $list.append($li);
         });
 
         $list.find('li').first().addClass('cur');
@@ -135,6 +117,17 @@ MentionProvider.prototype.update = function(loading) {
         this.$container.append($list);
     } else if(this.result.text) {
         this.$container.append($('<span>'+this.result.text+'</span>'));
+    } else if(this.result.loader) {
+        let $loader = humhub.require('ui.loader').set($('<span>'), {
+            span: true,
+            size: '8px',
+            css: {
+                padding: '0px',
+                width: '60px'
+            }
+        });
+
+        this.$container.append($('<div style="text-align:center;">').append($loader));
     } else {
         this.$container.append($('<span>No Result</span>'));
     }
