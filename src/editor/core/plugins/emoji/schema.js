@@ -39,7 +39,6 @@ const schema = {
             toMarkdown: (state, node) => {
                 let result;
 
-                debugger;
                 if(!node.attrs['data-name']) {
                     result = (state.alt) ? state.esc(state.alt) : '';
                 } else {

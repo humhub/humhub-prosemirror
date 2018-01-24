@@ -21,8 +21,6 @@ function escapeHtml(str) {
 const oembed = {
     attrs: {
         href: {},
-        dom: {default: null},
-        txt: {default: 'test'}
     },
     atom: true,
     draggable: true,
@@ -37,14 +35,12 @@ const oembed = {
         }
     }],
     toDOM: (node) => {
-        console.log('asdf');
-        //todo: call humhub.oembed.get(url)
-        let $oembed = $('[data-oembed="' + node.attrs.href + '"]');
+        let $oembed = humhub.require('oembed').get(node.attrs.href);
 
         if ($oembed.length) {
             return $oembed.clone().show()[0];
         } else {
-            return $('<a href="' + escapeHtml(node.attrs.href) + '" target="_blank" rel="noopener">' + escapeHtml(node.attrs.href) + '</a>')[0];
+            return $('<a href="' + escapeHtml(node.attrs.href) + '" style="color:#FF7F00" target="_blank" rel="noopener">' + escapeHtml(node.attrs.href) + '</a>')[0];
         }
     },
     parseMarkdown: {

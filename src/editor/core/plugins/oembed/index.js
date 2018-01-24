@@ -6,14 +6,26 @@
  */
 import {schema} from './schema'
 import {oembed_plugin} from './markdownit_oembed'
+import {$node} from '../../util/node'
 
 const oembed = {
     id: 'oembed',
     schema: schema,
     init: (context) => {
         context.event.on('linkified', (evt, urls) => {
-            //TODO:
-            console.log(urls);
+
+            humhub.require('oembed').load(urls).then((result) => {
+                $.each(result, function(url, oembed) {
+                    let $links = $node(context.editor.view.state.doc).find().mark('link').where((node) => {
+                        return $node(node).getMark('link').attrs.href === url;
+                    });
+
+                    $links.replaceWith(context.schema.nodes.oembed.create({href:url}), context.editor.view);
+
+                    // We only allow a single oembed per copy/paste
+                    return false;
+                })
+            });
         });
     },
     registerMarkdownIt: (markdownIt) => {

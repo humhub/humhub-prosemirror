@@ -180,18 +180,19 @@ $node.prototype.to = function (from, to) {
     });
 };
 
-$node.prototype.mark = function (filterMark) {
+$node.prototype.mark = function (filterMark, attributes) {
     if (!filterMark) {
         this.where((node) => {
             return !node.marks.length
         })
     }
-    const markFilter = (node, filter) => {
+
+    const markFilter = (node, attributes, filter) => {
         let result = false;
         if (Array.isArray(filter)) {
             result = true;
             filter.forEach((type) => {
-                result = result && markFilter(node, type);
+                result = result && markFilter(node, attributes, type);
             });
         } else {
             result = hasMark(node, filter);
@@ -201,7 +202,7 @@ $node.prototype.mark = function (filterMark) {
     };
 
     return this.where((node) => {
-        return markFilter(node, filterMark);
+        return markFilter(node, attributes, filterMark);
     });
 };
 
@@ -279,9 +280,22 @@ $node.prototype.append = function (node, view) {
 
     this.flat.reverse().forEach((nodePos) => {
         tr = tr.setSelection(new TextSelection(doc.resolve(nodePos.end()))).replaceSelectionWith(node);
-    })
+    });
 
     view.dispatch(tr);
+};
+
+$node.prototype.replaceWith = function (node, view, dispatch = true) {
+    let tr = view.state.tr;
+    let doc = view.state.doc;
+
+    this.flat.reverse().forEach((nodePos) => {
+        tr = tr.setSelection(new TextSelection(doc.resolve(nodePos.start()), doc.resolve(nodePos.end()))).replaceSelectionWith(node);
+    });
+
+    if(dispatch) {
+        view.dispatch(tr);
+    }
 };
 
 $node.prototype.removeMark = function (mark, state) {
@@ -375,10 +389,14 @@ let checkFilter = function (filters, node, pos, parent, searchRoot) {
 let hasMark = function (node, markType) {
     let result = false;
     node.marks.forEach((mark) => {
-        if (markType instanceof MarkType && mark.type === markType) {
+        if (markType instanceof MarkType && mark.eq(markType)) {
             result = true;
         } else if (typeof markType === 'string' && mark.type.name === markType) {
             result = true;
+        }
+
+        if(result) {
+
         }
     });
     return result;

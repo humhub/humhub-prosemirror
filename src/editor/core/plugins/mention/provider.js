@@ -16,8 +16,6 @@ MentionProvider.prototype.query = function(state, node) {
     this.state = state;
     this.$node = $(node);
 
-    debugger;
-
     if(this.state.query.length < this.options.minInput) {
         this.result = {text: this.options.minInputText};
         this.update();

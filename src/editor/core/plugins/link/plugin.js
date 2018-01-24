@@ -47,7 +47,9 @@ let linkify = function(fragment, context) {
         }
     });
 
-    context.event.trigger('linkified', [urls, linkified]);
+    if(urls.length) {
+        context.event.trigger('linkified', [urls, linkified]);
+    }
     return Fragment.fromArray(linkified)
 };
 

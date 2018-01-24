@@ -39,7 +39,7 @@ let emojiAutoCompleteRule = function(schema) {
 
 let emojiChooser = function(schema) {
     return new InputRule(new RegExp('(:$)'), function (state, match, start, end) {
-        debugger;
+
         const mark = schema.mark('emojiQuery');
         const emojiText = schema.text(':', [mark]);
 
