@@ -12,14 +12,21 @@ function quoteRE(str) {
 let shortcutStr = Object.keys(util.shortcuts)
     .sort()
     .reverse()
-    .map(function (name) { return quoteRE(name); })
+    .map(function (shortcut) {return quoteRE(shortcut); })
     .join('|');
 
-let scanRE = new RegExp('(^|[\\s\(' + objectReplacementCharacter + '])'+shortcutStr+'$');
+debugger;
+
+let scanRE = new RegExp('('+shortcutStr+')$');
 
 let emojiAutoCompleteRule = function(schema) {
 
     return new InputRule(scanRE, function (state, match, start, end) {
+        // Only handle match if match is at the end of the match input
+        debugger;
+        if(match.index !== (match.input.length - match[0].length)) {
+            return false;
+        }
 
         // Match e.g. :) => smiley
         let emojiDef = util.getEmojiDefinitionByShortcut(match[0]);
