@@ -16,6 +16,8 @@ export class EmojiState {
                 const { emojiQuery } = this.state.schema.marks;
                 this.view.dispatch(this.state.tr.removeMark(0, this.state.doc.nodeSize -2, emojiQuery));
             }
+        }).on('focus', () => {
+            this.view.focus();
         });
         this.reset();
     }

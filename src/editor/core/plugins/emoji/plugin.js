@@ -8,7 +8,7 @@
 import { Plugin, PluginKey } from 'prosemirror-state';
 import { EmojiState } from './state';
 import EmojiProvider from "./provider";
-import twemoji from "../../twemoji";
+import twemoji from "twemoji";
 
 const pluginKey = new PluginKey('emoji');
 

@@ -15,15 +15,12 @@ let shortcutStr = Object.keys(util.shortcuts)
     .map(function (shortcut) {return quoteRE(shortcut); })
     .join('|');
 
-debugger;
-
 let scanRE = new RegExp('('+shortcutStr+')$');
 
 let emojiAutoCompleteRule = function(schema) {
 
     return new InputRule(scanRE, function (state, match, start, end) {
         // Only handle match if match is at the end of the match input
-        debugger;
         if(match.index !== (match.input.length - match[0].length)) {
             return false;
         }

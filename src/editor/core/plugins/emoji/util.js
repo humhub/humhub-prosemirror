@@ -6,18 +6,18 @@
  */
 
 import emoji_shortcuts from "markdown-it-emoji/lib/data/shortcuts"
-import emoji_defs from "markdown-it-emoji/lib/data/full"
-import twemoji from "../../twemoji"
+import emojilib from "emojilib";
+import emojiNameMap from "emoji-name-map";
+import twemoji from "twemoji"
 
-function swap(json){
-    var ret = {};
-    for(var key in json){
-        ret[json[key]] = key;
-    }
-    return ret;
-}
+let emoji_defs_by_char = (function() {
+    let result = {};
+    $.each(emojilib.lib, function(name, def) {
+        result[def['char']] = name;
+    });
 
-let emoji_defs_by_char = swap(emoji_defs);
+    return result;
+})();
 
 // Flatten shortcuts to simple object: { alias: emoji_name }
 let shortcuts = Object.keys(emoji_shortcuts).reduce(function (acc, key) {
@@ -53,7 +53,7 @@ let getNameByShortcut = function(shortcut) {
 };
 
 let getCharByName = function(name) {
-    return emoji_defs[name];
+    return emojiNameMap.get(name);
 };
 
 let getNameByChar = function(emojiChar) {
@@ -64,9 +64,7 @@ let getCharToDom = function(emojiChar, name) {
     name = name || emoji_defs_by_char[emojiChar];
 
     let parsed = twemoji.parse(emojiChar, {attributes: (icon, variant) => {
-        return {
-            'data-name': name
-        }
+        return {'data-name': name, 'style': 'width:16px'};
     }});
 
     if(parsed && parsed.length) {
@@ -74,9 +72,30 @@ let getCharToDom = function(emojiChar, name) {
     }
 };
 
+
+let byCategory = undefined;
+
+let getByCategory = function(category) {
+    if(!byCategory) {
+        byCategory = {};
+        emojilib.ordered.forEach((name) => {
+            let emojiDef = emojilib.lib[name];
+            emojiDef.name = name;
+            byCategory[emojiDef.category] = byCategory[emojiDef.category] || [];
+            byCategory[emojiDef.category].push(emojiDef);
+        });
+    }
+
+    return byCategory[category];
+};
+
 export {
     shortcuts,
     getNameByChar,
+    getCharByName,
+    emojilib,
+    twemoji,
     getEmojiDefinitionByShortcut,
-    getCharToDom
+    getCharToDom,
+    getByCategory
 }
