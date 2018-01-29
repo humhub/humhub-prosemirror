@@ -216,6 +216,7 @@ export class MenuItemGroup extends MenuItem {
                 sort(this.content.items).forEach((item, i) => {
                     let updateResult = item.update(state);
                     item.dom.style.display = updateResult ? "" : "none";
+                    item.dom.className += (i === this.content.items.length - 1) ? ' last' : '';
                     result = result || updateResult;
                 });
                 return result;
@@ -302,6 +303,10 @@ export class Dropdown extends MenuItemGroup {
         }
 
         this.dom = crel("div", {class: prefix + "-dropdown-wrap"}, innerDom);
+
+        if(this.options.seperator) {
+            this.dom.className += ' seperator';
+        }
 
         let open = null, listeningOnClose = null;
         let close = () => {

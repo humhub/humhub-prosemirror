@@ -8,12 +8,10 @@ const prefix = "ProseMirror-menubar";
 
 function buildMenuItems(context) {
     let groups = {
-        insert: {type: 'dropdown', sortOrder: 800, label: context.translate("Insert"), icon: icons.image, class: 'ProseMirror-doprdown-right', items: []},
-        types:  {type: 'dropdown', sortOrder: 100, label: context.translate("Type"), icon: icons.text, items: []},
-        type:  {type: 'group', sortOrder: 100, items: []},
+        types:  {type: 'dropdown', sortOrder: 100, label: context.translate("Type"), seperator: true, icon: icons.text, items: []},
         marks:  {type: 'group', sortOrder: 200, items: []},
         format:  {type: 'group', sortOrder: 300, items: [liftItem()]},
-        embed:  {type: 'group', sortOrder: 400, items: []},
+        insert: {type: 'dropdown', sortOrder: 400, label: context.translate("Insert"),seperator: true, icon: icons.image, class: 'ProseMirror-doprdown-right', items: []},
         helper:  {type: 'group', sortOrder: 500, items: [undoItem(), redoItem()]},
     };
 
@@ -132,6 +130,9 @@ class MenuBarView {
 
     update() {
         this.groupItem.update(this.editorView.state);
+
+        let $mainGroup = $(this.menu).find('.'+prefix+'-menu-group:first');
+        $mainGroup.find('')
 
         if (this.floating) {
             this.updateScrollCursor()

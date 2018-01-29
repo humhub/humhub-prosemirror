@@ -16,7 +16,7 @@ function wrapTableItem(context) {
     let itemOptions = {
         title: context.translate("Create table"),
         icon: icons.table,
-        sortOrder: 800,
+        sortOrder: 300,
         run(state, dispatch, view) {
             openPrompt({
                 title: context.translate("Insert table"),
@@ -64,7 +64,10 @@ export function menu(context) {
         {
             id: 'tableOptions',
             node: 'table',
-            item: new Dropdown(buildTableMenu(context), {icon: icons.table})
+            item: new Dropdown(buildTableMenu(context), {
+                icon: icons.table,
+                sortOrder: 301
+            })
         }
     ]
 }
