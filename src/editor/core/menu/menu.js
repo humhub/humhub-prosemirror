@@ -57,13 +57,13 @@ export class MenuItem {
     render(view) {
         let options = this.options;
 
-        if(typeof this.options.render === 'function') {
+        if (typeof this.options.render === 'function') {
             return this.options.render.apply(this, [options]);
         }
 
         this.dom = options.icon ? getIcon(options.icon)
-                    : options.label ? $('<div>').html(translate(view, options.label))[0]
-                    : null;
+            : options.label ? $('<div>').html(translate(view, options.label))[0]
+                : null;
 
         if (!this.dom) throw new RangeError("MenuItem without icon or label property");
 
@@ -183,16 +183,22 @@ function isMenuEvent(wrapper) {
 function sort(items) {
     let result = [];
     items.forEach((item) => {
-        if(item && item.type && item.type === 'dropdown') {
+        if (item && item.type && item.type === 'dropdown') {
             result.push(new Dropdown(sort(item.items), item));
-        } else if(item) {
+        } else if (item && item.type && item.type === 'group') {
+            result.push(new MenuItemGroup(sort(item.items), item));
+        } else if (item) {
             result.push(item);
         }
     });
 
-    return result.sort(function(a, b) {
-        if(typeof a.sortOrder === 'undefined') {return 1;}
-        if(typeof b.sortOrder === 'undefined') {return -1; }
+    return result.sort(function (a, b) {
+        if (typeof a.sortOrder === 'undefined') {
+            return 1;
+        }
+        if (typeof b.sortOrder === 'undefined') {
+            return -1;
+        }
         return a.sortOrder - b.sortOrder;
     });
 }
@@ -208,9 +214,9 @@ export class MenuItemGroup extends MenuItem {
                 let result = false;
 
                 sort(this.content.items).forEach((item, i) => {
-                        let updateResult = item.update(state);
-                        item.dom.style.display = updateResult ? "" : "none";
-                        result = result || updateResult;
+                    let updateResult = item.update(state);
+                    item.dom.style.display = updateResult ? "" : "none";
+                    result = result || updateResult;
                 });
                 return result;
             }
@@ -218,13 +224,13 @@ export class MenuItemGroup extends MenuItem {
     }
 
     render(view) {
-        this.dom = document.createDocumentFragment();
+        let $dom = $('<div>').addClass(prefix + '-group');
 
         this.renderItems(view).forEach((itemDom) => {
-            this.dom.appendChild(itemDom);
+            $dom.append(itemDom);
         });
 
-        return this.dom;
+        return this.dom = $dom[0];
     }
 
     update(state) {
@@ -235,8 +241,8 @@ export class MenuItemGroup extends MenuItem {
         let rendered = [];
 
         this.content.items.forEach((item) => {
-                let dom = item.render(view);
-                rendered.push(crel("span", {class: prefix + "item"}, dom));
+            let dom = item.render(view);
+            rendered.push(crel("div", {class: prefix + "item"}, dom));
         });
 
         return rendered;
@@ -283,13 +289,13 @@ export class Dropdown extends MenuItemGroup {
 
         let innerDom = this.options.icon ? getIcon(this.options.icon)
             : this.options.label ? crel("div", {style: this.options.css}, translate(view, this.options.label))
-            : null;
+                : null;
 
         if (!innerDom) {
             throw new RangeError("Dropdown without icon or label property")
         }
 
-        innerDom.className += " "+ prefix + "-dropdown " + (this.options.class || "");
+        innerDom.className += " " + prefix + "-dropdown " + (this.options.class || "");
 
         if (this.options.title) {
             innerDom.setAttribute("title", translate(view, this.options.title));
@@ -514,48 +520,58 @@ export const icons = {
 
 // :: MenuItem
 // Menu item for the `joinUp` command.
-export const joinUpItem = new MenuItem({
-    title: "Join with above block",
-    run: joinUp,
-    select: state => joinUp(state),
-    icon: icons.join
-});
+export const joinUpItem = function () {
+    return new MenuItem({
+        title: "Join with above block",
+        run: joinUp,
+        select: state => joinUp(state),
+        icon: icons.join
+    });
+};
 
 // :: MenuItem
 // Menu item for the `lift` command.
-export const liftItem = new MenuItem({
-    title: "Lift out of enclosing block",
-    run: lift,
-    select: state => lift(state),
-    icon: icons.lift
-});
+export const liftItem = function () {
+    return new MenuItem({
+        title: "Lift out of enclosing block",
+        run: lift,
+        select: state => lift(state),
+        icon: icons.lift
+    });
+};
 
 // :: MenuItem
 // Menu item for the `selectParentNode` command.
-export const selectParentNodeItem = new MenuItem({
-    title: "Select parent node",
-    run: selectParentNode,
-    select: state => selectParentNode(state),
-    icon: icons.selectParentNode
-});
+export const selectParentNodeItem = function () {
+    return new MenuItem({
+        title: "Select parent node",
+        run: selectParentNode,
+        select: state => selectParentNode(state),
+        icon: icons.selectParentNode
+    });
+};
 
 // :: (Object) → MenuItem
 // Menu item for the `undo` command.
-export let undoItem = new MenuItem({
-    title: "Undo last change",
-    run: undo,
-    enable: state => undo(state),
-    icon: icons.undo
-});
+export let undoItem = function () {
+    return new MenuItem({
+        title: "Undo last change",
+        run: undo,
+        enable: state => undo(state),
+        icon: icons.undo
+    });
+};
 
 // :: (Object) → MenuItem
 // Menu item for the `redo` command.
-export let redoItem = new MenuItem({
-    title: "Redo last undone change",
-    run: redo,
-    enable: state => redo(state),
-    icon: icons.redo
-});
+export let redoItem = function () {
+    return new MenuItem({
+        title: "Redo last undone change",
+        run: redo,
+        enable: state => redo(state),
+        icon: icons.redo
+    });
+};
 
 // :: (NodeType, Object) → MenuItem
 // Build a menu item for wrapping the selection in a given node type.

@@ -54,6 +54,7 @@ export function menu(context) {
         {
             id: 'linkItem',
             mark: 'link',
+            group: 'marks',
             item: linkItem(context)
         }
     ]

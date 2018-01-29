@@ -12,7 +12,7 @@ function wrapBulletList(context) {
     return cmdItem(wrapInList(context.schema.nodes.bullet_list), {
         title: context.translate("Wrap in bullet list"),
         icon: icons.bulletList,
-        sortOrder: 600
+        sortOrder: 100
     });
 }
 
@@ -21,6 +21,7 @@ export function menu(context) {
         {
             id: 'wrapBulletList',
             node: 'bullet_list',
+            group: 'format',
             item: wrapBulletList(context)
         }
     ]

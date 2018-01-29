@@ -11,7 +11,7 @@ function wrapBlockQuote(context) {
     return wrapItem(context.schema.nodes.blockquote, {
         title: context.translate("Wrap in block quote"),
         icon: icons.blockquote,
-        sortOrder: 700
+        sortOrder: 300
     });
 }
 
@@ -20,6 +20,7 @@ export function menu(context) {
         {
             id: 'wrapBlockQuote',
             node: 'blockquote',
+            group: 'format',
             item: wrapBlockQuote(context)
         }
     ]

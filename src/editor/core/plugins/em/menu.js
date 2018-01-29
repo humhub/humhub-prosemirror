@@ -12,7 +12,7 @@ function markEm(context) {
     return markItem(context.schema.marks.em, {
         title: context.translate("Toggle emphasis"),
         icon: icons.em,
-        sortOrder: 300});
+        sortOrder: 200});
 }
 
 export function menu(context) {
@@ -20,6 +20,7 @@ export function menu(context) {
         {
             id: 'markEm',
             mark: 'em',
+            group: 'marks',
             item: markEm(context)
         }
     ]

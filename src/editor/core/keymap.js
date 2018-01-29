@@ -13,7 +13,16 @@ function exitCodeAtLast(state, dispatch) {
     let $anchor = ref.$anchor;
     let parent = $head.parent;
 
-    if (!parent.type.spec.code
+    let isBlockQuote = false;
+    $anchor.path.forEach((item, index) => {
+        if(!(index % 3) && item.type && item.type.name === 'blockquote') {
+            isBlockQuote = true;
+        }
+    });
+
+
+
+    if (!(parent.type.spec.code || isBlockQuote)
         || $anchor.parentOffset != $head.parentOffset
         || !$head.sameParent($anchor)
         || $head.parent.content.size != $head.parentOffset) {
@@ -34,8 +43,11 @@ function exitCodeAtLast(state, dispatch) {
       return false;
     }
 
+    debugger;
+
     if (dispatch) {
-        var pos = $head.after(), tr = state.tr.replaceWith(pos, pos, type.createAndFill());
+        let pos = (!parent.type.spec.code && isBlockQuote) ? $head.after() + 1 : $head.after();
+        let tr = state.tr.replaceWith(pos, pos, type.createAndFill());
         tr.setSelection(Selection.near(tr.doc.resolve(pos), 1));
         dispatch(tr.scrollIntoView());
     }
@@ -82,6 +94,7 @@ export function buildKeymap(schema, mapKeys) {
     keys[key] = cmd
   }
 
+  bind('ArrowDown', exitCodeAtLast)
 
   bind("Mod-z", undo)
   bind("Shift-Mod-z", redo)
@@ -111,7 +124,6 @@ export function buildKeymap(schema, mapKeys) {
       dispatch(state.tr.replaceSelectionWith(br.create()).scrollIntoView())
       return true
     });
-    bind('ArrowDown', exitCodeAtLast)
     bind("Mod-Enter", cmd)
     bind("Shift-Enter", cmd)
     if (mac) bind("Ctrl-Enter", cmd)

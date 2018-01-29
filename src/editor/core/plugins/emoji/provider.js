@@ -96,7 +96,7 @@ class EmojiChooser {
     initDom() {
         let that = this;
         this.$ = $('<div class="atwho-view humhub-richtext-provider">').hide().appendTo($('body')).on('hidden', () => {
-            debugger;
+
             if(that.provider) {
                 that.provider.reset();
             }

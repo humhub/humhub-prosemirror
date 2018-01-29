@@ -12,7 +12,7 @@ function wrapOrderedList(context) {
     return cmdItem(wrapInList(context.schema.nodes.ordered_list), {
         title: context.translate("Wrap in ordered list"),
         icon: icons.orderedList,
-        sortOrder: 700
+        sortOrder: 200
     });
 }
 
@@ -21,6 +21,7 @@ export function menu(context) {
         {
             id: 'wrapOrderedList',
             node: 'ordered_list',
+            group: 'format',
             item: wrapOrderedList(context)
         }
     ]

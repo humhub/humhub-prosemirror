@@ -12,7 +12,8 @@ function markCode(context) {
     return markItem(context.schema.marks.code, {
         title: context.translate("Toggle code font"),
         icon: icons.code,
-        sortOrder: 500});
+        sortOrder: 400
+    });
 }
 
 export function menu(context) {
@@ -20,6 +21,7 @@ export function menu(context) {
         {
             id: 'markCode',
             mark: 'code',
+            group: 'marks',
             item: markCode(context)
         }
     ]

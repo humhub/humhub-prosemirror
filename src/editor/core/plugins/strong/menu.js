@@ -12,7 +12,7 @@ function markStrong(context) {
     return markItem(context.schema.marks.strong, {
         title: context.translate("Toggle strong style"),
         icon: icons.strong,
-        sortOrder: 200
+        sortOrder: 100
     });
 }
 
@@ -21,6 +21,7 @@ export function menu(context) {
         {
             id: 'markStrong',
             mark: 'strong',
+            group: 'marks',
             item: markStrong(context)
         }
     ]

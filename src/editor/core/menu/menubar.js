@@ -8,16 +8,22 @@ const prefix = "ProseMirror-menubar";
 
 function buildMenuItems(context) {
     let groups = {
-        insert: {type: 'dropdown', sortOrder: 800, label: "Insert", icon: icons.image, class: 'ProseMirror-doprdown-right', items: []},
-        types:  {type: 'dropdown', sortOrder: 100, label: "Type", icon: icons.text, items: []}
+        insert: {type: 'dropdown', sortOrder: 800, label: context.translate("Insert"), icon: icons.image, class: 'ProseMirror-doprdown-right', items: []},
+        types:  {type: 'dropdown', sortOrder: 100, label: context.translate("Type"), icon: icons.text, items: []},
+        type:  {type: 'group', sortOrder: 100, items: []},
+        marks:  {type: 'group', sortOrder: 200, items: []},
+        format:  {type: 'group', sortOrder: 300, items: [liftItem()]},
+        embed:  {type: 'group', sortOrder: 400, items: []},
+        helper:  {type: 'group', sortOrder: 500, items: [undoItem(), redoItem()]},
     };
 
-    let definitions = [groups.types, groups.insert];
+    let definitions = [groups.types, groups.insert, groups.marks, groups.format, groups.helper];
 
     context.plugins.forEach(function (plugin) {
         if(plugin.menu) {
             plugin.menu(context).forEach(function(menuDefinition) {
                 if(checkMenuDefinition(context, menuDefinition)) {
+
                     if(menuDefinition.group && groups[menuDefinition.group]) {
                         groups[menuDefinition.group].items.push(menuDefinition.item);
                     } else if(!menuDefinition.group) {
@@ -31,13 +37,7 @@ function buildMenuItems(context) {
     //selectParentNodeItem -> don't know if we should add this one
 
     // TODO: fire event
-
-    definitions.push(joinUpItem);
-    definitions.push(liftItem);
-    definitions.push(redoItem);
-    definitions.push(undoItem);
     //definitions.push(selectParentNodeItem);
-
     return definitions;
 }
 
