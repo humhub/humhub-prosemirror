@@ -9,8 +9,8 @@ import {MenuItem, canInsert} from "../../menu/"
 function insertHorizontalRule(context) {
     let hr = context.schema.nodes.horizontal_rule;
     return new MenuItem({
-        title: "Insert horizontal rule",
-        label: "Horizontal rule",
+        title: context.translate("Insert horizontal rule"),
+        label: context.translate("Horizontal rule"),
         sortOrder: 200,
         enable(state) {
             return canInsert(state, hr)

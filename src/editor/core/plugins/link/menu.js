@@ -12,7 +12,7 @@ import {toggleMark} from "prosemirror-commands"
 function linkItem(context) {
     let mark = context.schema.marks.link;
     return new MenuItem({
-        title: "Add or remove link",
+        title: context.translate("Add or remove link"),
         sortOrder: 500,
         icon: icons.link,
         active(state) {
@@ -23,25 +23,25 @@ function linkItem(context) {
         },
         run(state, dispatch, view) {
             if (markActive(state, mark)) {
-                toggleMark(mark)(state, dispatch)
+                toggleMark(mark)(state, dispatch);
                 return true
             }
             openPrompt({
-                title: "Create a link",
+                title: context.translate("Create a link"),
                 fields: {
                     href: new TextField({
-                        label: "Link target",
+                        label: context.translate("Link target"),
                         required: true,
                         clean: (val) => {
                             if (!/^https?:\/\//i.test(val))
-                                val = 'http://' + val
+                                val = 'http://' + val;
                             return val
                         }
                     }),
                     title: new TextField({label: "Title"})
                 },
                 callback(attrs) {
-                    toggleMark(mark, attrs)(view.state, view.dispatch)
+                    toggleMark(mark, attrs)(view.state, view.dispatch);
                     view.focus()
                 }
             })

@@ -9,7 +9,10 @@ import {icons, markItem} from "../../menu/menu"
 
 
 function markEm(context) {
-    return markItem(context.schema.marks.em, {title: "Toggle emphasis", icon: icons.em, sortOrder: 300});
+    return markItem(context.schema.marks.em, {
+        title: context.translate("Toggle emphasis"),
+        icon: icons.em,
+        sortOrder: 300});
 }
 
 export function menu(context) {

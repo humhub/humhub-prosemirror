@@ -12,7 +12,7 @@ function makeHeading(context) {
     for (let i = 1; i <= 6; i++) {
         r["makeHead" + i] = blockTypeItem(context.schema.nodes.heading, {
             label: "H" + i,
-            title: "Change to heading " + i + ' (' + Array(i + 1).join("#") + ')',
+            title: context.translate("Change to heading")+" " + i + ' (' + Array(i + 1).join("#") + ')',
             sortOrder: i,
             attrs: {level: i}
         })

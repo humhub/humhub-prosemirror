@@ -9,8 +9,8 @@ import {blockTypeItem} from "../../menu/menu"
 
 function makeCodeBlock(context) {
     return blockTypeItem(context.schema.nodes.code_block, {
-        title: "Change to code block",
-        label: "Code"
+        title: context.translate("Change to code block"),
+        label: context.translate("Code")
     })
 }
 

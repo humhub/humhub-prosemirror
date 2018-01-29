@@ -37,6 +37,14 @@ export default class Context {
         getSchema(this);
     }
 
+    translate(key) {
+        if(!this.options.translate) {
+            return key;
+        }
+
+        return this.options.translate(key) || key;
+    }
+
     getProsemirrorPlugins(id, prosemirror) {
         return this.prosemirrorPlugins[id];
     }

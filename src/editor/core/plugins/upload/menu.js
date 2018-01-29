@@ -11,8 +11,8 @@ import {loaderStart, replaceLoader, removeLoader} from "../loader/plugin"
 let uploadFile = (context) => {
     let mark = context.schema.marks.link;
     return new MenuItem({
-        title: "Upload and include a File",
-        label: "Upload File",
+        title: context.translate("Upload and include a File"),
+        label: context.translate("Upload File"),
         sortOrder: 0,
         enable(state) {
             return state.selection.$from.parent.inlineContent

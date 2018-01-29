@@ -9,7 +9,7 @@ import {icons, cmdItem, wrapItem} from "../../menu/menu"
 
 function wrapBlockQuote(context) {
     return wrapItem(context.schema.nodes.blockquote, {
-        title: "Wrap in block quote",
+        title: context.translate("Wrap in block quote"),
         icon: icons.blockquote,
         sortOrder: 700
     });

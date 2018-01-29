@@ -9,7 +9,11 @@ import {icons, markItem} from "../../menu/menu"
 
 
 function markStrong(context) {
-    return markItem(context.schema.marks.strong, {title: "Toggle strong style", icon: icons.strong, sortOrder: 200});
+    return markItem(context.schema.marks.strong, {
+        title: context.translate("Toggle strong style"),
+        icon: icons.strong,
+        sortOrder: 200
+    });
 }
 
 export function menu(context) {

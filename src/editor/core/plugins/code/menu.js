@@ -9,7 +9,10 @@ import {icons, markItem} from "../../menu/menu"
 
 
 function markCode(context) {
-    return markItem(context.schema.marks.code, {title: "Toggle code font", icon: icons.code, sortOrder: 500});
+    return markItem(context.schema.marks.code, {
+        title: context.translate("Toggle code font"),
+        icon: icons.code,
+        sortOrder: 500});
 }
 
 export function menu(context) {

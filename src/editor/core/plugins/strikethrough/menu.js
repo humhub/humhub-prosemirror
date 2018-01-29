@@ -9,7 +9,9 @@ import {icons, markItem} from "../../menu/menu"
 
 
 function markStrikethrough(context) {
-    return markItem(context.schema.marks.strikethrough, {title: "Toggle strikethrough", icon: icons.strikethrough, sortOrder: 400});
+    return markItem(context.schema.marks.strikethrough, {
+        title: context.translate("Toggle strikethrough"),
+        icon: icons.strikethrough, sortOrder: 400});
 }
 
 export function menu(context) {

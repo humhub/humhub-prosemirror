@@ -9,8 +9,8 @@ import {blockTypeItem} from "../../menu/menu"
 
 function makeParagraph(context) {
     return blockTypeItem(context.schema.nodes.paragraph, {
-        title: "Change to paragraph",
-        label: "Paragraph"
+        title: context.translate("Change to paragraph"),
+        label: context.translate("Paragraph")
     })
 }
 

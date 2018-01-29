@@ -10,8 +10,8 @@ import {NodeSelection} from "prosemirror-state"
 
 function insertImageItem(context) {
     return new MenuItem({
-        title: "Insert image",
-        label: "Image",
+        title: context.translate("Insert image"),
+        label: context.translate("Image"),
         sortOrder: 100,
         enable(state) {
             return canInsert(state, context.schema.nodes.image)
@@ -23,16 +23,16 @@ function insertImageItem(context) {
             }
 
             openPrompt({
-                title: "Insert image",
+                title: context.translate("Insert image"),
                 fields: {
-                    src: new TextField({label: "Location", required: true, value: attrs && attrs.src}),
-                    title: new TextField({label: "Title", value: attrs && attrs.title}),
-                    alt: new TextField({label: "Description", value: attrs ? attrs.alt : state.doc.textBetween(from, to, " ")}),
-                    width: new TextField({label: "Width", value: attrs && attrs.width}),
-                    height: new TextField({label: "Height",  value: attrs && attrs.height})
+                    src: new TextField({label: context.translate("Location"), required: true, value: attrs && attrs.src}),
+                    title: new TextField({label: context.translate("Title"), value: attrs && attrs.title}),
+                    alt: new TextField({label: context.translate("Description"), value: attrs ? attrs.alt : state.doc.textBetween(from, to, " ")}),
+                    width: new TextField({label: context.translate("Width"), value: attrs && attrs.width}),
+                    height: new TextField({label: context.translate("Height"),  value: attrs && attrs.height})
                 },
                 callback(attrs) {
-                    view.dispatch(view.state.tr.replaceSelectionWith(context.schema.nodes.image.createAndFill(attrs)))
+                    view.dispatch(view.state.tr.replaceSelectionWith(context.schema.nodes.image.createAndFill(attrs)));
                     view.focus()
                 }
             })

@@ -10,7 +10,7 @@ import {icons, cmdItem, wrapListItem} from "../../menu/menu"
 
 function wrapBulletList(context) {
     return cmdItem(wrapInList(context.schema.nodes.bullet_list), {
-        title: "Wrap in bullet list",
+        title: context.translate("Wrap in bullet list"),
         icon: icons.bulletList,
         sortOrder: 600
     });

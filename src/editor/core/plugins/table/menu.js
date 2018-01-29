@@ -14,15 +14,15 @@ function wrapTableItem(context) {
     let schema = context.schema;
     let command = wrapIn(schema.nodes.table_header);
     let itemOptions = {
-        title: "Create table",
+        title: context.translate("Create table"),
         icon: icons.table,
         sortOrder: 800,
         run(state, dispatch, view) {
             openPrompt({
-                title: "Insert table",
+                title: context.translate("Insert table"),
                 fields: {
-                    rowCount: new TextField({label: "Rows", required: true, value: 1}),
-                    columnCount: new TextField({label: "Columns", value: 1})
+                    rowCount: new TextField({label: context.translate("Rows"), required: true, value: 1}),
+                    columnCount: new TextField({label: context.translate("Columns"), value: 1})
                 },
                 callback(attrs) {
                     wrapIn(schema.nodes.table_header)(view.state, dispatch);
@@ -64,23 +64,23 @@ export function menu(context) {
         {
             id: 'tableOptions',
             node: 'table',
-            item: new Dropdown(buildTableMenu(), {icon: icons.table})
+            item: new Dropdown(buildTableMenu(context), {icon: icons.table})
         }
     ]
 }
 
-let buildTableMenu = function () {
+let buildTableMenu = function (context) {
     function item(label, cmd, sortOrder) {
         return new MenuItem({label, select: cmd, run: cmd, sortOrder: sortOrder})
     }
 
     return [
-        item("Insert column before", addColumnBefore, 0),
-        item("Insert column after", addColumnAfter, 1),
-        item("Delete column", deleteColumn, 2),
-        item("Insert row before", addRowBefore, 3),
-        item("Insert row after", addRowAfter, 4),
-        item("Delete row", deleteRow, 5),
-        item("Delete table", deleteTable, 6)
+        item(context.translate("Insert column before"), addColumnBefore, 0),
+        item(context.translate("Insert column after"), addColumnAfter, 1),
+        item(context.translate("Delete column"), deleteColumn, 2),
+        item(context.translate("Insert row before"), addRowBefore, 3),
+        item(context.translate("Insert row after"), addRowAfter, 4),
+        item(context.translate("Delete row"), deleteRow, 5),
+        item(context.translate("Delete table"), deleteTable, 6)
     ];
 };
