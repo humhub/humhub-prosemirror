@@ -12,6 +12,7 @@ export class EmojiState {
         this.state = state;
         this.provider = options.provider;
         this.provider.event.on('closed', () => {
+            debugger;
             if(this.active) {
                 const { emojiQuery } = this.state.schema.marks;
                 this.view.dispatch(this.state.tr.removeMark(0, this.state.doc.nodeSize -2, emojiQuery));

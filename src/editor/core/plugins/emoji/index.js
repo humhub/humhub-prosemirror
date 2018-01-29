@@ -6,6 +6,7 @@
  */
 
 import {schema} from './schema'
+import {getMarkdownItOpts} from './util'
 import emoji_plugin from "markdown-it-emoji"
 import twemoji from "twemoji"
 import {emojiPlugin} from "./plugin"
@@ -33,10 +34,8 @@ const emoji = {
         ]
     },
     registerMarkdownIt: (markdownIt, context) => {
-        debugger;
-        markdownIt.use(emoji_plugin);
+        markdownIt.use(emoji_plugin, getMarkdownItOpts());
         markdownIt.renderer.rules.emoji = function(token, idx) {
-            debugger;
             let emojiToken = token[idx];
             return twemoji.parse(emojiToken.content, {
                 attributes: (icon, variant) => {

@@ -23,12 +23,12 @@ import * as menu from './core/menu'
 import Context from './core/context'
 
 $(document).on('click.richtextProvider', function(evt) {
-    if(!$(evt.target).closest('.humhub-richtext-provider').length) {
+    if(!$(evt.target).closest('.humhub-richtext-provider:visible').length) {
         let provider = $('.humhub-richtext-provider').data('provider');
         if(provider && provider.reset) {
             provider.reset();
         } else {
-            $('.humhub-richtext-provider').hide();
+            $('.humhub-richtext-provider').hide().trigger('hidden');
         }
     }
 });

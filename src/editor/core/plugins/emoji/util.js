@@ -10,10 +10,13 @@ import emojilib from "emojilib";
 import emojiNameMap from "emoji-name-map";
 import twemoji from "twemoji"
 
+let emoji_markdown_it_defs = {};
+
 let emoji_defs_by_char = (function() {
     let result = {};
     $.each(emojilib.lib, function(name, def) {
         result[def['char']] = name;
+        emoji_markdown_it_defs[name] = def['char'];
     });
 
     return result;
@@ -89,6 +92,10 @@ let getByCategory = function(category) {
     return byCategory[category];
 };
 
+let getMarkdownItOpts = function() {
+    return {defs: emoji_markdown_it_defs};
+};
+
 export {
     shortcuts,
     getNameByChar,
@@ -97,5 +104,6 @@ export {
     twemoji,
     getEmojiDefinitionByShortcut,
     getCharToDom,
+    getMarkdownItOpts,
     getByCategory
 }

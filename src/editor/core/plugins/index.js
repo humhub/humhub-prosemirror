@@ -211,7 +211,7 @@ class PresetManager {
             result = this.map[options.preset];
         }
 
-        if(!result || !result.length) {
+        if(!result || (Array.isArray(result) && !result.length)) {
             result = this.create(context);
 
             if(!PresetManager.isCustomPluginSet(options)) {
