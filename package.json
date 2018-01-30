@@ -13,7 +13,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/prosemirror/prosemirror.git"
+    "url": "git@github.com:humhub/humhub-prosemirror.git"
   },
   "dependencies": {
     "emoji-unicode-map": "^1.1.9",
