@@ -10,7 +10,7 @@ const schema = {
             attrs: {
                 name: { default: '' },
                 guid: { default: '' },
-                href: { default: '' },
+                href: { default: '#' },
             },
             parseDOM: [{
                 tag: 'span[data-mention]',

@@ -40,7 +40,7 @@ const oembed = {
         if ($oembed && $oembed.length) {
             return $oembed.clone().show()[0];
         } else {
-            return $('<a href="' + escapeHtml(node.attrs.href) + '" style="color:#FF7F00" target="_blank" rel="noopener">' + escapeHtml(node.attrs.href) + '</a>')[0];
+            return $('<a href="' + escapeHtml(node.attrs.href) + '" class="not-found" style="color:#FF7F00" target="_blank" rel="noopener">' + escapeHtml(node.attrs.href) + '</a>')[0];
         }
     },
     parseMarkdown: {

@@ -22,6 +22,10 @@ export default class Context {
     }
 
     init(options) {
+        if(options.pluginOptions) {
+            $.extend(options, options.pluginOptions);
+        }
+
         this.options = options;
         this.options.preset = options.preset || 'full';
 
@@ -35,6 +39,18 @@ export default class Context {
 
         getPlugins(this);
         getSchema(this);
+    }
+
+    getPluginOption(id, option) {
+        let pluginOptions =  this.options[id];
+
+        if(!option) {
+            return pluginOptions;
+        } else if(pluginOptions) {
+            return pluginOptions[option];
+        }
+
+        return undefined;
     }
 
     translate(key) {

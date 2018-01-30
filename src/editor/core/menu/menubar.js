@@ -35,7 +35,6 @@ function buildMenuItems(context) {
     //selectParentNodeItem -> don't know if we should add this one
 
     // TODO: fire event
-    //definitions.push(selectParentNodeItem);
     return definitions;
 }
 

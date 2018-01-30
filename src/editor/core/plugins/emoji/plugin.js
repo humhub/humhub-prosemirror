@@ -28,7 +28,7 @@ const emojiPlugin = (context) => {
             init(config, state) {
                 return new EmojiState(state, {
                     provider: (context.options.emoji && context.options.emoji.provider)
-                        ?  context.options.emoji.provider : new EmojiProvider()
+                        ?  context.options.emoji.provider : new EmojiProvider(context)
                 });
             },
             apply(tr, prevPluginState, oldState, newState) {

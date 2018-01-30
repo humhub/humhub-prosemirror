@@ -7,8 +7,6 @@
 
 import * as util from './util';
 
-let emojiCategories = ['people', 'animals_and_nature', 'food_and_drink', 'activity', 'travel_and_places', 'objects', 'symbols'];
-
 let userFlag = undefined;
 let findUserFlag = function() {
     if(userFlag) {
@@ -67,7 +65,8 @@ let findUserFlag = function() {
 let chooser = undefined;
 
 class EmojiChooser {
-    constructor() {
+    constructor(provider) {
+        this.provider = provider;
         this.categoryOrder = ['people', 'animals_and_nature', 'food_and_drink', 'activity', 'travel_and_places', 'objects', 'symbols', 'flags'];
         this.categories = {
             people: {$icon: util.getCharToDom('\uD83D\uDE00')},
@@ -109,7 +108,7 @@ class EmojiChooser {
 
         this.categoryOrder.forEach((categoryName, index) => {
             let categoryDef = this.categories[categoryName];
-            let $item = $('<span class="emoji-nav-item">').attr('data-emoji-nav-item', categoryName).append(categoryDef.$icon).on('click', () => {
+            let $item = $('<span class="emoji-nav-item" title="'+this.translate(categoryName)+'">').attr('data-emoji-nav-item', categoryName).append(categoryDef.$icon).on('click', () => {
                 this.openCategory(categoryName);
                 this.provider.event.trigger('focus');
             });
@@ -171,6 +170,10 @@ class EmojiChooser {
             alt: $selection.attr('alt'),
             src: $selection.attr('src'),
         }
+    }
+
+    translate(key) {
+        return this.provider.context.translate(key);
     }
 
     getSelectionNode() {
@@ -255,8 +258,9 @@ class EmojiChooser {
     }
 }
 
-let EmojiProvider = function () {
+let EmojiProvider = function (context) {
     this.event = $({});
+    this.context = context;
 };
 
 EmojiProvider.prototype.query = function (state, node) {
@@ -299,7 +303,7 @@ EmojiProvider.prototype.update = function () {
 
 EmojiProvider.prototype.getChooser = function () {
     if(!chooser) {
-        chooser = new EmojiChooser();
+        chooser = new EmojiChooser(this);
     }
 
     return chooser;

@@ -37,6 +37,10 @@ const mention = {
             let guid = markdownIt.utils.escapeHtml(oembed.attrGet('guid'));
             let name = markdownIt.utils.escapeHtml(oembed.attrGet('name'));
 
+            if(href === '#') {
+                return '<a href="#" class="not-found">@'+name+'</a>';
+            }
+
             return '<a href="'+href+'" data-guid="'+guid+'" target="_blank" rel="noopener">@'+name+'</a>';
         };
 
