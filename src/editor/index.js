@@ -69,7 +69,9 @@ class MarkdownEditor {
         this.$editor = $(this.view.dom).on('focus', () => {
             this.$menuBar.show();
         }).on('blur', () => {
-            this.$menuBar.hide();
+            if(!this.$.is('.fullscreen')) {
+                this.$menuBar.hide();
+            }
         });
 
         this.trigger('init');

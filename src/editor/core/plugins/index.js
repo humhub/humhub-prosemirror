@@ -32,8 +32,9 @@ import attributes from "./attributes"
 import placeholder from "./placeholder"
 import loader from "./loader"
 import upload from "./upload"
-import clipboard from "./clipboard/index";
-import anchors from "./anchors/index";
+import clipboard from "./clipboard";
+import anchors from "./anchors";
+import fullscreen from "./fullscreen";
 
 const plugins = [];
 const pluginMap = {};
@@ -159,6 +160,7 @@ registerPlugin(attributes, 'markdown');
 registerPlugin(upload, 'markdown');
 registerPlugin(placeholder, 'markdown');
 registerPlugin(anchors, 'markdown');
+registerPlugin(fullscreen, 'markdown');
 
 registerPreset('normal', {
     extend: 'markdown',

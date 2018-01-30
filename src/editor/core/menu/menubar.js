@@ -13,9 +13,10 @@ function buildMenuItems(context) {
         format:  {type: 'group', sortOrder: 300, items: [liftItem()]},
         insert: {type: 'dropdown', sortOrder: 400, label: context.translate("Insert"),seperator: true, icon: icons.image, class: 'ProseMirror-doprdown-right', items: []},
         helper:  {type: 'group', sortOrder: 500, items: [undoItem(), redoItem()]},
+        resize:  {type: 'group', sortOrder: 600, items: []},
     };
 
-    let definitions = [groups.types, groups.insert, groups.marks, groups.format, groups.helper];
+    let definitions = [groups.types, groups.insert, groups.marks, groups.format, groups.helper, groups.resize];
 
     context.plugins.forEach(function (plugin) {
         if(plugin.menu) {
