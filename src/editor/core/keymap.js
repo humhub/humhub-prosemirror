@@ -43,8 +43,6 @@ function exitCodeAtLast(state, dispatch) {
       return false;
     }
 
-    debugger;
-
     if (dispatch) {
         let pos = (!parent.type.spec.code && isBlockQuote) ? $head.after() + 1 : $head.after();
         let tr = state.tr.replaceWith(pos, pos, type.createAndFill());

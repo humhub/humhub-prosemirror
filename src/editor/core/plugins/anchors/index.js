@@ -5,12 +5,12 @@
  *
  */
 
-import markdown_it_anchor_plugin from "markdown-it-anchor"
+// We don't use the official repo https://github.com/valeriangalliat/markdown-it-anchor/issues/39
+import markdown_it_anchor_plugin from "./markdown_anchors"
 
 const anchors = {
     id: 'anchor',
     registerMarkdownIt: (markdownIt, context) => {
-        debugger;
         let anchorOptions = context.getPluginOption('anchors');
         anchorOptions = (anchorOptions === true) ? {} : anchorOptions;
         if(anchorOptions) {
