@@ -9,6 +9,7 @@ import { Plugin, PluginKey } from 'prosemirror-state';
 import { EmojiState } from './state';
 import EmojiProvider from "./provider";
 import twemoji from "twemoji";
+import * as util from "./util";
 
 const pluginKey = new PluginKey('emoji');
 
@@ -18,10 +19,16 @@ const emojiPlugin = (context) => {
             transformPastedHTML: (html) => {
                 let $html = $(html);
                 let $dom = $('<body>').append($html);
-                return $('<html>').append(twemoji.parse($dom[0])).html();
+                return $('<html>').append(twemoji.parse($dom[0],{attributes: (icon, variant) => {
+                    return {'data-name': util.getNameByChar(icon), 'style': 'width:16px'};
+                }})).html();
             },
             transformPastedText: (text) => {
-                return twemoji.parse(text, {output: 'markdown'});
+                text = twemoji.parse(text);
+
+                return text.replace(/\<img class="emoji"[^\\\>]* alt=\"([^\"]*)\"[^\\\>]*\/>/g, function(match, char) {
+                    return ':'+util.getNameByChar(char)+':';
+                });
             },
         },
         state: {

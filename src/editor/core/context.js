@@ -41,16 +41,16 @@ export default class Context {
         getSchema(this);
     }
 
-    getPluginOption(id, option) {
+    getPluginOption(id, option, defaultValue) {
         let pluginOptions =  this.options[id];
 
         if(!option) {
             return pluginOptions;
         } else if(pluginOptions) {
-            return pluginOptions[option];
+            return !(typeof pluginOptions[option]) === 'undefined' ? pluginOptions[option] : defaultValue;
         }
 
-        return undefined;
+        return defaultValue;
     }
 
     translate(key) {

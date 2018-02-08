@@ -13,6 +13,10 @@ const oembed = {
     schema: schema,
     init: (context) => {
         context.event.on('linkified', (evt, urls) => {
+            let doc = context.editor.view.state.doc;
+            if($node(doc).find('oembed').size() >= context.getPluginOption('oembed', 'max', 5)) {
+                return;
+            }
 
             humhub.require('oembed').load(urls).then((result) => {
                 $.each(result, function(url, oembed) {
@@ -26,6 +30,7 @@ const oembed = {
                     return false;
                 })
             });
+
         });
     },
     registerMarkdownIt: (markdownIt) => {

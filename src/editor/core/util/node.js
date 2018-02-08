@@ -139,6 +139,10 @@ $node.prototype._hasNodePos = function(pos) {
     }
 };
 
+$node.prototype.size = function() {
+    return this.flat.length;
+}
+
 $node.prototype.type = function (selector, includeSelf) {
     const typeFilter = (node, filter) => {
         let result = false;

@@ -12,7 +12,6 @@ const fullscreen = {
     init(context) {
         if(context.getPluginOption('fullscreen', 'preventAutoFullScreen') !== false) {
             context.editor.$.on('click', '.ProseMirror', function(e) {
-                debugger;
                 if(humhub.require('ui.view').isSmall() && !context.editor.$.is('.fullscreen')) {
                     context.editor.$.find('.ProseMirror-menu-fullscreen').trigger('mousedown');
                 }

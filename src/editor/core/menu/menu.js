@@ -79,9 +79,7 @@ export class MenuItem {
         if (options.class) this.dom.classList.add(options.class);
         if (options.css) this.dom.style.cssText += options.css;
 
-        debugger;
         $(this.dom).on("mousedown", e => {
-            debugger;
             e.preventDefault();
             options.run.call(this, view.state, view.dispatch, view, e);
         });
