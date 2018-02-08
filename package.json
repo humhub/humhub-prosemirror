@@ -1,6 +1,6 @@
 {
   "name": "humhub-prosemirror-richtext",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Prosemirror based richtext implementation for the humhub social network",
   "license": "AGPL-3.0",
   "main": "dist/humhub-editor.js",
@@ -16,6 +16,20 @@
     "url": "git@github.com:humhub/humhub-prosemirror.git"
   },
   "dependencies": {
+  },
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-nodeunit": "~0.4.1",
+    "grunt-contrib-uglify": "~0.5.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-rollup": "^6.0.0",
+    "rollup": "^0.55.3",
+    "rollup-plugin-buble": "^0.15.0",
+    "rollup-plugin-commonjs": "^8.3.0",
+    "rollup-plugin-json": "^2.3.0",
+    "rollup-plugin-node-resolve": "3.0.2",
+    "rollup-plugin-replace": "^2.0.0",
     "emoji-unicode-map": "^1.1.9",
     "markdown-it": "^8.4.0",
     "markdown-it-anchor": "^4.0.0",
@@ -38,19 +52,5 @@
     "prosemirror-transform": "^1.0.2",
     "prosemirror-view": "^1.0.10",
     "twemoji": "^2.5.0"
-  },
-  "devDependencies": {
-    "grunt": "~0.4.5",
-    "grunt-contrib-jshint": "~0.10.0",
-    "grunt-contrib-nodeunit": "~0.4.1",
-    "grunt-contrib-uglify": "~0.5.0",
-    "grunt-contrib-watch": "^1.0.0",
-    "grunt-rollup": "^6.0.0",
-    "rollup": "^0.55.3",
-    "rollup-plugin-buble": "^0.15.0",
-    "rollup-plugin-commonjs": "^8.3.0",
-    "rollup-plugin-json": "^2.3.0",
-    "rollup-plugin-node-resolve": "3.0.2",
-    "rollup-plugin-replace": "^2.0.0"
   }
 }

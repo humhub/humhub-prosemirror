@@ -35,7 +35,6 @@ let createParser = (context) => {
         for (let key in schemaSpecs) {
             let spec = schemaSpecs[key];
             if (spec.parseMarkdown) {
-
                 if(spec.parseMarkdown.block || spec.parseMarkdown.node || spec.parseMarkdown.mark || spec.parseMarkdown.ignore) {
                     tokens[key] = spec.parseMarkdown;
                 } else {

@@ -35,9 +35,14 @@ const code_block =  {
     }
 };
 
+const fence = {
+    parseMarkdown:  {block: "code_block", getAttrs: function (tok) { return ({params: tok.info || ""}); }}
+};
+
 const schema = {
     nodes: {
-        code_block: code_block
+        code_block: code_block,
+        fence: fence
     }
 };
 
