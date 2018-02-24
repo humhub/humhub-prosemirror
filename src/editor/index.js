@@ -44,6 +44,7 @@ class MarkdownEditor {
 
     clear() {
         this.view.destroy();
+        this.context.event.trigger('clear');
         this.init();
     }
 
@@ -64,15 +65,7 @@ class MarkdownEditor {
             state: state
         });
 
-        this.$menuBar = this.$.find('.ProseMirror-menubar').hide();
-
-        this.$editor = $(this.view.dom).on('focus', () => {
-            this.$menuBar.show();
-        }).on('blur', () => {
-            if(!this.$.is('.fullscreen')) {
-                this.$menuBar.hide();
-            }
-        });
+        this.$editor = $(this.view.dom);
 
         this.trigger('init');
     }

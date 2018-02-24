@@ -5,7 +5,7 @@
  *
  */
 
-import {icons, markItem, MenuItem} from "../../menu/menu"
+import {icons, MenuItem} from "../../menu/menu"
 
 
 function fullScreen(context) {

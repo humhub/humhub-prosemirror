@@ -46,7 +46,7 @@ export class MenuItem {
     constructor(options) {
         // :: MenuItemSpec
         // The options used to create the menu item.
-        this.options = options || {}
+        this.options = options || {};
         this.sortOrder = this.options.sortOrder;
     }
 
@@ -87,7 +87,10 @@ export class MenuItem {
         return this.dom;
     }
 
-    switchIcon(icon) {
+    switchIcon(icon, title) {
+        if(title) {
+            $(this.dom).attr('title', title);
+        }
         $(this.dom).find('svg').replaceWith($(getIcon(icon)).find('svg'));
     }
 
@@ -105,6 +108,7 @@ export class MenuItem {
         }
 
         this.enabled = true;
+
         if (this.options.enable) {
             this.enabled = this.options.enable(state) || forceEnable || false;
             setClass(this.dom, prefix + "-disabled", !this.enabled)
@@ -223,8 +227,15 @@ export class MenuItemGroup extends MenuItem {
 
                 sort(this.content.items).forEach((item, i) => {
                     let updateResult = item.update(state);
-                    item.dom.style.display = updateResult ? "" : "none";
-                    item.dom.className += (i === this.content.items.length - 1) ? ' last' : '';
+                    let $item = $(item.dom);
+                    if(!updateResult) {
+                        $item.hide();
+                    }
+
+                    if((i === this.content.items.length - 1)) {
+                        $item.addClass('last');
+                    }
+
                     result = result || updateResult;
                 });
                 return result;
@@ -234,6 +245,10 @@ export class MenuItemGroup extends MenuItem {
 
     render(view) {
         let $dom = $('<div>').addClass(prefix + '-group');
+
+        if(this.options.id) {
+            $dom.addClass(this.options.id);
+        }
 
         this.renderItems(view).forEach((itemDom) => {
             $dom.append(itemDom);
@@ -308,6 +323,10 @@ export class Dropdown extends MenuItemGroup {
 
         if (this.options.title) {
             innerDom.setAttribute("title", translate(view, this.options.title));
+        }
+
+        if(this.options.id) {
+            innerDom.classList.add(this.options.id);
         }
 
         this.dom = crel("div", {class: prefix + "-dropdown-wrap"}, innerDom);
@@ -532,6 +551,14 @@ export const icons = {
     enlarge: {
         width:32, height: 32,
         path: "M32 0v13l-5-5-6 6-3-3 6-6-5-5zM14 21l-6 6 5 5h-13v-13l5 5 6-6z"
+    },
+    angleDoubleRight: {
+        width:16, height: 28,
+        path: "M9.297 15c0 0.125-0.063 0.266-0.156 0.359l-7.281 7.281c-0.094 0.094-0.234 0.156-0.359 0.156s-0.266-0.063-0.359-0.156l-0.781-0.781c-0.094-0.094-0.156-0.234-0.156-0.359s0.063-0.266 0.156-0.359l6.141-6.141-6.141-6.141c-0.094-0.094-0.156-0.234-0.156-0.359s0.063-0.266 0.156-0.359l0.781-0.781c0.094-0.094 0.234-0.156 0.359-0.156s0.266 0.063 0.359 0.156l7.281 7.281c0.094 0.094 0.156 0.234 0.156 0.359zM15.297 15c0 0.125-0.063 0.266-0.156 0.359l-7.281 7.281c-0.094 0.094-0.234 0.156-0.359 0.156s-0.266-0.063-0.359-0.156l-0.781-0.781c-0.094-0.094-0.156-0.234-0.156-0.359s0.063-0.266 0.156-0.359l6.141-6.141-6.141-6.141c-0.094-0.094-0.156-0.234-0.156-0.359s0.063-0.266 0.156-0.359l0.781-0.781c0.094-0.094 0.234-0.156 0.359-0.156s0.266 0.063 0.359 0.156l7.281 7.281c0.094 0.094 0.156 0.234 0.156 0.359z"
+    },
+    angleDoubleLeft: {
+        width:16, height: 28,
+        path: "M9.797 21.5c0 0.125-0.063 0.266-0.156 0.359l-0.781 0.781c-0.094 0.094-0.234 0.156-0.359 0.156s-0.266-0.063-0.359-0.156l-7.281-7.281c-0.094-0.094-0.156-0.234-0.156-0.359s0.063-0.266 0.156-0.359l7.281-7.281c0.094-0.094 0.234-0.156 0.359-0.156s0.266 0.063 0.359 0.156l0.781 0.781c0.094 0.094 0.156 0.234 0.156 0.359s-0.063 0.266-0.156 0.359l-6.141 6.141 6.141 6.141c0.094 0.094 0.156 0.234 0.156 0.359zM15.797 21.5c0 0.125-0.063 0.266-0.156 0.359l-0.781 0.781c-0.094 0.094-0.234 0.156-0.359 0.156s-0.266-0.063-0.359-0.156l-7.281-7.281c-0.094-0.094-0.156-0.234-0.156-0.359s0.063-0.266 0.156-0.359l7.281-7.281c0.094-0.094 0.234-0.156 0.359-0.156s0.266 0.063 0.359 0.156l0.781 0.781c0.094 0.094 0.156 0.234 0.156 0.359s-0.063 0.266-0.156 0.359l-6.141 6.141 6.141 6.141c0.094 0.094 0.156 0.234 0.156 0.359z"
     },
     shrink: {
         width:32, height: 32,

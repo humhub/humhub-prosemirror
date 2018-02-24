@@ -9,11 +9,11 @@ const prefix = "ProseMirror-menubar";
 function buildMenuItems(context) {
     let groups = {
         types:  {type: 'dropdown', sortOrder: 100, label: context.translate("Type"), seperator: true, icon: icons.text, items: []},
-        marks:  {type: 'group', sortOrder: 200, items: []},
-        format:  {type: 'group', sortOrder: 300, items: [liftItem()]},
-        insert: {type: 'dropdown', sortOrder: 400, label: context.translate("Insert"),seperator: true, icon: icons.image, class: 'ProseMirror-doprdown-right', items: []},
-        helper:  {type: 'group', sortOrder: 500, items: [undoItem(), redoItem()]},
-        resize:  {type: 'group', sortOrder: 600, items: []},
+        marks:  {type: 'group', id: 'marks-group', sortOrder: 200, items: []},
+        format:  {type: 'group', id: 'format-group',  sortOrder: 300, items: [liftItem()]},
+        insert: {type: 'dropdown', id: 'insert-dropdown',  sortOrder: 400, label: context.translate("Insert"), seperator: true, icon: icons.image, class: 'ProseMirror-doprdown-right', items: []},
+        helper:  {type: 'group', id: 'helper-group', sortOrder: 500, items: [undoItem(), redoItem()]},
+        resize:  {type: 'group', id: 'resize-group', sortOrder: 600, items: []},
     };
 
     let definitions = [groups.types, groups.insert, groups.marks, groups.format, groups.helper, groups.resize];
@@ -22,6 +22,7 @@ function buildMenuItems(context) {
         if(plugin.menu) {
             plugin.menu(context).forEach(function(menuDefinition) {
                 if(checkMenuDefinition(context, menuDefinition)) {
+                    menuDefinition.item.options.id = menuDefinition.id;
 
                     if(menuDefinition.group && groups[menuDefinition.group]) {
                         groups[menuDefinition.group].items.push(menuDefinition.item);
@@ -56,10 +57,13 @@ function checkMenuDefinition(context, menuDefinition) {
 }
 
 export function buildMenuBar(context) {
-    return menuBar({
+    context.menu = menuBar({
         content: buildMenuItems(context),
-        floating: false
+        floating: false,
+        context: context
     });
+
+    return context.menu;
 }
 
 
@@ -87,43 +91,59 @@ function isIOS() {
 export function menuBar(options) {
     return new Plugin({
         view(editorView) {
-            return new MenuBarView(editorView, options)
+            options.context.menu = new MenuBarView(editorView, options);
+            options.context.event.trigger('afterMenuBarInit', options.context.menu);
+            return options.context.menu;
         }
     })
 }
 
 class MenuBarView {
     constructor(editorView, options) {
-        this.editorView = editorView
-        this.options = options
+        this.editorView = editorView;
+        this.options = options;
+        this.context = this.options.context;
 
-        this.wrapper = crel("div", {class: prefix + "-wrapper"})
-        this.menu = this.wrapper.appendChild(crel("div", {class: prefix}))
-        this.menu.className = prefix
-        this.spacer = null
+        this.wrapper = crel("div", {class: prefix + "-wrapper"});
+        this.menu = this.wrapper.appendChild(crel("div", {class: prefix}));
+        this.menu.className = prefix;
+        this.spacer = null;
 
-        editorView.dom.parentNode.replaceChild(this.wrapper, editorView.dom)
-        this.wrapper.appendChild(editorView.dom)
+        editorView.dom.parentNode.replaceChild(this.wrapper, editorView.dom);
+        this.wrapper.appendChild(editorView.dom);
 
-        this.maxHeight = 0
-        this.widthForMaxHeight = 0
-        this.floating = false
+        this.maxHeight = 0;
+        this.widthForMaxHeight = 0;
+        this.floating = false;
 
         this.groupItem = new MenuItemGroup(this.options.content);
         let dom = this.groupItem.render(this.editorView);
 
-        this.menu.appendChild(dom)
+        this.menu.appendChild(dom);
         this.update();
 
+        // TODO: move to menubar module
+        if(this.context.editor.$.is('.focusMenu')) {
+            $(this.menu).hide().addClass('menu-hidden');
+
+            $(this.context.editor.$).find('.ProseMirror').on('focus', () => {
+                $(this.menu).removeClass('menu-hidden').addClass('menu-visible').show();
+            }).on('blur', () => {
+                if(!$(this.context.editor.$).is('.fullscreen')) {
+                    $(this.menu).removeClass('menu-visible').addClass('menu-hidden').hide();
+                }
+            });
+        }
+
         if (options.floating && !isIOS()) {
-            this.updateFloat()
+            this.updateFloat();
             this.scrollFunc = () => {
-                let root = this.editorView.root
+                let root = this.editorView.root;
                 if (!(root.body || root).contains(this.wrapper))
-                    window.removeEventListener("scroll", this.scrollFunc)
+                    window.removeEventListener("scroll", this.scrollFunc);
                 else
                     this.updateFloat()
-            }
+            };
             window.addEventListener("scroll", this.scrollFunc)
         }
     }
@@ -132,7 +152,7 @@ class MenuBarView {
         this.groupItem.update(this.editorView.state);
 
         let $mainGroup = $(this.menu).find('.'+prefix+'-menu-group:first');
-        $mainGroup.find('')
+        $mainGroup.find('');
 
         if (this.floating) {
             this.updateScrollCursor()
@@ -142,47 +162,48 @@ class MenuBarView {
                 this.maxHeight = 0
             }
             if (this.menu.offsetHeight > this.maxHeight) {
-                this.maxHeight = this.menu.offsetHeight
+                this.maxHeight = this.menu.offsetHeight;
                 this.menu.style.minHeight = this.maxHeight + "px"
             }
         }
+        this.context.event.trigger('afterMenuBarUpdate', this);
     }
 
     updateScrollCursor() {
-        let selection = this.editorView.root.getSelection()
-        if (!selection.focusNode) return
-        let rects = selection.getRangeAt(0).getClientRects()
-        let selRect = rects[selectionIsInverted(selection) ? 0 : rects.length - 1]
-        if (!selRect) return
-        let menuRect = this.menu.getBoundingClientRect()
+        let selection = this.editorView.root.getSelection();
+        if (!selection.focusNode) return;
+        let rects = selection.getRangeAt(0).getClientRects();
+        let selRect = rects[selectionIsInverted(selection) ? 0 : rects.length - 1];
+        if (!selRect) return;
+        let menuRect = this.menu.getBoundingClientRect();
         if (selRect.top < menuRect.bottom && selRect.bottom > menuRect.top) {
-            let scrollable = findWrappingScrollable(this.wrapper)
+            let scrollable = findWrappingScrollable(this.wrapper);
             if (scrollable) scrollable.scrollTop -= (menuRect.bottom - selRect.top)
         }
     }
 
     updateFloat() {
-        let parent = this.wrapper, editorRect = parent.getBoundingClientRect()
+        let parent = this.wrapper, editorRect = parent.getBoundingClientRect();
         if (this.floating) {
             if (editorRect.top >= 0 || editorRect.bottom < this.menu.offsetHeight + 10) {
-                this.floating = false
-                this.menu.style.position = this.menu.style.left = this.menu.style.width = ""
-                this.menu.style.display = ""
-                this.spacer.parentNode.removeChild(this.spacer)
+                this.floating = false;
+                this.menu.style.position = this.menu.style.left = this.menu.style.width = "";
+                this.menu.style.display = "";
+                this.spacer.parentNode.removeChild(this.spacer);
                 this.spacer = null
             } else {
-                let border = (parent.offsetWidth - parent.clientWidth) / 2
-                this.menu.style.left = (editorRect.left + border) + "px"
+                let border = (parent.offsetWidth - parent.clientWidth) / 2;
+                this.menu.style.left = (editorRect.left + border) + "px";
                 this.menu.style.display = (editorRect.top > window.innerHeight ? "none" : "")
             }
         } else {
             if (editorRect.top < 0 && editorRect.bottom >= this.menu.offsetHeight + 10) {
-                this.floating = true
-                let menuRect = this.menu.getBoundingClientRect()
-                this.menu.style.left = menuRect.left + "px"
-                this.menu.style.width = menuRect.width + "px"
-                this.menu.style.position = "fixed"
-                this.spacer = crel("div", {class: prefix + "-spacer", style: `height: ${menuRect.height}px`})
+                this.floating = true;
+                let menuRect = this.menu.getBoundingClientRect();
+                this.menu.style.left = menuRect.left + "px";
+                this.menu.style.width = menuRect.width + "px";
+                this.menu.style.position = "fixed";
+                this.spacer = crel("div", {class: prefix + "-spacer", style: `height: ${menuRect.height}px`});
                 parent.insertBefore(this.spacer, this.menu)
             }
         }
@@ -196,8 +217,8 @@ class MenuBarView {
 
 // Not precise, but close enough
 function selectionIsInverted(selection) {
-    if (selection.anchorNode == selection.focusNode) return selection.anchorOffset > selection.focusOffset
-    return selection.anchorNode.compareDocumentPosition(selection.focusNode) == Node.DOCUMENT_POSITION_FOLLOWING
+    if (selection.anchorNode == selection.focusNode) return selection.anchorOffset > selection.focusOffset;
+    return selection.anchorNode.compareDocumentPosition(selection.focusNode) == Node.DOCUMENT_POSITION_FOLLOWING;
 }
 
 function findWrappingScrollable(node) {
