@@ -37,8 +37,6 @@ function createLinkExtension(id, options) {
             max = state.posMax,
             start = state.pos;
 
-
-
         if (state.src.charCodeAt(state.pos) !== 0x5B/* [ */) {
             return false;
         }
@@ -118,7 +116,13 @@ function createLinkExtension(id, options) {
                 title = '';
             }
 
+            if (pos >= max || state.src.charCodeAt(pos) !== 0x29/* ) */) {
+                // parsing a valid shortcut link failed
+                return false;
+            }
             pos++;
+        } else {
+            return false;
         }
 
         //
