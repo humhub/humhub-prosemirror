@@ -71,7 +71,7 @@ export class MenuItem {
 
         if (!this.dom) throw new RangeError("MenuItem without icon or label property");
 
-        if (options.title) {
+        if (options.title !== 'undefined') {
             const title = (typeof options.title === "function" ? options.title(view.state) : options.title);
             this.dom.setAttribute("title", translate(view, title));
         }
@@ -390,6 +390,8 @@ export class Dropdown extends MenuItemGroup {
     expand(dom, contentDom) {
         let menuDOM = crel("div", {class: prefix + "-dropdown-menu " + (this.options.class || "")}, contentDom);
 
+
+
         let done = false;
 
         function close() {
@@ -400,6 +402,16 @@ export class Dropdown extends MenuItemGroup {
         }
 
         dom.appendChild(menuDOM);
+
+        var $menuDom = $(menuDOM);
+        var right = $menuDom.offset().left + $menuDom.width() ;
+
+        if(right > $(window).width() / 2) {
+            $menuDom.addClass(prefix + "-dropdown-right");
+        } else {
+            $menuDom.removeClass(prefix + "-dropdown-right");
+        }
+
         return {close, node: menuDOM}
     }
 }

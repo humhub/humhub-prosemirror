@@ -11,7 +11,7 @@ function buildMenuItems(context) {
         types:  {type: 'dropdown', sortOrder: 100, label: context.translate("Type"), seperator: true, icon: icons.text, items: []},
         marks:  {type: 'group', id: 'marks-group', sortOrder: 200, items: []},
         format:  {type: 'group', id: 'format-group',  sortOrder: 300, items: [liftItem()]},
-        insert: {type: 'dropdown', id: 'insert-dropdown',  sortOrder: 400, label: context.translate("Insert"), seperator: true, icon: icons.image, class: 'ProseMirror-doprdown-right', items: []},
+        insert: {type: 'dropdown', id: 'insert-dropdown',  sortOrder: 400, label: context.translate("Insert"), seperator: true, icon: icons.image, items: []},
         helper:  {type: 'group', id: 'helper-group', sortOrder: 500, items: [undoItem(), redoItem()]},
         resize:  {type: 'group', id: 'resize-group', sortOrder: 600, items: []},
     };

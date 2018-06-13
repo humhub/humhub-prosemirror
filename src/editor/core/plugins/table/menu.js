@@ -74,7 +74,7 @@ export function menu(context) {
 
 let buildTableMenu = function (context) {
     function item(label, cmd, sortOrder) {
-        return new MenuItem({label, select: cmd, run: cmd, sortOrder: sortOrder})
+        return new MenuItem({label, select: cmd, run: cmd, sortOrder: sortOrder, title: ''})
     }
 
     return [
