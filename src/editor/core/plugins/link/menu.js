@@ -33,7 +33,7 @@ function linkItem(context) {
                         label: context.translate("Link target"),
                         required: true,
                         clean: (val) => {
-                            if (!/^https?:\/\//i.test(val))
+                            if (!/^https?:\/\//i.test(val) && !/^mailto:/i.test(val) && !/^ftps?:\/\//i.test(val))
                                 val = 'http://' + val;
                             return val
                         }
