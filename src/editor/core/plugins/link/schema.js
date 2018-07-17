@@ -12,7 +12,6 @@ const schema = {
             attrs: {
                 href: {},
                 title: {default: null},
-                active: {default: true},
                 target: {default: '_blank'},
                 rel: {default: 'noopener'}
             },

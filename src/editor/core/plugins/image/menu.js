@@ -18,9 +18,9 @@ function insertImageItem(context) {
         },
         run(state, _, view) {
             if (state.selection instanceof NodeSelection && state.selection.node.type === context.schema.nodes.image) {
-                editNode(state.selection.node);
+                editNode(state.selection.node, context, view);
             } else {
-                promt(context.translate("Insert image"), null, view)
+                promt(context.translate("Insert image"), context, null, view)
             }
         }
     })
@@ -35,14 +35,30 @@ export function promt(title, context, attrs, view) {
 
     let {from, to} = state.selection;
 
+    let cleanDimension = function(val) {
+        val = val.trim();
+        if(humhub.modules.util.string.endsWith(val, 'px')) {
+            val = val.substring(0, val.length - 2);
+        }
+        return val;
+    };
+
+    let validateDimension = function(val) {
+        val = cleanDimension(val);
+
+        if(val.length && !/^[0-9]+%?$/.test(val)) {
+            return context.translate('Invalid dimension format used.')
+        }
+    };
+
     openPrompt({
         title: title,
         fields: {
-            src: new TextField({label: context.translate("Location"), required: true, value: attrs && attrs.src}),
-            title: new TextField({label: context.translate("Title"), value: attrs && attrs.title}),
-            alt: new TextField({label: context.translate("Description"), value: attrs ? attrs.alt : state.doc.textBetween(from, to, " ")}),
-            width: new TextField({label: context.translate("Width"), value: attrs && attrs.width}),
-            height: new TextField({label: context.translate("Height"),  value: attrs && attrs.height})
+            src: new TextField({label: context.translate("Location"), required: true, value: attrs && attrs.src, clean: clean}),
+            title: new TextField({label: context.translate("Title"), value: attrs && attrs.title, clean: clean}),
+            alt: new TextField({label: context.translate("Description"), value: attrs ? attrs.alt : state.doc.textBetween(from, to, " "), clean: clean}),
+            width: new TextField({label: context.translate("Width"), value: attrs && attrs.width, clean: cleanDimension, validate: validateDimension }),
+            height: new TextField({label: context.translate("Height"),  value: attrs && attrs.height, clean: cleanDimension, validate: validateDimension})
         },
         callback(attrs) {
             view.dispatch(view.state.tr.replaceSelectionWith(context.schema.nodes.image.createAndFill(attrs)));
@@ -50,6 +66,10 @@ export function promt(title, context, attrs, view) {
         }
     })
 }
+
+let clean = (val) => {
+    return val.replace(/(["'])/g, '');
+};
 
 export function menu(context) {
     return [

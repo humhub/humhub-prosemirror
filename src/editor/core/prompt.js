@@ -11,6 +11,7 @@ class Promt {
     }
 
     render() {
+        $('.ProseMirror-prompt').remove();
         this.$wrapper = $('<div>').addClass(prefix).appendTo($('body'));
         this.buildForm();
         this.initEvents();
@@ -37,13 +38,13 @@ class Promt {
         this.buildFormFields();
 
         this.domFields.forEach(field => {
-            this.$form.append($('<div>').append(field));
+            this.$form.append(field);
         });
 
         this.$form.on('submit', (e) => {
             e.preventDefault();
             this.submit();
-        })
+        });
 
         this.buildButtons();
     }
@@ -51,7 +52,9 @@ class Promt {
     buildFormFields() {
         this.domFields = [];
         for (let name in this.options.fields) {
-            this.domFields.push(this.options.fields[name].render())
+            let field = this.options.fields[name];
+            let $field = $('<div>').append('<label>'+(field.options.label || name)+':</label>').append(this.options.fields[name].render());
+            this.domFields.push($field[0]);
         }
     }
 
@@ -168,7 +171,11 @@ export class Field {
     // :: (dom.Node) → any
     // Read the field's value from its DOM node.
     read(dom) {
-        return dom.value
+        if(dom.value) {
+            return dom.value;
+        } else {
+            return $(dom).find('input')[0].value;
+        }
     }
 
     // :: (any) → ?string
@@ -193,7 +200,6 @@ export class TextField extends Field {
         let input = document.createElement("input");
         input.type = "text";
         input.className = 'form-control';
-        input.placeholder = this.options.label;
         input.value = this.options.value || "";
         input.autocomplete = "off";
         return input

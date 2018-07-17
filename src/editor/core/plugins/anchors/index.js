@@ -6,7 +6,7 @@
  */
 
 // We don't use the official repo https://github.com/valeriangalliat/markdown-it-anchor/issues/39
-import markdown_it_anchor_plugin from "./markdown_anchors"
+import markdown_it_anchor_plugin from "markdown-it-anchor"
 
 const anchors = {
     id: 'anchor',

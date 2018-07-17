@@ -36,6 +36,7 @@ import clipboard from "./clipboard";
 import anchors from "./anchors";
 import fullscreen from "./fullscreen";
 import resizeNav from "./resize_nav";
+import maxHeight from "./max_height";
 
 const plugins = [];
 const pluginMap = {};
@@ -163,6 +164,7 @@ registerPlugin(placeholder, 'markdown');
 registerPlugin(anchors, 'markdown');
 registerPlugin(fullscreen, 'markdown');
 registerPlugin(resizeNav, 'markdown');
+registerPlugin(maxHeight, 'markdown');
 
 registerPreset('normal', {
     extend: 'markdown',

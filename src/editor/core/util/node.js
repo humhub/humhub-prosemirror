@@ -278,6 +278,10 @@ $node.prototype.delete = function (view) {
     view.dispatch(tr);
 };
 
+$node.prototype.get = function (index) {
+    return this.tree[index];
+};
+
 $node.prototype.append = function (node, view) {
     let tr = view.state.tr;
     let doc = view.state.doc;

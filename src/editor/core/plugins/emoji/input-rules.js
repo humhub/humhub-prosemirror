@@ -15,7 +15,7 @@ let shortcutStr = Object.keys(util.shortcuts)
     .map(function (shortcut) {return quoteRE(shortcut); })
     .join('|');
 
-let scanRE = new RegExp('('+shortcutStr+')$');
+let scanRE = new RegExp('(?:^|\\ )('+shortcutStr+')$');
 
 let emojiAutoCompleteRule = function(schema) {
 
@@ -26,13 +26,15 @@ let emojiAutoCompleteRule = function(schema) {
         }
 
         // Match e.g. :) => smiley
-        let emojiDef = util.getEmojiDefinitionByShortcut(match[0]);
+        let emojiDef = util.getEmojiDefinitionByShortcut(match[1]);
         if(emojiDef.name && emojiDef.emoji && emojiDef.$dom) {
             let node = state.schema.nodes.emoji.create({
                 'data-name': emojiDef.name,
                 alt: emojiDef.$dom.attr('alt'),
                 src: emojiDef.$dom.attr('src')
             });
+
+            start = start + (match[0].length - match[1].length);
 
             return state.tr.delete(start, end).replaceSelectionWith(node, false);
         }
@@ -42,7 +44,7 @@ let emojiAutoCompleteRule = function(schema) {
 };
 
 let emojiChooser = function(schema) {
-    return new InputRule(new RegExp('(:$)'), function (state, match, start, end) {
+    return new InputRule(new RegExp('(^|\\ +)(:$)'), function (state, match, start, end) {
 
         const mark = schema.mark('emojiQuery');
         const emojiText = schema.text(':', [mark]);
