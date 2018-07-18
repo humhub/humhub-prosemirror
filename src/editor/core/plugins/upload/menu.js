@@ -48,10 +48,17 @@ let createNodesFromResponse = function(context, response) {
     let schema = context.schema;
     let nodes = [];
 
+    let error =
+
     // Otherwise, insert it at the placeholder's position, and remove the placeholder
     response.result.files.forEach((file) => {
 
         let node;
+
+        if(file.error) {
+            return;
+        }
+
         if(file.mimeIcon === 'mime-image') {
             node = schema.nodes.image.create({src : file.url, title: file.name, alt: file.name});
         } else {

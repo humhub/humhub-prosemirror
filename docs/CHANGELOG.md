@@ -1,4 +1,8 @@
-1.0.4
+1.0.5 (July 18, 2018)
+-----------------------------------------
+- Fix: File upload errors not handled
+
+1.0.4 (July 17, 2018)
 -----------------------------------------
 - Fix: table options padding issue
 - Fix: dropdown menu position not aligned
