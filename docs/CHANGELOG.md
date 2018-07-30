@@ -1,3 +1,8 @@
+1.0.6 (July 30, 2018)
+-----------------------------------------
+- Fix: `context.getPluginOption()` default always overwrites actual option
+- Chng: Added `code` mark to default visible elements
+
 1.0.5 (July 18, 2018)
 -----------------------------------------
 - Fix: File upload errors not handled
