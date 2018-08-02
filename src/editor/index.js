@@ -65,15 +65,18 @@ class MarkdownEditor {
             state: state
         });
 
-        this.$menuBar = this.$.find('.ProseMirror-menubar').hide();
+        // TODO: put into menu class...
+        if(this.$.is('.focusMenu')) {
+            this.$menuBar = this.$.find('.ProseMirror-menubar').hide();
 
-        this.$editor = $(this.view.dom).on('focus', () => {
-            this.$menuBar.show();
-        }).on('blur', () => {
-            if(!this.$.is('.fullscreen')) {
-                this.$menuBar.hide();
-            }
-        });
+            this.$editor = $(this.view.dom).on('focus', () => {
+                this.$menuBar.show();
+            }).on('blur', () => {
+                if(!this.$.is('.fullscreen')) {
+                    this.$menuBar.hide();
+                }
+            });
+        }
 
         this.$editor = $(this.view.dom);
 

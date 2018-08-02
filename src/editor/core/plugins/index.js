@@ -33,7 +33,7 @@ import placeholder from "./placeholder"
 import loader from "./loader"
 import upload from "./upload"
 import clipboard from "./clipboard";
-import anchors from "./anchors";
+//import anchors from "./anchors";
 import fullscreen from "./fullscreen";
 import resizeNav from "./resize_nav";
 
@@ -160,7 +160,7 @@ registerPlugin(link, 'markdown');
 registerPlugin(attributes, 'markdown');
 registerPlugin(upload, 'markdown');
 registerPlugin(placeholder, 'markdown');
-registerPlugin(anchors, 'markdown');
+//registerPlugin(anchors, 'markdown');
 registerPlugin(fullscreen, 'markdown');
 registerPlugin(resizeNav, 'markdown');
 

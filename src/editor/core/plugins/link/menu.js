@@ -42,7 +42,7 @@ function linkItem(context) {
                 },
                 callback(attrs) {
                     toggleMark(mark, attrs)(view.state, view.dispatch);
-                    view.focus()
+                    view.focus();
                 }
             })
         }

@@ -81,7 +81,9 @@ export class MenuItem {
 
         $(this.dom).on("mousedown", e => {
             e.preventDefault();
-            options.run.call(this, view.state, view.dispatch, view, e);
+            if (!$(this.dom).hasClass(prefix + "-disabled")) {
+                options.run.call(this, view.state, view.dispatch, view, e);
+            }
         });
 
         return this.dom;

@@ -13,7 +13,6 @@ const imagePlugin = (context) => {
         props: {
             handleClickOn: (view, pos, node, nodePos, event, direct) => {
                 if(direct && node.type === context.schema.nodes.image) {
-                    debugger;
                     editNode(node, context, view);
                 }
             }
