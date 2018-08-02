@@ -8,7 +8,7 @@
 import {icons, MenuItem} from "../../menu/menu"
 
 
-const SELECTOR_DEFAULT = '.ProseMirror-menu-markCode, .ProseMirror-menu-linkItem, .helper-group, .format-group, .insert-dropdown, .ProseMirror-menu-insertTable, .ProseMirror-menu-fullScreen';
+const SELECTOR_DEFAULT = '.ProseMirror-menu-linkItem, .helper-group, .format-group, .insert-dropdown, .ProseMirror-menu-insertTable, .ProseMirror-menu-fullScreen';
 
 let cache = {};
 

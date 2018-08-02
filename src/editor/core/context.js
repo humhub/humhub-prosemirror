@@ -47,7 +47,7 @@ export default class Context {
         if(!option) {
             return pluginOptions;
         } else if(pluginOptions) {
-            return !(typeof pluginOptions[option]) === 'undefined' ? pluginOptions[option] : defaultValue;
+            return !(typeof pluginOptions[option] === 'undefined') ? pluginOptions[option] : defaultValue;
         }
 
         return defaultValue;

@@ -41,7 +41,7 @@ const mention = {
                 return '<a href="#" class="not-found">@'+name+'</a>';
             }
 
-            return '<a href="'+href+'" data-guid="'+guid+'" target="_blank" rel="noopener">@'+name+'</a>';
+            return '<a href="'+href+'" data-contentcontainer-guid="'+guid+'" target="_blank" rel="noopener">@'+name+'</a>';
         };
 
 

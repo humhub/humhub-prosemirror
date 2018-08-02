@@ -81,6 +81,7 @@ class MarkdownEditor {
         this.$editor = $(this.view.dom);
 
         this.trigger('init');
+        this.trigger('afterInit');
     }
     
     serialize() {

@@ -1,9 +1,14 @@
-import { Plugin } from 'prosemirror-state'
+import { Plugin, TextSelection, NodeSelection } from 'prosemirror-state'
 import { Slice, Fragment } from "prosemirror-model"
+import {editNode} from './menu';
+import {$node} from '../../util/node';
 
 let linkPlugin = (context) => {
     return new Plugin({
         props: {
+            nodeViews: {
+                link(node) { return new LinkView(node, context) }
+            },
             transformPasted: (slice) => {
                 return new Slice(linkify(slice.content, context), slice.openStart, slice.openEnd);
             }
@@ -11,7 +16,36 @@ let linkPlugin = (context) => {
     });
 };
 
-const HTTP_LINK_REGEX = /(https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,})/ig
+class LinkView {
+    constructor(mark, context) {
+        // The editor will use this as the node's DOM representation
+        this.createDom(mark);
+
+
+        this.dom.addEventListener("click", e => {
+            editNode(this.dom, context);
+        });
+
+    }
+
+    createDom(mark) {
+        this.dom = $('<a>').attr({
+            href: clean(mark.attrs.href),
+            target: '_blank',
+            rel: 'noopener',
+        })[0];
+    }
+
+    stopEvent() { return true }
+}
+
+let clean = (val) => {
+    return val.replace(/(["'])/g, '');
+};
+
+const HTTP_LINK_REGEX = /((https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,})|[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})/ig;
+
+
 let linkify = function(fragment, context) {
     let linkified = [];
     let urls = [];
@@ -30,7 +64,12 @@ let linkify = function(fragment, context) {
                     linkified.push(child.cut(pos, start))
                 }
 
-                const urlText = text.slice(start, end);
+                let urlText = text.slice(start, end);
+
+                if(urlText.indexOf('http') !== 0) {
+                    urlText = 'mailto:'+urlText;
+                }
+
                 urls.push(urlText);
                 linkified.push(
                     child.cut(start, end).mark(link.create({href: urlText}).addToSet(child.marks))
