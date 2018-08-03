@@ -1,6 +1,6 @@
 {
   "name": "humhub-prosemirror-richtext",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Prosemirror based richtext implementation for the humhub social network",
   "license": "AGPL-3.0",
   "main": "dist/humhub-editor.js",
