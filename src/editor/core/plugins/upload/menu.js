@@ -59,10 +59,12 @@ let createNodesFromResponse = function(context, response) {
             return;
         }
 
+        let url = file.relUrl || file.url;
+
         if(file.mimeIcon === 'mime-image') {
-            node = schema.nodes.image.create({src : file.url, title: file.name, alt: file.name});
+            node = schema.nodes.image.create({src : url, title: file.name, alt: file.name});
         } else {
-            let linkMark = schema.marks.link.create({href: file.url});
+            let linkMark = schema.marks.link.create({href: url});
             node = schema.text(file.name, [linkMark]);
         }
 

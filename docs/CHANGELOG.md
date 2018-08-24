@@ -1,3 +1,7 @@
+1.0.8 (July 24, 2018)
+-----------------------------------------
+- Chng: Use of relative upload url
+
 1.0.6 (July 30, 2018)
 -----------------------------------------
 - Fix: `context.getPluginOption()` default always overwrites actual option
