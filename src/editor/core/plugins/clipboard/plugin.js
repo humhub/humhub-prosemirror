@@ -8,6 +8,7 @@
 import { Plugin } from 'prosemirror-state';
 import { Node, Slice } from 'prosemirror-model'
 import { getParser } from "../../../markdown/parser"
+import {triggerUpload} from "../upload/service"
 
 const clipboardPlugin = (context) => {
     let parser = getParser(context);
@@ -20,8 +21,16 @@ const clipboardPlugin = (context) => {
                 }
 
                 return slice;
+            },
+            handleDOMEvents: {
+                paste: (view, e) => {
+                    if(e.clipboardData.files && e.clipboardData.files.length) {
+                        triggerUpload(view.state, view, context, e.clipboardData.files);
+                        e.preventDefault();
+                    }
+                }
             }
-        }
+        },
     });
 };
 

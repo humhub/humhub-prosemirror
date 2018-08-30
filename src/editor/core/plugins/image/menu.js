@@ -27,10 +27,10 @@ function insertImageItem(context) {
 }
 
 export function editNode(node, context, view) {
-    promt(context.translate("Edit image"), context, node.attrs, view)
+    promt(context.translate("Edit image"), context, node.attrs, view, node)
 }
 
-export function promt(title, context, attrs, view) {
+export function promt(title, context, attrs, view, node) {
     let state = view.state;
 
     let {from, to} = state.selection;
@@ -61,6 +61,9 @@ export function promt(title, context, attrs, view) {
             height: new TextField({label: context.translate("Height"),  value: attrs && attrs.height, clean: cleanDimension, validate: validateDimension})
         },
         callback(attrs) {
+            if(node && node.attrs.src === attrs.src) {
+                    attrs.fileGuid = node.attrs.fileGuid
+            }
             view.dispatch(view.state.tr.replaceSelectionWith(context.schema.nodes.image.createAndFill(attrs)));
             view.focus()
         }

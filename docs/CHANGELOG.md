@@ -1,3 +1,10 @@
+1.0.9 (August 30, 2018)
+-----------------------------------------
+- Enh: Use of file-guid for uploaded images and files
+- Enh: Paste images from clipboard
+- Fix: Image edit button not removed correctly
+- Fix: Missing addition check for plugin existance in `addPluginToPreset`
+
 1.0.8 (July 24, 2018)
 -----------------------------------------
 - Chng: Use of relative upload url

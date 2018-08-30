@@ -15,7 +15,8 @@ const schema = {
                 alt: {default: null},
                 title: {default: null},
                 width: {default: null},
-                height: {default: null}
+                height: {default: null},
+                fileGuid: { default: null},
             },
             group: "inline",
             draggable: true,
@@ -26,21 +27,35 @@ const schema = {
                         title: dom.getAttribute("title"),
                         alt: dom.getAttribute("alt"),
                         width: dom.getAttribute("width"),
-                        height: dom.getAttribute("height")
+                        height: dom.getAttribute("height"),
+                        fileGuid: dom.getAttribute("data-file-guid")
                     }
                 }
             }],
             toDOM: (node) => {
-                return ["img", node.attrs]
+                let src = (node.attrs.fileGuid) ? humhub.modules.file.getFileUrl(node.attrs.fileGuid)  : node.attrs.src;
+
+                return ["img", {
+                    src: src,
+                    title: node.attrs.title || null,
+                    width: node.attrs.width || null,
+                    height: node.attrs.height || null,
+                    alt: node.attrs.alt || null,
+                    'data-file-guid': node.attrs.fileGuid || null
+                }]
             },
             parseMarkdown: {
                 node: "image", getAttrs: function (tok) {
+                    let src = humhub.modules.file.filterFileUrl(tok.attrGet("src")).url;
+                    let fileGuid = humhub.modules.file.filterFileUrl(tok.attrGet("src")).guid;
+
                     return ({
-                        src: tok.attrGet("src"),
+                        src: src,
                         title: tok.attrGet("title") || null,
                         width: tok.attrGet("width") || null,
                         height: tok.attrGet("height") || null,
-                        alt: tok.children[0] && tok.children[0].content || null
+                        alt: tok.children[0] && tok.children[0].content || null,
+                        fileGuid: fileGuid
                     });
                 }
             },
@@ -54,7 +69,9 @@ const schema = {
                     resizeAddition += (node.attrs.height) ? node.attrs.height : '';
                 }
 
-                state.write("![" + state.esc(node.attrs.alt || "") + "](" + state.esc(node.attrs.src) +
+                let src = (node.attrs.fileGuid) ? 'file-guid:'+node.attrs.fileGuid  : node.attrs.src;
+
+                state.write("![" + state.esc(node.attrs.alt || "") + "](" + state.esc(src) +
                     (node.attrs.title ? " " + state.quote(node.attrs.title) : "") + resizeAddition + ")");
             }
         }

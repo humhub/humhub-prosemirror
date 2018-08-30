@@ -12,7 +12,8 @@ import { editNode } from './menu';
 const imagePlugin = (context) => {
 
     context.editor.$.on('mouseleave', e => {
-        if(!$(e.toElement).closest('.humhub-richtext-inline-menu').length) {
+        let target =  e.toElement || e.relatedTarget;
+        if(!$(target).closest('.humhub-richtext-inline-menu').length) {
             $('.humhub-richtext-inline-menu').remove();
         }
     });
@@ -21,7 +22,14 @@ const imagePlugin = (context) => {
         props: {
             nodeViews: {
                 image(node) { return new ImageView(node, context) }
+            },
+        },
+        filterTransaction: (tr, state) => {
+            if(!(tr.curSelection instanceof NodeSelection)) {
+                $('.humhub-richtext-image-edit').remove();
             }
+
+            return true;
         }
     });
 };
@@ -36,8 +44,7 @@ class ImageView {
             let $img = $(this.dom);
             let offset = $img.offset();
 
-
-            let $edit = $('<div>').addClass('humhub-richtext-inline-menu')
+            let $edit = $('<div>').addClass('humhub-richtext-inline-menu').addClass('humhub-richtext-image-edit')
                 .html('<button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>')
                 .css({
                     position: 'absolute',
@@ -54,23 +61,29 @@ class ImageView {
         });
 
         this.dom.addEventListener("mouseleave", e => {
-            if(!$(e.toElement).closest('.humhub-richtext-inline-menu').length) {
+            let target =  e.toElement || e.relatedTarget;
+            if(!$(target).closest('.humhub-richtext-inline-menu').length) {
                 $('.humhub-richtext-inline-menu').remove();
             }
-        })
+        });
     }
 
     createDom(node) {
         this.dom = $('<img>').attr({
             src: node.attrs.src,
-            title: node.attrs.title || null,
-            width: node.attrs.width || null,
-            height:node.attrs.height || null,
-            alt: node.attrs.alt || null
+            title: clean(node.attrs.title) || null,
+            width: clean(node.attrs.width) || null,
+            height: clean(node.attrs.height) || null,
+            alt: clean(node.attrs.alt) || null,
+            'data-file-guid': clean(node.attrs.fileGuid)
         })[0];
     }
 
     //stopEvent() { return true }
 }
+
+let clean = (val) => {
+    return (val) ? val.replace(/(["'])/g, '') : val;
+};
 
 export {imagePlugin}

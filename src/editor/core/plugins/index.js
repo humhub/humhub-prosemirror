@@ -63,6 +63,11 @@ let addToPreset = function(plugin, presetId,  options) {
         plugin = pluginMap[plugin];
     }
 
+    if(!plugin) {
+        console.warn('Could not add plugin to preset '+presetId);
+        return;
+    }
+
     let preset = presets[presetId] ? presets[presetId].slice() : [];
 
     if(options['before'] && pluginMap[options['before']]) {
@@ -267,7 +272,6 @@ let getPlugins = function(context) {
             }
         });
     }
-
     return context.plugins = result;
 };
 

@@ -20,6 +20,24 @@ const image = {
     },
     registerMarkdownIt: (markdownIt) => {
         markdownIt.use(imsize_plugin);
+
+        let defaultRender = markdownIt.renderer.rules.image || function(tokens, idx, options, env, self) {
+            return self.renderToken(tokens, idx, options);
+        };
+
+        markdownIt.renderer.rules.image = function (tokens, idx, options, env, self) {
+            let srcIndex = tokens[idx].attrIndex('src');
+
+            let srcFilter = humhub.modules.file.filterFileUrl(tokens[idx].attrs[srcIndex][1]);
+            tokens[idx].attrs[srcIndex][1] = srcFilter.url;
+
+            if(srcFilter.guid) {
+                tokens[idx].attrPush(['data-file-guid', srcFilter.guid]); // add new attribute
+            }
+
+            // pass token to default renderer.
+            return defaultRender(tokens, idx, options, env, self);
+        };
     }
 };
 

@@ -13,11 +13,24 @@ const link = {
     schema: schema,
     menu: (context) => menu(context),
     registerMarkdownIt: (md) => {
+
         var defaultRender = md.renderer.rules.link_open || function(tokens, idx, options, env, self) {
             return self.renderToken(tokens, idx, options);
         };
 
         md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
+            var hrefIndex = tokens[idx].attrIndex('href');
+
+            let hrefFilter = humhub.modules.file.filterFileUrl(tokens[idx].attrs[hrefIndex][1]);
+            tokens[idx].attrs[hrefIndex][1] = hrefFilter.url;
+
+            if(hrefFilter.guid) {
+                tokens[idx].attrPush(['data-file-guid', hrefFilter.guid]); // add new attribute
+                tokens[idx].attrPush(['data-file-download', '']); // add new attribute
+                tokens[idx].attrPush(['data-file-url', hrefFilter.url]); // add new attribute
+            }
+
+
             // If you are sure other plugins can't add `target` - drop check below
             var aIndex = tokens[idx].attrIndex('target');
 

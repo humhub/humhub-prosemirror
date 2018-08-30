@@ -83,6 +83,10 @@ export function promt(title, context, attrs, node, mark) {
         fields: fields,
         callback(attrs) {
             if(node) {
+                if(mark.attrs.href === attrs.href) {
+                    attrs.fileGuid = mark.attrs.fileGuid;
+                }
+
                 let newSet = mark.type.removeFromSet(node.marks);
                 let newNode = node.copy(attrs.text);
                 newNode.marks = newSet;

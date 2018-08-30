@@ -1,7 +1,6 @@
-import { Plugin, TextSelection, NodeSelection } from 'prosemirror-state'
+import { Plugin } from 'prosemirror-state'
 import { Slice, Fragment } from "prosemirror-model"
 import {editNode} from './menu';
-import {$node} from '../../util/node';
 
 let linkPlugin = (context) => {
     return new Plugin({
@@ -21,16 +20,15 @@ class LinkView {
         // The editor will use this as the node's DOM representation
         this.createDom(mark);
 
-
         this.dom.addEventListener("click", e => {
             editNode(this.dom, context);
         });
-
     }
 
     createDom(mark) {
         this.dom = $('<a>').attr({
             href: clean(mark.attrs.href),
+            'data-file-guid': clean(mark.attrs.fileGuid),
             target: '_blank',
             rel: 'noopener',
         })[0];
@@ -40,7 +38,7 @@ class LinkView {
 }
 
 let clean = (val) => {
-    return val.replace(/(["'])/g, '');
+    return (val) ? val.replace(/(["'])/g, '') : val;
 };
 
 const HTTP_LINK_REGEX = /((https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,})|[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})/ig;

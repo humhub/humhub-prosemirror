@@ -13,6 +13,7 @@ const schema = {
                 href: {},
                 title: {default: null},
                 target: {default: '_blank'},
+                fileGuid: { default: null},
                 rel: {default: 'noopener'}
             },
             inclusive: false,
@@ -21,25 +22,39 @@ const schema = {
                     tag: "a[href]", getAttrs: function getAttrs(dom) {
                         return {
                             href: dom.getAttribute("href"),
-                            title: dom.getAttribute("title")
+                            title: dom.getAttribute("title"),
+                            fileGuid: dom.getAttribute("data-file-guid")
                         }
                     }
                 }],
             toDOM: (node) => {
-                return ["a", node.attrs]
+                let href = (node.attrs.fileGuid) ? humhub.modules.file.getFileUrl(node.attrs.fileGuid)  : node.attrs.href;
+
+                return ["a", {
+                    href: href,
+                    title: node.attrs.title || null,
+                    target: node.attrs.target || '_blank',
+                    rel: 'noopener',
+                    'data-file-guid': node.attrs.fileGuid || null
+                }]
             },
             parseMarkdown: {
                 mark: "link", getAttrs: function (tok) {
+                    let href = humhub.modules.file.filterFileUrl(tok.attrGet("href")).url;
+                    let fileGuid = humhub.modules.file.filterFileUrl(tok.attrGet("href")).guid;
+
                     return ({
-                        href: tok.attrGet("href"),
-                        title: tok.attrGet("title") || null
+                        href: href,
+                        title: tok.attrGet("title") || null,
+                        fileGuid: fileGuid
                     });
                 }
             },
             toMarkdown: {
                 open: "[",
                 close: function close(state, mark) {
-                    return "](" + state.esc(mark.attrs.href) + (mark.attrs.title ? " " + state.quote(mark.attrs.title) : "") + ")"
+                    let href = (mark.attrs.fileGuid) ? 'file-guid:'+mark.attrs.fileGuid  : mark.attrs.href;
+                    return "](" + state.esc(href) + (mark.attrs.title ? " " + state.quote(mark.attrs.title) : "") + ")"
                 }
             }
         }
