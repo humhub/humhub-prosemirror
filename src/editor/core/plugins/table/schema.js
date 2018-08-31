@@ -108,11 +108,12 @@ let renderCell = function(state, node, headMarker) {
     state.write(' ');
     if(headMarker) {
         (node.textContent.length) ? state.write(state.repeat('-', node.textContent.length)) : state.write('---');
-        if(node.attrs.style && node.attrs.style.indexOf("text-align:right") >= 0) {
+       /* if(node.attrs.style && node.attrs.style.indexOf("text-align:right") >= 0) {
             state.write(':');
         } else {
             state.write(' ');
-        }
+        }*/
+        state.write(' ');
     } else {
         state.renderContent(node);
 

@@ -33,111 +33,20 @@ import placeholder from "./placeholder"
 import loader from "./loader"
 import upload from "./upload"
 import clipboard from "./clipboard";
-//import anchors from "./anchors";
+import anchors from "./anchors";
 import fullscreen from "./fullscreen";
 import resizeNav from "./resize_nav";
 import maxHeight from "./max_height";
+import {PluginRegistry} from "./registry";
 
-const plugins = [];
-const pluginMap = {};
-
-const presets = {};
+const registry = new PluginRegistry();
 
 let registerPlugin = function(plugin, options) {
-    options = options || {};
-
-    plugins.push(plugin);
-    pluginMap[plugin.id] = plugin;
-
-    if(typeof options === 'string') {
-        options = {preset:options};
-    }
-
-    if(options.preset) {
-        addToPreset(plugin, options.preset, options);
-    }
-};
-
-let addToPreset = function(plugin, presetId,  options) {
-    if(typeof plugin === 'string') {
-        plugin = pluginMap[plugin];
-    }
-
-    if(!plugin) {
-        console.warn('Could not add plugin to preset '+presetId);
-        return;
-    }
-
-    let preset = presets[presetId] ? presets[presetId].slice() : [];
-
-    if(options['before'] && pluginMap[options['before']]) {
-        let index = preset.indexOf(pluginMap[options['before']]);
-        if (index >= 0) {
-            preset.splice(index, 0, plugin);
-        } else {
-            console.warn('Tried appending plugin before non existing preset plugin: '+presetId+' before:'+options['before']);
-            preset.push(plugin);
-        }
-    } else if(options['after'] && pluginMap[options['after']]) {
-        let index = preset.indexOf(pluginMap[options['after']]);
-        if (index >= 0) {
-            preset.splice(index+1, 0, plugin);
-        } else {
-            console.warn('Tried appending plugin after non existing preset plugin: '+presetId+' after:'+options['after']);
-            preset.push(plugin);
-        }
-    } else {
-        preset.push(plugin);
-    }
-
-    presets[presetId] = preset;
+    registry.register(plugin, options);
 };
 
 let registerPreset = function(id, plugins) {
-
-    let result = [];
-
-    if(Array.isArray(plugins)) {
-        plugins.forEach((pluginId) => {
-            let plugin = pluginMap[pluginId];
-            if(plugin) {
-                result.push(plugin);
-            }
-        });
-    } else if(plugins.extend) {
-        let toExtend =  presets[plugins.extend];
-
-        if(!toExtend) {
-            console.error('Could not extend richtext preset '+plugins.extend+' preset not registered!');
-            return;
-        }
-
-        if(plugins.exclude && Array.isArray(plugins.exclude)) {
-            toExtend.forEach((plugin) => {
-                if(plugin && !plugins.exclude.includes(plugin.id)) {
-                    result.push(plugin);
-                }
-            });
-        } else {
-            result = toExtend.slice(0);
-        }
-
-        if(plugins.include && Array.isArray(plugins.include)) {
-            plugins.include.forEach((plugin) => {
-                if(!pluginMap[plugin]) {
-                    console.error('Could not include plugin '+plugin+' to preset '+id+' plugin not found!');
-                } else {
-                    result.push(pluginMap[plugin]);
-                }
-            });
-        }
-    }
-
-    presets[id] = result;
-
-    if(plugins.callback) {
-        plugins.callback.apply(result, [addToPreset])
-    }
+    registry.registerPreset(id, plugins);
 };
 
 registerPlugin(doc, 'markdown');
@@ -166,7 +75,7 @@ registerPlugin(link, 'markdown');
 registerPlugin(attributes, 'markdown');
 registerPlugin(upload, 'markdown');
 registerPlugin(placeholder, 'markdown');
-//registerPlugin(anchors, 'markdown');
+registerPlugin(anchors);
 registerPlugin(fullscreen, 'markdown');
 registerPlugin(resizeNav, 'markdown');
 registerPlugin(maxHeight, 'markdown');
@@ -185,6 +94,15 @@ registerPreset('normal', {
 
         addToPreset('oembed', 'normal', {
             'before': 'ordered_list'
+        });
+    }
+});
+
+registerPreset('document', {
+    extend: 'normal',
+    callback: function(addToPreset) {
+        addToPreset('anchor', 'document', {
+            'before': 'fullscreen'
         });
     }
 });
@@ -248,7 +166,9 @@ let getPlugins = function(context) {
         return context.plugins;
     }
 
-    let toExtend = presets[options.preset] ?  presets[options.preset] : plugins;
+    let presetMap = registry.getPresetRegistry(context);
+
+    let toExtend = presetMap.get(options.preset) ?  presetMap.get(options.preset) : registry.plugins;
 
     if(!PresetManager.isCustomPluginSet(options)) {
         return context.plugins = toExtend.slice();
@@ -264,11 +184,11 @@ let getPlugins = function(context) {
     }
 
     if(options.include) {
-        options.include.forEach((include) => {
-            if(plugins[include]) {
-                result.push(plugins[include]);
+        options.include.forEach((pluginId) => {
+            if(registry.plugins[pluginId]) {
+                result.push(plugins[pluginId]);
             } else {
-                console.error('Could not include plugin '+include+' plugin not registered!');
+                console.error('Could not include plugin '+pluginId+' plugin not registered!');
             }
         });
     }
@@ -296,10 +216,10 @@ let buildPlugins = function(context) {
     plugins.forEach((plugin) => {
 
         if(plugin.init) {
-            plugin.init(context);
+            plugin.init(context, context.editor.isEdit());
         }
 
-        if(plugin.plugins) {
+        if(context.editor.isEdit() && plugin.plugins) {
             let pl = plugin.plugins(context);
             if(pl && pl.length) {
                 result = result.concat(pl);

@@ -8,5 +8,7 @@
 export {getParser} from "./parser"
 export {getSerializer} from "./serializer"
 export {getRenderer} from "./renderer"
+export {createLinkExtension} from "./linkExtensionTokenizer"
+export * from "prosemirror-markdown"
 
 

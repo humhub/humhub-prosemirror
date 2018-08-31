@@ -23,6 +23,7 @@ const schema = {
                         return {
                             href: dom.getAttribute("href"),
                             title: dom.getAttribute("title"),
+                            target: dom.getAttribute("target"),
                             fileGuid: dom.getAttribute("data-file-guid")
                         }
                     }

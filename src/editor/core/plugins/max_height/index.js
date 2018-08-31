@@ -10,7 +10,11 @@ import markdown_it_anchor_plugin from "markdown-it-anchor"
 
 const maxHeight = {
     id: 'max-height',
-    init: (context) => {
+    init: (context, isEdit) => {
+        if(!isEdit) {
+            return;
+        }
+
         context.editor.on('afterInit', () => {
             if(context.options.maxHeight) {
                 context.editor.$.find('.humhub-ui-richtext').css({'max-height': context.options.maxHeight,'overflow': 'auto'});

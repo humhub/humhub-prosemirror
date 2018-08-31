@@ -16,11 +16,6 @@ import {keymap} from "./keymap"
 const emoji = {
     id: 'emoji',
     schema: schema,
-    init: (context) => {
-        if(context.options.emoji && context.options.emoji.twemoji) {
-            $.extend(twemoji, context.options.emoji.twemoji);
-        }
-    },
     inputRules: (schema) => {
         return [
             emojiAutoCompleteRule(schema),
@@ -33,7 +28,7 @@ const emoji = {
             emojiPlugin(context)
         ]
     },
-    registerMarkdownIt: (markdownIt, context) => {
+    registerMarkdownIt: (markdownIt) => {
         markdownIt.use(emoji_plugin, getMarkdownItOpts());
         markdownIt.renderer.rules.emoji = function(token, idx) {
             let emojiToken = token[idx];

@@ -36,7 +36,7 @@ const link = {
 
             if (aIndex < 0) {
                 tokens[idx].attrPush(['target', '_blank']); // add new attribute
-            } else {
+            } else if(!tokens[idx].attrs[aIndex][1]) {
                 tokens[idx].attrs[aIndex][1] = '_blank';    // replace value of existing attr
             }
 

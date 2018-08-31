@@ -7,18 +7,27 @@
 
 // Used as input to Rollup to generate the prosemirror js file
 
-import {EditorState} from "prosemirror-state"
-import {EditorView} from "prosemirror-view"
+import * as state from "prosemirror-state"
+import * as view from "prosemirror-view"
+import * as transform from "prosemirror-transform"
+import * as inputRules from "prosemirror-inputrules"
+import * as commands from "prosemirror-commands"
+import * as history from "prosemirror-history"
+import * as keymap from "prosemirror-keymap"
+import * as model from "prosemirror-model"
+import * as menu from './core/menu'
+import * as pmmenu from "prosemirror-menu"
 import {fixTables} from "prosemirror-tables"
 
 import {getParser, getSerializer, getRenderer} from "./markdown"
 import {setupPlugins} from "./core/index"
 import {$node} from "./core/util/node"
-import {registerPreset, registerPlugin} from "./core/plugins"
+import {registerPreset, registerPlugin, buildPlugins} from "./core/plugins"
+import * as markdown from "./markdown/index"
 
 import MentionProvider from "./core/plugins/mention/provider"
 
-import * as menu from './core/menu'
+
 
 import Context from './core/context'
 
@@ -40,6 +49,14 @@ class MarkdownEditor {
         this.parser = getParser(this.context);
         this.serializer = getSerializer(this.context);
         this.renderer = getRenderer(this.context);
+
+        if(!this.isEdit()) {
+            buildPlugins(this.context);
+        }
+    }
+
+    isEdit() {
+        return this.$.is('.ProsemirrorEditor');
     }
 
     clear() {
@@ -53,16 +70,16 @@ class MarkdownEditor {
             this.view.destroy();
         }
 
-        let state = EditorState.create({
+        let editorState = state.EditorState.create({
             doc: this.parser.parse(md),
             plugins: setupPlugins(this.context)
         });
 
-        let fix = fixTables(state);
-        state = (fix) ? state.apply(fix.setMeta("addToHistory", false)) : state;
+        let fix = fixTables(editorState);
+        editorState = (fix) ? editorState.apply(fix.setMeta("addToHistory", false)) : editorState;
 
-        this.view =  new EditorView(this.$[0], {
-            state: state
+        this.view =  new view.EditorView(this.$[0], {
+            state: editorState
         });
 
         // TODO: put into menu class...
@@ -103,14 +120,22 @@ class MarkdownEditor {
 
 window.prosemirror = {
     MarkdownEditor: MarkdownEditor,
-    EditorState: EditorState,
+    state: state,
+    view: view,
+    transform: transform,
+    inputRules: inputRules,
+    model: model,
+    commands: commands,
+    history: history,
+    keymap: keymap,
+    menu: menu,
+    pmmenu: pmmenu,
     getRenderer: getRenderer,
     plugin: {
         registerPreset: registerPreset,
-        registerPlugin: registerPlugin
+        registerPlugin: registerPlugin,
+        markdown: markdown
     },
-    menu: menu,
     $node: $node,
     MentionProvider: MentionProvider
 };
-

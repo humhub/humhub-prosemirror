@@ -26,7 +26,7 @@ let createRenderer = function(context) {
     const plugins = getPlugins(context);
     plugins.forEach((plugin) => {
         if(plugin.registerMarkdownIt) {
-            plugin.registerMarkdownIt(renderer, context);
+            plugin.registerMarkdownIt(renderer);
         }
     });
 

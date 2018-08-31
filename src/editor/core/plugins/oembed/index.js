@@ -11,7 +11,11 @@ import {$node} from '../../util/node'
 const oembed = {
     id: 'oembed',
     schema: schema,
-    init: (context) => {
+    init: (context, isEdit) => {
+        if(!isEdit) {
+            return;
+        }
+
         context.event.on('linkified', (evt, urls) => {
             let doc = context.editor.view.state.doc;
             if($node(doc).find('oembed').size() >= context.getPluginOption('oembed', 'max', 5)) {

@@ -29,7 +29,7 @@ class LinkView {
         this.dom = $('<a>').attr({
             href: clean(mark.attrs.href),
             'data-file-guid': clean(mark.attrs.fileGuid),
-            target: '_blank',
+            target: clean(mark.attrs.target) || '_blank',
             rel: 'noopener',
         })[0];
     }
