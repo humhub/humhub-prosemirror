@@ -132,7 +132,7 @@ window.prosemirror = {
     history: history,
     keymap: keymap,
     menu: menu,
-    loader: loader
+    loader: loader,
     pmmenu: pmmenu,
     prompt: prompt,
     getRenderer: getRenderer,
