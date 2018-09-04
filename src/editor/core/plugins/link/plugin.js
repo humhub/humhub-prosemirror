@@ -19,7 +19,6 @@ class LinkView {
     constructor(mark, context) {
         // The editor will use this as the node's DOM representation
         this.createDom(mark);
-
         this.dom.addEventListener("click", e => {
             editNode(this.dom, context);
         });

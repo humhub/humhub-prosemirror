@@ -38,7 +38,6 @@ export default class Context {
         }
 
         getPlugins(this);
-        debugger;
         getSchema(this);
     }
 

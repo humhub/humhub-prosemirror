@@ -97,9 +97,9 @@ MentionProvider.prototype.update = function(loading) {
     var that = this;
     if(this.result && this.result.length) {
         let $list = $('<ul style="list-style-type: none;padding:0px;margin:0px;">');
-
         this.result.forEach(function (item) {
-            var $li = (item.image) ? $('<li>' + item.image + ' ' + item.name + '</li>') : $('<li>' + item.name + '</li>');
+            var name =  humhub.modules.util.string.encode(item.name);
+            var $li = (item.image) ? $('<li>' + item.image + ' ' + name + '</li>') : $('<li>' + name + '</li>');
 
             $li.data('item', item).on('click', () => {
                 that.$container.find('.cur').removeClass('cur');
@@ -114,7 +114,8 @@ MentionProvider.prototype.update = function(loading) {
 
         this.$container.append($list);
     } else if(this.result.text) {
-        this.$container.append($('<span>'+this.result.text+'</span>'));
+        var name =  humhub.modules.util.string.encode(this.result.text);
+        this.$container.append($('<span>'+name+'</span>'));
     } else if(this.result.loader) {
         let $loader = humhub.require('ui.loader').set($('<span>'), {
             span: true,
