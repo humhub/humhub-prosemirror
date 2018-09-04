@@ -17,7 +17,10 @@ import * as keymap from "prosemirror-keymap"
 import * as model from "prosemirror-model"
 import * as menu from './core/menu'
 import * as pmmenu from "prosemirror-menu"
+import * as loader from "./core/plugins/loader/plugin"
 import {fixTables} from "prosemirror-tables"
+
+import * as prompt from './core/prompt'
 
 import {getParser, getSerializer, getRenderer} from "./markdown"
 import {setupPlugins} from "./core/index"
@@ -129,7 +132,9 @@ window.prosemirror = {
     history: history,
     keymap: keymap,
     menu: menu,
+    loader: loader
     pmmenu: pmmenu,
+    prompt: prompt,
     getRenderer: getRenderer,
     plugin: {
         registerPreset: registerPreset,
