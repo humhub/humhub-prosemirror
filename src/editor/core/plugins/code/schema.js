@@ -8,7 +8,9 @@
 const schema = {
     marks: {
         code:{
+            isCode: true,
             sortOrder: 400,
+            preventMarks: ['link'],
             parseDOM: [{tag: "code"}],
             toDOM: () => {
                 return ["code"]
