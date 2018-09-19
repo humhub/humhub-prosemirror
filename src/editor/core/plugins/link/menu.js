@@ -20,7 +20,21 @@ function linkItem(context) {
             return markActive(state, mark)
         },
         enable(state) {
-            return !state.selection.empty
+            if(state.selection.empty) {
+                return false;
+            }
+
+            var allowLink = true;
+            state.doc.nodesBetween(state.selection.$from.pos, state.selection.$to.pos, function(node, start, parent, index) {
+                node.marks.forEach(function(mark) {
+                    let spec = mark.type.spec;
+                    if(spec.preventMarks && $.inArray('link', spec.preventMarks) >= 0) {
+                        allowLink = false;
+                    }
+                });
+            });
+
+            return allowLink;
         },
         run(state, dispatch, view) {
             if (markActive(state, mark)) {

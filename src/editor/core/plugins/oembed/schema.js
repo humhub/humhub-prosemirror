@@ -22,6 +22,7 @@ const oembed = {
     attrs: {
         href: {},
     },
+    marks: "",
     atom: true,
     draggable: true,
     inline: true,

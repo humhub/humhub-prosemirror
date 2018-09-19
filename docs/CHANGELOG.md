@@ -1,9 +1,15 @@
+1.0.10
+-----------------------------------------
+- Fix https://github.com/humhub/humhub/issues/3287 inline code block encoding
+- Enh: Added `preventMarks` on MarkSpec (currently only supported by the link menu item)
+
 1.0.9 (August 30, 2018)
 -----------------------------------------
 - Enh: Use of file-guid for uploaded images and files
 - Enh: Paste images from clipboard
 - Fix: Image edit button not removed correctly
 - Fix: Missing addition check for plugin existance in `addPluginToPreset`
+- Enh: Added `link.options.validate` function to intercept link input validation
 - Fix: Split editor and render presets and added `Plugin.renderOnly` and `Plugin.editorOnly` in order to exclude plugins
 - Enh: Added `MarkdownEditor.isEdit()` for checking if the richtext is in edit or render mode
 - Enh: Readded `anchor` plugin

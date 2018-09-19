@@ -4,6 +4,7 @@ const schema = {
             sortOrder: 200,
             content: "block+",
             group: "block",
+            marks: "",
             parseDOM: [{tag: "blockquote"}],
             toDOM: function toDOM() {
                 return ["blockquote", 0]
