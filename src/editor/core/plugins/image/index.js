@@ -28,7 +28,7 @@ const image = {
         markdownIt.renderer.rules.image = function (tokens, idx, options, env, self) {
             let srcIndex = tokens[idx].attrIndex('src');
 
-            let srcFilter = humhub.modules.file.filterFileUrl(tokens[idx].attrs[srcIndex][1]);
+            let srcFilter = (window.humhub) ? humhub.modules.file.filterFileUrl(tokens[idx].attrs[srcIndex][1]) : {url : tokens[idx].attrs[srcIndex][1]};
             tokens[idx].attrs[srcIndex][1] = srcFilter.url;
 
             if(srcFilter.guid) {

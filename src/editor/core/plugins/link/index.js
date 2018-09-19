@@ -21,7 +21,7 @@ const link = {
         md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
             var hrefIndex = tokens[idx].attrIndex('href');
 
-            let hrefFilter = humhub.modules.file.filterFileUrl(tokens[idx].attrs[hrefIndex][1]);
+            let hrefFilter = (window.humhub) ? humhub.modules.file.filterFileUrl(tokens[idx].attrs[hrefIndex][1]) : {url: tokens[idx].attrs[hrefIndex][1] };
             tokens[idx].attrs[hrefIndex][1] = hrefFilter.url;
 
             if(hrefFilter.guid) {

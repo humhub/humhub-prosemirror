@@ -29,7 +29,7 @@ const schema = {
                     }
                 }],
             toDOM: (node) => {
-                let href = (node.attrs.fileGuid) ? humhub.modules.file.getFileUrl(node.attrs.fileGuid)  : node.attrs.href;
+                let href = (window.humhub && node.attrs.fileGuid) ? humhub.modules.file.getFileUrl(node.attrs.fileGuid)  : node.attrs.href;
 
                 return ["a", {
                     href: href,
@@ -41,8 +41,8 @@ const schema = {
             },
             parseMarkdown: {
                 mark: "link", getAttrs: function (tok) {
-                    let href = humhub.modules.file.filterFileUrl(tok.attrGet("href")).url;
-                    let fileGuid = humhub.modules.file.filterFileUrl(tok.attrGet("href")).guid;
+                    let href = (window.humhub) ? humhub.modules.file.filterFileUrl(tok.attrGet("href")).url : tok.attrGet("href");
+                    let fileGuid = (window.humhub) ? humhub.modules.file.filterFileUrl(tok.attrGet("href")).guid : null;
 
                     return ({
                         href: href,

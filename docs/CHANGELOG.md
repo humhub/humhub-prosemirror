@@ -4,6 +4,10 @@
 - Enh: Paste images from clipboard
 - Fix: Image edit button not removed correctly
 - Fix: Missing addition check for plugin existance in `addPluginToPreset`
+- Fix: Split editor and render presets and added `Plugin.renderOnly` and `Plugin.editorOnly` in order to exclude plugins
+- Enh: Added `MarkdownEditor.isEdit()` for checking if the richtext is in edit or render mode
+- Enh: Readded `anchor` plugin
+- Enh: Added prosemirror core to exports
 
 1.0.8 (July 24, 2018)
 -----------------------------------------

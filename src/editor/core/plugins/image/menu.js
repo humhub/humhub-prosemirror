@@ -30,6 +30,28 @@ export function editNode(node, context, view) {
     promt(context.translate("Edit image"), context, node.attrs, view, node)
 }
 
+let isDefined = function(obj) {
+    if(arguments.length > 1) {
+        let result = true;
+        let that = this;
+        this.each(arguments, function(index, value) {
+            if(!isDefined(value)) {
+                return false;
+            }
+        });
+
+        return result;
+    }
+    return typeof obj !== 'undefined';
+};
+
+let endsWith = function(val, suffix) {
+    if(!isDefined(val) || !isDefined(suffix)) {
+        return false;
+    }
+    return val.indexOf(suffix, val.length - suffix.length) !== -1;
+};
+
 export function promt(title, context, attrs, view, node) {
     let state = view.state;
 
@@ -37,7 +59,7 @@ export function promt(title, context, attrs, view, node) {
 
     let cleanDimension = function(val) {
         val = val.trim();
-        if(humhub.modules.util.string.endsWith(val, 'px')) {
+        if(endsWith(val, 'px')) {
             val = val.substring(0, val.length - 2);
         }
         return val;
