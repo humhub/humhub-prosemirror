@@ -163,7 +163,6 @@ class MenuBarView {
             }
             if (this.menu.offsetHeight > this.maxHeight) {
                 this.maxHeight = this.menu.offsetHeight;
-                this.menu.style.minHeight = this.maxHeight + "px"
             }
         }
         this.context.event.trigger('afterMenuBarUpdate', this);

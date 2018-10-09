@@ -1,4 +1,8 @@
-1.0.10
+1.0.11 (September 20, 2018)
+-----------------------------------------
+- Fix: mobile view wrong min-height calculation
+
+1.0.10 (September 20, 2018)
 -----------------------------------------
 - Fix https://github.com/humhub/humhub/issues/3287 inline code block encoding
 - Enh: Added `preventMarks` on MarkSpec (currently only supported by the link menu item)
