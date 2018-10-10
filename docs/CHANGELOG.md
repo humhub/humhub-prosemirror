@@ -1,3 +1,7 @@
+1.0.12
+-----------------------------------------
+- Fix: state.storedMarks are cleaned by mention plugin.
+
 1.0.11 (October 10, 2018)
 -----------------------------------------
 - Fix: mobile view wrong min-height calculation

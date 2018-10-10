@@ -29,7 +29,6 @@ export class MentionState {
 
         if (!this.active) {
             return this.reset();
-
         }
 
         let $query = this.findQueryNode();
@@ -58,7 +57,12 @@ export class MentionState {
     }
 
     reset() {
-        this.state.storedMarks = [];
+        const { mentionQuery } = this.state.schema.marks;
+
+        if(this.state.storedMarks && this.state.storedMarks.length) {
+            this.state.storedMarks = mentionQuery.removeFromSet(this.state.storedMarks);
+        }
+        //this.state.storedMarks = [];
         this.active = false;
         this.query = null;
         this.provider.reset();
