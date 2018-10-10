@@ -52,7 +52,7 @@ let getEmojiDefinitionByShortcut = function(shortcut) {
 };
 
 let getNameByShortcut = function(shortcut) {
-    return shortcuts[shortcut];
+    return String(shortcuts[shortcut]);
 };
 
 let getCharByName = function(name) {
@@ -60,11 +60,12 @@ let getCharByName = function(name) {
 };
 
 let getNameByChar = function(emojiChar) {
-    return emoji_defs_by_char[emojiChar];
+    return String(emoji_defs_by_char[emojiChar]);
 };
 
 let getCharToDom = function(emojiChar, name) {
-    name = name || emoji_defs_by_char[emojiChar];
+    name =(typeof name !== 'undefined') ? name : emoji_defs_by_char[emojiChar];
+    name = String(name);
 
     let parsed = twemoji.parse(emojiChar, {attributes: (icon, variant) => {
         return {'data-name': name, 'style': 'width:16px'};
@@ -83,7 +84,7 @@ let getByCategory = function(category) {
         byCategory = {};
         emojilib.ordered.forEach((name) => {
             let emojiDef = emojilib.lib[name];
-            emojiDef.name = name;
+            emojiDef.name = String(name);
             byCategory[emojiDef.category] = byCategory[emojiDef.category] || [];
             byCategory[emojiDef.category].push(emojiDef);
         });

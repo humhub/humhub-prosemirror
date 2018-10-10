@@ -19,6 +19,7 @@ export class MentionState {
     }
 
     update(state, view) {
+        console.log('Call');
         this.view = view;
         this.state = state;
         const { mentionQuery } = state.schema.marks;
@@ -29,11 +30,12 @@ export class MentionState {
 
         if (!this.active) {
             return this.reset();
+
         }
 
         let $query = this.findQueryNode();
         if(endsWith($query.text(), '  ')) {
-            this.view.dispatch(this.state.tr.removeMark(0, this.state.doc.nodeSize -2, mentionQuery));
+            view.dispatch(this.state.tr.removeMark(0, this.state.doc.nodeSize -2, mentionQuery));
             return this.reset();
         }
 
@@ -57,12 +59,18 @@ export class MentionState {
     }
 
     reset() {
+        this.state.storedMarks = [];
         this.active = false;
         this.query = null;
         this.provider.reset();
     }
 
     addMention(item) {
+        if(!item || !item.name || !item.guid) {
+            this.view.dispatch(this.state.tr.removeMark(0, this.state.doc.nodeSize -2, mentionQuery));
+            this.reset();
+            return;
+        }
         const { mention } = this.state.schema.nodes;
         const { mentionQuery} = this.state.schema.marks;
 

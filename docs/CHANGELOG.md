@@ -1,6 +1,8 @@
 1.0.11
 -----------------------------------------
 - Fix: mobile view wrong min-height calculation
+- Fix: Mentioning mark not removed when deleting @ https://github.com/humhub/humhub/issues/3328
+- Fix: Emoji thumbs down not working
 
 1.0.10 (September 20, 2018)
 -----------------------------------------

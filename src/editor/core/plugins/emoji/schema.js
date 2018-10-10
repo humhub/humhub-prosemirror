@@ -19,7 +19,7 @@ const schema = {
                     return {
                         src: dom.getAttribute("src"),
                         alt: dom.getAttribute("alt"),
-                        'data-name': dom.getAttribute('data-name')
+                        'data-name': String(dom.getAttribute('data-name'))
                     }
                 }
             }],
@@ -30,7 +30,7 @@ const schema = {
                 node: "emoji", getAttrs: function (tok) {
                     let $dom = $(twemoji.parse(tok.content));
                     return ({
-                        'data-name': tok.markup,
+                        'data-name': String(tok.markup),
                         alt: $dom.attr('alt'),
                         src: $dom.attr('src')
                     })

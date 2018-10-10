@@ -76,7 +76,7 @@ export class EmojiState {
         const { emojiQuery } = this.state.schema.marks;
 
         const nodes = [emoji.create({
-            'data-name': item.name,
+            'data-name': String(item.name),
             alt: item.alt,
             src: item.src
         }, null)];
