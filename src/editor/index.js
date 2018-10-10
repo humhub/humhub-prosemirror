@@ -68,6 +68,13 @@ class MarkdownEditor {
         this.init();
     }
 
+    getStage() {
+        if(!this.$stage) {
+            this.$stage = this.$.find('.humhub-ui-richtext');
+        }
+        return this.$stage;
+    }
+
     init(md = "") {
         if(this.view) {
             this.view.destroy();

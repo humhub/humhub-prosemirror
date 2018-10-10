@@ -1,8 +1,10 @@
-1.0.11
+1.0.11 (October 10, 2018)
 -----------------------------------------
 - Fix: mobile view wrong min-height calculation
 - Fix: Mentioning mark not removed when deleting @ https://github.com/humhub/humhub/issues/3328
 - Fix: Emoji thumbs down not working
+- Enh: Added `scrollActive` and `scrollInactive` events to `max_height` plugin
+- Enh: Added `MarkdownEdtir.getStage()` for recieving stage jquery object
 
 1.0.10 (September 20, 2018)
 -----------------------------------------

@@ -19,7 +19,6 @@ export class MentionState {
     }
 
     update(state, view) {
-        console.log('Call');
         this.view = view;
         this.state = state;
         const { mentionQuery } = state.schema.marks;
