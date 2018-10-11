@@ -1,6 +1,7 @@
 1.0.12
 -----------------------------------------
 - Fix: state.storedMarks are cleaned by mention plugin.
+- Fix: `MarkdownEditor.clear()` does not cleanup $stage cached node
 
 1.0.11 (October 10, 2018)
 -----------------------------------------
@@ -8,7 +9,7 @@
 - Fix: Mentioning mark not removed when deleting @ https://github.com/humhub/humhub/issues/3328
 - Fix: Emoji thumbs down not working
 - Enh: Added `scrollActive` and `scrollInactive` events to `max_height` plugin
-- Enh: Added `MarkdownEdtir.getStage()` for recieving stage jquery object
+- Enh: Added `MarkdownEditor.getStage()` for recieving stage jquery object
 
 1.0.10 (September 20, 2018)
 -----------------------------------------

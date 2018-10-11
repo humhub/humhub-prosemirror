@@ -64,7 +64,8 @@ class MarkdownEditor {
 
     clear() {
         this.view.destroy();
-        this.context.event.trigger('clear');
+        this.context.clear();
+        this.$stage = null;
         this.init();
     }
 

@@ -41,6 +41,10 @@ export default class Context {
         getSchema(this);
     }
 
+    clear() {
+        this.event.trigger('clear');
+    }
+
     getPluginOption(id, option, defaultValue) {
         let pluginOptions =  this.options[id];
 
