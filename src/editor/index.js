@@ -76,6 +76,14 @@ class MarkdownEditor {
         return this.$stage;
     }
 
+    isEmpty() {
+        let doc = this.view.state.doc;
+        return doc.childCount === 1 &&
+            doc.firstChild.type.name === 'paragraph' &&
+            doc.firstChild.content.size === 0 &&
+            !this.context.hasContentDecorations()
+    };
+
     init(md = "") {
         if(this.view) {
             this.view.destroy();
@@ -109,7 +117,6 @@ class MarkdownEditor {
         this.$editor = $(this.view.dom);
 
         this.trigger('init');
-        this.trigger('afterInit');
     }
     
     serialize() {
