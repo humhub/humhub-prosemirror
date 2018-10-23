@@ -1,4 +1,10 @@
-1.0.12
+1.0.13 (October 23, 2018)
+-----------------------------------------
+- Fix: Removed redundant `afterInit` call
+- Fix: max_height plugin triggers `scrollActive` for empty/invisible editor states
+- Enh: Added `MarkdownEditor.isEmpty()`
+
+1.0.12 (October 11, 2018)
 -----------------------------------------
 - Fix: state.storedMarks are cleaned by mention plugin.
 - Fix: `MarkdownEditor.clear()` does not cleanup $stage cached node
