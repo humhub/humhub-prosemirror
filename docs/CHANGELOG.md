@@ -1,3 +1,7 @@
+1.0.14 (October 23, 2018)
+-----------------------------------------
+- Fix: Downgraded to prosemirror-dropcursor v 1.0.1
+
 1.0.13 (October 23, 2018)
 -----------------------------------------
 - Fix: Removed redundant `afterInit` call
