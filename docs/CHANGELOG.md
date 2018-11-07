@@ -1,3 +1,7 @@
+1.0.15
+-----------------------------------------
+- Fix: emoji path configuration ignored
+
 1.0.14 (October 23, 2018)
 -----------------------------------------
 - Fix: Downgraded to prosemirror-dropcursor v 1.0.1

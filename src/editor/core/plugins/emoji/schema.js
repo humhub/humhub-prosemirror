@@ -28,7 +28,8 @@ const schema = {
             },
             parseMarkdown:  {
                 node: "emoji", getAttrs: function (tok) {
-                    let $dom = $(twemoji.parse(tok.content));
+                    debugger;
+                    let $dom = $(twemoji.parse(tok.content, context.getPluginOption('emoji', 'twemoji')));
                     return ({
                         'data-name': String(tok.markup),
                         alt: $dom.attr('alt'),

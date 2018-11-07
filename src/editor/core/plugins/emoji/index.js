@@ -32,13 +32,16 @@ const emoji = {
         markdownIt.use(emoji_plugin, getMarkdownItOpts());
         markdownIt.renderer.rules.emoji = function(token, idx) {
             let emojiToken = token[idx];
-            return twemoji.parse(emojiToken.content, {
-                attributes: (icon, variant) => {
-                    return {
-                        'data-name': emojiToken.markup
-                    }
+
+            // Not that clean but unfortunately we don't have access to the editor context here...
+            let config = humhub.config.get('ui.richtext.prosemirror', 'emoji');
+            let twemojiConfig = config.twemoji || {};
+            twemojiConfig.attributes = (icon, variant) => {
+                return {
+                    'data-name': emojiToken.markup
                 }
-            });
+            };
+            return twemoji.parse(emojiToken.content, twemojiConfig);
         };
     }
 };
