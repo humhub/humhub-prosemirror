@@ -23,8 +23,12 @@ const code_block =  {
     toMarkdown: (state, node) => {
         if(state.table) {
             state.wrapBlock("`", "`", node, function () { return state.text(node.textContent, false); });
-        }else if (!node.attrs.params) {
-            state.wrapBlock("    ", null, node, function () { return state.text(node.textContent, false); });
+        } else if (!node.attrs.params) {
+            state.write("```\n");
+            state.text(node.textContent, false);
+            state.ensureNewLine();
+            state.write("```");
+            state.closeBlock(node);
         } else {
             state.write("```" + node.attrs.params + "\n");
             state.text(node.textContent, false);

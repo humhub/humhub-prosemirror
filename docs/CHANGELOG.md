@@ -2,6 +2,7 @@
 -----------------------------------------
 - Fix: emoji path configuration ignored
 - Enh: Added submit shortcut (default Ctrl+S)
+- Fix https://github.com/humhub/humhub/issues/3441 Richtext code block after list item not working
 
 1.0.14 (October 23, 2018)
 -----------------------------------------
