@@ -19,12 +19,16 @@ const emojiPlugin = (context) => {
             transformPastedHTML: (html) => {
                 let $html = $(html);
                 let $dom = $('<body>').append($html);
-                return $('<html>').append(twemoji.parse($dom[0],{attributes: (icon, variant) => {
+
+                let cfg = context.getPluginOption('emoji', 'twemoji');
+                cfg.attributes = (icon, variant) => {
                     return {'data-name': util.getNameByChar(icon), 'style': 'width:16px'};
-                }})).html();
+                };
+
+                return $('<html>').append(twemoji.parse($dom[0],cfg)).html();
             },
             transformPastedText: (text) => {
-                text = twemoji.parse(text);
+                text = twemoji.parse(text, context.getPluginOption('emoji', 'twemoji'));
 
                 return text.replace(/\<img class="emoji"[^\\\>]* alt=\"([^\"]*)\"[^\\\>]*\/>/g, function(match, char) {
                     return ':'+util.getNameByChar(char)+':';

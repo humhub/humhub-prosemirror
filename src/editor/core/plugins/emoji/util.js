@@ -67,9 +67,16 @@ let getCharToDom = function(emojiChar, name) {
     name =(typeof name !== 'undefined') ? name : emoji_defs_by_char[emojiChar];
     name = String(name);
 
-    let parsed = twemoji.parse(emojiChar, {attributes: (icon, variant) => {
-        return {'data-name': name, 'style': 'width:16px'};
-    }});
+    let config = humhub.config.get('ui.richtext.prosemirror', 'emoji');
+    let twemojiConfig = config.twemoji || {};
+    twemojiConfig.attributes = (icon, variant) => {
+        return {
+            'data-name': name,
+            'style': 'width:16px'
+        }
+    };
+
+    let parsed = twemoji.parse(emojiChar, twemojiConfig);
 
     if(parsed && parsed.length) {
         return $(parsed);

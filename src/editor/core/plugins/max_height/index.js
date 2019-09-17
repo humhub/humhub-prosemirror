@@ -17,9 +17,12 @@ const maxHeight = {
             return;
         }
 
-        context.editor.on('afterInit', () => {
+        context.editor.on('init', () => {
             if(context.options.maxHeight) {
                 context.editor.getStage().css({'max-height': context.options.maxHeight, 'overflow': 'auto'});
+            }
+
+            if(!context.editor.isEmpty()) {
                 const maxHeightState = pluginKey.getState(context.editor.view.state);
                 maxHeightState.update();
             }
