@@ -1,6 +1,7 @@
 1.0.15
 -----------------------------------------
 - Fix: emoji path configuration ignored
+- Enh: Added submit shortcut (default Ctrl+S)
 
 1.0.14 (October 23, 2018)
 -----------------------------------------

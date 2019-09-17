@@ -81,8 +81,12 @@ function exitCodeAtLast(state, dispatch) {
 // You can suppress or map these bindings by passing a `mapKeys`
 // argument, which maps key names (say `"Mod-B"` to either `false`, to
 // remove the binding, or a new key name string.
-export function buildKeymap(schema, mapKeys) {
-  let keys = {}, type
+export function buildKeymap(context) {
+  let keys = {}, type;
+
+  let schema = context.schema;
+  let mapKeys = context.options.mapKeys;
+
   function bind(key, cmd) {
     if (mapKeys) {
       let mapped = mapKeys[key]

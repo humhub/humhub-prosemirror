@@ -54,7 +54,7 @@ export function setupPlugins(context) {
 
     result = result.concat([
         buildInputRules(context),
-        keymap(buildKeymap(context.schema, context.options.mapKeys)),
+        keymap(buildKeymap(context)),
         keymap(baseKeymap),
         dropCursor(),
         gapCursor(),
