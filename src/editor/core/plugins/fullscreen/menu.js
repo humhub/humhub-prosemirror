@@ -7,7 +7,6 @@
 
 import {icons, MenuItem} from "../../menu/menu"
 
-
 function fullScreen(context) {
     return new MenuItem({
         id: 'fullscreen',
@@ -16,17 +15,31 @@ function fullScreen(context) {
         run: function() {
             let $editor = context.editor.$;
             if($editor.is('.fullscreen')) {
-                $('body').removeClass('modal-open');
-                $editor.removeClass('fullscreen');
-                this.switchIcon(icons.enlarge);
+               minimize(context);
             } else {
-                $('body').addClass('modal-open');
-                $editor.addClass('fullscreen');
-                this.switchIcon(icons.shrink);
+                maximize(context);
             }
         },
         icon: icons.enlarge
     });
+}
+
+export function minimize(context, menuItem) {
+    let $editor = context.editor.$;
+    if($editor.is('.fullscreen')) {
+        $('body').removeClass('modal-open');
+        $editor.removeClass('fullscreen');
+        context.fullScreenMenuItem.switchIcon(icons.enlarge);
+    }
+}
+
+export function maximize(context, menuItem) {
+    let $editor = context.editor.$;
+    if(!$editor.is('.fullscreen')) {
+        $('body').addClass('modal-open');
+        $editor.addClass('fullscreen');
+        context.fullScreenMenuItem.switchIcon(icons.shrink);
+    }
 }
 
 export function menu(context) {
