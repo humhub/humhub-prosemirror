@@ -25,7 +25,7 @@ export class MaxHeightState {
         this.oldStageHeight = stageHeight;
 
         if(!this.scrollActive && this.context.editor.getStage()[0].scrollHeight > stageHeight) {
-            if(!this.niceScrollInit) {
+            if(!this.niceScrollInit && this.context.editor.getStage().niceScroll) {
                 this.context.editor.getStage().niceScroll({
                     cursorwidth: "7",
                     cursorborder: "",

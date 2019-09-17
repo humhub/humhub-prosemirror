@@ -59,7 +59,7 @@ class MarkdownEditor {
     }
 
     isEdit() {
-        return this.$.is('.ProsemirrorEditor');
+        return this.context.options.edit || this.$.is('.ProsemirrorEditor');
     }
 
     clear() {

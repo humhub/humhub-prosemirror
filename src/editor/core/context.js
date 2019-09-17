@@ -11,6 +11,7 @@ export default class Context {
     constructor(editor, options) {
         this.event = $({});
         this.editor = editor;
+        this.editor.context = this;
         this.id = this.editor.$.attr('id');
         this.init(options);
 

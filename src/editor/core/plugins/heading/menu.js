@@ -18,7 +18,7 @@ function makeHeading(context) {
         })
     }
 
-    return new DropdownSubmenu([r.makeHead1, r.makeHead2, r.makeHead3, r.makeHead4, r.makeHead5, r.makeHead6], {label: "Heading"});
+    return new DropdownSubmenu([r.makeHead1, r.makeHead2, r.makeHead3, r.makeHead4, r.makeHead5, r.makeHead6], {label: context.translate("Heading")});
 }
 
 export function menu(context) {
