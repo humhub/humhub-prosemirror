@@ -1,6 +1,6 @@
 {
   "name": "humhub-prosemirror-richtext",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "Prosemirror based richtext implementation for the humhub social network",
   "license": "Apache-2.0",
   "main": "dist/humhub-editor.js",
@@ -15,18 +15,10 @@
     "type": "git",
     "url": "git@github.com:humhub/humhub-prosemirror.git"
   },
-  "dependencies": {},
-  "devDependencies": {
-    "babel-polyfill": "^6.26.0",
+  "dependencies": {
     "emoji-unicode-map": "^1.1.10",
-    "grunt": "^1.0.4",
-    "grunt-contrib-jshint": "^1.1.0",
-    "grunt-contrib-nodeunit": "^2.0.0",
-    "grunt-contrib-uglify": "^3.4.0",
-    "grunt-contrib-watch": "^1.1.0",
-    "grunt-rollup": "^6.0.0",
     "markdown-it": "^8.4.2",
-    "markdown-it-anchor": "^5.2.4",
+    "markdown-it-anchor": "^5.2.5",
     "markdown-it-emoji": "1.4.0",
     "markdown-it-imsize": "2.0.1",
     "prosemirror-commands": "^1.0.8",
@@ -35,22 +27,31 @@
     "prosemirror-gapcursor": "^1.0.4",
     "prosemirror-history": "^1.0.4",
     "prosemirror-inputrules": "^1.0.4",
-    "prosemirror-keymap": "^1.0.1",
+    "prosemirror-keymap": "^1.0.2",
     "prosemirror-markdown": "^1.3.1",
     "prosemirror-menu": "^1.0.5",
-    "prosemirror-model": "^1.7.1",
+    "prosemirror-model": "^1.7.4",
     "prosemirror-schema-basic": "^1.0.1",
-    "prosemirror-schema-list": "^1.0.3",
+    "prosemirror-schema-list": "^1.0.4",
     "prosemirror-state": "^1.2.4",
     "prosemirror-tables": "^0.7.11",
-    "prosemirror-transform": "^1.1.4",
-    "prosemirror-view": "^1.10.1",
+    "prosemirror-transform": "^1.1.5",
+    "prosemirror-view": "^1.11.7",
     "rollup": "^0.55.5",
     "rollup-plugin-buble": "^0.15.0",
     "rollup-plugin-commonjs": "^8.4.1",
     "rollup-plugin-json": "^2.3.1",
     "rollup-plugin-node-resolve": "3.0.2",
     "rollup-plugin-replace": "^2.2.0",
-    "twemoji": "^2.5.1"
+    "twemoji": "12.1.3"
+  },
+  "devDependencies": {
+    "babel-polyfill": "^6.26.0",
+    "grunt": "^1.0.4",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-contrib-nodeunit": "^2.0.0",
+    "grunt-contrib-uglify": "^3.4.0",
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-rollup": "^6.0.0"
   }
 }

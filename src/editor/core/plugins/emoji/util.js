@@ -79,7 +79,12 @@ let getCharToDom = function(emojiChar, name) {
     let parsed = twemoji.parse(emojiChar, twemojiConfig);
 
     if(parsed && parsed.length) {
-        return $(parsed);
+        try {
+            return $(parsed);
+        } catch(e) {
+            console.error(e);
+        }
+        return '';
     }
 };
 
