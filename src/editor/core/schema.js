@@ -14,9 +14,7 @@ let mergeSchema = function(schema, plugin, context) {
             schema = mergeSchema(schema, newPlugin, context)
         })
     } else {
-        debugger;
         if($.isFunction(schema)) {
-            debugger;
             schema = schema(context);
         }
         schema.nodes = Object.assign(schema.nodes || {}, plugin.schema && plugin.schema.nodes || {});

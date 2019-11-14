@@ -4,6 +4,7 @@ Changelog
 1.0.18
 -----------------------------------------
 - Fix: https://github.com/humhub/humhub/issues/3731 context not available in parseMarkdown
+- Fix: https://github.com/humhub/humhub/issues/3712 disable auto extend on mobile
 
 1.0.17 (October, 16, 2019)
 -----------------------------------------

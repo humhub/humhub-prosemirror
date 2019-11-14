@@ -10,7 +10,7 @@ import {menu, minimize, maximize} from "./menu"
 const fullscreen = {
     id: 'fullscreen',
     init(context) {
-        if(context.getPluginOption('fullscreen', 'preventAutoFullScreen') !== false) {
+        if(context.getPluginOption('fullscreen', 'autoFullScreen') === true) {
             context.editor.$.on('click', '.ProseMirror', function(e) {
                 if(humhub.require('ui.view').isSmall() && !context.editor.$.is('.fullscreen')) {
                     maximize(context);
