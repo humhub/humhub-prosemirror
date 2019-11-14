@@ -52,6 +52,20 @@ class NodePos {
         return result;
     }
 
+    isPlain() {
+        return !this.node.marks.length;
+    }
+
+    addMarks(marks) {
+        if(!marks || !marks.length) {
+            return;
+        }
+
+        marks.forEach(mark => {
+            this.node.marks = mark.addToSet(this.node.marks);
+        });
+    }
+
     nodesBetween(from = 0, to, f, pos = 0, level = 1) {
         this.content.nodesBetween(from, to, (childNode, childPos, parent, i, level) => {
             f(childNode, childPos , parent, i, level);
@@ -141,7 +155,7 @@ $node.prototype._hasNodePos = function(pos) {
 
 $node.prototype.size = function() {
     return this.flat.length;
-}
+};
 
 $node.prototype.type = function (selector, includeSelf) {
     const typeFilter = (node, filter) => {

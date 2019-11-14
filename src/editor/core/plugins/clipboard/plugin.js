@@ -9,15 +9,28 @@ import { Plugin } from 'prosemirror-state';
 import { Node, Slice } from 'prosemirror-model'
 import { getParser } from "../../../markdown/parser"
 import {triggerUpload} from "../upload/service"
+import {$node} from "../../util/node"
 
 const clipboardPlugin = (context) => {
+
     let parser = getParser(context);
+    debugger;
     return new Plugin({
         props: {
             clipboardTextParser: $.proxy(parser.parse, parser),
             transformPasted: (slice) => {
                 if(slice && slice instanceof Node && slice.type == context.schema.nodes.doc) {
                     return new Slice(slice.content, 0, 0)
+                } else {
+                    try {
+                        let selectionMarks = getSelectionMarks(context);
+
+                        if(selectionMarks && selectionMarks.length) {
+                            applyMarksToRawText(slice, selectionMarks)
+                        }
+                    } catch(e) {
+                        console.warn(e);
+                    }
                 }
 
                 return slice;
@@ -33,5 +46,37 @@ const clipboardPlugin = (context) => {
         },
     });
 };
+
+function getSelectionMarks(context) {
+    if(context.editor.view.state.storedMarks && context.editor.view.state.storedMarks.length) {
+        return context.editor.view.state.storedMarks
+    }
+
+    let selection = context.editor.view.state.selection;
+    let nodeBefore = selection.$from.nodeBefore;
+    return nodeBefore ? nodeBefore.marks : null;
+}
+
+function applyMarksToRawText(slice, marks)
+{
+    let fragment = slice.content;
+    let firstChild = fragment.firstChild;
+
+    debugger;
+
+    if(!firstChild) {
+        return;
+
+    }
+
+
+    let texts = $node(firstChild).find('text');
+    if(texts.flat.length) {
+        let firstText = texts.flat[0];
+        if(firstText.isPlain()) {
+            firstText.addMarks(marks);
+        }
+    }
+}
 
 export {clipboardPlugin}

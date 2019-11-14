@@ -5,6 +5,9 @@ Changelog
 -----------------------------------------
 - Fix: https://github.com/humhub/humhub/issues/3731 context not available in parseMarkdown
 - Fix: https://github.com/humhub/humhub/issues/3712 disable auto extend on mobile
+- Enh: Keep text marks in paste
+- Fix: Copy/Paste of bold text not working
+- Enh: Added `NodePos.isPlain()` and `NodePos.addMarks()`
 
 1.0.17 (October, 16, 2019)
 -----------------------------------------
