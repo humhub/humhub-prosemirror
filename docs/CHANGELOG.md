@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.0.18
+-----------------------------------------
+- Fix: https://github.com/humhub/humhub/issues/3731 context not available in parseMarkdown
+
 1.0.17 (October, 16, 2019)
 -----------------------------------------
 - Fix: removed non devDependencies

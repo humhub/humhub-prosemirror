@@ -8,12 +8,17 @@
 import {Schema} from "prosemirror-model"
 import {PresetManager} from "./plugins/"
 
-let mergeSchema = function(schema, plugin) {
+let mergeSchema = function(schema, plugin, context) {
     if(Array.isArray(plugin)) {
         plugin.forEach((newPlugin) => {
-            schema = mergeSchema(schema, newPlugin)
+            schema = mergeSchema(schema, newPlugin, context)
         })
     } else {
+        debugger;
+        if($.isFunction(schema)) {
+            debugger;
+            schema = schema(context);
+        }
         schema.nodes = Object.assign(schema.nodes || {}, plugin.schema && plugin.schema.nodes || {});
         schema.marks = Object.assign(schema.marks || {}, plugin.schema && plugin.schema.marks || {});
     }
@@ -24,7 +29,7 @@ let mergeSchema = function(schema, plugin) {
 let presets = new PresetManager({
     name: 'schema',
     create: (context) => {
-        return new Schema(mergeSchema({}, context.plugins));
+        return new Schema(mergeSchema({}, context.plugins, context));
     }
 });
 
