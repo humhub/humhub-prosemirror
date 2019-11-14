@@ -14,7 +14,6 @@ import {$node} from "../../util/node"
 const clipboardPlugin = (context) => {
 
     let parser = getParser(context);
-    debugger;
     return new Plugin({
         props: {
             clipboardTextParser: $.proxy(parser.parse, parser),
@@ -62,13 +61,10 @@ function applyMarksToRawText(slice, marks)
     let fragment = slice.content;
     let firstChild = fragment.firstChild;
 
-    debugger;
-
     if(!firstChild) {
         return;
 
     }
-
 
     let texts = $node(firstChild).find('text');
     if(texts.flat.length) {

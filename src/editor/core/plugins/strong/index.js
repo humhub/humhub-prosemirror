@@ -6,11 +6,13 @@
  */
 import {schema} from './schema'
 import {menu} from './menu'
+import {strongRule} from './input-rules'
 
 const strong = {
     id: 'strong',
     schema: schema,
-    menu: (context) => menu(context)
+    menu: (context) => menu(context),
+   // inputRules: (schema) => {return [strongRule(schema)]},
 };
 
 export default strong;
