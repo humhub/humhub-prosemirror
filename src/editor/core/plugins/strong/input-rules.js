@@ -7,42 +7,56 @@ import {TextNode} from "prosemirror-model/src/node";
 // Given a blockquote node type, returns an input rule that turns `"> "`
 // at the start of a textblock into a blockquote.
 const strongRule = (schema) => {
-     return new InputRule(/\*\*.*\*\*/, (state, match, start, end) => {
-         let tr = state.tr.delete(start, end);
-
-         //let nodeBefore = $start.nodeBefore;
-         //let text = $end.nodeBefore;
-
-         let strong = schema.marks.strong.create();
-
-         //let marks = strong.addToSet(text.marks);
-
-        // let copy = text.mark(mark.addToSet(marks));
-         //$node(text, start).replaceWith(copy, s));
-
-
-         debugger;
-
-         //tr.insert(start, copy);
-
-         state.doc.nodesBetween(start, end, function(node, nodeStart, parent, index) {
-             if(node.isText) {
-                 node.marks = strong.addToSet(node.marks);
-                 tr.insert(start, node);
-             }
-
-             //node.marks = node.mark(strong.addToSet(node.marks));
-
-         });
-
-
-         /*//tr.addMark($start.pos, $end.pos - 1, schema.marks.strong);
-         let before = tr.doc.resolve(start - 1).nodeBefore;
-         if (before && canJoin(tr.doc, start - 1) &&
-             (!joinPredicate || joinPredicate(match, before)))
-             tr.join(start - 1);*/
-         return tr
-     });
+    return markInputRule(/(?:\*\*|__)([^\*_]+)(?:\*\*|__)$/, schema.marks.strong);
 };
+
+function hasCodeMark(node)
+{
+    if(!node) {
+        return false;
+    }
+
+    let result = false;
+    node.marks.forEach((mark) => {
+        if(mark.type.spec.isCode) {
+            result = true;
+        }
+    });
+
+    return result;
+}
+
+function markInputRule(regexp, markType, getAttrs) {
+    return new InputRule(regexp, (state, match, start, end) => {
+        let attrs = getAttrs instanceof Function ? getAttrs(match) : getAttrs;
+
+
+        let nodeBeforeEnd = state.selection.$to.nodeBefore;
+
+        if(!nodeBeforeEnd || !nodeBeforeEnd.isText
+            || nodeBeforeEnd.text.length < match[0].length - 1 // check that the match does not span multiple nodes
+            || hasCodeMark(nodeBeforeEnd)
+            || markType.isInSet(nodeBeforeEnd.marks)) {
+            return null;
+        }
+
+        if (match[1]) {
+            let tr = state.tr;
+            let textStart = start + match[0].indexOf(match[1]);
+            let textEnd = textStart + match[1].length;
+            if (textEnd < end) tr.delete(textEnd, end);
+            if (textStart > start) tr.delete(start, textStart);
+            end = start + match[1].length;
+            tr.addMark(start, end, markType.create(attrs));
+            tr.removeStoredMark(markType); // Do not continue with mark.
+            return tr
+        }
+
+        return null;
+
+    })
+}
+
+
 
 export {strongRule};

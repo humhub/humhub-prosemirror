@@ -12,7 +12,7 @@ const strong = {
     id: 'strong',
     schema: schema,
     menu: (context) => menu(context),
-   // inputRules: (schema) => {return [strongRule(schema)]},
+    inputRules: (schema) => [strongRule(schema)],
 };
 
 export default strong;
