@@ -3,11 +3,14 @@ Changelog
 
 1.0.18
 -----------------------------------------
-- Fix: https://github.com/humhub/humhub/issues/3731 context not available in parseMarkdown
-- Fix: https://github.com/humhub/humhub/issues/3712 disable auto extend on mobile
-- Enh: Keep text marks in paste
+- Enh: Keep text marks when pasting text
 - Fix: Copy/Paste of bold text not working
 - Enh: Added `NodePos.isPlain()` and `NodePos.addMarks()`
+- Enh: Added input rule for bold mark
+- Enh: Added input rule for code mark
+- Fix  #6: Newline and paragraphs not working inside of tables
+- Enh: Leave mark when pressing right at the end of line
+- Enh: Added support of `<br>`
 
 1.0.17 (October, 16, 2019)
 -----------------------------------------
