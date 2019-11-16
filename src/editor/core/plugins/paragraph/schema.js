@@ -11,7 +11,14 @@ const schema = {
             parseMarkdown: {block: "paragraph"},
             toMarkdown: (state, node) => {
                 state.renderInline(node);
-                if(!state.table) state.closeBlock(node);
+
+                if(!state.table) {
+                    state.closeBlock(node);
+                } else {
+                    if(node.content && node.content.size) {
+                        state.write('<br><br>');
+                    }
+                }
             }
         }
     }
