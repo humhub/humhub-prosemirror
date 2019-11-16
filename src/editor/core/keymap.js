@@ -1,9 +1,11 @@
-import {wrapIn, setBlockType, chainCommands, toggleMark, exitCode,
-        joinUp, joinDown, lift, selectParentNode} from "prosemirror-commands"
+import {
+    wrapIn, setBlockType, chainCommands, toggleMark, exitCode,
+    joinUp, joinDown, lift, selectParentNode
+} from "prosemirror-commands"
 import {wrapInList, splitListItem, liftListItem, sinkListItem} from "prosemirror-schema-list"
 import {undo, redo} from "prosemirror-history"
 import {undoInputRule} from "prosemirror-inputrules"
-import {Selection} from "prosemirror-state"
+import {Selection, TextSelection} from "prosemirror-state"
 
 const mac = typeof navigator != "undefined" ? /Mac/.test(navigator.platform) : false;
 
@@ -15,12 +17,10 @@ function exitCodeAtLast(state, dispatch) {
 
     let isBlockQuote = false;
     $anchor.path.forEach((item, index) => {
-        if(!(index % 3) && item.type && item.type.name === 'blockquote') {
+        if (!(index % 3) && item.type && item.type.name === 'blockquote') {
             isBlockQuote = true;
         }
     });
-
-
 
     if (!(parent.type.spec.code || isBlockQuote)
         || $anchor.parentOffset != $head.parentOffset
@@ -31,7 +31,7 @@ function exitCodeAtLast(state, dispatch) {
     }
 
     let nodeAfter = state.doc.resolve($head.pos - $head.parentOffset + parent.nodeSize - 1).nodeAfter;
-    if(nodeAfter) {
+    if (nodeAfter) {
         return false;
     }
 
@@ -40,7 +40,7 @@ function exitCodeAtLast(state, dispatch) {
     let type = above.defaultContentType(after);
 
     if (!above.canReplaceWith(after, after, type)) {
-      return false;
+        return false;
     }
 
     if (dispatch) {
@@ -51,6 +51,61 @@ function exitCodeAtLast(state, dispatch) {
     }
 
     return true;
+}
+
+function exitMarkAtLast(state, dispatch) {
+    let selection = state.selection;
+    if (selection instanceof TextSelection
+        && !selection.$head.nodeAfter
+        && selection.$head.nodeBefore
+        && selection.$head.nodeBefore.isText
+        && selection.$head.nodeBefore.marks.length) {
+
+        if (dispatch) {
+            selection.$head.nodeBefore.marks.forEach((mark) => {
+                removeMark(mark.type, state, dispatch);
+            });
+        }
+        return true;
+    }
+
+    return false;
+}
+
+function removeMark(markType, state, dispatch) {
+    let {empty, $cursor, ranges} = state.selection;
+    if ((empty && !$cursor) || !markApplies(state.doc, ranges, markType)) return false;
+    if (dispatch) {
+        if ($cursor) {
+            if (markType.isInSet(state.storedMarks || $cursor.marks()))
+                dispatch(state.tr.removeStoredMark(markType))
+        } else {
+            let has = false, tr = state.tr;
+            for (let i = 0; !has && i < ranges.length; i++) {
+                let {$from, $to} = ranges[i];
+                has = state.doc.rangeHasMark($from.pos, $to.pos, markType)
+            }
+            for (let i = 0; i < ranges.length; i++) {
+                let {$from, $to} = ranges[i];
+                if (has) tr.removeMark($from.pos, $to.pos, markType);
+            }
+            dispatch(tr.scrollIntoView())
+        }
+    }
+    return true
+}
+
+function markApplies(doc, ranges, type) {
+    for (let i = 0; i < ranges.length; i++) {
+        let {$from, $to} = ranges[i]
+        let can = $from.depth == 0 ? doc.type.allowsMarkType(type) : false
+        doc.nodesBetween($from.pos, $to.pos, node => {
+            if (can) return false
+            can = node.inlineContent && node.type.allowsMarkType(type)
+        })
+        if (can) return true
+    }
+    return false
 }
 
 // :: (Schema, ?Object) → Object
@@ -82,72 +137,73 @@ function exitCodeAtLast(state, dispatch) {
 // argument, which maps key names (say `"Mod-B"` to either `false`, to
 // remove the binding, or a new key name string.
 export function buildKeymap(context) {
-  let keys = {}, type;
+    let keys = {}, type;
 
-  let schema = context.schema;
-  let mapKeys = context.options.mapKeys;
+    let schema = context.schema;
+    let mapKeys = context.options.mapKeys;
 
-  function bind(key, cmd) {
-    if (mapKeys) {
-      let mapped = mapKeys[key]
-      if (mapped === false) return
-      if (mapped) key = mapped
+    function bind(key, cmd) {
+        if (mapKeys) {
+            let mapped = mapKeys[key]
+            if (mapped === false) return
+            if (mapped) key = mapped
+        }
+        keys[key] = cmd
     }
-    keys[key] = cmd
-  }
 
-  bind('ArrowDown', exitCodeAtLast)
+    bind('ArrowDown', exitCodeAtLast)
+    bind('ArrowRight', exitMarkAtLast)
 
-  bind("Mod-z", undo)
-  bind("Shift-Mod-z", redo)
-  bind("Backspace", undoInputRule)
-  if (!mac) bind("Mod-y", redo)
+    bind("Mod-z", undo)
+    bind("Shift-Mod-z", redo)
+    bind("Backspace", undoInputRule)
+    if (!mac) bind("Mod-y", redo)
 
-  bind("Alt-ArrowUp", joinUp)
-  bind("Alt-ArrowDown", joinDown)
-  bind("Mod-BracketLeft", lift)
-  bind("Escape", selectParentNode)
+    bind("Alt-ArrowUp", joinUp)
+    bind("Alt-ArrowDown", joinDown)
+    bind("Mod-BracketLeft", lift)
+    bind("Escape", selectParentNode)
 
-  if (type = schema.marks.strong)
-    bind("Mod-b", toggleMark(type))
-  if (type = schema.marks.em)
-    bind("Mod-i", toggleMark(type))
-  if (type = schema.marks.code)
-    bind("Mod-`", toggleMark(type))
+    if (type = schema.marks.strong)
+        bind("Mod-b", toggleMark(type))
+    if (type = schema.marks.em)
+        bind("Mod-i", toggleMark(type))
+    if (type = schema.marks.code)
+        bind("Mod-`", toggleMark(type))
 
-  if (type = schema.nodes.bullet_list)
-    bind("Shift-Ctrl-8", wrapInList(type))
-  if (type = schema.nodes.ordered_list)
-    bind("Shift-Ctrl-9", wrapInList(type))
-  if (type = schema.nodes.blockquote)
-    bind("Ctrl->", wrapIn(type))
-  if (type = schema.nodes.hard_break) {
-    let br = type, cmd = chainCommands(exitCode, (state, dispatch) => {
-      dispatch(state.tr.replaceSelectionWith(br.create()).scrollIntoView())
-      return true
-    });
-    bind("Mod-Enter", cmd)
-    bind("Shift-Enter", cmd)
-    if (mac) bind("Ctrl-Enter", cmd)
-  }
-  if (type = schema.nodes.list_item) {
-    bind("Enter", splitListItem(type))
-    bind("Mod-[", liftListItem(type))
-    bind("Mod-]", sinkListItem(type))
-  }
-  if (type = schema.nodes.paragraph)
-    bind("Shift-Ctrl-0", setBlockType(type))
-  if (type = schema.nodes.code_block)
-    bind("Shift-Ctrl-\\", setBlockType(type))
-  if (type = schema.nodes.heading)
-    for (let i = 1; i <= 6; i++) bind("Shift-Ctrl-" + i, setBlockType(type, {level: i}))
-  if (type = schema.nodes.horizontal_rule) {
-    let hr = type
-    bind("Mod-_", (state, dispatch) => {
-      dispatch(state.tr.replaceSelectionWith(hr.create()).scrollIntoView())
-      return true
-    })
-  }
+    if (type = schema.nodes.bullet_list)
+        bind("Shift-Ctrl-8", wrapInList(type))
+    if (type = schema.nodes.ordered_list)
+        bind("Shift-Ctrl-9", wrapInList(type))
+    if (type = schema.nodes.blockquote)
+        bind("Ctrl->", wrapIn(type))
+    if (type = schema.nodes.hard_break) {
+        let br = type, cmd = chainCommands(exitCode, (state, dispatch) => {
+            dispatch(state.tr.replaceSelectionWith(br.create()).scrollIntoView())
+            return true
+        });
+        bind("Mod-Enter", cmd)
+        bind("Shift-Enter", cmd)
+        if (mac) bind("Ctrl-Enter", cmd)
+    }
+    if (type = schema.nodes.list_item) {
+        bind("Enter", splitListItem(type))
+        bind("Mod-[", liftListItem(type))
+        bind("Mod-]", sinkListItem(type))
+    }
+    if (type = schema.nodes.paragraph)
+        bind("Shift-Ctrl-0", setBlockType(type))
+    if (type = schema.nodes.code_block)
+        bind("Shift-Ctrl-\\", setBlockType(type))
+    if (type = schema.nodes.heading)
+        for (let i = 1; i <= 6; i++) bind("Shift-Ctrl-" + i, setBlockType(type, {level: i}))
+    if (type = schema.nodes.horizontal_rule) {
+        let hr = type
+        bind("Mod-_", (state, dispatch) => {
+            dispatch(state.tr.replaceSelectionWith(hr.create()).scrollIntoView())
+            return true
+        })
+    }
 
-  return keys
+    return keys
 }
