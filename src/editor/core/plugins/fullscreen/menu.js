@@ -27,8 +27,11 @@ function fullScreen(context) {
 export function minimize(context, menuItem) {
     let $editor = context.editor.$;
     if($editor.is('.fullscreen')) {
+
         $('body').removeClass('modal-open');
         $editor.removeClass('fullscreen');
+        $editor.find('.Prosemirror').blur();
+
         context.fullScreenMenuItem.switchIcon(icons.enlarge);
     }
 }
@@ -36,8 +39,14 @@ export function minimize(context, menuItem) {
 export function maximize(context, menuItem) {
     let $editor = context.editor.$;
     if(!$editor.is('.fullscreen')) {
+
+        // Fixes a bug in ios safari when displaying a position:fixed element with input focus...
+        document.activeElement.blur();
+        setTimeout(() =>  {debugger;context.editor.view.focus()}, 200);
+
         $('body').addClass('modal-open');
         $editor.addClass('fullscreen');
+
         context.fullScreenMenuItem.switchIcon(icons.shrink);
     }
 }

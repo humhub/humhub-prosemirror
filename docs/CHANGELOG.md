@@ -11,6 +11,7 @@ Changelog
 - Fix  #6: Newline and paragraphs not working inside of tables
 - Enh: Leave mark when pressing right at the end of line
 - Enh: Added support of `<br>`
+- Fixes ios fullscreen issue https://github.com/humhub/humhub/issues/3711
 
 1.0.17 (October, 16, 2019)
 -----------------------------------------
