@@ -42,7 +42,7 @@ export function maximize(context, menuItem) {
 
         // Fixes a bug in ios safari when displaying a position:fixed element with input focus...
         document.activeElement.blur();
-        setTimeout(() =>  {debugger;context.editor.view.focus()}, 200);
+        setTimeout(() =>  {context.editor.view.focus()}, 200);
 
         $('body').addClass('modal-open');
         $editor.addClass('fullscreen');

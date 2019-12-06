@@ -132,7 +132,7 @@ class MarkdownEditor {
     }
 
     render() {
-        return this.renderer.render(this.$.text());
+        return this.renderer.render(this.$.text(), this);
     }
 }
 

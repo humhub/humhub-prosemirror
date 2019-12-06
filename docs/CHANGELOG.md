@@ -12,6 +12,9 @@ Changelog
 - Enh: Leave mark when pressing right at the end of line
 - Enh: Added support of `<br>`
 - Fixes ios fullscreen issue https://github.com/humhub/humhub/issues/3711
+- Enh: Added `data-ui-gallery` to images
+- Enh: Added `context.uuid`
+- Enh: Added editor instance as `env` within `registerMarkdownIt`
 
 1.0.17 (October, 16, 2019)
 -----------------------------------------

@@ -28,11 +28,16 @@ const image = {
         markdownIt.renderer.rules.image = function (tokens, idx, options, env, self) {
             let srcIndex = tokens[idx].attrIndex('src');
 
+
             let srcFilter = (window.humhub) ? humhub.modules.file.filterFileUrl(tokens[idx].attrs[srcIndex][1]) : {url : tokens[idx].attrs[srcIndex][1]};
             tokens[idx].attrs[srcIndex][1] = srcFilter.url;
 
             if(srcFilter.guid) {
                 tokens[idx].attrPush(['data-file-guid', srcFilter.guid]); // add new attribute
+            }
+
+            if(env && env.context && env.context.uuid) {
+                tokens[idx].attrPush(['data-ui-gallery', env.context.uuid]);
             }
 
             // pass token to default renderer.
