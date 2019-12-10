@@ -15,6 +15,8 @@ Changelog
 - Enh: Added `data-ui-gallery` to images
 - Enh: Added `context.uuid`
 - Enh: Added editor instance as `env` within `registerMarkdownIt`
+- Fix: Image edit button not visible because of z-index
+- Fix: Image edit menu not removed after cancel edit
 
 1.0.17 (October, 16, 2019)
 -----------------------------------------
