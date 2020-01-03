@@ -5,8 +5,9 @@
  *
  */
 
-import {MarkdownSerializer} from "prosemirror-markdown"
+import {MarkdownSerializer, MarkdownSerializerState} from "prosemirror-markdown"
 import {getPlugins, PresetManager} from "../core/plugins"
+import {Mark} from "prosemirror-model";
 
 let presets = new PresetManager({
     name: 'serializer',
@@ -49,7 +50,30 @@ let createSerializer = (context) => {
         }
     });
 
-    return new MarkdownSerializer(nodeSpec, markSpec);
+    return new HumHubMarkdownSerializer(nodeSpec, markSpec);
 };
+
+class HumHubMarkdownSerializer extends MarkdownSerializer {
+    // :: (Node, ?Object) → string
+    // Serialize the content of the given node to
+    // [CommonMark](http://commonmark.org/).
+    serialize(content, options) {
+        let state = new HumHubMarkdownSerializerState(this.nodes, this.marks, options)
+        state.renderContent(content)
+        return state.out
+    }
+}
+
+class HumHubMarkdownSerializerState extends MarkdownSerializerState {
+    // :: (string, ?bool) → string
+    // Escape the given string so that it can safely appear in Markdown
+    // content. If `startOfLine` is true, also escape characters that
+    // has special meaning only at the start of the line.
+    esc(str, startOfLine) {
+        str = str.replace(/[|`*\\~\[\]]/g, "\\$&")
+        if (startOfLine) str = str.replace(/^[:#\-*+]/, "\\$&").replace(/^(\d+)\./, "$1\\.")
+        return str
+    }
+}
 
 export {getSerializer}

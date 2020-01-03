@@ -1,7 +1,11 @@
 Changelog
 =========
 
-1.0.18
+1.0.19 (Unreleased)
+-----------------------------------------
+- Fix https://github.com/humhub/humhub/issues/3793 pipe character not escaped
+
+1.0.18 (December 11, 2019)
 -----------------------------------------
 - Enh: Keep text marks when pasting text
 - Fix: Copy/Paste of bold text not working
