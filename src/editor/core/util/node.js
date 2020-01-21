@@ -1,4 +1,4 @@
-import {NodeType, MarkType} from 'prosemirror-model'
+import {NodeType, MarkType, Mark} from 'prosemirror-model'
 import {TextSelection} from 'prosemirror-state'
 
 class NodePos {
@@ -410,8 +410,17 @@ let checkFilter = function (filters, node, pos, parent, searchRoot) {
 
 let hasMark = function (node, markType) {
     let result = false;
+
+    if(!node) {
+        return false;
+    }
+
+
+
     node.marks.forEach((mark) => {
-        if (markType instanceof MarkType && mark.eq(markType)) {
+        if(markType instanceof Mark && mark.eq(markType)) {
+            result = true;
+        }else if (markType instanceof MarkType && ((mark.type.name === markType.name) || mark.eq(markType))) {
             result = true;
         } else if (typeof markType === 'string' && mark.type.name === markType) {
             result = true;
@@ -424,4 +433,4 @@ let hasMark = function (node, markType) {
     return result;
 };
 
-export {$node}
+export {$node, hasMark}

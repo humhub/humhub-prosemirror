@@ -3,7 +3,9 @@ Changelog
 
 1.0.19 (Unreleased)
 -----------------------------------------
-- Fix https://github.com/humhub/humhub/issues/3793 pipe character not escaped
+- Fix: https://github.com/humhub/humhub/issues/3793 pipe character not escaped in tables
+- Fix: https://github.com/humhub/humhub/issues/3827 emoji/mention input rule add duplicate character on IME
+- Fix: util.hasMark not working when MarkType is given
 
 1.0.18 (December 11, 2019)
 -----------------------------------------

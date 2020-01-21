@@ -1,5 +1,7 @@
 import {InputRule} from "prosemirror-inputrules"
 import * as util from "./util"
+import {hasMark} from "../../util/node";
+import {TextSelection} from "prosemirror-state";
 
 // https://github.com/ProseMirror/prosemirror/issues/262
 const objectReplacementCharacter = '\ufffc';
@@ -49,8 +51,16 @@ let emojiChooser = function(schema) {
         const mark = schema.mark('emojiQuery');
         const emojiText = schema.text(':', [mark]);
 
+        // Prevents an error log when using IME
+        if(hasMark(state.selection.$anchor.nodeBefore, mark)) {
+            return;
+        }
+
+        start = start + (match[0].length -1);
+
         return state.tr
             .removeMark(0, state.doc.nodeSize -2, mark)
+            .setSelection(TextSelection.create(state.doc,  start, end))
             .replaceSelectionWith(emojiText, false);
     })
 };
