@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0.19 (Unreleased)
+1.0.19 (February 2, 2019)
 -----------------------------------------
 - Fix: https://github.com/humhub/humhub/issues/3793 pipe character not escaped in tables
 - Fix: https://github.com/humhub/humhub/issues/3827 emoji/mention input rule add duplicate character on IME
