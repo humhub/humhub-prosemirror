@@ -78,14 +78,17 @@ class EmojiChooser {
             symbols: {$icon: util.getCharToDom('\u2764\uFE0F')},
             flags: {$icon: util.getCharToDom(findUserFlag())}
         };
-
-        this.initDom();
-        this.initCategory(this.categoryOrder[0]);
     }
 
     update(provider) {
         this.provider = provider;
         let position = provider.$node.offset();
+
+        if(!this.$) {
+            this.initDom();
+            this.initCategory(this.categoryOrder[0]);
+        }
+
         this.$.css({
             top: position.top + provider.$node.outerHeight() - 5,
             left: position.left,
@@ -95,7 +98,6 @@ class EmojiChooser {
     initDom() {
         let that = this;
         this.$ = $('<div class="atwho-view humhub-richtext-provider">').hide().appendTo($('body')).on('hidden', () => {
-
             if(that.provider) {
                 that.provider.reset();
             }
@@ -160,7 +162,8 @@ class EmojiChooser {
 
     reset() {
         this.provder = undefined;
-        this.$.hide();
+        this.$.remove();
+        this.$ = undefined;
     }
 
     getSelection() {

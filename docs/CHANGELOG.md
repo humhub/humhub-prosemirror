@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.0.20
+-----------------------------------------
+- Fix: https://github.com/humhub/humhub/issues/3866 Emoji chooser won't work after pjax page switch
+
+
 1.0.19 (February 2, 2019)
 -----------------------------------------
 - Fix: https://github.com/humhub/humhub/issues/3793 pipe character not escaped in tables
