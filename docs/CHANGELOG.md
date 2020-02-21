@@ -5,6 +5,7 @@ Changelog
 -----------------------------------------
 - Fix: https://github.com/humhub/humhub/issues/3866 Emoji chooser won't work after pjax page switch
 - Enh: Added Emoji menu item
+- Enh: Added search bar to emoji chooser
 
 
 1.0.19 (February 2, 2019)
