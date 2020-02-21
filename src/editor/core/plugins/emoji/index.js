@@ -12,10 +12,12 @@ import twemoji from "twemoji"
 import {emojiPlugin} from "./plugin"
 import {emojiAutoCompleteRule, emojiChooser} from "./input-rules"
 import {keymap} from "./keymap"
+import {menu} from "./menu"
 
 const emoji = {
     id: 'emoji',
     schema: schema,
+    menu: (context) => menu(context),
     inputRules: (schema) => {
         return [
             emojiAutoCompleteRule(schema),

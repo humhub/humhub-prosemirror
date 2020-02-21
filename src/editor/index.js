@@ -34,14 +34,18 @@ import MentionProvider from "./core/plugins/mention/provider"
 
 import Context from './core/context'
 
-$(document).on('click.richtextProvider', function(evt) {
+$(document).on('mousedown.richtextProvider', function(evt) {
     if(!$(evt.target).closest('.humhub-richtext-provider:visible').length) {
-        let provider = $('.humhub-richtext-provider').data('provider');
-        if(provider && provider.reset) {
-            provider.reset();
-        } else {
-            $('.humhub-richtext-provider').hide().trigger('hidden');
-        }
+         $('.humhub-richtext-provider:visible').each(function() {
+            let $provider = $(this);
+
+            let provider = $provider.data('provider');
+            if(provider && provider.reset) {
+                provider.reset();
+            } else {
+                $provider.hide().trigger('hidden');
+            }
+        });
     }
 });
 
@@ -107,7 +111,7 @@ class MarkdownEditor {
 
             this.$editor = $(this.view.dom).on('focus', () => {
                 this.$menuBar.show();
-            }).on('blur', () => {
+            }).on('blur', (e) => {
                 if(!this.$.is('.fullscreen')) {
                     this.$menuBar.hide();
                 }

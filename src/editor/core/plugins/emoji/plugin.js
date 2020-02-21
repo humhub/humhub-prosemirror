@@ -6,8 +6,8 @@
  */
 
 import { Plugin, PluginKey } from 'prosemirror-state';
-import { EmojiState } from './state';
-import EmojiProvider from "./provider";
+import { EmojiQueryState } from './state';
+import {EmojiProvider, getProvider} from "./provider";
 import twemoji from "twemoji";
 import * as util from "./util";
 
@@ -37,9 +37,8 @@ const emojiPlugin = (context) => {
         },
         state: {
             init(config, state) {
-                return new EmojiState(state, {
-                    provider: (context.options.emoji && context.options.emoji.provider)
-                        ?  context.options.emoji.provider : new EmojiProvider(context)
+                return new EmojiQueryState(state, {
+                    provider: getProvider(context)
                 });
             },
             apply(tr, prevPluginState, oldState, newState) {

@@ -7,7 +7,7 @@
 
 import {isChromeWithSelectionBug} from "../index"
 
-export class EmojiState {
+export class EmojiQueryState {
     constructor(state, options) {
         this.state = state;
         this.provider = options.provider;
@@ -98,3 +98,44 @@ export class EmojiState {
 let endsWith = function(string, suffix) {
     return string.indexOf(suffix, string.length - suffix.length) !== -1;
 };
+
+export class SimpleEmojiState {
+    constructor(provider) {
+        this.provider = provider;
+        this.provider.event.on('focus', () => {
+            if(this.view) {
+                this.view.focus();
+            }
+        });
+        this.reset();
+    }
+
+    update(state, view, node) {
+        this.view = view;
+        this.state = state;
+        this.provider.query(this, node);
+    }
+
+    reset() {
+        if(this.view) {
+            this.provider.reset();
+            this.view.focus();
+        }
+    }
+
+    addEmoji(item) {
+        const { emoji } = this.state.schema.nodes;
+
+        const node = emoji.create({
+            'data-name': String(item.name),
+            alt: item.alt,
+            src: item.src
+        }, null);
+
+        let tr = this.state.tr.replaceSelectionWith(node);
+
+        this.view.dispatch(tr);
+        this.view.focus();
+        this.reset();
+    }
+}

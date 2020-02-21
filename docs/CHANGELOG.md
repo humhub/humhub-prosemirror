@@ -4,6 +4,7 @@ Changelog
 1.0.20
 -----------------------------------------
 - Fix: https://github.com/humhub/humhub/issues/3866 Emoji chooser won't work after pjax page switch
+- Enh: Added Emoji menu item
 
 
 1.0.19 (February 2, 2019)
