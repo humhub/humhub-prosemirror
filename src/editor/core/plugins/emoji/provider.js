@@ -142,14 +142,6 @@ class EmojiChooser {
                 return;
             }
 
-            if(val.length < 2) {
-                // TODO add this in next major version without clearsearch
-                /**$('[data-emoji-category="search"]').find('ul')
-                    .empty()
-                    .append('<li>Test</li>'); **/
-                return;
-            }
-
             let currentlyActive = that.getActiveCategoryMenuItem().attr('data-emoji-nav-item');
             if(currentlyActive !== 'search') {
                 that.lastActiveCategory = currentlyActive;
@@ -189,11 +181,17 @@ class EmojiChooser {
     updateSearch(searchStr) {
         this.$.find('[data-emoji-nav-item="search"]').show();
         let result = [];
+        let length = searchStr.length;
         this.categoryOrder.forEach((categoryName, index) => {
             $.each(util.getByCategory(categoryName), (index, emoji) => {
                 if(emoji && emoji.keywords) {
                     $.each(emoji.keywords, (index, keyword) => {
-                        if(keyword.includes(searchStr)) {
+                        if(length < 3) {
+                            if(keyword.lastIndexOf(searchStr, 0) === 0) {
+                                result.push(emoji);
+                                return false;
+                            }
+                        } else if(keyword.includes(searchStr)) {
                             result.push(emoji);
                             return false;
                         }

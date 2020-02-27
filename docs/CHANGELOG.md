@@ -1,14 +1,14 @@
 Changelog
 =========
 
-1.0.20
+1.0.20 (February 27, 2020)
 -----------------------------------------
 - Fix: https://github.com/humhub/humhub/issues/3866 Emoji chooser won't work after pjax page switch
 - Enh: Added Emoji menu item
 - Enh: Added search bar to emoji chooser
 
 
-1.0.19 (February 2, 2019)
+1.0.19 (February 2, 2020)
 -----------------------------------------
 - Fix: https://github.com/humhub/humhub/issues/3793 pipe character not escaped in tables
 - Fix: https://github.com/humhub/humhub/issues/3827 emoji/mention input rule add duplicate character on IME
