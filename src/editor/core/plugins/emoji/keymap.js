@@ -42,6 +42,17 @@ let keymap = function () {
         return false;
     };
 
+    result['Tab'] = (state, dispatch) => {
+        let emojiState  = pluginKey.getState(state);
+
+        if(emojiState  && emojiState.active) {
+            emojiState.provider.getChooser().nextCategory();
+            return true;
+        }
+
+        return false;
+    };
+
     result['ArrowUp'] = (state, dispatch) => {
         let emojiState  = pluginKey.getState(state);
 

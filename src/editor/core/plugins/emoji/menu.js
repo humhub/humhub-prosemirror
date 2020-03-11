@@ -20,8 +20,7 @@ function insertEmoji(context) {
         run(state, _, view, e) {
             if (!$('.humhub-richtext-provider:visible').length) {
                 setTimeout(function () {
-                    let emojiState = new SimpleEmojiState(getProvider(context));
-                    emojiState.update(state, view, e.target);
+                    new SimpleEmojiState(getProvider(context)).update(state, view, e.target);
                 }, 50);
             }
         }

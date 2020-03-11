@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.0.21 (Unreleased)
+-----------------------------------------
+- Fix: https://github.com/humhub/humhub/issues/3906 prevent emoji chooser focus when triggered by input rule
+- Enh: Added Tab navigation in emoji chooser
+
 1.0.20 (February 27, 2020)
 -----------------------------------------
 - Fix: https://github.com/humhub/humhub/issues/3866 Emoji chooser won't work after pjax page switch

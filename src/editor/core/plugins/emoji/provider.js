@@ -81,7 +81,7 @@ class EmojiChooser {
         };
     }
 
-    update(provider) {
+    update(provider, focus) {
         this.provider = provider;
         let position = provider.$node.offset();
 
@@ -95,7 +95,9 @@ class EmojiChooser {
             left: position.left,
         }).show();
 
-        this.$.find('.humhub-emoji-chooser-search').focus();
+        if(focus) {
+            this.$.find('.humhub-emoji-chooser-search').focus();
+        }
     }
 
     initDom() {
@@ -113,6 +115,9 @@ class EmojiChooser {
                 case 9:
                     e.preventDefault();
                     that.nextCategory();
+                    break;
+                case 27:
+                    that.provider.reset();
                     break;
                 case 13:
                     e.preventDefault();
@@ -378,10 +383,10 @@ export class EmojiProvider {
         this.context = context;
     }
 
-    query(state, node) {
+    query(state, node, focus) {
         this.state = state;
         this.$node = $(node);
-        this.update();
+        this.update(focus);
     };
 
     reset(query, node) {
@@ -412,8 +417,8 @@ export class EmojiProvider {
         this.state.addEmoji(this.getChooser().getSelection());
     };
 
-    update() {
-        this.getChooser().update(this);
+    update(focus) {
+        this.getChooser().update(this, focus);
     };
 
     getChooser() {
