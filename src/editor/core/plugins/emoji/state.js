@@ -113,7 +113,7 @@ export class SimpleEmojiState {
     update(state, view, node) {
         this.view = view;
         this.state = state;
-        this.provider.query(this, node);
+        this.provider.query(this, node, true);
     }
 
     reset() {

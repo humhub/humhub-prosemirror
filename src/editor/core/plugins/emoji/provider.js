@@ -81,7 +81,7 @@ class EmojiChooser {
         };
     }
 
-    update(provider) {
+    update(provider, focus) {
         this.provider = provider;
         let position = provider.$node.offset();
 
@@ -95,7 +95,9 @@ class EmojiChooser {
             left: position.left,
         }).show();
 
-        this.$.find('.humhub-emoji-chooser-search').focus();
+        if(focus) {
+            this.$.find('.humhub-emoji-chooser-search').focus();
+        }
     }
 
     initDom() {
@@ -113,6 +115,9 @@ class EmojiChooser {
                 case 9:
                     e.preventDefault();
                     that.nextCategory();
+                    break;
+                case 27:
+                    that.provider.reset();
                     break;
                 case 13:
                     e.preventDefault();
@@ -139,14 +144,6 @@ class EmojiChooser {
             let val = $(this).val();
             if(!val.length && that.lastActiveCategory) {
                 that.openCategory(that.lastActiveCategory);
-                return;
-            }
-
-            if(val.length < 2) {
-                // TODO add this in next major version without clearsearch
-                /**$('[data-emoji-category="search"]').find('ul')
-                    .empty()
-                    .append('<li>Test</li>'); **/
                 return;
             }
 
@@ -189,11 +186,17 @@ class EmojiChooser {
     updateSearch(searchStr) {
         this.$.find('[data-emoji-nav-item="search"]').show();
         let result = [];
+        let length = searchStr.length;
         this.categoryOrder.forEach((categoryName, index) => {
             $.each(util.getByCategory(categoryName), (index, emoji) => {
                 if(emoji && emoji.keywords) {
                     $.each(emoji.keywords, (index, keyword) => {
-                        if(keyword.includes(searchStr)) {
+                        if(length < 3) {
+                            if(keyword.lastIndexOf(searchStr, 0) === 0) {
+                                result.push(emoji);
+                                return false;
+                            }
+                        } else if(keyword.includes(searchStr)) {
                             result.push(emoji);
                             return false;
                         }
@@ -380,10 +383,10 @@ export class EmojiProvider {
         this.context = context;
     }
 
-    query(state, node) {
+    query(state, node, focus) {
         this.state = state;
         this.$node = $(node);
-        this.update();
+        this.update(focus);
     };
 
     reset(query, node) {
@@ -414,8 +417,8 @@ export class EmojiProvider {
         this.state.addEmoji(this.getChooser().getSelection());
     };
 
-    update() {
-        this.getChooser().update(this);
+    update(focus) {
+        this.getChooser().update(this, focus);
     };
 
     getChooser() {

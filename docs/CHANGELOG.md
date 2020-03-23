@@ -1,7 +1,12 @@
 Changelog
 =========
 
-1.0.20
+1.0.21 (Unreleased)
+-----------------------------------------
+- Fix: https://github.com/humhub/humhub/issues/3906 prevent emoji chooser focus when triggered by input rule
+- Enh: Added Tab navigation in emoji chooser
+
+1.0.20 (February 27, 2020)
 -----------------------------------------
 - Fix: Emoji chooser won't work after pjax page switch https://github.com/humhub/humhub/issues/3866 
 - Enh: Added Emoji menu item
@@ -9,7 +14,7 @@ Changelog
 - Fix: Richtext list menu item disappears https://github.com/humhub/humhub/issues/3890 
 
 
-1.0.19 (February 2, 2019)
+1.0.19 (February 2, 2020)
 -----------------------------------------
 - Fix: https://github.com/humhub/humhub/issues/3793 pipe character not escaped in tables
 - Fix: https://github.com/humhub/humhub/issues/3827 emoji/mention input rule add duplicate character on IME

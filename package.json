@@ -1,6 +1,6 @@
 {
   "name": "humhub-prosemirror-richtext",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "description": "Prosemirror based richtext implementation for the humhub social network",
   "license": "Apache-2.0",
   "main": "dist/humhub-editor.js",
@@ -18,13 +18,13 @@
   "dependencies": {},
   "devDependencies": {
     "babel-polyfill": "^6.26.0",
+    "emoji-unicode-map": "^1.1.10",
     "grunt": "^1.0.4",
     "grunt-contrib-jshint": "^1.1.0",
-    "grunt-contrib-nodeunit": "^2.0.0",
+    "grunt-contrib-nodeunit": "^2.1.0",
     "grunt-contrib-uglify": "^3.4.0",
     "grunt-contrib-watch": "^1.1.0",
     "grunt-rollup": "^6.0.0",
-    "emoji-unicode-map": "^1.1.10",
     "markdown-it": "^8.4.2",
     "markdown-it-anchor": "^5.2.5",
     "markdown-it-emoji": "1.4.0",
