@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0.21 (Unreleased)
+1.0.21 (March 23, 2020)
 -----------------------------------------
 - Fix: https://github.com/humhub/humhub/issues/3906 prevent emoji chooser focus when triggered by input rule
 - Enh: Added Tab navigation in emoji chooser
