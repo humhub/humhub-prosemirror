@@ -5,13 +5,13 @@ Changelog
 -----------------------------------------
 - Fix: https://github.com/humhub/humhub/issues/3906 prevent emoji chooser focus when triggered by input rule
 - Enh: Added Tab navigation in emoji chooser
+- Fix: Richtext list menu item disappears https://github.com/humhub/humhub/issues/3890 
 
 1.0.20 (February 27, 2020)
 -----------------------------------------
 - Fix: Emoji chooser won't work after pjax page switch https://github.com/humhub/humhub/issues/3866 
 - Enh: Added Emoji menu item
 - Enh: Added search bar to emoji chooser
-- Fix: Richtext list menu item disappears https://github.com/humhub/humhub/issues/3890 
 
 
 1.0.19 (February 2, 2020)
