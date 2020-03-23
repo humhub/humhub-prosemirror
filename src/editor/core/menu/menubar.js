@@ -122,19 +122,6 @@ class MenuBarView {
         this.menu.appendChild(dom);
         this.update();
 
-        // TODO: move to menubar module
-        /*if(this.context.editor.$.is('.focusMenu')) {
-            $(this.menu).hide().addClass('menu-hidden');
-
-            $(this.context.editor.$).find('.ProseMirror').on('focus', () => {
-                $(this.menu).removeClass('menu-hidden').addClass('menu-visible').show();
-            }).on('blur', () => {
-                if(!$(this.context.editor.$).is('.fullscreen')) {
-                    $(this.menu).removeClass('menu-visible').addClass('menu-hidden').hide();
-                }
-            });
-        }*/
-
         if (options.floating && !isIOS()) {
             this.updateFloat();
             this.scrollFunc = () => {

@@ -230,8 +230,11 @@ export class MenuItemGroup extends MenuItem {
                 sort(this.content.items).forEach((item, i) => {
                     let updateResult = item.update(state);
                     let $item = $(item.dom);
+
                     if(!updateResult) {
                         $item.hide();
+                    } else {
+                        $item.show();
                     }
 
                     if((i === this.content.items.length - 1)) {
