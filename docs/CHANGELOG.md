@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.0.22 (Unreleased)
+-----------------------------------------
+- Chng: Updated rollup depenency to 2.2.0
+- Chng: Updated prosemirror dependencies
+
 1.0.21 (March 23, 2020)
 -----------------------------------------
 - Fix: https://github.com/humhub/humhub/issues/3906 prevent emoji chooser focus when triggered by input rule

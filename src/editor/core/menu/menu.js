@@ -1,4 +1,4 @@
-import crel from "crel"
+import crelt from "crelt"
 import {lift, joinUp, selectParentNode, wrapIn, setBlockType, toggleMark} from "prosemirror-commands"
 import {undo, redo} from "prosemirror-history"
 
@@ -271,7 +271,7 @@ export class MenuItemGroup extends MenuItem {
 
         this.content.items.forEach((item) => {
             let dom = item.render(view);
-            rendered.push(crel("div", {class: prefix + "item"}, dom));
+            rendered.push(crelt("div", {class: prefix + "item"}, dom));
         });
 
         return rendered;
@@ -317,7 +317,7 @@ export class Dropdown extends MenuItemGroup {
         let contentDom = this.renderItems(view);
 
         let innerDom = this.options.icon ? getIcon(this.options.icon)
-            : this.options.label ? crel("div", {style: this.options.css}, translate(view, this.options.label))
+            : this.options.label ? crelt("div", {style: this.options.css}, translate(view, this.options.label))
                 : null;
 
         if (!innerDom) {
@@ -334,7 +334,7 @@ export class Dropdown extends MenuItemGroup {
             innerDom.classList.add(this.options.id);
         }
 
-        this.dom = crel("div", {class: prefix + "-dropdown-wrap"}, innerDom);
+        this.dom = crelt("div", {class: prefix + "-dropdown-wrap"}, innerDom);
 
         if(this.options.seperator) {
             this.dom.className += ' seperator';
@@ -370,7 +370,7 @@ export class Dropdown extends MenuItemGroup {
 
         this.content.items.forEach((item) => {
             let dom = item.render(view);
-            rendered.push(crel("div", {class: prefix + "-dropdown-item"}, dom));
+            rendered.push(crelt("div", {class: prefix + "-dropdown-item"}, dom));
         });
 
         return rendered;
@@ -393,7 +393,7 @@ export class Dropdown extends MenuItemGroup {
     }
 
     expand(dom, contentDom) {
-        let menuDOM = crel("div", {class: prefix + "-dropdown-menu " + (this.options.class || "")}, contentDom);
+        let menuDOM = crelt("div", {class: prefix + "-dropdown-menu " + (this.options.class || "")}, contentDom);
 
 
 
@@ -441,9 +441,9 @@ export class DropdownSubmenu extends Dropdown {
 
         let innerDom = $('<div>').addClass(prefix + "-submenu-label").html(translate(view, this.options.label))[0];
 
-        //let innerDom = crel("div", {class: prefix + "-submenu-label"}, translate(view, this.options.label));
-        this.dom = crel("div", {class: prefix + "-submenu-wrap"}, innerDom,
-            crel("div", {class: prefix + "-submenu"}, itemDom));
+        //let innerDom = crelt("div", {class: prefix + "-submenu-label"}, translate(view, this.options.label));
+        this.dom = crelt("div", {class: prefix + "-submenu-wrap"}, innerDom,
+            crelt("div", {class: prefix + "-submenu"}, itemDom));
         let listeningOnClose = null;
 
         innerDom.addEventListener("mousedown", e => {

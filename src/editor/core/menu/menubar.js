@@ -1,4 +1,4 @@
-import crel from "crel"
+import crelt from "crelt"
 
 import {Plugin} from "prosemirror-state"
 
@@ -104,8 +104,8 @@ class MenuBarView {
         this.options = options;
         this.context = this.options.context;
 
-        this.wrapper = crel("div", {class: prefix + "-wrapper"});
-        this.menu = this.wrapper.appendChild(crel("div", {class: prefix}));
+        this.wrapper = crelt("div", {class: prefix + "-wrapper"});
+        this.menu = this.wrapper.appendChild(crelt("div", {class: prefix}));
         this.menu.className = prefix;
         this.spacer = null;
 

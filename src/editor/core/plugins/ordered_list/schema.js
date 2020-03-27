@@ -27,7 +27,7 @@ const schema = {
             },
             parseMarkdown:  {
                 block: "ordered_list", getAttrs: function (tok) {
-                    return ({order: +tok.attrGet("order") || 1});
+                    return ({order: +tok.attrGet("start") || 1});
                 }
             },
             toMarkdown: (state, node) => {

@@ -1,10 +1,10 @@
 module.exports = function(grunt) {
 
-    let rollupPluginNodeResolve = require('rollup-plugin-node-resolve');
-    let rollupPluginCommonjs = require('rollup-plugin-commonjs');
-    let rollupPluginJson = require('rollup-plugin-json');
-    let rollupPluginBuble = require('rollup-plugin-buble');
-    let rollupPluginReplace = require('rollup-plugin-replace');
+    let rollupPluginNodeResolve = require('@rollup/plugin-node-resolve');
+    let rollupPluginCommonjs = require('@rollup/plugin-commonjs');
+    let rollupPluginJson = require('@rollup/plugin-json');
+    let rollupPluginBuble = require('@rollup/plugin-buble');
+    let rollupPluginReplace = require('@rollup/plugin-replace');
 
 
     grunt.initConfig({
