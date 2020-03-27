@@ -3,7 +3,7 @@ Changelog
 
 1.0.22 (Unreleased)
 -----------------------------------------
-- Chng: Updated rollup depenency to 2.2.0
+- Chng: Updated rollup dependency to 2.2.0
 - Chng: Updated prosemirror dependencies
 
 1.0.21 (March 23, 2020)
