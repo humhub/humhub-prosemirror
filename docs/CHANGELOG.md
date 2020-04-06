@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0.22 (Unreleased)
+1.0.22 (April 06, 2020)
 -----------------------------------------
 - Chg: Updated rollup dependency to 2.2.0
 - Chg: Updated prosemirror dependencies
