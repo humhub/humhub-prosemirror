@@ -3,8 +3,9 @@ Changelog
 
 1.0.22 (Unreleased)
 -----------------------------------------
-- Chng: Updated rollup dependency to 2.2.0
-- Chng: Updated prosemirror dependencies
+- Chg: Updated rollup dependency to 2.2.0
+- Chg: Updated prosemirror dependencies
+- Chg: Removed emoji input rule on small devices
 
 1.0.21 (March 23, 2020)
 -----------------------------------------

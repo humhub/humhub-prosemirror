@@ -47,6 +47,13 @@ let emojiAutoCompleteRule = function(schema) {
 
 let emojiChooser = function(schema) {
     return new InputRule(new RegExp('(^|\\ +)(:$)'), function (state, match, start, end) {
+        if(humhub
+            && humhub.modules
+            && humhub.modules.ui
+            && humhub.modules.ui.view
+            && humhub.modules.ui.view.isSmall()) {
+            return;
+        }
 
         const mark = schema.mark('emojiQuery');
         const emojiText = schema.text(':', [mark]);
