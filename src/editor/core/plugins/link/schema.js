@@ -20,8 +20,13 @@ const schema = {
             parseDOM:
                 [{
                     tag: "a[href]", getAttrs: function getAttrs(dom) {
+                        let href = dom.getAttribute("href");
+                        if (!/^https?:\/\//i.test(href) && !/^mailto:/i.test(href) && !/^ftps?:\/\//i.test(href))  {
+                            href = '#';
+                        }
+
                         return {
-                            href: dom.getAttribute("href"),
+                            href: href,
                             title: dom.getAttribute("title"),
                             target: dom.getAttribute("target"),
                             fileGuid: dom.getAttribute("data-file-guid")
@@ -30,6 +35,10 @@ const schema = {
                 }],
             toDOM: (node) => {
                 let href = (window.humhub && node.attrs.fileGuid) ? humhub.modules.file.getFileUrl(node.attrs.fileGuid)  : node.attrs.href;
+
+                if (!/^https?:\/\//i.test(href) && !/^mailto:/i.test(href) && !/^ftps?:\/\//i.test(href))  {
+                    href = '#';
+                }
 
                 return ["a", {
                     href: href,
@@ -43,6 +52,10 @@ const schema = {
                 mark: "link", getAttrs: function (tok) {
                     let href = (window.humhub) ? humhub.modules.file.filterFileUrl(tok.attrGet("href")).url : tok.attrGet("href");
                     let fileGuid = (window.humhub) ? humhub.modules.file.filterFileUrl(tok.attrGet("href")).guid : null;
+
+                    if (!/^https?:\/\//i.test(href) && !/^mailto:/i.test(href) && !/^ftps?:\/\//i.test(href))  {
+                        href = '#';
+                    }
 
                     return ({
                         href: href,

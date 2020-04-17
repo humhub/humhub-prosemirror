@@ -30,6 +30,9 @@ const link = {
                 tokens[idx].attrPush(['data-file-url', hrefFilter.url]); // add new attribute
             }
 
+            if (!/^https?:\/\//i.test(hrefFilter.url) && !/^mailto:/i.test(hrefFilter.url) && !/^ftps?:\/\//i.test(hrefFilter.url))  {
+                tokens[idx].attrs[hrefIndex][1] = '#';
+            }
 
             // If you are sure other plugins can't add `target` - drop check below
             var aIndex = tokens[idx].attrIndex('target');

@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.0.23 (April 17, 2020)
+-----------------------------------------
+- Fix: Add additional link href protocol check
+
 1.0.22 (April 06, 2020)
 -----------------------------------------
 - Chg: Updated rollup dependency to 2.2.0
