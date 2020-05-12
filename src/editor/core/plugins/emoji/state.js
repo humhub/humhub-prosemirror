@@ -67,7 +67,6 @@ export class EmojiQueryState {
         this.query = null;
         if(this.view) {
             this.provider.reset();
-            this.view.focus();
         }
     }
 

@@ -15,7 +15,7 @@ const placeholder = {
 
         return [
             placeholderPlugin(context)
-        ]
+        ];
     },
 };
 

@@ -7,20 +7,26 @@
 
 import { Plugin } from 'prosemirror-state';
 import { DecorationSet, Decoration } from 'prosemirror-view'
+import {focusKey} from '../focus/plugin'
 
 const placeholderPlugin = (context) => {
     return new Plugin({
         state: {
             init(config, state) {
                 if(!isEmpty(state.doc, context)) {
-                    return DecorationSet.empty
+                    return DecorationSet.empty;
                 } else {
                     return DecorationSet.create(state.doc, [createDecoration(state.doc, context)]);
                 }
             },
-            apply(tr, set) {
-                // TODO: Currently if we leafe the node with an empty e.g heading there is no placeholder
+            apply(tr, set, state, newState) {
+                // TODO: Currently if we leave the node with an empty e.g heading there is no placeholder
                 // We should check when focusout, if the node is empty and change the first child to a paragraph
+
+                if(focusKey.getState(newState)) {
+                    return DecorationSet.empty;
+                }
+
                 if (!isEmpty(tr.doc, context)) {
                     return DecorationSet.empty;
                 }
@@ -29,15 +35,17 @@ const placeholderPlugin = (context) => {
             }
         },
         props: {
-            decorations(state) { return this.getState(state) }
+            decorations(state) {
+                return this.getState(state);
+            }
         }
-    })
+    });
 };
 
 const isEmpty = (doc, context) => {
-    return doc.childCount === 1 &&
-        doc.firstChild.type.name === 'paragraph' &&
-        doc.firstChild.content.size === 0 &&
+    return doc.childCount === 1
+        && doc.firstChild.type.name === 'paragraph'
+        && doc.firstChild.content.size === 0 &&
         !context.hasContentDecorations()
 };
 

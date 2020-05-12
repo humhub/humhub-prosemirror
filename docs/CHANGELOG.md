@@ -4,6 +4,9 @@ Changelog
 1.0.25 (May 05, 2020)
 -----------------------------------------
 - Fix: Fix linkExtensionTokenizer prevent inline text parsing issue
+- Fix: Initial cursor not visible on firefox due to placeholder decoration
+- Enh: Added new focus plugin for triggering plugin updates on focus/blur
+- Fix #17: Links in inline code not parsed
 
 1.0.24 (April 18, 2020)
 -----------------------------------------
