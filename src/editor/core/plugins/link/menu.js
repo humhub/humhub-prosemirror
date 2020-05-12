@@ -9,6 +9,7 @@ import {MenuItem, icons, markActive} from "../../menu/menu"
 import { TextSelection } from 'prosemirror-state'
 import {openPrompt, TextField} from "../../prompt"
 import {toggleMark} from "prosemirror-commands"
+import {validateHref} from "../../util/linkUtil";
 
 function linkItem(context) {
     let mark = context.schema.marks.link;
@@ -89,7 +90,7 @@ export function promt(title, context, attrs, node, mark) {
                     return val;
                 }
 
-                if (!/^https?:\/\//i.test(val) && !/^mailto:/i.test(val) && !/^ftps?:\/\//i.test(val))  {
+                if (!validateHref(val))  {
                     return 'http://' + val;
                 }
 

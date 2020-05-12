@@ -1,6 +1,14 @@
 Changelog
 =========
 
+1.0.25 (May 05, 2020)
+-----------------------------------------
+- Fix: Fix linkExtensionTokenizer prevent inline text parsing issue
+
+1.0.24 (April 18, 2020)
+-----------------------------------------
+- Fix: Removed debugger statement
+
 1.0.23 (April 17, 2020)
 -----------------------------------------
 - Fix: Add additional link href protocol check

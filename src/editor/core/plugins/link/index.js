@@ -7,6 +7,7 @@
 import {schema} from './schema'
 import {linkPlugin} from './plugin'
 import {menu} from './menu'
+import {validateHref} from "../../util/linkUtil";
 
 const link = {
     id: 'link',
@@ -30,7 +31,7 @@ const link = {
                 tokens[idx].attrPush(['data-file-url', hrefFilter.url]); // add new attribute
             }
 
-            if (!/^https?:\/\//i.test(hrefFilter.url) && !/^mailto:/i.test(hrefFilter.url) && !/^ftps?:\/\//i.test(hrefFilter.url))  {
+            if (!validateHref(hrefFilter.url))  {
                 tokens[idx].attrs[hrefIndex][1] = '#';
             }
 

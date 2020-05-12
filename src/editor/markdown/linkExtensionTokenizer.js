@@ -69,9 +69,17 @@ function createLinkExtension(id, options) {
             }
 
             // [link](  <id>:<href>  "title"  )
-            //          ^^^^^^ parsing oembed
-            start = pos;
+            //          ^^^^ parsing prefix
+            for(let i = 0;i < prefix.length; i++) {
+                if(state.src.charAt(pos++) !== prefix.charAt(i)) {
+                    return false;
+                }
+            }
+
+            // [link](  <id>:<href>  "title"  )
+            //               ^^^^ parsing href
             res = state.md.helpers.parseLinkDestination(state.src, pos, state.posMax);
+
             if (res.ok) {
                 href = state.md.normalizeLink(res.str);
                 if (state.md.validateLink(href)) {
@@ -80,12 +88,6 @@ function createLinkExtension(id, options) {
                     href = '';
                 }
             }
-
-            if (href.indexOf(prefix) !== 0) {
-                return false;
-            }
-
-            href = href.substring(prefix.length, href.length);
 
             // [link](  <id>:<href>  "title"  )
             //                     ^^ skipping these spaces
@@ -150,7 +152,8 @@ function createLinkExtension(id, options) {
                 state.pos++;
             }
 
-            state.md.inline.tokenize(state);
+        // NOTE linkExtensions currently do not support inline formatting:
+        // TODO: make _open, _close behavior optional in order to support inline label format state.md.inline.tokenize(state);
         }
 
         state.pos = pos;
