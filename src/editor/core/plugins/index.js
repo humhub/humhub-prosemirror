@@ -5,33 +5,34 @@
  *
  */
 
-import {inputRules, smartQuotes, emDash, ellipsis, InputRule} from "prosemirror-inputrules"
-import {keymap} from "prosemirror-keymap"
-import doc from "./doc"
-import blockquote from "./blockquote"
-import bullet_list from "./bullet_list"
-import code from "./code"
-import code_block from "./code_block"
-import em from "./em"
-import emoji from "./emoji"
-import hard_break from "./hard_break"
-import heading from "./heading"
-import horizontal_rule from "./horizontal_rule"
-import image from "./image"
-import link from "./link"
-import list_item from "./list_item"
-import mention from "./mention"
-import oembed from "./oembed"
-import ordered_list from "./ordered_list"
-import paragraph from "./paragraph"
-import strikethrough from "./strikethrough"
-import strong from "./strong"
-import table from "./table"
-import text from "./text"
-import attributes from "./attributes"
-import placeholder from "./placeholder"
-import loader from "./loader"
-import upload from "./upload"
+import {inputRules, smartQuotes, emDash, ellipsis, InputRule} from "prosemirror-inputrules";
+import {keymap} from "prosemirror-keymap";
+import doc from "./doc";
+import blockquote from "./blockquote";
+import bullet_list from "./bullet_list";
+import code from "./code";
+import code_block from "./code_block";
+import em from "./em";
+import emoji from "./emoji";
+import hard_break from "./hard_break";
+import heading from "./heading";
+import horizontal_rule from "./horizontal_rule";
+import image from "./image";
+import link from "./link";
+import list_item from "./list_item";
+import mention from "./mention";
+import oembed from "./oembed";
+import focus from "./focus";
+import ordered_list from "./ordered_list";
+import paragraph from "./paragraph";
+import strikethrough from "./strikethrough";
+import strong from "./strong";
+import table from "./table";
+import text from "./text";
+import attributes from "./attributes";
+import placeholder from "./placeholder";
+import loader from "./loader";
+import upload from "./upload";
 import clipboard from "./clipboard";
 import anchors from "./anchors";
 import fullscreen from "./fullscreen";
@@ -51,12 +52,14 @@ let registerPreset = function(id, plugins) {
 };
 
 registerPlugin(doc, 'markdown');
+registerPlugin(focus, 'markdown');
 registerPlugin(clipboard, 'markdown');
 registerPlugin(loader, 'markdown');
 registerPlugin(paragraph, 'markdown');
 registerPlugin(blockquote, 'markdown');
 registerPlugin(bullet_list, 'markdown');
 registerPlugin(strong, 'markdown');
+registerPlugin(link, 'markdown');
 registerPlugin(code, 'markdown');
 registerPlugin(code_block, 'markdown');
 registerPlugin(emoji);
@@ -72,7 +75,6 @@ registerPlugin(heading, 'markdown');
 registerPlugin(strikethrough, 'markdown');
 registerPlugin(table, 'markdown');
 registerPlugin(text, 'markdown');
-registerPlugin(link, 'markdown');
 registerPlugin(attributes, 'markdown');
 registerPlugin(upload, 'markdown');
 registerPlugin(placeholder, 'markdown');
