@@ -10,7 +10,7 @@ Changelog
 - Fix: `exitCodeAtLast` broken due to usage of removed `defaultContentType`
 - Fix: Focus menu closes when clicking outside of a menu button 
 - Enh: Added `canInsertLink` menu utility
-- Fix: Anchor plugin borken due to restricted url validation
+- Fix: Anchor plugin broken due to restricted url validation
 - Fix: Disable link/image/file menu items in code blocks
 
 1.0.24 (April 18, 2020)
