@@ -1,13 +1,15 @@
 Changelog
 =========
 
-1.0.25 (May 05, 2020)
+1.0.25 (May 13, 2020)
 -----------------------------------------
 - Fix: Fix linkExtensionTokenizer prevent inline text parsing issue
 - Fix: Initial cursor not visible on firefox due to placeholder decoration
 - Enh: Added new focus plugin for triggering plugin updates on focus/blur
 - Fix #17: Links in inline code not parsed
 - Fix: `exitCodeAtLast` broken due to usage of removed `defaultContentType`
+- Fix: Disable link/image/file menu items in code blocks
+- Fix: Focus menu closes when clicking outside of a menu button 
 
 1.0.24 (April 18, 2020)
 -----------------------------------------

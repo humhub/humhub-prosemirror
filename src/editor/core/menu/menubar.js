@@ -120,6 +120,12 @@ class MenuBarView {
         let dom = this.groupItem.render(this.editorView);
 
         this.menu.appendChild(dom);
+
+        $(this.menu).on('mousedown', function(evt) {
+            // Prevent focusout if we click outside of a menu item, but still inside menu container
+            evt.preventDefault();
+        });
+
         this.update();
 
         if (options.floating && !isIOS()) {
