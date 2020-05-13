@@ -31,7 +31,7 @@ const link = {
                 tokens[idx].attrPush(['data-file-url', hrefFilter.url]); // add new attribute
             }
 
-            if (!validateHref(hrefFilter.url))  {
+            if (!validateHref(hrefFilter.url, tokens[idx].anchor))  {
                 tokens[idx].attrs[hrefIndex][1] = '#';
             }
 

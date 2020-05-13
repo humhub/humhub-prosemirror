@@ -32,6 +32,7 @@ const anchors = {
 
             const linkTokens = [
                 Object.assign(new state.Token('link_open', 'a', 1), {
+                    anchor: true,
                     attrs: [
                         ['class', opts.permalinkClass],
                         ['href', opts.permalinkHref(slug, state)],
@@ -40,7 +41,7 @@ const anchors = {
                         ['aria-hidden', 'true']
                     ]
                 }),
-                Object.assign(new state.Token('text', '', 0), { content: opts.permalinkSymbol }),
+                Object.assign(new state.Token('text', '', 0), {content: opts.permalinkSymbol }),
                 new state.Token('link_close', 'a', -1)
             ];
 
