@@ -10,6 +10,7 @@ Changelog
 - Fix: `exitCodeAtLast` broken due to usage of removed `defaultContentType`
 - Fix: Disable link/image/file menu items in code blocks
 - Fix: Focus menu closes when clicking outside of a menu button 
+- Enh: Added `canInsertLink` menu utility
 
 1.0.24 (April 18, 2020)
 -----------------------------------------

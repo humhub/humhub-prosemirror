@@ -690,10 +690,28 @@ function setClass(dom, cls, on) {
 }
 
 export function canInsert(state, nodeType) {
-    let $from = state.selection.$from
+    let $from = state.selection.$from;
     for (let d = $from.depth; d >= 0; d--) {
         let index = $from.index(d)
         if ($from.node(d).canReplaceWith(index, index, nodeType)) return true
     }
     return false
+}
+
+export function canInsertLink(state) {
+    var allowLink = true;
+    state.doc.nodesBetween(state.selection.$from.pos, state.selection.$to.pos, function(node) {
+        if(node.type.spec.code) {
+            allowLink = false;
+        } else {
+            node.marks.forEach(function(mark) {
+                let spec = mark.type.spec;
+                if(spec.preventMarks && $.inArray('link', spec.preventMarks) >= 0) {
+                    allowLink = false;
+                }
+            });
+        }
+    });
+
+    return allowLink;
 }
