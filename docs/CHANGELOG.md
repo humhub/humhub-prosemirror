@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.0.26 (Unreleased)
+-----------------------------------------
+- Fix: Disable emoji menu items in inline code
+
+
 1.0.25 (May 13, 2020)
 -----------------------------------------
 - Fix: Fix linkExtensionTokenizer prevent inline text parsing issue

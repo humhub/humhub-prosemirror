@@ -5,7 +5,7 @@
  *
  */
 
-import {canInsert, icons, markItem, MenuItem} from "../../menu/menu"
+import {canInsert, canInsertLink, icons, markItem, MenuItem} from "../../menu/menu"
 import {SimpleEmojiState} from "./state";
 import {getProvider} from "./provider";
 
@@ -15,7 +15,7 @@ function insertEmoji(context) {
         icon: icons.emoji,
         sortOrder: 350,
         enable(state) {
-            return canInsert(state, context.schema.nodes.image)
+            return canInsert(state, context.schema.nodes.image) && canInsertLink(state)
         },
         run(state, _, view, e) {
             if (!$('.humhub-richtext-provider:visible').length) {
