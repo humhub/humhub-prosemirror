@@ -8,10 +8,10 @@ Changelog
 - Enh: Added new focus plugin for triggering plugin updates on focus/blur
 - Fix #17: Links in inline code not parsed
 - Fix: `exitCodeAtLast` broken due to usage of removed `defaultContentType`
-- Fix: Disable link/image/file menu items in code blocks
 - Fix: Focus menu closes when clicking outside of a menu button 
 - Enh: Added `canInsertLink` menu utility
 - Fix: Anchor plugin borken due to restricted url validation
+- Fix: Disable link/image/file menu items in code blocks
 
 1.0.24 (April 18, 2020)
 -----------------------------------------

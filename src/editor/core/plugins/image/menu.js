@@ -4,7 +4,7 @@
  * @license https://www.humhub.com/licences
  *
  */
-import {MenuItem, canInsert} from "../../menu/"
+import {MenuItem, canInsert, canInsertLink} from "../../menu/"
 import {TextField, openPrompt} from "../../prompt"
 import {NodeSelection} from "prosemirror-state"
 
@@ -14,7 +14,7 @@ function insertImageItem(context) {
         label: context.translate("Image"),
         sortOrder: 100,
         enable(state) {
-            return canInsert(state, context.schema.nodes.image)
+            return canInsert(state, context.schema.nodes.image) && canInsertLink(state);
         },
         run(state, _, view) {
             if (state.selection instanceof NodeSelection && state.selection.node.type === context.schema.nodes.image) {

@@ -5,7 +5,7 @@
  *
  */
 
-import {MenuItem, icons, markActive} from "../../menu/menu"
+import {MenuItem, icons, markActive, canInsertLink} from "../../menu/menu"
 import { TextSelection } from 'prosemirror-state'
 import {openPrompt, TextField} from "../../prompt"
 import {toggleMark} from "prosemirror-commands"
@@ -25,17 +25,7 @@ function linkItem(context) {
                 return false;
             }
 
-            var allowLink = true;
-            state.doc.nodesBetween(state.selection.$from.pos, state.selection.$to.pos, function(node, start, parent, index) {
-                node.marks.forEach(function(mark) {
-                    let spec = mark.type.spec;
-                    if(spec.preventMarks && $.inArray('link', spec.preventMarks) >= 0) {
-                        allowLink = false;
-                    }
-                });
-            });
-
-            return allowLink;
+            return canInsertLink(state);
         },
         run(state, dispatch, view) {
             if (markActive(state, mark)) {
@@ -91,7 +81,7 @@ export function promt(title, context, attrs, node, mark) {
                 }
 
                 if (!validateHref(val))  {
-                    return 'http://' + val;
+                    return 'https://' + val;
                 }
 
                 return val;

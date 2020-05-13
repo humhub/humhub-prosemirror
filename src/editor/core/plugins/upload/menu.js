@@ -5,7 +5,7 @@
  *
  */
 
-import {MenuItem} from "../../menu"
+import {MenuItem, canInsertLink} from "../../menu"
 import {triggerUpload} from "./service"
 
 let uploadFile = (context) => {
@@ -14,7 +14,7 @@ let uploadFile = (context) => {
         label: context.translate("Upload File"),
         sortOrder: 0,
         enable(state) {
-            return state.selection.$from.parent.inlineContent
+            return canInsertLink(state);
         },
         run(state, dispatch, view) {
             if (view.state.selection.$from.parent.inlineContent) {
