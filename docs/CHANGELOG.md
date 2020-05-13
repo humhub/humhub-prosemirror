@@ -7,6 +7,7 @@ Changelog
 - Fix: Initial cursor not visible on firefox due to placeholder decoration
 - Enh: Added new focus plugin for triggering plugin updates on focus/blur
 - Fix #17: Links in inline code not parsed
+- Fix: `exitCodeAtLast` broken due to usage of removed `defaultContentType`
 
 1.0.24 (April 18, 2020)
 -----------------------------------------

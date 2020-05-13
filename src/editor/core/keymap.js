@@ -37,7 +37,7 @@ function exitCodeAtLast(state, dispatch) {
 
     let above = $head.node(-1);
     let after = $head.indexAfter(-1);
-    let type = above.defaultContentType(after);
+    let type = above.contentMatchAt(after).defaultType;
 
     if (!above.canReplaceWith(after, after, type)) {
         return false;
