@@ -1,6 +1,6 @@
 import {
     wrapIn, setBlockType, chainCommands, toggleMark, exitCode,
-    joinUp, joinDown, lift, selectParentNode
+    joinUp, joinDown, lift, selectParentNode, splitBlock
 } from "prosemirror-commands"
 import {wrapInList, splitListItem, liftListItem, sinkListItem} from "prosemirror-schema-list"
 import {undo, redo} from "prosemirror-history"
@@ -179,8 +179,14 @@ export function buildKeymap(context) {
         bind("Ctrl->", wrapIn(type))
     if (type = schema.nodes.hard_break) {
         let br = type, cmd = chainCommands(exitCode, (state, dispatch) => {
-            dispatch(state.tr.replaceSelectionWith(br.create()).scrollIntoView())
-            return true
+            if(state.selection
+                && state.selection.$anchor.parent
+                && state.selection.$anchor.parent.type === schema.nodes.heading) {
+                splitBlock(state, dispatch);
+                return true;
+            }
+            dispatch(state.tr.replaceSelectionWith(br.create()).scrollIntoView());
+            return true;
         });
         bind("Mod-Enter", cmd)
         bind("Shift-Enter", cmd)

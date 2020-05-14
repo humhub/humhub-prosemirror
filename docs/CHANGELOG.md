@@ -1,9 +1,10 @@
 Changelog
 =========
 
-1.0.26 (Unreleased)
+1.0.26 (May 13, 2020)
 -----------------------------------------
 - Fix: Disable emoji menu items in inline code
+- Fix https://github.com/humhub/humhub/issues/4049 faulty line break within headline formatting
 
 
 1.0.25 (May 13, 2020)
