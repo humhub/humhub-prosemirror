@@ -7,6 +7,7 @@ Changelog
 - Fix https://github.com/humhub/humhub/issues/4049 faulty line break within headline formatting
 - Enh: Unified link creation and validation in `core/util/linkUtil.js`
 - Fix: Oembed not wrapped in `oembed_snippet` container when cached
+- Fix #11: Table cell paragraph always renders two line breaks
 
 1.0.25 (May 13, 2020)
 -----------------------------------------
