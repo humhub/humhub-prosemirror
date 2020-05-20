@@ -5,7 +5,8 @@ Changelog
 -----------------------------------------
 - Fix: Disable emoji menu items in inline code
 - Fix https://github.com/humhub/humhub/issues/4049 faulty line break within headline formatting
-
+- Enh: Unified link creation and validation in `core/util/linkUtil.js`
+- Fix: Oembed not wrapped in `oembed_snippet` container when cached
 
 1.0.25 (May 13, 2020)
 -----------------------------------------

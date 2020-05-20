@@ -5,7 +5,7 @@
  *
  */
 
-import {validateHref} from "../../util/linkUtil";
+import {validateHref, DEFAULT_LINK_REL} from "../../util/linkUtil";
 
 const schema = {
     marks: {
@@ -16,7 +16,7 @@ const schema = {
                 title: {default: null},
                 target: {default: '_blank'},
                 fileGuid: { default: null},
-                rel: {default: 'noopener'}
+                rel: {default: DEFAULT_LINK_REL}
             },
             inclusive: false,
             parseDOM:
@@ -35,21 +35,6 @@ const schema = {
                         }
                     }
                 }],
-            toDOM: (node) => {
-                let href = (window.humhub && node.attrs.fileGuid) ? humhub.modules.file.getFileUrl(node.attrs.fileGuid) : node.attrs.href;
-
-                if (!validateHref(href))  {
-                    href = '#';
-                }
-
-                return ["a", {
-                    href: href,
-                    title: node.attrs.title || null,
-                    target: node.attrs.target || '_blank',
-                    rel: 'noopener',
-                    'data-file-guid': node.attrs.fileGuid || null
-                }]
-            },
             parseMarkdown: {
                 mark: "link", getAttrs: function (tok) {
                     let href = (window.humhub) ? humhub.modules.file.filterFileUrl(tok.attrGet("href")).url : tok.attrGet("href");

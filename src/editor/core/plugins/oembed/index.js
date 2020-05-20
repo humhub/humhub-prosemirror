@@ -4,9 +4,10 @@
  * @license https://www.humhub.com/licences
  *
  */
-import {schema} from './schema'
-import {oembed_plugin} from './markdownit_oembed'
-import {$node} from '../../util/node'
+import {schema} from './schema';
+import {oembed_plugin} from './markdownit_oembed';
+import {$node} from '../../util/node';
+import {buildLink} from "../../util/linkUtil";
 
 const oembed = {
     id: 'oembed',
@@ -42,15 +43,16 @@ const oembed = {
 
         markdownIt.renderer.rules.oembed = function(token, idx) {
             let oembed = token[idx];
-            let href = markdownIt.utils.escapeHtml(oembed.attrGet('href'));
-            let $oembed = $('[data-oembed="'+href+'"]');
+            let href = oembed.attrGet('href');
+            let $oembed = humhub
+                .require('oembed')
+                .get(href);
 
-            if(!$oembed.length) {
-                return '<a href="'+href+'" target="_blank" rel="noopener">'+href+'</a>';
+            if(!$oembed || !$oembed.length) {
+                return buildLink(href);
             }
 
-            $oembed = $oembed.clone();
-            return $oembed.html();
+            return $('<div>').append($oembed).html();
         };
     }
 };

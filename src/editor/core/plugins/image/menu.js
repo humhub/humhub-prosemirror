@@ -7,6 +7,8 @@
 import {MenuItem, canInsert, canInsertLink} from "../../menu/"
 import {TextField, openPrompt} from "../../prompt"
 import {NodeSelection} from "prosemirror-state"
+import {escapeHtml} from "markdown-it/lib/common/utils";
+import {validateHref} from "../../util/linkUtil";
 
 function insertImageItem(context) {
     return new MenuItem({
@@ -73,12 +75,18 @@ export function promt(title, context, attrs, view, node) {
         }
     };
 
+    let validateSource = function(val) {
+        if(!validateHref(val)) {
+            return context.translate('Invalid image source.')
+        }
+    };
+
     openPrompt({
         title: title,
         fields: {
-            src: new TextField({label: context.translate("Location"), required: true, value: attrs && attrs.src, clean: clean}),
-            title: new TextField({label: context.translate("Title"), value: attrs && attrs.title, clean: clean}),
-            alt: new TextField({label: context.translate("Description"), value: attrs ? attrs.alt : state.doc.textBetween(from, to, " "), clean: clean}),
+            src: new TextField({label: context.translate("Location"), required: true, value: attrs && attrs.src, validate: validateSource}),
+            title: new TextField({label: context.translate("Title"), value: attrs && attrs.title}),
+            alt: new TextField({label: context.translate("Description"), value: attrs ? attrs.alt : state.doc.textBetween(from, to, " ")}),
             width: new TextField({label: context.translate("Width"), value: attrs && attrs.width, clean: cleanDimension, validate: validateDimension }),
             height: new TextField({label: context.translate("Height"),  value: attrs && attrs.height, clean: cleanDimension, validate: validateDimension})
         },
@@ -91,10 +99,6 @@ export function promt(title, context, attrs, view, node) {
         }
     })
 }
-
-let clean = (val) => {
-    return val.replace(/(["'])/g, '');
-};
 
 export function menu(context) {
     return [

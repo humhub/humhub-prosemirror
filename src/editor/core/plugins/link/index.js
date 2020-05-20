@@ -7,7 +7,7 @@
 import {schema} from './schema'
 import {linkPlugin} from './plugin'
 import {menu} from './menu'
-import {validateHref} from "../../util/linkUtil";
+import {validateHref, DEFAULT_LINK_REL} from "../../util/linkUtil";
 
 const link = {
     id: 'link',
@@ -31,7 +31,7 @@ const link = {
                 tokens[idx].attrPush(['data-file-url', hrefFilter.url]); // add new attribute
             }
 
-            if (!validateHref(hrefFilter.url, tokens[idx].anchor))  {
+            if (!validateHref(hrefFilter.url, {anchor: tokens[idx].anchor}))  {
                 tokens[idx].attrs[hrefIndex][1] = '#';
             }
 
@@ -44,7 +44,7 @@ const link = {
                 tokens[idx].attrs[aIndex][1] = '_blank';    // replace value of existing attr
             }
 
-            tokens[idx].attrPush(['rel', 'noopener']);
+            tokens[idx].attrPush(['rel', DEFAULT_LINK_REL]);
 
             // pass token to default renderer.
             return defaultRender(tokens, idx, options, env, self);

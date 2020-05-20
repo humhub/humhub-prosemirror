@@ -8,6 +8,7 @@
 import { Plugin, NodeSelection } from 'prosemirror-state';
 
 import { editNode } from './menu';
+import {validateHref} from "../../util/linkUtil";
 
 const imagePlugin = (context) => {
 
@@ -79,21 +80,19 @@ class ImageView {
     }
 
     createDom(node) {
+        let src = validateHref(node.attrs.src) ? node.attrs.src : '#';
+
         this.dom = $('<img>').attr({
-            src: node.attrs.src,
-            title: clean(node.attrs.title) || null,
-            width: clean(node.attrs.width) || null,
-            height: clean(node.attrs.height) || null,
-            alt: clean(node.attrs.alt) || null,
-            'data-file-guid': clean(node.attrs.fileGuid)
+            src: src,
+            title: node.attrs.title || null,
+            width: node.attrs.width || null,
+            height: node.attrs.height || null,
+            alt: node.attrs.alt || null,
+            'data-file-guid': node.attrs.fileGuid
         })[0];
     }
 
     //stopEvent() { return true }
 }
-
-let clean = (val) => {
-    return (val) ? val.replace(/(["'])/g, '') : val;
-};
 
 export {imagePlugin}

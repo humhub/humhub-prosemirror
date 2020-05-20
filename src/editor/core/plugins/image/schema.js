@@ -32,18 +32,6 @@ const schema = {
                     }
                 }
             }],
-            toDOM: (node) => {
-                let src = (window.humhub && node.attrs.fileGuid) ? humhub.modules.file.getFileUrl(node.attrs.fileGuid)  : node.attrs.src;
-
-                return ["img", {
-                    src: src,
-                    title: node.attrs.title || null,
-                    width: node.attrs.width || null,
-                    height: node.attrs.height || null,
-                    alt: node.attrs.alt || null,
-                    'data-file-guid': node.attrs.fileGuid || null
-                }]
-            },
             parseMarkdown: {
                 node: "image", getAttrs: function (tok) {
                     let src =  (window.humhub) ? humhub.modules.file.filterFileUrl(tok.attrGet("src")).url : tok.attrGet("src");

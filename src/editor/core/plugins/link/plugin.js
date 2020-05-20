@@ -1,6 +1,7 @@
 import { Plugin } from 'prosemirror-state'
 import { Slice, Fragment } from "prosemirror-model"
 import {editNode} from './menu';
+import {buildLink} from "../../util/linkUtil";
 
 let linkPlugin = (context) => {
     return new Plugin({
@@ -25,12 +26,10 @@ class LinkView {
     }
 
     createDom(mark) {
-        this.dom = $('<a>').attr({
-            href: clean(mark.attrs.href),
-            'data-file-guid': clean(mark.attrs.fileGuid),
-            target: clean(mark.attrs.target) || '_blank',
-            rel: 'noopener',
-        })[0];
+        this.dom = $(buildLink(mark.attrs.href, {
+            'data-file-guid': mark.attrs.fileGuid,
+            target: mark.attrs.target || '_blank'
+        }))[0];
     }
 
     stopEvent() { return true }

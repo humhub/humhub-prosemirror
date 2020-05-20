@@ -9,6 +9,7 @@ import {mentionRule} from './input-rules'
 import {mentionPlugin} from './plugin'
 import {keymap} from './keymap'
 import {createLinkExtension} from "../../../markdown/linkExtensionTokenizer"
+import {buildLink, validateHref} from "../../util/linkUtil";
 
 const mention = {
     id: 'mention',
@@ -32,16 +33,17 @@ const mention = {
         }));
 
         markdownIt.renderer.rules.mention = function(token, idx) {
-            let oembed = token[idx];
-            let href = markdownIt.utils.escapeHtml(oembed.attrGet('href'));
-            let guid = markdownIt.utils.escapeHtml(oembed.attrGet('guid'));
-            let name = markdownIt.utils.escapeHtml(oembed.attrGet('name'));
+            let mentioning = token[idx];
+            let href = mentioning.attrGet('href');
+            let guid = mentioning.attrGet('guid');
+            let label = '@'+mentioning.attrGet('name');
 
-            if(href === '#') {
-                return '<a href="#" class="not-found">@'+name+'</a>';
+
+            if(!validateHref(href, {relative: true})) {
+                return buildLink('#',{'class':'not-found'}, label);
             }
 
-            return '<a href="'+href+'" data-contentcontainer-guid="'+guid+'" target="_blank" rel="noopener">@'+name+'</a>';
+            return buildLink(href, {'data-contentcontainer-guid': guid}, label, false);
         };
 
 

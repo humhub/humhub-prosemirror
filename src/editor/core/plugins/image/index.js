@@ -8,6 +8,7 @@ import {schema} from './schema'
 import imsize_plugin from './markdownit_imsize'
 import {menu} from './menu'
 import {imagePlugin} from "./plugin";
+import {validateHref} from "../../util/linkUtil";
 
 const image = {
     id: 'image',
@@ -28,9 +29,8 @@ const image = {
         markdownIt.renderer.rules.image = function (tokens, idx, options, env, self) {
             let srcIndex = tokens[idx].attrIndex('src');
 
-
             let srcFilter = (window.humhub) ? humhub.modules.file.filterFileUrl(tokens[idx].attrs[srcIndex][1]) : {url : tokens[idx].attrs[srcIndex][1]};
-            tokens[idx].attrs[srcIndex][1] = srcFilter.url;
+            tokens[idx].attrs[srcIndex][1] = validateHref(srcFilter.url) ? srcFilter.url : '#';
 
             if(srcFilter.guid) {
                 tokens[idx].attrPush(['data-file-guid', srcFilter.guid]); // add new attribute
