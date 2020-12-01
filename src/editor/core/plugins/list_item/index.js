@@ -5,10 +5,14 @@
  *
  */
 import {schema} from './schema'
+import {menu} from './menu'
 
 const list_item = {
     id: 'list_item',
-    schema: schema
+    schema: schema,
+    menu: (context) => {
+        return menu(context);
+    },
 };
 
 export default list_item;

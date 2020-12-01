@@ -1,8 +1,9 @@
 import crelt from "crelt"
-import {lift, joinUp, selectParentNode, wrapIn, setBlockType, toggleMark} from "prosemirror-commands"
+import {joinUp, selectParentNode, wrapIn, setBlockType, toggleMark} from "prosemirror-commands"
 import {undo, redo} from "prosemirror-history"
 
 import {getIcon} from "./icons"
+import {liftTarget} from "prosemirror-transform";
 
 const prefix = "ProseMirror-menu";
 
@@ -497,6 +498,14 @@ export const icons = {
         width: 1024, height: 1024,
         path: "M219 310v329q0 7-5 12t-12 5q-8 0-13-5l-164-164q-5-5-5-13t5-13l164-164q5-5 13-5 7 0 12 5t5 12zM1024 749v109q0 7-5 12t-12 5h-987q-7 0-12-5t-5-12v-109q0-7 5-12t12-5h987q7 0 12 5t5 12zM1024 530v109q0 7-5 12t-12 5h-621q-7 0-12-5t-5-12v-109q0-7 5-12t12-5h621q7 0 12 5t5 12zM1024 310v109q0 7-5 12t-12 5h-621q-7 0-12-5t-5-12v-109q0-7 5-12t12-5h621q7 0 12 5t5 12zM1024 91v109q0 7-5 12t-12 5h-987q-7 0-12-5t-5-12v-109q0-7 5-12t12-5h987q7 0 12 5t5 12z"
     },
+    indent: {
+        width: 28, height: 28,
+        path: "M5.5 13c0 0.125-0.047 0.266-0.141 0.359l-4.5 4.5c-0.094 0.094-0.234 0.141-0.359 0.141-0.266 0-0.5-0.234-0.5-0.5v-9c0-0.266 0.234-0.5 0.5-0.5 0.125 0 0.266 0.047 0.359 0.141l4.5 4.5c0.094 0.094 0.141 0.234 0.141 0.359zM28 20.5v3c0 0.266-0.234 0.5-0.5 0.5h-27c-0.266 0-0.5-0.234-0.5-0.5v-3c0-0.266 0.234-0.5 0.5-0.5h27c0.266 0 0.5 0.234 0.5 0.5zM28 14.5v3c0 0.266-0.234 0.5-0.5 0.5h-17c-0.266 0-0.5-0.234-0.5-0.5v-3c0-0.266 0.234-0.5 0.5-0.5h17c0.266 0 0.5 0.234 0.5 0.5zM28 8.5v3c0 0.266-0.234 0.5-0.5 0.5h-17c-0.266 0-0.5-0.234-0.5-0.5v-3c0-0.266 0.234-0.5 0.5-0.5h17c0.266 0 0.5 0.234 0.5 0.5zM28 2.5v3c0 0.266-0.234 0.5-0.5 0.5h-27c-0.266 0-0.5-0.234-0.5-0.5v-3c0-0.266 0.234-0.5 0.5-0.5h27c0.266 0 0.5 0.234 0.5 0.5z"
+    },
+    outdent: {
+        width: 28, height: 28,
+        path: "M6 8.5v9c0 0.266-0.234 0.5-0.5 0.5-0.125 0-0.266-0.047-0.359-0.141l-4.5-4.5c-0.094-0.094-0.141-0.234-0.141-0.359s0.047-0.266 0.141-0.359l4.5-4.5c0.094-0.094 0.234-0.141 0.359-0.141 0.266 0 0.5 0.234 0.5 0.5zM28 20.5v3c0 0.266-0.234 0.5-0.5 0.5h-27c-0.266 0-0.5-0.234-0.5-0.5v-3c0-0.266 0.234-0.5 0.5-0.5h27c0.266 0 0.5 0.234 0.5 0.5zM28 14.5v3c0 0.266-0.234 0.5-0.5 0.5h-17c-0.266 0-0.5-0.234-0.5-0.5v-3c0-0.266 0.234-0.5 0.5-0.5h17c0.266 0 0.5 0.234 0.5 0.5zM28 8.5v3c0 0.266-0.234 0.5-0.5 0.5h-17c-0.266 0-0.5-0.234-0.5-0.5v-3c0-0.266 0.234-0.5 0.5-0.5h17c0.266 0 0.5 0.234 0.5 0.5zM28 2.5v3c0 0.266-0.234 0.5-0.5 0.5h-27c-0.266 0-0.5-0.234-0.5-0.5v-3c0-0.266 0.234-0.5 0.5-0.5h27c0.266 0 0.5 0.234 0.5 0.5z"
+    },
     selectParentNode: {text: "\u2b1a", css: "font-weight: bold"},
     undo: {
         width: 1024, height: 1024,
@@ -605,9 +614,28 @@ export const liftItem = function () {
         title: "Lift out of enclosing block",
         run: lift,
         select: state => lift(state),
-        icon: icons.lift
+        icon: icons.outdent
     });
 };
+
+function lift(state, dispatch) {
+    var ref = state.selection;
+    var $from = ref.$from;
+    var $to = ref.$to;
+
+    var inList = $from.blockRange($to, function (node) {
+        return node.childCount && node.firstChild.type.name === 'list_item';
+    });
+
+    if(inList) {
+        return false;
+    }
+
+    var range = $from.blockRange($to), target = range && liftTarget(range);
+    if (target == null) { return false }
+    if (dispatch) { dispatch(state.tr.lift(range, target).scrollIntoView()); }
+    return true
+}
 
 // :: MenuItem
 // Menu item for the `selectParentNode` command.
