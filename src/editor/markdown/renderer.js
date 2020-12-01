@@ -20,7 +20,7 @@ let getRenderer = (context) => {
 };
 
 let createRenderer = function(context) {
-    let markdownItOptions = context && context.options.markdownIt || {html: false, breaks: true};
+    let markdownItOptions = context && context.options.markdownIt || {html: false, breaks: true, linkify: true};
     let renderer = markdownit(markdownItOptions);
 
     const plugins = getPlugins(context);
