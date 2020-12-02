@@ -5,7 +5,7 @@
  *
  */
 import {MenuItem, canInsert, canInsertLink} from "../../menu/"
-import {TextField, openPrompt} from "../../prompt"
+import {TextField, openPrompt, SelectField} from "../../prompt"
 import {NodeSelection} from "prosemirror-state"
 import {escapeHtml} from "markdown-it/lib/common/utils";
 import {validateHref} from "../../util/linkUtil";
@@ -35,7 +35,6 @@ export function editNode(node, context, view) {
 let isDefined = function(obj) {
     if(arguments.length > 1) {
         let result = true;
-        let that = this;
         this.each(arguments, function(index, value) {
             if(!isDefined(value)) {
                 return false;
@@ -84,16 +83,47 @@ export function promt(title, context, attrs, view, node) {
     openPrompt({
         title: title,
         fields: {
-            src: new TextField({label: context.translate("Location"), required: true, value: attrs && attrs.src, validate: validateSource}),
+            src: new TextField({
+                label: context.translate("Location"),
+                required: true,
+                value: attrs && attrs.src,
+                validate: validateSource
+            }),
             title: new TextField({label: context.translate("Title"), value: attrs && attrs.title}),
-            alt: new TextField({label: context.translate("Description"), value: attrs ? attrs.alt : state.doc.textBetween(from, to, " ")}),
-            width: new TextField({label: context.translate("Width"), value: attrs && attrs.width, clean: cleanDimension, validate: validateDimension }),
-            height: new TextField({label: context.translate("Height"),  value: attrs && attrs.height, clean: cleanDimension, validate: validateDimension})
+            alt: new TextField({
+                label: context.translate("Description"),
+                value: attrs ? attrs.alt : state.doc.textBetween(from, to, " ")
+            }),
+            width: new TextField({
+                label: context.translate("Width"),
+                value: attrs && attrs.width,
+                clean: cleanDimension,
+                validate: validateDimension
+            }),
+            height: new TextField({
+                label: context.translate("Height"),
+                value: attrs && attrs.height,
+                clean: cleanDimension,
+                validate: validateDimension
+            }),
+            float: new SelectField({
+                label: context.translate("Position"),
+                value: attrs && attrs.float,
+                options: [
+                    {label: context.translate("Normal"), value: 0},
+                    {label: context.translate("Left"), value: 1},
+                    {label: context.translate("Center"), value: 2},
+                    {label: context.translate("Right"), value: 3}
+                ]
+            })
         },
         callback(attrs) {
             if(node && node.attrs.src === attrs.src) {
-                    attrs.fileGuid = node.attrs.fileGuid
+                attrs.fileGuid = node.attrs.fileGuid
             }
+
+            attrs.float = parseInt(attrs.float);
+
             view.dispatch(view.state.tr.replaceSelectionWith(context.schema.nodes.image.createAndFill(attrs)));
             view.focus()
         }
