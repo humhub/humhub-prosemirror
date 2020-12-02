@@ -1,3 +1,5 @@
+import {getAltExtensionByFloat, FLOAT_ALT_EXT_NONE} from './imageFloat'
+
 /*
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2017 HumHub GmbH & Co. KG
@@ -16,6 +18,7 @@ const schema = {
                 title: {default: null},
                 width: {default: null},
                 height: {default: null},
+                float: {default: FLOAT_ALT_EXT_NONE},
                 fileGuid: { default: null},
             },
             group: "inline",
@@ -42,7 +45,8 @@ const schema = {
                         title: tok.attrGet("title") || null,
                         width: tok.attrGet("width") || null,
                         height: tok.attrGet("height") || null,
-                        alt: tok.children[0] && tok.children[0].content || null,
+                        alt: tok.attrGet("alt") || null,
+                        float: tok.attrGet("float") || FLOAT_ALT_EXT_NONE,
                         fileGuid: fileGuid
                     });
                 }
@@ -59,7 +63,9 @@ const schema = {
 
                 let src = (node.attrs.fileGuid) ? 'file-guid:'+node.attrs.fileGuid  : node.attrs.src;
 
-                state.write("![" + state.esc(node.attrs.alt || "") + "](" + state.esc(src) +
+                let float = getAltExtensionByFloat(node.attrs.float);
+
+                state.write("![" + state.esc(node.attrs.alt || "") + float + "](" + state.esc(src) +
                     (node.attrs.title ? " " + state.quote(node.attrs.title) : "") + resizeAddition + ")");
             }
         }

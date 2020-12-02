@@ -10,6 +10,8 @@
 
 'use strict';
 
+var imageFloat = require('./imageFloat')
+
 var parseImageSize = require('./parse_image_size');
 
 function image_with_size(md, options) {
@@ -193,9 +195,18 @@ function image_with_size(md, options) {
             }
 
             token          = state.push('image', 'img', 0);
-            token.attrs    = attrs = [ [ 'src', href ],
-                [ 'alt', '' ] ];
+            token.attrs    = attrs = [ [ 'src', href ], [ 'alt', '' ] ];
             token.children = tokens;
+
+            // Parse image float extension
+            let altTextToken = tokens.length ? tokens[tokens.length - 1] : null;
+
+            if(altTextToken) {
+                let {float, alt} = imageFloat.parseFloatFromAlt(altTextToken['content']);
+                altTextToken['content'] = alt;
+                token.attrs.push(['float', float]);
+            }
+
             if (title) {
                 attrs.push([ 'title', title ]);
             }

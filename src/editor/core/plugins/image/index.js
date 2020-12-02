@@ -5,6 +5,7 @@
  *
  */
 import {schema} from './schema'
+import {getStyleForFloat} from './imageFloat'
 import imsize_plugin from './markdownit_imsize'
 import {menu} from './menu'
 import {imagePlugin} from "./plugin";
@@ -27,17 +28,26 @@ const image = {
         };
 
         markdownIt.renderer.rules.image = function (tokens, idx, options, env, self) {
-            let srcIndex = tokens[idx].attrIndex('src');
 
-            let srcFilter = (window.humhub) ? humhub.modules.file.filterFileUrl(tokens[idx].attrs[srcIndex][1]) : {url : tokens[idx].attrs[srcIndex][1]};
-            tokens[idx].attrs[srcIndex][1] = validateHref(srcFilter.url) ? srcFilter.url : '#';
+            let imageToken = tokens[idx];
+            let srcIndex = imageToken.attrIndex('src');
+
+
+            let srcFilter = (window.humhub) ? humhub.modules.file.filterFileUrl(imageToken.attrs[srcIndex][1]) : {url : imageToken.attrs[srcIndex][1]};
+            imageToken.attrs[srcIndex][1] = validateHref(srcFilter.url) ? srcFilter.url : '#';
 
             if(srcFilter.guid) {
-                tokens[idx].attrPush(['data-file-guid', srcFilter.guid]); // add new attribute
+                imageToken.attrPush(['data-file-guid', srcFilter.guid]); // add new attribute
             }
 
             if(env && env.context && env.context.uuid) {
-                tokens[idx].attrPush(['data-ui-gallery', env.context.uuid]);
+                imageToken.attrPush(['data-ui-gallery', env.context.uuid]);
+            }
+
+            let float = imageToken.attrs[ imageToken.attrIndex('float')][1];
+
+            if(float) {
+                imageToken.attrPush(['style', getStyleForFloat(float)]);
             }
 
             // pass token to default renderer.

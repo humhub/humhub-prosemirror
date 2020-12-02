@@ -1,6 +1,14 @@
 Changelog
 =========
 
+
+1.1.0 (Unreleased)
+-----------------------------------------
+- Chng: Bump dependencies
+- Enh #13: Improved list handling by adding indent/dedent menu items
+- Enh #10: Added image alignment setting
+- Fix: Prompt select field not working
+
 1.0.26 (May 20, 2020)
 -----------------------------------------
 - Fix: Disable emoji menu items in inline code

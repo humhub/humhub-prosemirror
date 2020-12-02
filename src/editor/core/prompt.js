@@ -174,7 +174,7 @@ export class Field {
         if(dom.value) {
             return dom.value;
         } else {
-            return $(dom).find('input')[0].value;
+            return $(dom).find('input, select')[0].value;
         }
     }
 
@@ -214,6 +214,8 @@ export class TextField extends Field {
 export class SelectField extends Field {
     render() {
         let select = document.createElement("select");
+        select.className = 'form-control';
+
         this.options.options.forEach(o => {
             let opt = select.appendChild(document.createElement("option"));
             opt.value = o.value;
