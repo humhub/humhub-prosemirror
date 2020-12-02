@@ -5,7 +5,7 @@
  *
  */
 import {schema} from './schema'
-import {getStyleForFloat} from './imageFloat'
+import {getClassForFloat} from './imageFloat'
 import imsize_plugin from './markdownit_imsize'
 import {menu} from './menu'
 import {imagePlugin} from "./plugin";
@@ -47,7 +47,7 @@ const image = {
             let float = imageToken.attrs[ imageToken.attrIndex('float')][1];
 
             if(float) {
-                imageToken.attrPush(['style', getStyleForFloat(float)]);
+                imageToken.attrPush(['class', getClassForFloat(float)]);
             }
 
             // pass token to default renderer.

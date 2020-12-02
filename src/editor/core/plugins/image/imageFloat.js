@@ -52,15 +52,15 @@ export function parseFloatFromAlt(alt) {
     }
 }
 
-export function getStyleForFloat(float) {
+export function getClassForFloat(float) {
     float = parseInt(float);
     switch (float) {
         case FLOAT_LEFT:
-            return 'float:left;';
+            return 'pull-left';
         case FLOAT_CENTER:
-            return 'display:block;max-width:100%;margin:auto;float:none;';
+            return 'center-block';
         case FLOAT_RIGHT:
-            return 'float:right;';
+            return 'pull-right';
         default:
             return '';
     }

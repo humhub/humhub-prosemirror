@@ -8,7 +8,7 @@
 import { Plugin, NodeSelection } from 'prosemirror-state';
 
 import { editNode } from './menu';
-import { getStyleForFloat } from './imageFloat';
+import { getClassForFloat } from './imageFloat';
 import {validateHref} from "../../util/linkUtil";
 
 const imagePlugin = (context) => {
@@ -89,7 +89,7 @@ class ImageView {
             width: node.attrs.width || null,
             height: node.attrs.height || null,
             alt: node.attrs.alt || null,
-            style: getStyleForFloat(node.attrs.float),
+            class: getClassForFloat(node.attrs.float),
             'data-file-guid': node.attrs.fileGuid
         })[0];
     }
