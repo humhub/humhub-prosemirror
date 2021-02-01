@@ -1,7 +1,6 @@
 Changelog
 =========
 
-
 1.1.0 (Unreleased)
 -----------------------------------------
 - Chng: Bump dependencies
