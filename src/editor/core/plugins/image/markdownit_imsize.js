@@ -205,6 +205,8 @@ function image_with_size(md, options) {
                 let {float, alt} = imageFloat.parseFloatFromAlt(altTextToken['content']);
                 altTextToken['content'] = alt;
                 token.attrs.push(['float', float]);
+            } else {
+                token.attrs.push(['float', imageFloat.FLOAT_NONE]);
             }
 
             if (title) {

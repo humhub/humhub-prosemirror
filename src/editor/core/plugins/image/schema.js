@@ -1,4 +1,4 @@
-import {getAltExtensionByFloat, FLOAT_ALT_EXT_NONE} from './imageFloat'
+import {getAltExtensionByFloat, FLOAT_NONE} from './imageFloat'
 
 /*
  * @link https://www.humhub.org/
@@ -18,7 +18,7 @@ const schema = {
                 title: {default: null},
                 width: {default: null},
                 height: {default: null},
-                float: {default: FLOAT_ALT_EXT_NONE},
+                float: {default: FLOAT_NONE},
                 fileGuid: { default: null},
             },
             group: "inline",
@@ -46,7 +46,7 @@ const schema = {
                         width: tok.attrGet("width") || null,
                         height: tok.attrGet("height") || null,
                         alt: tok.attrGet("alt") || null,
-                        float: tok.attrGet("float") || FLOAT_ALT_EXT_NONE,
+                        float: tok.attrGet("float") || FLOAT_NONE,
                         fileGuid: fileGuid
                     });
                 }
