@@ -5,6 +5,7 @@ Changelog
 -----------------------------------------
 - Fix #27: Removed foat attribute from image markup
 - Fix https://github.com/humhub/humhub/issues/4858 delete mention on chrome android broken
+- Enh: Added base key mappings
 
 
 1.1.0 (February 4, 2021)

@@ -1,6 +1,7 @@
 import {
+    baseKeymap,
     wrapIn, setBlockType, chainCommands, toggleMark, exitCode,
-    joinUp, joinDown, lift, selectParentNode, splitBlock
+    joinUp, joinDown, lift, selectParentNode, splitBlock, deleteSelection, joinBackward, selectNodeBackward
 } from "prosemirror-commands"
 import {wrapInList, splitListItem, liftListItem, sinkListItem} from "prosemirror-schema-list"
 import {undo, redo} from "prosemirror-history"
@@ -156,7 +157,7 @@ export function buildKeymap(context) {
 
     bind("Mod-z", undo)
     bind("Shift-Mod-z", redo)
-    bind("Backspace", undoInputRule)
+
     if (!mac) bind("Mod-y", redo)
 
     bind("Alt-ArrowUp", joinUp)
@@ -211,5 +212,13 @@ export function buildKeymap(context) {
         })
     }
 
+    baseKeymap['Backspace'] = chainCommands(undoInputRule, deleteSelection, joinBackward, selectNodeBackward);
+
+    for (const key in baseKeymap) {
+        bind(key, baseKeymap[key]);
+    }
+
     return keys
 }
+
+chainCommands
