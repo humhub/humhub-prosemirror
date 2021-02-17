@@ -4,6 +4,7 @@ Changelog
 1.1.1 (Unreleased)
 -----------------------------------------
 - Fix #27: Removed foat attribute from image markup
+- Fix https://github.com/humhub/humhub/issues/4858 delete mention on chrome android broken
 
 
 1.1.0 (February 4, 2021)

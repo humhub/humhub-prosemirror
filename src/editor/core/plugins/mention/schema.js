@@ -6,7 +6,8 @@ const schema = {
         mention: {
             inline: true,
             group: 'inline',
-            selectable: false,
+            selectable: true,
+            draggable: true,
             attrs: {
                 name: { default: '' },
                 guid: { default: '' },
@@ -24,10 +25,12 @@ const schema = {
             toDOM(node) {
                 const attrs = {
                     'data-mention': node.attrs.guid,
-                    contentEditable: 'false'
+                    contentEditable: 'false',
+                    style: 'display:inline-block'
                 };
 
-                return ['span', attrs, '@'+node.attrs.name];
+
+                return ['span', attrs, ['span', { style: 'display:block'}, '@'+node.attrs.name] ];
             },
             parseMarkdown: {
                 node: "mention", getAttrs: function(tok) {
