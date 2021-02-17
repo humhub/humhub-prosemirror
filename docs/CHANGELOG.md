@@ -1,7 +1,12 @@
 Changelog
 =========
 
-1.1.0 (Unreleased)
+1.1.1 (Unreleased)
+-----------------------------------------
+- Fix #27: Removed foat attribute from image markup
+
+
+1.1.0 (February 4, 2021)
 -----------------------------------------
 - Chng: Bump dependencies
 - Enh #13: Improved list handling by adding indent/dedent menu items

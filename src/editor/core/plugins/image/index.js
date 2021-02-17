@@ -48,6 +48,7 @@ const image = {
 
             if(float) {
                 imageToken.attrPush(['class', getClassForFloat(float)]);
+                imageToken.attrs.splice(imageToken.attrIndex('float'), 1);
             }
 
             // pass token to default renderer.
