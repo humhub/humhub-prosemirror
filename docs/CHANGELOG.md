@@ -5,6 +5,7 @@ Changelog
 -----------------------------------------
 - Fix #27: Removed foat attribute from image markup
 - Fix https://github.com/humhub/humhub/issues/4858 delete mention on chrome android broken
+- Fix https://github.com/humhub/humhub/issues/4775 emoji search broken on android
 - Enh: Added base key mappings
 
 
