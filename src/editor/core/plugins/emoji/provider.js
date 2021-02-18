@@ -98,6 +98,7 @@ class EmojiChooser {
         } else {
             this.$.css({
                 top: 5,
+                position: 'fixed',
                 left: 0,
                 right: 0,
                 margin: 'auto'

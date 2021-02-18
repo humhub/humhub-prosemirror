@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.1.2 (February 18, 2021)
+-----------------------------------------
+- Fix: Emoji chooser positioning on small devices
+
+
 1.1.1 (February 18, 2021)
 -----------------------------------------
 - Fix #27: Removed foat attribute from image markup
