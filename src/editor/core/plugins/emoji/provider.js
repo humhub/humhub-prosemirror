@@ -90,10 +90,20 @@ class EmojiChooser {
             this.initCategory(this.categoryOrder[0]);
         }
 
-        this.$.css({
-            top: position.top + provider.$node.outerHeight() - 5,
-            left: position.left,
-        }).show();
+        if(!humhub.require('ui.view').isSmall()) {
+            this.$.css({
+                top: position.top + provider.$node.outerHeight() - 5,
+                left: position.left,
+            }).show();
+        } else {
+            this.$.css({
+                top: 5,
+                left: 0,
+                right: 0,
+                margin: 'auto'
+            }).show();
+        }
+
 
         if(focus) {
             this.$.find('.humhub-emoji-chooser-search').focus();
