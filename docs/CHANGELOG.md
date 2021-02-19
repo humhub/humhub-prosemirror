@@ -1,6 +1,10 @@
 Changelog
 =========
 
+1.1.3 (Unreleased)
+-----------------------------------------
+- Fix #31: Split list keymap not working
+
 1.1.2 (February 18, 2021)
 -----------------------------------------
 - Fix: Emoji chooser positioning on small devices

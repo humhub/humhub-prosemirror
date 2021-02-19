@@ -1,7 +1,19 @@
 import {
     baseKeymap,
-    wrapIn, setBlockType, chainCommands, toggleMark, exitCode,
-    joinUp, joinDown, lift, selectParentNode, splitBlock, deleteSelection, joinBackward, selectNodeBackward
+    wrapIn,
+    setBlockType,
+    chainCommands,
+    toggleMark,
+    exitCode,
+    joinUp,
+    joinDown,
+    lift,
+    selectParentNode,
+    splitBlock,
+    deleteSelection,
+    joinBackward,
+    selectNodeBackward,
+    newlineInCode, createParagraphNear, liftEmptyBlock
 } from "prosemirror-commands"
 import {wrapInList, splitListItem, liftListItem, sinkListItem} from "prosemirror-schema-list"
 import {undo, redo} from "prosemirror-history"
@@ -193,8 +205,11 @@ export function buildKeymap(context) {
         bind("Shift-Enter", cmd)
         if (mac) bind("Ctrl-Enter", cmd)
     }
+
+    let splitList;
+
     if (type = schema.nodes.list_item) {
-        bind("Enter", splitListItem(type))
+        splitList = splitListItem(type);
         bind("Mod-[", liftListItem(type))
         bind("Mod-]", sinkListItem(type))
     }
@@ -213,6 +228,13 @@ export function buildKeymap(context) {
     }
 
     baseKeymap['Backspace'] = chainCommands(undoInputRule, deleteSelection, joinBackward, selectNodeBackward);
+
+    if(splitList) {
+        baseKeymap['Enter'] = chainCommands(splitList, newlineInCode, createParagraphNear, liftEmptyBlock, splitBlock);
+    } else {
+        baseKeymap['Enter'] = chainCommands(newlineInCode, createParagraphNear, liftEmptyBlock, splitBlock);
+    }
+
 
     for (const key in baseKeymap) {
         bind(key, baseKeymap[key]);
