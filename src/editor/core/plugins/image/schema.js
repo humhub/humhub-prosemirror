@@ -1,4 +1,6 @@
 import {getAltExtensionByFloat, FLOAT_NONE} from './imageFloat'
+import {filterFileUrl} from "../../humhub-bridge";
+import {validateHref} from "../../util/linkUtil";
 
 /*
  * @link https://www.humhub.org/
@@ -37,17 +39,20 @@ const schema = {
             }],
             parseMarkdown: {
                 node: "image", getAttrs: function (tok) {
-                    let src =  (window.humhub) ? humhub.modules.file.filterFileUrl(tok.attrGet("src")).url : tok.attrGet("src");
-                    let fileGuid = (window.humhub) ?  humhub.modules.file.filterFileUrl(tok.attrGet("src")).guid : null;
+                    let {url, guid} = filterFileUrl(tok.attrGet("src"));
+
+                    if (!validateHref(url, {rleative: true}))  {
+                        url = '#';
+                    }
 
                     return ({
-                        src: src,
+                        src: url,
                         title: tok.attrGet("title") || null,
                         width: tok.attrGet("width") || null,
                         height: tok.attrGet("height") || null,
                         alt: tok.attrGet("alt") || null,
                         float: tok.attrGet("float") || FLOAT_NONE,
-                        fileGuid: fileGuid
+                        fileGuid: guid
                     });
                 }
             },

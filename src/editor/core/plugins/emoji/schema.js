@@ -1,4 +1,5 @@
 import twemoji from "twemoji"
+import {getEmojiConfig} from "../../humhub-bridge";
 
 const schema = {
     nodes: {
@@ -30,7 +31,7 @@ const schema = {
                 node: "emoji", getAttrs: function (tok) {
 
                     // Workaround, since the context is not available here, so we can't use context.getPluginOption('emoji', 'twemoji');
-                    var options = (humhub && humhub.config) ? humhub.config.get('ui.richtext.prosemirror', 'emoji')['twemoji'] : null;
+                    var options = getEmojiConfig()['twemoji'];
 
                     let $dom = $(twemoji.parse(tok.content, options));
                     return ({

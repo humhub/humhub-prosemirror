@@ -6,6 +6,7 @@ module.exports = function(grunt) {
     let rollupPluginBuble = require('@rollup/plugin-buble');
     let rollupPluginReplace = require('@rollup/plugin-replace');
 
+    let path = require("path");
 
     grunt.initConfig({
         watch: {
@@ -16,6 +17,26 @@ module.exports = function(grunt) {
                     spawn: false,
                 },
             },
+        },
+        copy: {
+            mocha: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: path.dirname(require.resolve("mocha/mocha")),
+                        src: 'mocha.css',
+                        dest: 'test/',
+                        filter: 'isFile'
+                    },
+                    {
+                        expand: true,
+                        cwd: './dist',
+                        src: 'humhub-editor.js',
+                        dest: 'test/',
+                        filter: 'isFile'
+                    },
+                ]
+            }
         },
         rollup: {
             options: {
@@ -53,6 +74,7 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-rollup');
-    grunt.registerTask('default', ['rollup']);
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.registerTask('default', ['rollup', 'copy']);
 
 };

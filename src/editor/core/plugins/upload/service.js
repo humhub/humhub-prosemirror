@@ -6,12 +6,13 @@
  */
 
 import {loaderStart, replaceLoader, removeLoader} from "../loader/plugin"
+import {getWidgetInstance} from "../../humhub-bridge";
 
 export function triggerUpload(state, view, context, files) {
     // A fresh object to act as the ID for this upload
     let id = {};
 
-    let uploadWidget = humhub.require('ui.widget.Widget').instance($('#'+context.id+'-file-upload'));
+    let uploadWidget = getWidgetInstance('#'+context.id+'-file-upload');
 
     uploadWidget.off('uploadStart.richtext').on('uploadStart.richtext', (evt, response) => {
         // Replace the selection with a placeholder

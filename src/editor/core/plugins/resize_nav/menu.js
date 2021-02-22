@@ -6,6 +6,7 @@
  */
 
 import {icons, MenuItem} from "../../menu/menu"
+import {onDocumentReady} from "../../humhub-bridge";
 
 
 const SELECTOR_DEFAULT = '.ProseMirror-menu-linkItem, .helper-group, .format-group, .insert-dropdown, .ProseMirror-menu-insertTable, .ProseMirror-menu-fullScreen';
@@ -18,7 +19,7 @@ function resizeNav(context) {
         cache = {};
     });
 
-    humhub.event.on('humhub:ready', function() {
+    onDocumentReady(function() {
         cache = {};
     });
 

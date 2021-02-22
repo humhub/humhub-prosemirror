@@ -8,6 +8,7 @@ import {schema} from './schema';
 import {oembed_plugin} from './markdownit_oembed';
 import {$node} from '../../util/node';
 import {buildLink} from "../../util/linkUtil";
+import {loadOembeds} from "../../humhub-bridge";
 
 const oembed = {
     id: 'oembed',
@@ -23,7 +24,7 @@ const oembed = {
                 return;
             }
 
-            humhub.require('oembed').load(urls).then((result) => {
+            loadOembeds(urls).then((result) => {
                 $.each(result, function(url, oembed) {
                     let $links = $node(context.editor.view.state.doc).find().mark('link').where((node) => {
                         return $node(node).getMark('link').attrs.href === url;

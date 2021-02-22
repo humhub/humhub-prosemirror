@@ -1,7 +1,4 @@
 import {InputRule} from "prosemirror-inputrules"
-import {canJoin} from "prosemirror-transform";
-import {$node} from "../../util/node";
-import {TextNode} from "prosemirror-model/src/node";
 
 // : (NodeType) → InputRule
 // Given a blockquote node type, returns an input rule that turns `"> "`
@@ -29,7 +26,6 @@ function hasCodeMark(node)
 function markInputRule(regexp, markType, getAttrs) {
     return new InputRule(regexp, (state, match, start, end) => {
         let attrs = getAttrs instanceof Function ? getAttrs(match) : getAttrs;
-
 
         let nodeBeforeEnd = state.selection.$to.nodeBefore;
 

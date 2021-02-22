@@ -6,6 +6,7 @@
  */
 
 import * as util from './util';
+import {getUserLocale, isSmallView} from "../../humhub-bridge";
 
 let userFlag = undefined;
 let findUserFlag = function() {
@@ -42,7 +43,7 @@ let findUserFlag = function() {
     let result = '\uD83C\uDDE9\uD83C\uDDEA';
 
     try {
-        let language = humhub.require('user').getLocale().toLowerCase();
+        let language = getUserLocale();
 
         if(directMapping[language]) {
             return util.getCharByName(directMapping[language]);
@@ -90,7 +91,7 @@ class EmojiChooser {
             this.initCategory(this.categoryOrder[0]);
         }
 
-        if(!humhub.require('ui.view').isSmall()) {
+        if(!isSmallView()) {
             this.$.css({
                 top: position.top + provider.$node.outerHeight() - 5,
                 left: position.left,

@@ -2,6 +2,7 @@ import {InputRule} from "prosemirror-inputrules"
 import * as util from "./util"
 import {hasMark} from "../../util/node";
 import {TextSelection} from "prosemirror-state";
+import {isSmallView} from "../../humhub-bridge";
 
 // https://github.com/ProseMirror/prosemirror/issues/262
 const objectReplacementCharacter = '\ufffc';
@@ -47,11 +48,7 @@ let emojiAutoCompleteRule = function(schema) {
 
 let emojiChooser = function(schema) {
     return new InputRule(new RegExp('(^|\\ +)(:$)'), function (state, match, start, end) {
-        if(humhub
-            && humhub.modules
-            && humhub.modules.ui
-            && humhub.modules.ui.view
-            && humhub.modules.ui.view.isSmall()) {
+        if(isSmallView()) {
             return;
         }
 
