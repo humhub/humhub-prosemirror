@@ -6,22 +6,10 @@
  */
 
 import {icons, MenuItem} from "../../menu/menu"
-import {onDocumentReady} from "../../humhub-bridge";
 
-
-const SELECTOR_DEFAULT = '.ProseMirror-menu-linkItem, .helper-group, .format-group, .insert-dropdown, .ProseMirror-menu-insertTable, .ProseMirror-menu-fullScreen';
-
-let cache = {};
+const SELECTOR_DEFAULT = '.ProseMirror-menu-linkItem:not(.hidden), .helper-group, .format-group, .insert-dropdown, .ProseMirror-menu-insertTable:not(.hidden), .ProseMirror-menu-fullScreen:not(.hidden)';
 
 function resizeNav(context) {
-
-    context.event.on('clear', function() {
-        cache = {};
-    });
-
-    onDocumentReady(function() {
-        cache = {};
-    });
 
     return new MenuItem({
         id: 'resizeNav',
@@ -44,11 +32,7 @@ function resizeNav(context) {
 }
 
 export function getNodes(context) {
-    if(!cache[context.id]) {
-        cache[context.id] = context.editor.$.find(getSelector(context));
-    }
-
-    return cache[context.id];
+    return context.editor.$.find(getSelector(context));
 }
 
 export function getSelector(context) {

@@ -5,6 +5,7 @@ Changelog
 -----------------------------------------
 - Fix #31: Split list keymap not working
 - Fix #32: Disallow marks in code block schema
+- Fix #36: resize nav state does not respect selection state 
 
 1.1.2 (February 18, 2021)
 -----------------------------------------

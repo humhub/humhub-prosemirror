@@ -107,6 +107,11 @@ export class MenuItem {
         if (this.options.select) {
             this.selected = this.options.select(state);
             this.dom.style.display = this.selected || forceEnable ? "" : "none";
+            if(!this.selected) {
+                this.dom.classList.add('hidden');
+            } else {
+                this.dom.classList.remove('hidden');
+            }
             if (!this.selected) return false
         }
 
@@ -327,12 +332,12 @@ export class Dropdown extends MenuItemGroup {
 
         innerDom.className += " " + prefix + "-dropdown " + (this.options.class || "");
 
-        if (this.options.title) {
-            innerDom.setAttribute("title", translate(view, this.options.title));
+        if(this.options.id) {
+            innerDom.classList.add(prefix+'-'+this.options.id);
         }
 
-        if(this.options.id) {
-            innerDom.classList.add(this.options.id);
+        if (this.options.title) {
+            innerDom.setAttribute("title", translate(view, this.options.title));
         }
 
         this.dom = crelt("div", {class: prefix + "-dropdown-wrap"}, innerDom);
@@ -395,8 +400,6 @@ export class Dropdown extends MenuItemGroup {
 
     expand(dom, contentDom) {
         let menuDOM = crelt("div", {class: prefix + "-dropdown-menu " + (this.options.class || "")}, contentDom);
-
-
 
         let done = false;
 
