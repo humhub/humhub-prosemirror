@@ -10,10 +10,11 @@ const code_block =  {
     group: "block",
     code: true,
     defining: true,
+    marks: "",
     attrs: {params: {default: ""}},
     parseDOM: [{
         tag: "pre", preserveWhitespace: true, getAttrs: function (node) {
-            return ({params: node.getAttribute("data-params")});
+            return ({params: node.getAttribute("data-params") || ""});
         }
     }],
     toDOM: function toDOM(node) {
