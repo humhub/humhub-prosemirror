@@ -7,7 +7,7 @@
 
 import {icons, MenuItem} from "../../menu/menu"
 
-const SELECTOR_DEFAULT = '.ProseMirror-menu-linkItem:not(.hidden), .helper-group, .format-group, .insert-dropdown, .ProseMirror-menu-insertTable:not(.hidden), .ProseMirror-menu-fullScreen:not(.hidden)';
+const SELECTOR_DEFAULT = '.helper-group, .format-group, .insert-dropdown, .ProseMirror-menu-insertTable:not(.hidden), .ProseMirror-menu-fullScreen:not(.hidden)';
 
 function resizeNav(context) {
 
