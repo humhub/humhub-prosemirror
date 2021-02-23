@@ -13,7 +13,7 @@ function markCode(context) {
         title: context.translate("Toggle code font"),
         icon: icons.code,
         sortOrder: 400
-    });
+    }, context);
 }
 
 export function menu(context) {

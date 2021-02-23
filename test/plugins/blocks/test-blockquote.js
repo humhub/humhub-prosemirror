@@ -1,5 +1,8 @@
+/* jshint -W024 */
+/* jshint expr:true */
+
 const expect = require('chai').expect;
-const {initEditor, toHtml, serialize, simulateInputRule, setSelection, clickMenuItem, type, insertText} = require('../../testEditor');
+const {initEditor, toHtml, serialize, simulateInputRule, pressKeyArrowDown, clickMenuItem, type, insertText} = require('../../testEditor');
 
 describe("Plugin:blockquote", () => {
     it("test init blockquote", (done) => {
@@ -32,6 +35,15 @@ describe("Plugin:blockquote", () => {
         clickMenuItem('wrapBlockQuote');
         clickMenuItem('wrapBlockQuote');
         expect(toHtml()).to.equal('<blockquote><blockquote><p>This is a block quote</p></blockquote></blockquote>');
+        done();
+    });
+
+    it("test leave code block on arrow down", (done) => {
+        let editor = initEditor();
+        type('This is a block quote');
+        clickMenuItem('wrapBlockQuote');
+        pressKeyArrowDown();
+        expect(toHtml()).to.equal('<blockquote><p>This is a block quote</p></blockquote><p><br></p>');
         done();
     });
 });

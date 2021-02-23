@@ -11898,7 +11898,7 @@
     var sel = state.selection;
     var $from = sel.$from;
     var $to = sel.$to;
-    if (!(sel instanceof NodeSelection) || $from.parent.inlineContent) { return false }
+    if (sel instanceof AllSelection || $from.parent.inlineContent || $to.parent.inlineContent) { return false }
     var type = defaultBlockAt($to.parent.contentMatchAt($to.indexAfter()));
     if (!type || !type.isTextblock) { return false }
     if (dispatch) {
@@ -13323,7 +13323,7 @@
       return new MenuItem(passedOptions)
   }
 
-  function markItem(markType, options) {
+  function markItem(markType, options, context) {
       var passedOptions = {
           active: function active(state) {
               return markActive(state, markType)
@@ -13331,7 +13331,47 @@
           enable: true
       };
       for (var prop in options) { passedOptions[prop] = options[prop]; }
-      return cmdItem(toggleMark(markType), passedOptions)
+      var menuItem = cmdItem(toggleMark(markType), passedOptions);
+
+      if(options.runSource) {
+          menuItem.runSource = options.runSource;
+      } else if(context && markType.spec.toMarkdown
+          && typeof markType.spec.toMarkdown.open === 'string'
+          && typeof markType.spec.toMarkdown.close === 'string') {
+          menuItem.runSource = wrapSourceTextMark(context, markType);
+      }
+
+      return menuItem;
+  }
+
+  function wrapSourceTextMark(context, markType, open, close) {
+      if (!open && markType.spec.toMarkdown && markType.spec.toMarkdown.open) {
+          open = markType.spec.toMarkdown.open;
+      }
+
+      if (!close && markType.spec.toMarkdown && markType.spec.toMarkdown.close) {
+          close = markType.spec.toMarkdown.close;
+      }
+
+      if (!open) {
+          return;
+      }
+
+      if (!close) {
+          close = open;
+      }
+
+      return function() {
+          var $source = context.$source;
+          var len = $source.val().length;
+          var start = $source[0].selectionStart;
+          var selectionDirection = $source[0].selectionDirection;
+          var end = $source[0].selectionEnd;
+          var selectedText = $source.val().substring(start, end);
+          var replacement = open + selectedText + close;
+          $source.val($source.val().substring(0, start) + replacement + $source.val().substring(end, len));
+          $source[0].setSelectionRange((start + open.length), (end + open.length), selectionDirection);
+      }
   }
 
   function markActive(state, type) {
@@ -13410,24 +13450,39 @@
   };
 
   MenuItem.prototype.adoptItemState = function adoptItemState (state, forceEnable, forceActive) {
-      this.selected = true;
-      if (this.options.select) {
-          this.selected = this.options.select(state);
-          this.dom.style.display = this.selected || forceEnable ? "" : "none";
-          if (!this.selected) { return false }
-      }
+      this.setEnabledItemState(state, forceEnable);
+      this.setActiveItemState(state, forceActive);
+      this.setSelectedItemState(state, forceEnable);
+  };
 
-      this.enabled = true;
-
-      if (this.options.enable) {
-          this.enabled = this.options.enable(state) || forceEnable || false;
-          setClass(this.dom, prefix$1 + "-disabled", !this.enabled);
-      }
-
+  MenuItem.prototype.setActiveItemState = function setActiveItemState (state, forceActive) {
       this.active = false;
       if (this.options.active) {
           this.active = (this.options.active(state) || forceActive) || false;
           setClass(this.dom, prefix$1 + "-active", this.active);
+      }
+  };
+
+  MenuItem.prototype.setEnabledItemState = function setEnabledItemState (state, forceEnable) {
+      this.enabled = true;
+      if (this.options.enable) {
+          this.enabled = this.options.enable(state) || forceEnable || false;
+          setClass(this.dom, prefix$1 + "-disabled", !this.enabled);
+      }
+  };
+
+  MenuItem.prototype.setSelectedItemState = function setSelectedItemState (state, forceEnable) {
+      this.selected = true;
+      if (this.options.select) {
+          this.selected = this.options.select(state);
+          this.dom.style.display = this.selected || forceEnable ? "" : "none";
+
+          if(!this.selected) {
+              this.dom.classList.add('hidden');
+          } else {
+              this.dom.classList.remove('hidden');
+          }
+          if (!this.selected) { return false }
       }
   };
 
@@ -13533,7 +13588,6 @@
           this.content = {
               items: sort(Array.isArray(content) ? content : [content]),
               update: function (state) {
-
                   var result = false;
 
                   sort(this$1.content.items).forEach(function (item, i) {
@@ -13552,6 +13606,7 @@
 
                       result = result || updateResult;
                   });
+
                   return result;
               }
           };
@@ -13632,12 +13687,12 @@
 
           innerDom.className += " " + prefix$1 + "-dropdown " + (this.options.class || "");
 
-          if (this.options.title) {
-              innerDom.setAttribute("title", translate(view, this.options.title));
+          if(this.options.id) {
+              innerDom.classList.add(prefix$1+'-'+this.options.id);
           }
 
-          if(this.options.id) {
-              innerDom.classList.add(this.options.id);
+          if (this.options.title) {
+              innerDom.setAttribute("title", translate(view, this.options.title));
           }
 
           this.dom = crelt("div", {class: prefix$1 + "-dropdown-wrap"}, innerDom);
@@ -13700,8 +13755,6 @@
 
       Dropdown.prototype.expand = function expand (dom, contentDom) {
           var menuDOM = crelt("div", {class: prefix$1 + "-dropdown-menu " + (this.options.class || "")}, contentDom);
-
-
 
           var done = false;
 
@@ -13902,6 +13955,10 @@
       shrink: {
           width:32, height: 32,
           path: "M14 18v13l-5-5-6 6-3-3 6-6-5-5zM32 3l-6 6 5 5h-13v-13l5 5 6-6z"
+      },
+      markdown: {
+          width:32, height: 32,
+          path: "M29.692 25.847h-27.384c-1.274 0-2.307-1.033-2.307-2.307v0-15.080c0-1.274 1.033-2.307 2.307-2.307h27.384c1.274 0 2.307 1.033 2.307 2.307v15.077c0 0.001 0 0.002 0 0.003 0 1.274-1.033 2.307-2.307 2.307 0 0 0 0 0 0v0zM7.692 21.231v-6l3.077 3.847 3.076-3.847v6h3.077v-10.46h-3.077l-3.076 3.847-3.077-3.847h-3.077v10.463zM28.308 16h-3.077v-5.231h-3.076v5.231h-3.077l4.615 5.385z"
       }
   };
 
@@ -14060,7 +14117,7 @@
 
   function buildMenuItems(context) {
       var groups = {
-          types:  {type: 'dropdown', sortOrder: 100, label: context.translate("Type"), seperator: true, icon: icons.text, items: []},
+          types:  {type: 'dropdown', id: 'type', sortOrder: 100, label: context.translate("Type"), seperator: true, icon: icons.text, items: []},
           marks:  {type: 'group', id: 'marks-group', sortOrder: 200, items: []},
           format:  {type: 'group', id: 'format-group',  sortOrder: 300, items: [liftItem()]},
           insert: {type: 'dropdown', id: 'insert-dropdown',  sortOrder: 400, label: context.translate("Insert"), seperator: true, icon: icons.image, items: []},
@@ -14068,28 +14125,124 @@
           resize:  {type: 'group', id: 'resize-group', sortOrder: 600, items: []},
       };
 
-      var definitions = [groups.types, groups.insert, groups.marks, groups.format, groups.helper, groups.resize];
+      var definitions = [groups.mode, groups.types, groups.insert, groups.marks, groups.format, groups.helper, groups.resize];
+
+      var menuGroupPlugins = [];
+      var menuWrapperPlugins = [];
 
       context.plugins.forEach(function (plugin) {
           if(plugin.menu) {
               plugin.menu(context).forEach(function(menuDefinition) {
                   if(checkMenuDefinition(context, menuDefinition)) {
-                      menuDefinition.item.options.id = menuDefinition.id;
+
+                      if(menuDefinition.type && menuDefinition.type === 'group') {
+                          definitions.push(menuDefinition);
+                          return;
+                      }
+
+                      if(menuDefinition.item && menuDefinition.id) {
+                          // transfer the id of the definition to the item itself
+                          menuDefinition.item.options.id = menuDefinition.id;
+                      }
 
                       if(menuDefinition.group && groups[menuDefinition.group]) {
                           groups[menuDefinition.group].items.push(menuDefinition.item);
-                      } else if(!menuDefinition.group) {
+                      } else if(menuDefinition.item && !menuDefinition.group) {
                           definitions.push(menuDefinition.item);
                       }
                   }
               });
           }
+
+          if(plugin.menuGroups) {
+              menuGroupPlugins.push(plugin);
+          }
+
+          if(plugin.menuWrapper) {
+              menuWrapperPlugins.push(plugin);
+          }
+      });
+
+      // Execute after all menu items are assembled
+      menuGroupPlugins.forEach(function (plugin) {
+          definitions = plugin.menuGroups(definitions, context);
+      });
+
+      menuWrapperPlugins.forEach(function(plugin) {
+          plugin.menuWrapper;
+          definitions.forEach(function (item) {
+              wrapMenuItem(plugin, context, item);
+          });
       });
 
       //selectParentNodeItem -> don't know if we should add this one
 
       // TODO: fire event
       return definitions;
+  }
+
+  function wrapMenuItem(plugin, context, menuItem) {
+      if(!menuItem) {
+          return;
+      }
+
+      if(!plugin.menuWrapper) {
+          return;
+      }
+
+      if($.isArray(menuItem)) {
+          menuItem.forEach(function (item) {
+              wrapMenuItem(plugin, context, item);
+          });
+      }
+
+      var wrapper = plugin.menuWrapper(context);
+
+      if(menuItem instanceof MenuItem) {
+          if(wrapper.run) {
+              var orig = menuItem.options.run;
+              menuItem.options.run = function(state, dispatch, view , evt) {
+                  var result = wrapper.run(menuItem, state, dispatch, view, evt);
+                  if(!result) {
+                      orig(state, dispatch, view, evt);
+                  }
+              };
+          }
+
+          if(wrapper.active) {
+              var origCallback = menuItem.options.active;
+              menuItem.options.active = function(state) {
+                  var origValue = origCallback ? origCallback(state) : false;
+                  return wrapper.active(menuItem, state, origValue);
+              };
+          }
+
+          if(wrapper.enable) {
+              var origCallback$1 = menuItem.options.enable;
+              menuItem.options.enable = function(state) {
+                  var origValue = origCallback$1 ? origCallback$1(state) : true;
+                  return wrapper.enable(menuItem, state, origValue);
+              };
+          }
+
+          if(wrapper.select) {
+              var origCallback$2 = menuItem.options.select;
+              menuItem.options.select = function(state) {
+                  var origValue = origCallback$2 ? origCallback$2(state) : true;
+                  return wrapper.select(menuItem, state, origValue);
+              };
+          }
+      }
+
+      if(menuItem.items) {
+          wrapMenuItem(plugin, context, menuItem.items);
+      }
+
+      if(menuItem instanceof MenuItemGroup) {
+          wrapMenuItem(plugin,context, menuItem.content.items);
+      }
+
+
   }
 
   function checkMenuDefinition(context, menuDefinition) {
@@ -14169,7 +14322,7 @@
       this.widthForMaxHeight = 0;
       this.floating = false;
 
-      this.groupItem = new MenuItemGroup(this.options.content);
+      this.groupItem = new MenuItemGroup(this.options.content, {context: this.context});
       var dom = this.groupItem.render(this.editorView);
 
       this.menu.appendChild(dom);
@@ -14195,7 +14348,7 @@
   };
 
   MenuBarView.prototype.update = function update () {
-      this.groupItem.update(this.editorView.state);
+      this.groupItem.update(this.editorView.state, this.context);
 
       var $mainGroup = $(this.menu).find('.'+prefix$2+'-menu-group:first');
       $mainGroup.find('');
@@ -14275,6 +14428,7 @@
     menuBar: menuBar,
     cmdItem: cmdItem,
     markItem: markItem,
+    wrapSourceTextMark: wrapSourceTextMark,
     markActive: markActive,
     wrapListItem: wrapListItem,
     MenuItem: MenuItem,
@@ -15381,16 +15535,6 @@
   };
 
   // TODO: enable global default config e.g. for emoji, locale, etc
-
-  function onDocumentReady(callback) {
-      if(!window.humhub) {
-          return $(document).ready(function() {
-             callback.call(null, false);
-          });
-      }
-
-      humhub.event.on('humhub:ready', callback);
-  }
 
   function getEmojiConfig() {
       if(!window.humhub || ! window.humhub.config) {
@@ -32875,7 +33019,7 @@
           title: context.translate("Toggle code font"),
           icon: icons.code,
           sortOrder: 400
-      });
+      }, context);
   }
 
   function menu$3(context) {
@@ -33074,7 +33218,7 @@
                   return ["em"]
               },
               parseMarkdown: {mark: "em"},
-              toMarkdown: {open: "*", close: "*", mixable: true, expelEnclosingWhitespace: true}
+              toMarkdown: {open: "_", close: "_", mixable: true, expelEnclosingWhitespace: true}
           }
       }
   };
@@ -33091,7 +33235,8 @@
       return markItem(context.schema.marks.em, {
           title: context.translate("Toggle emphasis"),
           icon: icons.em,
-          sortOrder: 200});
+          sortOrder: 200
+      }, context);
   }
 
   function menu$5(context) {
@@ -77537,7 +77682,7 @@
           title: context.translate("Toggle strikethrough"),
           icon: icons.strikethrough,
           sortOrder: 300
-      });
+      }, context);
   }
 
   function menu$e(context) {
@@ -77603,7 +77748,7 @@
           title: context.translate("Toggle strong style"),
           icon: icons.strong,
           sortOrder: 100
-      });
+      }, context);
   }
 
   function menu$f(context) {
@@ -78641,20 +78786,9 @@
    *
    */
 
-
-  var SELECTOR_DEFAULT = '.ProseMirror-menu-linkItem, .helper-group, .format-group, .insert-dropdown, .ProseMirror-menu-insertTable, .ProseMirror-menu-fullScreen';
-
-  var cache$2 = {};
+  var SELECTOR_DEFAULT = '.helper-group, .format-group, .insert-dropdown, .ProseMirror-menu-insertTable:not(.hidden), .ProseMirror-menu-fullScreen:not(.hidden)';
 
   function resizeNav(context) {
-
-      context.event.on('clear', function() {
-          cache$2 = {};
-      });
-
-      onDocumentReady(function() {
-          cache$2 = {};
-      });
 
       return new MenuItem({
           id: 'resizeNav',
@@ -78677,11 +78811,7 @@
   }
 
   function getNodes(context) {
-      if(!cache$2[context.id]) {
-          cache$2[context.id] = context.editor.$.find(getSelector(context));
-      }
-
-      return cache$2[context.id];
+      return context.editor.$.find(getSelector(context));
   }
 
   function getSelector(context) {
@@ -78861,6 +78991,145 @@
           return [
               savePlugin(context)
           ]
+      },
+  };
+
+  var sourcePluginKey = new PluginKey('source');
+
+  var EDIT_MODE_SOURCE = 'source';
+  var EDIT_MODE_RICHTEXT = 'richtext';
+
+  function isSourceMode(state) {
+      return sourcePluginKey.getState(state) === EDIT_MODE_SOURCE;
+  }
+
+  function sourcePlugin(context) {
+      return new Plugin({
+          key: sourcePluginKey,
+          state: {
+              init: function init(config, state) {
+                  return EDIT_MODE_RICHTEXT;
+              },
+              apply: function apply(tr, prevPluginState, oldState, newState) {
+                  return tr.getMeta(sourcePluginKey) || prevPluginState;
+              }
+          },
+      })
+  }
+
+  /*
+   * @link https://www.humhub.org/
+   * @copyright Copyright (c) 2017 HumHub GmbH & Co. KG
+   * @license https://www.humhub.com/licences
+   *
+   */
+
+  var switchMode = function (context) {
+      return new MenuItem({
+          id: 'source',
+          title: "Swtich editor mode",
+          icon: icons.markdown,
+          run: function (state, dispatch) {
+              return context.editor.$.find('.ProseMirror').is(':hidden')
+                  ? switchToRichTextMode(state, dispatch, context)
+                  : switchToSourceMode(state, dispatch, context);
+          },
+          select: function (state) { return true; },
+          active: function active(state) {
+              return isSourceMode(state);
+          }
+      });
+  };
+
+  var switchToSourceMode = function (state, dispatch, context) {
+      var $stage = context.editor.$.find('.ProseMirror');
+      var $textarea = context.editor.$.find('textarea');
+
+      if (!$textarea.length) {
+          $textarea = $('<textarea></textarea>');
+          context.editor.$.append($textarea);
+          context.$source = $textarea;
+      }
+
+      $textarea.css({
+          height: $stage.height(),
+          width: $stage.width(),
+      });
+
+      $textarea.val(context.editor.serialize()).show();
+      $stage.hide();
+
+      var tr = state.tr;
+      tr.setMeta(sourcePluginKey, EDIT_MODE_SOURCE);
+      dispatch(tr);
+  };
+
+  var switchToRichTextMode = function (state, dispatch, context) {
+      var $stage = context.editor.$.find('.ProseMirror');
+      var $textarea = context.editor.$.find('textarea');
+      context.editor.init($textarea.val());
+      $stage.show();
+      $textarea.remove();
+      //context.mode = EDIT_MODE_RICHTEXT;
+      context.menu.update();
+  };
+
+  function menu$k(context) {
+     return [{type: 'group', id: 'source-group', sortOrder: 50, items: [switchMode(context)]}];
+  }
+
+  /*
+   * @link https://www.humhub.org/
+   * @copyright Copyright (c) 2017 HumHub GmbH & Co. KG
+   * @license https://www.humhub.com/licences
+   *
+   */
+
+  var enabledItems = [
+      'source',
+      'resizeNav',
+      'fullScreen'
+  ];
+
+  var source = {
+      id: 'source',
+      menu: function (context) { return menu$k(context); },
+      menuWrapper: function (context) {
+        return {
+            run: function(menuItem, state) {
+                if(menuItem.options.id === 'source' || !isSourceMode(state)) {
+                    return false;
+                }
+
+                if(menuItem.runSource) {
+                    menuItem.runSource();
+                    return true;
+                }
+
+                return false;
+            },
+            enable: function(menuItem, state, enabled) {
+                var sourceMode = isSourceMode(state);
+
+                if(enabledItems.includes(menuItem.options.id) || (sourceMode &&  menuItem.runSource)) {
+                    return true;
+                }
+
+                return sourceMode ? false : enabled;
+            },
+            active: function(menuItem, state, active) {
+                if(menuItem.options.id === 'source') {
+                    return active;
+                }
+
+                return (isSourceMode(state)) ? false : active;
+            }
+        }
+      },
+      plugins: function (context) {
+          return [
+              sourcePlugin()
+          ];
       },
   };
 
@@ -79046,6 +79315,7 @@
   registerPlugin(resizeNav$1, 'markdown');
   registerPlugin(maxHeight, 'markdown');
   registerPlugin(mention$1, 'markdown');
+  registerPlugin(source, 'markdown');
 
   registerPreset('normal', {
       extend: 'markdown',
@@ -80321,6 +80591,13 @@
       if ( options === void 0 ) options = {};
 
       this.$ = $(selector);
+
+      var existingInstance = this.$.data('editorInstance');
+      if(existingInstance && existingInstance.view) {
+          existingInstance.destroy();
+          this.$.data('editorInstance', this);
+      }
+
       this.context = new Context(this, options);
       this.parser = getParser(this.context);
       this.serializer = getSerializer(this.context);
@@ -80329,6 +80606,19 @@
       if(!this.isEdit()) {
           buildPlugins(this.context);
       }
+
+      this.$.data('editorInstance', this);
+  };
+
+  MarkdownEditor.prototype.destroy = function destroy () {
+      // TODO: rather trigger event and handle in module
+      debugger;
+      if(this.context.$source) {
+          this.context.$source.remove();
+          this.context.$source = null;
+      }
+      this.view.destroy();
+
   };
 
   MarkdownEditor.prototype.isEdit = function isEdit () {
@@ -80336,7 +80626,7 @@
   };
 
   MarkdownEditor.prototype.clear = function clear () {
-      this.view.destroy();
+      this.destroy();
       this.context.clear();
       this.$stage = null;
       this.init();
@@ -80344,7 +80634,7 @@
 
   MarkdownEditor.prototype.getStage = function getStage () {
       if(!this.$stage) {
-          this.$stage = this.$.find('.humhub-ui-richtext');
+          this.$stage = this.$.find('.ProseMirror');
       }
       return this.$stage;
   };
@@ -80356,12 +80646,13 @@
           doc.firstChild.content.size === 0 &&
           !this.context.hasContentDecorations()
   };
+
   MarkdownEditor.prototype.init = function init (md) {
           var this$1 = this;
           if ( md === void 0 ) md = "";
 
       if(this.view) {
-          this.view.destroy();
+          this.destroy();
       }
 
       var editorState = EditorState.create({
@@ -80398,7 +80689,9 @@
       
   MarkdownEditor.prototype.serialize = function serialize () {
       this.trigger('serialize');
-      return this.serializer.serialize(this.view.state.doc);
+      return isSourceMode(this.view.state)
+          ? this.context.$source.val()
+          : this.serializer.serialize(this.view.state.doc);
   };
 
   MarkdownEditor.prototype.trigger = function trigger (trigger$1, args) {

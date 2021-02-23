@@ -3,11 +3,19 @@ const {initEditor, toHtml, serialize, simulateInputRule, setSelection, clickMenu
 
 describe("Plugin:em", () => {
     it("test init emphasized text", (done) => {
-        initEditor('*This is emphasized*');
+        initEditor('_This is emphasized_');
         expect(toHtml()).to.equal('<p><em>This is emphasized</em></p>');
-        expect(serialize()).to.equal('*This is emphasized*');
+        expect(serialize()).to.equal('_This is emphasized_');
         done();
     });
+
+    it("test init emphasized text with asterisk", (done) => {
+        initEditor('*This is emphasized*');
+        expect(toHtml()).to.equal('<p><em>This is emphasized</em></p>');
+        expect(serialize()).to.equal('_This is emphasized_');
+        done();
+    });
+
 
     // TODO: Implment em input rule
     /*

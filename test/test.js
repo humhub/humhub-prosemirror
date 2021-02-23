@@ -14,4 +14,6 @@ require("./plugins/marks/test-em")
 require("./plugins/marks/test-strike")
 require("./plugins/marks/test-code")
 
+require("./plugins/source/test-source")
+
 mocha.run()

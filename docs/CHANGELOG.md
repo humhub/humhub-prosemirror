@@ -1,12 +1,14 @@
 Changelog
 =========
 
-1.1.3 (Unreleased)
+2.0.0 (Unreleased)
 -----------------------------------------
 - Fix #31: Split list keymap not working
 - Fix #32: Disallow marks in code block schema
 - Fix #36: resize nav state does not respect selection state 
 - Enh #37: Add link mark to collapsed menu items
+- Fix: Initializing a new editor by constructor now destroys existing instances on the same node
+- Enh: Implemented switch to markdown source mode
 
 1.1.2 (February 18, 2021)
 -----------------------------------------

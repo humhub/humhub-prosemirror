@@ -30,6 +30,7 @@ import * as markdown from "./markdown/index"
 
 import MentionProvider from "./core/plugins/mention/provider"
 
+import {isSourceMode} from "./core/plugins/source/plugin";
 
 
 import Context from './core/context'
@@ -52,6 +53,13 @@ $(document).on('mousedown.richtextProvider', function(evt) {
 class MarkdownEditor {
     constructor(selector, options = {}) {
         this.$ = $(selector);
+
+        let existingInstance = this.$.data('editorInstance');
+        if(existingInstance && existingInstance.view) {
+            existingInstance.destroy();
+            this.$.data('editorInstance', this);
+        }
+
         this.context = new Context(this, options);
         this.parser = getParser(this.context);
         this.serializer = getSerializer(this.context);
@@ -60,6 +68,18 @@ class MarkdownEditor {
         if(!this.isEdit()) {
             buildPlugins(this.context);
         }
+
+        this.$.data('editorInstance', this);
+    }
+
+    destroy() {
+        // TODO: rather trigger event and handle in module
+        if(this.context.$source) {
+            this.context.$source.remove();
+            this.context.$source = null;
+        }
+        this.view.destroy();
+
     }
 
     isEdit() {
@@ -67,7 +87,7 @@ class MarkdownEditor {
     }
 
     clear() {
-        this.view.destroy();
+        this.destroy();
         this.context.clear();
         this.$stage = null;
         this.init();
@@ -75,7 +95,7 @@ class MarkdownEditor {
 
     getStage() {
         if(!this.$stage) {
-            this.$stage = this.$.find('.humhub-ui-richtext');
+            this.$stage = this.$.find('.ProseMirror');
         }
         return this.$stage;
     }
@@ -86,11 +106,11 @@ class MarkdownEditor {
             doc.firstChild.type.name === 'paragraph' &&
             doc.firstChild.content.size === 0 &&
             !this.context.hasContentDecorations()
-    };
+    }
 
     init(md = "") {
         if(this.view) {
-            this.view.destroy();
+            this.destroy();
         }
 
         let editorState = state.EditorState.create({
@@ -127,7 +147,9 @@ class MarkdownEditor {
     
     serialize() {
         this.trigger('serialize');
-        return this.serializer.serialize(this.view.state.doc);
+        return isSourceMode(this.view.state)
+            ? this.context.$source.val()
+            : this.serializer.serialize(this.view.state.doc);
     }
 
     trigger(trigger, args) {

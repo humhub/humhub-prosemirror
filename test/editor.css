@@ -5,8 +5,11 @@
     max-width:600px;
 }
 
-#stageInput {
-    display:none;
+#stage textarea, #stage textarea:focus {
+    border:none;
+    resize:none;
+    outline:none;
+    padding:10px;
 }
 
 .ProseMirror {

@@ -12,7 +12,8 @@ function markEm(context) {
     return markItem(context.schema.marks.em, {
         title: context.translate("Toggle emphasis"),
         icon: icons.em,
-        sortOrder: 200});
+        sortOrder: 200
+    }, context);
 }
 
 export function menu(context) {
