@@ -1,19 +1,32 @@
-#stage {
+#stage, #result {
     margin:50px;
     border:1px solid #D9D9D9;
     border-radius: 0 4px 4px 4px;
     max-width:600px;
 }
 
+#result {
+    padding: 10px;
+}
+
 #stage textarea, #stage textarea:focus {
     border:none;
-    resize:none;
     outline:none;
     padding:10px;
 }
 
+.ProseMirror-editor-source {
+    width:100%;
+    box-sizing: border-box;
+    border-radius: 4px;
+    resize: vertical;
+    overfow:auto;
+}
+
 .ProseMirror {
     position: relative;
+    resize: vertical;
+    overflow:auto;
 }
 
 .ProseMirror {

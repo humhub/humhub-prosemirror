@@ -13363,14 +13363,40 @@
 
       return function() {
           var $source = context.$source;
-          var len = $source.val().length;
+          var length = $source.val().length;
           var start = $source[0].selectionStart;
           var selectionDirection = $source[0].selectionDirection;
           var end = $source[0].selectionEnd;
           var selectedText = $source.val().substring(start, end);
-          var replacement = open + selectedText + close;
-          $source.val($source.val().substring(0, start) + replacement + $source.val().substring(end, len));
-          $source[0].setSelectionRange((start + open.length), (end + open.length), selectionDirection);
+
+          var preSelection = $source.val().substring((start - open.length), start);
+          var postSelection = $source.val().substring(end, (end + close.length));
+
+
+
+          if(preSelection === open && postSelection === close) {
+              // Revert mark
+              $source.val($source.val().substring(0, start - open.length) + selectedText + $source.val().substring(end + close.length, length));
+              $source[0].setSelectionRange((start - open.length), end - open.length, selectionDirection);
+          } else {
+              var leadingSpaceCount = Math.max(selectedText.search(/\S/), 0);
+              var leadingSpaces = leadingSpaceCount > 0
+                  ? ' '.repeat(leadingSpaceCount)
+                  : '';
+
+              var trailingSpaceCount =  selectedText.search(/ +$/) > -1
+                  ? selectedText.length - selectedText.search(/ +$/)
+                  : 0;
+              var trailingSpaces = trailingSpaceCount > 0
+                  ? ' '.repeat(trailingSpaceCount)
+                  : '';
+
+              selectedText = selectedText.trim();
+
+              var replacement = open + selectedText + close;
+              $source.val($source.val().substring(0, start) + leadingSpaces + replacement + trailingSpaces + $source.val().substring(end, length));
+              $source[0].setSelectionRange((start + leadingSpaceCount + open.length), (end + open.length - trailingSpaceCount), selectionDirection);
+          }
       }
   }
 
@@ -14200,35 +14226,35 @@
 
       if(menuItem instanceof MenuItem) {
           if(wrapper.run) {
-              var orig = menuItem.options.run;
+              var origCallback = menuItem.options.run;
               menuItem.options.run = function(state, dispatch, view , evt) {
                   var result = wrapper.run(menuItem, state, dispatch, view, evt);
                   if(!result) {
-                      orig(state, dispatch, view, evt);
+                      origCallback.call(menuItem, state, dispatch, view, evt);
                   }
               };
           }
 
           if(wrapper.active) {
-              var origCallback = menuItem.options.active;
+              var origCallback$1 = menuItem.options.active;
               menuItem.options.active = function(state) {
-                  var origValue = origCallback ? origCallback(state) : false;
+                  var origValue = origCallback$1 ? origCallback$1.call(menuItem, state) : false;
                   return wrapper.active(menuItem, state, origValue);
               };
           }
 
           if(wrapper.enable) {
-              var origCallback$1 = menuItem.options.enable;
+              var origCallback$2 = menuItem.options.enable;
               menuItem.options.enable = function(state) {
-                  var origValue = origCallback$1 ? origCallback$1(state) : true;
+                  var origValue = origCallback$2 ? origCallback$2.call(menuItem, state) : true;
                   return wrapper.enable(menuItem, state, origValue);
               };
           }
 
           if(wrapper.select) {
-              var origCallback$2 = menuItem.options.select;
+              var origCallback$3 = menuItem.options.select;
               menuItem.options.select = function(state) {
-                  var origValue = origCallback$2 ? origCallback$2(state) : true;
+                  var origValue = origCallback$3 ? origCallback$3.call(menuItem, state) : true;
                   return wrapper.select(menuItem, state, origValue);
               };
           }
@@ -14241,8 +14267,6 @@
       if(menuItem instanceof MenuItemGroup) {
           wrapMenuItem(plugin,context, menuItem.content.items);
       }
-
-
   }
 
   function checkMenuDefinition(context, menuDefinition) {
@@ -14254,11 +14278,9 @@
           return false;
       }
 
-      if(context.options.menu && Array.isArray(context.options.menu.exclude) && context.options.menu.exclude[menuDefinition.id]) {
-          return false;
-      }
+      return !(context.options.menu && Array.isArray(context.options.menu.exclude)
+               && context.options.menu.exclude[menuDefinition.id]);
 
-      return true;
   }
 
   function buildMenuBar(context) {
@@ -32743,7 +32765,7 @@
               },
               parseMarkdown: {block: "bullet_list"},
               toMarkdown: function (state, node) {
-                  state.renderList(node, "  ", function () { return (node.attrs.bullet || "*") + " "; });
+                  state.renderList(node, "  ", function () { return (node.attrs.bullet || "-") + " "; });
               }
           }
       }
@@ -78794,7 +78816,7 @@
           id: 'resizeNav',
           title: "More",
           sortOrder: 400,
-          run: function() {
+          run: function run() {
               var $nodes = getNodes(context);
               if(!context.editor.$.find('.helper-group').is(':visible')) {
                   $nodes.fadeIn();
@@ -78865,7 +78887,8 @@
   };
 
   MaxHeightState.prototype.update = function update () {
-      var stageHeight = this.context.editor.getStage().innerHeight();
+
+      var stageHeight = this.context.editor.getStage()[0].offsetHeight;
 
       if(stageHeight === this.oldStageHeight) {
           return;
@@ -78873,7 +78896,14 @@
 
       this.oldStageHeight = stageHeight;
 
+      var test = this.context.editor.getStage()[0].scrollHeight;
+      var test2 = this.context.editor.getStage()[0].offsetHeight;
+
+      console.log(test);
+      console.log(test2);
+
       if(!this.scrollActive && this.context.editor.getStage()[0].scrollHeight > stageHeight) {
+          debugger;
           if(!this.niceScrollInit && this.context.editor.getStage().niceScroll) {
               this.context.editor.getStage().niceScroll({
                   cursorwidth: "7",
@@ -78889,8 +78919,10 @@
           this.niceScrollInit = true;
           this.scrollActive = true;
           this.context.editor.trigger('scrollActive');
+          console.log('scrollActive');
       } else if(!this.initialized || this.scrollActive) {
           this.scrollActive = false;
+          console.log('scrollInactive');
           this.context.editor.trigger('scrollInactive');
       }
 
@@ -79008,13 +79040,49 @@
           key: sourcePluginKey,
           state: {
               init: function init(config, state) {
+                  console.log(EDIT_MODE_RICHTEXT);
                   return EDIT_MODE_RICHTEXT;
               },
               apply: function apply(tr, prevPluginState, oldState, newState) {
+                 console.log(tr.getMeta(sourcePluginKey) || prevPluginState);
                   return tr.getMeta(sourcePluginKey) || prevPluginState;
               }
           },
       })
+  }
+
+  function switchToSourceMode(context) {
+      var $stage = context.editor.$.find('.ProseMirror');
+      var $textarea = context.editor.$.find('textarea');
+
+      if (!$textarea.length) {
+          $textarea = $('<textarea class="ProseMirror-editor-source"></textarea>');
+          context.editor.$.append($textarea);
+          context.$source = $textarea;
+      }
+
+      $textarea.css({
+          height: $stage.outerHeight(),
+          width: '100%',
+      });
+
+      $textarea.val(context.editor.serialize()).show();
+      $stage.hide();
+
+      context.editor.focus(true);
+
+      return EDIT_MODE_SOURCE;
+  }
+
+  function switchToRichtextMode(context) {
+      var $stage = context.editor.$.find('.ProseMirror');
+      var $textarea = context.editor.$.find('textarea');
+      context.editor.init($textarea.val());
+      $stage.show();
+      $textarea.remove();
+      context.menu.update();
+      context.editor.focus(true);
+      return EDIT_MODE_RICHTEXT;
   }
 
   /*
@@ -79030,9 +79098,13 @@
           title: "Swtich editor mode",
           icon: icons.markdown,
           run: function (state, dispatch) {
-              return context.editor.$.find('.ProseMirror').is(':hidden')
-                  ? switchToRichTextMode(state, dispatch, context)
-                  : switchToSourceMode(state, dispatch, context);
+              if(isSourceMode(state)) {
+                  switchToRichtextMode(context);
+                  // We do not need to dispatch a transaction, since the editor will be reinitialized anyways
+              } else {
+                  switchToSourceMode(context);
+                  dispatch(state.tr.setMeta(sourcePluginKey, EDIT_MODE_SOURCE));
+              }
           },
           select: function (state) { return true; },
           active: function active(state) {
@@ -79041,41 +79113,8 @@
       });
   };
 
-  var switchToSourceMode = function (state, dispatch, context) {
-      var $stage = context.editor.$.find('.ProseMirror');
-      var $textarea = context.editor.$.find('textarea');
-
-      if (!$textarea.length) {
-          $textarea = $('<textarea></textarea>');
-          context.editor.$.append($textarea);
-          context.$source = $textarea;
-      }
-
-      $textarea.css({
-          height: $stage.height(),
-          width: $stage.width(),
-      });
-
-      $textarea.val(context.editor.serialize()).show();
-      $stage.hide();
-
-      var tr = state.tr;
-      tr.setMeta(sourcePluginKey, EDIT_MODE_SOURCE);
-      dispatch(tr);
-  };
-
-  var switchToRichTextMode = function (state, dispatch, context) {
-      var $stage = context.editor.$.find('.ProseMirror');
-      var $textarea = context.editor.$.find('textarea');
-      context.editor.init($textarea.val());
-      $stage.show();
-      $textarea.remove();
-      //context.mode = EDIT_MODE_RICHTEXT;
-      context.menu.update();
-  };
-
   function menu$k(context) {
-     return [{type: 'group', id: 'source-group', sortOrder: 50, items: [switchMode(context)]}];
+      return [{type: 'group', id: 'source-group', sortOrder: 50, items: [switchMode(context)]}];
   }
 
   /*
@@ -80592,6 +80631,10 @@
 
       this.$ = $(selector);
 
+      if(typeof options.edit === 'undefined') {
+          options.edit = true;
+      }
+
       var existingInstance = this.$.data('editorInstance');
       if(existingInstance && existingInstance.view) {
           existingInstance.destroy();
@@ -80612,7 +80655,6 @@
 
   MarkdownEditor.prototype.destroy = function destroy () {
       // TODO: rather trigger event and handle in module
-      debugger;
       if(this.context.$source) {
           this.context.$source.remove();
           this.context.$source = null;
@@ -80622,7 +80664,7 @@
   };
 
   MarkdownEditor.prototype.isEdit = function isEdit () {
-      return this.context.options.edit || this.$.is('.ProsemirrorEditor');
+      return this.context.options.edit;
   };
 
   MarkdownEditor.prototype.clear = function clear () {
@@ -80667,11 +80709,13 @@
           state: editorState
       });
 
+      this.$editor = $(this.view.dom);
+
       // TODO: put into menu class...
       if(this.$.is('.focusMenu')) {
           this.$menuBar = this.$.find('.ProseMirror-menubar').hide();
 
-          this.$editor = $(this.view.dom).on('focus', function () {
+          this.$.on('focus', '.ProseMirror, textarea', function () {
               this$1.$menuBar.show();
           }).on('blur', function (e) {
               if(!this$1.$.is('.fullscreen')) {
@@ -80680,11 +80724,40 @@
           });
       }
 
-      this.$editor = $(this.view.dom);
+
 
       // Dirty workaround, force inline menus to be removed, this is required e.g. if the editor is removed from dom
       $('.humhub-richtext-inline-menu').remove();
       this.trigger('init');
+  };
+
+  MarkdownEditor.prototype.focus = function focus (atEnd) {
+      if(typeof atEnd === 'undefined') {
+          atEnd = false;
+      }
+
+      // The extra condition is required when switching to source mode, but the state is not available yet
+      if(isSourceMode(this.view.state) || (this.context.$source && this.context.$source.is(':visible'))) {
+          if(atEnd) {
+              var end = this.context.$source.val().length;
+              this.context.$source[0].setSelectionRange(end, end);
+          }
+          return this.context.$source.focus();
+      } else {
+          if(atEnd) {
+              var selection = Selection.atEnd(this.view.docView.node);
+              var tr = this.view.state.tr.setSelection(selection);
+              var state = this.view.state.apply(tr);
+              this.view.updateState(state);
+          }
+          this.view.focus();
+      }
+  };
+
+  MarkdownEditor.prototype.hasFocus = function hasFocus () {
+      return isSourceMode(this.view.state)
+          ? this.context.$source.is(':focus')
+          : $(this.view.dom).is(':focus');
   };
       
   MarkdownEditor.prototype.serialize = function serialize () {
@@ -80703,12 +80776,60 @@
       this.$.on(event, handler);
   };
 
-  MarkdownEditor.prototype.render = function render () {
-      return this.renderer.render(this.$.text(), this);
+  MarkdownEditor.prototype.render = function render (md) {
+      md = md || this.$.text();
+      return this.renderer.render(md, this);
+  };
+
+  var MarkdownView = function MarkdownView(selector, options) {
+      if ( options === void 0 ) options = {};
+
+      this.$ = $(selector);
+
+      options.edit = false;
+
+      var existingInstance = this.$.data('richtextInstance');
+      if(existingInstance && existingInstance.view) {
+          existingInstance.destroy();
+          this.$.data('richtextInstance', this);
+      }
+
+      this.context = new Context(this, options);
+      this.parser = getParser(this.context);
+      this.serializer = getSerializer(this.context);
+      this.renderer = getRenderer(this.context);
+
+      buildPlugins(this.context);
+
+      this.$.data('richtextInstance', this);
+  };
+
+  MarkdownView.prototype.init = function init (md) {
+      this.$.html(this.render(md));
+  };
+
+  MarkdownView.prototype.render = function render (md) {
+      md = md || this.$.text();
+      return this.renderer.render(md, this);
+  };
+
+  MarkdownView.prototype.destroy = function destroy () {
+      this.$.html('');
+  };
+
+  MarkdownView.prototype.clear = function clear () {
+      this.destroy();
+      this.context.clear();
+      this.init();
+  };
+
+  MarkdownView.prototype.isEdit = function isEdit () {
+      return false;
   };
 
   window.prosemirror = {
       MarkdownEditor: MarkdownEditor,
+      MarkdownView: MarkdownView,
       state: state,
       view: view,
       transform: transform,

@@ -1,3 +1,6 @@
+/* jshint -W024 */
+/* jshint expr:true */
+
 const expect = require('chai').expect;
 const {
     initEditor,
@@ -41,6 +44,27 @@ describe("Plugin:source", () => {
         expect(serialize()).to.equal('Test ~~source~~ mode')
         clickMenuItem('source');
         expect(toHtml()).to.equal('<p>Test <s>source</s> mode</p>')
+        done();
+    });
+
+    it("test prevent redundant marking in source", (done) => {
+        initEditor('Test source mode');
+        clickMenuItem('source');
+        selectSource(5, 11);
+        clickMenuItem('markStrikethrough')
+        clickMenuItem('markStrikethrough')
+        expect(serialize()).to.equal('Test ~~source~~ mode')
+        done();
+    });
+
+    it("test editor focus on switch mode", (done) => {
+        editor = initEditor('Test source mode');
+        clickMenuItem('source');
+        expect(editor.hasFocus()).to.be.true;
+        expect(editor.context.$source.is(':focus')).to.be.true;
+        clickMenuItem('source');
+        expect($(editor.view.dom).is(':focus')).to.be.true;
+        expect(editor.hasFocus()).to.be.true;
         done();
     });
 });

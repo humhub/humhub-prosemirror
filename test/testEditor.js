@@ -1,4 +1,5 @@
 let editorInstance;
+let view;
 
 module.exports.initEditor = function(options, init) {
     if(typeof options === 'string') {
@@ -15,9 +16,52 @@ module.exports.initEditor = function(options, init) {
     return editorInstance;
 };
 
+module.exports.initView = function(options, init) {
+    if(typeof options === 'string') {
+        init = options;
+        options = {};
+    }
+
+    options = options || {edit : false};
+
+    view = new window.prosemirror.MarkdownView("#result", options);
+
+    view.init(init);
+
+    return view;
+};
+
+module.exports.setViewText = function(s) {
+    $('#result').html(htmlEncode(s));
+}
+
+module.exports.viewToHtml = function(s) {
+    return $('#result').html().replace(/(\r\n|\n|\r)/gm, "");
+}
+
+let htmlEncode = function(s) {
+    return s.replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/'/g, '&#39;')
+        .replace(/"/g, '&#quot;');
+}
+
+module.exports.clearView = function() {
+    if(view) {
+        view.clear();
+    }
+}
+
 module.exports.toHtml = function() {
     return $("#stage .ProseMirror").html();
 };
+
+module.exports.render = function(editor) {
+    let result = getEditor(editor).render();
+    $('#result').html(result);
+    return result;
+}
 
 module.exports.serialize = function() {
     return getEditor().serialize();
