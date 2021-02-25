@@ -2,9 +2,9 @@
 /* jshint expr:true */
 
 const expect = require('chai').expect;
-const {initView, viewToHtml, setViewText} = require('../testEditor');
+const {initView, viewToHtml, setViewText, serialize} = require('../testEditor');
 
-describe("Editor rendering in non edit mode", () => {
+describe("MarkdownView:render", () => {
 
     before(() => {
         $('#result').html('');
@@ -41,6 +41,15 @@ describe("Editor rendering in non edit mode", () => {
         setViewText('This is my view with <script>alert()</script>');
         initView();
         expect(viewToHtml()).to.equal('<p>This is my view with &lt;script&gt;alert()&lt;/script&gt;</p>');
+        done();
+    });
+
+    it("test transformToEditor and back", (done) => {
+        let view = initView('**This is my view**');
+        let editor = view.transformToEditor();
+        expect(serialize(editor)).to.equal('**This is my view**');
+        view = editor.transformToView();
+        expect(viewToHtml(view)).to.equal('<p><strong>This is my view</strong></p>');
         done();
     });
 

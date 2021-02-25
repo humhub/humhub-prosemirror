@@ -78887,7 +78887,6 @@
   };
 
   MaxHeightState.prototype.update = function update () {
-
       var stageHeight = this.context.editor.getStage()[0].offsetHeight;
 
       if(stageHeight === this.oldStageHeight) {
@@ -78896,15 +78895,8 @@
 
       this.oldStageHeight = stageHeight;
 
-      var test = this.context.editor.getStage()[0].scrollHeight;
-      var test2 = this.context.editor.getStage()[0].offsetHeight;
-
-      console.log(test);
-      console.log(test2);
-
       if(!this.scrollActive && this.context.editor.getStage()[0].scrollHeight > stageHeight) {
-          debugger;
-          if(!this.niceScrollInit && this.context.editor.getStage().niceScroll) {
+          if(!this.niceScrollInit && !isSmallView() && this.context.editor.getStage().niceScroll) {
               this.context.editor.getStage().niceScroll({
                   cursorwidth: "7",
                   cursorborder: "",
@@ -78919,10 +78911,8 @@
           this.niceScrollInit = true;
           this.scrollActive = true;
           this.context.editor.trigger('scrollActive');
-          console.log('scrollActive');
       } else if(!this.initialized || this.scrollActive) {
           this.scrollActive = false;
-          console.log('scrollInactive');
           this.context.editor.trigger('scrollInactive');
       }
 
@@ -79040,11 +79030,9 @@
           key: sourcePluginKey,
           state: {
               init: function init(config, state) {
-                  console.log(EDIT_MODE_RICHTEXT);
                   return EDIT_MODE_RICHTEXT;
               },
               apply: function apply(tr, prevPluginState, oldState, newState) {
-                 console.log(tr.getMeta(sourcePluginKey) || prevPluginState);
                   return tr.getMeta(sourcePluginKey) || prevPluginState;
               }
           },
@@ -80611,13 +80599,13 @@
    *
    */
 
-  $(document).on('mousedown.richtextProvider', function(evt) {
-      if(!$(evt.target).closest('.humhub-richtext-provider:visible').length) {
-           $('.humhub-richtext-provider:visible').each(function() {
+  $(document).on('mousedown.richtextProvider', function (evt) {
+      if (!$(evt.target).closest('.humhub-richtext-provider:visible').length) {
+          $('.humhub-richtext-provider:visible').each(function () {
               var $provider = $(this);
 
               var provider = $provider.data('provider');
-              if(provider && provider.reset) {
+              if (provider && provider.reset) {
                   provider.reset();
               } else {
                   $provider.hide().trigger('hidden');
@@ -80626,206 +80614,268 @@
       }
   });
 
-  var MarkdownEditor = function MarkdownEditor(selector, options) {
+  var BaseView = function BaseView(selector, options) {
       if ( options === void 0 ) options = {};
 
       this.$ = $(selector);
-
-      if(typeof options.edit === 'undefined') {
-          options.edit = true;
-      }
-
-      var existingInstance = this.$.data('editorInstance');
-      if(existingInstance && existingInstance.view) {
-          existingInstance.destroy();
-          this.$.data('editorInstance', this);
-      }
-
-      this.context = new Context(this, options);
-      this.parser = getParser(this.context);
-      this.serializer = getSerializer(this.context);
-      this.renderer = getRenderer(this.context);
-
-      if(!this.isEdit()) {
-          buildPlugins(this.context);
-      }
-
-      this.$.data('editorInstance', this);
-  };
-
-  MarkdownEditor.prototype.destroy = function destroy () {
-      // TODO: rather trigger event and handle in module
-      if(this.context.$source) {
-          this.context.$source.remove();
-          this.context.$source = null;
-      }
-      this.view.destroy();
-
-  };
-
-  MarkdownEditor.prototype.isEdit = function isEdit () {
-      return this.context.options.edit;
-  };
-
-  MarkdownEditor.prototype.clear = function clear () {
-      this.destroy();
-      this.context.clear();
-      this.$stage = null;
-      this.init();
-  };
-
-  MarkdownEditor.prototype.getStage = function getStage () {
-      if(!this.$stage) {
-          this.$stage = this.$.find('.ProseMirror');
-      }
-      return this.$stage;
-  };
-
-  MarkdownEditor.prototype.isEmpty = function isEmpty () {
-      var doc = this.view.state.doc;
-      return doc.childCount === 1 &&
-          doc.firstChild.type.name === 'paragraph' &&
-          doc.firstChild.content.size === 0 &&
-          !this.context.hasContentDecorations()
-  };
-
-  MarkdownEditor.prototype.init = function init (md) {
-          var this$1 = this;
-          if ( md === void 0 ) md = "";
-
-      if(this.view) {
-          this.destroy();
-      }
-
-      var editorState = EditorState.create({
-          doc: this.parser.parse(md),
-          plugins: setupPlugins(this.context)
-      });
-
-      var fix = fixTables(editorState);
-      editorState = (fix) ? editorState.apply(fix.setMeta("addToHistory", false)) : editorState;
-
-      this.view =  new EditorView(this.$[0], {
-          state: editorState
-      });
-
-      this.$editor = $(this.view.dom);
-
-      // TODO: put into menu class...
-      if(this.$.is('.focusMenu')) {
-          this.$menuBar = this.$.find('.ProseMirror-menubar').hide();
-
-          this.$.on('focus', '.ProseMirror, textarea', function () {
-              this$1.$menuBar.show();
-          }).on('blur', function (e) {
-              if(!this$1.$.is('.fullscreen')) {
-                  this$1.$menuBar.hide();
-              }
-          });
-      }
-
-
-
-      // Dirty workaround, force inline menus to be removed, this is required e.g. if the editor is removed from dom
-      $('.humhub-richtext-inline-menu').remove();
-      this.trigger('init');
-  };
-
-  MarkdownEditor.prototype.focus = function focus (atEnd) {
-      if(typeof atEnd === 'undefined') {
-          atEnd = false;
-      }
-
-      // The extra condition is required when switching to source mode, but the state is not available yet
-      if(isSourceMode(this.view.state) || (this.context.$source && this.context.$source.is(':visible'))) {
-          if(atEnd) {
-              var end = this.context.$source.val().length;
-              this.context.$source[0].setSelectionRange(end, end);
-          }
-          return this.context.$source.focus();
-      } else {
-          if(atEnd) {
-              var selection = Selection.atEnd(this.view.docView.node);
-              var tr = this.view.state.tr.setSelection(selection);
-              var state = this.view.state.apply(tr);
-              this.view.updateState(state);
-          }
-          this.view.focus();
-      }
-  };
-
-  MarkdownEditor.prototype.hasFocus = function hasFocus () {
-      return isSourceMode(this.view.state)
-          ? this.context.$source.is(':focus')
-          : $(this.view.dom).is(':focus');
-  };
-      
-  MarkdownEditor.prototype.serialize = function serialize () {
-      this.trigger('serialize');
-      return isSourceMode(this.view.state)
-          ? this.context.$source.val()
-          : this.serializer.serialize(this.view.state.doc);
-  };
-
-  MarkdownEditor.prototype.trigger = function trigger (trigger$1, args) {
-      this.context.event.trigger(trigger$1, args);
-      this.$.trigger(trigger$1, args);
-  };
-
-  MarkdownEditor.prototype.on = function on (event, handler) {
-      this.$.on(event, handler);
-  };
-
-  MarkdownEditor.prototype.render = function render (md) {
-      md = md || this.$.text();
-      return this.renderer.render(md, this);
-  };
-
-  var MarkdownView = function MarkdownView(selector, options) {
-      if ( options === void 0 ) options = {};
-
-      this.$ = $(selector);
-
-      options.edit = false;
 
       var existingInstance = this.$.data('richtextInstance');
-      if(existingInstance && existingInstance.view) {
+      if (existingInstance && existingInstance.view) {
           existingInstance.destroy();
           this.$.data('richtextInstance', this);
       }
 
       this.context = new Context(this, options);
-      this.parser = getParser(this.context);
-      this.serializer = getSerializer(this.context);
-      this.renderer = getRenderer(this.context);
-
-      buildPlugins(this.context);
 
       this.$.data('richtextInstance', this);
   };
 
-  MarkdownView.prototype.init = function init (md) {
-      this.$.html(this.render(md));
+  BaseView.prototype.isEdit = function isEdit () {
+      return this.context.options.edit;
   };
 
-  MarkdownView.prototype.render = function render (md) {
+  BaseView.prototype.trigger = function trigger (trigger$1, args) {
+      this.context.event.trigger(trigger$1, args);
+      this.$.trigger(trigger$1, args);
+
+      var callBack = 'on' + trigger$1.charAt(0).toUpperCase() + trigger$1.slice(1);
+
+      if (typeof this.context.options[callBack] === 'function') {
+          this.context.options[callBack].apply(this, args);
+      }
+  };
+
+  BaseView.prototype.on = function on (event, handler) {
+      this.$.on(event, handler);
+  };
+
+  BaseView.prototype.getParser = function getParser$1 () {
+      if (!this.parser) {
+          this.parser = getParser(this.context);
+      }
+
+      return this.parser;
+  };
+
+  BaseView.prototype.getRenderer = function getRenderer$1 () {
+      if (!this.renderer) {
+          this.renderer = getRenderer(this.context);
+      }
+
+      return this.renderer;
+  };
+
+  BaseView.prototype.render = function render (md) {
       md = md || this.$.text();
-      return this.renderer.render(md, this);
+      return this.getRenderer().render(md, this);
   };
 
-  MarkdownView.prototype.destroy = function destroy () {
-      this.$.html('');
-  };
+  var MarkdownEditor = /*@__PURE__*/(function (BaseView) {
+      function MarkdownEditor(selector, options) {
+          if ( options === void 0 ) options = {};
 
-  MarkdownView.prototype.clear = function clear () {
-      this.destroy();
-      this.context.clear();
-      this.init();
-  };
+          if (typeof options.edit === 'undefined') {
+              options.edit = true;
+          }
 
-  MarkdownView.prototype.isEdit = function isEdit () {
-      return false;
-  };
+          BaseView.call(this, selector, options);
+      }
+
+      if ( BaseView ) MarkdownEditor.__proto__ = BaseView;
+      MarkdownEditor.prototype = Object.create( BaseView && BaseView.prototype );
+      MarkdownEditor.prototype.constructor = MarkdownEditor;
+
+      MarkdownEditor.prototype.getSerializer = function getSerializer$1 () {
+          if (!this.serializer) {
+              this.serializer = getSerializer(this.context);
+          }
+
+          return this.serializer;
+      };
+
+      MarkdownEditor.prototype.init = function init (md) {
+          var this$1 = this;
+          if ( md === void 0 ) md = "";
+
+          if (this.view) {
+              this.destroy();
+          }
+
+          this.trigger('beforeInit');
+
+          var editorState = EditorState.create({
+              doc: this.getParser().parse(md),
+              plugins: setupPlugins(this.context)
+          });
+
+          var fix = fixTables(editorState);
+          editorState = (fix) ? editorState.apply(fix.setMeta("addToHistory", false)) : editorState;
+
+          this.view = new EditorView(this.$[0], {
+              state: editorState
+          });
+
+          this.$editor = $(this.view.dom);
+
+          // TODO: put into menu class...
+          if (this.$.is('.focusMenu')) {
+              this.$menuBar = this.$.find('.ProseMirror-menubar').hide();
+
+              this.$.on('focus', '.ProseMirror, textarea', function () {
+                  this$1.$menuBar.show();
+              }).on('blur', function (e) {
+                  if (!this$1.$.is('.fullscreen')) {
+                      this$1.$menuBar.hide();
+                  }
+              });
+          }
+
+          // Dirty workaround, force inline menus to be removed, this is required e.g. if the editor is removed from dom
+          $('.humhub-richtext-inline-menu').remove();
+          this.trigger('init');
+      };
+
+      MarkdownEditor.prototype.destroy = function destroy () {
+          // TODO: rather trigger event and handle in module
+          if (this.context.$source) {
+              this.context.$source.remove();
+              this.context.$source = null;
+          }
+
+          this.trigger('beforeDestroy');
+          this.view.destroy();
+          this.trigger('afterDestroy');
+      };
+
+      MarkdownEditor.prototype.isEdit = function isEdit () {
+          return this.context.options.edit;
+      };
+
+      MarkdownEditor.prototype.clear = function clear () {
+          this.trigger('beforeClear');
+          this.destroy();
+          this.context.clear();
+          this.$stage = null;
+          this.init();
+          this.trigger('afterClear');
+      };
+
+      MarkdownEditor.prototype.getStage = function getStage () {
+          if (!this.$stage) {
+              this.$stage = this.$.find('.ProseMirror');
+          }
+          return this.$stage;
+      };
+
+      MarkdownEditor.prototype.isEmpty = function isEmpty () {
+          var doc = this.view.state.doc;
+          return doc.childCount === 1 &&
+              doc.firstChild.type.name === 'paragraph' &&
+              doc.firstChild.content.size === 0 &&
+              !this.context.hasContentDecorations()
+      };
+
+      MarkdownEditor.prototype.focus = function focus (atEnd) {
+          this.trigger('beforeFocus');
+
+          // The extra condition is required when switching to source mode, but the state is not available yet
+          if (isSourceMode(this.view.state) || (this.context.$source && this.context.$source.is(':visible'))) {
+              if (atEnd) {
+                  var end = this.context.$source.val().length;
+                  this.context.$source[0].setSelectionRange(end, end);
+              }
+              return this.context.$source.focus();
+          } else {
+              if (atEnd) {
+                  var selection = Selection.atEnd(this.view.docView.node);
+                  var tr = this.view.state.tr.setSelection(selection);
+                  var state = this.view.state.apply(tr);
+                  this.view.updateState(state);
+              }
+              this.view.focus();
+          }
+          this.trigger('afterFocus');
+      };
+
+      MarkdownEditor.prototype.hasFocus = function hasFocus () {
+          return isSourceMode(this.view.state)
+              ? this.context.$source.is(':focus')
+              : $(this.view.dom).is(':focus');
+      };
+
+      MarkdownEditor.prototype.serialize = function serialize () {
+          this.trigger('beforeSerialize');
+
+          var result = isSourceMode(this.view.state)
+              ? this.context.$source.val()
+              : this.getSerializer().serialize(this.view.state.doc);
+
+          this.trigger('afterSerialize', result);
+
+          return result;
+      };
+
+      MarkdownEditor.prototype.transformToView = function transformToView () {
+          this.destroy();
+          var serialized = this.serialize();
+          var view = new MarkdownView(this.$, this.context.options);
+          view.init(serialized);
+          return view;
+      };
+
+      return MarkdownEditor;
+  }(BaseView));
+
+  var MarkdownView = /*@__PURE__*/(function (BaseView) {
+      function MarkdownView(selector, options) {
+          if ( options === void 0 ) options = {};
+
+          options.edit = false;
+
+          BaseView.call(this, selector, options);
+
+          this.renderer = getRenderer(this.context);
+
+          buildPlugins(this.context);
+      }
+
+      if ( BaseView ) MarkdownView.__proto__ = BaseView;
+      MarkdownView.prototype = Object.create( BaseView && BaseView.prototype );
+      MarkdownView.prototype.constructor = MarkdownView;
+
+      MarkdownView.prototype.init = function init (md) {
+          this.context.source = md;
+          this.$.html(this.render(md));
+      };
+
+      MarkdownView.prototype.destroy = function destroy () {
+          this.$.html('');
+      };
+
+      MarkdownView.prototype.clear = function clear () {
+          this.destroy();
+          this.context.clear();
+          this.init();
+      };
+
+      MarkdownView.prototype.isEdit = function isEdit () {
+          return false;
+      };
+
+      MarkdownView.prototype.transformToEditor = function transformToEditor (focus) {
+          this.destroy();
+          var editor = new MarkdownEditor(this.$, this.context.options);
+          editor.init(this.context.source);
+
+          if(focus !== false) {
+              editor.focus();
+          }
+
+          return editor;
+      };
+
+      return MarkdownView;
+  }(BaseView));
 
   window.prosemirror = {
       MarkdownEditor: MarkdownEditor,

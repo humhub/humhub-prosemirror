@@ -10,7 +10,7 @@ grunt
 
 ## Test environment
 
-### Run tests
+### Run tests in browser
 
 - Build and run test server:
 
@@ -20,6 +20,16 @@ npm test-server
 ```
 
 - Open [http://localhost:8090/](http://localhost:8090/)
+
+### Run headless tests
+
+- Run the test server and then run:
+
+```
+npm run test
+```
+
+
 
 ### Test editor build in HumHub
 

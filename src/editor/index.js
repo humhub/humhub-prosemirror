@@ -33,16 +33,15 @@ import MentionProvider from "./core/plugins/mention/provider"
 
 import {isSourceMode} from "./core/plugins/source/plugin";
 
-
 import Context from './core/context'
 
-$(document).on('mousedown.richtextProvider', function(evt) {
-    if(!$(evt.target).closest('.humhub-richtext-provider:visible').length) {
-         $('.humhub-richtext-provider:visible').each(function() {
+$(document).on('mousedown.richtextProvider', function (evt) {
+    if (!$(evt.target).closest('.humhub-richtext-provider:visible').length) {
+        $('.humhub-richtext-provider:visible').each(function () {
             let $provider = $(this);
 
             let provider = $provider.data('provider');
-            if(provider && provider.reset) {
+            if (provider && provider.reset) {
                 provider.reset();
             } else {
                 $provider.hide().trigger('hidden');
@@ -51,40 +50,128 @@ $(document).on('mousedown.richtextProvider', function(evt) {
     }
 });
 
-class MarkdownEditor {
+class BaseView {
     constructor(selector, options = {}) {
         this.$ = $(selector);
 
-        if(typeof options.edit === 'undefined') {
-            options.edit = true;
-        }
-
-        let existingInstance = this.$.data('editorInstance');
-        if(existingInstance && existingInstance.view) {
+        let existingInstance = this.$.data('richtextInstance');
+        if (existingInstance && existingInstance.view) {
             existingInstance.destroy();
-            this.$.data('editorInstance', this);
+            this.$.data('richtextInstance', this);
         }
 
         this.context = new Context(this, options);
-        this.parser = getParser(this.context);
-        this.serializer = getSerializer(this.context);
-        this.renderer = getRenderer(this.context);
 
-        if(!this.isEdit()) {
-            buildPlugins(this.context);
+        this.$.data('richtextInstance', this);
+    }
+
+    isEdit() {
+        return this.context.options.edit;
+    }
+
+    trigger(trigger, args) {
+        this.context.event.trigger(trigger, args);
+        this.$.trigger(trigger, args);
+
+        let callBack = 'on' + trigger.charAt(0).toUpperCase() + trigger.slice(1);
+
+        if (typeof this.context.options[callBack] === 'function') {
+            this.context.options[callBack].apply(this, args);
+        }
+    }
+
+    on(event, handler) {
+        this.$.on(event, handler);
+    }
+
+    getParser() {
+        if (!this.parser) {
+            this.parser = getParser(this.context);
         }
 
-        this.$.data('editorInstance', this);
+        return this.parser;
+    }
+
+    getRenderer() {
+        if (!this.renderer) {
+            this.renderer = getRenderer(this.context);
+        }
+
+        return this.renderer;
+    }
+
+    render(md) {
+        md = md || this.$.text();
+        return this.getRenderer().render(md, this);
+    }
+}
+
+class MarkdownEditor extends BaseView {
+    constructor(selector, options = {}) {
+        if (typeof options.edit === 'undefined') {
+            options.edit = true;
+        }
+
+        super(selector, options);
+    }
+
+    getSerializer() {
+        if (!this.serializer) {
+            this.serializer = getSerializer(this.context);
+        }
+
+        return this.serializer;
+    }
+
+    init(md = "") {
+        if (this.view) {
+            this.destroy();
+        }
+
+        this.trigger('beforeInit');
+
+        let editorState = state.EditorState.create({
+            doc: this.getParser().parse(md),
+            plugins: setupPlugins(this.context)
+        });
+
+        let fix = fixTables(editorState);
+        editorState = (fix) ? editorState.apply(fix.setMeta("addToHistory", false)) : editorState;
+
+        this.view = new view.EditorView(this.$[0], {
+            state: editorState
+        });
+
+        this.$editor = $(this.view.dom);
+
+        // TODO: put into menu class...
+        if (this.$.is('.focusMenu')) {
+            this.$menuBar = this.$.find('.ProseMirror-menubar').hide();
+
+            this.$.on('focus', '.ProseMirror, textarea', () => {
+                this.$menuBar.show();
+            }).on('blur', (e) => {
+                if (!this.$.is('.fullscreen')) {
+                    this.$menuBar.hide();
+                }
+            });
+        }
+
+        // Dirty workaround, force inline menus to be removed, this is required e.g. if the editor is removed from dom
+        $('.humhub-richtext-inline-menu').remove();
+        this.trigger('init');
     }
 
     destroy() {
         // TODO: rather trigger event and handle in module
-        if(this.context.$source) {
+        if (this.context.$source) {
             this.context.$source.remove();
             this.context.$source = null;
         }
-        this.view.destroy();
 
+        this.trigger('beforeDestroy');
+        this.view.destroy();
+        this.trigger('afterDestroy');
     }
 
     isEdit() {
@@ -92,14 +179,16 @@ class MarkdownEditor {
     }
 
     clear() {
+        this.trigger('beforeClear');
         this.destroy();
         this.context.clear();
         this.$stage = null;
         this.init();
+        this.trigger('afterClear');
     }
 
     getStage() {
-        if(!this.$stage) {
+        if (!this.$stage) {
             this.$stage = this.$.find('.ProseMirror');
         }
         return this.$stage;
@@ -113,59 +202,18 @@ class MarkdownEditor {
             !this.context.hasContentDecorations()
     }
 
-    init(md = "") {
-        if(this.view) {
-            this.destroy();
-        }
-
-        let editorState = state.EditorState.create({
-            doc: this.parser.parse(md),
-            plugins: setupPlugins(this.context)
-        });
-
-        let fix = fixTables(editorState);
-        editorState = (fix) ? editorState.apply(fix.setMeta("addToHistory", false)) : editorState;
-
-        this.view =  new view.EditorView(this.$[0], {
-            state: editorState
-        });
-
-        this.$editor = $(this.view.dom);
-
-        // TODO: put into menu class...
-        if(this.$.is('.focusMenu')) {
-            this.$menuBar = this.$.find('.ProseMirror-menubar').hide();
-
-            this.$.on('focus', '.ProseMirror, textarea', () => {
-                this.$menuBar.show();
-            }).on('blur', (e) => {
-                if(!this.$.is('.fullscreen')) {
-                    this.$menuBar.hide();
-                }
-            });
-        }
-
-
-
-        // Dirty workaround, force inline menus to be removed, this is required e.g. if the editor is removed from dom
-        $('.humhub-richtext-inline-menu').remove();
-        this.trigger('init');
-    }
-
     focus(atEnd) {
-        if(typeof atEnd === 'undefined') {
-            atEnd = false;
-        }
+        this.trigger('beforeFocus');
 
         // The extra condition is required when switching to source mode, but the state is not available yet
-        if(isSourceMode(this.view.state) || (this.context.$source && this.context.$source.is(':visible'))) {
-            if(atEnd) {
+        if (isSourceMode(this.view.state) || (this.context.$source && this.context.$source.is(':visible'))) {
+            if (atEnd) {
                 let end = this.context.$source.val().length;
                 this.context.$source[0].setSelectionRange(end, end);
             }
             return this.context.$source.focus();
         } else {
-            if(atEnd) {
+            if (atEnd) {
                 const selection = Selection.atEnd(this.view.docView.node)
                 const tr = this.view.state.tr.setSelection(selection)
                 const state = this.view.state.apply(tr)
@@ -173,6 +221,7 @@ class MarkdownEditor {
             }
             this.view.focus();
         }
+        this.trigger('afterFocus');
     }
 
     hasFocus() {
@@ -180,58 +229,42 @@ class MarkdownEditor {
             ? this.context.$source.is(':focus')
             : $(this.view.dom).is(':focus');
     }
-    
+
     serialize() {
-        this.trigger('serialize');
-        return isSourceMode(this.view.state)
+        this.trigger('beforeSerialize');
+
+        let result = isSourceMode(this.view.state)
             ? this.context.$source.val()
-            : this.serializer.serialize(this.view.state.doc);
+            : this.getSerializer().serialize(this.view.state.doc);
+
+        this.trigger('afterSerialize', result);
+
+        return result;
     }
 
-    trigger(trigger, args) {
-        this.context.event.trigger(trigger, args);
-        this.$.trigger(trigger, args);
-    }
-
-    on(event, handler) {
-        this.$.on(event, handler);
-    }
-
-    render(md) {
-        md = md || this.$.text();
-        return this.renderer.render(md, this);
+    transformToView() {
+        this.destroy();
+        let serialized = this.serialize();
+        let view = new MarkdownView(this.$, this.context.options);
+        view.init(serialized);
+        return view;
     }
 }
 
-class MarkdownView {
+class MarkdownView extends BaseView {
     constructor(selector, options = {}) {
-        this.$ = $(selector);
-
         options.edit = false;
 
-        let existingInstance = this.$.data('richtextInstance');
-        if(existingInstance && existingInstance.view) {
-            existingInstance.destroy();
-            this.$.data('richtextInstance', this);
-        }
+        super(selector, options);
 
-        this.context = new Context(this, options);
-        this.parser = getParser(this.context);
-        this.serializer = getSerializer(this.context);
         this.renderer = getRenderer(this.context);
 
         buildPlugins(this.context);
-
-        this.$.data('richtextInstance', this);
     }
 
     init(md) {
+        this.context.source = md;
         this.$.html(this.render(md));
-    }
-
-    render(md) {
-        md = md || this.$.text();
-        return this.renderer.render(md, this);
     }
 
     destroy() {
@@ -246,6 +279,18 @@ class MarkdownView {
 
     isEdit() {
         return false;
+    }
+
+    transformToEditor(focus) {
+        this.destroy();
+        let editor = new MarkdownEditor(this.$, this.context.options);
+        editor.init(this.context.source);
+
+        if(focus !== false) {
+            editor.focus();
+        }
+
+        return editor;
     }
 }
 

@@ -53,7 +53,7 @@ describe("Plugin:source", () => {
         selectSource(5, 11);
         clickMenuItem('markStrikethrough')
         clickMenuItem('markStrikethrough')
-        expect(serialize()).to.equal('Test ~~source~~ mode')
+        expect(serialize()).to.equal('Test source mode')
         done();
     });
 

@@ -4,8 +4,8 @@ require("mocha/mocha")
 mocha.setup("bdd")
 //mocha.checkLeaks();
 
-require("./core/test-init")
-require("./core/test-render")
+require("./core/test-editor")
+require("./core/test-view")
 
 require("./plugins/blocks/test-blockquote")
 require("./plugins/blocks/test-codeblock")

@@ -14,11 +14,9 @@ export function sourcePlugin(context) {
         key: sourcePluginKey,
         state: {
             init(config, state) {
-                console.log(EDIT_MODE_RICHTEXT);
                 return EDIT_MODE_RICHTEXT;
             },
             apply(tr, prevPluginState, oldState, newState) {
-               console.log(tr.getMeta(sourcePluginKey) || prevPluginState)
                 return tr.getMeta(sourcePluginKey) || prevPluginState;
             }
         },

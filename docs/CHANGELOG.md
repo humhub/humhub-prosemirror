@@ -7,6 +7,7 @@ Changelog
 - Fix: Initializing a new editor by constructor now destroys existing instances on the same node
 - Enh: Implemented switch to markdown source mode
 - Enh: Implemented MarkdownView for render only mode
+- Enh: Implemented `MarkdownView.transformToEditor()` and `MarkdownEditor.transformToView()`
 
 1.1.3 (Unreleased)
 -----------------------------------------

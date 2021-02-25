@@ -1,5 +1,5 @@
 let editorInstance;
-let view;
+let richtextView;
 
 module.exports.initEditor = function(options, init) {
     if(typeof options === 'string') {
@@ -24,19 +24,35 @@ module.exports.initView = function(options, init) {
 
     options = options || {edit : false};
 
-    view = new window.prosemirror.MarkdownView("#result", options);
+    richtextView = new window.prosemirror.MarkdownView("#result", options);
 
-    view.init(init);
+    richtextView.init(init);
 
-    return view;
+    return richtextView;
 };
 
-module.exports.setViewText = function(s) {
-    $('#result').html(htmlEncode(s));
+let getView = function(instance) {
+    if(instance) {
+        return instance;
+    }
+
+    if(!richtextView) {
+        richtextView = module.exports.initView();
+    }
+
+    return richtextView;
+};
+
+module.exports.getView = getView;
+
+module.exports.setViewText = function(s, view) {
+    view = getView(view);
+    view.$.html(htmlEncode(s));
 }
 
-module.exports.viewToHtml = function(s) {
-    return $('#result').html().replace(/(\r\n|\n|\r)/gm, "");
+module.exports.viewToHtml = function(view) {
+    view = getView(view);
+    return view.$.html().replace(/(\r\n|\n|\r)/gm, "");
 }
 
 let htmlEncode = function(s) {
@@ -47,7 +63,8 @@ let htmlEncode = function(s) {
         .replace(/"/g, '&#quot;');
 }
 
-module.exports.clearView = function() {
+module.exports.clearView = function(view) {
+    view = getView(view);
     if(view) {
         view.clear();
     }
@@ -63,8 +80,8 @@ module.exports.render = function(editor) {
     return result;
 }
 
-module.exports.serialize = function() {
-    return getEditor().serialize();
+module.exports.serialize = function(editor) {
+    return getEditor(editor).serialize();
 };
 
 let getEditor = function(editor) {
@@ -152,7 +169,17 @@ let pressKeyArrowDown = function() {
     pressKey('ArrowDown', 40);
 }
 
+let pressKeyEnter = function(editor) {
+    pressKey('Enter', 13);
+};
+
+let pressKeyBackspace = function(editor) {
+    pressKey('Backspace', 8);
+};
+
 module.exports.pressKey = pressKey;
+module.exports.pressKeyEnter = pressKeyEnter;
+module.exports.pressKeyBackspace = pressKeyBackspace;
 module.exports.pressKeyArrowDown = pressKeyArrowDown;
 module.exports.clickDropdownMenuItem = clickDropdownMenuItem;
 module.exports.clickMenuItem = clickMenuItem;

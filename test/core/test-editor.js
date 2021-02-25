@@ -2,16 +2,16 @@
 /* jshint expr:true */
 
 const expect = require('chai').expect;
-const {initEditor, serialize} = require('../testEditor');
+const {initEditor, serialize, toHtml, viewToHtml} = require('../testEditor');
 
-describe("Editor Init", () => {
+describe("MarkdownEditor:init", () => {
     it("test initializing the editor", (done) => {
         let editor = initEditor();
         expect(editor).to.not.be.null;
         expect(editor.$).to.not.be.null;
         expect(editor.$.attr('id')).to.equal('stage');
         expect(editor.isEmpty()).to.be.true;
-        expect(editor.$.data('editorInstance')).to.equal(editor);
+        expect(editor.$.data('richtextInstance')).to.equal(editor);
         done();
     });
 
@@ -32,7 +32,30 @@ describe("Editor Init", () => {
         let editor2Context = editor2.context;
         expect(editor1Context).not.to.equal(editor2Context);
         expect(serialize()).to.equal('Editor2');
-        expect(editor.$.data('editorInstance')).to.equal(editor2);
+        expect(editor.$.data('richtextInstance')).to.equal(editor2);
+        done();
+    });
+
+    it("test editor destroy removes the editor view", (done) => {
+        let editor = initEditor('Initial content');
+        editor.destroy();
+        expect(editor.$.html()).to.be.empty
+        done();
+    });
+
+    it("test editor clear resets the editor view", (done) => {
+        let editor = initEditor('Initial content');
+        editor.clear();
+        expect(serialize()).to.be.empty
+        done();
+    });
+
+    it("test editor transformToView and back", (done) => {
+        let editor = initEditor('## Initial content');
+        let view = editor.transformToView();
+        expect(viewToHtml(view)).equal('<h2>Initial content</h2>');
+        editor = view.transformToEditor();
+        expect(toHtml(editor)).to.equal('<h2>Initial content</h2>');
         done();
     });
 });

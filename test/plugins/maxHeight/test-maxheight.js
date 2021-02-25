@@ -1,11 +1,42 @@
+/* jshint -W024 */
+/* jshint expr:true */
+
 const expect = require('chai').expect;
-const {initEditor, toHtml, serialize, simulateInputRule, setSelection, clickMenuItem, type} = require('../../testEditor');
+const {initEditor, pressKeyEnter, pressKeyBackspace} = require('../../testEditor');
 
 describe("Plugin:maxHeight", () => {
     it("test maxHeight trigger", (done) => {
-        editor = initEditor({maxHeight:400});
-        editor.on('scrollActive', () => {console.log('active')});
-        editor.on('scrollInactive', () => {console.log('inactive')});
+        let scroll = {active: false};
+        initEditor({
+            maxHeight:200,
+            onScrollActive: () => scroll.active = true,
+            onScrollInactive: () => scroll.active = false,
+        });
+
+        pressKeyEnter();
+        expect(scroll.active).to.be.false;
+        pressKeyEnter();
+        expect(scroll.active).to.be.false;
+        pressKeyEnter();
+        expect(scroll.active).to.be.false;
+        pressKeyEnter();
+        expect(scroll.active).to.be.false;
+        pressKeyEnter();
+        expect(scroll.active).to.be.true;
+        pressKeyBackspace();
+        expect(scroll.active).to.be.false;
+        done();
+    });
+
+    it("test init with maxHeight overflow", (done) => {
+        let scroll = {active: false};
+        initEditor({
+            maxHeight:100,
+            onScrollActive: () => scroll.active = true,
+            onScrollInactive: () => scroll.active = false,
+        }, 'Test\n\nTest\n\nTest\n\nTest\n\n');
+
+        expect(scroll.active).to.be.true;
         done();
     });
 });
