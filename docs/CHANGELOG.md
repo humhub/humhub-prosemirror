@@ -4,6 +4,7 @@ Changelog
 1.1.3 (Unreleased)
 -----------------------------------------
 - Fix #31: Split list keymap not working
+- Fix #41: Overflow detection broken
 
 1.1.2 (February 18, 2021)
 -----------------------------------------

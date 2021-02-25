@@ -16,7 +16,7 @@ export class MaxHeightState {
     }
 
     update() {
-        let stageHeight = this.context.editor.getStage().innerHeight();
+        let stageHeight = this.context.editor.getStage()[0].offsetHeight;
 
         if(stageHeight === this.oldStageHeight) {
             return;
@@ -25,7 +25,7 @@ export class MaxHeightState {
         this.oldStageHeight = stageHeight;
 
         if(!this.scrollActive && this.context.editor.getStage()[0].scrollHeight > stageHeight) {
-            if(!this.niceScrollInit && this.context.editor.getStage().niceScroll) {
+            if(!this.niceScrollInit && !humhub.require('ui.view').isSmall() && this.context.editor.getStage().niceScroll) {
                 this.context.editor.getStage().niceScroll({
                     cursorwidth: "7",
                     cursorborder: "",
