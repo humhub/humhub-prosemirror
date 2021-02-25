@@ -15,7 +15,7 @@ function resizeNav(context) {
         id: 'resizeNav',
         title: "More",
         sortOrder: 400,
-        run: function() {
+        run() {
             let $nodes = getNodes(context);
             if(!context.editor.$.find('.helper-group').is(':visible')) {
                 $nodes.fadeIn();
