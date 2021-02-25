@@ -19,7 +19,7 @@ grunt
 npm test-server
 ```
 
-- Access [http://localhost:8090/](http://localhost:8090/)
+- Open [http://localhost:8090/](http://localhost:8090/)
 
 ### Test editor build in HumHub
 

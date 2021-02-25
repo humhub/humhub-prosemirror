@@ -55,13 +55,12 @@
     "prosemirror-transform": "^1.2.11",
     "prosemirror-view": "^1.17.6",
     "rollup": "^2.39.0",
-    "twemoji": "^13.0.1"
+    "twemoji": "^13.0.1",
+    "chai": "^4.3.0",
+    "nyc": "^15.1.0"
   },
   "scripts": {
     "test": "FIXME autorun browser tests",
     "test-server": "moduleserve test --port 8090"
-  },
-  "dependencies": {
-    "chai": "^4.3.0"
   }
 }
