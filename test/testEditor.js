@@ -1,3 +1,8 @@
+/* jshint -W024 */
+/* jshint expr:true */
+
+const expect = require('chai').expect;
+
 let editorInstance;
 let richtextView;
 
@@ -200,4 +205,12 @@ module.exports.simulateInputRule = function(word, editor) {
 module.exports.selectSource = function(start, end, direction, editor) {
     editor = getEditor(editor);
     editor.context.$source[0].setSelectionRange(start, end, direction);
+}
+
+module.exports.expectMenuItemNotVisible = function (selector) {
+    expect($('.ProseMirror-menubar '+selector).is(':visible')).to.be.false;
+}
+
+module.exports.expectMenuItemVisible = function (selector) {
+    expect($('.ProseMirror-menubar '+selector).is(':visible')).to.be.true;
 }

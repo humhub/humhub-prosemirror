@@ -146,6 +146,10 @@ export class MenuItem {
         if (options.class) this.dom.classList.add(options.class);
         if (options.css) this.dom.style.cssText += options.css;
 
+        if(this.options.feature) {
+            this.dom.classList.add('feature')
+        }
+
         $(this.dom).on("mousedown", e => {
             e.preventDefault();
             if (!$(this.dom).hasClass(prefix + "-disabled")) {
@@ -201,6 +205,7 @@ export class MenuItem {
             } else {
                 this.dom.classList.remove('hidden');
             }
+
             if (!this.selected) return false
         }
     }
@@ -345,7 +350,8 @@ export class MenuItemGroup extends MenuItem {
     }
 
     update(state) {
-        return this.content.update(state);
+        let result = this.content.update(state);
+        return result && super.update(state);
     }
 
     renderItems(view) {
@@ -460,17 +466,16 @@ export class Dropdown extends MenuItemGroup {
 
     update(state) {
         let contentUpdateResult = this.content.update(state);
-        this.dom.style.display = contentUpdateResult ? "" : "none";
 
-        let innerEnabled = false;
-        let innerActive = false;
+        let forceEnable = false;
+        let forceActive = false;
 
         this.content.items.forEach((item) => {
-            innerEnabled = innerEnabled || item.enabled;
-            innerActive = innerActive || item.active;
+            forceEnable = forceEnable || item.enabled;
+            forceActive = forceActive || item.active;
         });
 
-        this.adoptItemState(state, innerEnabled, innerActive);
+        this.adoptItemState(state, forceEnable, (forceActive && this.options.bubbleActive));
         return contentUpdateResult;
     }
 
@@ -511,6 +516,7 @@ export class DropdownSubmenu extends Dropdown {
     // **`label`**`: string`
     //   : The label to show on the submenu.
     constructor(content, options) {
+        options.bubbleActive = true;
         super(content, options);
     }
 
@@ -541,12 +547,6 @@ export class DropdownSubmenu extends Dropdown {
         });
 
         return this.dom;
-    }
-
-    update(state) {
-        let contentUpdateResult = this.content.update(state);
-        this.dom.style.display = contentUpdateResult ? "" : "none";
-        return contentUpdateResult;
     }
 }
 

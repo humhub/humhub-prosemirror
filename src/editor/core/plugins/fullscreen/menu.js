@@ -12,6 +12,7 @@ function fullScreen(context) {
         id: 'fullscreen',
         title: "Fullscreen",
         sortOrder: 300,
+        hideOnCollapse: true,
         run: function() {
             let $editor = context.editor.$;
             if($editor.is('.fullscreen')) {

@@ -19,6 +19,7 @@ function indentListItem(context) {
 function outdentListItem(context) {
     return cmdItem(liftListItem(context.schema.nodes.list_item), {
         title: context.translate("Decrease indent"),
+        feature: true,
         icon: icons.outdent,
         sortOrder: 110
     });

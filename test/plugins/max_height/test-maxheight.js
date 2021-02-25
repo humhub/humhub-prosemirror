@@ -4,7 +4,7 @@
 const expect = require('chai').expect;
 const {initEditor, pressKeyEnter, pressKeyBackspace} = require('../../testEditor');
 
-describe("Plugin:maxHeight", () => {
+describe("Plugin:max_height", () => {
     it("test maxHeight trigger", (done) => {
         let scroll = {active: false};
         initEditor({

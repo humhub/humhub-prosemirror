@@ -5,7 +5,7 @@
  *
  */
 
-import {MenuItem, Dropdown, icons} from "../../menu/menu"
+import {MenuItem, Dropdown, icons} from "../../menu"
 import {wrapIn} from "prosemirror-commands"
 import {TextField, openPrompt} from "../../prompt"
 import {addColumnAfter, addColumnBefore, deleteColumn, addRowAfter, addRowBefore, deleteRow, deleteTable,toggleHeaderRow} from "prosemirror-tables"
@@ -17,6 +17,7 @@ function wrapTableItem(context) {
         title: context.translate("Create table"),
         icon: icons.table,
         sortOrder: 300,
+        hideOnCollapse: true,
         run(state, dispatch, view) {
             openPrompt({
                 title: context.translate("Insert table"),

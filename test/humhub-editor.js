@@ -13453,6 +13453,10 @@
       if (options.class) { this.dom.classList.add(options.class); }
       if (options.css) { this.dom.style.cssText += options.css; }
 
+      if(this.options.feature) {
+          this.dom.classList.add('feature');
+      }
+
       $(this.dom).on("mousedown", function (e) {
           e.preventDefault();
           if (!$(this$1.dom).hasClass(prefix$1 + "-disabled")) {
@@ -13657,7 +13661,8 @@
       };
 
       MenuItemGroup.prototype.update = function update (state) {
-          return this.content.update(state);
+          var result = this.content.update(state);
+          return result && MenuItem.prototype.update.call(this, state);
       };
 
       MenuItemGroup.prototype.renderItems = function renderItems (view) {
@@ -13765,17 +13770,16 @@
 
       Dropdown.prototype.update = function update (state) {
           var contentUpdateResult = this.content.update(state);
-          this.dom.style.display = contentUpdateResult ? "" : "none";
 
-          var innerEnabled = false;
-          var innerActive = false;
+          var forceEnable = false;
+          var forceActive = false;
 
           this.content.items.forEach(function (item) {
-              innerEnabled = innerEnabled || item.enabled;
-              innerActive = innerActive || item.active;
+              forceEnable = forceEnable || item.enabled;
+              forceActive = forceActive || item.active;
           });
 
-          this.adoptItemState(state, innerEnabled, innerActive);
+          this.adoptItemState(state, forceEnable, (forceActive && this.options.bubbleActive));
           return contentUpdateResult;
       };
 
@@ -13812,6 +13816,7 @@
   // hidden and expand to the right when hovered over or tapped.
   var DropdownSubmenu = /*@__PURE__*/(function (Dropdown) {
       function DropdownSubmenu(content, options) {
+          options.bubbleActive = true;
           Dropdown.call(this, content, options);
       }
 
@@ -13848,12 +13853,6 @@
           });
 
           return this.dom;
-      };
-
-      DropdownSubmenu.prototype.update = function update (state) {
-          var contentUpdateResult = this.content.update(state);
-          this.dom.style.display = contentUpdateResult ? "" : "none";
-          return contentUpdateResult;
       };
 
       return DropdownSubmenu;
@@ -14143,11 +14142,11 @@
 
   function buildMenuItems(context) {
       var groups = {
-          types:  {type: 'dropdown', id: 'type', sortOrder: 100, label: context.translate("Type"), seperator: true, icon: icons.text, items: []},
+          types:  {type: 'dropdown', id: 'type', toggleSelect: false, sortOrder: 100, label: context.translate("Type"), seperator: true, icon: icons.text, items: []},
           marks:  {type: 'group', id: 'marks-group', sortOrder: 200, items: []},
           format:  {type: 'group', id: 'format-group',  sortOrder: 300, items: [liftItem()]},
           insert: {type: 'dropdown', id: 'insert-dropdown',  sortOrder: 400, label: context.translate("Insert"), seperator: true, icon: icons.image, items: []},
-          helper:  {type: 'group', id: 'helper-group', sortOrder: 500, items: [undoItem(), redoItem()]},
+          helper:  {type: 'group', id: 'helper-group',  hideOnCollapse: true, sortOrder: 500, items: [undoItem(), redoItem()]},
           resize:  {type: 'group', id: 'resize-group', sortOrder: 600, items: []},
       };
 
@@ -14194,14 +14193,7 @@
           definitions = plugin.menuGroups(definitions, context);
       });
 
-      menuWrapperPlugins.forEach(function(plugin) {
-          plugin.menuWrapper;
-          definitions.forEach(function (item) {
-              wrapMenuItem(plugin, context, item);
-          });
-      });
-
-      //selectParentNodeItem -> don't know if we should add this one
+      context.menuWrapperPlugins = menuWrapperPlugins;
 
       // TODO: fire event
       return definitions;
@@ -14318,6 +14310,7 @@
   function menuBar(options) {
       return new Plugin({
           view: function view(editorView) {
+              console.log(editorView);
               options.context.menu = new MenuBarView(editorView, options);
               options.context.event.trigger('afterMenuBarInit', options.context.menu);
               return options.context.menu;
@@ -14344,9 +14337,13 @@
       this.widthForMaxHeight = 0;
       this.floating = false;
 
-      this.groupItem = new MenuItemGroup(this.options.content, {context: this.context});
-      var dom = this.groupItem.render(this.editorView);
+      this.groupItem = new MenuItemGroup(this.options.content);
 
+      this.context.menuWrapperPlugins.forEach(function (plugin) {
+          wrapMenuItem(plugin, this$1.context, this$1.groupItem);
+      });
+
+      var dom = this.groupItem.render(this.editorView);
       this.menu.appendChild(dom);
 
       $(this.menu).on('mousedown', function(evt) {
@@ -32713,6 +32710,7 @@
       return wrapItem(context.schema.nodes.blockquote, {
           title: context.translate("Wrap in block quote"),
           icon: icons.blockquote,
+          hideOnCollapse: true,
           sortOrder: 300
       });
   }
@@ -32974,6 +32972,7 @@
       return cmdItem(wrapInList$1(context.schema.nodes.bullet_list), {
           title: context.translate("Wrap in bullet list"),
           icon: icons.bulletList,
+          hideOnCollapse: true,
           sortOrder: 100
       });
   }
@@ -76810,6 +76809,7 @@
   function outdentListItem(context) {
       return cmdItem(liftListItem(context.schema.nodes.list_item), {
           title: context.translate("Decrease indent"),
+          feature: true,
           icon: icons.outdent,
           sortOrder: 110
       });
@@ -77580,6 +77580,7 @@
       return cmdItem(wrapInList$1(context.schema.nodes.ordered_list), {
           title: context.translate("Wrap in ordered list"),
           icon: icons.orderedList,
+          hideOnCollapse: true,
           sortOrder: 200
       });
   }
@@ -78210,6 +78211,7 @@
           title: context.translate("Create table"),
           icon: icons.table,
           sortOrder: 300,
+          hideOnCollapse: true,
           run: function run(state, dispatch, view) {
               openPrompt({
                   title: context.translate("Insert table"),
@@ -78724,6 +78726,7 @@
           id: 'fullscreen',
           title: "Fullscreen",
           sortOrder: 300,
+          hideOnCollapse: true,
           run: function() {
               var $editor = context.editor.$;
               if($editor.is('.fullscreen')) {
@@ -78801,6 +78804,27 @@
       }
   };
 
+  var toggleNavPluginKey = new PluginKey('toggleNav');
+
+  function isCollapsed(state) {
+      return toggleNavPluginKey.getState(state);
+  }
+
+  function toggleNavPlugin(context) {
+      return new Plugin({
+          key: toggleNavPluginKey,
+          state: {
+              init: function init(config, state) {
+                  return true;
+              },
+              apply: function apply(tr, prevPluginState, oldState, newState) {
+                  var meta = tr.getMeta(toggleNavPluginKey);
+                  return typeof meta !== 'undefined' ? meta : prevPluginState;
+              }
+          },
+      })
+  }
+
   /*
    * @link https://www.humhub.org/
    * @copyright Copyright (c) 2018 HumHub GmbH & Co. KG
@@ -78808,36 +78832,24 @@
    *
    */
 
-  var SELECTOR_DEFAULT = '.helper-group, .format-group, .insert-dropdown, .ProseMirror-menu-insertTable:not(.hidden), .ProseMirror-menu-fullScreen:not(.hidden)';
-
   function resizeNav(context) {
 
       return new MenuItem({
           id: 'resizeNav',
           title: "More",
           sortOrder: 400,
-          run: function run() {
-              var $nodes = getNodes(context);
-              if(!context.editor.$.find('.helper-group').is(':visible')) {
-                  $nodes.fadeIn();
+          run: function run(state, dispatch) {
+              var wasCollapsed = isCollapsed(state);
+              dispatch(state.tr.setMeta(toggleNavPluginKey, !wasCollapsed));
+
+              if(wasCollapsed) {
                   this.switchIcon(icons.angleDoubleLeft);
-                  $(this.dom).data('state', true);
               } else {
-                  $nodes.hide();
                   this.switchIcon(icons.angleDoubleRight);
-                  $(this.dom).data('state', false);
               }
           },
           icon: icons.angleDoubleRight
       });
-  }
-
-  function getNodes(context) {
-      return context.editor.$.find(getSelector(context));
-  }
-
-  function getSelector(context) {
-      return context.getPluginOption('resizeNav', 'selector', SELECTOR_DEFAULT);
   }
 
   function menu$j(context) {
@@ -78845,8 +78857,22 @@
           {
               id: 'resizeNav',
               group: 'resize',
-              item: resizeNav(context)
+              item: resizeNav()
           } ]
+  }
+
+  function menuWrapper(context) {
+      return {
+          select: function(menuItem, state, active) {
+              var collapsed = toggleNavPluginKey.getState(state);
+
+              if(collapsed && menuItem.options.hideOnCollapse) {
+                  return false;
+              }
+
+              return active;
+          }
+      }
   }
 
   /*
@@ -78858,16 +78884,13 @@
 
   var resizeNav$1 = {
       id: 'resizeNav',
-      init: function init(context) {
-          context.event.on('afterMenuBarInit', function (evt, instance) {
-              getNodes(context).hide();
-          }).on('afterMenuBarUpdate', function (evt, instance) {
-              if(!$(instance.menu).find('.ProseMirror-menu-resizeNav').data('state')) {
-                  getNodes(context).hide();
-              }
-          });
-      },
-      menu: function (context) { return menu$j(context); }
+      menu: function (context) { return menu$j(); },
+      menuWrapper: function (context) { return menuWrapper(); },
+      plugins: function (context) {
+          return [
+              toggleNavPlugin()
+          ]
+      }
   };
 
   /*
@@ -79105,6 +79128,40 @@
       return [{type: 'group', id: 'source-group', sortOrder: 50, items: [switchMode(context)]}];
   }
 
+  function menuWrapper$1(context) {
+      return {
+          run: function(menuItem, state) {
+              if(menuItem.options.id === 'source' || !isSourceMode(state)) {
+                  return false;
+              }
+
+              if(menuItem.runSource) {
+                  menuItem.runSource();
+                  return true;
+              }
+
+              return false;
+          },
+          enable: function(menuItem, state, enabled) {
+              var sourceMode = isSourceMode(state);
+
+              if(['source', 'resizeNav', 'fullScreen'].includes(menuItem.options.id)
+                  || (sourceMode &&  menuItem.runSource)) {
+                  return enabled;
+              }
+
+              return sourceMode ? false : enabled;
+          },
+          active: function(menuItem, state, active) {
+              if(menuItem.options.id === 'source') {
+                  return active;
+              }
+
+              return (isSourceMode(state)) ? false : active;
+          }
+      }
+  }
+
   /*
    * @link https://www.humhub.org/
    * @copyright Copyright (c) 2017 HumHub GmbH & Co. KG
@@ -79112,47 +79169,10 @@
    *
    */
 
-  var enabledItems = [
-      'source',
-      'resizeNav',
-      'fullScreen'
-  ];
-
   var source = {
       id: 'source',
       menu: function (context) { return menu$k(context); },
-      menuWrapper: function (context) {
-        return {
-            run: function(menuItem, state) {
-                if(menuItem.options.id === 'source' || !isSourceMode(state)) {
-                    return false;
-                }
-
-                if(menuItem.runSource) {
-                    menuItem.runSource();
-                    return true;
-                }
-
-                return false;
-            },
-            enable: function(menuItem, state, enabled) {
-                var sourceMode = isSourceMode(state);
-
-                if(enabledItems.includes(menuItem.options.id) || (sourceMode &&  menuItem.runSource)) {
-                    return true;
-                }
-
-                return sourceMode ? false : enabled;
-            },
-            active: function(menuItem, state, active) {
-                if(menuItem.options.id === 'source') {
-                    return active;
-                }
-
-                return (isSourceMode(state)) ? false : active;
-            }
-        }
-      },
+      menuWrapper: function (context) { return menuWrapper$1(); },
       plugins: function (context) {
           return [
               sourcePlugin()

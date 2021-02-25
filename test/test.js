@@ -16,6 +16,7 @@ require("./plugins/marks/test-strike")
 require("./plugins/marks/test-code")
 
 require("./plugins/source/test-source")
-require("./plugins/maxHeight/test-maxheight")
+require("./plugins/max_height/test-maxheight")
+require("./plugins/resize_nav/test-resizenav")
 
 mocha.run()

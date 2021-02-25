@@ -8,6 +8,7 @@ Changelog
 - Enh: Implemented switch to markdown source mode
 - Enh: Implemented MarkdownView for render only mode
 - Enh: Implemented `MarkdownView.transformToEditor()` and `MarkdownEditor.transformToView()`
+- Enh #39: Improved navigation toggle by `hideOnCollapse` menu item option instead of static selector
 
 1.1.3 (Unreleased)
 -----------------------------------------

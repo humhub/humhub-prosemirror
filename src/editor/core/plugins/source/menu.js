@@ -38,3 +38,37 @@ const switchMode = function (context) {
 export function menu(context) {
     return [{type: 'group', id: 'source-group', sortOrder: 50, items: [switchMode(context)]}];
 }
+
+export function menuWrapper(context) {
+    return {
+        run: function(menuItem, state) {
+            if(menuItem.options.id === 'source' || !isSourceMode(state)) {
+                return false;
+            }
+
+            if(menuItem.runSource) {
+                menuItem.runSource();
+                return true;
+            }
+
+            return false;
+        },
+        enable: function(menuItem, state, enabled) {
+            let sourceMode = isSourceMode(state);
+
+            if(['source', 'resizeNav', 'fullScreen'].includes(menuItem.options.id)
+                || (sourceMode &&  menuItem.runSource)) {
+                return enabled;
+            }
+
+            return sourceMode ? false : enabled;
+        },
+        active: function(menuItem, state, active) {
+            if(menuItem.options.id === 'source') {
+                return active;
+            }
+
+            return (isSourceMode(state)) ? false : active;
+        }
+    }
+}

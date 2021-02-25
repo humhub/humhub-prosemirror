@@ -8,11 +8,11 @@ const prefix = "ProseMirror-menubar";
 
 function buildMenuItems(context) {
     let groups = {
-        types:  {type: 'dropdown', id: 'type', sortOrder: 100, label: context.translate("Type"), seperator: true, icon: icons.text, items: []},
+        types:  {type: 'dropdown', id: 'type', toggleSelect: false, sortOrder: 100, label: context.translate("Type"), seperator: true, icon: icons.text, items: []},
         marks:  {type: 'group', id: 'marks-group', sortOrder: 200, items: []},
         format:  {type: 'group', id: 'format-group',  sortOrder: 300, items: [liftItem()]},
         insert: {type: 'dropdown', id: 'insert-dropdown',  sortOrder: 400, label: context.translate("Insert"), seperator: true, icon: icons.image, items: []},
-        helper:  {type: 'group', id: 'helper-group', sortOrder: 500, items: [undoItem(), redoItem()]},
+        helper:  {type: 'group', id: 'helper-group',  hideOnCollapse: true, sortOrder: 500, items: [undoItem(), redoItem()]},
         resize:  {type: 'group', id: 'resize-group', sortOrder: 600, items: []},
     };
 
@@ -59,14 +59,7 @@ function buildMenuItems(context) {
         definitions = plugin.menuGroups(definitions, context);
     });
 
-    menuWrapperPlugins.forEach(function(plugin) {
-        let wrapper = plugin.menuWrapper;
-        definitions.forEach((item) => {
-            wrapMenuItem(plugin, context, item)
-        })
-    });
-
-    //selectParentNodeItem -> don't know if we should add this one
+    context.menuWrapperPlugins = menuWrapperPlugins;
 
     // TODO: fire event
     return definitions;
@@ -208,9 +201,13 @@ class MenuBarView {
         this.widthForMaxHeight = 0;
         this.floating = false;
 
-        this.groupItem = new MenuItemGroup(this.options.content, {context: this.context});
-        let dom = this.groupItem.render(this.editorView);
+        this.groupItem = new MenuItemGroup(this.options.content);
 
+        this.context.menuWrapperPlugins.forEach((plugin) => {
+            wrapMenuItem(plugin, this.context, this.groupItem);
+        });
+
+        let dom = this.groupItem.render(this.editorView);
         this.menu.appendChild(dom);
 
         $(this.menu).on('mousedown', function(evt) {

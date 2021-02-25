@@ -12,6 +12,7 @@ function wrapOrderedList(context) {
     return cmdItem(wrapInList(context.schema.nodes.ordered_list), {
         title: context.translate("Wrap in ordered list"),
         icon: icons.orderedList,
+        hideOnCollapse: true,
         sortOrder: 200
     });
 }
