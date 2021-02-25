@@ -19,6 +19,7 @@ import * as menu from './core/menu'
 import * as pmmenu from "prosemirror-menu"
 import * as loader from "./core/plugins/loader/plugin"
 import {fixTables} from "prosemirror-tables"
+import {Selection} from "prosemirror-state";
 
 import * as prompt from './core/prompt'
 
@@ -54,6 +55,10 @@ class MarkdownEditor {
     constructor(selector, options = {}) {
         this.$ = $(selector);
 
+        if(typeof options.edit === 'undefined') {
+            options.edit = true;
+        }
+
         let existingInstance = this.$.data('editorInstance');
         if(existingInstance && existingInstance.view) {
             existingInstance.destroy();
@@ -83,7 +88,7 @@ class MarkdownEditor {
     }
 
     isEdit() {
-        return this.context.options.edit || this.$.is('.ProsemirrorEditor');
+        return this.context.options.edit;
     }
 
     clear() {
@@ -125,11 +130,13 @@ class MarkdownEditor {
             state: editorState
         });
 
+        this.$editor = $(this.view.dom);
+
         // TODO: put into menu class...
         if(this.$.is('.focusMenu')) {
             this.$menuBar = this.$.find('.ProseMirror-menubar').hide();
 
-            this.$editor = $(this.view.dom).on('focus', () => {
+            this.$.on('focus', '.ProseMirror, textarea', () => {
                 this.$menuBar.show();
             }).on('blur', (e) => {
                 if(!this.$.is('.fullscreen')) {
@@ -138,11 +145,40 @@ class MarkdownEditor {
             });
         }
 
-        this.$editor = $(this.view.dom);
+
 
         // Dirty workaround, force inline menus to be removed, this is required e.g. if the editor is removed from dom
         $('.humhub-richtext-inline-menu').remove();
         this.trigger('init');
+    }
+
+    focus(atEnd) {
+        if(typeof atEnd === 'undefined') {
+            atEnd = false;
+        }
+
+        // The extra condition is required when switching to source mode, but the state is not available yet
+        if(isSourceMode(this.view.state) || (this.context.$source && this.context.$source.is(':visible'))) {
+            if(atEnd) {
+                let end = this.context.$source.val().length;
+                this.context.$source[0].setSelectionRange(end, end);
+            }
+            return this.context.$source.focus();
+        } else {
+            if(atEnd) {
+                const selection = Selection.atEnd(this.view.docView.node)
+                const tr = this.view.state.tr.setSelection(selection)
+                const state = this.view.state.apply(tr)
+                this.view.updateState(state)
+            }
+            this.view.focus();
+        }
+    }
+
+    hasFocus() {
+        return isSourceMode(this.view.state)
+            ? this.context.$source.is(':focus')
+            : $(this.view.dom).is(':focus');
     }
     
     serialize() {
@@ -161,13 +197,61 @@ class MarkdownEditor {
         this.$.on(event, handler);
     }
 
-    render() {
-        return this.renderer.render(this.$.text(), this);
+    render(md) {
+        md = md || this.$.text();
+        return this.renderer.render(md, this);
+    }
+}
+
+class MarkdownView {
+    constructor(selector, options = {}) {
+        this.$ = $(selector);
+
+        options.edit = false;
+
+        let existingInstance = this.$.data('richtextInstance');
+        if(existingInstance && existingInstance.view) {
+            existingInstance.destroy();
+            this.$.data('richtextInstance', this);
+        }
+
+        this.context = new Context(this, options);
+        this.parser = getParser(this.context);
+        this.serializer = getSerializer(this.context);
+        this.renderer = getRenderer(this.context);
+
+        buildPlugins(this.context);
+
+        this.$.data('richtextInstance', this);
+    }
+
+    init(md) {
+        this.$.html(this.render(md));
+    }
+
+    render(md) {
+        md = md || this.$.text();
+        return this.renderer.render(md, this);
+    }
+
+    destroy() {
+        this.$.html('');
+    }
+
+    clear() {
+        this.destroy();
+        this.context.clear();
+        this.init();
+    }
+
+    isEdit() {
+        return false;
     }
 }
 
 window.prosemirror = {
     MarkdownEditor: MarkdownEditor,
+    MarkdownView: MarkdownView,
     state: state,
     view: view,
     transform: transform,
