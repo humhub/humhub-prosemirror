@@ -7,26 +7,15 @@
 
 import {icons, MenuItem} from "../../menu/menu"
 
-
-const SELECTOR_DEFAULT = '.ProseMirror-menu-linkItem, .helper-group, .format-group, .insert-dropdown, .ProseMirror-menu-insertTable, .ProseMirror-menu-fullScreen';
-
-let cache = {};
+const SELECTOR_DEFAULT = '.helper-group, .format-group, .insert-dropdown, .ProseMirror-menu-insertTable:not(.hidden), .ProseMirror-menu-fullScreen:not(.hidden)';
 
 function resizeNav(context) {
-
-    context.event.on('clear', function() {
-        cache = {};
-    });
-
-    humhub.event.on('humhub:ready', function() {
-        cache = {};
-    });
 
     return new MenuItem({
         id: 'resizeNav',
         title: "More",
         sortOrder: 400,
-        run: function() {
+        run() {
             let $nodes = getNodes(context);
             if(!context.editor.$.find('.helper-group').is(':visible')) {
                 $nodes.fadeIn();
@@ -43,11 +32,7 @@ function resizeNav(context) {
 }
 
 export function getNodes(context) {
-    if(!cache[context.id]) {
-        cache[context.id] = context.editor.$.find(getSelector(context));
-    }
-
-    return cache[context.id];
+    return context.editor.$.find(getSelector(context));
 }
 
 export function getSelector(context) {

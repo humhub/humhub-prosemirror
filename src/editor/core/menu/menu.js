@@ -103,24 +103,39 @@ export class MenuItem {
     }
 
     adoptItemState(state, forceEnable, forceActive) {
-        this.selected = true;
-        if (this.options.select) {
-            this.selected = this.options.select(state);
-            this.dom.style.display = this.selected || forceEnable ? "" : "none";
-            if (!this.selected) return false
-        }
+        this.setEnabledItemState(state, forceEnable);
+        this.setActiveItemState(state, forceActive);
+        this.setSelectedItemState(state, forceEnable);
+    }
 
-        this.enabled = true;
-
-        if (this.options.enable) {
-            this.enabled = this.options.enable(state) || forceEnable || false;
-            setClass(this.dom, prefix + "-disabled", !this.enabled)
-        }
-
+    setActiveItemState(state, forceActive) {
         this.active = false;
         if (this.options.active) {
             this.active = (this.options.active(state) || forceActive) || false;
             setClass(this.dom, prefix + "-active", this.active)
+        }
+    }
+
+    setEnabledItemState(state, forceEnable) {
+        this.enabled = true;
+        if (this.options.enable) {
+            this.enabled = this.options.enable(state) || forceEnable || false;
+            setClass(this.dom, prefix + "-disabled", !this.enabled)
+        }
+    }
+
+    setSelectedItemState(state, forceEnable) {
+        this.selected = true;
+        if (this.options.select) {
+            this.selected = this.options.select(state);
+            this.dom.style.display = this.selected || forceEnable ? "" : "none";
+
+            if(!this.selected) {
+                this.dom.classList.add('hidden');
+            } else {
+                this.dom.classList.remove('hidden');
+            }
+            if (!this.selected) return false
         }
     }
 }
