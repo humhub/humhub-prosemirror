@@ -10,6 +10,7 @@ import imsize_plugin from './markdownit_imsize'
 import {menu} from './menu'
 import {imagePlugin} from "./plugin";
 import {validateHref} from "../../util/linkUtil";
+import {filterFileUrl} from "../../humhub-bridge";
 
 const image = {
     id: 'image',
@@ -33,7 +34,7 @@ const image = {
             let srcIndex = imageToken.attrIndex('src');
 
 
-            let srcFilter = (window.humhub) ? humhub.modules.file.filterFileUrl(imageToken.attrs[srcIndex][1]) : {url : imageToken.attrs[srcIndex][1]};
+            let srcFilter = filterFileUrl(imageToken.attrs[srcIndex][1]);
             imageToken.attrs[srcIndex][1] = validateHref(srcFilter.url) ? srcFilter.url : '#';
 
             if(srcFilter.guid) {

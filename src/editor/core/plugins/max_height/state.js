@@ -5,6 +5,8 @@
  *
  */
 
+import {isSmallView} from "../../humhub-bridge";
+
 export class MaxHeightState {
     constructor(state, options) {
         this.state = state;
@@ -25,7 +27,7 @@ export class MaxHeightState {
         this.oldStageHeight = stageHeight;
 
         if(!this.scrollActive && this.context.editor.getStage()[0].scrollHeight > stageHeight) {
-            if(!this.niceScrollInit && !humhub.require('ui.view').isSmall() && this.context.editor.getStage().niceScroll) {
+            if(!this.niceScrollInit && !isSmallView() && this.context.editor.getStage().niceScroll) {
                 this.context.editor.getStage().niceScroll({
                     cursorwidth: "7",
                     cursorborder: "",

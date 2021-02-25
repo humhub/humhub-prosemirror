@@ -118,7 +118,6 @@ $(document).ready(function() {
     $('#test').on('click', function() {
         var md = $('#markdown').val().trim();
         var html = editor.renderer.render(md);
-        console.log(html);
         $('#testContent').html($(html));
     });
 
@@ -137,7 +136,6 @@ $(document).ready(function() {
         let doc = state.doc;
         let schema = state.schema;
         let result = eval($('#query').val());
-        console.log(result);
     });
 
     render();

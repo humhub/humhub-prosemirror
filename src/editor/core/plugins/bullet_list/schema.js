@@ -21,7 +21,7 @@ const schema = {
             },
             parseMarkdown: {block: "bullet_list"},
             toMarkdown: (state, node) => {
-                state.renderList(node, "  ", function () { return (node.attrs.bullet || "*") + " "; });
+                state.renderList(node, "  ", function () { return (node.attrs.bullet || "-") + " "; });
             }
         }
     }

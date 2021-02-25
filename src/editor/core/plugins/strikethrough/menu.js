@@ -13,7 +13,7 @@ function markStrikethrough(context) {
         title: context.translate("Toggle strikethrough"),
         icon: icons.strikethrough,
         sortOrder: 300
-    });
+    }, context);
 }
 
 export function menu(context) {

@@ -39,6 +39,7 @@ import fullscreen from "./fullscreen";
 import resizeNav from "./resize_nav";
 import maxHeight from "./max_height";
 import save from "./save";
+import source from "./source";
 import {PluginRegistry} from "./registry";
 
 const registry = new PluginRegistry();
@@ -83,6 +84,7 @@ registerPlugin(fullscreen, 'markdown');
 registerPlugin(resizeNav, 'markdown');
 registerPlugin(maxHeight, 'markdown');
 registerPlugin(save, 'markdown');
+registerPlugin(source, 'markdown');
 
 registerPreset('normal', {
     extend: 'markdown',

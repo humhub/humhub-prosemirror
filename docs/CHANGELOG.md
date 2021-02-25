@@ -1,6 +1,14 @@
 Changelog
 =========
 
+2.0.0 (Unreleased)
+-----------------------------------------
+- Enh #37: Add link mark to collapsed menu items
+- Fix: Initializing a new editor by constructor now destroys existing instances on the same node
+- Enh: Implemented switch to markdown source mode
+- Enh: Implemented MarkdownView for render only mode
+- Enh: Implemented `MarkdownView.transformToEditor()` and `MarkdownEditor.transformToView()`
+
 1.1.3 (Unreleased)
 -----------------------------------------
 - Fix #31: Split list keymap not working

@@ -6,13 +6,14 @@
  */
 
 import {menu, minimize, maximize} from "./menu"
+import {isSmallView} from "../../humhub-bridge";
 
 const fullscreen = {
     id: 'fullscreen',
     init(context) {
         if(context.getPluginOption('fullscreen', 'autoFullScreen') === true) {
             context.editor.$.on('click', '.ProseMirror', function(e) {
-                if(humhub.require('ui.view').isSmall() && !context.editor.$.is('.fullscreen')) {
+                if(isSmallView && !context.editor.$.is('.fullscreen')) {
                     maximize(context);
                 }
             });

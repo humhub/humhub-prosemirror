@@ -13,6 +13,7 @@ import {emojiPlugin} from "./plugin"
 import {emojiAutoCompleteRule, emojiChooser} from "./input-rules"
 import {keymap} from "./keymap"
 import {menu} from "./menu"
+import {getEmojiConfig} from "../../humhub-bridge";
 
 const emoji = {
     id: 'emoji',
@@ -36,7 +37,7 @@ const emoji = {
             let emojiToken = token[idx];
 
             // Not that clean but unfortunately we don't have access to the editor context here...
-            let config = humhub.config.get('ui.richtext.prosemirror', 'emoji');
+            let config = getEmojiConfig();
             let twemojiConfig = config.twemoji || {};
             twemojiConfig.attributes = (icon, variant) => {
                 return {

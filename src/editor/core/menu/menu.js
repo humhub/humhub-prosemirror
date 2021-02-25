@@ -20,7 +20,7 @@ export function cmdItem(cmd, options) {
     return new MenuItem(passedOptions)
 }
 
-export function markItem(markType, options) {
+export function markItem(markType, options, context) {
     let passedOptions = {
         active(state) {
             return markActive(state, markType)
@@ -28,7 +28,73 @@ export function markItem(markType, options) {
         enable: true
     };
     for (let prop in options) passedOptions[prop] = options[prop]
-    return cmdItem(toggleMark(markType), passedOptions)
+    let menuItem = cmdItem(toggleMark(markType), passedOptions)
+
+    if(options.runSource) {
+        menuItem.runSource = options.runSource;
+    } else if(context && markType.spec.toMarkdown
+        && typeof markType.spec.toMarkdown.open === 'string'
+        && typeof markType.spec.toMarkdown.close === 'string') {
+        menuItem.runSource = wrapSourceTextMark(context, markType);
+    }
+
+    return menuItem;
+}
+
+export function wrapSourceTextMark(context, markType, open, close) {
+    if (!open && markType.spec.toMarkdown && markType.spec.toMarkdown.open) {
+        open = markType.spec.toMarkdown.open;
+    }
+
+    if (!close && markType.spec.toMarkdown && markType.spec.toMarkdown.close) {
+        close = markType.spec.toMarkdown.close;
+    }
+
+    if (!open) {
+        return;
+    }
+
+    if (!close) {
+        close = open;
+    }
+
+    return function() {
+        let $source = context.$source;
+        var length = $source.val().length;
+        var start = $source[0].selectionStart;
+        var selectionDirection = $source[0].selectionDirection
+        var end = $source[0].selectionEnd;
+        var selectedText = $source.val().substring(start, end);
+
+        var preSelection = $source.val().substring((start - open.length), start);
+        var postSelection = $source.val().substring(end, (end + close.length));
+
+
+
+        if(preSelection === open && postSelection === close) {
+            // Revert mark
+            $source.val($source.val().substring(0, start - open.length) + selectedText + $source.val().substring(end + close.length, length));
+            $source[0].setSelectionRange((start - open.length), end - open.length, selectionDirection);
+        } else {
+            let leadingSpaceCount = Math.max(selectedText.search(/\S/), 0);
+            let leadingSpaces = leadingSpaceCount > 0
+                ? ' '.repeat(leadingSpaceCount)
+                : '';
+
+            let trailingSpaceCount =  selectedText.search(/ +$/) > -1
+                ? selectedText.length - selectedText.search(/ +$/)
+                : 0;
+            let trailingSpaces = trailingSpaceCount > 0
+                ? ' '.repeat(trailingSpaceCount)
+                : '';
+
+            selectedText = selectedText.trim();
+
+            var replacement = open + selectedText + close;
+            $source.val($source.val().substring(0, start) + leadingSpaces + replacement + trailingSpaces + $source.val().substring(end, length));
+            $source[0].setSelectionRange((start + leadingSpaceCount + open.length), (end + open.length - trailingSpaceCount), selectionDirection);
+        }
+    }
 }
 
 export function markActive(state, type) {
@@ -240,7 +306,6 @@ export class MenuItemGroup extends MenuItem {
         this.content = {
             items: sort(Array.isArray(content) ? content : [content]),
             update: (state) => {
-
                 let result = false;
 
                 sort(this.content.items).forEach((item, i) => {
@@ -259,6 +324,7 @@ export class MenuItemGroup extends MenuItem {
 
                     result = result || updateResult;
                 });
+
                 return result;
             }
         };
@@ -342,12 +408,12 @@ export class Dropdown extends MenuItemGroup {
 
         innerDom.className += " " + prefix + "-dropdown " + (this.options.class || "");
 
-        if (this.options.title) {
-            innerDom.setAttribute("title", translate(view, this.options.title));
+        if(this.options.id) {
+            innerDom.classList.add(prefix+'-'+this.options.id);
         }
 
-        if(this.options.id) {
-            innerDom.classList.add(this.options.id);
+        if (this.options.title) {
+            innerDom.setAttribute("title", translate(view, this.options.title));
         }
 
         this.dom = crelt("div", {class: prefix + "-dropdown-wrap"}, innerDom);
@@ -410,8 +476,6 @@ export class Dropdown extends MenuItemGroup {
 
     expand(dom, contentDom) {
         let menuDOM = crelt("div", {class: prefix + "-dropdown-menu " + (this.options.class || "")}, contentDom);
-
-
 
         let done = false;
 
@@ -608,6 +672,10 @@ export const icons = {
     shrink: {
         width:32, height: 32,
         path: "M14 18v13l-5-5-6 6-3-3 6-6-5-5zM32 3l-6 6 5 5h-13v-13l5 5 6-6z"
+    },
+    markdown: {
+        width:32, height: 32,
+        path: "M29.692 25.847h-27.384c-1.274 0-2.307-1.033-2.307-2.307v0-15.080c0-1.274 1.033-2.307 2.307-2.307h27.384c1.274 0 2.307 1.033 2.307 2.307v15.077c0 0.001 0 0.002 0 0.003 0 1.274-1.033 2.307-2.307 2.307 0 0 0 0 0 0v0zM7.692 21.231v-6l3.077 3.847 3.076-3.847v6h3.077v-10.46h-3.077l-3.076 3.847-3.077-3.847h-3.077v10.463zM28.308 16h-3.077v-5.231h-3.076v5.231h-3.077l4.615 5.385z"
     }
 };
 

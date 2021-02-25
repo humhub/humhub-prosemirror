@@ -9,6 +9,7 @@ import emoji_shortcuts from "markdown-it-emoji/lib/data/shortcuts"
 import emojilib from "emojilib";
 import emojiNameMap from "emoji-name-map";
 import twemoji from "twemoji"
+import {getEmojiConfig} from "../../humhub-bridge";
 
 let emoji_markdown_it_defs = {};
 
@@ -67,7 +68,7 @@ let getCharToDom = function(emojiChar, name) {
     name =(typeof name !== 'undefined') ? name : emoji_defs_by_char[emojiChar];
     name = String(name);
 
-    let config = humhub.config.get('ui.richtext.prosemirror', 'emoji');
+    let config = getEmojiConfig();
     let twemojiConfig = config.twemoji || {};
     twemojiConfig.attributes = (icon, variant) => {
         return {

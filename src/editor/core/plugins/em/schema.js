@@ -19,7 +19,7 @@ const schema = {
                 return ["em"]
             },
             parseMarkdown: {mark: "em"},
-            toMarkdown: {open: "*", close: "*", mixable: true, expelEnclosingWhitespace: true}
+            toMarkdown: {open: "_", close: "_", mixable: true, expelEnclosingWhitespace: true}
         }
     }
 };

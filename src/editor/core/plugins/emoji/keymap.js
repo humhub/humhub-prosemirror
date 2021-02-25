@@ -12,7 +12,7 @@ let keymap = function () {
     result['ArrowLeft'] = (state, dispatch) => {
         let emojiState = pluginKey.getState(state);
 
-        if(emojiState.active) {
+        if(emojiState && emojiState.active) {
             emojiState.provider.prev();
             return true;
         }
@@ -23,7 +23,7 @@ let keymap = function () {
     result['ArrowDown'] = (state, dispatch) => {
         let emojiState = pluginKey.getState(state);
 
-        if(emojiState.active) {
+        if(emojiState && emojiState.active) {
             emojiState.provider.down();
             return true;
         }

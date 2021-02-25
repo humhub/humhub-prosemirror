@@ -8,6 +8,7 @@ import {schema} from './schema'
 import {linkPlugin} from './plugin'
 import {menu} from './menu'
 import {validateHref, DEFAULT_LINK_REL} from "../../util/linkUtil";
+import {filterFileUrl} from "../../humhub-bridge";
 
 const link = {
     id: 'link',
@@ -22,16 +23,17 @@ const link = {
         md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
             var hrefIndex = tokens[idx].attrIndex('href');
 
-            let hrefFilter = (window.humhub) ? humhub.modules.file.filterFileUrl(tokens[idx].attrs[hrefIndex][1]) : {url: tokens[idx].attrs[hrefIndex][1] };
-            tokens[idx].attrs[hrefIndex][1] = hrefFilter.url;
+            let {url, guid} = filterFileUrl(tokens[idx].attrs[hrefIndex][1]);
 
-            if(hrefFilter.guid) {
-                tokens[idx].attrPush(['data-file-guid', hrefFilter.guid]); // add new attribute
+            tokens[idx].attrs[hrefIndex][1] = url;
+
+            if(guid) {
+                tokens[idx].attrPush(['data-file-guid', guid]); // add new attribute
                 tokens[idx].attrPush(['data-file-download', '']); // add new attribute
-                tokens[idx].attrPush(['data-file-url', hrefFilter.url]); // add new attribute
+                tokens[idx].attrPush(['data-file-url', url]); // add new attribute
             }
 
-            if (!validateHref(hrefFilter.url, {anchor: tokens[idx].anchor}))  {
+            if (!validateHref(url, {anchor: tokens[idx].anchor}))  {
                 tokens[idx].attrs[hrefIndex][1] = '#';
             }
 

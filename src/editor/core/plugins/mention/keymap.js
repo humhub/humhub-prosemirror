@@ -5,7 +5,7 @@ let keymap = function () {
     result['ArrowUp'] = (state, dispatch) => {
         let mentionState = pluginKey.getState(state);
 
-        if(mentionState.active) {
+        if(mentionState && mentionState.active) {
             mentionState.provider.prev();
             return true;
         }

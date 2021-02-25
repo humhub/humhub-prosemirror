@@ -2,13 +2,13 @@ import crelt from "crelt"
 
 import {Plugin} from "prosemirror-state"
 
-import {MenuItemGroup, icons, joinUpItem, liftItem, redoItem, undoItem, selectParentNodeItem} from "./menu"
+import {MenuItemGroup, MenuItem, icons, liftItem, redoItem, undoItem} from "./menu"
 
 const prefix = "ProseMirror-menubar";
 
 function buildMenuItems(context) {
     let groups = {
-        types:  {type: 'dropdown', sortOrder: 100, label: context.translate("Type"), seperator: true, icon: icons.text, items: []},
+        types:  {type: 'dropdown', id: 'type', sortOrder: 100, label: context.translate("Type"), seperator: true, icon: icons.text, items: []},
         marks:  {type: 'group', id: 'marks-group', sortOrder: 200, items: []},
         format:  {type: 'group', id: 'format-group',  sortOrder: 300, items: [liftItem()]},
         insert: {type: 'dropdown', id: 'insert-dropdown',  sortOrder: 400, label: context.translate("Insert"), seperator: true, icon: icons.image, items: []},
@@ -16,28 +16,122 @@ function buildMenuItems(context) {
         resize:  {type: 'group', id: 'resize-group', sortOrder: 600, items: []},
     };
 
-    let definitions = [groups.types, groups.insert, groups.marks, groups.format, groups.helper, groups.resize];
+    let definitions = [groups.mode, groups.types, groups.insert, groups.marks, groups.format, groups.helper, groups.resize];
+
+    let menuGroupPlugins = [];
+    let menuWrapperPlugins = [];
 
     context.plugins.forEach(function (plugin) {
         if(plugin.menu) {
             plugin.menu(context).forEach(function(menuDefinition) {
                 if(checkMenuDefinition(context, menuDefinition)) {
-                    menuDefinition.item.options.id = menuDefinition.id;
+
+                    if(menuDefinition.type && menuDefinition.type === 'group') {
+                        definitions.push(menuDefinition);
+                        return;
+                    }
+
+                    if(menuDefinition.item && menuDefinition.id) {
+                        // transfer the id of the definition to the item itself
+                        menuDefinition.item.options.id = menuDefinition.id;
+                    }
 
                     if(menuDefinition.group && groups[menuDefinition.group]) {
                         groups[menuDefinition.group].items.push(menuDefinition.item);
-                    } else if(!menuDefinition.group) {
+                    } else if(menuDefinition.item && !menuDefinition.group) {
                         definitions.push(menuDefinition.item);
                     }
                 }
             });
         }
+
+        if(plugin.menuGroups) {
+            menuGroupPlugins.push(plugin);
+        }
+
+        if(plugin.menuWrapper) {
+            menuWrapperPlugins.push(plugin);
+        }
+    });
+
+    // Execute after all menu items are assembled
+    menuGroupPlugins.forEach(function (plugin) {
+        definitions = plugin.menuGroups(definitions, context);
+    });
+
+    menuWrapperPlugins.forEach(function(plugin) {
+        let wrapper = plugin.menuWrapper;
+        definitions.forEach((item) => {
+            wrapMenuItem(plugin, context, item)
+        })
     });
 
     //selectParentNodeItem -> don't know if we should add this one
 
     // TODO: fire event
     return definitions;
+}
+
+function wrapMenuItem(plugin, context, menuItem) {
+    if(!menuItem) {
+        return;
+    }
+
+    if(!plugin.menuWrapper) {
+        return;
+    }
+
+    if($.isArray(menuItem)) {
+        menuItem.forEach((item) => {
+            wrapMenuItem(plugin, context, item);
+        })
+    }
+
+    let wrapper = plugin.menuWrapper(context);
+
+    if(menuItem instanceof MenuItem) {
+        if(wrapper.run) {
+            let origCallback = menuItem.options.run;
+            menuItem.options.run = function(state, dispatch, view , evt) {
+                let result = wrapper.run(menuItem, state, dispatch, view, evt);
+                if(!result) {
+                    origCallback.call(menuItem, state, dispatch, view, evt);
+                }
+            };
+        }
+
+        if(wrapper.active) {
+            let origCallback = menuItem.options.active;
+            menuItem.options.active = function(state) {
+                let origValue = origCallback ? origCallback.call(menuItem, state) : false;
+                return wrapper.active(menuItem, state, origValue);
+            };
+        }
+
+        if(wrapper.enable) {
+            let origCallback = menuItem.options.enable;
+            menuItem.options.enable = function(state) {
+                let origValue = origCallback ? origCallback.call(menuItem, state) : true;
+                return wrapper.enable(menuItem, state, origValue);
+            };
+        }
+
+        if(wrapper.select) {
+            let origCallback = menuItem.options.select;
+            menuItem.options.select = function(state) {
+                let origValue = origCallback ? origCallback.call(menuItem, state) : true;
+                return wrapper.select(menuItem, state, origValue);
+            };
+        }
+    }
+
+    if(menuItem.items) {
+        wrapMenuItem(plugin, context, menuItem.items)
+    }
+
+    if(menuItem instanceof MenuItemGroup) {
+        wrapMenuItem(plugin,context, menuItem.content.items)
+    }
 }
 
 function checkMenuDefinition(context, menuDefinition) {
@@ -49,11 +143,9 @@ function checkMenuDefinition(context, menuDefinition) {
         return false;
     }
 
-    if(context.options.menu && Array.isArray(context.options.menu.exclude) && context.options.menu.exclude[menuDefinition.id]) {
-        return false;
-    }
+    return !(context.options.menu && Array.isArray(context.options.menu.exclude)
+             && context.options.menu.exclude[menuDefinition.id]);
 
-    return true;
 }
 
 export function buildMenuBar(context) {
@@ -116,7 +208,7 @@ class MenuBarView {
         this.widthForMaxHeight = 0;
         this.floating = false;
 
-        this.groupItem = new MenuItemGroup(this.options.content);
+        this.groupItem = new MenuItemGroup(this.options.content, {context: this.context});
         let dom = this.groupItem.render(this.editorView);
 
         this.menu.appendChild(dom);
@@ -142,7 +234,7 @@ class MenuBarView {
     }
 
     update() {
-        this.groupItem.update(this.editorView.state);
+        this.groupItem.update(this.editorView.state, this.context);
 
         let $mainGroup = $(this.menu).find('.'+prefix+'-menu-group:first');
         $mainGroup.find('');
