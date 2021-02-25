@@ -91,37 +91,37 @@ function wrapMenuItem(plugin, context, menuItem) {
 
     if(menuItem instanceof MenuItem) {
         if(wrapper.run) {
-            let orig = menuItem.options.run;
+            let origCallback = menuItem.options.run;
             menuItem.options.run = function(state, dispatch, view , evt) {
                 let result = wrapper.run(menuItem, state, dispatch, view, evt);
                 if(!result) {
-                    orig(state, dispatch, view, evt);
+                    origCallback.call(menuItem, state, dispatch, view, evt);
                 }
-            }
+            };
         }
 
         if(wrapper.active) {
             let origCallback = menuItem.options.active;
             menuItem.options.active = function(state) {
-                let origValue = origCallback ? origCallback(state) : false;
+                let origValue = origCallback ? origCallback.call(menuItem, state) : false;
                 return wrapper.active(menuItem, state, origValue);
-            }
+            };
         }
 
         if(wrapper.enable) {
             let origCallback = menuItem.options.enable;
             menuItem.options.enable = function(state) {
-                let origValue = origCallback ? origCallback(state) : true;
+                let origValue = origCallback ? origCallback.call(menuItem, state) : true;
                 return wrapper.enable(menuItem, state, origValue);
-            }
+            };
         }
 
         if(wrapper.select) {
             let origCallback = menuItem.options.select;
             menuItem.options.select = function(state) {
-                let origValue = origCallback ? origCallback(state) : true;
+                let origValue = origCallback ? origCallback.call(menuItem, state) : true;
                 return wrapper.select(menuItem, state, origValue);
-            }
+            };
         }
     }
 
@@ -132,8 +132,6 @@ function wrapMenuItem(plugin, context, menuItem) {
     if(menuItem instanceof MenuItemGroup) {
         wrapMenuItem(plugin,context, menuItem.content.items)
     }
-
-
 }
 
 function checkMenuDefinition(context, menuDefinition) {
@@ -145,11 +143,9 @@ function checkMenuDefinition(context, menuDefinition) {
         return false;
     }
 
-    if(context.options.menu && Array.isArray(context.options.menu.exclude) && context.options.menu.exclude[menuDefinition.id]) {
-        return false;
-    }
+    return !(context.options.menu && Array.isArray(context.options.menu.exclude)
+             && context.options.menu.exclude[menuDefinition.id]);
 
-    return true;
 }
 
 export function buildMenuBar(context) {
