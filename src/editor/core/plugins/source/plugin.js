@@ -14,11 +14,47 @@ export function sourcePlugin(context) {
         key: sourcePluginKey,
         state: {
             init(config, state) {
+                console.log(EDIT_MODE_RICHTEXT);
                 return EDIT_MODE_RICHTEXT;
             },
             apply(tr, prevPluginState, oldState, newState) {
+               console.log(tr.getMeta(sourcePluginKey) || prevPluginState)
                 return tr.getMeta(sourcePluginKey) || prevPluginState;
             }
         },
     })
+}
+
+export function switchToSourceMode(context) {
+    let $stage = context.editor.$.find('.ProseMirror');
+    let $textarea = context.editor.$.find('textarea');
+
+    if (!$textarea.length) {
+        $textarea = $('<textarea class="ProseMirror-editor-source"></textarea>');
+        context.editor.$.append($textarea);
+        context.$source = $textarea;
+    }
+
+    $textarea.css({
+        height: $stage.outerHeight(),
+        width: '100%',
+    });
+
+    $textarea.val(context.editor.serialize()).show();
+    $stage.hide();
+
+    context.editor.focus(true);
+
+    return EDIT_MODE_SOURCE;
+}
+
+export function switchToRichtextMode(context) {
+    let $stage = context.editor.$.find('.ProseMirror');
+    let $textarea = context.editor.$.find('textarea');
+    context.editor.init($textarea.val());
+    $stage.show();
+    $textarea.remove();
+    context.menu.update();
+    context.editor.focus(true);
+    return EDIT_MODE_RICHTEXT;
 }
