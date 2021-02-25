@@ -60,14 +60,40 @@ export function wrapSourceTextMark(context, markType, open, close) {
 
     return function() {
         let $source = context.$source;
-        var len = $source.val().length;
+        var length = $source.val().length;
         var start = $source[0].selectionStart;
         var selectionDirection = $source[0].selectionDirection
         var end = $source[0].selectionEnd;
         var selectedText = $source.val().substring(start, end);
-        var replacement = open + selectedText + close;
-        $source.val($source.val().substring(0, start) + replacement + $source.val().substring(end, len));
-        $source[0].setSelectionRange((start + open.length), (end + open.length), selectionDirection);
+
+        var preSelection = $source.val().substring((start - open.length), start);
+        var postSelection = $source.val().substring(end, (end + close.length));
+
+
+
+        if(preSelection === open && postSelection === close) {
+            // Revert mark
+            $source.val($source.val().substring(0, start - open.length) + selectedText + $source.val().substring(end + close.length, length));
+            $source[0].setSelectionRange((start - open.length), end - open.length, selectionDirection);
+        } else {
+            let leadingSpaceCount = Math.max(selectedText.search(/\S/), 0);
+            let leadingSpaces = leadingSpaceCount > 0
+                ? ' '.repeat(leadingSpaceCount)
+                : '';
+
+            let trailingSpaceCount =  selectedText.search(/ +$/) > -1
+                ? selectedText.length - selectedText.search(/ +$/)
+                : 0;
+            let trailingSpaces = trailingSpaceCount > 0
+                ? ' '.repeat(trailingSpaceCount)
+                : '';
+
+            selectedText = selectedText.trim();
+
+            var replacement = open + selectedText + close;
+            $source.val($source.val().substring(0, start) + leadingSpaces + replacement + trailingSpaces + $source.val().substring(end, length));
+            $source[0].setSelectionRange((start + leadingSpaceCount + open.length), (end + open.length - trailingSpaceCount), selectionDirection);
+        }
     }
 }
 
