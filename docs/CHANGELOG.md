@@ -9,6 +9,7 @@ Changelog
 - Fix #41: Overflow detection broken
 - Fix #36: resize nav state does not respect selection state
 - Fix #44: Copy&Pasting of links broken
+- Fix #45: Mixing other marks with code mark results in invalid markdown
 
 1.1.2 (February 18, 2021)
 -----------------------------------------

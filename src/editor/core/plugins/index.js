@@ -58,13 +58,15 @@ registerPlugin(loader, 'markdown');
 registerPlugin(paragraph, 'markdown');
 registerPlugin(blockquote, 'markdown');
 registerPlugin(bullet_list, 'markdown');
+registerPlugin(strikethrough, 'markdown');
+registerPlugin(em, 'markdown');
 registerPlugin(strong, 'markdown');
-registerPlugin(link, 'markdown');
 registerPlugin(code, 'markdown');
+registerPlugin(link, 'markdown');
 registerPlugin(code_block, 'markdown');
 registerPlugin(emoji);
 registerPlugin(hard_break, 'markdown');
-registerPlugin(em, 'markdown');
+
 registerPlugin(horizontal_rule, 'markdown');
 registerPlugin(image, 'markdown');
 registerPlugin(list_item, 'markdown');
@@ -72,7 +74,7 @@ registerPlugin(mention);
 registerPlugin(oembed);
 registerPlugin(ordered_list, 'markdown');
 registerPlugin(heading, 'markdown');
-registerPlugin(strikethrough, 'markdown');
+
 registerPlugin(table, 'markdown');
 registerPlugin(text, 'markdown');
 registerPlugin(attributes, 'markdown');
