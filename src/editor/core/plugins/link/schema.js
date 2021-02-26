@@ -35,6 +35,7 @@ const schema = {
                         }
                     }
                 }],
+            toDOM(node) { let {href, title} = node.attrs; return ["a", {href, title}, 0] },
             parseMarkdown: {
                 mark: "link", getAttrs: function (tok) {
                     let href = (window.humhub) ? humhub.modules.file.filterFileUrl(tok.attrGet("href")).url : tok.attrGet("href");
