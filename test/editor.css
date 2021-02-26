@@ -1,7 +1,5 @@
 #stage, #result {
     margin:50px;
-    border:1px solid #D9D9D9;
-    border-radius: 0 4px 4px 4px;
     max-width:600px;
 }
 
@@ -9,34 +7,48 @@
     padding: 10px;
 }
 
-#stage textarea, #stage textarea:focus {
-    border:none;
-    outline:none;
-    padding:10px;
+#stage textarea {
+
+}
+
+#stage textarea:focus {
+    border:1px solid #0b97c4;
+    border-radius: 0 4px 4px 4px;
 }
 
 .ProseMirror-editor-source {
     width:100%;
     box-sizing: border-box;
-    border-radius: 4px;
+    border:1px solid #D9D9D9;
+    border-radius: 0 0 4px 4px;
     resize: vertical;
     overfow:auto;
+    outline:none;
+    padding:10px;
 }
 
-.ProseMirror {
-    position: relative;
-    resize: vertical;
-    overflow:auto;
+.ProseMirror-editor-source:focus {
+    border:1px solid #D9D9D9;
+    border-radius: 0 4px 4px 4px;
 }
 
 .ProseMirror {
     padding:10px;
+    position: relative;
+    resize: vertical;
+    overflow:auto;
+    border:1px solid #D9D9D9;
+    border-radius: 0 0 4px 4px;
     word-wrap: break-word;
     white-space: pre-wrap;
     white-space: break-spaces;
     -webkit-font-variant-ligatures: none;
     font-variant-ligatures: none;
     font-feature-settings: "liga" 0; /* the above doesn't seem to work in Edge */
+}
+
+.ProseMirror:focus {
+    border:1px solid #0b97c4;
 }
 
 .ProseMirror pre {
@@ -553,12 +565,12 @@ ProsemirrorEditor img {
     padding-right: 15px !important;
 }
 .ProseMirror-menu-dropdown-wrap {
-    padding: 1px 0 1px 0px;
+    padding: 1px 0 1px 0;
     display: inline-block;
     position: relative;
 }
 .ProseMirror-doprdown-right {
-    right: 0px;
+    right: 0;
 }
 .ProseMirror-menu-dropdown:after {
     content: "";
@@ -587,6 +599,7 @@ ProsemirrorEditor img {
     min-width: 6em;
     margin-top: 2px;
 }
+
 .ProseMirror-menu-dropdown-item {
     cursor: pointer;
 }
@@ -937,5 +950,9 @@ ProsemirrorEditor img {
 
 .ProseMirror pre, .ProseMirror code {
     background-color: #eeeeee;
+}
+
+.ProseMirror-menu-dropdown-item a:focus {
+    border:1px solid #0b97c4;
 }
 

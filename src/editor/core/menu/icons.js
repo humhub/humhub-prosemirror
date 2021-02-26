@@ -18,8 +18,9 @@ function hashPath(path) {
     return hash
 }
 
-export function getIcon(icon) {
-    let node = document.createElement("div")
+export function getIcon(icon, htmlNode) {
+    htmlNode = htmlNode || 'div';
+    let node = document.createElement(htmlNode);
     node.className = prefix
     if (icon.path) {
         let name = "pm-icon-" + hashPath(icon.path).toString(16)

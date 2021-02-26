@@ -115,22 +115,29 @@ export class MenuItem {
         // The options used to create the menu item.
         this.options = options || {};
         this.sortOrder = this.options.sortOrder;
+        this.options.htmlNode = 'button';
     }
 
     // :: (EditorView) → {dom: dom.Node, update: (EditorState) → bool}
     // Renders the icon according to its [display
     // options](#menu.MenuItemSpec.display), and adds an event handler which
     // executes the command when the representation is clicked.
-    render(view) {
+    render(view, renderOptions = {}) {
         let options = this.options;
+        let htmlNode = renderOptions.htmlNode || this.options.htmlNode
 
         if (typeof this.options.render === 'function') {
             return this.options.render.apply(this, [options]);
         }
 
-        this.dom = options.icon ? getIcon(options.icon)
-            : options.label ? $('<div>').html(translate(view, options.label))[0]
+        this.dom = options.icon ? getIcon(options.icon, htmlNode)
+            : options.label ? $('<'+htmlNode+'>').html(translate(view, options.label))[0]
                 : null;
+
+        if(typeof renderOptions.tabindex !== 'undefined') {
+            // We only want to overwrite tab index if its set in the renderOptions
+            setAttribute(this.dom, 'tabindex', renderOptions.tabindex, true)
+        }
 
         if(this.options.id) {
             this.dom.classList.add(prefix+'-'+this.options.id);
@@ -150,27 +157,49 @@ export class MenuItem {
             this.dom.classList.add('feature')
         }
 
-        $(this.dom).on("mousedown", e => {
+        var runHandler =  e => {
             e.preventDefault();
             if (!$(this.dom).hasClass(prefix + "-disabled")) {
                 options.run.call(this, view.state, view.dispatch, view, e);
+            }
+        };
+
+        $(this.dom).on("mousedown", runHandler);
+        $(this.dom).on("keydown", e => {
+            var keyCode = e.keyCode || e.which;
+
+            switch (keyCode) {
+                case 13: // Enter
+                    e.preventDefault();
+                    runHandler(e);
+                    break;
             }
         });
 
         return this.dom;
     }
 
+    getMenuBar() {
+        if(!this.menuBar) {
+            this.menuBar = $(this.dom).closest('.ProseMirror-menubar').data('menuBarInstance');
+        }
+
+        return this.menuBar;
+    }
+
     switchIcon(icon, title) {
         if(title) {
             $(this.dom).attr('title', title);
         }
-        $(this.dom).find('svg').replaceWith($(getIcon(icon)).find('svg'));
+        $(this.dom).find('svg').replaceWith($(getIcon(icon, this.options.htmlNode)).find('svg'));
     }
 
     update(state) {
         this.adoptItemState(state);
         return this.selected;
     }
+
+
 
     adoptItemState(state, forceEnable, forceActive) {
         this.setEnabledItemState(state, forceEnable);
@@ -182,7 +211,8 @@ export class MenuItem {
         this.active = false;
         if (this.options.active) {
             this.active = (this.options.active(state) || forceActive) || false;
-            setClass(this.dom, prefix + "-active", this.active)
+            setClass(this.dom, prefix + "-active", this.active);
+            setAttribute(this.dom, 'aria-pressed', 'true', this.active);
         }
     }
 
@@ -191,6 +221,7 @@ export class MenuItem {
         if (this.options.enable) {
             this.enabled = this.options.enable(state) || forceEnable || false;
             setClass(this.dom, prefix + "-disabled", !this.enabled)
+            setAttribute(this.dom, 'aria-disabled', 'true', !this.enabled);
         }
     }
 
@@ -199,15 +230,21 @@ export class MenuItem {
         if (this.options.select) {
             this.selected = this.options.select(state);
             this.dom.style.display = this.selected || forceEnable ? "" : "none";
-
-            if(!this.selected) {
-                this.dom.classList.add('hidden');
-            } else {
-                this.dom.classList.remove('hidden');
-            }
-
-            if (!this.selected) return false
+            this.setHidden(!this.selected);
         }
+    }
+
+    setHidden(isHidden) {
+        setAttribute(this.dom, 'aria-hidden', 'true', isHidden);
+        setClass(this.dom, 'hidden', isHidden);
+
+        if(this.isFocusable() && isHidden) {
+            setAttribute(this.dom, 'tabindex', '-1', isHidden);
+        }
+    }
+
+    isFocusable() {
+        return ['a', 'button', 'select', 'input'].includes(this.dom.tagName.toLocaleLowerCase());
     }
 }
 
@@ -304,10 +341,10 @@ function sort(items) {
     });
 }
 
-
 export class MenuItemGroup extends MenuItem {
     constructor(content, options) {
         super(options);
+        this.options.htmlNode = 'div';
         this.content = {
             items: sort(Array.isArray(content) ? content : [content]),
             update: (state) => {
@@ -335,8 +372,12 @@ export class MenuItemGroup extends MenuItem {
         };
     }
 
-    render(view) {
-        let $dom = $('<div>').addClass(prefix + '-group');
+    forEachItem(callable) {
+        this.content.items.forEach(callable);
+    }
+
+    render(view, renderOptions) {
+        let $dom = $('<'+this.options.htmlNode+'>').addClass(prefix + '-group');
 
         if(this.options.id) {
             $dom.addClass(this.options.id);
@@ -346,12 +387,23 @@ export class MenuItemGroup extends MenuItem {
             $dom.append(itemDom);
         });
 
-        return this.dom = $dom[0];
+        this.dom = $dom[0];
+        return this.dom;
     }
 
     update(state) {
         let result = this.content.update(state);
         return result && super.update(state);
+    }
+
+    setHidden(isHidden) {
+        super.setHidden(isHidden);
+
+        if(isHidden) {
+            this.forEachItem((item) => {
+              item.setHidden(isHidden);
+            })
+        }
     }
 
     renderItems(view) {
@@ -388,6 +440,7 @@ export class Dropdown extends MenuItemGroup {
     //   : When given, adds an extra set of CSS styles to the menu control.
     constructor(content, options) {
         super(content, options);
+        this.options.htmlNode = 'button';
         this.content.update = (state) => {
             let result = false;
             this.content.items.forEach((item) => {
@@ -401,18 +454,21 @@ export class Dropdown extends MenuItemGroup {
 
     // :: (EditorView) → {dom: dom.Node, update: (EditorState)}
     // Render the dropdown menu and sub-items.
-    render(view) {
+    render(view, renderOptions) {
         let contentDom = this.renderItems(view);
 
-        let innerDom = this.options.icon ? getIcon(this.options.icon)
-            : this.options.label ? crelt("div", {style: this.options.css}, translate(view, this.options.label))
-                : null;
+        let innerDom = this.options.icon ? getIcon(this.options.icon, this.options.htmlNode)
+            : this.options.label ? crelt(this.options.htmlNode, {style: this.options.css}, translate(view, this.options.label))
+            : null;
 
         if (!innerDom) {
             throw new RangeError("Dropdown without icon or label property")
         }
 
         innerDom.className += " " + prefix + "-dropdown " + (this.options.class || "");
+
+        innerDom.setAttribute('aria-haspopup', 'true');
+        innerDom.setAttribute('aria-expanded', 'false');
 
         if(this.options.id) {
             innerDom.classList.add(prefix+'-'+this.options.id);
@@ -428,25 +484,105 @@ export class Dropdown extends MenuItemGroup {
             this.dom.className += ' seperator';
         }
 
-        let open = null, listeningOnClose = null;
+        let open = null;
+
         let close = () => {
             if (open && open.close()) {
                 open = null;
-                window.removeEventListener("mousedown", listeningOnClose)
+                $(window).off("mousedown.richtextMenu'");
             }
+            this.open = false;
+            innerDom.setAttribute('aria-expanded', 'false');
         };
 
-        innerDom.addEventListener("mousedown", e => {
+        let openDropDown = () => {
+            this.open = true;
+            open = this.expand(this.dom, contentDom);
+            $(window).on('mousedown.richtextMenu', () => {
+                if (!isMenuEvent(this.dom)) close()
+            })
+            innerDom.setAttribute('aria-expanded', 'true');
+        }
+
+        $(this.dom).on('keydown', e => {
+            var keyCode = e.keyCode || e.which;
+
+            switch (keyCode) {
+                case 13: // Enter
+                    e.preventDefault();
+                    if(this.open && $(this.dom).find('a:focus').length) {
+                        this.getMenuBar().context.editor.focus();
+                        close();
+                    } else if(!this.open) {
+                        if (open) {
+                            close();
+                        }
+
+                        $(innerDom).trigger('mousedown');
+                    } else {
+                        close();
+                    }
+                    break;
+                case 27: // Escape
+                    e.preventDefault();
+                    let wasOpen = this.open;
+                    close();
+
+                    if(wasOpen) {
+                        $(innerDom).focus();
+                    }
+                    break;
+                case 40: // ArrowDown
+                    e.preventDefault();
+                    if(this.open) {
+                        let $focused = $(this.dom).find('a:focus');
+                        let $next = $focused.closest('.ProseMirror-menu-dropdown-item').next();
+
+                        if(!$next.length) {
+                            $(this.dom).find('a:first').focus();
+                        } else {
+                            $next.find('a').focus();
+                        }
+                    } else {
+                        if (open) {
+                            close();
+                        }
+
+                        $(innerDom).trigger('mousedown');
+                    }
+
+                    break;
+                case 38: // ArrowUp
+                    e.preventDefault();
+                    if(this.open) {
+                        let $focused = $(this.dom).find('a:focus');
+                        let $prev = $focused.closest('.ProseMirror-menu-dropdown-item').prev();
+
+                        if(!$prev.length) {
+
+                            $(this.dom).find('a:last').focus();
+                        } else {
+                            $prev.find('a').focus();
+                        }
+                    } else {
+                        if (open) {
+                            close();
+                        }
+
+                        $(innerDom).trigger('mousedown');
+                    }
+                    break;
+            }
+        })
+
+        $(innerDom).on('mousedown', e => {
             e.preventDefault();
             if (!this.selected || !this.enabled) return;
             markMenuEvent(e);
             if (open) {
-                close()
+                close();
             } else {
-                open = this.expand(this.dom, contentDom);
-                window.addEventListener("mousedown", listeningOnClose = () => {
-                    if (!isMenuEvent(this.dom)) close()
-                })
+                openDropDown();
             }
         });
 
@@ -455,9 +591,8 @@ export class Dropdown extends MenuItemGroup {
 
     renderItems(view) {
         let rendered = [];
-
         this.content.items.forEach((item) => {
-            let dom = item.render(view);
+            let dom = item.render(view, {htmlNode: 'a', tabindex: 0});
             rendered.push(crelt("div", {class: prefix + "-dropdown-item"}, dom));
         });
 
@@ -523,9 +658,13 @@ export class DropdownSubmenu extends Dropdown {
     // :: (EditorView) → {dom: dom.Node, update: (EditorState) → bool}
     // Renders the submenu.
     render(view) {
-        let itemDom = this.renderItems(view);
+        let itemDom = this.renderItems(view, {tabindex: 0});
 
-        let innerDom = $('<div>').addClass(prefix + "-submenu-label").html(translate(view, this.options.label))[0];
+        let $link = $('<a tabindex="0" aria-haspopup="listbox" aria-expanded="false"></a>').text(translate(view, this.options.label));
+
+        let innerDom = $('<div>')
+            .addClass(prefix + "-submenu-label")
+            .html($link)[0];
 
         //let innerDom = crelt("div", {class: prefix + "-submenu-label"}, translate(view, this.options.label));
         this.dom = crelt("div", {class: prefix + "-submenu-wrap"}, innerDom,
@@ -798,6 +937,11 @@ export function blockTypeItem(nodeType, options) {
 function setClass(dom, cls, on) {
     if (on) dom.classList.add(cls)
     else dom.classList.remove(cls)
+}
+
+function setAttribute(dom, attr, value, on) {
+    if (on) dom.setAttribute(attr, value)
+    else dom.removeAttribute(attr)
 }
 
 export function canInsert(state, nodeType) {

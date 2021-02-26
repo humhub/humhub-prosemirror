@@ -8,12 +8,35 @@ const prefix = "ProseMirror-menubar";
 
 function buildMenuItems(context) {
     let groups = {
-        types:  {type: 'dropdown', id: 'type', toggleSelect: false, sortOrder: 100, label: context.translate("Type"), seperator: true, icon: icons.text, items: []},
-        marks:  {type: 'group', id: 'marks-group', sortOrder: 200, items: []},
-        format:  {type: 'group', id: 'format-group',  sortOrder: 300, items: [liftItem()]},
-        insert: {type: 'dropdown', id: 'insert-dropdown',  sortOrder: 400, label: context.translate("Insert"), seperator: true, icon: icons.image, items: []},
-        helper:  {type: 'group', id: 'helper-group',  hideOnCollapse: true, sortOrder: 500, items: [undoItem(), redoItem()]},
-        resize:  {type: 'group', id: 'resize-group', sortOrder: 600, items: []},
+        types: {
+            type: 'dropdown',
+            id: 'type',
+            toggleSelect: false,
+            sortOrder: 100,
+            title: context.translate("Type"),
+            seperator: true,
+            icon: icons.text,
+            items: []
+        },
+        marks: {type: 'group', id: 'marks-group', sortOrder: 200, items: []},
+        format: {type: 'group', id: 'format-group', sortOrder: 300, items: [liftItem()]},
+        insert: {
+            type: 'dropdown',
+            id: 'insert-dropdown',
+            sortOrder: 400,
+            title: context.translate("Insert"),
+            seperator: true,
+            icon: icons.image,
+            items: []
+        },
+        helper: {
+            type: 'group',
+            id: 'helper-group',
+            hideOnCollapse: true,
+            sortOrder: 500,
+            items: [undoItem(), redoItem()]
+        },
+        resize: {type: 'group', id: 'resize-group', sortOrder: 600, items: []},
     };
 
     let definitions = [groups.mode, groups.types, groups.insert, groups.marks, groups.format, groups.helper, groups.resize];
@@ -22,34 +45,34 @@ function buildMenuItems(context) {
     let menuWrapperPlugins = [];
 
     context.plugins.forEach(function (plugin) {
-        if(plugin.menu) {
-            plugin.menu(context).forEach(function(menuDefinition) {
-                if(checkMenuDefinition(context, menuDefinition)) {
+        if (plugin.menu) {
+            plugin.menu(context).forEach(function (menuDefinition) {
+                if (checkMenuDefinition(context, menuDefinition)) {
 
-                    if(menuDefinition.type && menuDefinition.type === 'group') {
+                    if (menuDefinition.type && menuDefinition.type === 'group') {
                         definitions.push(menuDefinition);
                         return;
                     }
 
-                    if(menuDefinition.item && menuDefinition.id) {
+                    if (menuDefinition.item && menuDefinition.id) {
                         // transfer the id of the definition to the item itself
                         menuDefinition.item.options.id = menuDefinition.id;
                     }
 
-                    if(menuDefinition.group && groups[menuDefinition.group]) {
+                    if (menuDefinition.group && groups[menuDefinition.group]) {
                         groups[menuDefinition.group].items.push(menuDefinition.item);
-                    } else if(menuDefinition.item && !menuDefinition.group) {
+                    } else if (menuDefinition.item && !menuDefinition.group) {
                         definitions.push(menuDefinition.item);
                     }
                 }
             });
         }
 
-        if(plugin.menuGroups) {
+        if (plugin.menuGroups) {
             menuGroupPlugins.push(plugin);
         }
 
-        if(plugin.menuWrapper) {
+        if (plugin.menuWrapper) {
             menuWrapperPlugins.push(plugin);
         }
     });
@@ -66,15 +89,15 @@ function buildMenuItems(context) {
 }
 
 function wrapMenuItem(plugin, context, menuItem) {
-    if(!menuItem) {
+    if (!menuItem) {
         return;
     }
 
-    if(!plugin.menuWrapper) {
+    if (!plugin.menuWrapper) {
         return;
     }
 
-    if($.isArray(menuItem)) {
+    if ($.isArray(menuItem)) {
         menuItem.forEach((item) => {
             wrapMenuItem(plugin, context, item);
         })
@@ -82,62 +105,62 @@ function wrapMenuItem(plugin, context, menuItem) {
 
     let wrapper = plugin.menuWrapper(context);
 
-    if(menuItem instanceof MenuItem) {
-        if(wrapper.run) {
+    if (menuItem instanceof MenuItem) {
+        if (wrapper.run) {
             let origCallback = menuItem.options.run;
-            menuItem.options.run = function(state, dispatch, view , evt) {
+            menuItem.options.run = function (state, dispatch, view, evt) {
                 let result = wrapper.run(menuItem, state, dispatch, view, evt);
-                if(!result) {
+                if (!result) {
                     origCallback.call(menuItem, state, dispatch, view, evt);
                 }
             };
         }
 
-        if(wrapper.active) {
+        if (wrapper.active) {
             let origCallback = menuItem.options.active;
-            menuItem.options.active = function(state) {
+            menuItem.options.active = function (state) {
                 let origValue = origCallback ? origCallback.call(menuItem, state) : false;
                 return wrapper.active(menuItem, state, origValue);
             };
         }
 
-        if(wrapper.enable) {
+        if (wrapper.enable) {
             let origCallback = menuItem.options.enable;
-            menuItem.options.enable = function(state) {
+            menuItem.options.enable = function (state) {
                 let origValue = origCallback ? origCallback.call(menuItem, state) : true;
                 return wrapper.enable(menuItem, state, origValue);
             };
         }
 
-        if(wrapper.select) {
+        if (wrapper.select) {
             let origCallback = menuItem.options.select;
-            menuItem.options.select = function(state) {
+            menuItem.options.select = function (state) {
                 let origValue = origCallback ? origCallback.call(menuItem, state) : true;
                 return wrapper.select(menuItem, state, origValue);
             };
         }
     }
 
-    if(menuItem.items) {
+    if (menuItem.items) {
         wrapMenuItem(plugin, context, menuItem.items)
     }
 
-    if(menuItem instanceof MenuItemGroup) {
-        wrapMenuItem(plugin,context, menuItem.content.items)
+    if (menuItem instanceof MenuItemGroup) {
+        wrapMenuItem(plugin, context, menuItem.content.items)
     }
 }
 
 function checkMenuDefinition(context, menuDefinition) {
-    if(!menuDefinition || menuDefinition.node && !context.schema.nodes[menuDefinition.node]) {
+    if (!menuDefinition || menuDefinition.node && !context.schema.nodes[menuDefinition.node]) {
         return false;
     }
 
-    if(menuDefinition.mark && !context.schema.marks[menuDefinition.mark]) {
+    if (menuDefinition.mark && !context.schema.marks[menuDefinition.mark]) {
         return false;
     }
 
     return !(context.options.menu && Array.isArray(context.options.menu.exclude)
-             && context.options.menu.exclude[menuDefinition.id]);
+        && context.options.menu.exclude[menuDefinition.id]);
 
 }
 
@@ -183,14 +206,27 @@ export function menuBar(options) {
     })
 }
 
+function translate(view, text) {
+    return view._props.translate ? view._props.translate(text) : text
+}
+
+
 class MenuBarView {
     constructor(editorView, options) {
         this.editorView = editorView;
         this.options = options;
         this.context = this.options.context;
+        this.focusIconIndex = 0;
 
         this.wrapper = crelt("div", {class: prefix + "-wrapper"});
-        this.menu = this.wrapper.appendChild(crelt("div", {class: prefix}));
+
+        this.menu = this.wrapper.appendChild(crelt("div", {
+            class: prefix,
+            'aria-label': translate(editorView, 'Text Formatting'),
+            'aria-controls': options.context.editor.$.attr('id'),
+            role: 'toolbar'
+        }));
+
         this.menu.className = prefix;
         this.spacer = null;
 
@@ -201,7 +237,7 @@ class MenuBarView {
         this.widthForMaxHeight = 0;
         this.floating = false;
 
-        this.groupItem = new MenuItemGroup(this.options.content);
+        this.groupItem = new MenuItemGroup(this.options.content, {id:'main-menu-group'});
 
         this.context.menuWrapperPlugins.forEach((plugin) => {
             wrapMenuItem(plugin, this.context, this.groupItem);
@@ -210,10 +246,27 @@ class MenuBarView {
         let dom = this.groupItem.render(this.editorView);
         this.menu.appendChild(dom);
 
-        $(this.menu).on('mousedown', function(evt) {
+        this.$ = $(this.menu);
+
+        this.$.on('mousedown', function (evt) {
             // Prevent focusout if we click outside of a menu item, but still inside menu container
             evt.preventDefault();
+        }).on("keydown", e => {
+            var keyCode = e.keyCode || e.which;
+
+            switch (keyCode) {
+                case 39: // ArrowRight
+                    e.preventDefault();
+                    this.focusNext();
+                    break;
+                case 37: // ArrowRight
+                    e.preventDefault();
+                    this.focusPrev();
+                    break;
+            }
         });
+
+        this.$.data('menuBarInstance', this);
 
         this.update();
 
@@ -233,9 +286,6 @@ class MenuBarView {
     update() {
         this.groupItem.update(this.editorView.state, this.context);
 
-        let $mainGroup = $(this.menu).find('.'+prefix+'-menu-group:first');
-        $mainGroup.find('');
-
         if (this.floating) {
             this.updateScrollCursor()
         } else {
@@ -247,7 +297,88 @@ class MenuBarView {
                 this.maxHeight = this.menu.offsetHeight;
             }
         }
+
+        let currentTabindex = this.focusIconIndex;
+        this.$.find('.ProseMirror-icon').each(function (index) {
+            let $this = $(this);
+            let isVisible = $this.is(':visible');
+            let tabindex = -1;
+            let isCurrentIndex = index === currentTabindex;
+
+            if (!isVisible && isCurrentIndex) {
+                // Note here we expect the first menu item is always visible
+                $(this.groupItem.dom).find('.ProseMirror-icon:first').attr('tabindex', 0);
+            } else if (isCurrentIndex) {
+                tabindex = 0;
+            }
+
+            $this.attr('tabindex', tabindex);
+        });
+
         this.context.event.trigger('afterMenuBarUpdate', this);
+    }
+
+    focusPrev() {
+        let $prev = null;
+        let $focus = null;
+        let newFocusIconIndex = 0;
+        let $current = this.$.find('.ProseMirror-icon:focus');
+        let $items = this.$.find('.ProseMirror-icon');
+
+        $items.each(function (index) {
+            let $this = $(this);
+
+            if($this.is($current)) {
+                $focus = $prev;
+                newFocusIconIndex = index - 1;
+            }
+
+            $this.attr('tabindex', -1);
+
+            if($this.is(':visible')) {
+                $prev = $this;
+            }
+        });
+
+        if (!$focus) {
+            $focus = $items.last();
+            newFocusIconIndex = $items.length - 1;
+        }
+
+        this.focusIconIndex = newFocusIconIndex;
+
+        $focus.attr('tabindex', 0).focus();
+    }
+
+    focusNext() {
+        let $next = null;
+        let newFocusIconIndex = 0;
+        let focusNextItem = false;
+        let $current = this.$.find('.ProseMirror-icon:focus');
+
+        this.$.find('.ProseMirror-icon').each(function (index) {
+            let $this = $(this);
+            if (!$this.is(':visible')) {
+                return;
+            }
+
+            if (focusNextItem) {
+                $next = $this;
+                focusNextItem = false;
+                newFocusIconIndex = index;
+            } else {
+                $this.attr('tabindex', -1);
+                focusNextItem = $this.is($current);
+            }
+        });
+
+        if (!$next) {
+            $next = this.$.find('.ProseMirror-icon:first');
+        }
+
+        this.focusIconIndex = newFocusIconIndex;
+
+        $next.attr('tabindex', 0).focus();
     }
 
     updateScrollCursor() {

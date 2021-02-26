@@ -56,7 +56,7 @@ export function menuWrapper(context) {
         enable: function(menuItem, state, enabled) {
             let sourceMode = isSourceMode(state);
 
-            if(['source', 'resizeNav', 'fullScreen'].includes(menuItem.options.id)
+            if([ 'main-menu-group', 'source', 'source-group', 'resize-group', 'resizeNav', 'fullScreen'].includes(menuItem.options.id)
                 || (sourceMode &&  menuItem.runSource)) {
                 return enabled;
             }
@@ -64,7 +64,7 @@ export function menuWrapper(context) {
             return sourceMode ? false : enabled;
         },
         active: function(menuItem, state, active) {
-            if(menuItem.options.id === 'source') {
+            if([ 'main-menu-group', 'source', 'source-group'].includes(menuItem.options.id)) {
                 return active;
             }
 

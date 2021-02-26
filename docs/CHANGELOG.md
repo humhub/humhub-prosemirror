@@ -9,14 +9,15 @@ Changelog
 - Enh: Implemented MarkdownView for render only mode
 - Enh: Implemented `MarkdownView.transformToEditor()` and `MarkdownEditor.transformToView()`
 - Enh #39: Improved navigation toggle by `hideOnCollapse` menu item option instead of static selector
+- Enh #43: Added keyboard menu accessibility
 
 1.1.3 (Unreleased)
 -----------------------------------------
 - Fix #31: Split list keymap not working
-- Fix #31: Split list keymap not working
 - Fix #32: Disallow marks in code block schema
 - Fix #41: Overflow detection broken
 - Fix #36: resize nav state does not respect selection state
+
 
 1.1.2 (February 18, 2021)
 -----------------------------------------
