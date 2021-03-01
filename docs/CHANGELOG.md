@@ -1,9 +1,8 @@
 Changelog
 =========
 
-1.1.3 (Unreleased)
+1.1.3 (March 1, 2021)
 -----------------------------------------
-- Fix #31: Split list keymap not working
 - Fix #31: Split list keymap not working
 - Fix #32: Disallow marks in code block schema
 - Fix #41: Overflow detection broken
