@@ -13217,36 +13217,6 @@
     keymap: keymap
   });
 
-  function crelt() {
-    var arguments$1 = arguments;
-
-    var elt = arguments[0];
-    if (typeof elt == "string") { elt = document.createElement(elt); }
-    var i = 1, next = arguments[1];
-    if (next && typeof next == "object" && next.nodeType == null && !Array.isArray(next)) {
-      for (var name in next) { if (Object.prototype.hasOwnProperty.call(next, name)) {
-        var value = next[name];
-        if (typeof value == "string") { elt.setAttribute(name, value); }
-        else if (value != null) { elt[name] = value; }
-      } }
-      i++;
-    }
-    for (; i < arguments.length; i++) { add(elt, arguments$1[i]); }
-    return elt
-  }
-
-  function add(elt, child) {
-    if (typeof child == "string") {
-      elt.appendChild(document.createTextNode(child));
-    } else if (child == null) ; else if (child.nodeType != null) {
-      elt.appendChild(child);
-    } else if (Array.isArray(child)) {
-      for (var i = 0; i < child.length; i++) { add(elt, child[i]); }
-    } else {
-      throw new RangeError("Unsupported child node: " + child)
-    }
-  }
-
   var SVG = "http://www.w3.org/2000/svg";
   var XLINK = "http://www.w3.org/1999/xlink";
 
@@ -13267,8 +13237,9 @@
       return hash
   }
 
-  function getIcon(icon) {
-      var node = document.createElement("div");
+  function getIcon(icon, htmlNode) {
+      htmlNode = htmlNode || 'div';
+      var node = document.createElement(htmlNode);
       node.className = prefix;
       if (icon.path) {
           var name = "pm-icon-" + hashPath(icon.path).toString(16);
@@ -13307,556 +13278,6 @@
       });
 
   }
-
-  var prefix$1 = "ProseMirror-menu";
-
-  // Helpers to create specific types of items
-  function cmdItem(cmd, options) {
-      var passedOptions = {
-          label: options.title,
-          run: cmd
-      };
-      for (var prop in options) { passedOptions[prop] = options[prop]; }
-      if ((!options.enable || options.enable === true) && !options.select)
-          { passedOptions[options.enable ? "enable" : "select"] = function (state) { return cmd(state); }; }
-
-      return new MenuItem(passedOptions)
-  }
-
-  function markItem(markType, options, context) {
-      var passedOptions = {
-          active: function active(state) {
-              return markActive(state, markType)
-          },
-          enable: true
-      };
-      for (var prop in options) { passedOptions[prop] = options[prop]; }
-      var menuItem = cmdItem(toggleMark(markType), passedOptions);
-
-      if(options.runSource) {
-          menuItem.runSource = options.runSource;
-      } else if(context && markType.spec.toMarkdown
-          && typeof markType.spec.toMarkdown.open === 'string'
-          && typeof markType.spec.toMarkdown.close === 'string') {
-          menuItem.runSource = wrapSourceTextMark(context, markType);
-      }
-
-      return menuItem;
-  }
-
-  function wrapSourceTextMark(context, markType, open, close) {
-      if (!open && markType.spec.toMarkdown && markType.spec.toMarkdown.open) {
-          open = markType.spec.toMarkdown.open;
-      }
-
-      if (!close && markType.spec.toMarkdown && markType.spec.toMarkdown.close) {
-          close = markType.spec.toMarkdown.close;
-      }
-
-      if (!open) {
-          return;
-      }
-
-      if (!close) {
-          close = open;
-      }
-
-      return function() {
-          var $source = context.$source;
-          var length = $source.val().length;
-          var start = $source[0].selectionStart;
-          var selectionDirection = $source[0].selectionDirection;
-          var end = $source[0].selectionEnd;
-          var selectedText = $source.val().substring(start, end);
-
-          var preSelection = $source.val().substring((start - open.length), start);
-          var postSelection = $source.val().substring(end, (end + close.length));
-
-
-
-          if(preSelection === open && postSelection === close) {
-              // Revert mark
-              $source.val($source.val().substring(0, start - open.length) + selectedText + $source.val().substring(end + close.length, length));
-              $source[0].setSelectionRange((start - open.length), end - open.length, selectionDirection);
-          } else {
-              var leadingSpaceCount = Math.max(selectedText.search(/\S/), 0);
-              var leadingSpaces = leadingSpaceCount > 0
-                  ? ' '.repeat(leadingSpaceCount)
-                  : '';
-
-              var trailingSpaceCount =  selectedText.search(/ +$/) > -1
-                  ? selectedText.length - selectedText.search(/ +$/)
-                  : 0;
-              var trailingSpaces = trailingSpaceCount > 0
-                  ? ' '.repeat(trailingSpaceCount)
-                  : '';
-
-              selectedText = selectedText.trim();
-
-              var replacement = open + selectedText + close;
-              $source.val($source.val().substring(0, start) + leadingSpaces + replacement + trailingSpaces + $source.val().substring(end, length));
-              $source[0].setSelectionRange((start + leadingSpaceCount + open.length), (end + open.length - trailingSpaceCount), selectionDirection);
-          }
-      }
-  }
-
-  function markActive(state, type) {
-      var ref = state.selection;
-      var from = ref.from;
-      var $from = ref.$from;
-      var to = ref.to;
-      var empty = ref.empty;
-      if (empty) { return type.isInSet(state.storedMarks || $from.marks()) }
-      else { return state.doc.rangeHasMark(from, to, type) }
-  }
-
-  function wrapListItem(nodeType, options) {
-      return cmdItem(wrapInList(nodeType, options.attrs), options)
-  }
-
-  // ::- An icon or label that, when clicked, executes a command.
-  var MenuItem = function MenuItem(options) {
-      // :: MenuItemSpec
-      // The options used to create the menu item.
-      this.options = options || {};
-      this.sortOrder = this.options.sortOrder;
-  };
-
-  // :: (EditorView) → {dom: dom.Node, update: (EditorState) → bool}
-  // Renders the icon according to its [display
-  // options](#menu.MenuItemSpec.display), and adds an event handler which
-  // executes the command when the representation is clicked.
-  MenuItem.prototype.render = function render (view) {
-          var this$1 = this;
-
-      var options = this.options;
-
-      if (typeof this.options.render === 'function') {
-          return this.options.render.apply(this, [options]);
-      }
-
-      this.dom = options.icon ? getIcon(options.icon)
-          : options.label ? $('<div>').html(translate(view, options.label))[0]
-              : null;
-
-      if(this.options.id) {
-          this.dom.classList.add(prefix$1+'-'+this.options.id);
-      }
-
-      if (!this.dom) { throw new RangeError("MenuItem without icon or label property"); }
-
-      if (options.title !== 'undefined') {
-          var title = (typeof options.title === "function" ? options.title(view.state) : options.title);
-          this.dom.setAttribute("title", translate(view, title));
-      }
-
-      if (options.class) { this.dom.classList.add(options.class); }
-      if (options.css) { this.dom.style.cssText += options.css; }
-
-      if(this.options.feature) {
-          this.dom.classList.add('feature');
-      }
-
-      $(this.dom).on("mousedown", function (e) {
-          e.preventDefault();
-          if (!$(this$1.dom).hasClass(prefix$1 + "-disabled")) {
-              options.run.call(this$1, view.state, view.dispatch, view, e);
-          }
-      });
-
-      return this.dom;
-  };
-
-  MenuItem.prototype.switchIcon = function switchIcon (icon, title) {
-      if(title) {
-          $(this.dom).attr('title', title);
-      }
-      $(this.dom).find('svg').replaceWith($(getIcon(icon)).find('svg'));
-  };
-
-  MenuItem.prototype.update = function update (state) {
-      this.adoptItemState(state);
-      return this.selected;
-  };
-
-  MenuItem.prototype.adoptItemState = function adoptItemState (state, forceEnable, forceActive) {
-      this.setEnabledItemState(state, forceEnable);
-      this.setActiveItemState(state, forceActive);
-      this.setSelectedItemState(state, forceEnable);
-  };
-
-  MenuItem.prototype.setActiveItemState = function setActiveItemState (state, forceActive) {
-      this.active = false;
-      if (this.options.active) {
-          this.active = (this.options.active(state) || forceActive) || false;
-          setClass(this.dom, prefix$1 + "-active", this.active);
-      }
-  };
-
-  MenuItem.prototype.setEnabledItemState = function setEnabledItemState (state, forceEnable) {
-      this.enabled = true;
-      if (this.options.enable) {
-          this.enabled = this.options.enable(state) || forceEnable || false;
-          setClass(this.dom, prefix$1 + "-disabled", !this.enabled);
-      }
-  };
-
-  MenuItem.prototype.setSelectedItemState = function setSelectedItemState (state, forceEnable) {
-      this.selected = true;
-      if (this.options.select) {
-          this.selected = this.options.select(state);
-          this.dom.style.display = this.selected || forceEnable ? "" : "none";
-
-          if(!this.selected) {
-              this.dom.classList.add('hidden');
-          } else {
-              this.dom.classList.remove('hidden');
-          }
-          if (!this.selected) { return false }
-      }
-  };
-
-  function translate(view, text) {
-      return view._props.translate ? view._props.translate(text) : text
-  }
-
-  // MenuItemSpec:: interface
-  // The configuration object passed to the `MenuItem` constructor.
-  //
-  //   run:: (EditorState, (Transaction), EditorView, dom.Event)
-  //   The function to execute when the menu item is activated.
-  //
-  //   select:: ?(EditorState) → bool
-  //   Optional function that is used to determine whether the item is
-  //   appropriate at the moment. Deselected items will be hidden.
-  //
-  //   enable:: ?(EditorState) → bool
-  //   Function that is used to determine if the item is enabled. If
-  //   given and returning false, the item will be given a disabled
-  //   styling.
-  //
-  //   active:: ?(EditorState) → bool
-  //   A predicate function to determine whether the item is 'active' (for
-  //   example, the item for toggling the strong mark might be active then
-  //   the cursor is in strong text).
-  //
-  //   render:: ?(EditorView) → dom.Node
-  //   A function that renders the item. You must provide either this,
-  //   [`icon`](#menu.MenuItemSpec.icon), or [`label`](#MenuItemSpec.label).
-  //
-  //   icon:: ?Object
-  //   Describes an icon to show for this item. The object may specify
-  //   an SVG icon, in which case its `path` property should be an [SVG
-  //   path
-  //   spec](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d),
-  //   and `width` and `height` should provide the viewbox in which that
-  //   path exists. Alternatively, it may have a `text` property
-  //   specifying a string of text that makes up the icon, with an
-  //   optional `css` property giving additional CSS styling for the
-  //   text. _Or_ it may contain `dom` property containing a DOM node.
-  //
-  //   label:: ?string
-  //   Makes the item show up as a text label. Mostly useful for items
-  //   wrapped in a [drop-down](#menu.Dropdown) or similar menu. The object
-  //   should have a `label` property providing the text to display.
-  //
-  //   title:: ?union<string, (EditorState) → string>
-  //   Defines DOM title (mouseover) text for the item.
-  //
-  //   class:: string
-  //   Optionally adds a CSS class to the item's DOM representation.
-  //
-  //   css:: string
-  //   Optionally adds a string of inline CSS to the item's DOM
-  //   representation.
-  //
-  //   execEvent:: string
-  //   Defines which event on the command's DOM representation should
-  //   trigger the execution of the command. Defaults to mousedown.
-
-  var lastMenuEvent = {time: 0, node: null};
-
-  function markMenuEvent(e) {
-      lastMenuEvent.time = Date.now();
-      lastMenuEvent.node = e.target;
-  }
-
-  function isMenuEvent(wrapper) {
-      return Date.now() - 100 < lastMenuEvent.time &&
-          lastMenuEvent.node && wrapper.contains(lastMenuEvent.node)
-  }
-
-  function sort(items) {
-      var result = [];
-      items.forEach(function (item) {
-          if (item && item.type && item.type === 'dropdown') {
-              result.push(new Dropdown(sort(item.items), item));
-          } else if (item && item.type && item.type === 'group') {
-              result.push(new MenuItemGroup(sort(item.items), item));
-          } else if (item) {
-              result.push(item);
-          }
-      });
-
-      return result.sort(function (a, b) {
-          if (typeof a.sortOrder === 'undefined') {
-              return 1;
-          }
-          if (typeof b.sortOrder === 'undefined') {
-              return -1;
-          }
-          return a.sortOrder - b.sortOrder;
-      });
-  }
-
-
-  var MenuItemGroup = /*@__PURE__*/(function (MenuItem) {
-      function MenuItemGroup(content, options) {
-          var this$1 = this;
-
-          MenuItem.call(this, options);
-          this.content = {
-              items: sort(Array.isArray(content) ? content : [content]),
-              update: function (state) {
-                  var result = false;
-
-                  sort(this$1.content.items).forEach(function (item, i) {
-                      var updateResult = item.update(state);
-                      var $item = $(item.dom);
-
-                      if(!updateResult) {
-                          $item.hide();
-                      } else {
-                          $item.show();
-                      }
-
-                      if((i === this$1.content.items.length - 1)) {
-                          $item.addClass('last');
-                      }
-
-                      result = result || updateResult;
-                  });
-
-                  return result;
-              }
-          };
-      }
-
-      if ( MenuItem ) MenuItemGroup.__proto__ = MenuItem;
-      MenuItemGroup.prototype = Object.create( MenuItem && MenuItem.prototype );
-      MenuItemGroup.prototype.constructor = MenuItemGroup;
-
-      MenuItemGroup.prototype.render = function render (view) {
-          var $dom = $('<div>').addClass(prefix$1 + '-group');
-
-          if(this.options.id) {
-              $dom.addClass(this.options.id);
-          }
-
-          this.renderItems(view).forEach(function (itemDom) {
-              $dom.append(itemDom);
-          });
-
-          return this.dom = $dom[0];
-      };
-
-      MenuItemGroup.prototype.update = function update (state) {
-          var result = this.content.update(state);
-          return result && MenuItem.prototype.update.call(this, state);
-      };
-
-      MenuItemGroup.prototype.renderItems = function renderItems (view) {
-          var rendered = [];
-
-          this.content.items.forEach(function (item) {
-              var dom = item.render(view);
-              rendered.push(crelt("div", {class: prefix$1 + "item"}, dom));
-          });
-
-          return rendered;
-      };
-
-      return MenuItemGroup;
-  }(MenuItem));
-
-  // ::- A drop-down menu, displayed as a label with a downwards-pointing
-  // triangle to the right of it.
-  var Dropdown = /*@__PURE__*/(function (MenuItemGroup) {
-      function Dropdown(content, options) {
-          var this$1 = this;
-
-          MenuItemGroup.call(this, content, options);
-          this.content.update = function (state) {
-              var result = false;
-              this$1.content.items.forEach(function (item) {
-                  var updateResult = item.update(state);
-                  item.dom.style.display = updateResult ? "" : "none";
-                  result = result || updateResult;
-              });
-              return result;
-          };
-      }
-
-      if ( MenuItemGroup ) Dropdown.__proto__ = MenuItemGroup;
-      Dropdown.prototype = Object.create( MenuItemGroup && MenuItemGroup.prototype );
-      Dropdown.prototype.constructor = Dropdown;
-
-      // :: (EditorView) → {dom: dom.Node, update: (EditorState)}
-      // Render the dropdown menu and sub-items.
-      Dropdown.prototype.render = function render (view) {
-          var this$1 = this;
-
-          var contentDom = this.renderItems(view);
-
-          var innerDom = this.options.icon ? getIcon(this.options.icon)
-              : this.options.label ? crelt("div", {style: this.options.css}, translate(view, this.options.label))
-                  : null;
-
-          if (!innerDom) {
-              throw new RangeError("Dropdown without icon or label property")
-          }
-
-          innerDom.className += " " + prefix$1 + "-dropdown " + (this.options.class || "");
-
-          if(this.options.id) {
-              innerDom.classList.add(prefix$1+'-'+this.options.id);
-          }
-
-          if (this.options.title) {
-              innerDom.setAttribute("title", translate(view, this.options.title));
-          }
-
-          this.dom = crelt("div", {class: prefix$1 + "-dropdown-wrap"}, innerDom);
-
-          if(this.options.seperator) {
-              this.dom.className += ' seperator';
-          }
-
-          var open = null, listeningOnClose = null;
-          var close = function () {
-              if (open && open.close()) {
-                  open = null;
-                  window.removeEventListener("mousedown", listeningOnClose);
-              }
-          };
-
-          innerDom.addEventListener("mousedown", function (e) {
-              e.preventDefault();
-              if (!this$1.selected || !this$1.enabled) { return; }
-              markMenuEvent(e);
-              if (open) {
-                  close();
-              } else {
-                  open = this$1.expand(this$1.dom, contentDom);
-                  window.addEventListener("mousedown", listeningOnClose = function () {
-                      if (!isMenuEvent(this$1.dom)) { close(); }
-                  });
-              }
-          });
-
-          return this.dom;
-      };
-
-      Dropdown.prototype.renderItems = function renderItems (view) {
-          var rendered = [];
-
-          this.content.items.forEach(function (item) {
-              var dom = item.render(view);
-              rendered.push(crelt("div", {class: prefix$1 + "-dropdown-item"}, dom));
-          });
-
-          return rendered;
-      };
-
-      Dropdown.prototype.update = function update (state) {
-          var contentUpdateResult = this.content.update(state);
-
-          var forceEnable = false;
-          var forceActive = false;
-
-          this.content.items.forEach(function (item) {
-              forceEnable = forceEnable || item.enabled;
-              forceActive = forceActive || item.active;
-          });
-
-          this.adoptItemState(state, forceEnable, (forceActive && this.options.bubbleActive));
-          return contentUpdateResult;
-      };
-
-      Dropdown.prototype.expand = function expand (dom, contentDom) {
-          var menuDOM = crelt("div", {class: prefix$1 + "-dropdown-menu " + (this.options.class || "")}, contentDom);
-
-          var done = false;
-
-          function close() {
-              if (done) { return; }
-              done = true;
-              dom.removeChild(menuDOM);
-              return true
-          }
-
-          dom.appendChild(menuDOM);
-
-          var $menuDom = $(menuDOM);
-          var right = $menuDom.offset().left + $menuDom.width() ;
-
-          if(right > $(window).width() / 2) {
-              $menuDom.addClass(prefix$1 + "-dropdown-right");
-          } else {
-              $menuDom.removeClass(prefix$1 + "-dropdown-right");
-          }
-
-          return {close: close, node: menuDOM}
-      };
-
-      return Dropdown;
-  }(MenuItemGroup));
-
-  // ::- Represents a submenu wrapping a group of elements that start
-  // hidden and expand to the right when hovered over or tapped.
-  var DropdownSubmenu = /*@__PURE__*/(function (Dropdown) {
-      function DropdownSubmenu(content, options) {
-          options.bubbleActive = true;
-          Dropdown.call(this, content, options);
-      }
-
-      if ( Dropdown ) DropdownSubmenu.__proto__ = Dropdown;
-      DropdownSubmenu.prototype = Object.create( Dropdown && Dropdown.prototype );
-      DropdownSubmenu.prototype.constructor = DropdownSubmenu;
-
-      // :: (EditorView) → {dom: dom.Node, update: (EditorState) → bool}
-      // Renders the submenu.
-      DropdownSubmenu.prototype.render = function render (view) {
-          var this$1 = this;
-
-          var itemDom = this.renderItems(view);
-
-          var innerDom = $('<div>').addClass(prefix$1 + "-submenu-label").html(translate(view, this.options.label))[0];
-
-          //let innerDom = crelt("div", {class: prefix + "-submenu-label"}, translate(view, this.options.label));
-          this.dom = crelt("div", {class: prefix$1 + "-submenu-wrap"}, innerDom,
-              crelt("div", {class: prefix$1 + "-submenu"}, itemDom));
-          var listeningOnClose = null;
-
-          innerDom.addEventListener("mousedown", function (e) {
-              e.preventDefault();
-              markMenuEvent(e);
-              setClass(this$1.dom, prefix$1 + "-submenu-wrap-active");
-              if (!listeningOnClose)
-                  { window.addEventListener("mousedown", listeningOnClose = function () {
-                      if (!isMenuEvent(this$1.dom)) {
-                          this$1.dom.classList.remove(prefix$1 + "-submenu-wrap-active");
-                          window.removeEventListener("mousedown", listeningOnClose);
-                          listeningOnClose = null;
-                      }
-                  }); }
-          });
-
-          return this.dom;
-      };
-
-      return DropdownSubmenu;
-  }(Dropdown));
 
   // :: Object
   // A set of basic editor-related icons. Contains the properties
@@ -13987,6 +13408,952 @@
       }
   };
 
+  function crelt() {
+    var arguments$1 = arguments;
+
+    var elt = arguments[0];
+    if (typeof elt == "string") { elt = document.createElement(elt); }
+    var i = 1, next = arguments[1];
+    if (next && typeof next == "object" && next.nodeType == null && !Array.isArray(next)) {
+      for (var name in next) { if (Object.prototype.hasOwnProperty.call(next, name)) {
+        var value = next[name];
+        if (typeof value == "string") { elt.setAttribute(name, value); }
+        else if (value != null) { elt[name] = value; }
+      } }
+      i++;
+    }
+    for (; i < arguments.length; i++) { add(elt, arguments$1[i]); }
+    return elt
+  }
+
+  function add(elt, child) {
+    if (typeof child == "string") {
+      elt.appendChild(document.createTextNode(child));
+    } else if (child == null) ; else if (child.nodeType != null) {
+      elt.appendChild(child);
+    } else if (Array.isArray(child)) {
+      for (var i = 0; i < child.length; i++) { add(elt, child[i]); }
+    } else {
+      throw new RangeError("Unsupported child node: " + child)
+    }
+  }
+
+  var PREFIX = "ProseMirror-menu";
+
+  // Work around classList.toggle being broken in IE11
+  function setClass(dom, cls, on) {
+      if (on) { dom.classList.add(cls); }
+      else { dom.classList.remove(cls); }
+  }
+
+  function setAttribute(dom, attr, value, on) {
+      if (on) { dom.setAttribute(attr, value); }
+      else { dom.removeAttribute(attr); }
+  }
+
+  function translate(view, text) {
+      return view._props.translate ? view._props.translate(text) : text
+  }
+
+  function addClassId(dom, options) {
+      if(options.id) {
+          addMenuClass(dom, options);
+      }
+  }
+
+  function initMenuItemTrigger(view, options) {
+      var trigger = options.icon
+          ? getIcon(options.icon, options.htmlNode)
+          : options.label
+              ? crelt(options.htmlNode, {}, translate(view, options.label))
+              : null;
+
+      if(trigger) {
+          setAttributesFromOptions(trigger, options);
+      }
+
+      return trigger;
+  }
+
+  function setTabindex(dom, options) {
+      if(typeof options.tabindex !== 'undefined') {
+          dom.setAttribute('tabindex', options.tabindex);
+      }
+  }
+
+  function setTitle(dom, options, view) {
+      if (options.title !== 'undefined') {
+          var title = (typeof options.title === "function" ? options.title(view.state) : options.title);
+          dom.setAttribute("title", translate(view, title));
+      }
+  }
+
+  function setAttributesFromOptions(dom, options) {
+      if (options.class) { dom.classList.add(options.class); }
+      if (options.css) { dom.style.cssText += options.css; }
+      if(options.seperator) {
+          dom.classList.add('seperator');
+      }
+      addClassId(dom, options);
+  }
+
+  function buildMenuClass(suffix) {
+      if(typeof suffix === 'object') {
+          suffix = suffix.id;
+      }
+
+      return PREFIX + '-' + suffix;
+  }
+
+  function addMenuClass(dom, suffix) {
+      dom.classList.add(buildMenuClass(suffix));
+  }
+
+  var lastMenuEvent = {time: 0, node: null};
+
+  function markMenuEvent(e) {
+      lastMenuEvent.time = Date.now();
+      lastMenuEvent.node = e.target;
+  }
+
+  function isMenuEvent(wrapper) {
+      return Date.now() - 100 < lastMenuEvent.time &&
+          lastMenuEvent.node && wrapper.contains(lastMenuEvent.node)
+  }
+
+  // ::- An icon or label that, when clicked, executes a command.
+
+  // MenuItemSpec:: interface
+  // The configuration object passed to the `MenuItem` constructor.
+  //
+  //   run:: (EditorState, (Transaction), EditorView, dom.Event)
+  //   The function to execute when the menu item is activated.
+  //
+  //   select:: ?(EditorState) → bool
+  //   Optional function that is used to determine whether the item is
+  //   appropriate at the moment. Deselected items will be hidden.
+  //
+  //   enable:: ?(EditorState) → bool
+  //   Function that is used to determine if the item is enabled. If
+  //   given and returning false, the item will be given a disabled
+  //   styling.
+  //
+  //   active:: ?(EditorState) → bool
+  //   A predicate function to determine whether the item is 'active' (for
+  //   example, the item for toggling the strong mark might be active then
+  //   the cursor is in strong text).
+  //
+  //   render:: ?(EditorView) → dom.Node
+  //   A function that renders the item. You must provide either this,
+  //   [`icon`](#menu.MenuItemSpec.icon), or [`label`](#MenuItemSpec.label).
+  //
+  //   icon:: ?Object
+  //   Describes an icon to show for this item. The object may specify
+  //   an SVG icon, in which case its `path` property should be an [SVG
+  //   path
+  //   spec](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d),
+  //   and `width` and `height` should provide the viewbox in which that
+  //   path exists. Alternatively, it may have a `text` property
+  //   specifying a string of text that makes up the icon, with an
+  //   optional `css` property giving additional CSS styling for the
+  //   text. _Or_ it may contain `dom` property containing a DOM node.
+  //
+  //   label:: ?string
+  //   Makes the item show up as a text label. Mostly useful for items
+  //   wrapped in a [drop-down](#menu.Dropdown) or similar menu. The object
+  //   should have a `label` property providing the text to display.
+  //
+  //   title:: ?union<string, (EditorState) → string>
+  //   Defines DOM title (mouseover) text for the item.
+  //
+  //   class:: string
+  //   Optionally adds a CSS class to the item's DOM representation.
+  //
+  //   css:: string
+  //   Optionally adds a string of inline CSS to the item's DOM
+  //   representation.
+  //
+  //   execEvent:: string
+  //   Defines which event on the command's DOM representation should
+  //   trigger the execution of the command. Defaults to mousedown.
+  var MenuItem = function MenuItem(options) {
+      // :: MenuItemSpec
+      // The options used to create the menu item.
+      this.options = options || {};
+      this.sortOrder = this.options.sortOrder;
+      this.options.htmlNode = 'button';
+  };
+
+  // :: (EditorView) → {dom: dom.Node, update: (EditorState) → bool}
+  // Renders the icon according to its [display
+  // options](#menu.MenuItemSpec.display), and adds an event handler which
+  // executes the command when the representation is clicked.
+  MenuItem.prototype.render = function render (view, renderOptions) {
+          if ( renderOptions === void 0 ) renderOptions = {};
+
+      this.options = $.extend(this.options, renderOptions);
+
+      if (typeof this.options.render === 'function') {
+          return this.options.render.apply(this, [this.options]);
+      }
+
+      this.dom = initMenuItemTrigger(view, this.options);
+
+      if (!this.dom) {
+          throw new RangeError("MenuItem without icon or label property");
+      }
+
+      this.$ = $(this.dom);
+
+      setAttributesFromOptions(this.dom, this.options);
+      setTabindex(this.dom, renderOptions);
+      setTitle(this.dom, this.options, view);
+      this.initEvents(view);
+
+      return this.dom;
+  };
+
+  MenuItem.prototype.initEvents = function initEvents (view) {
+          var this$1 = this;
+
+      var runHandler = function (e) {
+          e.preventDefault();
+          if (!$(this$1.dom).hasClass(buildMenuClass('disabled'))) {
+              this$1.options.run.call(this$1, view.state, view.dispatch, view, e);
+          }
+      };
+
+      $(this.dom).on("mousedown", runHandler);
+      $(this.dom).on("keydown", function (e) {
+          var keyCode = e.keyCode || e.which;
+
+          switch (keyCode) {
+              case 13: // Enter
+                  e.preventDefault();
+                  runHandler(e);
+                  break;
+          }
+      });
+  };
+
+  MenuItem.prototype.getMenuBar = function getMenuBar () {
+      if(!this.menuBar) {
+          this.menuBar = $(this.dom).closest('.ProseMirror-menubar').data('menuBarInstance');
+      }
+
+      return this.menuBar;
+  };
+
+  MenuItem.prototype.switchIcon = function switchIcon (icon, title) {
+      if(title) {
+          $(this.dom).attr('title', title);
+      }
+      $(this.dom).find('svg').replaceWith($(getIcon(icon, this.options.htmlNode)).find('svg'));
+  };
+
+  MenuItem.prototype.update = function update (state) {
+      this.adoptItemState(state);
+      return this.selected;
+  };
+
+  MenuItem.prototype.adoptItemState = function adoptItemState (state, forceEnable, forceActive) {
+      this.setEnabledItemState(state, forceEnable);
+      this.setActiveItemState(state, forceActive);
+      this.setSelectedItemState(state, forceEnable);
+  };
+
+  MenuItem.prototype.setActiveItemState = function setActiveItemState (state, forceActive) {
+      this.active = false;
+      if (this.options.active) {
+          this.active = (this.options.active(state) || forceActive) || false;
+          setClass(this.dom, buildMenuClass('active'), this.active);
+          setAttribute(this.dom, 'aria-pressed', 'true', this.active);
+      }
+  };
+
+  MenuItem.prototype.setEnabledItemState = function setEnabledItemState (state, forceEnable) {
+      this.enabled = true;
+      if (this.options.enable) {
+          this.enabled = this.options.enable(state) || forceEnable || false;
+          setClass(this.dom,  buildMenuClass('disabled'), !this.enabled);
+          setAttribute(this.dom, 'aria-disabled', 'true', !this.enabled);
+      }
+  };
+
+  MenuItem.prototype.setSelectedItemState = function setSelectedItemState (state, forceEnable) {
+      this.selected = true;
+      if (this.options.select) {
+          this.selected = this.options.select(state);
+          this.dom.style.display = this.selected || forceEnable ? "" : "none";
+          this.setHidden(!this.selected);
+      }
+  };
+
+  MenuItem.prototype.setHidden = function setHidden (isHidden) {
+      setAttribute(this.dom, 'aria-hidden', 'true', isHidden);
+      setClass(this.dom, 'hidden', isHidden);
+
+      if(this.isFocusable() && isHidden) {
+          setAttribute(this.dom, 'tabindex', '-1', isHidden);
+      }
+  };
+
+  MenuItem.prototype.isFocusable = function isFocusable () {
+      return ['a', 'button', 'select', 'input'].includes(this.dom.tagName.toLocaleLowerCase());
+  };
+
+  var MENU_SUFFIX_GROUP = 'group';
+
+  var MenuItemGroup = /*@__PURE__*/(function (MenuItem) {
+      function MenuItemGroup(content, options) {
+          MenuItem.call(this, options);
+          this.options.htmlNode = 'div';
+          this.initContent(content);
+      }
+
+      if ( MenuItem ) MenuItemGroup.__proto__ = MenuItem;
+      MenuItemGroup.prototype = Object.create( MenuItem && MenuItem.prototype );
+      MenuItemGroup.prototype.constructor = MenuItemGroup;
+
+      MenuItemGroup.prototype.initContent = function initContent (content) {
+          var this$1 = this;
+
+          this.content = {
+              items: sortItems(Array.isArray(content) ? content : [content]),
+              update: function (state) {
+                  var result = false;
+
+                  sortItems(this$1.content.items).forEach(function (item, i) {
+                      var updateResult = item.update(state);
+                      var $item = $(item.dom);
+
+                      if(!updateResult) {
+                          $item.hide();
+                      } else {
+                          $item.show();
+                      }
+
+                      // Mark the last item in the group
+                      if((i === this$1.content.items.length - 1)) {
+                          $item.addClass('last');
+                      }
+
+                      // If one item is visible the whole group is visible
+                      result = result || updateResult;
+                  });
+
+                  return result;
+              }
+          };
+      };
+
+      MenuItemGroup.prototype.forEachItem = function forEachItem (callable) {
+          this.content.items.forEach(callable);
+      };
+
+      MenuItemGroup.prototype.render = function render (view, renderOptions) {
+          var this$1 = this;
+
+          this.$ = $('<'+this.options.htmlNode+'>').addClass(buildMenuClass(MENU_SUFFIX_GROUP));
+          this.dom = this.$[0];
+
+          setAttributesFromOptions(this.dom, this.options);
+
+          this.renderItems(view).forEach(function (itemDom) {
+              this$1.$.append(itemDom);
+          });
+
+          return this.dom;
+      };
+
+      MenuItemGroup.prototype.update = function update (state) {
+          var result = this.content.update(state);
+          return result && MenuItem.prototype.update.call(this, state);
+      };
+
+      MenuItemGroup.prototype.setHidden = function setHidden (isHidden) {
+          MenuItem.prototype.setHidden.call(this, isHidden);
+
+          if(isHidden) {
+              this.forEachItem(function (item) {
+                  item.setHidden(isHidden);
+              });
+          }
+      };
+
+      MenuItemGroup.prototype.renderItems = function renderItems (view) {
+          var rendered = [];
+
+          this.forEachItem(function (item) {
+              var dom = item.render(view);
+
+              // Note the PREFIX + item is here for compatibility reasons
+              var itemDom = crelt("div", {class: PREFIX + 'item'}, dom);
+              addMenuClass(itemDom, 'item');
+              rendered.push(itemDom);
+          });
+
+          return rendered;
+      };
+
+      return MenuItemGroup;
+  }(MenuItem));
+
+  function sortItems(items) {
+      var result = [];
+      items.forEach(function (item) {
+          if (item && item.type && item.type === 'dropdown') {
+              result.push(new Dropdown(sortItems(item.items), item));
+          } else if (item && item.type && item.type === 'group') {
+              result.push(new MenuItemGroup(sortItems(item.items), item));
+          } else if (item) {
+              result.push(item);
+          }
+      });
+
+      return result.sort(function (a, b) {
+          if (typeof a.sortOrder === 'undefined') {
+              return 1;
+          }
+          if (typeof b.sortOrder === 'undefined') {
+              return -1;
+          }
+          return a.sortOrder - b.sortOrder;
+      });
+  }
+
+  // Holds currently opened dropdown item with close function
+  var opened = null;
+
+  // ::- A drop-down menu, displayed as a label with a downwards-pointing
+  // triangle to the right of it.
+  var Dropdown = /*@__PURE__*/(function (MenuItemGroup) {
+      function Dropdown(content, options) {
+          MenuItemGroup.call(this, content, options);
+          this.options.htmlNode = 'button';
+      }
+
+      if ( MenuItemGroup ) Dropdown.__proto__ = MenuItemGroup;
+      Dropdown.prototype = Object.create( MenuItemGroup && MenuItemGroup.prototype );
+      Dropdown.prototype.constructor = Dropdown;
+
+      // :: (EditorView) → {dom: dom.Node, update: (EditorState)}
+      // Render the dropdown menu and sub-items.
+      Dropdown.prototype.render = function render (view, renderOptions) {
+          this.view = view;
+          this.getContentDom(view);
+          this.initTrigger(view);
+          this.initWrapper(view);
+          this.initEvents(view);
+          return this.dom;
+      };
+
+      Dropdown.prototype.initTrigger = function initTrigger (view) {
+          this.trigger = initMenuItemTrigger(view, this.options);
+
+          if (!this.trigger) {
+              throw new RangeError("Dropdown without icon or label property")
+          }
+
+          addMenuClass(this.trigger, 'dropdown');
+
+          this.trigger.setAttribute('aria-haspopup', 'true');
+          this.trigger.setAttribute('aria-expanded', 'false');
+
+          setTitle(this.trigger, this.options, view);
+      };
+
+      Dropdown.prototype.initWrapper = function initWrapper () {
+          this.dom = crelt("div", {}, this.trigger);
+          addMenuClass(this.dom, 'dropdown-wrapper');
+          this.$ = $(this.dom);
+      };
+
+      Dropdown.prototype.initContent = function initContent (content) {
+          var this$1 = this;
+
+          MenuItemGroup.prototype.initContent.call(this, content);
+          this.content.update = function (state) {
+              var result = false;
+              this$1.forEachItem(function (item) {
+                  var updateResult = item.update(state);
+                  item.dom.style.display = updateResult ? "" : "none";
+                  result = result || updateResult;
+              });
+              return result;
+          };
+      };
+
+      Dropdown.prototype.initEvents = function initEvents (view) {
+          var this$1 = this;
+
+          this.$.on('keydown', function (e) {
+              var keyCode = e.keyCode || e.which;
+
+              switch (keyCode) {
+                  case 9: // Enter
+                      this$1.onTab(e);
+                      break;
+                  case 13: // Enter
+                      this$1.onEnter(e);
+                      break;
+                  case 27: // Escape
+                      this$1.onEscape(e);
+                      break;
+                  case 40: // ArrowDown
+                      this$1.onArrowDown(e);
+                      break;
+                  case 38: // ArrowUp
+                      this$1.onArrowUp(e);
+                      break;
+                  case 37: // ArrowLeft
+                      this$1.onArrowLeft(e);
+                      break;
+                  case 39: // ArrowLeft
+                      this$1.onArrowRight(e);
+                      break;
+              }
+          });
+
+          $(this.trigger).on('mousedown', function (e) {
+              this$1.onClickTrigger(e);
+          });
+      };
+
+      Dropdown.prototype.getContentDom = function getContentDom (view) {
+          if(!this.contentDom) {
+              this.contentDom = this.renderItems(view);
+          }
+
+          return this.contentDom;
+      };
+
+      Dropdown.prototype.open = function open () {
+          var this$1 = this;
+
+          opened = this.expand(this.dom);
+
+          $(window).on('mousedown.richtextMenu', function () {
+              if (!isMenuEvent(this$1.dom)) { this$1.close(); }
+          });
+
+          $('.'+buildMenuClass('submenu')).hide();
+
+          this.trigger.setAttribute('aria-expanded', 'true');
+      };
+
+      Dropdown.prototype.close = function close () {
+          if (opened && opened.close()) {
+              opened = null;
+              $(window).off("mousedown.richtextMenu");
+          }
+
+          $('.'+buildMenuClass('submenu')).hide();
+          this.trigger.setAttribute('aria-expanded', 'false');
+      };
+
+      Dropdown.prototype.isOpen = function isOpen () {
+          return this.$.find('.'+buildMenuClass('dropdown-menu')).is(':visible');
+      };
+
+      Dropdown.prototype.onTab = function onTab (e) {
+          if(this.isOpen()) {
+              this.close();
+          }
+      };
+
+      Dropdown.prototype.onEnter = function onEnter (e) {
+          e.preventDefault();
+          if(!this.isOpen()) {
+              if (opened) {
+                  this.close();
+              }
+
+              this.open();
+              return;
+          }
+
+          if(this.getSubMenu().find('a:focus').length) {
+              this.getMenuBar().context.editor.focus();
+          }
+
+          this.close();
+      };
+
+      Dropdown.prototype.getSubMenu = function getSubMenu () {
+          return $(this.menu);
+      };
+
+      Dropdown.prototype.onEscape = function onEscape (e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          var wasOpen = this.isOpen();
+
+          this.close();
+
+          if(wasOpen) {
+              $(this.trigger).focus();
+          }
+      };
+
+      Dropdown.prototype.onArrowDown = function onArrowDown (e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          if(this.isOpen()) {
+              this.focusNext();
+          } else {
+              if (opened) {
+                  this.close();
+              }
+
+              $(this.trigger).trigger('mousedown');
+          }
+      };
+
+      Dropdown.prototype.focusNext = function focusNext () {
+          var $focused = this.getFocused();
+          var $parent = $focused.parent('.'+buildMenuClass('dropdown-item'));
+          var $next = $parent.next();
+          $next = $next.length ? $next.find('a:visible:first') : this.getFirstLink();
+          $next.focus();
+      };
+
+      Dropdown.prototype.getFocused = function getFocused () {
+          return this.getSubMenu().find('a:focus');
+      };
+
+      Dropdown.prototype.getFirstLink = function getFirstLink () {
+          return $(this.menu).find('.'+buildMenuClass('dropdown-item')+':first').find('a:first');
+      };
+
+      Dropdown.prototype.onArrowUp = function onArrowUp (e) {
+          e.preventDefault();
+          e.stopPropagation();
+
+          if(this.isOpen()) {
+              this.focusPrev();
+          } else {
+              if (opened) {
+                  this.close();
+              }
+
+              this.open();
+          }
+      };
+
+      Dropdown.prototype.onArrowLeft = function onArrowLeft (e) {
+          // Prevent main nav switch
+          if(this.isOpen()) {
+              e.preventDefault();
+              e.stopPropagation();
+          }
+
+      };
+
+      Dropdown.prototype.onArrowRight = function onArrowRight (e) {
+          // Prevent main nav switch
+          if(this.isOpen()) {
+              e.preventDefault();
+              e.stopPropagation();
+          }
+      };
+
+      Dropdown.prototype.focusPrev = function focusPrev () {
+          var $focused = this.getFocused();
+          var $parent = $focused.closest('.'+buildMenuClass('dropdown-item'));
+          var $prev = $parent.prev();
+          $prev = $prev.length ? $prev.find('a:visible:first') : this.getLastLink();
+          $prev.focus();
+      };
+
+      Dropdown.prototype.getLastLink = function getLastLink () {
+          return $(this.menu).children('.'+buildMenuClass('dropdown-item:last')).find('a:first');
+      };
+
+      Dropdown.prototype.onClickTrigger = function onClickTrigger (e) {
+          e.preventDefault();
+          if (!this.selected || !this.enabled) { return; }
+          markMenuEvent(e);
+          if (opened) {
+              this.close();
+          } else {
+              this.open();
+          }
+      };
+
+      Dropdown.prototype.renderItems = function renderItems (view) {
+          var rendered = [];
+          this.content.items.forEach(function (item) {
+              var dom = item.render(view, {htmlNode: 'a', tabindex: 0});
+              var itemDom = crelt("div", {}, dom);
+              addMenuClass(itemDom, 'dropdown-item');
+              rendered.push(itemDom);
+          });
+
+          return rendered;
+      };
+
+      Dropdown.prototype.update = function update (state) {
+          var contentUpdateResult = this.content.update(state);
+
+          var forceEnable = false;
+          var forceActive = false;
+
+          this.content.items.forEach(function (item) {
+              forceEnable = forceEnable || item.enabled;
+              forceActive = forceActive || item.active;
+          });
+
+          this.adoptItemState(state, forceEnable, (forceActive && this.options.bubbleActive));
+          return contentUpdateResult;
+      };
+
+      Dropdown.prototype.expand = function expand (dom) {
+          var menuDOM = crelt("div", {}, this.getContentDom());
+          addMenuClass(menuDOM, 'dropdown-menu');
+
+          var done = false;
+
+          function close() {
+              $('.'+buildMenuClass('submenu')).hide();
+              if (done) { return; }
+              done = true;
+              dom.removeChild(menuDOM);
+              return true
+          }
+
+          dom.appendChild(menuDOM);
+
+          var $menuDom = $(menuDOM);
+          var right = $menuDom.offset().left + $menuDom.width() ;
+          var rightAlignClass = buildMenuClass('dropdown-right');
+
+          setClass($menuDom[0], rightAlignClass, (right > $(window).width() / 2));
+
+          this.menu = menuDOM;
+          return {close: close, node: menuDOM}
+      };
+
+      return Dropdown;
+  }(MenuItemGroup));
+
+  // ::- Represents a submenu wrapping a group of elements that start
+  // hidden and expand to the right when hovered over or tapped.
+  var DropdownSubmenu = /*@__PURE__*/(function (Dropdown) {
+      function DropdownSubmenu(content, options) {
+          Dropdown.call(this, content, options);
+          this.options.bubbleActive = true;
+      }
+
+      if ( Dropdown ) DropdownSubmenu.__proto__ = Dropdown;
+      DropdownSubmenu.prototype = Object.create( Dropdown && Dropdown.prototype );
+      DropdownSubmenu.prototype.constructor = DropdownSubmenu;
+
+      DropdownSubmenu.prototype.initTrigger = function initTrigger (view) {
+          this.trigger = $('<a tabindex="0" aria-haspopup="listbox" aria-expanded="false"></a>')
+              .text(translate(view, this.options.label))[0];
+          setAttributesFromOptions(this.trigger, this.options);
+      };
+
+      /**
+       * <div class="ProseMirror-menu-submenu-wrap">
+       *     <div class="ProseMirror-menu-submenu-label">
+       *         <a tabindex="0">Label</a>
+       *     </div>
+       *     <div class="ProseMirror-menu-submenu">
+       *         <div class="ProseMirror-menu-dropdown-item"></div>
+       *         <div class="ProseMirror-menu-dropdown-item"></div>
+       *     </div>>
+       * </div>
+       */
+      DropdownSubmenu.prototype.initWrapper = function initWrapper (view) {
+          var label = $('<div>').addClass(buildMenuClass('submenu-label')).html(this.trigger)[0];
+
+          this.menu = crelt("div", {class: buildMenuClass("submenu")},  this.getContentDom(view));
+
+          this.dom = crelt("div", {class: buildMenuClass("submenu-wrap")}, label, this.menu);
+
+          this.$ = $(this.dom);
+      };
+
+      DropdownSubmenu.prototype.onEnter = function onEnter (e) {
+          if(this.getFocused().length) {
+              return;
+          }
+
+          e.preventDefault();
+          e.stopPropagation();
+
+          this.getSubMenu().show();
+
+          this.getFirstLink().focus();
+      };
+
+      DropdownSubmenu.prototype.onArrowLeft = function onArrowLeft (e) {
+          if(this.isOpen()) {
+              e.preventDefault();
+              e.stopPropagation();
+              this.close();
+              $(this.trigger).focus();
+          }
+      };
+
+      DropdownSubmenu.prototype.onArrowRight = function onArrowRight (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          this.getSubMenu().show();
+          this.getFirstLink().focus();
+      };
+
+      DropdownSubmenu.prototype.onArrowUp = function onArrowUp (e) {
+          if(!this.isOpen()) {
+              // Let parent dropdown handle
+              return;
+          }
+
+          Dropdown.prototype.onArrowUp.call(this, e);
+      };
+
+      DropdownSubmenu.prototype.onArrowDown = function onArrowDown (e) {
+          if(!this.isOpen()) {
+              // Let parent dropdown handle
+              return;
+          }
+
+          Dropdown.prototype.onArrowDown.call(this, e);
+      };
+
+      DropdownSubmenu.prototype.open = function open () {
+          this.getSubMenu().show();
+      };
+
+      DropdownSubmenu.prototype.close = function close () {
+          this.getSubMenu().css('display', '');
+      };
+
+      DropdownSubmenu.prototype.getSubMenu = function getSubMenu () {
+          return this.$.find('.ProseMirror-menu-submenu');
+      };
+
+      DropdownSubmenu.prototype.focusNext = function focusNext () {
+          var $focused = this.getSubMenu().find('a:focus');
+          var $parent = $focused.parent('.'+buildMenuClass('dropdown-item'));
+          var $next = $parent.next();
+          $next = $next.length ? $next.find('a:visible:first') : this.getFirstLink();
+          $next.focus();
+      };
+
+      DropdownSubmenu.prototype.isOpen = function isOpen () {
+          return this.getSubMenu().is(':visible');
+      };
+
+      return DropdownSubmenu;
+  }(Dropdown));
+
+  // Helpers to create specific types of items
+  function cmdItem(cmd, options) {
+      var passedOptions = {
+          label: options.title,
+          run: cmd
+      };
+      for (var prop in options) { passedOptions[prop] = options[prop]; }
+      if ((!options.enable || options.enable === true) && !options.select)
+          { passedOptions[options.enable ? "enable" : "select"] = function (state) { return cmd(state); }; }
+
+      return new MenuItem(passedOptions)
+  }
+
+  function markItem(markType, options, context) {
+      var passedOptions = {
+          active: function active(state) {
+              return markActive(state, markType)
+          },
+          enable: true
+      };
+      for (var prop in options) { passedOptions[prop] = options[prop]; }
+      var menuItem = cmdItem(toggleMark(markType), passedOptions);
+
+      if(options.runSource) {
+          menuItem.runSource = options.runSource;
+      } else if(context && markType.spec.toMarkdown
+          && typeof markType.spec.toMarkdown.open === 'string'
+          && typeof markType.spec.toMarkdown.close === 'string') {
+          menuItem.runSource = wrapSourceTextMark(context, markType);
+      }
+
+      return menuItem;
+  }
+
+  function wrapSourceTextMark(context, markType, open, close) {
+      if (!open && markType.spec.toMarkdown && markType.spec.toMarkdown.open) {
+          open = markType.spec.toMarkdown.open;
+      }
+
+      if (!close && markType.spec.toMarkdown && markType.spec.toMarkdown.close) {
+          close = markType.spec.toMarkdown.close;
+      }
+
+      if (!open) {
+          return;
+      }
+
+      if (!close) {
+          close = open;
+      }
+
+      return function() {
+          var $source = context.$source;
+          var length = $source.val().length;
+          var start = $source[0].selectionStart;
+          var selectionDirection = $source[0].selectionDirection;
+          var end = $source[0].selectionEnd;
+          var selectedText = $source.val().substring(start, end);
+
+          var preSelection = $source.val().substring((start - open.length), start);
+          var postSelection = $source.val().substring(end, (end + close.length));
+
+          if(preSelection === open && postSelection === close) {
+              // Revert mark
+              $source.val($source.val().substring(0, start - open.length) + selectedText + $source.val().substring(end + close.length, length));
+              $source[0].setSelectionRange((start - open.length), end - open.length, selectionDirection);
+          } else {
+              var leadingSpaceCount = Math.max(selectedText.search(/\S/), 0);
+              var leadingSpaces = leadingSpaceCount > 0
+                  ? ' '.repeat(leadingSpaceCount)
+                  : '';
+
+              var trailingSpaceCount =  selectedText.search(/ +$/) > -1
+                  ? selectedText.length - selectedText.search(/ +$/)
+                  : 0;
+              var trailingSpaces = trailingSpaceCount > 0
+                  ? ' '.repeat(trailingSpaceCount)
+                  : '';
+
+              selectedText = selectedText.trim();
+
+              var replacement = open + selectedText + close;
+              $source.val($source.val().substring(0, start) + leadingSpaces + replacement + trailingSpaces + $source.val().substring(end, length));
+              $source[0].setSelectionRange((start + leadingSpaceCount + open.length), (end + open.length - trailingSpaceCount), selectionDirection);
+          }
+      }
+  }
+
+  function markActive(state, type) {
+      var ref = state.selection;
+      var from = ref.from;
+      var $from = ref.$from;
+      var to = ref.to;
+      var empty = ref.empty;
+      if (empty) { return type.isInSet(state.storedMarks || $from.marks()) }
+      else { return state.doc.rangeHasMark(from, to, type) }
+  }
+
+  function wrapListItem(nodeType, options) {
+      return cmdItem(wrapInList(nodeType, options.attrs), options)
+  }
+
   // :: MenuItem
   // Menu item for the `joinUp` command.
   var joinUpItem = function () {
@@ -14105,12 +14472,6 @@
       return new MenuItem(passedOptions)
   }
 
-  // Work around classList.toggle being broken in IE11
-  function setClass(dom, cls, on) {
-      if (on) { dom.classList.add(cls); }
-      else { dom.classList.remove(cls); }
-  }
-
   function canInsert(state, nodeType) {
       var $from = state.selection.$from;
       for (var d = $from.depth; d >= 0; d--) {
@@ -14138,16 +14499,39 @@
       return allowLink;
   }
 
-  var prefix$2 = "ProseMirror-menubar";
+  var prefix$1 = "ProseMirror-menubar";
 
   function buildMenuItems(context) {
       var groups = {
-          types:  {type: 'dropdown', id: 'type', toggleSelect: false, sortOrder: 100, label: context.translate("Type"), seperator: true, icon: icons.text, items: []},
-          marks:  {type: 'group', id: 'marks-group', sortOrder: 200, items: []},
-          format:  {type: 'group', id: 'format-group',  sortOrder: 300, items: [liftItem()]},
-          insert: {type: 'dropdown', id: 'insert-dropdown',  sortOrder: 400, label: context.translate("Insert"), seperator: true, icon: icons.image, items: []},
-          helper:  {type: 'group', id: 'helper-group',  hideOnCollapse: true, sortOrder: 500, items: [undoItem(), redoItem()]},
-          resize:  {type: 'group', id: 'resize-group', sortOrder: 600, items: []},
+          types: {
+              type: 'dropdown',
+              id: 'type',
+              toggleSelect: false,
+              sortOrder: 100,
+              title: context.translate("Type"),
+              seperator: true,
+              icon: icons.text,
+              items: []
+          },
+          marks: {type: 'group', id: 'marks-group', sortOrder: 200, items: []},
+          format: {type: 'group', id: 'format-group', sortOrder: 300, items: [liftItem()]},
+          insert: {
+              type: 'dropdown',
+              id: 'insert-dropdown',
+              sortOrder: 400,
+              title: context.translate("Insert"),
+              seperator: true,
+              icon: icons.image,
+              items: []
+          },
+          helper: {
+              type: 'group',
+              id: 'helper-group',
+              hideOnCollapse: true,
+              sortOrder: 500,
+              items: [undoItem(), redoItem()]
+          },
+          resize: {type: 'group', id: 'resize-group', sortOrder: 600, items: []},
       };
 
       var definitions = [groups.mode, groups.types, groups.insert, groups.marks, groups.format, groups.helper, groups.resize];
@@ -14156,34 +14540,34 @@
       var menuWrapperPlugins = [];
 
       context.plugins.forEach(function (plugin) {
-          if(plugin.menu) {
-              plugin.menu(context).forEach(function(menuDefinition) {
-                  if(checkMenuDefinition(context, menuDefinition)) {
+          if (plugin.menu) {
+              plugin.menu(context).forEach(function (menuDefinition) {
+                  if (checkMenuDefinition(context, menuDefinition)) {
 
-                      if(menuDefinition.type && menuDefinition.type === 'group') {
+                      if (menuDefinition.type && menuDefinition.type === 'group') {
                           definitions.push(menuDefinition);
                           return;
                       }
 
-                      if(menuDefinition.item && menuDefinition.id) {
+                      if (menuDefinition.item && menuDefinition.id) {
                           // transfer the id of the definition to the item itself
                           menuDefinition.item.options.id = menuDefinition.id;
                       }
 
-                      if(menuDefinition.group && groups[menuDefinition.group]) {
+                      if (menuDefinition.group && groups[menuDefinition.group]) {
                           groups[menuDefinition.group].items.push(menuDefinition.item);
-                      } else if(menuDefinition.item && !menuDefinition.group) {
+                      } else if (menuDefinition.item && !menuDefinition.group) {
                           definitions.push(menuDefinition.item);
                       }
                   }
               });
           }
 
-          if(plugin.menuGroups) {
+          if (plugin.menuGroups) {
               menuGroupPlugins.push(plugin);
           }
 
-          if(plugin.menuWrapper) {
+          if (plugin.menuWrapper) {
               menuWrapperPlugins.push(plugin);
           }
       });
@@ -14200,15 +14584,15 @@
   }
 
   function wrapMenuItem(plugin, context, menuItem) {
-      if(!menuItem) {
+      if (!menuItem) {
           return;
       }
 
-      if(!plugin.menuWrapper) {
+      if (!plugin.menuWrapper) {
           return;
       }
 
-      if($.isArray(menuItem)) {
+      if ($.isArray(menuItem)) {
           menuItem.forEach(function (item) {
               wrapMenuItem(plugin, context, item);
           });
@@ -14216,62 +14600,62 @@
 
       var wrapper = plugin.menuWrapper(context);
 
-      if(menuItem instanceof MenuItem) {
-          if(wrapper.run) {
+      if (menuItem instanceof MenuItem) {
+          if (wrapper.run) {
               var origCallback = menuItem.options.run;
-              menuItem.options.run = function(state, dispatch, view , evt) {
+              menuItem.options.run = function (state, dispatch, view, evt) {
                   var result = wrapper.run(menuItem, state, dispatch, view, evt);
-                  if(!result) {
+                  if (!result) {
                       origCallback.call(menuItem, state, dispatch, view, evt);
                   }
               };
           }
 
-          if(wrapper.active) {
+          if (wrapper.active) {
               var origCallback$1 = menuItem.options.active;
-              menuItem.options.active = function(state) {
+              menuItem.options.active = function (state) {
                   var origValue = origCallback$1 ? origCallback$1.call(menuItem, state) : false;
                   return wrapper.active(menuItem, state, origValue);
               };
           }
 
-          if(wrapper.enable) {
+          if (wrapper.enable) {
               var origCallback$2 = menuItem.options.enable;
-              menuItem.options.enable = function(state) {
+              menuItem.options.enable = function (state) {
                   var origValue = origCallback$2 ? origCallback$2.call(menuItem, state) : true;
                   return wrapper.enable(menuItem, state, origValue);
               };
           }
 
-          if(wrapper.select) {
+          if (wrapper.select) {
               var origCallback$3 = menuItem.options.select;
-              menuItem.options.select = function(state) {
+              menuItem.options.select = function (state) {
                   var origValue = origCallback$3 ? origCallback$3.call(menuItem, state) : true;
                   return wrapper.select(menuItem, state, origValue);
               };
           }
       }
 
-      if(menuItem.items) {
+      if (menuItem.items) {
           wrapMenuItem(plugin, context, menuItem.items);
       }
 
-      if(menuItem instanceof MenuItemGroup) {
-          wrapMenuItem(plugin,context, menuItem.content.items);
+      if (menuItem instanceof MenuItemGroup) {
+          wrapMenuItem(plugin, context, menuItem.content.items);
       }
   }
 
   function checkMenuDefinition(context, menuDefinition) {
-      if(!menuDefinition || menuDefinition.node && !context.schema.nodes[menuDefinition.node]) {
+      if (!menuDefinition || menuDefinition.node && !context.schema.nodes[menuDefinition.node]) {
           return false;
       }
 
-      if(menuDefinition.mark && !context.schema.marks[menuDefinition.mark]) {
+      if (menuDefinition.mark && !context.schema.marks[menuDefinition.mark]) {
           return false;
       }
 
       return !(context.options.menu && Array.isArray(context.options.menu.exclude)
-               && context.options.menu.exclude[menuDefinition.id]);
+          && context.options.menu.exclude[menuDefinition.id]);
 
   }
 
@@ -14310,7 +14694,6 @@
   function menuBar(options) {
       return new Plugin({
           view: function view(editorView) {
-              console.log(editorView);
               options.context.menu = new MenuBarView(editorView, options);
               options.context.event.trigger('afterMenuBarInit', options.context.menu);
               return options.context.menu;
@@ -14318,16 +14701,29 @@
       })
   }
 
+  function translate$1(view, text) {
+      return view._props.translate ? view._props.translate(text) : text
+  }
+
+
   var MenuBarView = function MenuBarView(editorView, options) {
       var this$1 = this;
 
       this.editorView = editorView;
       this.options = options;
       this.context = this.options.context;
+      this.focusIconIndex = 0;
 
-      this.wrapper = crelt("div", {class: prefix$2 + "-wrapper"});
-      this.menu = this.wrapper.appendChild(crelt("div", {class: prefix$2}));
-      this.menu.className = prefix$2;
+      this.wrapper = crelt("div", {class: prefix$1 + "-wrapper"});
+
+      this.menu = this.wrapper.appendChild(crelt("div", {
+          class: prefix$1,
+          'aria-label': translate$1(editorView, 'Text Formatting'),
+          'aria-controls': options.context.editor.$.attr('id'),
+          role: 'toolbar'
+      }));
+
+      this.menu.className = prefix$1;
       this.spacer = null;
 
       editorView.dom.parentNode.replaceChild(this.wrapper, editorView.dom);
@@ -14337,7 +14733,7 @@
       this.widthForMaxHeight = 0;
       this.floating = false;
 
-      this.groupItem = new MenuItemGroup(this.options.content);
+      this.groupItem = new MenuItemGroup(this.options.content, {id:'main-menu-group'});
 
       this.context.menuWrapperPlugins.forEach(function (plugin) {
           wrapMenuItem(plugin, this$1.context, this$1.groupItem);
@@ -14346,10 +14742,27 @@
       var dom = this.groupItem.render(this.editorView);
       this.menu.appendChild(dom);
 
-      $(this.menu).on('mousedown', function(evt) {
+      this.$ = $(this.menu);
+
+      this.$.on('mousedown', function (evt) {
           // Prevent focusout if we click outside of a menu item, but still inside menu container
           evt.preventDefault();
+      }).on("keydown", function (e) {
+          var keyCode = e.keyCode || e.which;
+
+          switch (keyCode) {
+              case 39: // ArrowRight
+                  e.preventDefault();
+                  this$1.focusNext();
+                  break;
+              case 37: // ArrowRight
+                  e.preventDefault();
+                  this$1.focusPrev();
+                  break;
+          }
       });
+
+      this.$.data('menuBarInstance', this);
 
       this.update();
 
@@ -14369,9 +14782,6 @@
   MenuBarView.prototype.update = function update () {
       this.groupItem.update(this.editorView.state, this.context);
 
-      var $mainGroup = $(this.menu).find('.'+prefix$2+'-menu-group:first');
-      $mainGroup.find('');
-
       if (this.floating) {
           this.updateScrollCursor();
       } else {
@@ -14383,7 +14793,88 @@
               this.maxHeight = this.menu.offsetHeight;
           }
       }
+
+      var currentTabindex = this.focusIconIndex;
+      this.$.find('.ProseMirror-icon').each(function (index) {
+          var $this = $(this);
+          var isVisible = $this.is(':visible');
+          var tabindex = -1;
+          var isCurrentIndex = index === currentTabindex;
+
+          if (!isVisible && isCurrentIndex) {
+              // Note here we expect the first menu item is always visible
+              $(this.groupItem.dom).find('.ProseMirror-icon:first').attr('tabindex', 0);
+          } else if (isCurrentIndex) {
+              tabindex = 0;
+          }
+
+          $this.attr('tabindex', tabindex);
+      });
+
       this.context.event.trigger('afterMenuBarUpdate', this);
+  };
+
+  MenuBarView.prototype.focusPrev = function focusPrev () {
+      var $prev = null;
+      var $focus = null;
+      var newFocusIconIndex = 0;
+      var $current = this.$.find('.ProseMirror-icon:focus');
+      var $items = this.$.find('.ProseMirror-icon');
+
+      $items.each(function (index) {
+          var $this = $(this);
+
+          if($this.is($current)) {
+              $focus = $prev;
+              newFocusIconIndex = index - 1;
+          }
+
+          $this.attr('tabindex', -1);
+
+          if($this.is(':visible')) {
+              $prev = $this;
+          }
+      });
+
+      if (!$focus) {
+          $focus = $items.last();
+          newFocusIconIndex = $items.length - 1;
+      }
+
+      this.focusIconIndex = newFocusIconIndex;
+
+      $focus.attr('tabindex', 0).focus();
+  };
+
+  MenuBarView.prototype.focusNext = function focusNext () {
+      var $next = null;
+      var newFocusIconIndex = 0;
+      var focusNextItem = false;
+      var $current = this.$.find('.ProseMirror-icon:focus');
+
+      this.$.find('.ProseMirror-icon').each(function (index) {
+          var $this = $(this);
+          if (!$this.is(':visible')) {
+              return;
+          }
+
+          if (focusNextItem) {
+              $next = $this;
+              focusNextItem = false;
+              newFocusIconIndex = index;
+          } else {
+              $this.attr('tabindex', -1);
+              focusNextItem = $this.is($current);
+          }
+      });
+
+      if (!$next) {
+          $next = this.$.find('.ProseMirror-icon:first');
+      }
+
+      this.focusIconIndex = newFocusIconIndex;
+
+      $next.attr('tabindex', 0).focus();
   };
 
   MenuBarView.prototype.updateScrollCursor = function updateScrollCursor () {
@@ -14420,7 +14911,7 @@
               this.menu.style.left = menuRect.left + "px";
               this.menu.style.width = menuRect.width + "px";
               this.menu.style.position = "fixed";
-              this.spacer = crel("div", {class: prefix$2 + "-spacer", style: ("height: " + (menuRect.height) + "px")});
+              this.spacer = crel("div", {class: prefix$1 + "-spacer", style: ("height: " + (menuRect.height) + "px")});
               parent.insertBefore(this.spacer, this.menu);
           }
       }
@@ -14445,16 +14936,16 @@
   var menu = /*#__PURE__*/Object.freeze({
     __proto__: null,
     menuBar: menuBar,
+    icons: icons,
+    Dropdown: Dropdown,
+    DropdownSubmenu: DropdownSubmenu,
+    MenuItem: MenuItem,
+    MenuItemGroup: MenuItemGroup,
     cmdItem: cmdItem,
     markItem: markItem,
     wrapSourceTextMark: wrapSourceTextMark,
     markActive: markActive,
     wrapListItem: wrapListItem,
-    MenuItem: MenuItem,
-    MenuItemGroup: MenuItemGroup,
-    Dropdown: Dropdown,
-    DropdownSubmenu: DropdownSubmenu,
-    icons: icons,
     joinUpItem: joinUpItem,
     liftItem: liftItem,
     selectParentNodeItem: selectParentNodeItem,
@@ -14469,7 +14960,7 @@
   var SVG$1 = "http://www.w3.org/2000/svg";
   var XLINK$1 = "http://www.w3.org/1999/xlink";
 
-  var prefix$3 = "ProseMirror-icon";
+  var prefix$2 = "ProseMirror-icon";
 
   function hashPath$1(path) {
     var hash = 0;
@@ -14480,7 +14971,7 @@
 
   function getIcon$1(icon) {
     var node = document.createElement("div");
-    node.className = prefix$3;
+    node.className = prefix$2;
     if (icon.path) {
       var name = "pm-icon-" + hashPath$1(icon.path).toString(16);
       if (!document.getElementById(name)) { buildSVG$1(name, icon); }
@@ -14498,10 +14989,10 @@
   }
 
   function buildSVG$1(name, data) {
-    var collection = document.getElementById(prefix$3 + "-collection");
+    var collection = document.getElementById(prefix$2 + "-collection");
     if (!collection) {
       collection = document.createElementNS(SVG$1, "svg");
-      collection.id = prefix$3 + "-collection";
+      collection.id = prefix$2 + "-collection";
       collection.style.display = "none";
       document.body.insertBefore(collection, document.body.firstChild);
     }
@@ -14530,12 +15021,12 @@
     var spec = this.spec;
     var dom = spec.render ? spec.render(view)
         : spec.icon ? getIcon$1(spec.icon)
-        : spec.label ? crelt("div", null, translate$1(view, spec.label))
+        : spec.label ? crelt("div", null, translate$2(view, spec.label))
         : null;
     if (!dom) { throw new RangeError("MenuItem without icon or label property") }
     if (spec.title) {
       var title = (typeof spec.title === "function" ? spec.title(view.state) : spec.title);
-      dom.setAttribute("title", translate$1(view, title));
+      dom.setAttribute("title", translate$2(view, title));
     }
     if (spec.class) { dom.classList.add(spec.class); }
     if (spec.css) { dom.style.cssText += spec.css; }
@@ -14567,7 +15058,7 @@
     return {dom: dom, update: update}
   };
 
-  function translate$1(view, text) {
+  function translate$2(view, text) {
     return view._props.translate ? view._props.translate(text) : text
   }
 
@@ -14647,8 +15138,8 @@
 
     var label = crelt("div", {class: prefix$1$1 + "-dropdown " + (this.options.class || ""),
                              style: this.options.css},
-                     translate$1(view, this.options.label));
-    if (this.options.title) { label.setAttribute("title", translate$1(view, this.options.title)); }
+                     translate$2(view, this.options.label));
+    if (this.options.title) { label.setAttribute("title", translate$2(view, this.options.title)); }
     var wrap = crelt("div", {class: prefix$1$1 + "-dropdown-wrap"}, label);
     var open = null, listeningOnClose = null;
     var close = function () {
@@ -14729,7 +15220,7 @@
   DropdownSubmenu$1.prototype.render = function render (view) {
     var items = renderDropdownItems(this.content, view);
 
-    var label = crelt("div", {class: prefix$1$1 + "-submenu-label"}, translate$1(view, this.options.label));
+    var label = crelt("div", {class: prefix$1$1 + "-submenu-label"}, translate$2(view, this.options.label));
     var wrap = crelt("div", {class: prefix$1$1 + "-submenu-wrap"}, label,
                    crelt("div", {class: prefix$1$1 + "-submenu"}, items.dom));
     var listeningOnClose = null;
@@ -17460,7 +17951,7 @@
     })
   }
 
-  var prefix$4 = "ProseMirror-prompt";
+  var prefix$3 = "ProseMirror-prompt";
 
   var Promt = function Promt(options) {
       this.options = options;
@@ -17469,7 +17960,7 @@
 
   Promt.prototype.render = function render () {
       $('.ProseMirror-prompt').remove();
-      this.$wrapper = $('<div>').addClass(prefix$4).appendTo($('body'));
+      this.$wrapper = $('<div>').addClass(prefix$3).appendTo($('body'));
       this.buildForm();
       this.initEvents();
       this.initWrapper();
@@ -17520,13 +18011,13 @@
   Promt.prototype.buildButtons = function buildButtons () {
           var this$1 = this;
 
-      this.$buttons = $('<div>').addClass(prefix$4 + "-buttons");
+      this.$buttons = $('<div>').addClass(prefix$3 + "-buttons");
       // TODO: translate text!
-      $('<button type="submit" class="btn btn-primary">').addClass(prefix$4 + "-submit").text('OK').appendTo(this.$buttons);
+      $('<button type="submit" class="btn btn-primary">').addClass(prefix$3 + "-submit").text('OK').appendTo(this.$buttons);
 
       this.$buttons.append(document.createTextNode(' '));
 
-      $('<button type="button" class="btn btn-default">').addClass(prefix$4 + "-cancel").text('Cancel').appendTo(this.$buttons)
+      $('<button type="button" class="btn btn-default">').addClass(prefix$3 + "-cancel").text('Cancel').appendTo(this.$buttons)
           .on('click', function () {this$1.close();});
 
       this.$form.append(this.$buttons);
@@ -75555,6 +76046,7 @@
           r["makeHead" + i] = blockTypeItem(context.schema.nodes.heading, {
               label: "H" + i,
               title: context.translate("Change to heading")+" " + i + ' (' + Array(i + 1).join("#") + ')',
+              id: 'makeHeading'+i,
               sortOrder: i,
               attrs: {level: i}
           });
@@ -79145,7 +79637,7 @@
           enable: function(menuItem, state, enabled) {
               var sourceMode = isSourceMode(state);
 
-              if(['source', 'resizeNav', 'fullScreen'].includes(menuItem.options.id)
+              if([ 'main-menu-group', 'source', 'source-group', 'resize-group', 'resizeNav', 'fullScreen'].includes(menuItem.options.id)
                   || (sourceMode &&  menuItem.runSource)) {
                   return enabled;
               }
@@ -79153,7 +79645,7 @@
               return sourceMode ? false : enabled;
           },
           active: function(menuItem, state, active) {
-              if(menuItem.options.id === 'source') {
+              if([ 'main-menu-group', 'source', 'source-group'].includes(menuItem.options.id)) {
                   return active;
               }
 

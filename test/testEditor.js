@@ -166,8 +166,11 @@ let menuItemDisabled = function(id) {
     return $('.ProseMirror-menu-'+id).is('.ProseMirror-menu-disabled');
 };
 
-let pressKey = function(key, code) {
-    $('.ProseMirror')[0].dispatchEvent(new KeyboardEvent('keydown', { key: key, code: code }));
+let pressKey = function(key, code, options) {
+    options = options || {};
+    options.key = key;
+    options.code = code;
+    $('.ProseMirror')[0].dispatchEvent(new KeyboardEvent('keydown', options));
 }
 
 let pressKeyArrowDown = function() {

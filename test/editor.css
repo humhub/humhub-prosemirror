@@ -627,7 +627,7 @@ ProsemirrorEditor img {
     display: none;
     min-width: 4em;
     left: 100%;
-    top: 0px;
+    top: 0;
 }
 .ProseMirror-menu-active {
     background: #eee;
