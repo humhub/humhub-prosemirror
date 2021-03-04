@@ -14695,8 +14695,6 @@
       }
 
       return !(menuDefinition.mark && !context.schema.marks[menuDefinition.mark]);
-
-
   }
 
   function isExcludedMenuItem(context, id)
@@ -76047,7 +76045,7 @@
           heading:  {
               sortOrder: 400,
               attrs: {level: {default: 1}},
-              content: "(text | image)*",
+              content: "inline*",
               group: "block",
               defining: true,
               parseDOM: [{tag: "h1", attrs: {level: 1}},
@@ -80028,7 +80026,6 @@
       }
 
       if(options.include) {
-          debugger;
           options.include.forEach(function (pluginId) {
               if(registry.pluginMap[pluginId] && result.findIndex(function (plugin) { return plugin.id === pluginId; }) === -1) {
                   result.push(registry.pluginMap[pluginId]);

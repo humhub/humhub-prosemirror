@@ -11,6 +11,7 @@ Changelog
 - Enh #39: Improved navigation toggle by `hideOnCollapse` menu item option instead of static selector
 - Enh #43: Added keyboard menu accessibility
 - Enh #48: Enhanced menu item visibility configuration
+- Enh #40: Emoji in headline creates new paragraph
 
 1.1.3 (Unreleased)
 -----------------------------------------
