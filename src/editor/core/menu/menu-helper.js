@@ -31,6 +31,8 @@ export function initMenuItemTrigger(view, options) {
             ? crelt(options.htmlNode, {}, translate(view, options.label))
             : null;
 
+    trigger.classList.add(buildMenuClass('trigger'));
+
     if(trigger) {
         setAttributesFromOptions(trigger, options);
     }

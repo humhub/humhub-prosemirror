@@ -3,6 +3,7 @@ import crelt from "crelt"
 import {Plugin} from "prosemirror-state"
 
 import {MenuItemGroup, MenuItem, icons, liftItem, redoItem, undoItem} from "./menu"
+import {buildMenuClass} from "./menu-helper";
 
 const prefix = "ProseMirror-menubar";
 
@@ -259,7 +260,7 @@ class MenuBarView {
                     e.preventDefault();
                     this.focusNext();
                     break;
-                case 37: // ArrowRight
+                case 37: // ArrowLeft
                     e.preventDefault();
                     this.focusPrev();
                     break;
@@ -299,7 +300,7 @@ class MenuBarView {
         }
 
         let currentTabindex = this.focusIconIndex;
-        this.$.find('.ProseMirror-icon').each(function (index) {
+        this.$.find('.'+buildMenuClass('trigger')).each(function (index) {
             let $this = $(this);
             let isVisible = $this.is(':visible');
             let tabindex = -1;
@@ -307,7 +308,7 @@ class MenuBarView {
 
             if (!isVisible && isCurrentIndex) {
                 // Note here we expect the first menu item is always visible
-                $(this.groupItem.dom).find('.ProseMirror-icon:first').attr('tabindex', 0);
+                $(this.groupItem.dom).find('.'+buildMenuClass('trigger:first')).attr('tabindex', 0);
             } else if (isCurrentIndex) {
                 tabindex = 0;
             }
@@ -322,8 +323,8 @@ class MenuBarView {
         let $prev = null;
         let $focus = null;
         let newFocusIconIndex = 0;
-        let $current = this.$.find('.ProseMirror-icon:focus');
-        let $items = this.$.find('.ProseMirror-icon');
+        let $current = this.$.find('.'+buildMenuClass('trigger:focus'));
+        let $items = this.$.find('.'+buildMenuClass('trigger'));
 
         $items.each(function (index) {
             let $this = $(this);
@@ -354,9 +355,9 @@ class MenuBarView {
         let $next = null;
         let newFocusIconIndex = 0;
         let focusNextItem = false;
-        let $current = this.$.find('.ProseMirror-icon:focus');
+        let $current = this.$.find('.'+buildMenuClass('trigger:focus'))
 
-        this.$.find('.ProseMirror-icon').each(function (index) {
+        this.$.find('.'+buildMenuClass('trigger')).each(function (index) {
             let $this = $(this);
             if (!$this.is(':visible')) {
                 return;
@@ -373,7 +374,7 @@ class MenuBarView {
         });
 
         if (!$next) {
-            $next = this.$.find('.ProseMirror-icon:first');
+            $next = this.$.find('.'+buildMenuClass('trigger:first'))
         }
 
         this.focusIconIndex = newFocusIconIndex;
