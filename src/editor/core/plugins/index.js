@@ -104,17 +104,17 @@ registerPreset('normal', {
     }
 });
 
+registerPreset('full', {
+    extend: 'normal'
+});
+
 registerPreset('document', {
-    extend: 'normal',
+    extend: 'full',
     callback: function(addToPreset) {
         addToPreset('anchor', 'document', {
             'before': 'fullscreen'
         });
     }
-});
-
-registerPreset('full', {
-    extend: 'normal'
 });
 
 class PresetManager {
@@ -132,7 +132,7 @@ class PresetManager {
     }
 
     static isCustomPluginSet(options) {
-        return !!options.exclude || !!options.include;
+        return !!options.exclude || !!options.include || !!options.only;
     }
 
     check(context) {
@@ -173,26 +173,40 @@ let getPlugins = function(context) {
     }
 
     let presetMap = registry.getPresetRegistry(context);
-
-    let toExtend = presetMap.get(options.preset) ?  presetMap.get(options.preset) : registry.plugins;
+    let toExtend = presetMap.get(options.preset) ? presetMap.get(options.preset) : registry.plugins;
 
     if(!PresetManager.isCustomPluginSet(options)) {
         return context.plugins = toExtend.slice();
     }
 
     let result = [];
+
+    if(options.only) {
+        options.only.forEach((pluginId) => {
+            if(registry.pluginMap[pluginId]) {
+                result.push(registry.pluginMap[pluginId]);
+            } else {
+                console.error('Could not include plugin '+pluginId+' plugin not registered!');
+            }
+        });
+
+        return context.plugins = result;
+    }
+
     if(options.exclude) {
         toExtend.forEach((plugin) => {
             if(plugin && !options.exclude.includes(plugin.id)) {
                 result.push(plugin);
             }
         });
+    } else {
+        result = toExtend.slice();
     }
 
     if(options.include) {
         options.include.forEach((pluginId) => {
-            if(registry.plugins[pluginId]) {
-                result.push(plugins[pluginId]);
+            if(registry.pluginMap[pluginId] && result.findIndex(plugin => plugin.id === pluginId) === -1) {
+                result.push(registry.pluginMap[pluginId]);
             } else {
                 console.error('Could not include plugin '+pluginId+' plugin not registered!');
             }

@@ -211,9 +211,9 @@ module.exports.selectSource = function(start, end, direction, editor) {
 }
 
 module.exports.expectMenuItemNotVisible = function (selector) {
-    expect($('.ProseMirror-menubar '+selector).is(':visible')).to.be.false;
+    expect($('.ProseMirror-menu-'+selector).is(':visible')).to.be.false;
 }
 
 module.exports.expectMenuItemVisible = function (selector) {
-    expect($('.ProseMirror-menubar '+selector).is(':visible')).to.be.true;
+    expect($('.ProseMirror-menu-'+selector).is(':visible')).to.be.true;
 }

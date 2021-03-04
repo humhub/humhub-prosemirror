@@ -85,8 +85,38 @@ function buildMenuItems(context) {
 
     context.menuWrapperPlugins = menuWrapperPlugins;
 
-    // TODO: fire event
-    return definitions;
+    return filterOutExcludes(context, definitions);
+}
+
+function filterOutExcludes(context, definition) {
+    if(!definition) {
+        return false;
+    }
+
+    if(Array.isArray(definition)) {
+        return definition.filter(item => {
+            return filterOutExcludes(context, item);
+        });
+    }
+
+    if(definition instanceof MenuItemGroup) {
+        definition.content.items = definition.content.items.filter(item => {
+            return filterOutExcludes(context, item);
+        });
+    }
+
+    if(typeof definition === 'object' && definition.items) {
+        definition.items = definition.items.filter(item => {
+            return filterOutExcludes(context, item);
+        });
+    }
+
+    let id = definition.id;
+    if(!id && definition.options) {
+        id = definition.options.id;
+    }
+
+    return definition && !isExcludedMenuItem(context, id);
 }
 
 function wrapMenuItem(plugin, context, menuItem) {
@@ -156,13 +186,23 @@ function checkMenuDefinition(context, menuDefinition) {
         return false;
     }
 
-    if (menuDefinition.mark && !context.schema.marks[menuDefinition.mark]) {
-        return false;
+    return !(menuDefinition.mark && !context.schema.marks[menuDefinition.mark]);
+}
+
+function isExcludedMenuItem(context, id)
+{
+    let presetOption = context.getPresetOption('menu', 'exclude', []);
+    if(Array.isArray(presetOption) && presetOption.includes(id)) {
+        return true;
     }
 
-    return !(context.options.menu && Array.isArray(context.options.menu.exclude)
-        && context.options.menu.exclude[menuDefinition.id]);
+    let globalOption = context.getGlobalOption('menu', 'exclude', []);
+    if(Array.isArray(globalOption) && globalOption.includes(id)) {
+        return true;
+    }
 
+    let contextOption = context.getPluginOption('menu', 'exclude', []);
+    return Array.isArray(contextOption) && contextOption.includes(id);
 }
 
 export function buildMenuBar(context) {

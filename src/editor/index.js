@@ -297,6 +297,7 @@ class MarkdownView extends BaseView {
 window.prosemirror = {
     MarkdownEditor: MarkdownEditor,
     MarkdownView: MarkdownView,
+    globalOptions: {},
     state: state,
     view: view,
     transform: transform,

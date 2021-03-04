@@ -134,7 +134,7 @@ export class Dropdown extends MenuItemGroup {
             if (!isMenuEvent(this.dom)) this.close()
         });
 
-        $('.'+buildMenuClass('submenu')).hide();
+        closeSubMenues();
 
         this.trigger.setAttribute('aria-expanded', 'true');
     }
@@ -145,7 +145,7 @@ export class Dropdown extends MenuItemGroup {
             $(window).off("mousedown.richtextMenu");
         }
 
-        $('.'+buildMenuClass('submenu')).hide();
+        closeSubMenues();
         this.trigger.setAttribute('aria-expanded', 'false');
     }
 
@@ -273,10 +273,15 @@ export class Dropdown extends MenuItemGroup {
         e.preventDefault();
         if (!this.selected || !this.enabled) return;
         markMenuEvent(e);
+
+        let wasOpen = this.isOpen();
+
         if (opened) {
             this.close();
-        } else {
-            this.open();
+        }
+
+        if(!wasOpen) {
+            this.open()
         }
     }
 
@@ -315,7 +320,7 @@ export class Dropdown extends MenuItemGroup {
         let done = false;
 
         function close() {
-            $('.'+buildMenuClass('submenu')).hide();
+            closeSubMenues();
             if (done) return;
             done = true;
             dom.removeChild(menuDOM);
@@ -333,4 +338,8 @@ export class Dropdown extends MenuItemGroup {
         this.menu = menuDOM;
         return {close, node: menuDOM}
     }
+}
+
+function closeSubMenues() {
+    $('.'+buildMenuClass('submenu')).css('display', '');
 }

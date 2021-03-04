@@ -46,25 +46,25 @@ describe("Plugin:resize_nav", () => {
     }
 
     let invisibleOnInit = [
-        ['helper-group', '.ProseMirror-menu-helper-group'],
-        ['format-group', '.ProseMirror-menu-format-group'],
-        ['fullscreen', '.ProseMirror-menu-fullScreen'],
-        ['insertTable', '.ProseMirror-menu-insertTable'],
+        ['helper-group', 'helper-group'],
+        ['format-group', 'format-group'],
+        ['fullscreen', 'fullScreen'],
+        ['insertTable', 'insertTable'],
     ];
 
     let visibleOnInit = [
-        ['emoji', '.ProseMirror-menu-insertEmoji'],
-        ['intert dropdown', '.ProseMirror-menu-insert-dropdown'],
-        ['marks-group', '.ProseMirror-menu-marks-group'],
-        ['text types', '.ProseMirror-menu-type'],
-        ['source', '.ProseMirror-menu-source-group'],
-        ['resize nav ', '.ProseMirror-menu-resizeNav'],
+        ['emoji', 'insertEmoji'],
+        ['insert dropdown', 'insert-dropdown'],
+        ['marks-group', 'marks-group'],
+        ['text types', 'type'],
+        ['source', 'source-group'],
+        ['resize nav ', 'resizeNav'],
     ]
 
-    invisibleOnInit.forEach((item) => testNotVisibleInMinimizedNav(item[0], item[1]));
-    visibleOnInit.forEach((item) => testVisibleInMinimzedNav(item[0], item[1]));
-    invisibleOnInit.concat(visibleOnInit).forEach((item) => testVisibleInExpandedNav(item[0], item[1]));
+    invisibleOnInit.forEach((item) => testNotVisibleInMinimizedNav(...item));
+    visibleOnInit.forEach((item) => testVisibleInMinimzedNav(...item));
+    invisibleOnInit.concat(visibleOnInit).forEach((item) => testVisibleInExpandedNav(...item));
 
-    invisibleOnInit.forEach((item) => testNotVisibleInCollapsedNav(item[0], item[1]));
-    visibleOnInit.forEach((item) => testVisibleInCollapsedNav(item[0], item[1]));
+    invisibleOnInit.forEach((item) => testNotVisibleInCollapsedNav(...item));
+    visibleOnInit.forEach((item) => testVisibleInCollapsedNav(...item));
 });

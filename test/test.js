@@ -6,8 +6,10 @@ mocha.setup("bdd")
 
 require("./core/test-editor")
 require("./core/test-view")
+require("./core/test-presets")
 
 require("./menu/test-menu-accessibility")
+require("./menu/test-menu-config")
 
 require("./plugins/blocks/test-blockquote")
 require("./plugins/blocks/test-codeblock")

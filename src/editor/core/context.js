@@ -39,12 +39,24 @@ export default class Context {
         this.options = options;
         this.options.preset = options.preset || 'full';
 
-        if(Array.isArray(options.exclude) && !options.exclude.length) {
+        if(Array.isArray(this.options.exclude) && !this.options.exclude.length) {
             this.options.exclude = undefined;
         }
 
-        if(Array.isArray(options.include) && !options.include.length) {
+        if(typeof this.options.exclude === 'string') {
+            this.options.exclude = [this.options.exclude];
+        }
+
+        if(Array.isArray(this.options.include) && !this.options.include.length) {
             this.options.include = undefined;
+        }
+
+        if(typeof this.options.include === 'string') {
+            this.options.include = [this.options.include];
+        }
+
+        if(!Array.isArray(this.options.only) || !this.options.only.length) {
+            this.options.only = undefined;
         }
 
         getPlugins(this);
@@ -55,8 +67,67 @@ export default class Context {
         this.event.trigger('clear');
     }
 
+    getGlobalOption(id, option, defaultValue) {
+        if(!window.prosemirror.globalOptions) {
+            return defaultValue;
+        }
+
+        if(option && typeof window.prosemirror.globalOptions[id] === 'undefined') {
+            return defaultValue;
+        }
+
+        if(!option) {
+            return window.prosemirror.globalOptions[id];
+        }
+
+        if(typeof window.prosemirror.globalOptions[id][option] === 'undefined') {
+            return defaultValue;
+        }
+
+        return window.prosemirror.globalOptions[id][option];
+    }
+
+    getPresetOption(id, option, defaultValue) {
+        if(!window.prosemirror.globalOptions || !window.prosemirror.globalOptions.presets) {
+            return defaultValue;
+        }
+
+        if(!window.prosemirror.globalOptions.presets[this.options.preset]
+            || !window.prosemirror.globalOptions.presets[this.options.preset][id]) {
+            return defaultValue;
+        }
+
+        if(!option) {
+            return window.prosemirror.globalOptions.presets[this.options.preset][id];
+        }
+
+        if(typeof window.prosemirror.globalOptions.presets[this.options.preset][id][option] === 'undefined') {
+            return defaultValue;
+        }
+
+        return window.prosemirror.globalOptions.presets[this.options.preset][id][option];
+    }
+
+    getOption(id, option, defaultValue) {
+        // First try fetching option from context
+        let result = this.getPluginOption(id, option);
+
+        // Then check for global option for current preset
+        if(!result) {
+            result = this.getPresetOption(id, option);
+        }
+
+        // Then check for global option
+        if(!result) {
+            result = this.getGlobalOption(id, option);
+        }
+
+        return typeof result !== 'undefined' ? result : defaultValue;
+    }
+
+
     getPluginOption(id, option, defaultValue) {
-        let pluginOptions =  this.options[id];
+        let pluginOptions = this.options[id];
 
         if(!option) {
             return pluginOptions;
@@ -79,7 +150,7 @@ export default class Context {
         return this.prosemirrorPlugins[id];
     }
 
-    getPlugin(id, prosemirror) {
+    getPlugin(id) {
         for(let i = 0; i < this.plugins.length; i++) {
             let plugin = this.plugins[i];
             if(plugin.id === id) {

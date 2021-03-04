@@ -13468,6 +13468,8 @@
               ? crelt(options.htmlNode, {}, translate(view, options.label))
               : null;
 
+      trigger.classList.add(buildMenuClass('trigger'));
+
       if(trigger) {
           setAttributesFromOptions(trigger, options);
       }
@@ -13937,7 +13939,7 @@
               if (!isMenuEvent(this$1.dom)) { this$1.close(); }
           });
 
-          $('.'+buildMenuClass('submenu')).hide();
+          closeSubMenues();
 
           this.trigger.setAttribute('aria-expanded', 'true');
       };
@@ -13948,7 +13950,7 @@
               $(window).off("mousedown.richtextMenu");
           }
 
-          $('.'+buildMenuClass('submenu')).hide();
+          closeSubMenues();
           this.trigger.setAttribute('aria-expanded', 'false');
       };
 
@@ -14076,9 +14078,14 @@
           e.preventDefault();
           if (!this.selected || !this.enabled) { return; }
           markMenuEvent(e);
+
+          var wasOpen = this.isOpen();
+
           if (opened) {
               this.close();
-          } else {
+          }
+
+          if(!wasOpen) {
               this.open();
           }
       };
@@ -14111,13 +14118,14 @@
       };
 
       Dropdown.prototype.expand = function expand (dom) {
+
           var menuDOM = crelt("div", {}, this.getContentDom());
           addMenuClass(menuDOM, 'dropdown-menu');
 
           var done = false;
 
           function close() {
-              $('.'+buildMenuClass('submenu')).hide();
+              closeSubMenues();
               if (done) { return; }
               done = true;
               dom.removeChild(menuDOM);
@@ -14138,6 +14146,10 @@
 
       return Dropdown;
   }(MenuItemGroup));
+
+  function closeSubMenues() {
+      $('.'+buildMenuClass('submenu')).css('display', '');
+  }
 
   // ::- Represents a submenu wrapping a group of elements that start
   // hidden and expand to the right when hovered over or tapped.
@@ -14227,10 +14239,12 @@
 
       DropdownSubmenu.prototype.open = function open () {
           this.getSubMenu().show();
+          this.trigger.setAttribute('aria-expanded', 'true');
       };
 
       DropdownSubmenu.prototype.close = function close () {
           this.getSubMenu().css('display', '');
+          this.trigger.setAttribute('aria-expanded', 'false');
       };
 
       DropdownSubmenu.prototype.getSubMenu = function getSubMenu () {
@@ -14579,8 +14593,38 @@
 
       context.menuWrapperPlugins = menuWrapperPlugins;
 
-      // TODO: fire event
-      return definitions;
+      return filterOutExcludes(context, definitions);
+  }
+
+  function filterOutExcludes(context, definition) {
+      if(!definition) {
+          return false;
+      }
+
+      if(Array.isArray(definition)) {
+          return definition.filter(function (item) {
+              return filterOutExcludes(context, item);
+          });
+      }
+
+      if(definition instanceof MenuItemGroup) {
+          definition.content.items = definition.content.items.filter(function (item) {
+              return filterOutExcludes(context, item);
+          });
+      }
+
+      if(typeof definition === 'object' && definition.items) {
+          definition.items = definition.items.filter(function (item) {
+              return filterOutExcludes(context, item);
+          });
+      }
+
+      var id = definition.id;
+      if(!id && definition.options) {
+          id = definition.options.id;
+      }
+
+      return definition && !isExcludedMenuItem(context, id);
   }
 
   function wrapMenuItem(plugin, context, menuItem) {
@@ -14650,13 +14694,25 @@
           return false;
       }
 
-      if (menuDefinition.mark && !context.schema.marks[menuDefinition.mark]) {
-          return false;
+      return !(menuDefinition.mark && !context.schema.marks[menuDefinition.mark]);
+
+
+  }
+
+  function isExcludedMenuItem(context, id)
+  {
+      var presetOption = context.getPresetOption('menu', 'exclude', []);
+      if(Array.isArray(presetOption) && presetOption.includes(id)) {
+          return true;
       }
 
-      return !(context.options.menu && Array.isArray(context.options.menu.exclude)
-          && context.options.menu.exclude[menuDefinition.id]);
+      var globalOption = context.getGlobalOption('menu', 'exclude', []);
+      if(Array.isArray(globalOption) && globalOption.includes(id)) {
+          return true;
+      }
 
+      var contextOption = context.getPluginOption('menu', 'exclude', []);
+      return Array.isArray(contextOption) && contextOption.includes(id);
   }
 
   function buildMenuBar(context) {
@@ -14755,7 +14811,7 @@
                   e.preventDefault();
                   this$1.focusNext();
                   break;
-              case 37: // ArrowRight
+              case 37: // ArrowLeft
                   e.preventDefault();
                   this$1.focusPrev();
                   break;
@@ -14795,7 +14851,7 @@
       }
 
       var currentTabindex = this.focusIconIndex;
-      this.$.find('.ProseMirror-icon').each(function (index) {
+      this.$.find('.'+buildMenuClass('trigger')).each(function (index) {
           var $this = $(this);
           var isVisible = $this.is(':visible');
           var tabindex = -1;
@@ -14803,7 +14859,7 @@
 
           if (!isVisible && isCurrentIndex) {
               // Note here we expect the first menu item is always visible
-              $(this.groupItem.dom).find('.ProseMirror-icon:first').attr('tabindex', 0);
+              $(this.groupItem.dom).find('.'+buildMenuClass('trigger:first')).attr('tabindex', 0);
           } else if (isCurrentIndex) {
               tabindex = 0;
           }
@@ -14818,8 +14874,8 @@
       var $prev = null;
       var $focus = null;
       var newFocusIconIndex = 0;
-      var $current = this.$.find('.ProseMirror-icon:focus');
-      var $items = this.$.find('.ProseMirror-icon');
+      var $current = this.$.find('.'+buildMenuClass('trigger:focus'));
+      var $items = this.$.find('.'+buildMenuClass('trigger'));
 
       $items.each(function (index) {
           var $this = $(this);
@@ -14850,9 +14906,9 @@
       var $next = null;
       var newFocusIconIndex = 0;
       var focusNextItem = false;
-      var $current = this.$.find('.ProseMirror-icon:focus');
+      var $current = this.$.find('.'+buildMenuClass('trigger:focus'));
 
-      this.$.find('.ProseMirror-icon').each(function (index) {
+      this.$.find('.'+buildMenuClass('trigger')).each(function (index) {
           var $this = $(this);
           if (!$this.is(':visible')) {
               return;
@@ -14869,7 +14925,7 @@
       });
 
       if (!$next) {
-          $next = this.$.find('.ProseMirror-icon:first');
+          $next = this.$.find('.'+buildMenuClass('trigger:first'));
       }
 
       this.focusIconIndex = newFocusIconIndex;
@@ -79874,17 +79930,17 @@
       }
   });
 
+  registerPreset('full', {
+      extend: 'normal'
+  });
+
   registerPreset('document', {
-      extend: 'normal',
+      extend: 'full',
       callback: function(addToPreset) {
           addToPreset('anchor', 'document', {
               'before': 'fullscreen'
           });
       }
-  });
-
-  registerPreset('full', {
-      extend: 'normal'
   });
 
   var PresetManager = function PresetManager(options) {
@@ -79901,7 +79957,7 @@
   };
 
   PresetManager.isCustomPluginSet = function isCustomPluginSet (options) {
-      return !!options.exclude || !!options.include;
+      return !!options.exclude || !!options.include || !!options.only;
   };
 
   PresetManager.prototype.check = function check (context) {
@@ -79941,26 +79997,41 @@
       }
 
       var presetMap = registry.getPresetRegistry(context);
-
-      var toExtend = presetMap.get(options.preset) ?  presetMap.get(options.preset) : registry.plugins;
+      var toExtend = presetMap.get(options.preset) ? presetMap.get(options.preset) : registry.plugins;
 
       if(!PresetManager.isCustomPluginSet(options)) {
           return context.plugins = toExtend.slice();
       }
 
       var result = [];
+
+      if(options.only) {
+          options.only.forEach(function (pluginId) {
+              if(registry.pluginMap[pluginId]) {
+                  result.push(registry.pluginMap[pluginId]);
+              } else {
+                  console.error('Could not include plugin '+pluginId+' plugin not registered!');
+              }
+          });
+
+          return context.plugins = result;
+      }
+
       if(options.exclude) {
           toExtend.forEach(function (plugin) {
               if(plugin && !options.exclude.includes(plugin.id)) {
                   result.push(plugin);
               }
           });
+      } else {
+          result = toExtend.slice();
       }
 
       if(options.include) {
+          debugger;
           options.include.forEach(function (pluginId) {
-              if(registry.plugins[pluginId]) {
-                  result.push(plugins[pluginId]);
+              if(registry.pluginMap[pluginId] && result.findIndex(function (plugin) { return plugin.id === pluginId; }) === -1) {
+                  result.push(registry.pluginMap[pluginId]);
               } else {
                   console.error('Could not include plugin '+pluginId+' plugin not registered!');
               }
@@ -81038,12 +81109,24 @@
       this.options = options;
       this.options.preset = options.preset || 'full';
 
-      if(Array.isArray(options.exclude) && !options.exclude.length) {
+      if(Array.isArray(this.options.exclude) && !this.options.exclude.length) {
           this.options.exclude = undefined;
       }
 
-      if(Array.isArray(options.include) && !options.include.length) {
+      if(typeof this.options.exclude === 'string') {
+          this.options.exclude = [this.options.exclude];
+      }
+
+      if(Array.isArray(this.options.include) && !this.options.include.length) {
           this.options.include = undefined;
+      }
+
+      if(typeof this.options.include === 'string') {
+          this.options.include = [this.options.include];
+      }
+
+      if(!Array.isArray(this.options.only) || !this.options.only.length) {
+          this.options.only = undefined;
       }
 
       getPlugins(this);
@@ -81054,8 +81137,67 @@
       this.event.trigger('clear');
   };
 
+  Context.prototype.getGlobalOption = function getGlobalOption (id, option, defaultValue) {
+      if(!window.prosemirror.globalOptions) {
+          return defaultValue;
+      }
+
+      if(option && typeof window.prosemirror.globalOptions[id] === 'undefined') {
+          return defaultValue;
+      }
+
+      if(!option) {
+          return window.prosemirror.globalOptions[id];
+      }
+
+      if(typeof window.prosemirror.globalOptions[id][option] === 'undefined') {
+          return defaultValue;
+      }
+
+      return window.prosemirror.globalOptions[id][option];
+  };
+
+  Context.prototype.getPresetOption = function getPresetOption (id, option, defaultValue) {
+      if(!window.prosemirror.globalOptions || !window.prosemirror.globalOptions.presets) {
+          return defaultValue;
+      }
+
+      if(!window.prosemirror.globalOptions.presets[this.options.preset]
+          || !window.prosemirror.globalOptions.presets[this.options.preset][id]) {
+          return defaultValue;
+      }
+
+      if(!option) {
+          return window.prosemirror.globalOptions.presets[this.options.preset][id];
+      }
+
+      if(typeof window.prosemirror.globalOptions.presets[this.options.preset][id][option] === 'undefined') {
+          return defaultValue;
+      }
+
+      return window.prosemirror.globalOptions.presets[this.options.preset][id][option];
+  };
+
+  Context.prototype.getOption = function getOption (id, option, defaultValue) {
+      // First try fetching option from context
+      var result = this.getPluginOption(id, option);
+
+      // Then check for global option for current preset
+      if(!result) {
+          result = this.getPresetOption(id, option);
+      }
+
+      // Then check for global option
+      if(!result) {
+          result = this.getGlobalOption(id, option);
+      }
+
+      return typeof result !== 'undefined' ? result : defaultValue;
+  };
+
+
   Context.prototype.getPluginOption = function getPluginOption (id, option, defaultValue) {
-      var pluginOptions =  this.options[id];
+      var pluginOptions = this.options[id];
 
       if(!option) {
           return pluginOptions;
@@ -81078,7 +81220,7 @@
       return this.prosemirrorPlugins[id];
   };
 
-  Context.prototype.getPlugin = function getPlugin (id, prosemirror) {
+  Context.prototype.getPlugin = function getPlugin (id) {
       for(var i = 0; i < this.plugins.length; i++) {
           var plugin = this.plugins[i];
           if(plugin.id === id) {
@@ -81392,6 +81534,7 @@
   window.prosemirror = {
       MarkdownEditor: MarkdownEditor,
       MarkdownView: MarkdownView,
+      globalOptions: {},
       state: state,
       view: view,
       transform: transform,
