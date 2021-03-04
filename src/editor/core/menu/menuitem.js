@@ -102,8 +102,11 @@ export class MenuItem {
     initEvents(view) {
         var runHandler = e => {
             e.preventDefault();
-            if (!$(this.dom).hasClass(buildMenuClass('disabled'))) {
+            if (!this.$.hasClass(buildMenuClass('disabled'))) {
                 this.options.run.call(this, view.state, view.dispatch, view, e);
+                if(!this.$.is(':visible')) {
+                    this.getMenuBar().focusPrev();
+                }
             }
         };
 

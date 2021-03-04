@@ -341,6 +341,7 @@ class MenuBarView {
         }
 
         let currentTabindex = this.focusIconIndex;
+        var that = this;
         this.$.find('.'+buildMenuClass('trigger')).each(function (index) {
             let $this = $(this);
             let isVisible = $this.is(':visible');
@@ -349,7 +350,7 @@ class MenuBarView {
 
             if (!isVisible && isCurrentIndex) {
                 // Note here we expect the first menu item is always visible
-                $(this.groupItem.dom).find('.'+buildMenuClass('trigger:first')).attr('tabindex', 0);
+                $(that.groupItem.dom).find('.'+buildMenuClass('trigger:first')).attr('tabindex', 0);
             } else if (isCurrentIndex) {
                 tabindex = 0;
             }
