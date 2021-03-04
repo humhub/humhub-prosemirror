@@ -46,8 +46,8 @@ describe("Plugin:resize_nav", () => {
     }
 
     let invisibleOnInit = [
-        ['helper-group', '.helper-group'],
-        ['format-group', '.format-group'],
+        ['helper-group', '.ProseMirror-menu-helper-group'],
+        ['format-group', '.ProseMirror-menu-format-group'],
         ['fullscreen', '.ProseMirror-menu-fullScreen'],
         ['insertTable', '.ProseMirror-menu-insertTable'],
     ];
@@ -55,9 +55,9 @@ describe("Plugin:resize_nav", () => {
     let visibleOnInit = [
         ['emoji', '.ProseMirror-menu-insertEmoji'],
         ['intert dropdown', '.ProseMirror-menu-insert-dropdown'],
-        ['marks-group', '.marks-group'],
+        ['marks-group', '.ProseMirror-menu-marks-group'],
         ['text types', '.ProseMirror-menu-type'],
-        ['source', '.source-group'],
+        ['source', '.ProseMirror-menu-source-group'],
         ['resize nav ', '.ProseMirror-menu-resizeNav'],
     ]
 
