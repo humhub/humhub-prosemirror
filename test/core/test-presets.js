@@ -93,13 +93,13 @@ describe("Core:presets", () => {
     });
 
     it("test extending a preset", (done) => {
-        window.prosemirror.plugin.registerPlugin({
+        window.humhubRichtext.plugin.registerPlugin({
             id: 'test',
             menu: (context) => [
                 {
                     id: 'testItem',
                     group: 'format',
-                    item: new window.prosemirror.menu.MenuItem({
+                    item: new window.humhubRichtext.menu.MenuItem({
                         run: (state, dispatch) => dispatch(state.tr.insertText("test!")),
                         label: 'test'
                     })

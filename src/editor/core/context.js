@@ -68,44 +68,44 @@ export default class Context {
     }
 
     getGlobalOption(id, option, defaultValue) {
-        if(!window.prosemirror.globalOptions) {
+        if(!window.humhubRichtext.globalOptions) {
             return defaultValue;
         }
 
-        if(option && typeof window.prosemirror.globalOptions[id] === 'undefined') {
+        if(option && typeof window.humhubRichtext.globalOptions[id] === 'undefined') {
             return defaultValue;
         }
 
         if(!option) {
-            return window.prosemirror.globalOptions[id];
+            return window.humhubRichtext.globalOptions[id];
         }
 
-        if(typeof window.prosemirror.globalOptions[id][option] === 'undefined') {
+        if(typeof window.humhubRichtext.globalOptions[id][option] === 'undefined') {
             return defaultValue;
         }
 
-        return window.prosemirror.globalOptions[id][option];
+        return window.humhubRichtext.globalOptions[id][option];
     }
 
     getPresetOption(id, option, defaultValue) {
-        if(!window.prosemirror.globalOptions || !window.prosemirror.globalOptions.presets) {
+        if(!window.humhubRichtext.globalOptions || !window.humhubRichtext.globalOptions.presets) {
             return defaultValue;
         }
 
-        if(!window.prosemirror.globalOptions.presets[this.options.preset]
-            || !window.prosemirror.globalOptions.presets[this.options.preset][id]) {
+        if(!window.humhubRichtext.globalOptions.presets[this.options.preset]
+            || !window.humhubRichtext.globalOptions.presets[this.options.preset][id]) {
             return defaultValue;
         }
 
         if(!option) {
-            return window.prosemirror.globalOptions.presets[this.options.preset][id];
+            return window.humhubRichtext.globalOptions.presets[this.options.preset][id];
         }
 
-        if(typeof window.prosemirror.globalOptions.presets[this.options.preset][id][option] === 'undefined') {
+        if(typeof window.humhubRichtext.globalOptions.presets[this.options.preset][id][option] === 'undefined') {
             return defaultValue;
         }
 
-        return window.prosemirror.globalOptions.presets[this.options.preset][id][option];
+        return window.humhubRichtext.globalOptions.presets[this.options.preset][id][option];
     }
 
     getOption(id, option, defaultValue) {

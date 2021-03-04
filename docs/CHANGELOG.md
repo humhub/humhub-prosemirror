@@ -13,6 +13,7 @@ Changelog
 - Enh #48: Enhanced menu item visibility configuration
 - Enh #40: Emoji in headline creates new paragraph
 
+
 1.1.3 (Unreleased)
 -----------------------------------------
 - Fix #31: Split list keymap not working
@@ -42,6 +43,7 @@ Changelog
 - Enh #10: Added image alignment setting
 - Fix: Prompt select field not working
 
+
 1.0.26 (May 20, 2020)
 -----------------------------------------
 - Fix: Disable emoji menu items in inline code
@@ -49,6 +51,7 @@ Changelog
 - Enh: Unified link creation and validation in `core/util/linkUtil.js`
 - Fix: Oembed not wrapped in `oembed_snippet` container when cached
 - Fix #11: Table cell paragraph always renders two line breaks
+
 
 1.0.25 (May 13, 2020)
 -----------------------------------------
@@ -62,13 +65,16 @@ Changelog
 - Fix: Anchor plugin broken due to restricted url validation
 - Fix: Disable link/image/file menu items in code blocks
 
+
 1.0.24 (April 18, 2020)
 -----------------------------------------
 - Fix: Removed debugger statement
 
+
 1.0.23 (April 17, 2020)
 -----------------------------------------
 - Fix: Add additional link href protocol check
+
 
 1.0.22 (April 06, 2020)
 -----------------------------------------
@@ -82,6 +88,7 @@ Changelog
 - Enh: Added Tab navigation in emoji chooser
 - Fix: Richtext list menu item disappears https://github.com/humhub/humhub/issues/3890 
 
+
 1.0.20 (February 27, 2020)
 -----------------------------------------
 - Fix: Emoji chooser won't work after pjax page switch https://github.com/humhub/humhub/issues/3866 
@@ -94,6 +101,7 @@ Changelog
 - Fix: https://github.com/humhub/humhub/issues/3793 pipe character not escaped in tables
 - Fix: https://github.com/humhub/humhub/issues/3827 emoji/mention input rule add duplicate character on IME
 - Fix: util.hasMark not working when MarkType is given
+
 
 1.0.18 (December 11, 2019)
 -----------------------------------------
@@ -112,9 +120,11 @@ Changelog
 - Fix: Image edit button not visible because of z-index
 - Fix: Image edit menu not removed after cancel edit
 
+
 1.0.17 (October, 16, 2019)
 -----------------------------------------
 - Fix: removed non devDependencies
+
 
 1.0.16 (October, 16, 2019)
 -----------------------------------------
@@ -138,6 +148,7 @@ Changelog
 - Fix: Removed redundant `afterInit` call
 - Fix: max_height plugin triggers `scrollActive` for empty/invisible editor states
 - Enh: Added `MarkdownEditor.isEmpty()`
+
 
 1.0.12 (October 11, 2018)
 -----------------------------------------

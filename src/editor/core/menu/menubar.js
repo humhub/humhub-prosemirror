@@ -284,6 +284,7 @@ class MenuBarView {
             wrapMenuItem(plugin, this.context, this.groupItem);
         });
 
+        // TODO: In case of focus menu render only on first focus
         let dom = this.groupItem.render(this.editorView);
         this.menu.appendChild(dom);
 

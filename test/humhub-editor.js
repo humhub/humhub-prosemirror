@@ -14793,6 +14793,7 @@
           wrapMenuItem(plugin, this$1.context, this$1.groupItem);
       });
 
+      // TODO: In case of focus menu render only on first focus
       var dom = this.groupItem.render(this.editorView);
       this.menu.appendChild(dom);
 
@@ -81135,44 +81136,44 @@
   };
 
   Context.prototype.getGlobalOption = function getGlobalOption (id, option, defaultValue) {
-      if(!window.prosemirror.globalOptions) {
+      if(!window.humhubRichtext.globalOptions) {
           return defaultValue;
       }
 
-      if(option && typeof window.prosemirror.globalOptions[id] === 'undefined') {
+      if(option && typeof window.humhubRichtext.globalOptions[id] === 'undefined') {
           return defaultValue;
       }
 
       if(!option) {
-          return window.prosemirror.globalOptions[id];
+          return window.humhubRichtext.globalOptions[id];
       }
 
-      if(typeof window.prosemirror.globalOptions[id][option] === 'undefined') {
+      if(typeof window.humhubRichtext.globalOptions[id][option] === 'undefined') {
           return defaultValue;
       }
 
-      return window.prosemirror.globalOptions[id][option];
+      return window.humhubRichtext.globalOptions[id][option];
   };
 
   Context.prototype.getPresetOption = function getPresetOption (id, option, defaultValue) {
-      if(!window.prosemirror.globalOptions || !window.prosemirror.globalOptions.presets) {
+      if(!window.humhubRichtext.globalOptions || !window.humhubRichtext.globalOptions.presets) {
           return defaultValue;
       }
 
-      if(!window.prosemirror.globalOptions.presets[this.options.preset]
-          || !window.prosemirror.globalOptions.presets[this.options.preset][id]) {
+      if(!window.humhubRichtext.globalOptions.presets[this.options.preset]
+          || !window.humhubRichtext.globalOptions.presets[this.options.preset][id]) {
           return defaultValue;
       }
 
       if(!option) {
-          return window.prosemirror.globalOptions.presets[this.options.preset][id];
+          return window.humhubRichtext.globalOptions.presets[this.options.preset][id];
       }
 
-      if(typeof window.prosemirror.globalOptions.presets[this.options.preset][id][option] === 'undefined') {
+      if(typeof window.humhubRichtext.globalOptions.presets[this.options.preset][id][option] === 'undefined') {
           return defaultValue;
       }
 
-      return window.prosemirror.globalOptions.presets[this.options.preset][id][option];
+      return window.humhubRichtext.globalOptions.presets[this.options.preset][id][option];
   };
 
   Context.prototype.getOption = function getOption (id, option, defaultValue) {
@@ -81528,7 +81529,7 @@
       return MarkdownView;
   }(BaseView));
 
-  window.prosemirror = {
+  window.prosemirror = window.humhubRichtext = {
       MarkdownEditor: MarkdownEditor,
       MarkdownView: MarkdownView,
       globalOptions: {},
@@ -81553,5 +81554,11 @@
       $node: $node,
       MentionProvider: MentionProvider
   };
+
+  if(window.humhub && window.humhub.module) {
+      window.humhub.module('ui.richtext', function(module) {
+          module.export(window.humhubRichtext);
+      });
+  }
 
 }());

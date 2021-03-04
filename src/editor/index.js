@@ -294,7 +294,7 @@ class MarkdownView extends BaseView {
     }
 }
 
-window.prosemirror = {
+window.prosemirror = window.humhubRichtext = {
     MarkdownEditor: MarkdownEditor,
     MarkdownView: MarkdownView,
     globalOptions: {},
@@ -319,3 +319,9 @@ window.prosemirror = {
     $node: $node,
     MentionProvider: MentionProvider
 };
+
+if(window.humhub && window.humhub.module) {
+    window.humhub.module('ui.richtext', function(module) {
+        module.export(window.humhubRichtext);
+    });
+}

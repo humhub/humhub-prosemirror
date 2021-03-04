@@ -7,7 +7,7 @@ const {initEditor,clickMenuItem, expectMenuItemNotVisible, expectMenuItemVisible
 describe("Menu:configuration", () => {
 
     it("test exclude menu item by global config", (done) => {
-        window.prosemirror.globalOptions = {
+        window.humhubRichtext.globalOptions = {
             menu: {
                 'exclude': ['insertTable']
             }
@@ -15,12 +15,12 @@ describe("Menu:configuration", () => {
 
         initEditor({exclude: ['resizeNav']});
         expectMenuItemNotVisible('insertTable');
-        window.prosemirror.globalOptions = {};
+        window.humhubRichtext.globalOptions = {};
         done();
     });
 
     it("test exclude dropdown item by global config", (done) => {
-        window.prosemirror.globalOptions = {
+        window.humhubRichtext.globalOptions = {
             menu: {
                 'exclude': ['makeHeading1']
             }
@@ -29,12 +29,12 @@ describe("Menu:configuration", () => {
         initEditor({exclude: ['resizeNav']});
         clickMenuItem('type ');
         expect($('.ProseMirror-menu-makeHeading1').length).to.equal(0)
-        window.prosemirror.globalOptions = {};
+        window.humhubRichtext.globalOptions = {};
         done();
     });
 
     it("test exclude menu-group item by global config", (done) => {
-        window.prosemirror.globalOptions = {
+        window.humhubRichtext.globalOptions = {
             menu: {
                 'exclude': ['marks-group']
             }
@@ -42,12 +42,12 @@ describe("Menu:configuration", () => {
 
         initEditor({exclude: ['resizeNav']});
         expectMenuItemNotVisible('marks-group');
-        window.prosemirror.globalOptions = {};
+        window.humhubRichtext.globalOptions = {};
         done();
     });
 
     it("test exclude menu item by preset config", (done) => {
-        window.prosemirror.globalOptions = {
+        window.humhubRichtext.globalOptions = {
             presets : {
                 markdown: {
                     menu: {
@@ -62,7 +62,7 @@ describe("Menu:configuration", () => {
 
         initEditor({preset: 'full', exclude: ['resizeNav']});
         expectMenuItemVisible('insertTable');
-        window.prosemirror.globalOptions = {};
+        window.humhubRichtext.globalOptions = {};
         done();
     });
 

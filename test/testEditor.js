@@ -14,7 +14,7 @@ module.exports.initEditor = function(options, init) {
 
     options = options || {edit : true};
 
-    editorInstance = new window.prosemirror.MarkdownEditor("#stage", options);
+    editorInstance = new window.humhubRichtext.MarkdownEditor("#stage", options);
 
     editorInstance.init(init);
 
@@ -29,7 +29,7 @@ module.exports.initView = function(options, init) {
 
     options = options || {edit : false};
 
-    richtextView = new window.prosemirror.MarkdownView("#result", options);
+    richtextView = new window.humhubRichtext.MarkdownView("#result", options);
 
     richtextView.init(init);
 
