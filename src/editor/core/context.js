@@ -68,44 +68,44 @@ export default class Context {
     }
 
     getGlobalOption(id, option, defaultValue) {
-        if(!window.humhubRichtext.globalOptions) {
-            return defaultValue;
-        }
+        let globalOptions = this.getGlobalOptions();
 
-        if(option && typeof window.humhubRichtext.globalOptions[id] === 'undefined') {
+        if(option && typeof globalOptions[id] === 'undefined') {
             return defaultValue;
         }
 
         if(!option) {
-            return window.humhubRichtext.globalOptions[id];
+            return globalOptions[id];
         }
 
-        if(typeof window.humhubRichtext.globalOptions[id][option] === 'undefined') {
+        if(typeof globalOptions[id][option] === 'undefined') {
             return defaultValue;
         }
 
-        return window.humhubRichtext.globalOptions[id][option];
+        return globalOptions[id][option];
     }
 
     getPresetOption(id, option, defaultValue) {
-        if(!window.humhubRichtext.globalOptions || !window.humhubRichtext.globalOptions.presets) {
+        let globalOptions = this.getGlobalOptions();
+
+        if(!globalOptions.presets) {
             return defaultValue;
         }
 
-        if(!window.humhubRichtext.globalOptions.presets[this.options.preset]
-            || !window.humhubRichtext.globalOptions.presets[this.options.preset][id]) {
+        if(!globalOptions.presets[this.options.preset]
+            || !globalOptions.presets[this.options.preset][id]) {
             return defaultValue;
         }
 
         if(!option) {
-            return window.humhubRichtext.globalOptions.presets[this.options.preset][id];
+            return globalOptions.presets[this.options.preset][id];
         }
 
-        if(typeof window.humhubRichtext.globalOptions.presets[this.options.preset][id][option] === 'undefined') {
+        if(typeof globalOptions.presets[this.options.preset][id][option] === 'undefined') {
             return defaultValue;
         }
 
-        return window.humhubRichtext.globalOptions.presets[this.options.preset][id][option];
+        return globalOptions.presets[this.options.preset][id][option];
     }
 
     getOption(id, option, defaultValue) {
@@ -139,11 +139,29 @@ export default class Context {
     }
 
     translate(key) {
-        if(!this.options.translate) {
+        let translateOption = this.options.translate || this.getGlobalOptions().translate;
+
+        if(!translateOption) {
             return key;
         }
 
-        return this.options.translate(key) || key;
+        if(typeof translateOption === 'function') {
+            return translateOption(key) || key;
+        }
+
+        if(typeof translateOption === 'object') {
+            return translateOption[key] || key;
+        }
+
+        return key;
+    }
+
+    getGlobalOptions() {
+        if(!window.humhub.richtext.globalOptions) {
+            window.humhub.richtext.globalOptions = {};
+        }
+
+        return window.humhub.richtext.globalOptions;
     }
 
     getProsemirrorPlugins(id, prosemirror) {

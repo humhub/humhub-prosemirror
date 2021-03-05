@@ -93,13 +93,13 @@ describe("Core:presets", () => {
     });
 
     it("test extending a preset", (done) => {
-        window.humhubRichtext.plugin.registerPlugin({
+        window.humhub.richtext.plugin.registerPlugin({
             id: 'test',
             menu: (context) => [
                 {
                     id: 'testItem',
                     group: 'format',
-                    item: new window.humhubRichtext.menu.MenuItem({
+                    item: new window.humhub.richtext.menu.MenuItem({
                         run: (state, dispatch) => dispatch(state.tr.insertText("test!")),
                         label: 'test'
                     })

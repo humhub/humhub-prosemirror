@@ -96,3 +96,26 @@ let editor1 = new MarkdownEditor('#stage1', {
     }
 });
 ```
+
+## Translation
+
+You can define a translation map or callback on global or instance level. This is only required outside a
+HumHub environment.
+
+```
+let editor1 = new MarkdownEditor('#stage1', {
+    translate: {
+        translate: {
+            'Test me!': 'Teste mich!'
+        }
+    }
+});
+```
+
+```
+ window.humhub.richtext.globalOptions = { 
+     translate: (key) => { 
+         return { 'Test me!': 'Teste mich!'}[key]
+     }
+ };
+```
