@@ -66,9 +66,5 @@ export function setupPlugins(context) {
         })
     ]);
 
-    if (context.options.history !== false) {
-        result.push(history())
-    }
-
     return result.concat(buildPlugins(context));
 }

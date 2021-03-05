@@ -35,7 +35,7 @@ function buildMenuItems(context) {
             id: 'helper-group',
             hideOnCollapse: true,
             sortOrder: 500,
-            items: [undoItem(), redoItem()]
+            items: []
         },
         resize: {type: 'group', id: 'resize-group', sortOrder: 600, items: []},
     };

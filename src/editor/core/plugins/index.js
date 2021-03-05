@@ -40,6 +40,7 @@ import resizeNav from "./resize_nav";
 import maxHeight from "./max_height";
 import save from "./save";
 import source from "./source";
+import historyPlugin from "./history";
 import {PluginRegistry} from "./registry";
 
 const registry = new PluginRegistry();
@@ -53,6 +54,7 @@ let registerPreset = function(id, plugins) {
 };
 
 registerPlugin(doc, 'markdown');
+registerPlugin(historyPlugin, 'markdown');
 registerPlugin(focus, 'markdown');
 registerPlugin(clipboard, 'markdown');
 registerPlugin(loader, 'markdown');

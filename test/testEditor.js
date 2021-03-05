@@ -14,7 +14,7 @@ module.exports.initEditor = function(options, init) {
 
     options = options || {edit : true};
 
-    editorInstance = new window.humhubRichtext.MarkdownEditor("#stage", options);
+    editorInstance = new window.humhub.richtext.MarkdownEditor("#stage", options);
 
     editorInstance.init(init);
 
@@ -29,7 +29,7 @@ module.exports.initView = function(options, init) {
 
     options = options || {edit : false};
 
-    richtextView = new window.humhubRichtext.MarkdownView("#result", options);
+    richtextView = new window.humhub.richtext.MarkdownView("#result", options);
 
     richtextView.init(init);
 

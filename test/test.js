@@ -7,6 +7,7 @@ mocha.setup("bdd")
 require("./core/test-editor")
 require("./core/test-view")
 require("./core/test-presets")
+require("./core/test-translate")
 
 require("./menu/test-menu-accessibility")
 require("./menu/test-menu-config")
@@ -18,6 +19,8 @@ require("./plugins/marks/test-strong")
 require("./plugins/marks/test-em")
 require("./plugins/marks/test-strike")
 require("./plugins/marks/test-code")
+
+require("./plugins/history/test-history")
 
 require("./plugins/source/test-source")
 require("./plugins/max_height/test-maxheight")

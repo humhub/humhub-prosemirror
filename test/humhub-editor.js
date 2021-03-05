@@ -13620,8 +13620,11 @@
 
       var runHandler = function (e) {
           e.preventDefault();
-          if (!$(this$1.dom).hasClass(buildMenuClass('disabled'))) {
+          if (!this$1.$.hasClass(buildMenuClass('disabled'))) {
               this$1.options.run.call(this$1, view.state, view.dispatch, view, e);
+              if(!this$1.$.is(':visible')) {
+                  this$1.getMenuBar().focusPrev();
+              }
           }
       };
 
@@ -14543,7 +14546,7 @@
               id: 'helper-group',
               hideOnCollapse: true,
               sortOrder: 500,
-              items: [undoItem(), redoItem()]
+              items: []
           },
           resize: {type: 'group', id: 'resize-group', sortOrder: 600, items: []},
       };
@@ -14850,6 +14853,7 @@
       }
 
       var currentTabindex = this.focusIconIndex;
+      var that = this;
       this.$.find('.'+buildMenuClass('trigger')).each(function (index) {
           var $this = $(this);
           var isVisible = $this.is(':visible');
@@ -14858,7 +14862,7 @@
 
           if (!isVisible && isCurrentIndex) {
               // Note here we expect the first menu item is always visible
-              $(this.groupItem.dom).find('.'+buildMenuClass('trigger:first')).attr('tabindex', 0);
+              $(that.groupItem.dom).find('.'+buildMenuClass('trigger:first')).attr('tabindex', 0);
           } else if (isCurrentIndex) {
               tabindex = 0;
           }
@@ -79727,6 +79731,45 @@
       },
   };
 
+  /*
+   * @link https://www.humhub.org/
+   * @copyright Copyright (c) 2018 HumHub GmbH & Co. KG
+   * @license https://www.humhub.com/licences
+   *
+   */
+
+  function menu$l(context) {
+      debugger;
+      return [
+          {
+              id: 'undo',
+              group: 'helper',
+              item: undoItem()
+          },
+          {
+              id: 'redo',
+              group: 'helper',
+              item: redoItem()
+          } ]
+  }
+
+  /*
+   * @link https://www.humhub.org/
+   * @copyright Copyright (c) 2018 HumHub GmbH & Co. KG
+   * @license https://www.humhub.com/licences
+   *
+   */
+
+  var historyPlugin = {
+      id: 'history',
+      menu: function (context) { return menu$l(); },
+      plugins: function (context) {
+          return [
+              history()
+          ]
+      }
+  };
+
   var PluginRegistry = function PluginRegistry() {
       this.plugins = [];
       this.pluginMap = {};
@@ -79878,6 +79921,7 @@
   };
 
   registerPlugin(doc$1, 'markdown');
+  registerPlugin(historyPlugin, 'markdown');
   registerPlugin(focus, 'markdown');
   registerPlugin(clipboard$2, 'markdown');
   registerPlugin(loader$1, 'markdown');
@@ -80931,10 +80975,6 @@
           })
       ]);
 
-      if (context.options.history !== false) {
-          result.push(history());
-      }
-
       return result.concat(buildPlugins(context));
   }
 
@@ -81136,44 +81176,44 @@
   };
 
   Context.prototype.getGlobalOption = function getGlobalOption (id, option, defaultValue) {
-      if(!window.humhubRichtext.globalOptions) {
-          return defaultValue;
-      }
+      var globalOptions = this.getGlobalOptions();
 
-      if(option && typeof window.humhubRichtext.globalOptions[id] === 'undefined') {
+      if(option && typeof globalOptions[id] === 'undefined') {
           return defaultValue;
       }
 
       if(!option) {
-          return window.humhubRichtext.globalOptions[id];
+          return globalOptions[id];
       }
 
-      if(typeof window.humhubRichtext.globalOptions[id][option] === 'undefined') {
+      if(typeof globalOptions[id][option] === 'undefined') {
           return defaultValue;
       }
 
-      return window.humhubRichtext.globalOptions[id][option];
+      return globalOptions[id][option];
   };
 
   Context.prototype.getPresetOption = function getPresetOption (id, option, defaultValue) {
-      if(!window.humhubRichtext.globalOptions || !window.humhubRichtext.globalOptions.presets) {
+      var globalOptions = this.getGlobalOptions();
+
+      if(!globalOptions.presets) {
           return defaultValue;
       }
 
-      if(!window.humhubRichtext.globalOptions.presets[this.options.preset]
-          || !window.humhubRichtext.globalOptions.presets[this.options.preset][id]) {
+      if(!globalOptions.presets[this.options.preset]
+          || !globalOptions.presets[this.options.preset][id]) {
           return defaultValue;
       }
 
       if(!option) {
-          return window.humhubRichtext.globalOptions.presets[this.options.preset][id];
+          return globalOptions.presets[this.options.preset][id];
       }
 
-      if(typeof window.humhubRichtext.globalOptions.presets[this.options.preset][id][option] === 'undefined') {
+      if(typeof globalOptions.presets[this.options.preset][id][option] === 'undefined') {
           return defaultValue;
       }
 
-      return window.humhubRichtext.globalOptions.presets[this.options.preset][id][option];
+      return globalOptions.presets[this.options.preset][id][option];
   };
 
   Context.prototype.getOption = function getOption (id, option, defaultValue) {
@@ -81207,11 +81247,29 @@
   };
 
   Context.prototype.translate = function translate (key) {
-      if(!this.options.translate) {
+      var translateOption = this.options.translate || this.getGlobalOptions().translate;
+
+      if(!translateOption) {
           return key;
       }
 
-      return this.options.translate(key) || key;
+      if(typeof translateOption === 'function') {
+          return translateOption(key) || key;
+      }
+
+      if(typeof translateOption === 'object') {
+          return translateOption[key] || key;
+      }
+
+      return key;
+  };
+
+  Context.prototype.getGlobalOptions = function getGlobalOptions () {
+      if(!window.humhub.richtext.globalOptions) {
+          window.humhub.richtext.globalOptions = {};
+      }
+
+      return window.humhub.richtext.globalOptions;
   };
 
   Context.prototype.getProsemirrorPlugins = function getProsemirrorPlugins (id, prosemirror) {
@@ -81529,7 +81587,9 @@
       return MarkdownView;
   }(BaseView));
 
-  window.prosemirror = window.humhubRichtext = {
+  window.humhub = window.humhub || {};
+
+  window.prosemirror = window.humhub.richtext = {
       MarkdownEditor: MarkdownEditor,
       MarkdownView: MarkdownView,
       globalOptions: {},
@@ -81557,7 +81617,7 @@
 
   if(window.humhub && window.humhub.module) {
       window.humhub.module('ui.richtext', function(module) {
-          module.export(window.humhubRichtext);
+          module.export(window.humhub.richtext);
       });
   }
 
