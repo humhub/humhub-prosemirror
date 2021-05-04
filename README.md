@@ -5,7 +5,7 @@
 In order to build the project, run the following command:
 
 ```
-grunt build
+grunt rollup
 ```
 
 ## Test environment
