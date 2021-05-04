@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.1.4 (May 5, 2021)
+-----------------------------------------
+- Fix #57: Fix updating changes in hidden textarea after uploading file into not focused editor
+
+
 1.1.3 (March 1, 2021)
 -----------------------------------------
 - Fix #31: Split list keymap not working
