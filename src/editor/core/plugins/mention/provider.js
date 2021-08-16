@@ -8,7 +8,9 @@
 let MentionProvider = function(options) {
     this.event = $({});
     this.options = options;
-    this.options.minInput = this.options.minInput || 2;
+    if (typeof this.options.minInput === 'undefined') {
+        this.options.minInput = 2;
+    }
     this.options.minInputText = this.options.minInputText || 'Please type at least '+this.options.minInput+' characters';
 };
 
@@ -16,7 +18,7 @@ MentionProvider.prototype.query = function(state, node) {
     this.state = state;
     this.$node = $(node);
 
-    if(this.state.query.length < this.options.minInput) {
+    if(this.options.minInput > 0 && this.state.query.length < this.options.minInput) {
         this.result = {text: this.options.minInputText};
         this.update();
         return;
