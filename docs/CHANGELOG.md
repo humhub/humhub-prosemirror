@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.1.6 ()
+--------
+- Enh #63: Mentioning provider allow 0 chars input size
+
+
 1.1.5 (May 5, 2021)
 -----------------------------------------
 - Fix #57: Fix updating changes in hidden textarea after uploading file into not focused editor
