@@ -49,6 +49,7 @@
     "prosemirror-transform": "^1.2.11",
     "prosemirror-view": "^1.17.6",
     "rollup": "^2.39.0",
+    "rollup-plugin-node-builtins": "^2.0.0",
     "twemoji": "^13.0.1"
   }
 }
