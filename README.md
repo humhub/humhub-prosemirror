@@ -17,6 +17,7 @@ to your own `dist` directory e.g. `'/humhub-prosemirror/dist'` and to enable the
 
 ``` 
 git pull
+grunt rollup
 npm version 1.1.7
 npm publish
 git push

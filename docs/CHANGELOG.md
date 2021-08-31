@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.1.6 (August 31, 2021)
+1.1.7 (August 31, 2021)
 -----------------------
 - Enh #63: Mentioning provider allow 0 chars input size
 
