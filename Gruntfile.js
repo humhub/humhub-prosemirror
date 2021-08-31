@@ -5,6 +5,7 @@ module.exports = function(grunt) {
     let rollupPluginJson = require('@rollup/plugin-json');
     let rollupPluginBuble = require('@rollup/plugin-buble');
     let rollupPluginReplace = require('@rollup/plugin-replace');
+    let rollupPluginNodeBuiltins = require('@crokita/rollup-plugin-node-builtins');
 
 
     grunt.initConfig({
@@ -23,6 +24,7 @@ module.exports = function(grunt) {
                 sourceMap: true,
                 plugins: function () {
                     return [
+                        rollupPluginNodeBuiltins(),
                         rollupPluginNodeResolve({
                             main: true,
                             preferBuiltins: false,
