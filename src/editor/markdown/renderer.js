@@ -20,7 +20,8 @@ let getRenderer = (context) => {
 };
 
 let createRenderer = function(context) {
-    let markdownItOptions = context && context.options.markdownIt || {html: false, breaks: true, linkify: true};
+    // Todo: switch html back to false, as it breaks editor whenever a html tag is included in content. Find different way.
+    let markdownItOptions = context && context.options.markdownIt || {html: true, breaks: true, linkify: true};
     let renderer = markdownit(markdownItOptions);
 
     const plugins = getPlugins(context);

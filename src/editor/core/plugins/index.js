@@ -12,6 +12,7 @@ import blockquote from "./blockquote";
 import bullet_list from "./bullet_list";
 import code from "./code";
 import code_block from "./code_block";
+import details from "./details";
 import em from "./em";
 import emoji from "./emoji";
 import hard_break from "./hard_break";
@@ -67,6 +68,7 @@ registerPlugin(code_block, 'markdown');
 registerPlugin(emoji);
 registerPlugin(hard_break, 'markdown');
 
+registerPlugin(details, 'markdown');
 registerPlugin(horizontal_rule, 'markdown');
 registerPlugin(image, 'markdown');
 registerPlugin(list_item, 'markdown');
