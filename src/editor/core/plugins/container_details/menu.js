@@ -5,12 +5,12 @@
  *
  */
 
-import {icons, cmdItem, wrapItem} from "../../menu/menu"
+import {icons, cmdItem, wrapItem} from "../../menu"
 
 function wrapDetails(context) {
-    return wrapItem(context.schema.nodes.details, {
+    return wrapItem(context.schema.nodes.container_details, {
         title: context.translate("Wrap in details tag"),
-        icon: icons.details,
+        icon: icons.container_details,
         sortOrder: 300
     });
 }
@@ -19,7 +19,7 @@ export function menu(context) {
     return [
         {
             id: 'wrapDetails',
-            node: 'details',
+            node: 'container_details',
             group: 'format',
             item: wrapDetails(context)
         }

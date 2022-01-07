@@ -6,22 +6,21 @@
  */
 import {schema} from './schema'
 import {menu} from "./menu"
+import container_plugin from "markdown-it-container"
 
-const details = {
-    id: 'details',
-    // schema: schema,
-    // menu: (context) => menu(context),
-    renderOnly: true,
+const container_details = {
+    id: 'container_details',
+    schema: schema,
+    menu: (context) => menu(context),
     registerMarkdownIt: (markdownIt) => {
-        markdownIt.use(require('markdown-it-container'), 'spoiler', {
+        markdownIt.use(container_plugin, 'details', {
 
             validate: function(params) {
-                return params.trim().match(/^spoiler\s+(.*)$/);
+                return params.trim().match(/^details\s+(.*)$/);
             },
 
             render: function (tokens, idx) {
-                var m = tokens[idx].info.trim().match(/^spoiler\s+(.*)$/);
-
+                var m = tokens[idx].info.trim().match(/^details\s+(.*)$/);
                 if (tokens[idx].nesting === 1) {
                     // opening tag
                     return '<details><summary>' + markdownIt.utils.escapeHtml(m[1]) + '</summary>\n';
@@ -35,4 +34,4 @@ const details = {
     }
 };
 
-export default details;
+export default container_details;
