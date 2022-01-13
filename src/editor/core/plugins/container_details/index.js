@@ -16,21 +16,17 @@ const container_details = {
         markdownIt.use(container_plugin, 'details', {
 
             validate: function(params) {
-                return params.trim().match(/^details$/);
-                // return params.trim().match(/^details\s+(.*)$/);
+                return params.trim().match(/^details\s+(.*)$/);
             },
 
             render: function (tokens, idx) {
-                var m = tokens[idx].info.trim().match(/^details$/);
-                // var m = tokens[idx].info.trim().match(/^details\s+(.*)$/);
+                var m = tokens[idx].info.trim().match(/^details\s+(.*)$/);
                 if (tokens[idx].nesting === 1) {
                     // opening tag
-                    // return '<details><summary>' + markdownIt.utils.escapeHtml(m[1]) + '</summary>\n';
-                    return '<details>\n';
-
+                    return '<details><summary>' + markdownIt.utils.escapeHtml(m[1]) + '</summary>\n<div>';
                 } else {
                     // closing tag
-                    return '</details>\n';
+                    return '</div></details>\n';
                 }
             }
         });
