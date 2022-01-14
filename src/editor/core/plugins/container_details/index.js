@@ -23,7 +23,7 @@ const container_details = {
                 var m = tokens[idx].info.trim().match(/^details\s+(.*)$/);
                 if (tokens[idx].nesting === 1) {
                     // opening tag
-                    return '<details><summary>' + markdownIt.utils.escapeHtml(m[1]) + '</summary>\n<div>';
+                    return '<details><summary>' + markdownIt.render(markdownIt.utils.escapeHtml(m[1])) + '</summary>\n<div>';
                 } else {
                     // closing tag
                     return '</div></details>\n';

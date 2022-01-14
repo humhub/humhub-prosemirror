@@ -19,7 +19,9 @@ const schema = {
             },
             toMarkdown: (state, node, tok) => {
                 var level = countNumberOfDetailsChildrenLevel(node)
-                state.write(":::" + state.repeat(":", level) + " details " +  + node.maybeChild(0).textContent + "\n\n");
+                state.write(":::" + state.repeat(":", level) + " details ")
+                state.renderContent(node.maybeChild(0))
+                state.write("\n\n");
                 state.renderContent(node.maybeChild(1))
                 state.write(":::" + state.repeat(":", level) + "\n\n");
                 state.closeBlock(node);
@@ -35,9 +37,9 @@ const schema = {
             toDOM(node) {
                 return ["summary", 0]
             },
-            // parseMarkdown: {
-            //     block: "details_summary"
-            // },
+            parseMarkdown: {
+                block: "details_summary"
+            },
             // toMarkdown: (state, node) => {
             //     state.write("summary")
             // }
@@ -51,9 +53,9 @@ const schema = {
             toDOM(node) {
                 return ["div", 0]
             },
-            // parseMarkdown: {
-            //     block: "details_content"
-            // },
+            parseMarkdown: {
+                block: "details_content"
+            },
             // toMarkdown: (state, node) => {
             //     state.write("content")
             //     // state.renderContent(node)
