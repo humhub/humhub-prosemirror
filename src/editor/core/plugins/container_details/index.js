@@ -17,15 +17,12 @@ const container_details = {
 
             validate: function(params) {
                 return params.trim().match(/^details$/);
-                // return params.trim().match(/^details\s+(.*)$/);
             },
 
             render: function (tokens, idx) {
                 var m = tokens[idx].info.trim().match(/^details$/);
-                // var m = tokens[idx].info.trim().match(/^details\s+(.*)$/);
                 if (tokens[idx].nesting === 1) {
                     // opening tag
-                    // return '<details><summary>' + markdownIt.utils.escapeHtml(m[1]) + '</summary>\n';
                     return '<details>\n';
 
                 } else {
