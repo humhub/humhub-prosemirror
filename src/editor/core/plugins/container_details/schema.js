@@ -19,10 +19,6 @@ const schema = {
             },
             toMarkdown: (state, node, tok) => {
                 var level = countNumberOfDetailsChildrenLevel(node)
-
-                console.log("toMarkdown:")
-                console.log(node)
-                console.log(maybeChild(0))
                 state.write(":::" + state.repeat(":", level) + " details " +  + node.maybeChild(0).textContent + "\n\n");
                 state.renderContent(node.maybeChild(1))
                 state.write(":::" + state.repeat(":", level) + "\n\n");
