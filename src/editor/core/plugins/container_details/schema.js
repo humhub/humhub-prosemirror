@@ -18,7 +18,18 @@ const schema = {
                 block: "container_details"
             },
             toMarkdown: (state, node, tok) => {
-                var level = countNumberOfDetailsChildrenLevel(node)
+                let level = 0;
+                node.descendants(function(node, pos, parent, index){
+                    if(node.type.name === "details_content"){
+                        return true
+                    }
+                    if(node.type.name === "container_details"){
+                        level ++
+                        return true
+                    }
+                    return false
+                })
+
                 state.write(":::" + state.repeat(":", level) + " details ")
                 state.renderContent(node.maybeChild(0))
                 state.write("\n\n");
@@ -63,20 +74,5 @@ const schema = {
         }
     }
 };
-
-function countNumberOfDetailsChildrenLevel(node){
-    var inner_node_count_max = 0
-    node.forEach(function(node, offset, index){
-        inner_node_count_max = 0
-        if(node.type.name === "container_details"){
-            var inner_node_count = 1 + countNumberOfDetailsChildrenLevel(node)
-
-            if(inner_node_count > inner_node_count_max){
-                inner_node_count_max = inner_node_count
-            }
-        }
-    })
-    return inner_node_count_max
-}
 
 export {schema}
