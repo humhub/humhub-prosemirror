@@ -2,7 +2,6 @@ const schema = {
     nodes: {
         container_details : {
             sortOrder: 200,
-            attrs: {level: {default: 0}},
             content: "details_summary details_content",
             group: "block",
             selectable: true,
@@ -13,23 +12,20 @@ const schema = {
                 {tag: "details"},
             ],
             toDOM(node) {
-                console.log("toDOM:")
-                console.log(node)
-                return ["details", /*{open: ""}, */0]
+                return ["details", /*{open: ""},*/ 0]
             },
             parseMarkdown: {
-                block: "container_details", getAttrs: function (tok) {
-                    console.log("parseMarkdown:")
-                    console.log(tok)
-                    return ({level: +tok.level});
-                }
+                block: "container_details"
             },
-            toMarkdown: (state, node) => {
+            toMarkdown: (state, node, tok) => {
+                var level = countNumberOfDetailsChildrenLevel(node)
+
                 console.log("toMarkdown:")
                 console.log(node)
-                state.write(":::" + state.repeat(":", (10 - node.attrs.level)) + " details " + node.firstChild.textContent + "\n\n");
+                console.log(maybeChild(0))
+                state.write(":::" + state.repeat(":", level) + " details " +  + node.maybeChild(0).textContent + "\n\n");
                 state.renderContent(node.maybeChild(1))
-                state.write(":::" + state.repeat(":", (10 - node.attrs.level)) + "\n\n");
+                state.write(":::" + state.repeat(":", level) + "\n\n");
                 state.closeBlock(node);
             }
         },
@@ -69,5 +65,20 @@ const schema = {
         }
     }
 };
+
+function countNumberOfDetailsChildrenLevel(node){
+    var inner_node_count_max = 0
+    node.forEach(function(node, offset, index){
+        inner_node_count_max = 0
+        if(node.type.name === "container_details"){
+            var inner_node_count = 1 + countNumberOfDetailsChildrenLevel(node)
+
+            if(inner_node_count > inner_node_count_max){
+                inner_node_count_max = inner_node_count
+            }
+        }
+    })
+    return inner_node_count_max
+}
 
 export {schema}
