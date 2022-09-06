@@ -21,6 +21,7 @@ Changelog
 - Fix #32: Disallow marks in code block schema
 - Fix #41: Overflow detection broken
 - Fix #36: resize nav state does not respect selection state
+- Enh #61: Only use _blank on external richtext links (https://github.com/humhub/humhub/issues/3989)
 
 
 1.1.2 (February 18, 2021)

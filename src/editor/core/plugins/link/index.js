@@ -41,7 +41,11 @@ const link = {
             var aIndex = tokens[idx].attrIndex('target');
 
             if (aIndex < 0) {
-                tokens[idx].attrPush(['target', '_blank']); // add new attribute
+                // Check if the link is external
+                var hrefUrl = new URL(tokens[idx].attrs[hrefIndex][1]);
+                if (hrefUrl.hostname !== window.location.hostname) {
+                    tokens[idx].attrPush(['target', '_blank']); // add new attribute
+                }
             } else if(!tokens[idx].attrs[aIndex][1]) {
                 tokens[idx].attrs[aIndex][1] = '_blank';    // replace value of existing attr
             }
