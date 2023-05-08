@@ -9,7 +9,6 @@ import {icons, MenuItem} from "../../menu"
 import {toggleNavPluginKey, isCollapsed} from "./plugin"
 
 function resizeNav(context) {
-
     return new MenuItem({
         id: 'resizeNav',
         title: "More",
@@ -37,13 +36,11 @@ export function getSelector(context) {
 }
 
 export function menu(context) {
-    return [
-        {
-            id: 'resizeNav',
-            group: 'resize',
-            item: resizeNav(context)
-        },
-    ]
+    return [{
+        id: 'resizeNav',
+        group: 'resize',
+        item: resizeNav(context)
+    }];
 }
 
 export function menuWrapper(context) {

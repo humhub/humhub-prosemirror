@@ -13241,6 +13241,11 @@
       htmlNode = htmlNode || 'div';
       var node = document.createElement(htmlNode);
       node.className = prefix;
+
+      if (htmlNode === "button") {
+          node.setAttribute("type", "button");
+      }
+
       if (icon.path) {
           var name = "pm-icon-" + hashPath(icon.path).toString(16);
           if (!document.getElementById(name)) { buildSVG(name, icon); }
@@ -79657,10 +79662,10 @@
   var switchMode = function (context) {
       return new MenuItem({
           id: 'source',
-          title: "Swtich editor mode",
+          title: "Switch editor mode",
           icon: icons.markdown,
           run: function (state, dispatch) {
-              if(isSourceMode(state)) {
+              if (isSourceMode(state)) {
                   switchToRichtextMode(context);
                   // We do not need to dispatch a transaction, since the editor will be reinitialized anyways
               } else {
@@ -79676,17 +79681,22 @@
   };
 
   function menu$k(context) {
-      return [{type: 'group', id: 'source-group', sortOrder: 50, items: [switchMode(context)]}];
+      return [{
+          type: 'group',
+          id: 'source-group',
+          sortOrder: 550,
+          items: [switchMode(context)]
+      }];
   }
 
   function menuWrapper$1(context) {
       return {
           run: function(menuItem, state) {
-              if(menuItem.options.id === 'source' || !isSourceMode(state)) {
+              if (menuItem.options.id === 'source' || !isSourceMode(state)) {
                   return false;
               }
 
-              if(menuItem.runSource) {
+              if (menuItem.runSource) {
                   menuItem.runSource();
                   return true;
               }
@@ -79696,7 +79706,7 @@
           enable: function(menuItem, state, enabled) {
               var sourceMode = isSourceMode(state);
 
-              if([ 'main-menu-group', 'source', 'source-group', 'resize-group', 'resizeNav', 'fullScreen'].includes(menuItem.options.id)
+              if ([ 'main-menu-group', 'source', 'source-group', 'resize-group', 'resizeNav', 'fullScreen'].includes(menuItem.options.id)
                   || (sourceMode &&  menuItem.runSource)) {
                   return enabled;
               }
@@ -79704,7 +79714,7 @@
               return sourceMode ? false : enabled;
           },
           active: function(menuItem, state, active) {
-              if([ 'main-menu-group', 'source', 'source-group'].includes(menuItem.options.id)) {
+              if ([ 'main-menu-group', 'source', 'source-group'].includes(menuItem.options.id)) {
                   return active;
               }
 
@@ -81620,5 +81630,4 @@
           module.export(window.humhub.richtext);
       });
   }
-
 }());
