@@ -60,16 +60,26 @@ export function menuWrapper(context) {
         },
         enable: function(menuItem, state, enabled) {
             let sourceMode = isSourceMode(state);
+            const enabledButtons = [
+                'main-menu-group',
+                'marks',
+                'marks-group',
+                'source',
+                'source-group',
+                'resize-group',
+                'resizeNav',
+                'fullScreen'
+            ];
 
-            if ([ 'main-menu-group', 'source', 'source-group', 'resize-group', 'resizeNav', 'fullScreen'].includes(menuItem.options.id)
-                || (sourceMode &&  menuItem.runSource)) {
+            if (enabledButtons.includes(menuItem.options.id)
+                || (sourceMode && menuItem.runSource)) {
                 return enabled;
             }
 
             return sourceMode ? false : enabled;
         },
         active: function(menuItem, state, active) {
-            if ([ 'main-menu-group', 'source', 'source-group'].includes(menuItem.options.id)) {
+            if (['main-menu-group', 'source', 'source-group'].includes(menuItem.options.id)) {
                 return active;
             }
 

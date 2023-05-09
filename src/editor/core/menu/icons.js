@@ -21,7 +21,7 @@ function hashPath(path) {
 export function getIcon(icon, htmlNode) {
     htmlNode = htmlNode || 'div';
     let node = document.createElement(htmlNode);
-    node.className = prefix
+    node.className = prefix;
 
     if (htmlNode === "button") {
         node.setAttribute("type", "button");
