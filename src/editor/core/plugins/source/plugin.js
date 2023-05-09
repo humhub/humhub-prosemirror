@@ -24,35 +24,49 @@ export function sourcePlugin(context) {
 }
 
 export function switchToSourceMode(context) {
-    let $stage = context.editor.$.find('.ProseMirror');
-    let $textarea = context.editor.$.find('textarea');
+    let $editor = context.editor.$;
+    let $wrapper = $editor.find('.ProseMirror-menubar-wrapper');
+    let $menubar = $editor.find('.ProseMirror-menubar');
+    let $stage = $editor.find('.ProseMirror');
+    let $textarea = $editor.find('textarea');
+
+    if ($editor.is('.fullscreen')) {
+        $wrapper.css({ height: 'auto' });
+    }
 
     if (!$textarea.length) {
         $textarea = $('<textarea class="ProseMirror-editor-source"></textarea>');
-        context.editor.$.append($textarea);
+        $editor.append($textarea);
         context.$source = $textarea;
     }
 
     $textarea.css({
-        height: $stage.outerHeight(),
+        height: $editor.is('.fullscreen') ? 'calc(100% - ' + $menubar.outerHeight() + 'px)' : $stage.outerHeight(),
         width: '100%',
     });
 
     $textarea.val(context.editor.serialize()).show();
     $stage.hide();
-
     context.editor.focus(true);
 
     return EDIT_MODE_SOURCE;
 }
 
 export function switchToRichtextMode(context) {
-    let $stage = context.editor.$.find('.ProseMirror');
-    let $textarea = context.editor.$.find('textarea');
+    let $editor = context.editor.$;
+    let $wrapper = $editor.find('.ProseMirror-menubar-wrapper');
+    let $stage = $editor.find('.ProseMirror');
+    let $textarea = $editor.find('textarea');
+
+    if ($editor.is('.fullscreen')) {
+        $wrapper.css({ height: '100%' });
+    }
+
     context.editor.init($textarea.val());
     $stage.show();
     $textarea.remove();
     context.menu.update();
     context.editor.focus(true);
+
     return EDIT_MODE_RICHTEXT;
 }

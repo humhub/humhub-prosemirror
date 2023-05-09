@@ -465,6 +465,9 @@ ProsemirrorEditor img {
   margin-right: 0;
   display: inline-block;
 }
+.ProseMirror-menuitem .ProseMirror-icon {
+  background: transparent;
+}
 .ProseMirror-menuseparator {
   border-right: 1px solid #ddd;
   margin-right: 3px;
@@ -518,12 +521,14 @@ ProsemirrorEditor img {
 .ProseMirror-menu-dropdown-item {
   cursor: pointer;
 }
-.ProseMirror-menu-dropdown-item div[title],
-.ProseMirror-menu-submenu-wrap {
-  padding: 4px;
-}
 .ProseMirror-menu-dropdown-item:hover {
   background: #f2f2f2;
+}
+.ProseMirror-menu-dropdown-item div[title],
+.ProseMirror-menu-dropdown-item a.ProseMirror-menu-trigger,
+.ProseMirror-menu-submenu-wrap {
+  display: block;
+  padding: 4px;
 }
 .ProseMirror-menu-submenu-wrap {
   position: relative;

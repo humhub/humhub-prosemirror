@@ -8,7 +8,6 @@
 import {redoItem, undoItem} from "../../menu";
 
 export function menu(context) {
-    debugger;
     return [
         {
             id: 'undo',

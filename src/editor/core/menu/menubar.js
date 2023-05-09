@@ -40,7 +40,7 @@ function buildMenuItems(context) {
         resize: {type: 'group', id: 'resize-group', sortOrder: 600, items: []},
     };
 
-    let definitions = [groups.mode, groups.types, groups.insert, groups.marks, groups.format, groups.helper, groups.resize];
+    let definitions = [groups.types, groups.marks, groups.format, groups.insert, groups.helper, groups.mode, groups.resize];
 
     let menuGroupPlugins = [];
     let menuWrapperPlugins = [];
@@ -49,7 +49,6 @@ function buildMenuItems(context) {
         if (plugin.menu) {
             plugin.menu(context).forEach(function (menuDefinition) {
                 if (checkMenuDefinition(context, menuDefinition)) {
-
                     if (menuDefinition.type && menuDefinition.type === 'group') {
                         definitions.push(menuDefinition);
                         return;

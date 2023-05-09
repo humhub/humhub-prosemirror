@@ -17,10 +17,10 @@ import {
 const switchMode = function (context) {
     return new MenuItem({
         id: 'source',
-        title: "Swtich editor mode",
+        title: context.translate("Switch editor mode"),
         icon: icons.markdown,
         run: (state, dispatch) => {
-            if(isSourceMode(state)) {
+            if (isSourceMode(state)) {
                 switchToRichtextMode(context);
                 // We do not need to dispatch a transaction, since the editor will be reinitialized anyways
             } else {
@@ -36,17 +36,22 @@ const switchMode = function (context) {
 };
 
 export function menu(context) {
-    return [{type: 'group', id: 'source-group', sortOrder: 50, items: [switchMode(context)]}];
+    return [{
+        type: 'group',
+        id: 'source-group',
+        sortOrder: 550,
+        items: [switchMode(context)]
+    }];
 }
 
 export function menuWrapper(context) {
     return {
         run: function(menuItem, state) {
-            if(menuItem.options.id === 'source' || !isSourceMode(state)) {
+            if (menuItem.options.id === 'source' || !isSourceMode(state)) {
                 return false;
             }
 
-            if(menuItem.runSource) {
+            if (menuItem.runSource) {
                 menuItem.runSource();
                 return true;
             }
@@ -55,16 +60,26 @@ export function menuWrapper(context) {
         },
         enable: function(menuItem, state, enabled) {
             let sourceMode = isSourceMode(state);
+            const enabledButtons = [
+                'main-menu-group',
+                'marks',
+                'marks-group',
+                'source',
+                'source-group',
+                'resize-group',
+                'resizeNav',
+                'fullScreen'
+            ];
 
-            if([ 'main-menu-group', 'source', 'source-group', 'resize-group', 'resizeNav', 'fullScreen'].includes(menuItem.options.id)
-                || (sourceMode &&  menuItem.runSource)) {
+            if (enabledButtons.includes(menuItem.options.id)
+                || (sourceMode && menuItem.runSource)) {
                 return enabled;
             }
 
             return sourceMode ? false : enabled;
         },
         active: function(menuItem, state, active) {
-            if([ 'main-menu-group', 'source', 'source-group'].includes(menuItem.options.id)) {
+            if (['main-menu-group', 'source', 'source-group'].includes(menuItem.options.id)) {
                 return active;
             }
 

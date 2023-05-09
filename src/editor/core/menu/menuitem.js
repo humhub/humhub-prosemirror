@@ -104,7 +104,7 @@ export class MenuItem {
             e.preventDefault();
             if (!this.$.hasClass(buildMenuClass('disabled'))) {
                 this.options.run.call(this, view.state, view.dispatch, view, e);
-                if(!this.$.is(':visible')) {
+                if (!this.$.is(':visible')) {
                     this.getMenuBar().focusPrev();
                 }
             }
@@ -124,7 +124,7 @@ export class MenuItem {
     }
 
     getMenuBar() {
-        if(!this.menuBar) {
+        if (!this.menuBar) {
             this.menuBar = $(this.dom).closest('.ProseMirror-menubar').data('menuBarInstance');
         }
 
@@ -132,7 +132,7 @@ export class MenuItem {
     }
 
     switchIcon(icon, title) {
-        if(title) {
+        if (title) {
             $(this.dom).attr('title', title);
         }
         $(this.dom).find('svg').replaceWith($(getIcon(icon, this.options.htmlNode)).find('svg'));
@@ -162,7 +162,7 @@ export class MenuItem {
         this.enabled = true;
         if (this.options.enable) {
             this.enabled = this.options.enable(state) || forceEnable || false;
-            setClass(this.dom,  buildMenuClass('disabled'), !this.enabled)
+            setClass(this.dom, buildMenuClass('disabled'), !this.enabled);
             setAttribute(this.dom, 'aria-disabled', 'true', !this.enabled);
         }
     }
@@ -180,7 +180,7 @@ export class MenuItem {
         setAttribute(this.dom, 'aria-hidden', 'true', isHidden);
         setClass(this.dom, 'hidden', isHidden);
 
-        if(this.isFocusable() && isHidden) {
+        if (this.isFocusable() && isHidden) {
             setAttribute(this.dom, 'tabindex', '-1', isHidden);
         }
     }
