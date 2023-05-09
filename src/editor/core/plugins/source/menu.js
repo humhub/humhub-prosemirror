@@ -17,7 +17,7 @@ import {
 const switchMode = function (context) {
     return new MenuItem({
         id: 'source',
-        title: "Switch editor mode",
+        title: context.translate("Switch editor mode"),
         icon: icons.markdown,
         run: (state, dispatch) => {
             if (isSourceMode(state)) {
