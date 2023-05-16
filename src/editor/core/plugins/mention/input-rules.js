@@ -6,12 +6,13 @@ import {hasMark} from "../../util/node";
 const objectReplacementCharacter = '\ufffc';
 
 let mentionRule = function(schema) {
+    // eslint-disable-next-line
     return new InputRule(new RegExp('(^|[\\s\(' + objectReplacementCharacter + '])@$'), function (state, match, start, end) {
         const mark = schema.mark('mentionQuery');
         const mentionText = schema.text('@', [mark]);
 
         // Prevents an error log when using IME
-        if(hasMark(state.selection.$anchor.nodeBefore, mark)) {
+        if (hasMark(state.selection.$anchor.nodeBefore, mark)) {
             return;
         }
 

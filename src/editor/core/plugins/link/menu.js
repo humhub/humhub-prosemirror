@@ -10,7 +10,6 @@ import { TextSelection } from 'prosemirror-state';
 import {openPrompt, TextField} from "../../prompt";
 import {toggleMark} from "prosemirror-commands";
 import {validateHref} from "../../util/linkUtil";
-import {escapeHtml} from "markdown-it/lib/common/utils";
 
 function linkItem(context) {
     let mark = context.schema.marks.link;
@@ -22,7 +21,7 @@ function linkItem(context) {
             return markActive(state, mark)
         },
         enable(state) {
-            if(state.selection.empty) {
+            if (state.selection.empty) {
                 return false;
             }
 
@@ -46,7 +45,7 @@ export function editNode(dom, context) {
     let nodePos = view.posAtDOM(dom);
     let node = doc.nodeAt(nodePos);
 
-    if(node.type != context.schema.nodes.text) {
+    if (node.type != context.schema.nodes.text) {
         return;
     }
 
@@ -79,7 +78,7 @@ export function promt(title, context, attrs, node, mark) {
         title: new TextField({label: "Title", value: attrs && attrs.title})
     };
 
-    if(!node) {
+    if (!node) {
         delete fields['text'];
     }
 
@@ -87,8 +86,8 @@ export function promt(title, context, attrs, node, mark) {
         title: title,
         fields: fields,
         callback(attrs) {
-            if(node) {
-                if(mark.attrs.href === attrs.href) {
+            if (node) {
+                if (mark.attrs.href === attrs.href) {
                     attrs.fileGuid = mark.attrs.fileGuid;
                 }
 
@@ -113,7 +112,7 @@ export function promt(title, context, attrs, node, mark) {
 function getLinkMark(node, context) {
     let result = null;
     node.marks.forEach((mark) => {
-        if(mark.type == context.schema.marks.link) {
+        if (mark.type == context.schema.marks.link) {
             result = mark;
         }
     });
@@ -131,4 +130,3 @@ export function menu(context) {
         }
     ]
 }
-

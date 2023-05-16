@@ -7,7 +7,6 @@
 import {MenuItem, canInsert, canInsertLink} from "../../menu/"
 import {TextField, openPrompt, SelectField} from "../../prompt"
 import {NodeSelection} from "prosemirror-state"
-import {escapeHtml} from "markdown-it/lib/common/utils";
 import {validateHref} from "../../util/linkUtil";
 
 function insertImageItem(context) {
@@ -33,10 +32,10 @@ export function editNode(node, context, view) {
 }
 
 let isDefined = function(obj) {
-    if(arguments.length > 1) {
+    if (arguments.length > 1) {
         let result = true;
         this.each(arguments, function(index, value) {
-            if(!isDefined(value)) {
+            if (!isDefined(value)) {
                 return false;
             }
         });
@@ -47,7 +46,7 @@ let isDefined = function(obj) {
 };
 
 let endsWith = function(val, suffix) {
-    if(!isDefined(val) || !isDefined(suffix)) {
+    if (!isDefined(val) || !isDefined(suffix)) {
         return false;
     }
     return val.indexOf(suffix, val.length - suffix.length) !== -1;
@@ -55,12 +54,11 @@ let endsWith = function(val, suffix) {
 
 export function promt(title, context, attrs, view, node) {
     let state = view.state;
-
     let {from, to} = state.selection;
 
     let cleanDimension = function(val) {
         val = val.trim();
-        if(endsWith(val, 'px')) {
+        if (endsWith(val, 'px')) {
             val = val.substring(0, val.length - 2);
         }
         return val;
@@ -69,13 +67,13 @@ export function promt(title, context, attrs, view, node) {
     let validateDimension = function(val) {
         val = cleanDimension(val);
 
-        if(val.length && !/^[0-9]+%?$/.test(val)) {
+        if (val.length && !/^[0-9]+%?$/.test(val)) {
             return context.translate('Invalid dimension format used.')
         }
     };
 
     let validateSource = function(val) {
-        if(!validateHref(val)) {
+        if (!validateHref(val)) {
             return context.translate('Invalid image source.')
         }
     };
@@ -118,7 +116,7 @@ export function promt(title, context, attrs, view, node) {
             })
         },
         callback(attrs) {
-            if(node && node.attrs.src === attrs.src) {
+            if (node && node.attrs.src === attrs.src) {
                 attrs.fileGuid = node.attrs.fileGuid
             }
 

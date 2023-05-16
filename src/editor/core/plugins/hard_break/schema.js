@@ -18,12 +18,12 @@ const schema = {
             },
             parseMarkdown: {hardbreak: {node: "hard_break"}},
             toMarkdown: (state, node, parent, index) => {
-                for (let i = index + 1; i < parent.childCount; i++)
-                { if (parent.child(i).type != node.type) {
-
-                    (state.table) ? state.write('<br>') : state.write("\\\n");
-                    return
-                } }
+                for (let i = index + 1; i < parent.childCount; i++) {
+                    if (parent.child(i).type !== node.type) {
+                        (state.table) ? state.write('<br>') : state.write("\\\n");
+                        return;
+                    }
+                }
             }
         }
     }

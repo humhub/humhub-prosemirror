@@ -41,11 +41,11 @@ let getEmojiDefinitionByShortcut = function(shortcut) {
         name: getNameByShortcut(shortcut)
     };
 
-    if(result.name) {
+    if (result.name) {
         result.emoji = getCharByName(result.name);
     }
 
-    if(result.emoji) {
+    if (result.emoji) {
         result.$dom = getCharToDom(result.emoji)
     }
 
@@ -79,7 +79,7 @@ let getCharToDom = function(emojiChar, name) {
 
     let parsed = twemoji.parse(emojiChar, twemojiConfig);
 
-    if(parsed && parsed.length) {
+    if (parsed && parsed.length) {
         try {
             return $(parsed);
         } catch(e) {
@@ -93,7 +93,7 @@ let getCharToDom = function(emojiChar, name) {
 let byCategory = undefined;
 
 let getByCategory = function(category) {
-    if(!byCategory) {
+    if (!byCategory) {
         byCategory = {};
         emojilib.ordered.forEach((name) => {
             let emojiDef = emojilib.lib[name];
