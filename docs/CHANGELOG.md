@@ -13,7 +13,7 @@ Changelog
 - Enh #48: Enhanced menu item visibility configuration
 - Enh #40: Emoji in headline creates new paragraph
 - Chng: Refactored history into own plugin
-- Enh #1: Update JS dependencies
+- Enh #91: Update JS dependencies
 
 
 1.1.3 (Unreleased)
