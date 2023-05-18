@@ -19,6 +19,7 @@ const emojiPlugin = (context) => {
             transformPastedText: (text) => {
                 text = twemoji.parse(text, context.getPluginOption('emoji', 'twemoji'));
 
+                // eslint-disable-next-line
                 return text.replace(/\<img class="emoji"[^\\\>]* alt=\"([^\"]*)\"[^\\\>]*\/>/g, function(match, char) {
                     return ':'+util.getNameByChar(char)+':';
                 });

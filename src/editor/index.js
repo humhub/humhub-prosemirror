@@ -289,7 +289,7 @@ class MarkdownView extends BaseView {
         let editor = new MarkdownEditor(this.$, this.context.options);
         editor.init(this.context.source);
 
-        if(focus !== false) {
+        if (focus !== false) {
             editor.focus();
         }
 
@@ -325,7 +325,7 @@ window.prosemirror = window.humhub.richtext = {
     MentionProvider: MentionProvider
 };
 
-if(window.humhub && window.humhub.module) {
+if (window.humhub && window.humhub.module) {
     window.humhub.module('ui.richtext', function(module) {
         module.export(window.humhub.richtext);
     });

@@ -39,6 +39,7 @@ let clean = (val) => {
     return (val) ? val.replace(/(["'])/g, '') : val;
 };
 
+// eslint-disable-next-line
 const HTTP_LINK_REGEX = /((https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,})|[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})/ig;
 
 
@@ -62,7 +63,7 @@ let linkify = function(fragment, context) {
 
                 let urlText = text.slice(start, end);
 
-                if(urlText.indexOf('http') !== 0) {
+                if (urlText.indexOf('http') !== 0) {
                     urlText = 'mailto:'+urlText;
                 }
 
@@ -82,7 +83,7 @@ let linkify = function(fragment, context) {
         }
     });
 
-    if(urls.length) {
+    if (urls.length) {
         context.event.trigger('linkified', [urls, linkified]);
     }
     return Fragment.fromArray(linkified)

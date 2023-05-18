@@ -62,7 +62,7 @@ export class PresetRegistry {
 
     get(presetId) {
         return this.map[presetId];
-    };
+    }
 
     register(id, plugins) {
 
@@ -105,7 +105,7 @@ export class PresetRegistry {
         }
 
         this.map[id] = result;
-    };
+    }
 
     add(presetId, plugin, options) {
         options = options || {};

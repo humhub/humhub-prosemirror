@@ -2,8 +2,8 @@
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2018 HumHub GmbH & Co. KG
  * @license https://www.humhub.com/licences
- *
  */
+
 import {getPlugins} from "./plugins/index";
 import {getSchema} from "./schema";
 
@@ -32,30 +32,30 @@ export default class Context {
     }
 
     init(options) {
-        if(options.pluginOptions) {
+        if (options.pluginOptions) {
             $.extend(options, options.pluginOptions);
         }
 
         this.options = options;
         this.options.preset = options.preset || 'full';
 
-        if(Array.isArray(this.options.exclude) && !this.options.exclude.length) {
+        if (Array.isArray(this.options.exclude) && !this.options.exclude.length) {
             this.options.exclude = undefined;
         }
 
-        if(typeof this.options.exclude === 'string') {
+        if (typeof this.options.exclude === 'string') {
             this.options.exclude = [this.options.exclude];
         }
 
-        if(Array.isArray(this.options.include) && !this.options.include.length) {
+        if (Array.isArray(this.options.include) && !this.options.include.length) {
             this.options.include = undefined;
         }
 
-        if(typeof this.options.include === 'string') {
+        if (typeof this.options.include === 'string') {
             this.options.include = [this.options.include];
         }
 
-        if(!Array.isArray(this.options.only) || !this.options.only.length) {
+        if (!Array.isArray(this.options.only) || !this.options.only.length) {
             this.options.only = undefined;
         }
 
@@ -70,15 +70,15 @@ export default class Context {
     getGlobalOption(id, option, defaultValue) {
         let globalOptions = this.getGlobalOptions();
 
-        if(option && typeof globalOptions[id] === 'undefined') {
+        if (option && typeof globalOptions[id] === 'undefined') {
             return defaultValue;
         }
 
-        if(!option) {
+        if (!option) {
             return globalOptions[id];
         }
 
-        if(typeof globalOptions[id][option] === 'undefined') {
+        if (typeof globalOptions[id][option] === 'undefined') {
             return defaultValue;
         }
 
@@ -88,20 +88,20 @@ export default class Context {
     getPresetOption(id, option, defaultValue) {
         let globalOptions = this.getGlobalOptions();
 
-        if(!globalOptions.presets) {
+        if (!globalOptions.presets) {
             return defaultValue;
         }
 
-        if(!globalOptions.presets[this.options.preset]
+        if (!globalOptions.presets[this.options.preset]
             || !globalOptions.presets[this.options.preset][id]) {
             return defaultValue;
         }
 
-        if(!option) {
+        if (!option) {
             return globalOptions.presets[this.options.preset][id];
         }
 
-        if(typeof globalOptions.presets[this.options.preset][id][option] === 'undefined') {
+        if (typeof globalOptions.presets[this.options.preset][id][option] === 'undefined') {
             return defaultValue;
         }
 
@@ -113,12 +113,12 @@ export default class Context {
         let result = this.getPluginOption(id, option);
 
         // Then check for global option for current preset
-        if(!result) {
+        if (!result) {
             result = this.getPresetOption(id, option);
         }
 
         // Then check for global option
-        if(!result) {
+        if (!result) {
             result = this.getGlobalOption(id, option);
         }
 
@@ -129,9 +129,9 @@ export default class Context {
     getPluginOption(id, option, defaultValue) {
         let pluginOptions = this.options[id];
 
-        if(!option) {
+        if (!option) {
             return pluginOptions;
-        } else if(pluginOptions) {
+        } else if (pluginOptions) {
             return !(typeof pluginOptions[option] === 'undefined') ? pluginOptions[option] : defaultValue;
         }
 
@@ -141,15 +141,15 @@ export default class Context {
     translate(key) {
         let translateOption = this.options.translate || this.getGlobalOptions().translate;
 
-        if(!translateOption) {
+        if (!translateOption) {
             return key;
         }
 
-        if(typeof translateOption === 'function') {
+        if (typeof translateOption === 'function') {
             return translateOption(key) || key;
         }
 
-        if(typeof translateOption === 'object') {
+        if (typeof translateOption === 'object') {
             return translateOption[key] || key;
         }
 
@@ -157,7 +157,7 @@ export default class Context {
     }
 
     getGlobalOptions() {
-        if(!window.humhub.richtext.globalOptions) {
+        if (!window.humhub.richtext.globalOptions) {
             window.humhub.richtext.globalOptions = {};
         }
 
@@ -169,9 +169,9 @@ export default class Context {
     }
 
     getPlugin(id) {
-        for(let i = 0; i < this.plugins.length; i++) {
+        for (let i = 0; i < this.plugins.length; i++) {
             let plugin = this.plugins[i];
-            if(plugin.id === id) {
+            if (plugin.id === id) {
                 return plugin;
             }
         }
@@ -185,7 +185,7 @@ export default class Context {
 
     removeContentDecoration(id) {
         let index = this.contentDecorations.indexOf();
-        if(index >= 0) {
+        if (index >= 0) {
             this.contentDecorations.splice(index, 1);
         }
     }
@@ -194,4 +194,3 @@ export default class Context {
         return !!this.contentDecorations.length;
     }
 }
-

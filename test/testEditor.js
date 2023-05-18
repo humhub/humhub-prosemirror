@@ -111,11 +111,11 @@ module.exports.type = function(word, editor, startPos) {
     let transactions = [];
     let nextPos = startPos ? startPos : editor.view.state.doc.content.child(0).content.size + 1;
 
-    if(editor.view.state.selection.from != nextPos) {
+    if (editor.view.state.selection.from != nextPos) {
         setSelection(nextPos, null, editor);
     }
 
-    for(let i = 0; i < word.length; i++) {
+    for (let i = 0; i < word.length; i++) {
         let newTr = editor.view.state.tr.insertText(chars[i], nextPos);
         transactions.push(newTr);
         editor.view.dispatch(transactions[i]);
@@ -124,7 +124,6 @@ module.exports.type = function(word, editor, startPos) {
     }
 
     setSelection(nextPos, null, editor);
-
 };
 
 let insertText = function(text, from, to, editor)
@@ -138,7 +137,7 @@ module.exports.insertText = insertText;
 let setSelection = function(start, end, editor) {
     editor = getEditor(editor);
 
-    if(!end) {
+    if (!end) {
         end = start;
     }
 

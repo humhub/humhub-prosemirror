@@ -58,9 +58,13 @@ class HumHubMarkdownSerializer extends MarkdownSerializer {
     // Serialize the content of the given node to
     // [CommonMark](http://commonmark.org/).
     serialize(content, options) {
-        let state = new HumHubMarkdownSerializerState(this.nodes, this.marks, options)
-        state.renderContent(content)
-        return state.out
+        let state = new HumHubMarkdownSerializerState(
+          this.nodes,
+          this.marks,
+          {...options, tightLists: false}
+        );
+        state.renderContent(content);
+        return state.out;
     }
 }
 
@@ -70,6 +74,7 @@ class HumHubMarkdownSerializerState extends MarkdownSerializerState {
     // content. If `startOfLine` is true, also escape characters that
     // has special meaning only at the start of the line.
     esc(str, startOfLine) {
+        // eslint-disable-next-line
         str = str.replace(/[|`*\\~\[\]]/g, "\\$&")
         if (startOfLine) str = str.replace(/^[:#\-*+]/, "\\$&").replace(/^(\d+)\./, "$1\\.")
         return str

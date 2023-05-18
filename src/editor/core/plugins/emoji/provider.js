@@ -10,7 +10,7 @@ import {getUserLocale, isSmallView} from "../../humhub-bridge";
 
 let userFlag = undefined;
 let findUserFlag = function() {
-    if(userFlag) {
+    if (userFlag) {
         return userFlag;
     }
 
@@ -45,18 +45,18 @@ let findUserFlag = function() {
     try {
         let language = getUserLocale();
 
-        if(directMapping[language]) {
+        if (language && directMapping[language]) {
             return util.getCharByName(directMapping[language]);
         }
 
         $.each(util.getByCategory('flags'), (index, flag) => {
-            if(flag && flag.keywords && flag.keywords.indexOf(language) >= 0) {
+            if (flag && flag.keywords && flag.keywords.indexOf(language) >= 0) {
                 result = flag.char;
                 return false;
             }
         });
     } catch(e) {
-        console.error('Error while determining user flag in emoji chooser ');
+        console.error('Error while determining user flag in emoji chooser');
         console.error(e);
     }
 
@@ -86,12 +86,12 @@ class EmojiChooser {
         this.provider = provider;
         let position = provider.$node.offset();
 
-        if(!this.$) {
+        if (!this.$) {
             this.initDom();
             this.initCategory(this.categoryOrder[0]);
         }
 
-        if(!isSmallView()) {
+        if (!isSmallView()) {
             this.$.css({
                 top: position.top + provider.$node.outerHeight() - 5,
                 left: position.left,
@@ -106,8 +106,7 @@ class EmojiChooser {
             }).show();
         }
 
-
-        if(focus) {
+        if (focus) {
             this.$.find('.humhub-emoji-chooser-search').focus();
         }
     }
@@ -117,7 +116,7 @@ class EmojiChooser {
         this.$ = $('<div class="atwho-view humhub-richtext-provider humhub-emoji-chooser"><div><input type="text" class="form-control humhub-emoji-chooser-search"></div></div>')
             .hide().appendTo($('body'))
             .on('hidden', () => {
-                if(that.provider) {
+                if (that.provider) {
                     that.provider.reset();
                 }
             });
@@ -163,7 +162,7 @@ class EmojiChooser {
             }
 
             let currentlyActive = that.getActiveCategoryMenuItem().attr('data-emoji-nav-item');
-            if(currentlyActive !== 'search') {
+            if (currentlyActive !== 'search') {
                 that.lastActiveCategory = currentlyActive;
             }
 
@@ -183,7 +182,7 @@ class EmojiChooser {
                 this.provider.event.trigger('focus');
             });
 
-            if(index === 0) {
+            if (index === 0) {
                 $item.addClass('cur');
             }
 
@@ -204,14 +203,14 @@ class EmojiChooser {
         let length = searchStr.length;
         this.categoryOrder.forEach((categoryName, index) => {
             $.each(util.getByCategory(categoryName), (index, emoji) => {
-                if(emoji && emoji.keywords) {
+                if (emoji && emoji.keywords) {
                     $.each(emoji.keywords, (index, keyword) => {
-                        if(length < 3) {
-                            if(keyword.lastIndexOf(searchStr, 0) === 0) {
+                        if (length < 3) {
+                            if (keyword.lastIndexOf(searchStr, 0) === 0) {
                                 result.push(emoji);
                                 return false;
                             }
-                        } else if(keyword.includes(searchStr)) {
+                        } else if (keyword.includes(searchStr)) {
                             result.push(emoji);
                             return false;
                         }
@@ -227,11 +226,11 @@ class EmojiChooser {
     openCategory(categoryName) {
         let categoryDef = this.categories[categoryName];
 
-        if(!this.$.find('[data-emoji-category="'+categoryName+'"]').length) {
-            this.initCategory(categoryName)
+        if (!this.$.find('[data-emoji-category="'+categoryName+'"]').length) {
+            this.initCategory(categoryName);
         }
 
-        if(categoryName !== 'search') {
+        if (categoryName !== 'search') {
             this.clearSearch();
         }
 
@@ -255,11 +254,11 @@ class EmojiChooser {
     }
 
     setCategoryItems(categoryName, items) {
-        if(!items && categoryName !== 'search') {
+        if (!items && categoryName !== 'search') {
             items = util.getByCategory(categoryName);
         }
 
-        if(!items) {
+        if (!items) {
             items = [];
         }
 
@@ -370,7 +369,7 @@ class EmojiChooser {
 
         // If we did not find a match the line below is probably the last line.
         let $last = this.getActiveCategoryTab().find('.atwho-emoji-entry:last');
-        if($last.position().top !== curPosition.top) {
+        if ($last.position().top !== curPosition.top) {
             $last.addClass('cur');
             $cur.removeClass('cur');
             this.alignScroll();
@@ -386,7 +385,7 @@ class EmojiChooser {
         let offsetTop = $cur[0].offsetTop;
         let offsetBottom = offsetTop + $cur.height();
 
-        if(offsetTop > scrollBottom || offsetTop < scrollTop || offsetBottom > scrollBottom || offsetBottom < scrollTop) {
+        if (offsetTop > scrollBottom || offsetTop < scrollTop || offsetBottom > scrollBottom || offsetBottom < scrollTop) {
             $tab[0].scrollTop = $cur[0].offsetTop;
         }
     }
@@ -402,7 +401,7 @@ export class EmojiProvider {
         this.state = state;
         this.$node = $(node);
         this.update(focus);
-    };
+    }
 
     reset(query, node) {
         if (this.$node) {
@@ -410,39 +409,39 @@ export class EmojiProvider {
             this.getChooser().reset();
             this.event.trigger('closed');
         }
-    };
+    }
 
     next() {
         this.getChooser().next();
-    };
+    }
 
     prev() {
         this.getChooser().prev();
-    };
+    }
 
     down() {
         this.getChooser().down();
-    };
+    }
 
     up() {
         this.getChooser().up();
-    };
+    }
 
     select() {
         this.state.addEmoji(this.getChooser().getSelection());
-    };
+    }
 
     update(focus) {
         this.getChooser().update(this, focus);
-    };
+    }
 
     getChooser() {
-        if(!chooser) {
+        if (!chooser) {
             chooser = new EmojiChooser(this);
         }
 
         return chooser;
-    };
+    }
 }
 
 
