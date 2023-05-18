@@ -29,8 +29,8 @@ const schema = {
             },
             parseMarkdown:  {
                 node: "emoji", getAttrs: function (tok) {
-
-                    // Workaround, since the context is not available here, so we can't use context.getPluginOption('emoji', 'twemoji');
+                    // Workaround, since the context is not available here,
+                    // so we can't use context.getPluginOption('emoji', 'twemoji');
                     var options = getEmojiConfig()['twemoji'];
 
                     let $dom = $(twemoji.parse(tok.content, options));
@@ -44,7 +44,7 @@ const schema = {
             toMarkdown: (state, node) => {
                 let result;
 
-                if(!node.attrs['data-name']) {
+                if (!node.attrs['data-name']) {
                     result = (state.alt) ? state.esc(state.alt) : '';
                 } else {
                     result = ':'+state.esc(node.attrs['data-name'])+':';

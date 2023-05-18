@@ -11,6 +11,7 @@ export function validateHref(href, cfg) {
 }
 
 export function validateRelative(href) {
+    // eslint-disable-next-line
     return /^\/[^\/].*$/i.test(href);
 }
 

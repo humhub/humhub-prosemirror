@@ -2,7 +2,7 @@
 import {$node} from "./util/node";
 
 export function onDocumentReady(callback) {
-    if(!window.humhub) {
+    if (!window.humhub) {
         return $(document).ready(function() {
            callback.call(null, false);
         });
@@ -12,7 +12,7 @@ export function onDocumentReady(callback) {
 }
 
 export function getEmojiConfig() {
-    if(!window.humhub || ! window.humhub.config) {
+    if (!window.humhub || ! window.humhub.config) {
         return {};
     }
 
@@ -20,7 +20,7 @@ export function getEmojiConfig() {
 }
 
 export function isSmallView() {
-    if(!window.humhub) {
+    if (!window.humhub) {
         return getClientWidth() <= 767;
     }
 
@@ -32,15 +32,15 @@ var getClientWidth = function() {
 };
 
 export function getUserLocale() {
-    if(!window.humhub) {
+    if (!window.humhub) {
         return (navigator.languages && navigator.languages.length) ? navigator.languages[0] : navigator.language;
     }
 
-    return humhub.modules.ui.view.isSmall();
+    return humhub.modules.user.config.locale.split("-")[0];
 }
 
 export function filterFileUrl(url) {
-    if(!window.humhub) {
+    if (!window.humhub) {
         return  {url : url, guid: null};
     }
 
@@ -48,7 +48,7 @@ export function filterFileUrl(url) {
 }
 
 export function getLoaderWidget() {
-    if(!window.humhub) {
+    if (!window.humhub) {
         return $('<div class="loader">loading...</div>');
     }
 
@@ -63,7 +63,7 @@ export function getLoaderWidget() {
 }
 
 export function encode(str) {
-    if(!window.humhub) {
+    if (!window.humhub) {
         return $('<div/>').text(str).html();
     }
 
@@ -72,7 +72,7 @@ export function encode(str) {
 
 // TODO: Implement oembed provider interface
 export function loadOembeds(urls) {
-    if(!window.humhub) {
+    if (!window.humhub) {
         return Promise.resolve([]);
     }
 
@@ -80,7 +80,7 @@ export function loadOembeds(urls) {
 }
 
 export function getOembed(url) {
-    if(!window.humhub) {
+    if (!window.humhub) {
         return null;
     }
 
@@ -89,7 +89,7 @@ export function getOembed(url) {
 
 // TODO: Implement upload provider interface
 export function getWidgetInstance(selector) {
-    if(!window.humhub) {
+    if (!window.humhub) {
         return null;
     }
 
