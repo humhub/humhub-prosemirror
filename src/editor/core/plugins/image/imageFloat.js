@@ -20,10 +20,10 @@ export function getAltExtensionByFloat(float) {
 }
 
 export function parseFloatFromAlt(alt) {
-    var float = FLOAT_NONE;
-    var ext = FLOAT_ALT_EXT_NONE;
+    let float = FLOAT_NONE;
+    let ext = FLOAT_ALT_EXT_NONE;
 
-    if(!alt) {
+    if (!alt) {
         return {
             alt: alt,
             float: float,
@@ -31,7 +31,7 @@ export function parseFloatFromAlt(alt) {
         }
     }
 
-    if(endsWith(alt, FLOAT_ALT_EXT_CENTER)) {
+    if (endsWith(alt, FLOAT_ALT_EXT_CENTER)) {
         alt = alt.substring(0, alt.length -2);
         ext = FLOAT_ALT_EXT_CENTER;
         float = FLOAT_CENTER;

@@ -5,17 +5,15 @@ let inst = new MarkdownIt();
 let isSpace = inst.utils.isSpace;
 
 function htmlBreak(state, silent) {
-
-    var start  = state.pos;
-    var pos = state.pos;
-    var max = state.posMax;
+    const max = state.posMax;
+    const start  = state.pos;
+    let pos = state.pos;
 
     if (silent) { return false; } // don't run any pairs in validation mode
     //if (state.src.charCodeAt(start) !== 0x3c/* < */) { return false; }
     if (state.src.substr(start, 4) !== '<br>') { return false; }
 
     state.push('hardbreak', 'br', 0);
-
 
     pos = pos + 4;
 

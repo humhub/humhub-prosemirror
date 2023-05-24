@@ -2,12 +2,11 @@ import {MenuItem} from "./menuitem";
 import {addMenuClass, PREFIX, setAttributesFromOptions} from "./menu-helper";
 import {buildMenuClass} from "./menu-helper";
 import {Dropdown} from "./dropdown";
-import crelt from "crelt"
+import crelt from "crelt";
 
 const MENU_SUFFIX_GROUP = 'group';
 
 export class MenuItemGroup extends MenuItem {
-
     constructor(content, options) {
         super(options);
         this.options.htmlNode = 'div';
@@ -24,14 +23,14 @@ export class MenuItemGroup extends MenuItem {
                     let updateResult = item.update(state);
                     let $item = $(item.dom);
 
-                    if(!updateResult) {
+                    if (!updateResult) {
                         $item.hide();
                     } else {
                         $item.show();
                     }
 
                     // Mark the last item in the group
-                    if((i === this.content.items.length - 1)) {
+                    if ((i === this.content.items.length - 1)) {
                         $item.addClass('last');
                     }
 
@@ -49,7 +48,7 @@ export class MenuItemGroup extends MenuItem {
     }
 
     render(view, renderOptions) {
-        this.$ = $('<'+this.options.htmlNode+'>').addClass(buildMenuClass(MENU_SUFFIX_GROUP));
+        this.$ = $('<' + this.options.htmlNode + '>').addClass(buildMenuClass(MENU_SUFFIX_GROUP));
         this.dom = this.$[0];
 
         setAttributesFromOptions(this.dom, this.options);
@@ -69,7 +68,7 @@ export class MenuItemGroup extends MenuItem {
     setHidden(isHidden) {
         super.setHidden(isHidden);
 
-        if(isHidden) {
+        if (isHidden) {
             this.forEachItem((item) => {
                 item.setHidden(isHidden);
             })

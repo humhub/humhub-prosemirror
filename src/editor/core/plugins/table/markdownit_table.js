@@ -16,14 +16,14 @@ function isSpace(code) {
 }
 
 function getLine(state, line) {
-    var pos = state.bMarks[line] + state.blkIndent,
+    const pos = state.bMarks[line] + state.blkIndent,
         max = state.eMarks[line];
 
     return state.src.substr(pos, max - pos);
 }
 
 function escapedSplit(str) {
-    var result = [],
+    let result = [],
         pos = 0,
         max = str.length,
         ch,
@@ -74,7 +74,7 @@ function escapedSplit(str) {
 }
 
 module.exports = function table_plugin(state, startLine, endLine, silent) {
-    var ch, lineText, pos, i, nextLine, columns, columnCount, token,
+    let ch, lineText, pos, i, nextLine, columns, columnCount, token,
         aligns, t, tableLines, tbodyLines;
 
     // should have at least two lines

@@ -5,14 +5,14 @@
  *
  */
 
-import {schema} from './schema'
-import {getMarkdownItOpts} from './util'
-import emoji_plugin from "markdown-it-emoji"
-import twemoji from "twemoji"
-import {emojiPlugin} from "./plugin"
-import {emojiAutoCompleteRule, emojiChooser} from "./input-rules"
-import {keymap} from "./keymap"
-import {menu} from "./menu"
+import {schema} from './schema';
+import twemoji from "twemoji";
+import emoji_plugin from "markdown-it-emoji";
+import {getMarkdownItOpts} from './util';
+import {emojiPlugin} from "./plugin";
+import {emojiAutoCompleteRule, emojiChooser} from "./input-rules";
+import {keymap} from "./keymap";
+import {menu} from "./menu";
 import {getEmojiConfig} from "../../humhub-bridge";
 
 const emoji = {
@@ -25,7 +25,7 @@ const emoji = {
             emojiChooser(schema)
         ]
     },
-    keymap: (context) => { return keymap()},
+    keymap: (context) => keymap(),
     plugins: (context) => {
         return [
             emojiPlugin(context)
@@ -33,7 +33,7 @@ const emoji = {
     },
     registerMarkdownIt: (markdownIt) => {
         markdownIt.use(emoji_plugin, getMarkdownItOpts());
-        markdownIt.renderer.rules.emoji = function(token, idx) {
+        markdownIt.renderer.rules.emoji = function (token, idx) {
             let emojiToken = token[idx];
 
             // Not that clean but unfortunately we don't have access to the editor context here...

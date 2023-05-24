@@ -5,7 +5,6 @@ const expect = require('chai').expect;
 const {initEditor, pressKey} = require('../testEditor');
 
 describe("Menu:accessibility", () => {
-
     const DIR_RIGHT = 39;
     const DIR_LEFT = 37;
 
@@ -13,7 +12,7 @@ describe("Menu:accessibility", () => {
     const DIR_UP = 38;
 
     let navigate = function (dir, expectFocusId) {
-        var e = jQuery.Event("keydown");
+        const e = jQuery.Event("keydown");
         e.which = dir;
 
         $(':focus').trigger(e);
@@ -24,20 +23,20 @@ describe("Menu:accessibility", () => {
         }
     }
 
-   /* let navigateDropDown = function (id, dir, expectFocusId) {
-        var e = jQuery.Event("keydown");
-        e.which = dir;
-        $('.ProseMirror-menu-' + id).parent('.ProseMirror-menu-dropdown-wrap').trigger(e);
-    }*/
+    /* let navigateDropDown = function (id, dir, expectFocusId) {
+         var e = jQuery.Event("keydown");
+         e.which = dir;
+         $('.ProseMirror-menu-' + id).parent('.ProseMirror-menu-dropdown-wrap').trigger(e);
+     }*/
 
     let pressEnter = function () {
-        var e = jQuery.Event("keydown");
+        const e = jQuery.Event("keydown");
         e.which = 13;
         $(':focus').trigger(e);
     }
 
     let pressEscape = function () {
-        var e = jQuery.Event("keydown");
+        const e = jQuery.Event("keydown");
         e.which = 27;
         $(':focus').trigger(e);
     }
@@ -243,7 +242,7 @@ describe("Menu:accessibility", () => {
         navigate(DIR_DOWN, 'makeHeading');
         navigate(DIR_RIGHT, 'makeHeading1');
         pressEscape();
-        expectFocus( 'makeHeading');
+        expectFocus('makeHeading');
         done();
     });
 });

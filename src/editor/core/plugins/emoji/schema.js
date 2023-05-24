@@ -31,7 +31,7 @@ const schema = {
                 node: "emoji", getAttrs: function (tok) {
                     // Workaround, since the context is not available here,
                     // so we can't use context.getPluginOption('emoji', 'twemoji');
-                    var options = getEmojiConfig()['twemoji'];
+                    const options = getEmojiConfig()['twemoji'];
 
                     let $dom = $(twemoji.parse(tok.content, options));
                     return ({

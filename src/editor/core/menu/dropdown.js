@@ -1,4 +1,3 @@
-
 import {MenuItemGroup} from "./menugroup";
 import {
     addMenuClass,
@@ -9,7 +8,6 @@ import {
     setClass,
     setTitle
 } from "./menu-helper";
-
 import crelt from "crelt";
 
 // Holds currently opened dropdown item with close function
@@ -120,7 +118,7 @@ export class Dropdown extends MenuItemGroup {
     }
 
     getContentDom(view) {
-        if(!this.contentDom) {
+        if (!this.contentDom) {
             this.contentDom = this.renderItems(view);
         }
 
@@ -150,18 +148,18 @@ export class Dropdown extends MenuItemGroup {
     }
 
     isOpen() {
-        return this.$.find('.'+buildMenuClass('dropdown-menu')).is(':visible');
+        return this.$.find('.' + buildMenuClass('dropdown-menu')).is(':visible');
     }
 
     onTab(e) {
-        if(this.isOpen()) {
+        if (this.isOpen()) {
             this.close();
         }
     }
 
     onEnter(e) {
         e.preventDefault();
-        if(!this.isOpen()) {
+        if (!this.isOpen()) {
             if (opened) {
                 this.close();
             }
@@ -170,7 +168,7 @@ export class Dropdown extends MenuItemGroup {
             return;
         }
 
-        if(this.getSubMenu().find('a:focus').length) {
+        if (this.getSubMenu().find('a:focus').length) {
             this.getMenuBar().context.editor.focus();
         }
 
@@ -189,7 +187,7 @@ export class Dropdown extends MenuItemGroup {
 
         this.close();
 
-        if(wasOpen) {
+        if (wasOpen) {
             $(this.trigger).focus();
         }
     }
@@ -198,7 +196,7 @@ export class Dropdown extends MenuItemGroup {
         e.preventDefault();
         e.stopPropagation();
 
-        if(this.isOpen()) {
+        if (this.isOpen()) {
             this.focusNext();
         } else {
             if (opened) {
@@ -211,7 +209,7 @@ export class Dropdown extends MenuItemGroup {
 
     focusNext() {
         let $focused = this.getFocused();
-        let $parent = $focused.parent('.'+buildMenuClass('dropdown-item'));
+        let $parent = $focused.parent('.' + buildMenuClass('dropdown-item'));
         let $next = $parent.next();
         $next = $next.length ? $next.find('a:visible:first') : this.getFirstLink();
         $next.focus();
@@ -222,14 +220,14 @@ export class Dropdown extends MenuItemGroup {
     }
 
     getFirstLink() {
-        return $(this.menu).find('.'+buildMenuClass('dropdown-item')+':first').find('a:first');
+        return $(this.menu).find('.' + buildMenuClass('dropdown-item') + ':first').find('a:first');
     }
 
     onArrowUp(e) {
         e.preventDefault();
         e.stopPropagation();
 
-        if(this.isOpen()) {
+        if (this.isOpen()) {
             this.focusPrev();
         } else {
             if (opened) {
@@ -242,16 +240,15 @@ export class Dropdown extends MenuItemGroup {
 
     onArrowLeft(e) {
         // Prevent main nav switch
-        if(this.isOpen()) {
+        if (this.isOpen()) {
             e.preventDefault();
             e.stopPropagation();
         }
-
     }
 
     onArrowRight(e) {
         // Prevent main nav switch
-        if(this.isOpen()) {
+        if (this.isOpen()) {
             e.preventDefault();
             e.stopPropagation();
         }
@@ -259,14 +256,14 @@ export class Dropdown extends MenuItemGroup {
 
     focusPrev() {
         let $focused = this.getFocused();
-        let $parent = $focused.closest('.'+buildMenuClass('dropdown-item'));
+        let $parent = $focused.closest('.' + buildMenuClass('dropdown-item'));
         let $prev = $parent.prev();
         $prev = $prev.length ? $prev.find('a:visible:first') : this.getLastLink();
         $prev.focus();
     }
 
     getLastLink() {
-        return $(this.menu).children('.'+buildMenuClass('dropdown-item:last')).find('a:first');
+        return $(this.menu).children('.' + buildMenuClass('dropdown-item:last')).find('a:first');
     }
 
     onClickTrigger(e) {
@@ -280,7 +277,7 @@ export class Dropdown extends MenuItemGroup {
             this.close();
         }
 
-        if(!wasOpen) {
+        if (!wasOpen) {
             this.open()
         }
     }
@@ -324,22 +321,22 @@ export class Dropdown extends MenuItemGroup {
             if (done) return;
             done = true;
             dom.removeChild(menuDOM);
-            return true
+            return true;
         }
 
         dom.appendChild(menuDOM);
 
         let $menuDom = $(menuDOM);
-        let right = $menuDom.offset().left + $menuDom.width() ;
+        let right = $menuDom.offset().left + $menuDom.width();
         let rightAlignClass = buildMenuClass('dropdown-right');
 
         setClass($menuDom[0], rightAlignClass, (right > $(window).width() / 2));
 
         this.menu = menuDOM;
-        return {close, node: menuDOM}
+        return {close, node: menuDOM};
     }
 }
 
 function closeSubMenues() {
-    $('.'+buildMenuClass('submenu')).css('display', '');
+    $('.' + buildMenuClass('submenu')).css('display', '');
 }

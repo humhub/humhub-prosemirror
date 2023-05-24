@@ -1,5 +1,4 @@
 // TODO: enable global default config e.g. for emoji, locale, etc
-import {$node} from "./util/node";
 
 export function onDocumentReady(callback) {
     if (!window.humhub) {
@@ -27,7 +26,7 @@ export function isSmallView() {
     return humhub.modules.ui.view.isSmall();
 }
 
-var getClientWidth = function() {
+const getClientWidth = function() {
     return window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 };
 

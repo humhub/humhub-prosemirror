@@ -41,37 +41,39 @@ module.exports = function(grunt) {
         rollup: {
             options: {
                 format: 'iife',
-                sourceMap: true,
-                plugins: function () {
-                    return [
-                        pluginEslint({
-                            throwOnError: true,
-                            throwOnWarning: false,
-                            include: ['src/**/*.js'],
-                            exclude: ['node_modules/**'],
-                        }),
-                        pluginNodeResolve({
-                            preferBuiltins: false,
-                            extensions: ['.js', '.json'],
-                        }),
-                        pluginJson(),
-                        pluginCommonjs({
-                            namedExports: {
-                                'node_modules/react/react.js': ['Children', 'Component', 'PropTypes', 'createElement'],
-                                'node_modules/react-dom/index.js': ['render']
-                            }
-                        }),
-                        pluginBuble({
-                            'objectAssign': 'Object.assign',
-                            'transforms': {
-                                'forOf': false,
-                            }
-                        }),
-                        pluginReplace({
-                            'process.env.NODE_ENV': JSON.stringify( 'development' )
-                        })
-                    ];
-                }
+                generatedCode: "es2015",
+                compact: true,
+                // sourcemap: true,
+                plugins: [
+                    pluginEslint({
+                        throwOnError: true,
+                        throwOnWarning: false,
+                        include: ['src/**/*.js'],
+                        exclude: ['node_modules/**'],
+                    }),
+                    pluginNodeResolve({
+                        preferBuiltins: false,
+                        extensions: ['.js', '.json'],
+                    }),
+                    pluginJson(),
+                    pluginCommonjs({
+                        namedExports: {
+                            'node_modules/react/react.js': ['Children', 'Component', 'PropTypes', 'createElement'],
+                            'node_modules/react-dom/index.js': ['render']
+                        }
+                    }),
+                    pluginBuble({
+                        'objectAssign': 'Object.assign',
+                        'transforms': {
+                            'forOf': false,
+                            'generator': false
+                        }
+                    }),
+                    pluginReplace({
+                        'process.env.NODE_ENV': JSON.stringify( 'development' ),
+                        'preventAssignment': true
+                    })
+                ]
             },
             pm: {
                 files: {

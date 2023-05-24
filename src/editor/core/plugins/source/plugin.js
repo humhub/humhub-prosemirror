@@ -23,7 +23,7 @@ export function sourcePlugin(context) {
     })
 }
 
-export function switchToSourceMode(context) {
+export function switchToSourceMode(context, focus = true) {
     let $editor = context.editor.$;
     let $wrapper = $editor.find('.ProseMirror-menubar-wrapper');
     let $menubar = $editor.find('.ProseMirror-menubar');
@@ -45,9 +45,12 @@ export function switchToSourceMode(context) {
         width: '100%',
     });
 
-    $textarea.val(context.editor.serialize()).show();
-    $stage.hide();
-    context.editor.focus(true);
+    $stage.addClass('hidden');
+    $textarea.val(context.editor.serialize());
+
+    if (focus) {
+        context.editor.focus();
+    }
 
     return EDIT_MODE_SOURCE;
 }
@@ -63,10 +66,10 @@ export function switchToRichtextMode(context) {
     }
 
     context.editor.init($textarea.val());
-    $stage.show();
     $textarea.remove();
+    $stage.removeClass('hidden');
     context.menu.update();
-    context.editor.focus(true);
+    context.editor.focus();
 
     return EDIT_MODE_RICHTEXT;
 }

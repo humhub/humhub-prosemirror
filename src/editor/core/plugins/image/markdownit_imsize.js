@@ -10,12 +10,12 @@
 
 'use strict';
 
-var imageFloat = require('./imageFloat')
-var parseImageSize = require('./parse_image_size');
+const imageFloat = require('./imageFloat')
+const parseImageSize = require('./parse_image_size');
 
 function image_with_size(md, options) {
     return function (state, silent) {
-        var attrs,
+        let attrs,
             code,
             label,
             labelEnd,
@@ -187,7 +187,7 @@ function image_with_size(md, options) {
             state.pos = labelStart;
             state.posMax = labelEnd;
 
-            var newState = new state.md.inline.State(
+            const newState = new state.md.inline.State(
                 state.src.slice(labelStart, labelEnd),
                 state.md,
                 state.env,
@@ -201,7 +201,7 @@ function image_with_size(md, options) {
             if (options) {
                 if (options.autofill && width === '' && height === '') {
                     try {
-                        var dimensions = sizeOf(href);
+                        const dimensions = sizeOf(href);
                         width = dimensions.width;
                         height = dimensions.height;
                     } catch (e) {

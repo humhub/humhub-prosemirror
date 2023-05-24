@@ -12,8 +12,8 @@ function markInputRuleOpen(regexp, markType, getAttrs) {
         let attrs = getAttrs instanceof Function ? getAttrs(match) : getAttrs;
         let tr = state.tr;
 
-        var nodeAfter = state.selection.$to.nodeAfter;
-        if(nodeAfter && nodeAfter.isText && nodeAfter.text.indexOf('`') === 0) {
+        const nodeAfter = state.selection.$to.nodeAfter;
+        if (nodeAfter && nodeAfter.isText && nodeAfter.text.indexOf('`') === 0) {
             tr.delete(start, end + 1);
             tr.addStoredMark(markType.create(attrs));
             tr.insertText(match[1], start);
