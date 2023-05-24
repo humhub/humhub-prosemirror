@@ -14,6 +14,7 @@ Changelog
 - Enh #40: Emoji in headline creates new paragraph
 - Chng: Refactored history into own plugin
 - Enh #91: Update JS dependencies
+- Enh #30: Tabulator Support
 
 
 1.1.3 (Unreleased)
