@@ -1,13 +1,13 @@
-import {InputRule} from "prosemirror-inputrules"
+import {InputRule} from "prosemirror-inputrules";
 import {TextSelection} from "prosemirror-state";
 import {hasMark} from "../../util/node";
 
 // https://github.com/ProseMirror/prosemirror/issues/262
 const objectReplacementCharacter = '\ufffc';
 
-let mentionRule = function(schema) {
+let mentionRule = (schema) => {
     // eslint-disable-next-line
-    return new InputRule(new RegExp('(^|[\\s\(' + objectReplacementCharacter + '])@$'), function (state, match, start, end) {
+    return new InputRule(new RegExp('(^|[\\s\(' + objectReplacementCharacter + '])@$'), (state, match, start, end) => {
         const mark = schema.mark('mentionQuery');
         const mentionText = schema.text('@', [mark]);
 
@@ -16,13 +16,13 @@ let mentionRule = function(schema) {
             return;
         }
 
-        start = start + (match[0].length -1);
+        start = start + (match[0].length - 1);
 
         return state.tr
-            .removeMark(0, state.doc.nodeSize -2, mark)
-            .setSelection(TextSelection.create(state.doc,  start, end))
+            .removeMark(0, state.doc.nodeSize - 2, mark)
+            .setSelection(TextSelection.create(state.doc, start, end))
             .replaceSelectionWith(mentionText, false);
-    })
+    });
 };
 
-export {mentionRule}
+export {mentionRule};
