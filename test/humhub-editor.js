@@ -19045,7 +19045,7 @@
       return SelectField;
   }(Field));
 
-  var prompt = /*#__PURE__*/Object.freeze({
+  var prompt$1 = /*#__PURE__*/Object.freeze({
     __proto__: null,
     openPrompt: openPrompt,
     Field: Field,
@@ -34885,7 +34885,7 @@
                   state.write((":::" + (state.repeat(":", level)) + "\n\n"));
                   state.closeBlock(node);
               }
-          },
+          }
       }
   };
 
@@ -34914,6 +34914,61 @@
               item: wrapDetails(context)
           }
       ]
+  }
+
+  function editNode$2(node, nodePos, context) {
+      var doc = context.editor.view.state.doc;
+      var view = context.editor.view;
+
+      if (node.type != context.schema.nodes.container_details) {
+          return;
+      }
+
+      var $pos = doc.resolve(nodePos);
+      var $end = $pos.node(0).resolve($pos.pos + node.nodeSize);
+
+      view.dispatch(view.state.tr.setSelection(new TextSelection($pos, $end)));
+
+      prompt(context.translate("Edit collapsible block"), context, node.attrs, node);
+  }
+
+  function prompt(title, context, attrs, node) {
+      var view = context.editor.view;
+
+      var fields =  {
+          summary:  new TextField({
+              label: context.translate("Summary (supports markdown)"),
+              value: attrs && attrs.summary
+          }),
+          state:  new SelectField({
+              label: context.translate("State"),
+              value: attrs && attrs.state,
+              options: [
+                  {label: context.translate("Open"), value: "open"},
+                  {label: context.translate("Closed"), value: "closed"}
+              ]
+          }),
+          style:  new SelectField({
+              label: context.translate("Style"),
+              value: attrs && attrs.style,
+              options: [
+                  {label: context.translate("Default"), value: "default"},
+                  {label: context.translate("Box"), value: "box"}
+              ]
+          })
+      };
+
+      openPrompt({
+          title: title,
+          fields: fields,
+          callback: function callback(attrs) {
+              var newNode = context.schema.nodes.container_details.createAndFill(attrs);
+              newNode.content = node.content;
+
+              view.dispatch(view.state.tr.replaceSelectionWith(newNode));
+              view.focus();
+          }
+      });
   }
 
   // Process block-level custom containers
@@ -35060,6 +35115,46 @@
     md.renderer.rules['container_' + name + '_close'] = render;
   };
 
+  markdownIt();
+
+  function getFirstParentDetailsNode(node) {
+      console.debug(node.parentNode);
+      if (!node.parentNode || node.parentNode.classList.contains("ProseMirror")) { return false; }
+
+      if (node.parentNode.localName === "details") { return node.parentNode; }
+
+      return getFirstParentDetailsNode(node.parentNode);
+  }
+
+  var containerDetailsPlugin = function (context) {
+
+      return new Plugin({
+          props: {
+              handleClickOn: function handleClickOn(view, pos, node, nodePos, event, direct) {
+                  if (!direct) { return false; }
+
+                  if (event.ctrlKey || event.metaKey) {
+                      var detailsNode = getFirstParentDetailsNode(event.target);
+                      if (detailsNode) {
+                          detailsNode.focus();
+                      }
+                      console.debug(detailsNode);
+                      return false;
+                  }
+
+                  var isSummaryNode = event.target.localName === "summary";
+                  var isChildOfSummaryNode = event.target.parentNode.localName === "summary"
+                      || event.target.parentNode.parentNode.localName === "summary";
+
+                  // prevent editing when clicking outside summary tag
+                  if (!isSummaryNode && !isChildOfSummaryNode) { return false; }
+
+                  editNode$2(node, nodePos, context);
+              }
+          }
+      });
+  };
+
   /*
    * @link https://www.humhub.org/
    * @copyright Copyright (c) 2017 HumHub GmbH & Co. KG
@@ -35071,6 +35166,11 @@
       id: 'container_details',
       schema: schema$g,
       menu: function (context) { return menu$h(context); },
+      plugins: function (context) {
+          return [
+              containerDetailsPlugin(context)
+          ]
+      },
       registerMarkdownIt: function (md) {
           md.use(markdownItContainer, 'details', {
 
@@ -69060,7 +69160,7 @@
       menu: menu$m,
       loader: loader$1,
       pmmenu: pmmenu,
-      prompt: prompt,
+      prompt: prompt$1,
       getRenderer: getRenderer,
       plugin: {
           registerPreset: registerPreset,

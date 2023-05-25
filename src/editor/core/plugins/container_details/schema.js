@@ -86,7 +86,7 @@ const schema = {
                 state.write(`:::${state.repeat(":", level)}\n\n`)
                 state.closeBlock(node);
             }
-        },
+        }
     }
 };
 

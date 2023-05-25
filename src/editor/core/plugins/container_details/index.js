@@ -7,11 +7,17 @@
 import {schema} from './schema'
 import {menu} from "./menu"
 import container_plugin from "markdown-it-container"
+import {containerDetailsPlugin} from "./plugin";
 
 const container_details = {
     id: 'container_details',
     schema: schema,
     menu: (context) => menu(context),
+    plugins: (context) => {
+        return [
+            containerDetailsPlugin(context)
+        ]
+    },
     registerMarkdownIt: (md) => {
         md.use(container_plugin, 'details', {
 
