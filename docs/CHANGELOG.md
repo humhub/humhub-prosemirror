@@ -13,6 +13,7 @@ Changelog
 - Enh #48: Enhanced menu item visibility configuration
 - Enh #40: Emoji in headline creates new paragraph
 - Chng: Refactored history into own plugin
+- Enh #92: Store Default Markdown Editor Mode
 - Enh #91: Update JS dependencies
 - Fix #59: @ becomes @@ when copying mentioning in wiki editor
 
