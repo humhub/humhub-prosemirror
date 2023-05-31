@@ -175,16 +175,26 @@ let pressKeyArrowDown = function () {
     pressKey('ArrowDown', 40);
 }
 
-let pressKeyEnter = function (editor) {
+let pressKeyEnter = function () {
     pressKey('Enter', 13);
 };
 
-let pressKeyBackspace = function (editor) {
+let pressKeyTab = function () {
+    pressKey('Tab', 9);
+};
+
+let pressKeyShiftTab = function () {
+    pressKey('Tab', 9, {shiftKey: true});
+};
+
+let pressKeyBackspace = function () {
     pressKey('Backspace', 8);
 };
 
 module.exports.pressKey = pressKey;
 module.exports.pressKeyEnter = pressKeyEnter;
+module.exports.pressKeyTab = pressKeyTab;
+module.exports.pressKeyShiftTab = pressKeyShiftTab;
 module.exports.pressKeyBackspace = pressKeyBackspace;
 module.exports.pressKeyArrowDown = pressKeyArrowDown;
 module.exports.clickDropdownMenuItem = clickDropdownMenuItem;

@@ -8,7 +8,7 @@ describe("Plugin:max_height", () => {
     it("test maxHeight trigger", (done) => {
         let scroll = {active: false};
         initEditor({
-            maxHeight:200,
+            maxHeight: 200,
             onScrollActive: () => scroll.active = true,
             onScrollInactive: () => scroll.active = false,
         });

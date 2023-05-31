@@ -148,7 +148,7 @@ class MarkdownEditor extends BaseView {
 
             this.$.on('focus', '.ProseMirror, textarea', () => {
                 this.$menuBar.show();
-            }).on('blur', (e) => {
+            }).on('blur', () => {
                 if (!this.$.is('.fullscreen')) {
                     this.$menuBar.hide();
                 }

@@ -49,7 +49,7 @@ describe("Plugin:code block", () => {
         type('This is a code block');
         clickDropdownMenuItem('type','makeCodeBlock');
         pressKeyArrowDown();
-        expect(toHtml()).to.equal('<pre><code>This is a code block</code></pre><p><br></p>');
+        expect(toHtml()).to.equal('<pre><code>This is a code block</code></pre><p><br class="ProseMirror-trailingBreak"></p>');
         done();
     });
 });

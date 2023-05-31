@@ -23,7 +23,7 @@ export function isSmallView() {
         return getClientWidth() <= 767;
     }
 
-    return humhub.modules.ui.view.isSmall();
+    return humhub.modules ? humhub.modules.ui.view.isSmall() : null;
 }
 
 const getClientWidth = function() {

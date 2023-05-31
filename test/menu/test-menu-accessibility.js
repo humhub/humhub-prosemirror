@@ -11,7 +11,7 @@ describe("Menu:accessibility", () => {
     const DIR_DOWN = 40;
     const DIR_UP = 38;
 
-    let navigate = function (dir, expectFocusId) {
+    const navigate = function (dir, expectFocusId) {
         const e = jQuery.Event("keydown");
         e.which = dir;
 
@@ -21,40 +21,39 @@ describe("Menu:accessibility", () => {
         if (expectFocusId) {
             expectFocus(expectFocusId);
         }
-    }
+    };
 
-    /* let navigateDropDown = function (id, dir, expectFocusId) {
+    /* const navigateDropDown = function (id, dir, expectFocusId) {
          var e = jQuery.Event("keydown");
          e.which = dir;
          $('.ProseMirror-menu-' + id).parent('.ProseMirror-menu-dropdown-wrap').trigger(e);
-     }*/
+     };*/
 
-    let pressEnter = function () {
+    const pressEnter = function () {
         const e = jQuery.Event("keydown");
         e.which = 13;
         $(':focus').trigger(e);
-    }
+    };
 
-    let pressEscape = function () {
+    const pressEscape = function () {
         const e = jQuery.Event("keydown");
         e.which = 27;
         $(':focus').trigger(e);
-    }
+    };
 
-    let expectFocus = function (id) {
+    const expectFocus = function (id) {
         expect($('.ProseMirror-menu-' + id + ':focus').length).to.equal(1);
-    }
+    };
 
-    let focusMenuItem = function (id) {
-        id = id || 'source'; //first element
+    const focusMenuItem = function (id) {
+        id = id || 'type'; // first element
         $('.ProseMirror-menu-' + id).trigger('focus');
-    }
+    };
 
     it("test keyboard right arrow navigation", (done) => {
         initEditor();
         focusMenuItem();
-        expectFocus('source');
-        navigate(DIR_RIGHT, 'type');
+        expectFocus('type');
         navigate(DIR_RIGHT, 'markStrong');
         navigate(DIR_RIGHT, 'markEm');
         navigate(DIR_RIGHT, 'markStrikethrough');
@@ -62,16 +61,16 @@ describe("Menu:accessibility", () => {
         navigate(DIR_RIGHT, 'linkItem');
         navigate(DIR_RIGHT, 'insertEmoji');
         navigate(DIR_RIGHT, 'insert-dropdown');
-        navigate(DIR_RIGHT, 'resizeNav');
         navigate(DIR_RIGHT, 'source');
+        navigate(DIR_RIGHT, 'resizeNav');
         done();
     });
 
     it("test keyboard left navigation", (done) => {
         initEditor();
-        focusMenuItem();
-        expectFocus('source');
-        navigate(DIR_LEFT, 'resizeNav');
+        focusMenuItem('resizeNav');
+        expectFocus('resizeNav');
+        navigate(DIR_LEFT, 'source');
         navigate(DIR_LEFT, 'insert-dropdown');
         navigate(DIR_LEFT, 'insertEmoji');
         navigate(DIR_LEFT, 'linkItem');
@@ -80,7 +79,6 @@ describe("Menu:accessibility", () => {
         navigate(DIR_LEFT, 'markEm');
         navigate(DIR_LEFT, 'markStrong');
         navigate(DIR_LEFT, 'type');
-        navigate(DIR_LEFT, 'source');
         done();
     });
 
@@ -88,7 +86,7 @@ describe("Menu:accessibility", () => {
         initEditor();
         expect($('.ProseMirror-menu-dropdown-menu').is(':visible')).to.be.false;
         focusMenuItem();
-        navigate(DIR_RIGHT, 'type');
+        expectFocus('type');
         navigate(DIR_DOWN);
         expect($('.ProseMirror-menu-dropdown-menu').is(':visible')).to.be.true;
         done();
@@ -98,7 +96,7 @@ describe("Menu:accessibility", () => {
         initEditor();
         expect($('.ProseMirror-menu-dropdown-menu').is(':visible')).to.be.false;
         focusMenuItem();
-        navigate(DIR_RIGHT, 'type');
+        expectFocus('type');
         navigate(DIR_DOWN);
         pressEscape();
         expect($('.ProseMirror-menu-dropdown-menu').is(':visible')).to.be.false;
@@ -109,7 +107,7 @@ describe("Menu:accessibility", () => {
         initEditor();
         expect($('.ProseMirror-menu-dropdown-menu').is(':visible')).to.be.false;
         focusMenuItem();
-        navigate(DIR_RIGHT, 'type');
+        expectFocus('type');
         pressEnter();
         expect($('.ProseMirror-menu-dropdown-menu').is(':visible')).to.be.true;
         done();
@@ -119,7 +117,7 @@ describe("Menu:accessibility", () => {
         initEditor();
         expect($('.ProseMirror-menu-dropdown-menu').is(':visible')).to.be.false;
         focusMenuItem();
-        navigate(DIR_RIGHT, 'type');
+        expectFocus('type');
         pressEnter();
         pressEnter();
         expect($('.ProseMirror-menu-dropdown-menu').is(':visible')).to.be.false;
@@ -130,7 +128,7 @@ describe("Menu:accessibility", () => {
         initEditor();
         expect($('.ProseMirror-menu-dropdown-menu').is(':visible')).to.be.false;
         focusMenuItem();
-        navigate(DIR_RIGHT, 'type');
+        expectFocus('type');
         pressEnter();
         navigate(DIR_DOWN, 'makeParagraph');
         navigate(DIR_DOWN, 'makeCodeBlock');
@@ -143,7 +141,7 @@ describe("Menu:accessibility", () => {
         initEditor();
         expect($('.ProseMirror-menu-dropdown-menu').is(':visible')).to.be.false;
         focusMenuItem();
-        navigate(DIR_RIGHT, 'type');
+        expectFocus('type');
         pressEnter();
         navigate(DIR_DOWN, 'makeParagraph');
         navigate(DIR_UP, 'makeHeading');
@@ -156,7 +154,7 @@ describe("Menu:accessibility", () => {
         initEditor();
         expect($('.ProseMirror-menu-dropdown-menu').is(':visible')).to.be.false;
         focusMenuItem();
-        navigate(DIR_RIGHT, 'type');
+        expectFocus('type');
         pressEnter();
         navigate(DIR_DOWN, 'makeParagraph');
         navigate(DIR_DOWN, 'makeCodeBlock');
@@ -170,7 +168,7 @@ describe("Menu:accessibility", () => {
         initEditor();
         expect($('.ProseMirror-menu-dropdown-menu').is(':visible')).to.be.false;
         focusMenuItem();
-        navigate(DIR_RIGHT, 'type');
+        expectFocus('type');
         pressEnter();
         navigate(DIR_DOWN, 'makeParagraph');
         navigate(DIR_DOWN, 'makeCodeBlock');
@@ -183,7 +181,7 @@ describe("Menu:accessibility", () => {
         initEditor();
         expect($('.ProseMirror-menu-dropdown-menu').is(':visible')).to.be.false;
         focusMenuItem();
-        navigate(DIR_RIGHT, 'type');
+        expectFocus('type');
         pressEnter();
         navigate(DIR_DOWN, 'makeParagraph');
         navigate(DIR_DOWN, 'makeCodeBlock');
@@ -202,7 +200,7 @@ describe("Menu:accessibility", () => {
         initEditor();
         expect($('.ProseMirror-menu-dropdown-menu').is(':visible')).to.be.false;
         focusMenuItem();
-        navigate(DIR_RIGHT, 'type');
+        expectFocus('type');
         pressEnter();
         navigate(DIR_DOWN, 'makeParagraph');
         navigate(DIR_DOWN, 'makeCodeBlock');
@@ -221,7 +219,7 @@ describe("Menu:accessibility", () => {
         initEditor();
         expect($('.ProseMirror-menu-dropdown-menu').is(':visible')).to.be.false;
         focusMenuItem();
-        navigate(DIR_RIGHT, 'type');
+        expectFocus('type');
         pressEnter();
         navigate(DIR_DOWN, 'makeParagraph');
         navigate(DIR_DOWN, 'makeCodeBlock');
@@ -235,7 +233,7 @@ describe("Menu:accessibility", () => {
         initEditor();
         expect($('.ProseMirror-menu-dropdown-menu').is(':visible')).to.be.false;
         focusMenuItem();
-        navigate(DIR_RIGHT, 'type');
+        expectFocus('type');
         pressEnter();
         navigate(DIR_DOWN, 'makeParagraph');
         navigate(DIR_DOWN, 'makeCodeBlock');
