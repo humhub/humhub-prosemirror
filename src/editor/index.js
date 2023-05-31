@@ -2,7 +2,6 @@
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2017 HumHub GmbH & Co. KG
  * @license https://www.humhub.com/licences
- *
  */
 
 // Used as input to Rollup to generate the prosemirror js file
@@ -30,7 +29,7 @@ import {registerPreset, registerPlugin, buildPlugins} from "./core/plugins";
 import * as markdown from "./markdown/index";
 
 import MentionProvider from "./core/plugins/mention/provider";
-import {isSourceMode} from "./core/plugins/source/plugin";
+import {EDIT_MODE_SOURCE, sourcePluginKey, isSourceMode, switchToSourceMode} from "./core/plugins/source/plugin";
 
 import Context from './core/context';
 
@@ -239,6 +238,11 @@ class MarkdownEditor extends BaseView {
         this.trigger('afterSerialize', result);
 
         return result;
+    }
+
+    showSourceView() {
+        switchToSourceMode(this.context);
+        this.view.dispatch(this.view.state.tr.setMeta(sourcePluginKey, EDIT_MODE_SOURCE));
     }
 
     transformToView() {
