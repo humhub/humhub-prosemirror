@@ -99,11 +99,11 @@ describe("Plugin:tab_behavior", () => {
         expect(toHtml()).to.equal('<table><tbody><tr><th><p><br class="ProseMirror-trailingBreak"></p></th><th><p><br class="ProseMirror-trailingBreak"></p></th></tr><tr><td><p><br class="ProseMirror-trailingBreak"></p></td><td><p><br class="ProseMirror-trailingBreak"></p></td></tr></tbody></table>');
 
         // Checking work Tab
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 4; i++) {
             pressKeyTab();
         }
 
-        // Checking cursor position and table rows after pressing Tab 5 times and creating new row
+        // Checking cursor position and table rows after pressing Tab 4 times and creating new row
         $from = editor.view.state.selection.$from;
         depth = $from.depth;
         table = $from.node(depth - 3);

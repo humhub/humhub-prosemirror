@@ -49,7 +49,7 @@ let keymap = () => {
     }
 
     return {
-        'Tab': (state, dispatch) => {
+        'Tab': (state, dispatch, view) => {
             if (dispatch) {
                 const {$from} = state.selection;
                 const parent = $from.node($from.depth - 1);
@@ -63,7 +63,8 @@ let keymap = () => {
                         if (nextSelection) {
                             goToNextCell(1)(state, dispatch);
                         } else {
-                            addRowAfter(state, dispatch)
+                            addRowAfter(state, dispatch);
+                            view.dispatchEvent(new KeyboardEvent('keydown', {key: 'Tab', code: 9}));
                         }
                     } else if (state.selection.empty && $from.node($from.depth).type.name === 'code_block') {
                         // Insert a tab character at the start of the text or current line
