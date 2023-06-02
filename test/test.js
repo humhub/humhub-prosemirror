@@ -25,5 +25,6 @@ require("./plugins/history/test-history")
 require("./plugins/source/test-source")
 require("./plugins/max_height/test-maxheight")
 require("./plugins/resize_nav/test-resizenav")
+require("./plugins/mention/test-mention")
 
 mocha.run()
