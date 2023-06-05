@@ -28,6 +28,7 @@
     "emoji-unicode-map": "^1.1.11",
     "emojilib": "github:git-assassin/emojilib",
     "eslint": "^8.40.0",
+    "eslint-plugin-mocha": "^10.1.0",
     "grunt": "^1.6.1",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-jshint": "^3.2.0",
@@ -65,6 +66,8 @@
     "twemoji": "^14.0.2"
   },
   "scripts": {
+    "build": "grunt rollup",
+    "lint": "eslint . --ext .js --ignore-path .gitignore",
     "test": "mocha-headless-chrome -f http://localhost:8090",
     "test-server": "moduleserve test --port 8090"
   }

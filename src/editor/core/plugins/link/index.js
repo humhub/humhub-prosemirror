@@ -2,8 +2,8 @@
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2017 HumHub GmbH & Co. KG
  * @license https://www.humhub.com/licences
- *
  */
+
 import {schema} from './schema'
 import {linkPlugin} from './plugin'
 import {menu} from './menu'
@@ -15,19 +15,18 @@ const link = {
     schema: schema,
     menu: (context) => menu(context),
     registerMarkdownIt: (md) => {
-
-        var defaultRender = md.renderer.rules.link_open || function(tokens, idx, options, env, self) {
+        const defaultRender = md.renderer.rules.link_open || function(tokens, idx, options, env, self) {
             return self.renderToken(tokens, idx, options);
         };
 
         md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
-            var hrefIndex = tokens[idx].attrIndex('href');
+            const hrefIndex = tokens[idx].attrIndex('href');
 
             let {url, guid} = filterFileUrl(tokens[idx].attrs[hrefIndex][1]);
 
             tokens[idx].attrs[hrefIndex][1] = url;
 
-            if(guid) {
+            if (guid) {
                 tokens[idx].attrPush(['data-file-guid', guid]); // add new attribute
                 tokens[idx].attrPush(['data-file-download', '']); // add new attribute
                 tokens[idx].attrPush(['data-file-url', url]); // add new attribute
@@ -38,15 +37,15 @@ const link = {
             }
 
             // If you are sure other plugins can't add `target` - drop check below
-            var aIndex = tokens[idx].attrIndex('target');
+            const aIndex = tokens[idx].attrIndex('target');
 
             if (aIndex < 0) {
                 // Check if the link is external
-                var hrefUrl = new URL(tokens[idx].attrs[hrefIndex][1]);
+                const hrefUrl = new URL(tokens[idx].attrs[hrefIndex][1]);
                 if (hrefUrl.hostname !== window.location.hostname) {
                     tokens[idx].attrPush(['target', '_blank']); // add new attribute
                 }
-            } else if(!tokens[idx].attrs[aIndex][1]) {
+            } else if (!tokens[idx].attrs[aIndex][1]) {
                 tokens[idx].attrs[aIndex][1] = '_blank';    // replace value of existing attr
             }
 

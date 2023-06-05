@@ -6,32 +6,32 @@
 
 // Used as input to Rollup to generate the prosemirror js file
 
-import * as state from "prosemirror-state"
-import * as view from "prosemirror-view"
-import * as transform from "prosemirror-transform"
-import * as inputRules from "prosemirror-inputrules"
-import * as commands from "prosemirror-commands"
-import * as history from "prosemirror-history"
-import * as keymap from "prosemirror-keymap"
-import * as model from "prosemirror-model"
-import * as menu from './core/menu'
-import * as pmmenu from "prosemirror-menu"
-import * as loader from "./core/plugins/loader/plugin"
-import {fixTables} from "prosemirror-tables"
+import * as state from "prosemirror-state";
+import * as view from "prosemirror-view";
+import * as transform from "prosemirror-transform";
+import * as inputRules from "prosemirror-inputrules";
+import * as commands from "prosemirror-commands";
+import * as history from "prosemirror-history";
+import * as keymap from "prosemirror-keymap";
+import * as model from "prosemirror-model";
+import * as pmmenu from "prosemirror-menu";
+import {fixTables} from "prosemirror-tables";
 import {Selection} from "prosemirror-state";
 
-import * as prompt from './core/prompt'
+import * as menu from "./core/menu";
+import * as prompt from "./core/prompt";
+import * as loader from "./core/plugins/loader/plugin";
 
-import {getParser, getSerializer, getRenderer} from "./markdown"
-import {setupPlugins} from "./core/index"
-import {$node} from "./core/util/node"
-import {registerPreset, registerPlugin, buildPlugins} from "./core/plugins"
-import * as markdown from "./markdown/index"
+import {getParser, getSerializer, getRenderer} from "./markdown";
+import {setupPlugins} from "./core/index";
+import {$node} from "./core/util/node";
+import {registerPreset, registerPlugin, buildPlugins} from "./core/plugins";
+import * as markdown from "./markdown/index";
 
-import MentionProvider from "./core/plugins/mention/provider"
+import MentionProvider from "./core/plugins/mention/provider";
 import {EDIT_MODE_SOURCE, sourcePluginKey, isSourceMode, switchToSourceMode} from "./core/plugins/source/plugin";
 
-import Context from './core/context'
+import Context from './core/context';
 
 $(document).on('mousedown.richtextProvider', function (evt) {
     if (!$(evt.target).closest('.humhub-richtext-provider:visible').length) {
@@ -148,7 +148,7 @@ class MarkdownEditor extends BaseView {
 
             this.$.on('focus', '.ProseMirror, textarea', () => {
                 this.$menuBar.show();
-            }).on('blur', (e) => {
+            }).on('blur', () => {
                 if (!this.$.is('.fullscreen')) {
                     this.$menuBar.hide();
                 }
@@ -326,7 +326,7 @@ window.prosemirror = window.humhub.richtext = {
 };
 
 if (window.humhub && window.humhub.module) {
-    window.humhub.module('ui.richtext', function(module) {
+    window.humhub.module('ui.richtext', (module) => {
         module.export(window.humhub.richtext);
     });
 }

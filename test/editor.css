@@ -329,13 +329,14 @@ blockquote {
 }
 
 
-#stage, #result {
-    margin: 50px;
+#stage {
+    margin: 50px 50px 20px;
     max-width: 600px;
 }
 
-#result {
-    padding: 10px;
+#testContent, #result {
+    margin: 0 50px 20px;
+    max-width: 600px;
 }
 
 #stage textarea {

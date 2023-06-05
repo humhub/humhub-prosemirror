@@ -5,7 +5,6 @@ const expect = require('chai').expect;
 const {initEditor, expectMenuItemVisible, expectMenuItemNotVisible, clickMenuItem, toHtml} = require('../testEditor');
 
 describe("Core:presets", () => {
-
     function expectContextContainsPlugin(view, id) {
         expect(view.context.getPlugin(id)).not.to.be.undefined;
     }
@@ -15,37 +14,36 @@ describe("Core:presets", () => {
     }
 
     function testEditorPresetDoesIncludePlugin(preset, id) {
-        it(`${preset} editor preset includes ${id}`, function(done) {
-            let editor = initEditor({preset:preset});
+        it(`${preset} editor preset includes ${id}`, function (done) {
+            let editor = initEditor({preset: preset});
             expectContextContainsPlugin(editor, id);
             done();
         });
     }
 
     function testEditorPresetDoesNotIncludePlugin(preset, id) {
-        it(`${preset} editor preset does not include ${id}`, function(done) {
-            let editor = initEditor({preset:preset});
+        it(`${preset} editor preset does not include ${id}`, function (done) {
+            let editor = initEditor({preset: preset});
             expectContextNotContainsPlugin(editor, id);
             done();
         });
     }
 
     function testViewPresetDoesNotIncludePlugin(preset, id) {
-        it(`${preset} view preset does not include ${id}`, function(done) {
-            let editor = initEditor({preset:preset});
+        it(`${preset} view preset does not include ${id}`, function (done) {
+            let editor = initEditor({preset: preset});
             expectContextNotContainsPlugin(editor.transformToView(), id);
             done();
         });
     }
 
     function testViewPresetDoesIncludePlugin(preset, id) {
-        it(`${preset} view preset includes ${id}`, function(done) {
-            let editor = initEditor({preset:preset});
+        it(`${preset} view preset includes ${id}`, function (done) {
+            let editor = initEditor({preset: preset});
             expectContextContainsPlugin(editor.transformToView(), id);
             done();
         });
     }
-
 
 
     ['emoji', 'oembed', 'anchor', 'mention'].forEach(id => testEditorPresetDoesNotIncludePlugin('markdown', id));
@@ -70,7 +68,6 @@ describe("Core:presets", () => {
     });
 
     it("test include plugin in editor instance", (done) => {
-        debugger;
         let editor = initEditor({preset: 'markdown', include: 'emoji'});
         expectContextContainsPlugin(editor, 'emoji');
         expectMenuItemVisible('insertEmoji');
@@ -83,7 +80,6 @@ describe("Core:presets", () => {
         expectMenuItemNotVisible('markEm');
 
         /**
-         *
          * The following would fail due to markdown-it requiring base markdown plugins
          */
         //let view = editor.transformToView();
@@ -107,7 +103,7 @@ describe("Core:presets", () => {
             ]
         }, 'markdown');
 
-        let editor = initEditor({preset:'markdown'});
+        let editor = initEditor({preset: 'markdown'});
         expectContextContainsPlugin(editor, 'test');
         expectMenuItemVisible('testItem');
         clickMenuItem('testItem');

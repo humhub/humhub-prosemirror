@@ -2,13 +2,21 @@
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2017 HumHub GmbH & Co. KG
  * @license https://www.humhub.com/licences
- *
  */
 
-import {MenuItem, Dropdown, icons} from "../../menu"
-import {wrapIn} from "prosemirror-commands"
-import {TextField, openPrompt} from "../../prompt"
-import {addColumnAfter, addColumnBefore, deleteColumn, addRowAfter, addRowBefore, deleteRow, deleteTable,toggleHeaderRow} from "prosemirror-tables"
+import {MenuItem, Dropdown, icons} from "../../menu";
+import {wrapIn} from "prosemirror-commands";
+import {TextField, openPrompt} from "../../prompt";
+import {
+    addColumnAfter,
+    addColumnBefore,
+    deleteColumn,
+    addRowAfter,
+    addRowBefore,
+    deleteRow,
+    deleteTable,
+    toggleHeaderRow
+} from "prosemirror-tables";
 
 function wrapTableItem(context) {
     let schema = context.schema;
@@ -40,15 +48,15 @@ function wrapTableItem(context) {
                         //toggleHeaderRow();
                     }
 
-                    view.focus()
+                    view.focus();
                 }
             })
         },
         enable(state) {
-            return command(state)
+            return command(state);
         },
         select(state) {
-            return command(state)
+            return command(state);
         }
     };
 
@@ -70,12 +78,12 @@ export function menu(context) {
                 sortOrder: 301
             })
         }
-    ]
+    ];
 }
 
 let buildTableMenu = function (context) {
     function item(label, cmd, sortOrder) {
-        return new MenuItem({label, select: cmd, run: cmd, sortOrder: sortOrder, title: ''})
+        return new MenuItem({label, select: cmd, run: cmd, sortOrder: sortOrder, title: ''});
     }
 
     return [

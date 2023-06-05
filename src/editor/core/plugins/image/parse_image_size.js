@@ -3,7 +3,7 @@
 'use strict';
 
 function parseNextNumber(str, pos, max) {
-  var code,
+  let code,
   start = pos,
   result = {
     ok: false,
@@ -25,7 +25,7 @@ function parseNextNumber(str, pos, max) {
 }
 
 module.exports = function parseImageSize(str, pos, max) {
-  var code,
+  let code,
   result = {
     ok: false,
     pos: 0,
@@ -51,7 +51,7 @@ module.exports = function parseImageSize(str, pos, max) {
   }
 
   // parse width
-  var resultW = parseNextNumber(str, pos, max);
+  const resultW = parseNextNumber(str, pos, max);
   pos = resultW.pos;
 
   // next charactor must be 'x'
@@ -61,7 +61,7 @@ module.exports = function parseImageSize(str, pos, max) {
   pos++;
 
   // parse height
-  var resultH = parseNextNumber(str, pos, max);
+  const resultH = parseNextNumber(str, pos, max);
   pos = resultH.pos;
 
   result.width = resultW.value;

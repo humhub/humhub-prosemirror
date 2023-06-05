@@ -10,13 +10,13 @@
     <script src="humhub-editor.js"></script>
 </head>
 <body>
+    <div id="stage" class="ProsemirrorEditor"></div>
+    <div id="testContent" tabindex="0">Test content block</div>
 
-<div id="stage" class="ProsemirrorEditor"></div>
+    <div id="result"></div>
 
-<div id="result"></div>
+    <div id="mocha"></div>
 
-<div id="mocha"></div>
-
-<script src="/moduleserve/load.js" data-module="./test" data-require></script>
+    <script src="/moduleserve/load.js" data-module="./test" data-require></script>
 </body>
 </html>

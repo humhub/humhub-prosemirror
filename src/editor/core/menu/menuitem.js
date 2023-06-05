@@ -100,7 +100,7 @@ export class MenuItem {
     }
 
     initEvents(view) {
-        var runHandler = e => {
+        const runHandler = e => {
             e.preventDefault();
             if (!this.$.hasClass(buildMenuClass('disabled'))) {
                 this.options.run.call(this, view.state, view.dispatch, view, e);
@@ -112,7 +112,7 @@ export class MenuItem {
 
         $(this.dom).on("mousedown", runHandler);
         $(this.dom).on("keydown", e => {
-            var keyCode = e.keyCode || e.which;
+            const keyCode = e.keyCode || e.which;
 
             switch (keyCode) {
                 case 13: // Enter

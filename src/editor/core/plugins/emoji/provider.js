@@ -5,7 +5,7 @@
  *
  */
 
-import * as util from './util';
+import {getByCategory, getCharByName, getCharToDom} from "./util";
 import {getUserLocale, isSmallView} from "../../humhub-bridge";
 
 let userFlag = undefined;
@@ -46,10 +46,10 @@ let findUserFlag = function() {
         let language = getUserLocale();
 
         if (language && directMapping[language]) {
-            return util.getCharByName(directMapping[language]);
+            return getCharByName(directMapping[language]);
         }
 
-        $.each(util.getByCategory('flags'), (index, flag) => {
+        $.each(getByCategory('flags'), (index, flag) => {
             if (flag && flag.keywords && flag.keywords.indexOf(language) >= 0) {
                 result = flag.char;
                 return false;
@@ -70,15 +70,15 @@ class EmojiChooser {
         this.provider = provider;
         this.categoryOrder = ['people', 'animals_and_nature', 'food_and_drink', 'activity', 'travel_and_places', 'objects', 'symbols', 'flags', 'search'];
         this.categories = {
-            people: {$icon: util.getCharToDom('\uD83D\uDE00')},
-            animals_and_nature: {$icon: util.getCharToDom('\uD83D\uDC3B')},
-            food_and_drink: {$icon: util.getCharToDom('\uD83C\uDF82')},
-            activity: {$icon: util.getCharToDom('\u26BD')},
-            travel_and_places: {$icon: util.getCharToDom('\u2708\uFE0F')},
-            objects: {$icon: util.getCharToDom('\uD83D\uDDA5')},
-            symbols: {$icon: util.getCharToDom('\u2764\uFE0F')},
-            flags: {$icon: util.getCharToDom(findUserFlag())},
-            search: {$icon: util.getCharToDom('\uD83D\uDD0D')}
+            people: {$icon: getCharToDom('\uD83D\uDE00')},
+            animals_and_nature: {$icon: getCharToDom('\uD83D\uDC3B')},
+            food_and_drink: {$icon: getCharToDom('\uD83C\uDF82')},
+            activity: {$icon: getCharToDom('\u26BD')},
+            travel_and_places: {$icon: getCharToDom('\u2708\uFE0F')},
+            objects: {$icon: getCharToDom('\uD83D\uDDA5')},
+            symbols: {$icon: getCharToDom('\u2764\uFE0F')},
+            flags: {$icon: getCharToDom(findUserFlag())},
+            search: {$icon: getCharToDom('\uD83D\uDD0D')}
         };
     }
 
@@ -202,7 +202,7 @@ class EmojiChooser {
         let result = [];
         let length = searchStr.length;
         this.categoryOrder.forEach((categoryName, index) => {
-            $.each(util.getByCategory(categoryName), (index, emoji) => {
+            $.each(getByCategory(categoryName), (index, emoji) => {
                 if (emoji && emoji.keywords) {
                     $.each(emoji.keywords, (index, keyword) => {
                         if (length < 3) {
@@ -255,7 +255,7 @@ class EmojiChooser {
 
     setCategoryItems(categoryName, items) {
         if (!items && categoryName !== 'search') {
-            items = util.getByCategory(categoryName);
+            items = getByCategory(categoryName);
         }
 
         if (!items) {
@@ -265,7 +265,7 @@ class EmojiChooser {
         let $list = this.categories[categoryName].$.find('.humhub-emoji-chooser-item-list').empty();
 
         items.forEach((emojiDef) => {
-            let $li = $('<li class="atwho-emoji-entry">').append(util.getCharToDom(emojiDef.char, emojiDef.name));
+            let $li = $('<li class="atwho-emoji-entry">').append(getCharToDom(emojiDef.char, emojiDef.name));
 
             if(categoryName === 'flags' && emojiDef.char === findUserFlag()) {
                 $list.prepend($li);

@@ -1,13 +1,13 @@
-import {joinUp, selectParentNode, wrapIn, setBlockType, toggleMark} from "prosemirror-commands"
-import {undo, redo} from "prosemirror-history"
-
+import {joinUp, selectParentNode, wrapIn, setBlockType, toggleMark} from "prosemirror-commands";
+import {undo, redo} from "prosemirror-history";
 import {liftTarget} from "prosemirror-transform";
+import {wrapInList} from "prosemirror-schema-list";
 
+import {icons} from "./icons";
 import {Dropdown} from "./dropdown";
 import {DropdownSubmenu} from "./dropdown-sub";
 import {MenuItem} from "./menuitem";
 import {MenuItemGroup} from "./menugroup";
-import {icons} from "./icons";
 
 export {icons} from "./icons";
 export {Dropdown} from "./dropdown";
@@ -38,9 +38,9 @@ export function markItem(markType, options, context) {
     for (let prop in options) passedOptions[prop] = options[prop]
     let menuItem = cmdItem(toggleMark(markType), passedOptions)
 
-    if(options.runSource) {
+    if (options.runSource) {
         menuItem.runSource = options.runSource;
-    } else if(context && markType.spec.toMarkdown
+    } else if (context && markType.spec.toMarkdown
         && typeof markType.spec.toMarkdown.open === 'string'
         && typeof markType.spec.toMarkdown.close === 'string') {
         menuItem.runSource = wrapSourceTextMark(context, markType);
@@ -66,18 +66,18 @@ export function wrapSourceTextMark(context, markType, open, close) {
         close = open;
     }
 
-    return function() {
+    return function () {
         let $source = context.$source;
-        var length = $source.val().length;
-        var start = $source[0].selectionStart;
-        var selectionDirection = $source[0].selectionDirection
-        var end = $source[0].selectionEnd;
-        var selectedText = $source.val().substring(start, end);
+        const length = $source.val().length;
+        const start = $source[0].selectionStart;
+        const selectionDirection = $source[0].selectionDirection
+        const end = $source[0].selectionEnd;
+        let selectedText = $source.val().substring(start, end);
 
-        var preSelection = $source.val().substring((start - open.length), start);
-        var postSelection = $source.val().substring(end, (end + close.length));
+        const preSelection = $source.val().substring((start - open.length), start);
+        const postSelection = $source.val().substring(end, (end + close.length));
 
-        if(preSelection === open && postSelection === close) {
+        if (preSelection === open && postSelection === close) {
             // Revert mark
             $source.val($source.val().substring(0, start - open.length) + selectedText + $source.val().substring(end + close.length, length));
             $source[0].setSelectionRange((start - open.length), end - open.length, selectionDirection);
@@ -87,7 +87,7 @@ export function wrapSourceTextMark(context, markType, open, close) {
                 ? ' '.repeat(leadingSpaceCount)
                 : '';
 
-            let trailingSpaceCount =  selectedText.search(/ +$/) > -1
+            let trailingSpaceCount = selectedText.search(/ +$/) > -1
                 ? selectedText.length - selectedText.search(/ +$/)
                 : 0;
             let trailingSpaces = trailingSpaceCount > 0
@@ -96,7 +96,7 @@ export function wrapSourceTextMark(context, markType, open, close) {
 
             selectedText = selectedText.trim();
 
-            var replacement = open + selectedText + close;
+            const replacement = open + selectedText + close;
             $source.val($source.val().substring(0, start) + leadingSpaces + replacement + trailingSpaces + $source.val().substring(end, length));
             $source[0].setSelectionRange((start + leadingSpaceCount + open.length), (end + open.length - trailingSpaceCount), selectionDirection);
         }
@@ -136,22 +136,26 @@ export const liftItem = function () {
 };
 
 function lift(state, dispatch) {
-    var ref = state.selection;
-    var $from = ref.$from;
-    var $to = ref.$to;
+    const ref = state.selection;
+    const $from = ref.$from;
+    const $to = ref.$to;
 
-    var inList = $from.blockRange($to, function (node) {
+    const inList = $from.blockRange($to, function (node) {
         return node.childCount && node.firstChild.type.name === 'list_item';
     });
 
-    if(inList) {
+    if (inList) {
         return false;
     }
 
-    var range = $from.blockRange($to), target = range && liftTarget(range);
-    if (target == null) { return false }
-    if (dispatch) { dispatch(state.tr.lift(range, target).scrollIntoView()); }
-    return true
+    const range = $from.blockRange($to), target = range && liftTarget(range);
+    if (target == null) {
+        return false;
+    }
+    if (dispatch) {
+        dispatch(state.tr.lift(range, target).scrollIntoView());
+    }
+    return true;
 }
 
 // :: MenuItem
@@ -238,14 +242,14 @@ export function canInsert(state, nodeType) {
 }
 
 export function canInsertLink(state) {
-    var allowLink = true;
-    state.doc.nodesBetween(state.selection.$from.pos, state.selection.$to.pos, function(node) {
-        if(node.type.spec.code) {
+    let allowLink = true;
+    state.doc.nodesBetween(state.selection.$from.pos, state.selection.$to.pos, function (node) {
+        if (node.type.spec.code) {
             allowLink = false;
         } else {
-            node.marks.forEach(function(mark) {
+            node.marks.forEach(function (mark) {
                 let spec = mark.type.spec;
-                if(spec.preventMarks && $.inArray('link', spec.preventMarks) >= 0) {
+                if (spec.preventMarks && $.inArray('link', spec.preventMarks) >= 0) {
                     allowLink = false;
                 }
             });

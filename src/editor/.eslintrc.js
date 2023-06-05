@@ -12,6 +12,7 @@ module.exports = {
         "sourceType": "module"
     },
     "rules": {
+        'no-labels': 'off',
         "no-cond-assign": "off",
         "no-unused-vars": "off",
         "no-undef": "off",

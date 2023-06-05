@@ -88,30 +88,30 @@ function buildMenuItems(context) {
 }
 
 function filterOutExcludes(context, definition) {
-    if(!definition) {
+    if (!definition) {
         return false;
     }
 
-    if(Array.isArray(definition)) {
+    if (Array.isArray(definition)) {
         return definition.filter(item => {
             return filterOutExcludes(context, item);
         });
     }
 
-    if(definition instanceof MenuItemGroup) {
+    if (definition instanceof MenuItemGroup) {
         definition.content.items = definition.content.items.filter(item => {
             return filterOutExcludes(context, item);
         });
     }
 
-    if(typeof definition === 'object' && definition.items) {
+    if (typeof definition === 'object' && definition.items) {
         definition.items = definition.items.filter(item => {
             return filterOutExcludes(context, item);
         });
     }
 
     let id = definition.id;
-    if(!id && definition.options) {
+    if (!id && definition.options) {
         id = definition.options.id;
     }
 
@@ -188,15 +188,14 @@ function checkMenuDefinition(context, menuDefinition) {
     return !(menuDefinition.mark && !context.schema.marks[menuDefinition.mark]);
 }
 
-function isExcludedMenuItem(context, id)
-{
+function isExcludedMenuItem(context, id) {
     let presetOption = context.getPresetOption('menu', 'exclude', []);
-    if(Array.isArray(presetOption) && presetOption.includes(id)) {
+    if (Array.isArray(presetOption) && presetOption.includes(id)) {
         return true;
     }
 
     let globalOption = context.getGlobalOption('menu', 'exclude', []);
-    if(Array.isArray(globalOption) && globalOption.includes(id)) {
+    if (Array.isArray(globalOption) && globalOption.includes(id)) {
         return true;
     }
 
@@ -277,7 +276,7 @@ class MenuBarView {
         this.widthForMaxHeight = 0;
         this.floating = false;
 
-        this.groupItem = new MenuItemGroup(this.options.content, {id:'main-menu-group'});
+        this.groupItem = new MenuItemGroup(this.options.content, {id: 'main-menu-group'});
 
         this.context.menuWrapperPlugins.forEach((plugin) => {
             wrapMenuItem(plugin, this.context, this.groupItem);
@@ -293,7 +292,7 @@ class MenuBarView {
             // Prevent focusout if we click outside of a menu item, but still inside menu container
             evt.preventDefault();
         }).on("keydown", e => {
-            var keyCode = e.keyCode || e.which;
+            const keyCode = e.keyCode || e.which;
 
             switch (keyCode) {
                 case 39: // ArrowRight
@@ -340,8 +339,8 @@ class MenuBarView {
         }
 
         let currentTabindex = this.focusIconIndex;
-        var that = this;
-        this.$.find('.'+buildMenuClass('trigger')).each(function (index) {
+        const that = this;
+        this.$.find('.' + buildMenuClass('trigger')).each(function (index) {
             let $this = $(this);
             let isVisible = $this.is(':visible');
             let tabindex = -1;
@@ -349,7 +348,7 @@ class MenuBarView {
 
             if (!isVisible && isCurrentIndex) {
                 // Note here we expect the first menu item is always visible
-                $(that.groupItem.dom).find('.'+buildMenuClass('trigger:first')).attr('tabindex', 0);
+                $(that.groupItem.dom).find('.' + buildMenuClass('trigger:first')).attr('tabindex', 0);
             } else if (isCurrentIndex) {
                 tabindex = 0;
             }
@@ -364,20 +363,20 @@ class MenuBarView {
         let $prev = null;
         let $focus = null;
         let newFocusIconIndex = 0;
-        let $current = this.$.find('.'+buildMenuClass('trigger:focus'));
-        let $items = this.$.find('.'+buildMenuClass('trigger'));
+        let $current = this.$.find('.' + buildMenuClass('trigger:focus'));
+        let $items = this.$.find('.' + buildMenuClass('trigger'));
 
         $items.each(function (index) {
             let $this = $(this);
 
-            if($this.is($current)) {
+            if ($this.is($current)) {
                 $focus = $prev;
                 newFocusIconIndex = index - 1;
             }
 
             $this.attr('tabindex', -1);
 
-            if($this.is(':visible')) {
+            if ($this.is(':visible')) {
                 $prev = $this;
             }
         });
@@ -396,9 +395,9 @@ class MenuBarView {
         let $next = null;
         let newFocusIconIndex = 0;
         let focusNextItem = false;
-        let $current = this.$.find('.'+buildMenuClass('trigger:focus'))
+        let $current = this.$.find('.' + buildMenuClass('trigger:focus'))
 
-        this.$.find('.'+buildMenuClass('trigger')).each(function (index) {
+        this.$.find('.' + buildMenuClass('trigger')).each(function (index) {
             let $this = $(this);
             if (!$this.is(':visible')) {
                 return;
@@ -415,7 +414,7 @@ class MenuBarView {
         });
 
         if (!$next) {
-            $next = this.$.find('.'+buildMenuClass('trigger:first'))
+            $next = this.$.find('.' + buildMenuClass('trigger:first'))
         }
 
         this.focusIconIndex = newFocusIconIndex;

@@ -2,16 +2,15 @@
 /* jshint expr:true */
 
 const expect = require('chai').expect;
-const {initEditor,clickMenuItem, expectMenuItemNotVisible, expectMenuItemVisible} = require('../testEditor');
+const {initEditor, clickMenuItem, expectMenuItemNotVisible, expectMenuItemVisible} = require('../testEditor');
 
 describe("Menu:configuration", () => {
-
     it("test exclude menu item by global config", (done) => {
         window.humhub.richtext.globalOptions = {
             menu: {
                 'exclude': ['insertTable']
             }
-        }
+        };
 
         initEditor({exclude: ['resizeNav']});
         expectMenuItemNotVisible('insertTable');
@@ -24,7 +23,7 @@ describe("Menu:configuration", () => {
             menu: {
                 'exclude': ['makeHeading1']
             }
-        }
+        };
 
         initEditor({exclude: ['resizeNav']});
         clickMenuItem('type ');
@@ -38,7 +37,7 @@ describe("Menu:configuration", () => {
             menu: {
                 'exclude': ['marks-group']
             }
-        }
+        };
 
         initEditor({exclude: ['resizeNav']});
         expectMenuItemNotVisible('marks-group');
@@ -48,14 +47,14 @@ describe("Menu:configuration", () => {
 
     it("test exclude menu item by preset config", (done) => {
         window.humhub.richtext.globalOptions = {
-            presets : {
+            presets: {
                 markdown: {
                     menu: {
                         'exclude': ['insertTable']
                     }
                 }
             }
-        }
+        };
 
         initEditor({preset: 'markdown', exclude: ['resizeNav']});
         expectMenuItemNotVisible('insertTable');
@@ -71,7 +70,8 @@ describe("Menu:configuration", () => {
             exclude: ['resizeNav'],
             menu: {
                 'exclude': ['insertTable']
-            }});
+            }
+        });
         expectMenuItemNotVisible('insertTable');
         done();
     });
