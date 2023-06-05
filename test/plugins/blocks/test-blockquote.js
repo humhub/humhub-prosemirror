@@ -43,7 +43,7 @@ describe("Plugin:blockquote", () => {
         type('This is a block quote');
         clickMenuItem('wrapBlockQuote');
         pressKeyArrowDown();
-        expect(toHtml()).to.equal('<blockquote><p>This is a block quote</p></blockquote><p><br></p>');
+        expect(toHtml()).to.equal('<blockquote><p>This is a block quote</p></blockquote><p><br class="ProseMirror-trailingBreak"></p>');
         done();
     });
 });

@@ -26,5 +26,6 @@ require("./plugins/source/test-source")
 require("./plugins/max_height/test-maxheight")
 require("./plugins/resize_nav/test-resizenav")
 require("./plugins/mention/test-mention")
+require("./plugins/tab_behavior/test-tab-behavior")
 
 mocha.run()

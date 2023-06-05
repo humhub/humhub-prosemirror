@@ -1,5 +1,5 @@
 const expect = require('chai').expect;
-const {initEditor, toHtml, serialize, simulateInputRule, setSelection, clickMenuItem, type} = require('../../testEditor');
+const {initEditor, toHtml, serialize, setSelection, clickMenuItem, type} = require('../../testEditor');
 
 describe("Plugin:em", () => {
     it("test init emphasized text", (done) => {
@@ -16,8 +16,7 @@ describe("Plugin:em", () => {
         done();
     });
 
-
-    // TODO: Implment em input rule
+    // TODO: Implement em input rule
     /*
         it("test emphasized input rule", (done) => {
             initEditor();
@@ -26,7 +25,7 @@ describe("Plugin:em", () => {
             expect(serialize()).to.equal('*Make me emphasized!*');
             done();
         });
-        */
+    */
 
     it("test emphasized menu item mark selection", (done) => {
         let editor = initEditor('Make this emphasized!');
@@ -43,5 +42,4 @@ describe("Plugin:em", () => {
        expect(toHtml()).to.equal('<p><em>Test</em></p>');
        done();
    });
-
 });

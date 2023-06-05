@@ -96,12 +96,12 @@ MentionProvider.prototype.update = function(loading) {
     });
 
 
-    var that = this;
-    if(this.result && this.result.length) {
+    const that = this;
+    if (this.result && this.result.length) {
         let $list = $('<ul style="list-style-type: none;padding:0px;margin:0px;">');
         this.result.forEach(function (item) {
-            var name = humhub.modules.util.string.encode(item.name);
-            var $li = (item.image) ? $('<li>' + item.image + ' ' + name + '</li>') : $('<li>' + name + '</li>');
+            const name = humhub.modules.util.string.encode(item.name);
+            const $li = (item.image) ? $('<li>' + item.image + ' ' + name + '</li>') : $('<li>' + name + '</li>');
 
             $li.data('item', item).on('click', () => {
                 that.$container.find('.cur').removeClass('cur');
@@ -116,7 +116,7 @@ MentionProvider.prototype.update = function(loading) {
 
         this.$container.append($list);
     } else if(this.result.text) {
-        var name = encode(this.result.text);
+        const name = encode(this.result.text);
         this.$container.append($('<span>'+name+'</span>'));
     } else if(this.result.loader) {
         let $loader = getLoaderWidget();

@@ -16,6 +16,7 @@ Changelog
 - Enh #92: Store Default Markdown Editor Mode
 - Enh #91: Update JS dependencies
 - Fix #59: @ becomes @@ when copying mentioning in wiki editor
+- Enh #30: Tabulator Support
 
 
 1.1.3 (Unreleased)

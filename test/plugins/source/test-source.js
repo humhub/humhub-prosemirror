@@ -7,10 +7,7 @@ const {
     selectSource,
     toHtml,
     serialize,
-    simulateInputRule,
-    setSelection,
     clickMenuItem,
-    type
 } = require('../../testEditor');
 
 describe("Plugin:source", () => {
@@ -58,7 +55,7 @@ describe("Plugin:source", () => {
     });
 
     it("test editor focus on switch mode", (done) => {
-        editor = initEditor('Test source mode');
+        const editor = initEditor('Test source mode');
         clickMenuItem('source');
         expect(editor.hasFocus()).to.be.true;
         expect(editor.context.$source.is(':focus')).to.be.true;

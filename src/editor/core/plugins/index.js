@@ -2,10 +2,9 @@
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2017 HumHub GmbH & Co. KG
  * @license https://www.humhub.com/licences
- *
  */
 
-import {inputRules, smartQuotes, emDash, ellipsis, InputRule} from "prosemirror-inputrules";
+import {inputRules, smartQuotes, emDash, ellipsis} from "prosemirror-inputrules";
 import {keymap} from "prosemirror-keymap";
 import doc from "./doc";
 import blockquote from "./blockquote";
@@ -16,6 +15,7 @@ import em from "./em";
 import emoji from "./emoji";
 import hard_break from "./hard_break";
 import heading from "./heading";
+import historyPlugin from "./history";
 import horizontal_rule from "./horizontal_rule";
 import image from "./image";
 import link from "./link";
@@ -40,16 +40,16 @@ import resizeNav from "./resize_nav";
 import maxHeight from "./max_height";
 import save from "./save";
 import source from "./source";
-import historyPlugin from "./history";
+import tabBehavior from "./tab_behavior";
 import {PluginRegistry} from "./registry";
 
 const registry = new PluginRegistry();
 
-let registerPlugin = function(plugin, options) {
+let registerPlugin = function (plugin, options) {
     registry.register(plugin, options);
 };
 
-let registerPreset = function(id, plugins) {
+let registerPreset = function (id, plugins) {
     registry.registerPreset(id, plugins);
 };
 
@@ -87,11 +87,11 @@ registerPlugin(resizeNav, 'markdown');
 registerPlugin(maxHeight, 'markdown');
 registerPlugin(save, 'markdown');
 registerPlugin(source, 'markdown');
+registerPlugin(tabBehavior, 'markdown');
 
 registerPreset('normal', {
     extend: 'markdown',
-    callback: function(addToPreset) {
-
+    callback: function (addToPreset) {
         addToPreset('emoji', 'normal', {
             'before': 'hard_break'
         });
@@ -112,7 +112,7 @@ registerPreset('full', {
 
 registerPreset('document', {
     extend: 'full',
-    callback: function(addToPreset) {
+    callback: function (addToPreset) {
         addToPreset('anchor', 'document', {
             'before': 'fullscreen'
         });
@@ -140,26 +140,25 @@ class PresetManager {
     check(context) {
         let options = context.options;
 
-        if(this.options.name && context[this.options.name]) {
+        if (this.options.name && context[this.options.name]) {
             return context[this.options.name];
         }
 
         let result = [];
 
-        if(!PresetManager.isCustomPluginSet(options) && this.map[options.preset]) {
+        if (!PresetManager.isCustomPluginSet(options) && this.map[options.preset]) {
             result = this.map[options.preset];
         }
 
-        if(!result || (Array.isArray(result) && !result.length)) {
+        if (!result || (Array.isArray(result) && !result.length)) {
             result = this.create(context);
 
-            if(!PresetManager.isCustomPluginSet(options)) {
+            if (!PresetManager.isCustomPluginSet(options)) {
                 this.add(options, result);
             }
         }
 
-
-        if(this.options.name) {
+        if (this.options.name) {
             context[this.options.name] = result;
         }
 
@@ -167,37 +166,37 @@ class PresetManager {
     }
 }
 
-let getPlugins = function(context) {
+let getPlugins = function (context) {
     let options = context.options;
 
-    if(context.plugins) {
+    if (context.plugins) {
         return context.plugins;
     }
 
     let presetMap = registry.getPresetRegistry(context);
     let toExtend = presetMap.get(options.preset) ? presetMap.get(options.preset) : registry.plugins;
 
-    if(!PresetManager.isCustomPluginSet(options)) {
+    if (!PresetManager.isCustomPluginSet(options)) {
         return context.plugins = toExtend.slice();
     }
 
     let result = [];
 
-    if(options.only) {
+    if (options.only) {
         options.only.forEach((pluginId) => {
-            if(registry.pluginMap[pluginId]) {
+            if (registry.pluginMap[pluginId]) {
                 result.push(registry.pluginMap[pluginId]);
             } else {
-                console.error('Could not include plugin '+pluginId+' plugin not registered!');
+                console.error('Could not include plugin ' + pluginId + ' plugin not registered!');
             }
         });
 
         return context.plugins = result;
     }
 
-    if(options.exclude) {
+    if (options.exclude) {
         toExtend.forEach((plugin) => {
-            if(plugin && !options.exclude.includes(plugin.id)) {
+            if (plugin && !options.exclude.includes(plugin.id)) {
                 result.push(plugin);
             }
         });
@@ -205,25 +204,25 @@ let getPlugins = function(context) {
         result = toExtend.slice();
     }
 
-    if(options.include) {
+    if (options.include) {
         options.include.forEach((pluginId) => {
-            if(registry.pluginMap[pluginId] && result.findIndex(plugin => plugin.id === pluginId) === -1) {
+            if (registry.pluginMap[pluginId] && result.findIndex(plugin => plugin.id === pluginId) === -1) {
                 result.push(registry.pluginMap[pluginId]);
             } else {
-                console.error('Could not include plugin '+pluginId+' plugin not registered!');
+                console.error('Could not include plugin ' + pluginId + ' plugin not registered!');
             }
         });
     }
     return context.plugins = result;
 };
 
-let buildInputRules = function(context) {
+let buildInputRules = function (context) {
     let plugins = context.plugins;
     let schema = context.schema;
 
     let rules = smartQuotes.concat([ellipsis, emDash]);
     plugins.forEach((plugin) => {
-        if(plugin.inputRules) {
+        if (plugin.inputRules) {
             rules = rules.concat(plugin.inputRules(schema));
         }
     });
@@ -231,19 +230,19 @@ let buildInputRules = function(context) {
     return inputRules({rules})
 };
 
-let buildPlugins = function(context) {
+let buildPlugins = function (context) {
     let plugins = context.plugins;
 
     let result = [];
     plugins.forEach((plugin) => {
 
-        if(plugin.init) {
+        if (plugin.init) {
             plugin.init(context, context.editor.isEdit());
         }
 
-        if(context.editor.isEdit() && plugin.plugins) {
+        if (context.editor.isEdit() && plugin.plugins) {
             let pl = plugin.plugins(context);
-            if(pl && pl.length) {
+            if (pl && pl.length) {
                 result = result.concat(pl);
                 context.prosemirrorPlugins[plugin.id] = pl;
             }
@@ -253,12 +252,12 @@ let buildPlugins = function(context) {
     return result;
 };
 
-let buildPluginKeymap = function(context) {
+let buildPluginKeymap = function (context) {
     let plugins = context.plugins;
 
     let result = [];
     plugins.forEach((plugin) => {
-        if(plugin.keymap) {
+        if (plugin.keymap) {
             result.push(keymap(plugin.keymap(context)));
         }
     });
@@ -270,4 +269,13 @@ let buildPluginKeymap = function(context) {
 // https://github.com/ProseMirror/prosemirror/issues/710
 const isChromeWithSelectionBug = !!navigator.userAgent.match(/Chrome\/(5[89]|6[012])/);
 
-export {isChromeWithSelectionBug, PresetManager, buildPlugins, buildPluginKeymap, buildInputRules, registerPlugin, registerPreset, getPlugins}
+export {
+    isChromeWithSelectionBug,
+    PresetManager,
+    buildPlugins,
+    buildPluginKeymap,
+    buildInputRules,
+    registerPlugin,
+    registerPreset,
+    getPlugins
+}

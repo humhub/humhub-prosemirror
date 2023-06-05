@@ -5,11 +5,11 @@
  *
  */
 
-import { Plugin, PluginKey } from 'prosemirror-state';
-import { EmojiQueryState } from './state';
-import {EmojiProvider, getProvider} from "./provider";
 import twemoji from "twemoji";
-import * as util from "./util";
+import {Plugin, PluginKey} from 'prosemirror-state';
+import {EmojiQueryState} from './state';
+import {getProvider} from "./provider";
+import {getNameByChar} from "./util";
 
 const pluginKey = new PluginKey('emoji');
 
@@ -21,7 +21,7 @@ const emojiPlugin = (context) => {
 
                 // eslint-disable-next-line
                 return text.replace(/\<img class="emoji"[^\\\>]* alt=\"([^\"]*)\"[^\\\>]*\/>/g, function(match, char) {
-                    return ':'+util.getNameByChar(char)+':';
+                    return ':'+getNameByChar(char)+':';
                 });
             },
         },

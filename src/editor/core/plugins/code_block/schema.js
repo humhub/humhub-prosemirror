@@ -2,8 +2,11 @@
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2017 HumHub GmbH & Co. KG
  * @license https://www.humhub.com/licences
- *
  */
+
+// import {schema} from "prosemirror-schema-basic";
+// import {Schema} from "prosemirror-model";
+
 const code_block =  {
     sortOrder: 500,
     content: "text*",
@@ -13,16 +16,17 @@ const code_block =  {
     marks: "",
     attrs: {params: {default: ""}},
     parseDOM: [{
-        tag: "pre", preserveWhitespace: true, getAttrs: function (node) {
+        tag: "pre",
+        preserveWhitespace: true, getAttrs: function (node) {
             return ({params: node.getAttribute("data-params") || ""});
         }
     }],
-    toDOM: function toDOM(node) {
-        return ["pre", node.attrs.params ? {"data-params": node.attrs.params} : {}, ["code", 0]]
+    toDOM: (node) => {
+        return ["pre", node.attrs.params ? {"data-params": node.attrs.params} : {}, ["code", 0]];
     },
     parseMarkdown: {block: "code_block"},
     toMarkdown: (state, node) => {
-        if(state.table) {
+        if (state.table) {
             state.wrapBlock("`", "`", node, function () { return state.text(node.textContent, false); });
         } else if (!node.attrs.params) {
             state.write("```\n");
@@ -41,8 +45,21 @@ const code_block =  {
 };
 
 const fence = {
-    parseMarkdown:  {block: "code_block", getAttrs: function (tok) { return ({params: tok.info || ""}); }}
+    parseMarkdown:  {
+        block: "code_block",
+        getAttrs: (tok) => ({params: tok.info || ""})
+    }
 };
+
+// const codeBlockSpec = schema.spec.nodes.get("code_block");
+
+// export default new Schema({
+//     nodes: schema.spec.nodes.update("code_block", {
+//         ...(codeBlockSpec || {}),
+//         attrs: { ...(codeBlockSpec.attrs || null), lang: { default: null } },
+//     }),
+//     marks: schema.spec.marks,
+// });
 
 const schema = {
     nodes: {
