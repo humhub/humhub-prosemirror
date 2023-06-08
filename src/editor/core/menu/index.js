@@ -1,2 +1,2 @@
-export * from "./menu"
-export {menuBar} from "./menubar"
+export * from "./menu";
+export {menuBar} from "./menubar";

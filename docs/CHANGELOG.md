@@ -17,6 +17,7 @@ Changelog
 - Enh #91: Update JS dependencies
 - Fix #59: @ becomes @@ when copying mentioning in wiki editor
 - Enh #30: Tabulator Support
+- Enh #102: Source Button Position
 
 
 1.1.3 (Unreleased)
