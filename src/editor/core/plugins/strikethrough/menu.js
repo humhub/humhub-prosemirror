@@ -2,11 +2,9 @@
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2017 HumHub GmbH & Co. KG
  * @license https://www.humhub.com/licences
- *
  */
 
 import {icons, markItem} from "../../menu/menu"
-
 
 function markStrikethrough(context) {
     return markItem(context.schema.marks.strikethrough, {
@@ -24,5 +22,5 @@ export function menu(context) {
             group: 'marks',
             item: markStrikethrough(context)
         }
-    ]
+    ];
 }

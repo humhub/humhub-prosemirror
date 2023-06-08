@@ -57,6 +57,7 @@ describe("Menu:accessibility", () => {
         navigate(DIR_RIGHT, 'markStrong');
         navigate(DIR_RIGHT, 'markEm');
         navigate(DIR_RIGHT, 'markStrikethrough');
+        navigate(DIR_RIGHT, 'markEmStrikethrough');
         navigate(DIR_RIGHT, 'markCode');
         navigate(DIR_RIGHT, 'linkItem');
         navigate(DIR_RIGHT, 'insertEmoji');
@@ -75,6 +76,7 @@ describe("Menu:accessibility", () => {
         navigate(DIR_LEFT, 'insertEmoji');
         navigate(DIR_LEFT, 'linkItem');
         navigate(DIR_LEFT, 'markCode');
+        navigate(DIR_LEFT, 'markEmStrikethrough');
         navigate(DIR_LEFT, 'markStrikethrough');
         navigate(DIR_LEFT, 'markEm');
         navigate(DIR_LEFT, 'markStrong');

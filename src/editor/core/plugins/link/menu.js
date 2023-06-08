@@ -15,7 +15,7 @@ function linkItem(context) {
     let mark = context.schema.marks.link;
     return new MenuItem({
         title: context.translate("Add or remove link"),
-        sortOrder: 500,
+        sortOrder: 600,
         icon: icons.link,
         active(state) {
             return markActive(state, mark)

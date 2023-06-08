@@ -659,7 +659,9 @@ ProsemirrorEditor img {
 }
 
 .ProseMirror-menu-dropdown-item div[title],
+.ProseMirror-menu-dropdown-item a.ProseMirror-menu-trigger,
 .ProseMirror-menu-submenu-wrap {
+    display: block;
     padding: 4px;
 }
 

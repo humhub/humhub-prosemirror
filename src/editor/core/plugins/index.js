@@ -41,6 +41,7 @@ import maxHeight from "./max_height";
 import save from "./save";
 import source from "./source";
 import tabBehavior from "./tab_behavior";
+import em_strikethrough from "./em_strikethrough";
 import {PluginRegistry} from "./registry";
 
 const registry = new PluginRegistry();
@@ -88,6 +89,7 @@ registerPlugin(maxHeight, 'markdown');
 registerPlugin(save, 'markdown');
 registerPlugin(source, 'markdown');
 registerPlugin(tabBehavior, 'markdown');
+registerPlugin(em_strikethrough, 'markdown');
 
 registerPreset('normal', {
     extend: 'markdown',

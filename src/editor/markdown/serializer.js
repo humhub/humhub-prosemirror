@@ -2,12 +2,10 @@
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2017 HumHub GmbH & Co. KG
  * @license https://www.humhub.com/licences
- *
  */
 
-import {MarkdownSerializer, MarkdownSerializerState} from "prosemirror-markdown"
-import {getPlugins, PresetManager} from "../core/plugins"
-import {Mark} from "prosemirror-model";
+import {MarkdownSerializer, MarkdownSerializerState} from "prosemirror-markdown";
+import {getPlugins, PresetManager} from "../core/plugins";
 
 let presets = new PresetManager({
     name: 'serializer',
@@ -33,8 +31,8 @@ let createSerializer = (context) => {
 
         for (let key in nodes) {
             let node = nodes[key];
-            if(node.toMarkdown) {
-                nodeSpec[key] = node.toMarkdown
+            if (node.toMarkdown) {
+                nodeSpec[key] = node.toMarkdown;
             }
         }
 
@@ -42,8 +40,8 @@ let createSerializer = (context) => {
 
         for (let key in marks) {
             let mark = marks[key];
-            if(mark.toMarkdown) {
-                markSpec[key] = mark.toMarkdown
+            if (mark.toMarkdown) {
+                markSpec[key] = mark.toMarkdown;
             } else {
                 markSpec[key] = {open: '', close: ''};
             }
@@ -59,9 +57,9 @@ class HumHubMarkdownSerializer extends MarkdownSerializer {
     // [CommonMark](http://commonmark.org/).
     serialize(content, options) {
         let state = new HumHubMarkdownSerializerState(
-          this.nodes,
-          this.marks,
-          {...options, tightLists: false}
+            this.nodes,
+            this.marks,
+            {...options, tightLists: false}
         );
         state.renderContent(content);
         return state.out;
@@ -75,9 +73,9 @@ class HumHubMarkdownSerializerState extends MarkdownSerializerState {
     // has special meaning only at the start of the line.
     esc(str, startOfLine) {
         // eslint-disable-next-line
-        str = str.replace(/[|`*\\~\[\]]/g, "\\$&")
-        if (startOfLine) str = str.replace(/^[:#\-*+]/, "\\$&").replace(/^(\d+)\./, "$1\\.")
-        return str
+        str = str.replace(/[|`*\\~\[\]]/g, "\\$&");
+        if (startOfLine) str = str.replace(/^[:#*+-]/, "\\$&").replace(/^(\d+)\./, "$1\\.");
+        return str;
     }
 }
 

@@ -7,10 +7,10 @@
 import {schema} from './schema';
 import {menu} from "./menu";
 
-const em = {
-    id: 'em',
+const em_strikethrough = {
+    id: 'em_strikethrough',
     schema: schema,
     menu: (context) => menu(context)
 };
 
-export default em;
+export default em_strikethrough;
