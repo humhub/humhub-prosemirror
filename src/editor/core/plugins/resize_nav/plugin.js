@@ -11,10 +11,14 @@ export function toggleNavPlugin(context) {
         key: toggleNavPluginKey,
         state: {
             init(config, state) {
-                return true;
+                return localStorage.getItem("isExpandedToolbar") !== 'true';
             },
             apply(tr, prevPluginState, oldState, newState) {
                 let meta = tr.getMeta(toggleNavPluginKey);
+                if (typeof meta !== 'undefined') {
+                    localStorage.setItem("isExpandedToolbar", !meta);
+                }
+
                 return typeof meta !== 'undefined' ? meta : prevPluginState;
             }
         },
