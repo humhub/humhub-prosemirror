@@ -7,6 +7,7 @@ let editorInstance;
 let richtextView;
 
 module.exports.initEditor = function (options, init) {
+    localStorage.setItem("isExpandedToolbar", 'false');
     if (typeof options === 'string') {
         init = options;
         options = {};
