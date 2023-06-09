@@ -79,7 +79,6 @@ function exitMarkAtLast(state, dispatch) {
                 removeMark(mark.type, state, dispatch);
             });
         }
-        return true;
     }
 
     return false;
@@ -164,18 +163,18 @@ export function buildKeymap(context) {
         keys[key] = cmd;
     }
 
+    bind("Escape", selectParentNode);
     bind('ArrowDown', exitCodeAtLast);
     bind('ArrowRight', exitMarkAtLast);
+
+    bind("Alt-ArrowUp", joinUp);
+    bind("Alt-ArrowDown", joinDown);
+    bind("Mod-BracketLeft", lift);
 
     bind("Mod-z", undo);
     bind("Shift-Mod-z", redo);
 
     if (!mac) bind("Mod-y", redo);
-
-    bind("Alt-ArrowUp", joinUp);
-    bind("Alt-ArrowDown", joinDown);
-    bind("Mod-BracketLeft", lift);
-    bind("Escape", selectParentNode);
 
     if (type = schema.marks.strong)
         bind("Mod-b", toggleMark(type));
