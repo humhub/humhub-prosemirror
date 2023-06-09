@@ -18,6 +18,7 @@ Changelog
 - Fix #59: @ becomes @@ when copying mentioning in wiki editor
 - Enh #30: Tabulator Support
 - Fix #50: Right arrow navigation not working in some cases
+- Enh #102: Source Button Position
 
 
 1.1.3 (Unreleased)

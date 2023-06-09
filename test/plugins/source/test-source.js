@@ -56,6 +56,7 @@ describe("Plugin:source", () => {
 
     it("test editor focus on switch mode", (done) => {
         const editor = initEditor('Test source mode');
+        clickMenuItem('resizeNav');
         clickMenuItem('source');
         expect(editor.hasFocus()).to.be.true;
         expect(editor.context.$source.is(':focus')).to.be.true;

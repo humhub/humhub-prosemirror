@@ -61,7 +61,6 @@ describe("Menu:accessibility", () => {
         navigate(DIR_RIGHT, 'linkItem');
         navigate(DIR_RIGHT, 'insertEmoji');
         navigate(DIR_RIGHT, 'insert-dropdown');
-        navigate(DIR_RIGHT, 'source');
         navigate(DIR_RIGHT, 'resizeNav');
         done();
     });
@@ -70,7 +69,6 @@ describe("Menu:accessibility", () => {
         initEditor();
         focusMenuItem('resizeNav');
         expectFocus('resizeNav');
-        navigate(DIR_LEFT, 'source');
         navigate(DIR_LEFT, 'insert-dropdown');
         navigate(DIR_LEFT, 'insertEmoji');
         navigate(DIR_LEFT, 'linkItem');
