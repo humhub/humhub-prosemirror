@@ -48,16 +48,16 @@ describe("Plugin:resize_nav", () => {
     let invisibleOnInit = [
         ['helper-group', 'helper-group'],
         ['format-group', 'format-group'],
-        ['fullscreen', 'fullScreen'],
         ['insertTable', 'insertTable'],
+        ['fullscreen', 'fullScreen'],
+        ['source', 'source-group'],
     ];
 
     let visibleOnInit = [
+        ['text types', 'type'],
         ['emoji', 'insertEmoji'],
         ['insert dropdown', 'insert-dropdown'],
         ['marks-group', 'marks-group'],
-        ['text types', 'type'],
-        ['source', 'source-group'],
         ['resize nav ', 'resizeNav'],
     ]
 
