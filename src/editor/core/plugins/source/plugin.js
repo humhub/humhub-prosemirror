@@ -23,11 +23,26 @@ export function sourcePlugin(context) {
     })
 }
 
+const textareaHandler = (event, context) => {
+    const isFullscreen = context.editor.$.is('.fullscreen');
+
+    if (!isFullscreen) {
+        setTimeout(() => {
+            const elem = event.target;
+            const paddingTop = window.getComputedStyle(elem, null).getPropertyValue('padding-top');
+            const paddingTopValue = parseFloat(paddingTop.replace('px', ''));
+
+            elem.style.cssText = 'height: auto';
+            elem.style.cssText = 'height:' + (elem.scrollHeight + paddingTopValue) + 'px';
+        }, 0);
+    }
+};
+
 export function switchToSourceMode(context, focus = true) {
-    let $editor = context.editor.$;
-    let $wrapper = $editor.find('.ProseMirror-menubar-wrapper');
-    let $menubar = $editor.find('.ProseMirror-menubar');
-    let $stage = $editor.find('.ProseMirror');
+    const $editor = context.editor.$;
+    const $wrapper = $editor.find('.ProseMirror-menubar-wrapper');
+    const $menubar = $editor.find('.ProseMirror-menubar');
+    const $stage = $editor.find('.ProseMirror');
     let $textarea = $editor.find('textarea');
 
     if ($editor.is('.fullscreen')) {
@@ -39,6 +54,8 @@ export function switchToSourceMode(context, focus = true) {
         $editor.append($textarea);
         context.$source = $textarea;
     }
+
+    $textarea.on('keydown', (event) => textareaHandler(event, context));
 
     $textarea.css({
         height: $editor.is('.fullscreen') ? 'calc(100% - ' + $menubar.outerHeight() + 'px)' : $stage.outerHeight(),
@@ -56,9 +73,9 @@ export function switchToSourceMode(context, focus = true) {
 }
 
 export function switchToRichtextMode(context) {
-    let $editor = context.editor.$;
-    let $wrapper = $editor.find('.ProseMirror-menubar-wrapper');
-    let $stage = $editor.find('.ProseMirror');
+    const $editor = context.editor.$;
+    const $wrapper = $editor.find('.ProseMirror-menubar-wrapper');
+    const $stage = $editor.find('.ProseMirror');
     let $textarea = $editor.find('textarea');
 
     if ($editor.is('.fullscreen')) {
@@ -66,7 +83,9 @@ export function switchToRichtextMode(context) {
     }
 
     context.editor.init($textarea.val());
+    $textarea.off('keydown', (event) => textareaHandler(event, context));
     $textarea.remove();
+
     $stage.removeClass('hidden');
     context.menu.update();
     context.editor.focus();

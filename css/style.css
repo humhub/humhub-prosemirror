@@ -82,7 +82,7 @@
 }
 
 .md-editor.active {
-    border: 2px solid #6fdbe8 !important;
+    border: 1px solid #6fdbe8 !important;
 }
 
 .md-editor textarea {
@@ -335,7 +335,7 @@ blockquote {
     border-radius: 0 4px 4px 4px;
     display: block;
     min-height: 36px;
-    resize: vertical;
+    resize: none;
     overflow: auto;
     outline: none;
     padding: 10px;
@@ -343,7 +343,7 @@ blockquote {
 }
 
 .ProseMirror-editor-source:focus {
-    border: 1px solid #0b97c4;
+    border: 1px solid #21A1B3;
 }
 
 .ProseMirror {
