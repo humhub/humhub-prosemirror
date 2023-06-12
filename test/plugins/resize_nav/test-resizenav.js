@@ -28,7 +28,7 @@ describe("Plugin:resize_nav", () => {
     }
 
     function testVisibleInCollapsedNav(name, selector) {
-        it(`${name} visible in expanded nav`, function() {
+        it(`${name} visible in collapsed nav`, function() {
             initEditor();
             clickMenuItem('resizeNav');
             clickMenuItem('resizeNav');
@@ -37,7 +37,7 @@ describe("Plugin:resize_nav", () => {
     }
 
     function testNotVisibleInCollapsedNav(name, selector) {
-        it(`${name} visible in expanded nav`, function() {
+        it(`${name} not visible in collapsed nav`, function() {
             initEditor();
             clickMenuItem('resizeNav');
             clickMenuItem('resizeNav');
