@@ -10,17 +10,22 @@ function fullScreen(context) {
     return new MenuItem({
         id: 'fullscreen',
         title: "Fullscreen",
+        icon: icons.enlarge,
         sortOrder: 300,
         hideOnCollapse: true,
-        run: function () {
-            let $editor = context.editor.$;
+        run: () => {
+            const $editor = context.editor.$;
             let $textarea = $editor.find('.ProseMirror-editor-source');
 
             if ($editor.is('.fullscreen')) {
                 minimize(context);
 
                 if ($textarea.length) {
-                    $textarea.css({height: $editor.find('.ProseMirror').outerHeight()});
+                    const elem = $textarea.get(0);
+                    const paddingTop = window.getComputedStyle(elem, null).getPropertyValue('padding-top');
+                    const paddingTopValue = parseFloat(paddingTop.replace('px', ''));
+
+                    $textarea.css({height: elem.scrollHeight + paddingTopValue});
                 }
             } else {
                 maximize(context);
@@ -32,8 +37,7 @@ function fullScreen(context) {
                     });
                 }
             }
-        },
-        icon: icons.enlarge
+        }
     });
 }
 
@@ -73,5 +77,5 @@ export function menu(context) {
             group: 'resize',
             item: fullScreen(context)
         },
-    ]
+    ];
 }
