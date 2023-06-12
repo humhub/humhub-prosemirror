@@ -18,6 +18,7 @@ const switchMode = function (context) {
         id: 'source',
         title: context.translate("Switch editor mode"),
         icon: icons.markdown,
+        hideOnCollapse: true,
         run: (state, dispatch) => {
             if (isSourceMode(state)) {
                 switchToRichtextMode(context);
