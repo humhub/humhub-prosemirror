@@ -2,10 +2,9 @@
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2018 HumHub GmbH & Co. KG
  * @license https://www.humhub.com/licences
- *
  */
 
-import {icons, MenuItem} from "../../menu/menu"
+import {icons, MenuItem} from "../../menu/menu";
 
 function fullScreen(context) {
     return new MenuItem({
@@ -13,7 +12,7 @@ function fullScreen(context) {
         title: "Fullscreen",
         sortOrder: 300,
         hideOnCollapse: true,
-        run: function() {
+        run: function () {
             let $editor = context.editor.$;
             let $textarea = $editor.find('.ProseMirror-editor-source');
 
@@ -21,12 +20,12 @@ function fullScreen(context) {
                 minimize(context);
 
                 if ($textarea.length) {
-                    $textarea.css({ height: $editor.find('.ProseMirror').outerHeight() });
+                    $textarea.css({height: $editor.find('.ProseMirror').outerHeight()});
                 }
             } else {
                 maximize(context);
 
-                $editor.find('.ProseMirror-menubar-wrapper').css({ height: $textarea.length ? 'auto' : '100%' });
+                $editor.find('.ProseMirror-menubar-wrapper').css({height: $textarea.length ? 'auto' : '100%'});
                 if ($textarea.length) {
                     $textarea.css({
                         height: 'calc(100% - ' + $editor.find('.ProseMirror-menubar').outerHeight() + 'px)',
@@ -56,7 +55,9 @@ export function maximize(context, menuItem) {
     if (!$editor.is('.fullscreen')) {
         // Fixes a bug in ios safari when displaying a position:fixed element with input focus...
         document.activeElement.blur();
-        setTimeout(() =>  {context.editor.view.focus()}, 200);
+        setTimeout(() => {
+            context.editor.view.focus();
+        }, 200);
 
         $('body').addClass('modal-open');
         $editor.addClass('fullscreen');

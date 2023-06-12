@@ -2,11 +2,10 @@
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2018 HumHub GmbH & Co. KG
  * @license https://www.humhub.com/licences
- *
  */
 
-import {icons, MenuItem} from "../../menu"
-import {toggleNavPluginKey, isCollapsed} from "./plugin"
+import {icons, MenuItem} from "../../menu";
+import {toggleNavPluginKey, isCollapsed} from "./plugin";
 
 function resizeNav(context) {
     return new MenuItem({
@@ -17,13 +16,13 @@ function resizeNav(context) {
             let wasCollapsed = isCollapsed(state);
             dispatch(state.tr.setMeta(toggleNavPluginKey, !wasCollapsed));
 
-            if(wasCollapsed) {
+            if (wasCollapsed) {
                 this.switchIcon(icons.angleDoubleLeft);
             } else {
                 this.switchIcon(icons.angleDoubleRight);
             }
         },
-        icon: icons.angleDoubleRight
+        icon: localStorage.getItem("isExpandedToolbar") !== 'true' ? icons.angleDoubleRight : icons.angleDoubleLeft
     });
 }
 
@@ -45,10 +44,10 @@ export function menu(context) {
 
 export function menuWrapper(context) {
     return {
-        select: function(menuItem, state, active) {
+        select: function (menuItem, state, active) {
             let collapsed = toggleNavPluginKey.getState(state);
 
-            if(collapsed && menuItem.options.hideOnCollapse) {
+            if (collapsed && menuItem.options.hideOnCollapse) {
                 return false;
             }
 
