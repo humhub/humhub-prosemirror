@@ -18,10 +18,16 @@ function hashPath(path) {
     return hash;
 }
 
+const getIconSize = (name) => {
+    const veryBigIcons = ['table', 'emoji', 'enlarge', 'shrink'];
+    const bigIcons = ['headline', 'join', 'image', 'undo', 'redo', 'markdown', 'angleDoubleRight', 'angleDoubleLeft'];
+    const smallIcons = ['bulletList', 'orderedList', 'indent', 'outdent'];
+
+    return smallIcons.includes(name) ? '18' : bigIcons.includes(name) ? '16' : veryBigIcons.includes(name) ? '15' : '17';
+}
+
 export function getIcon(icon, htmlNode) {
     htmlNode = htmlNode || 'div';
-    const smallIcons = ['bulletList', 'orderedList', 'indent', 'outdent'];
-    const bigIcons = ['headline', 'join', 'table', 'emoji', 'enlarge', 'shrink'];
     let node = document.createElement(htmlNode);
     node.className = prefix;
 
@@ -30,10 +36,10 @@ export function getIcon(icon, htmlNode) {
     }
 
     if (icon.path) {
-        const name = "pm-icon-" + hashPath(icon.path).toString(16);
+        const name = "pm-icon-" + hashPath(icon.name);
         if (!document.getElementById(name)) buildSVG(name, icon);
         const svg = node.appendChild(document.createElementNS(SVG, "svg"));
-        const iconSize = smallIcons.includes(icon.name) ? '20' : bigIcons.includes(icon.name) ? '16' : '18';
+        const iconSize = getIconSize(icon.name);
         svg.setAttribute('height', iconSize /*icon.height*/);
         svg.setAttribute('width', iconSize /*icon.width*/);
         let use = svg.appendChild(document.createElementNS(SVG, "use"));

@@ -608,20 +608,18 @@ ProsemirrorEditor img {
 
 .ProseMirror-menu-dropdown,
 .ProseMirror-menu-dropdown-menu {
-    font-size: 90%;
     white-space: nowrap;
 }
 
 .ProseMirror-menu-dropdown {
     cursor: pointer;
-    padding-right: 15px !important;
+    padding-right: 14px !important;
     position: relative;
-    vertical-align: 1px;
 }
 
 .ProseMirror-menu-dropdown-wrap {
     display: inline-block;
-    padding: 1px 0 1px 0;
+    padding: 0;
     position: relative;
 }
 
@@ -725,11 +723,11 @@ ProsemirrorEditor img {
     box-sizing: border-box;
     display: table;
     color: #666;
-    margin-top: -26px;
+    margin-top: -25px;
     margin-left: 0;
     min-height: 1em;
+    padding: 0 5px;
     overflow: visible;
-    padding: 1px 6px;
     right: 0;
     top: -13px;
     left: 15px;
@@ -748,8 +746,7 @@ ProsemirrorEditor img {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* Compensate for padding */
-    padding: 1px 6px;
+    padding: 0 5px;/* Compensate for padding */
 }
 
 .ProseMirror-menu-disabled.ProseMirror-icon {
@@ -758,6 +755,7 @@ ProsemirrorEditor img {
 
 .ProseMirror-icon svg {
     fill: currentColor;
+    height: 20px;
 }
 
 .ProseMirror-icon span {
