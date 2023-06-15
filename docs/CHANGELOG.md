@@ -21,6 +21,7 @@ Changelog
 - Fix #50: Right arrow navigation not working in some cases
 - Enh #102: Source Button Position
 - Enh #104: Source Mode, Text Area Style
+- Enh #105: Change the icons in the toolbar buttons
 
 
 1.1.3 (Unreleased)
