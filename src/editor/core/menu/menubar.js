@@ -249,20 +249,19 @@ function translate(view, text) {
     return view._props.translate ? view._props.translate(text) : text
 }
 
-
 class MenuBarView {
     constructor(editorView, options) {
         this.editorView = editorView;
         this.options = options;
         this.context = this.options.context;
         this.focusIconIndex = 0;
-
+        const $editor = this.context.editor.$;
         this.wrapper = crelt("div", {class: prefix + "-wrapper"});
 
         this.menu = this.wrapper.appendChild(crelt("div", {
             class: prefix,
             'aria-label': translate(editorView, 'Text Formatting'),
-            'aria-controls': options.context.editor.$.attr('id'),
+            'aria-controls': $editor.attr('id'),
             role: 'toolbar'
         }));
 
@@ -287,6 +286,18 @@ class MenuBarView {
         this.menu.appendChild(dom);
 
         this.$ = $(this.menu);
+
+        // Focus and blur editor handler
+        if ($editor.is('.focusMenu')) {
+            this.$.hide();
+            $editor.off('focus', '.ProseMirror, textarea').off('blur', '.ProseMirror, textarea')
+                .on('focus', '.ProseMirror, textarea', () => {this.$.show();})
+                .on('blur', '.ProseMirror, textarea', () => {
+                    if (!$editor.is('.fullscreen')) {
+                        this.$.hide();
+                    }
+                });
+        }
 
         this.$.on('mousedown', function (evt) {
             // Prevent focusout if we click outside of a menu item, but still inside menu container
@@ -317,9 +328,9 @@ class MenuBarView {
                 if (!(root.body || root).contains(this.wrapper))
                     window.removeEventListener("scroll", this.scrollFunc);
                 else
-                    this.updateFloat()
+                    this.updateFloat();
             };
-            window.addEventListener("scroll", this.scrollFunc)
+            window.addEventListener("scroll", this.scrollFunc);
         }
     }
 

@@ -3,21 +3,6 @@ const XLINK = "http://www.w3.org/1999/xlink";
 
 const prefix = "ProseMirror-icon";
 
-function hashPath(path) {
-    if (Array.isArray(path)) {
-        let paths = path;
-        path = '';
-        paths.forEach((pathItem) => {
-            path += pathItem;
-        });
-    }
-
-    let hash = 0;
-    for (let i = 0; i < path.length; i++)
-        hash = (((hash << 5) - hash) + path.charCodeAt(i)) | 0;
-    return hash;
-}
-
 const getIconSize = (name) => {
     const veryBigIcons = ['table', 'emoji', 'enlarge', 'shrink'];
     const bigIcons = ['headline', 'join', 'image', 'undo', 'redo', 'markdown', 'angleDoubleRight', 'angleDoubleLeft'];
@@ -36,7 +21,7 @@ export function getIcon(icon, htmlNode) {
     }
 
     if (icon.path) {
-        const name = "pm-icon-" + hashPath(icon.name);
+        const name = "pm-icon-" + icon.name;
         if (!document.getElementById(name)) buildSVG(name, icon);
         const svg = node.appendChild(document.createElementNS(SVG, "svg"));
         const iconSize = getIconSize(icon.name);
@@ -174,8 +159,7 @@ export const icons = {
         name: 'emoji',
         width: 18, height: 18,
         path: [
-            "M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z",
-            "M4.285 9.567a.5.5 0 0 1 .683.183A3.498 3.498 0 0 0 8 11.5a3.498 3.498 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.498 4.498 0 0 1 8 12.5a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683zM7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z"
+            "M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zM7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zM4.285 9.567a.5.5 0 0 1 .683.183A3.498 3.498 0 0 0 8 11.5a3.498 3.498 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.498 4.498 0 0 1 8 12.5a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683zM10 8c-.552 0-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5S10.552 8 10 8z"
         ]
     },
     image: {
@@ -231,12 +215,7 @@ export const icons = {
     markdown: {
         name: 'markdown',
         width: 16, height: 16,
-        path: [
-            "M14 3a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12zM2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H2z",
-            "M9.146 8.146a.5.5 0 0 1 .708 0L11.5 9.793l1.646-1.647a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 0-.708z",
-            "M11.5 5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0v-4a.5.5 0 0 1 .5-.5z",
-            "M3.56 11V7.01h.056l1.428 3.239h.774l1.42-3.24h.056V11h1.073V5.001h-1.2l-1.71 3.894h-.039l-1.71-3.894H2.5V11h1.06z"
-        ]
+        path: "M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm11.5 1a.5.5 0 0 0-.5.5v3.793L9.854 8.146a.5.5 0 1 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L12 9.293V5.5a.5.5 0 0 0-.5-.5zM3.56 7.01h.056l1.428 3.239h.774l1.42-3.24h.056V11h1.073V5.001h-1.2l-1.71 3.894h-.039l-1.71-3.894H2.5V11h1.06V7.01z"
     },
     selectParentNode: {name: 'selectParentNode',text: "\u2b1a", css: "font-weight: bold"}
 };
