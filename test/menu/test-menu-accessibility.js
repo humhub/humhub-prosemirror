@@ -2,7 +2,7 @@
 /* jshint expr:true */
 
 const expect = require('chai').expect;
-const {initEditor, pressKey} = require('../testEditor');
+const {initEditor, pressKey, toHtml} = require('../testEditor');
 
 describe("Menu:accessibility", () => {
     const DIR_RIGHT = 39;
@@ -129,8 +129,13 @@ describe("Menu:accessibility", () => {
         expectFocus('type');
         pressEnter();
         navigate(DIR_DOWN, 'makeParagraph');
+        navigate(DIR_DOWN, 'makeHeading1');
+        navigate(DIR_DOWN, 'makeHeading2');
+        navigate(DIR_DOWN, 'makeHeading3');
+        navigate(DIR_DOWN, 'makeHeading4');
+        navigate(DIR_DOWN, 'makeHeading5');
+        navigate(DIR_DOWN, 'makeHeading6');
         navigate(DIR_DOWN, 'makeCodeBlock');
-        navigate(DIR_DOWN, 'makeHeading');
         navigate(DIR_DOWN, 'makeParagraph');
         done();
     });
@@ -142,8 +147,13 @@ describe("Menu:accessibility", () => {
         expectFocus('type');
         pressEnter();
         navigate(DIR_DOWN, 'makeParagraph');
-        navigate(DIR_UP, 'makeHeading');
         navigate(DIR_UP, 'makeCodeBlock');
+        navigate(DIR_UP, 'makeHeading6');
+        navigate(DIR_UP, 'makeHeading5');
+        navigate(DIR_UP, 'makeHeading4');
+        navigate(DIR_UP, 'makeHeading3');
+        navigate(DIR_UP, 'makeHeading2');
+        navigate(DIR_UP, 'makeHeading1');
         navigate(DIR_UP, 'makeParagraph');
         done();
     });
@@ -155,14 +165,20 @@ describe("Menu:accessibility", () => {
         expectFocus('type');
         pressEnter();
         navigate(DIR_DOWN, 'makeParagraph');
+        navigate(DIR_DOWN, 'makeHeading1');
+        navigate(DIR_DOWN, 'makeHeading2');
+        navigate(DIR_DOWN, 'makeHeading3');
+        navigate(DIR_DOWN, 'makeHeading4');
+        navigate(DIR_DOWN, 'makeHeading5');
+        navigate(DIR_DOWN, 'makeHeading6');
         navigate(DIR_DOWN, 'makeCodeBlock');
-        navigate(DIR_DOWN, 'makeHeading');
         pressEnter();
-        expectFocus('makeHeading1')
+        expect(toHtml()).to.equal('<pre><code><br class="ProseMirror-trailingBreak"></code></pre>');
         done();
     });
 
-    it("test enter sub menu on ArrowRight", (done) => {
+    // No more sub menu
+    /*it("test enter sub menu on ArrowRight", (done) => {
         initEditor();
         expect($('.ProseMirror-menu-dropdown-menu').is(':visible')).to.be.false;
         focusMenuItem();
@@ -175,7 +191,7 @@ describe("Menu:accessibility", () => {
         done();
     });
 
-    it("test navigate sub menu on ArrowUp", (done) => {
+    it("test navigate sub menu on ArrowDown", (done) => {
         initEditor();
         expect($('.ProseMirror-menu-dropdown-menu').is(':visible')).to.be.false;
         focusMenuItem();
@@ -240,5 +256,5 @@ describe("Menu:accessibility", () => {
         pressEscape();
         expectFocus('makeHeading');
         done();
-    });
+    });*/
 });
