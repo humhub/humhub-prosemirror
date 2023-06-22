@@ -4,11 +4,15 @@ const XLINK = "http://www.w3.org/1999/xlink";
 const prefix = "ProseMirror-icon";
 
 const getIconSize = (name) => {
-    const veryBigIcons = ['table', 'emoji', 'enlarge', 'shrink'];
+    const veryBigIcons = ['table', 'enlarge', 'shrink'];
+    const biggerIcons = ['emoji'];
     const bigIcons = ['headline', 'join', 'image', 'undo', 'redo', 'markdown', 'angleDoubleRight', 'angleDoubleLeft'];
     const smallIcons = ['bulletList', 'orderedList', 'indent', 'outdent'];
 
-    return smallIcons.includes(name) ? '18' : bigIcons.includes(name) ? '16' : veryBigIcons.includes(name) ? '15' : '17';
+    return smallIcons.includes(name)
+        ? '18' : bigIcons.includes(name)
+            ? '16' : biggerIcons.includes(name)
+                ? '15' : veryBigIcons.includes(name) ? '14' : '17';
 }
 
 export function getIcon(icon, htmlNode) {
