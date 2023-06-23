@@ -10,7 +10,7 @@ function makeHeading(context, i) {
     return blockTypeItem(context.schema.nodes.heading, {
         id: 'makeHeading' + i,
         attrs: {level: i},
-        label: `Heading ${i}`,
+        label: `${context.translate('Heading')} ${i}`,
         title: `${context.translate("Change to heading")} ${i} (${Array(i + 1).join("#")})`,
     });
 }
@@ -18,7 +18,7 @@ function makeHeading(context, i) {
 export function menu(context) {
     const headers = [];
 
-    for (let i = 1; i <= 6; i++) {
+    for (let i = 1; i <= 4; i++) {
         headers.push({
             node: 'heading',
             group: 'types',
