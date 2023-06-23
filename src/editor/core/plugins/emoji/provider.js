@@ -2,14 +2,13 @@
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2017 HumHub GmbH & Co. KG
  * @license https://www.humhub.com/licences
- *
  */
 
 import {getByCategory, getCharByName, getCharToDom} from "./util";
 import {getUserLocale, isSmallView} from "../../humhub-bridge";
 
 let userFlag = undefined;
-let findUserFlag = function() {
+let findUserFlag = () => {
     if (userFlag) {
         return userFlag;
     }
@@ -26,11 +25,11 @@ let findUserFlag = function() {
         'ko': 'kr',
         'ar': 'united_arab_emirates',
         'uk': 'ukraine',
-        'ru' : 'ru',
+        'ru': 'ru',
         'vi': 'vietnam',
         'sv': 'sweden',
         'nb-no': 'norway',
-        'it' : 'it',
+        'it': 'it',
         'fr': 'fr',
         'es': 'es',
         'de': 'de',
@@ -55,7 +54,7 @@ let findUserFlag = function() {
                 return false;
             }
         });
-    } catch(e) {
+    } catch (e) {
         console.error('Error while determining user flag in emoji chooser');
         console.error(e);
     }
@@ -113,7 +112,9 @@ class EmojiChooser {
 
     initDom() {
         let that = this;
-        this.$ = $('<div class="atwho-view humhub-richtext-provider humhub-emoji-chooser"><div><input type="text" class="form-control humhub-emoji-chooser-search"></div></div>')
+        this.$ = $('<div class="atwho-view humhub-richtext-provider humhub-emoji-chooser"><div>' +
+            '<input type="text" placeholder="' + this.translate('Search') + '" class="form-control humhub-emoji-chooser-search">' +
+            '</div></div>')
             .hide().appendTo($('body'))
             .on('hidden', () => {
                 if (that.provider) {
@@ -121,7 +122,7 @@ class EmojiChooser {
                 }
             });
 
-        this.$.find('.humhub-emoji-chooser-search').on('keydown', function(e) {
+        this.$.find('.humhub-emoji-chooser-search').on('keydown', function (e) {
             switch (e.which) {
                 case 9:
                     e.preventDefault();
@@ -147,7 +148,7 @@ class EmojiChooser {
                     that.down();
                     break;
             }
-        }).on('keyup', function(e) {
+        }).on('keyup', function (e) {
             let keyCode = e.keyCode || e.which;
             // This line should prevent processing in case user presses down/up on desktop, android chrome does not send
             // always send keyCode 229 so we can skip this check in this case
@@ -156,7 +157,7 @@ class EmojiChooser {
             }
 
             let val = $(this).val();
-            if(!val.length && that.lastActiveCategory) {
+            if (!val.length && that.lastActiveCategory) {
                 that.openCategory(that.lastActiveCategory);
                 return;
             }
@@ -177,7 +178,7 @@ class EmojiChooser {
 
         this.categoryOrder.forEach((categoryName, index) => {
             let categoryDef = this.categories[categoryName];
-            let $item = $('<span class="emoji-nav-item" title="'+this.translate(categoryName)+'">').attr('data-emoji-nav-item', categoryName).append(categoryDef.$icon).on('click', () => {
+            let $item = $('<span class="emoji-nav-item" title="' + this.translate(categoryName) + '">').attr('data-emoji-nav-item', categoryName).append(categoryDef.$icon).on('click', () => {
                 this.openCategory(categoryName);
                 this.provider.event.trigger('focus');
             });
@@ -226,7 +227,7 @@ class EmojiChooser {
     openCategory(categoryName) {
         let categoryDef = this.categories[categoryName];
 
-        if (!this.$.find('[data-emoji-category="'+categoryName+'"]').length) {
+        if (!this.$.find('[data-emoji-category="' + categoryName + '"]').length) {
             this.initCategory(categoryName);
         }
 
@@ -235,14 +236,14 @@ class EmojiChooser {
         }
 
         this.$.find('[data-emoji-nav-item]').removeClass('cur');
-        this.$.find('[data-emoji-nav-item="'+categoryName+'"]').addClass('cur');
+        this.$.find('[data-emoji-nav-item="' + categoryName + '"]').addClass('cur');
         this.$.find('[data-emoji-category]').hide();
-        this.$.find('[data-emoji-category="'+categoryName+'"]').show();
+        this.$.find('[data-emoji-category="' + categoryName + '"]').show();
     }
 
     initCategory(categoryName) {
         let that = this;
-        let $category = $('<div>').attr('data-emoji-category', categoryName).on('click', '.atwho-emoji-entry', function()  {
+        let $category = $('<div>').attr('data-emoji-category', categoryName).on('click', '.atwho-emoji-entry', function () {
             that.getSelectionNode().removeClass('cur');
             $(this).addClass('cur');
             that.provider.select();
@@ -267,7 +268,7 @@ class EmojiChooser {
         items.forEach((emojiDef) => {
             let $li = $('<li class="atwho-emoji-entry">').append(getCharToDom(emojiDef.char, emojiDef.name));
 
-            if(categoryName === 'flags' && emojiDef.char === findUserFlag()) {
+            if (categoryName === 'flags' && emojiDef.char === findUserFlag()) {
                 $list.prepend($li);
             } else {
                 $list.append($li);
@@ -310,7 +311,7 @@ class EmojiChooser {
 
     nextCategory() {
         let $next = this.getActiveCategoryMenuItem().next('[data-emoji-nav-item]:not([data-emoji-nav-item="search"])');
-        if(!$next.length) {
+        if (!$next.length) {
             $next = this.$.find('[data-emoji-nav-item]:first');
         }
 
@@ -447,5 +448,5 @@ export class EmojiProvider {
 
 export function getProvider(context) {
     return (context.options.emoji && context.options.emoji.provider)
-        ?  context.options.emoji.provider : new EmojiProvider(context);
+        ? context.options.emoji.provider : new EmojiProvider(context);
 }
