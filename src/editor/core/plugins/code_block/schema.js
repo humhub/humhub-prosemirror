@@ -4,11 +4,7 @@
  * @license https://www.humhub.com/licences
  */
 
-// import {schema} from "prosemirror-schema-basic";
-// import {Schema} from "prosemirror-model";
-
-const code_block =  {
-    sortOrder: 500,
+const code_block = {
     content: "text*",
     group: "block",
     code: true,
@@ -17,7 +13,8 @@ const code_block =  {
     attrs: {params: {default: ""}},
     parseDOM: [{
         tag: "pre",
-        preserveWhitespace: true, getAttrs: function (node) {
+        preserveWhitespace: true,
+        getAttrs: (node) => {
             return ({params: node.getAttribute("data-params") || ""});
         }
     }],
@@ -27,7 +24,9 @@ const code_block =  {
     parseMarkdown: {block: "code_block"},
     toMarkdown: (state, node) => {
         if (state.table) {
-            state.wrapBlock("`", "`", node, function () { return state.text(node.textContent, false); });
+            state.wrapBlock("`", "`", node, () => {
+                return state.text(node.textContent, false);
+            });
         } else if (!node.attrs.params) {
             state.write("```\n");
             state.text(node.textContent, false);
@@ -45,21 +44,11 @@ const code_block =  {
 };
 
 const fence = {
-    parseMarkdown:  {
+    parseMarkdown: {
         block: "code_block",
         getAttrs: (tok) => ({params: tok.info || ""})
     }
 };
-
-// const codeBlockSpec = schema.spec.nodes.get("code_block");
-
-// export default new Schema({
-//     nodes: schema.spec.nodes.update("code_block", {
-//         ...(codeBlockSpec || {}),
-//         attrs: { ...(codeBlockSpec.attrs || null), lang: { default: null } },
-//     }),
-//     marks: schema.spec.marks,
-// });
 
 const schema = {
     nodes: {
@@ -68,4 +57,4 @@ const schema = {
     }
 };
 
-export {schema}
+export {schema};
