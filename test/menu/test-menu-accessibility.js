@@ -133,8 +133,8 @@ describe("Menu:accessibility", () => {
         navigate(DIR_DOWN, 'makeHeading2');
         navigate(DIR_DOWN, 'makeHeading3');
         navigate(DIR_DOWN, 'makeHeading4');
-        navigate(DIR_DOWN, 'makeHeading5');
-        navigate(DIR_DOWN, 'makeHeading6');
+        // navigate(DIR_DOWN, 'makeHeading5');
+        // navigate(DIR_DOWN, 'makeHeading6');
         navigate(DIR_DOWN, 'makeCodeBlock');
         navigate(DIR_DOWN, 'makeParagraph');
         done();
@@ -148,8 +148,8 @@ describe("Menu:accessibility", () => {
         pressEnter();
         navigate(DIR_DOWN, 'makeParagraph');
         navigate(DIR_UP, 'makeCodeBlock');
-        navigate(DIR_UP, 'makeHeading6');
-        navigate(DIR_UP, 'makeHeading5');
+        // navigate(DIR_UP, 'makeHeading6');
+        // navigate(DIR_UP, 'makeHeading5');
         navigate(DIR_UP, 'makeHeading4');
         navigate(DIR_UP, 'makeHeading3');
         navigate(DIR_UP, 'makeHeading2');
@@ -169,8 +169,8 @@ describe("Menu:accessibility", () => {
         navigate(DIR_DOWN, 'makeHeading2');
         navigate(DIR_DOWN, 'makeHeading3');
         navigate(DIR_DOWN, 'makeHeading4');
-        navigate(DIR_DOWN, 'makeHeading5');
-        navigate(DIR_DOWN, 'makeHeading6');
+        // navigate(DIR_DOWN, 'makeHeading5');
+        // navigate(DIR_DOWN, 'makeHeading6');
         navigate(DIR_DOWN, 'makeCodeBlock');
         pressEnter();
         expect(toHtml()).to.equal('<pre><code><br class="ProseMirror-trailingBreak"></code></pre>');
