@@ -22,6 +22,7 @@ Changelog
 - Enh #102: Source Button Position
 - Enh #104: Source Mode, Text Area Style
 - Enh #82: Simply Tt menu items
+- Fix #97: [Bug] Images duplicate on drag and drop
 
 
 1.1.3 (Unreleased)
