@@ -2,8 +2,8 @@
 
 export function onDocumentReady(callback) {
     if (!window.humhub) {
-        return $(document).ready(function() {
-           callback.call(null, false);
+        return $(document).ready(() => {
+            callback.call(null, false);
         });
     }
 
@@ -11,7 +11,7 @@ export function onDocumentReady(callback) {
 }
 
 export function getEmojiConfig() {
-    if (!window.humhub || ! window.humhub.config) {
+    if (!window.humhub || !window.humhub.config) {
         return {};
     }
 
@@ -26,7 +26,7 @@ export function isSmallView() {
     return humhub.modules ? humhub.modules.ui.view.isSmall() : null;
 }
 
-const getClientWidth = function() {
+const getClientWidth = () => {
     return window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 };
 
@@ -35,12 +35,12 @@ export function getUserLocale() {
         return (navigator.languages && navigator.languages.length) ? navigator.languages[0] : navigator.language;
     }
 
-    return humhub.modules.user.config.locale.split("-")[0];
+    return humhub.modules ? humhub.modules.user.config.locale.split("-")[0] : null;
 }
 
 export function filterFileUrl(url) {
     if (!window.humhub) {
-        return  {url : url, guid: null};
+        return {url: url, guid: null};
     }
 
     return humhub.modules.file.filterFileUrl(url);
