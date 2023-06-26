@@ -21,6 +21,7 @@ Changelog
 - Fix #50: Right arrow navigation not working in some cases
 - Enh #102: Source Button Position
 - Enh #104: Source Mode, Text Area Style
+- Enh #107: Emoji search keywords are not translatable at the moment
 - Enh #82: Simply Tt menu items
 - Fix #97: [Bug] Images duplicate on drag and drop
 

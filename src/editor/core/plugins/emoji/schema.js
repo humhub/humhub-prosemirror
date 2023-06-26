@@ -1,9 +1,9 @@
-import twemoji from "twemoji"
+import twemoji from "twemoji";
 import {getEmojiConfig} from "../../humhub-bridge";
 
 const schema = {
     nodes: {
-        emoji:  {
+        emoji: {
             attrs: {
                 class: {default: 'emoji'},
                 draggable: {default: 'false'},
@@ -16,19 +16,21 @@ const schema = {
             inline: true,
             group: "inline",
             parseDOM: [{
-                tag: "img.emoji", getAttrs: function getAttrs(dom) {
+                tag: "img.emoji",
+                getAttrs: (dom) => {
                     return {
                         src: dom.getAttribute("src"),
                         alt: dom.getAttribute("alt"),
                         'data-name': String(dom.getAttribute('data-name'))
-                    }
+                    };
                 }
             }],
-            toDOM: function toDOM(node) {
-                return ['img', node.attrs]
+            toDOM: (node) => {
+                return ['img', node.attrs];
             },
-            parseMarkdown:  {
-                node: "emoji", getAttrs: function (tok) {
+            parseMarkdown: {
+                node: "emoji",
+                getAttrs: (tok) => {
                     // Workaround, since the context is not available here,
                     // so we can't use context.getPluginOption('emoji', 'twemoji');
                     const options = getEmojiConfig()['twemoji'];
@@ -38,7 +40,7 @@ const schema = {
                         'data-name': String(tok.markup),
                         alt: $dom.attr('alt'),
                         src: $dom.attr('src')
-                    })
+                    });
                 }
             },
             toMarkdown: (state, node) => {
@@ -47,10 +49,10 @@ const schema = {
                 if (!node.attrs['data-name']) {
                     result = (state.alt) ? state.esc(state.alt) : '';
                 } else {
-                    result = ':'+state.esc(node.attrs['data-name'])+':';
+                    result = ':' + state.esc(node.attrs['data-name']) + ':';
                 }
 
-                state.write(result)
+                state.write(result);
             }
         }
     },
@@ -59,7 +61,7 @@ const schema = {
             excludes: "_",
             inclusive: true,
             parseDOM: [
-                { tag: 'span[data-emoji-query]' }
+                {tag: 'span[data-emoji-query]'}
             ],
             toDOM(node) {
                 return ['span', {
@@ -71,4 +73,3 @@ const schema = {
 };
 
 export {schema};
-

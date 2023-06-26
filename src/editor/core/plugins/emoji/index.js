@@ -2,7 +2,6 @@
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2017 HumHub GmbH & Co. KG
  * @license https://www.humhub.com/licences
- *
  */
 
 import {schema} from './schema';
@@ -23,17 +22,17 @@ const emoji = {
         return [
             emojiAutoCompleteRule(schema),
             emojiChooser(schema)
-        ]
+        ];
     },
     keymap: (context) => keymap(),
     plugins: (context) => {
         return [
             emojiPlugin(context)
-        ]
+        ];
     },
     registerMarkdownIt: (markdownIt) => {
         markdownIt.use(emoji_plugin, getMarkdownItOpts());
-        markdownIt.renderer.rules.emoji = function (token, idx) {
+        markdownIt.renderer.rules.emoji = (token, idx) => {
             let emojiToken = token[idx];
 
             // Not that clean but unfortunately we don't have access to the editor context here...
@@ -42,8 +41,9 @@ const emoji = {
             twemojiConfig.attributes = (icon, variant) => {
                 return {
                     'data-name': emojiToken.markup
-                }
+                };
             };
+
             return twemoji.parse(emojiToken.content, twemojiConfig);
         };
     }
