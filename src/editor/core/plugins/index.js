@@ -77,8 +77,6 @@ registerPlugin(list_item, 'markdown');
 registerPlugin(mention);
 registerPlugin(oembed);
 registerPlugin(ordered_list, 'markdown');
-registerPlugin(strikethrough, 'markdown');
-registerPlugin(heading, 'markdown');
 registerPlugin(table, 'markdown');
 registerPlugin(text, 'markdown');
 registerPlugin(attributes, 'markdown');
