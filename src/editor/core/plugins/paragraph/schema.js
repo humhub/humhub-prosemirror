@@ -1,7 +1,6 @@
 const schema = {
     nodes: {
         paragraph:  {
-            sortOrder: 100,
             content: "inline*",
             group: "block",
             parseDOM: [{tag: "p"}],
@@ -10,12 +9,11 @@ const schema = {
             },
             parseMarkdown: {block: "paragraph"},
             toMarkdown: (state, node, parent) => {
-
                 state.renderInline(node);
 
-                if(!state.table) {
+                if (!state.table) {
                     state.closeBlock(node);
-                } else if(node.content && node.content.size && parent.lastChild !== node) {
+                } else if (node.content && node.content.size && parent.lastChild !== node) {
                     state.write('<br><br>');
                 }
             }
@@ -23,4 +21,4 @@ const schema = {
     }
 };
 
-export {schema}
+export {schema};

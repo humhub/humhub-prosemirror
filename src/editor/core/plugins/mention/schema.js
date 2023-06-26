@@ -9,9 +9,9 @@ const schema = {
             selectable: true,
             draggable: true,
             attrs: {
-                name: { default: '' },
-                guid: { default: '' },
-                href: { default: '#' },
+                name: {default: ''},
+                guid: {default: ''},
+                href: {default: '#'},
             },
             parseDOM: [{
                 tag: 'span[data-mention]',
@@ -29,11 +29,15 @@ const schema = {
                     style: 'display:inline-block'
                 };
 
-
-                return ['span', attrs, ['span', { style: 'display:block'}, '@'+node.attrs.name] ];
+                return [
+                    'span',
+                    attrs,
+                    ['span', {style: 'display:block'}, (node.attrs.name.charAt(0) === '@' ? '' : '@') + node.attrs.name]
+                ];
             },
             parseMarkdown: {
-                node: "mention", getAttrs: function(tok) {
+                node: "mention",
+                getAttrs: (tok) => {
                     return ({
                         name: tok.attrGet("name"),
                         guid: tok.attrGet("guid"),
@@ -43,14 +47,14 @@ const schema = {
             },
             toMarkdown: (state, node) => {
                 let linkMark = $node(node).getMark('link');
-                if(linkMark) {
+                if (linkMark) {
                     state.write(linkSchema.marks.link.toMarkdown.close(state, linkMark));
                 }
 
                 let {guid, name, href} = node.attrs;
-                state.write("["+state.esc(name)+"](mention:" + state.esc(guid) +" "+ state.quote(href)+ ")");
+                state.write("[" + state.esc(name) + "](mention:" + state.esc(guid) + " " + state.quote(href) + ")");
 
-                if(linkMark) {
+                if (linkMark) {
                     state.write(linkSchema.marks.link.toMarkdown.open);
                 }
             },
@@ -61,7 +65,7 @@ const schema = {
             excludes: "_",
             inclusive: true,
             parseDOM: [
-                { tag: 'span[data-mention-query]' }
+                {tag: 'span[data-mention-query]'}
             ],
             toDOM(node) {
                 return ['span', {
@@ -73,4 +77,4 @@ const schema = {
     }
 };
 
-export {schema}
+export {schema};

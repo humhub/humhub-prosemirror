@@ -1,13 +1,13 @@
+const path = require('path');
+
+const pluginNodeResolve = require('@rollup/plugin-node-resolve');
+const pluginEslint = require('@rollup/plugin-eslint');
+const pluginJson = require('@rollup/plugin-json');
+const pluginBuble = require('@rollup/plugin-buble');
+const pluginReplace = require('@rollup/plugin-replace');
+const pluginCommonjs = require('@rollup/plugin-commonjs');
+
 module.exports = function(grunt) {
-
-    let rollupPluginNodeResolve = require('@rollup/plugin-node-resolve');
-    let rollupPluginCommonjs = require('@rollup/plugin-commonjs');
-    let rollupPluginJson = require('@rollup/plugin-json');
-    let rollupPluginBuble = require('@rollup/plugin-buble');
-    let rollupPluginReplace = require('@rollup/plugin-replace');
-    let rollupPluginNodeBuiltins = require('@crokita/rollup-plugin-node-builtins');
-
-
     grunt.initConfig({
         watch: {
             scripts: {
@@ -18,31 +18,62 @@ module.exports = function(grunt) {
                 },
             },
         },
+        copy: {
+            mocha: {
+                files: [
+                    {
+                        expand: true,
+                        cwd: path.dirname(require.resolve('mocha/mocha')),
+                        src: 'mocha.css',
+                        dest: 'test/',
+                        filter: 'isFile'
+                    },
+                    {
+                        expand: true,
+                        cwd: './dist',
+                        src: 'humhub-editor.js',
+                        dest: 'test/',
+                        filter: 'isFile'
+                    },
+                ]
+            }
+        },
         rollup: {
             options: {
                 format: 'iife',
-                sourceMap: true,
-                plugins: function () {
-                    return [
-                        rollupPluginNodeBuiltins(),
-                        rollupPluginNodeResolve({
-                            main: true,
-                            preferBuiltins: false,
-                            extensions: ['.js', '.json'],
-                        }),
-                        rollupPluginJson(),
-                        rollupPluginCommonjs({
-                                namedExports: {
-                                    'node_modules/react/react.js': ['Children', 'Component', 'PropTypes', 'createElement'],
-                                    'node_modules/react-dom/index.js': ['render']
-                                }
-                            }),
-                        rollupPluginBuble(),
-                        rollupPluginReplace({
-                            'process.env.NODE_ENV': JSON.stringify( 'development' )
-                        })
-                    ];
-                }
+                generatedCode: "es2015",
+                compact: true,
+                // sourcemap: true,
+                plugins: [
+                    pluginEslint({
+                        throwOnError: true,
+                        throwOnWarning: false,
+                        include: ['src/**/*.js'],
+                        exclude: ['node_modules/**'],
+                    }),
+                    pluginNodeResolve({
+                        preferBuiltins: false,
+                        extensions: ['.js', '.json'],
+                    }),
+                    pluginJson(),
+                    pluginCommonjs({
+                        namedExports: {
+                            'node_modules/react/react.js': ['Children', 'Component', 'PropTypes', 'createElement'],
+                            'node_modules/react-dom/index.js': ['render']
+                        }
+                    }),
+                    pluginBuble({
+                        'objectAssign': 'Object.assign',
+                        'transforms': {
+                            'forOf': false,
+                            'generator': false
+                        }
+                    }),
+                    pluginReplace({
+                        'process.env.NODE_ENV': JSON.stringify( 'development' ),
+                        'preventAssignment': true
+                    })
+                ]
             },
             pm: {
                 files: {
@@ -52,9 +83,8 @@ module.exports = function(grunt) {
         }
     });
 
-
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-rollup');
-    grunt.registerTask('default', ['rollup']);
-
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.registerTask('default', ['rollup', 'copy']);
 };

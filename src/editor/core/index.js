@@ -1,17 +1,12 @@
-import {keymap} from "prosemirror-keymap"
-import {history} from "prosemirror-history"
-import {baseKeymap} from "prosemirror-commands"
-import {dropCursor} from "prosemirror-dropcursor"
-import {gapCursor} from "prosemirror-gapcursor"
-
+import {baseKeymap} from "prosemirror-commands";
+import {keymap} from "prosemirror-keymap";
+import {dropCursor} from "prosemirror-dropcursor";
+import {gapCursor} from "prosemirror-gapcursor";
 import {tableEditing} from "prosemirror-tables";
 
-import {buildMenuBar} from "./menu/menubar"
-import {buildKeymap} from "./keymap"
-import {buildInputRules, buildPlugins, buildPluginKeymap} from "./plugins"
-
-import {goToNextCell} from "prosemirror-tables"
-
+import {buildMenuBar} from "./menu/menubar";
+import {buildKeymap} from "./keymap";
+import {buildInputRules, buildPlugins, buildPluginKeymap} from "./plugins";
 
 // !! This module exports helper functions for deriving a set of basic
 // menu items, input rules, or key bindings from a schema. These
@@ -59,16 +54,8 @@ export function setupPlugins(context) {
         dropCursor(),
         gapCursor(),
         tableEditing(),
-        buildMenuBar(context),
-        keymap({
-            "Tab": goToNextCell(1),
-            "Shift-Tab": goToNextCell(-1)
-        })
+        buildMenuBar(context)
     ]);
-
-    if (context.options.history !== false) {
-        result.push(history())
-    }
 
     return result.concat(buildPlugins(context));
 }

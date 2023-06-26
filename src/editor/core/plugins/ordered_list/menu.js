@@ -5,14 +5,15 @@
  *
  */
 
-import {wrapInList} from "prosemirror-schema-list"
-import {icons, cmdItem, wrapListItem} from "../../menu/menu"
+import {wrapInList} from "prosemirror-schema-list";
+import {icons, cmdItem} from "../../menu/menu";
 
 function wrapOrderedList(context) {
     return cmdItem(wrapInList(context.schema.nodes.ordered_list), {
         title: context.translate("Wrap in ordered list"),
         icon: icons.orderedList,
-        sortOrder: 200
+        hideOnCollapse: true,
+        sortOrder: 110
     });
 }
 

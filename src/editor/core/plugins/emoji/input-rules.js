@@ -1,7 +1,8 @@
-import {InputRule} from "prosemirror-inputrules"
-import * as util from "./util"
-import {hasMark} from "../../util/node";
+import {InputRule} from "prosemirror-inputrules";
 import {TextSelection} from "prosemirror-state";
+import {getEmojiDefinitionByShortcut, shortcuts} from "./util";
+import {hasMark} from "../../util/node";
+import {isSmallView} from "../../humhub-bridge";
 
 // https://github.com/ProseMirror/prosemirror/issues/262
 const objectReplacementCharacter = '\ufffc';
@@ -11,7 +12,7 @@ function quoteRE(str) {
 }
 
 // all emoji shortcuts in string seperated by |
-let shortcutStr = Object.keys(util.shortcuts)
+let shortcutStr = Object.keys(shortcuts)
     .sort()
     .reverse()
     .map(function (shortcut) {return quoteRE(shortcut); })
@@ -28,7 +29,7 @@ let emojiAutoCompleteRule = function(schema) {
         }
 
         // Match e.g. :) => smiley
-        let emojiDef = util.getEmojiDefinitionByShortcut(match[1]);
+        let emojiDef = getEmojiDefinitionByShortcut(match[1]);
         if(emojiDef.name && emojiDef.emoji && emojiDef.$dom) {
             let node = state.schema.nodes.emoji.create({
                 'data-name': emojiDef.name,
@@ -47,11 +48,7 @@ let emojiAutoCompleteRule = function(schema) {
 
 let emojiChooser = function(schema) {
     return new InputRule(new RegExp('(^|\\ +)(:$)'), function (state, match, start, end) {
-        if(humhub
-            && humhub.modules
-            && humhub.modules.ui
-            && humhub.modules.ui.view
-            && humhub.modules.ui.view.isSmall()) {
+        if(isSmallView()) {
             return;
         }
 

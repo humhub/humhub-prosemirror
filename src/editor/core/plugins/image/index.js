@@ -2,14 +2,15 @@
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2017 HumHub GmbH & Co. KG
  * @license https://www.humhub.com/licences
- *
  */
-import {schema} from './schema'
-import {getClassForFloat} from './imageFloat'
-import imsize_plugin from './markdownit_imsize'
-import {menu} from './menu'
+
+import {schema} from './schema';
+import imsize_plugin from './markdownit_imsize';
+import {getClassForFloat} from './imageFloat';
+import {menu} from './menu';
 import {imagePlugin} from "./plugin";
 import {validateHref} from "../../util/linkUtil";
+import {filterFileUrl} from "../../humhub-bridge";
 
 const image = {
     id: 'image',
@@ -18,35 +19,33 @@ const image = {
     plugins: (context) => {
         return [
             imagePlugin(context)
-        ]
+        ];
     },
     registerMarkdownIt: (markdownIt) => {
         markdownIt.use(imsize_plugin);
 
-        let defaultRender = markdownIt.renderer.rules.image || function(tokens, idx, options, env, self) {
+        let defaultRender = markdownIt.renderer.rules.image || function (tokens, idx, options, env, self) {
             return self.renderToken(tokens, idx, options);
         };
 
-        markdownIt.renderer.rules.image = function (tokens, idx, options, env, self) {
-
+        markdownIt.renderer.rules.image = (tokens, idx, options, env, self) => {
             let imageToken = tokens[idx];
             let srcIndex = imageToken.attrIndex('src');
 
-
-            let srcFilter = (window.humhub) ? humhub.modules.file.filterFileUrl(imageToken.attrs[srcIndex][1]) : {url : imageToken.attrs[srcIndex][1]};
+            let srcFilter = filterFileUrl(imageToken.attrs[srcIndex][1]);
             imageToken.attrs[srcIndex][1] = validateHref(srcFilter.url) ? srcFilter.url : '#';
 
-            if(srcFilter.guid) {
+            if (srcFilter.guid) {
                 imageToken.attrPush(['data-file-guid', srcFilter.guid]); // add new attribute
             }
 
-            if(env && env.context && env.context.uuid) {
+            if (env && env.context && env.context.uuid) {
                 imageToken.attrPush(['data-ui-gallery', env.context.uuid]);
             }
 
-            let float = imageToken.attrs[ imageToken.attrIndex('float')][1];
+            let float = imageToken.attrs[imageToken.attrIndex('float')][1];
 
-            if(float) {
+            if (float) {
                 imageToken.attrPush(['class', getClassForFloat(float)]);
                 imageToken.attrs.splice(imageToken.attrIndex('float'), 1);
             }

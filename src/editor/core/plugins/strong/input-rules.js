@@ -1,24 +1,22 @@
 import {InputRule} from "prosemirror-inputrules"
-import {canJoin} from "prosemirror-transform";
-import {$node} from "../../util/node";
-import {TextNode} from "prosemirror-model/src/node";
 
 // : (NodeType) → InputRule
 // Given a blockquote node type, returns an input rule that turns `"> "`
 // at the start of a textblock into a blockquote.
 const strongRule = (schema) => {
+    // eslint-disable-next-line
     return markInputRule(/(?:\*\*|__)([^\*_]+)(?:\*\*|__)$/, schema.marks.strong);
 };
 
 function hasCodeMark(node)
 {
-    if(!node) {
+    if (!node) {
         return false;
     }
 
     let result = false;
     node.marks.forEach((mark) => {
-        if(mark.type.spec.isCode) {
+        if (mark.type.spec.isCode) {
             result = true;
         }
     });
@@ -29,11 +27,9 @@ function hasCodeMark(node)
 function markInputRule(regexp, markType, getAttrs) {
     return new InputRule(regexp, (state, match, start, end) => {
         let attrs = getAttrs instanceof Function ? getAttrs(match) : getAttrs;
-
-
         let nodeBeforeEnd = state.selection.$to.nodeBefore;
 
-        if(!nodeBeforeEnd || !nodeBeforeEnd.isText
+        if (!nodeBeforeEnd || !nodeBeforeEnd.isText
             || nodeBeforeEnd.text.length < match[0].length - 1 // check that the match does not span multiple nodes
             || hasCodeMark(nodeBeforeEnd)
             || markType.isInSet(nodeBeforeEnd.marks)) {
@@ -49,14 +45,11 @@ function markInputRule(regexp, markType, getAttrs) {
             end = start + match[1].length;
             tr.addMark(start, end, markType.create(attrs));
             tr.removeStoredMark(markType); // Do not continue with mark.
-            return tr
+            return tr;
         }
 
         return null;
-
-    })
+    });
 }
-
-
 
 export {strongRule};

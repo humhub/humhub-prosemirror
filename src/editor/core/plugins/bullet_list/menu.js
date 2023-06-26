@@ -6,12 +6,13 @@
  */
 
 import {wrapInList} from "prosemirror-schema-list"
-import {icons, cmdItem} from "../../menu/menu"
+import {icons, cmdItem} from "../../menu"
 
 function wrapBulletList(context) {
     return cmdItem(wrapInList(context.schema.nodes.bullet_list), {
         title: context.translate("Wrap in bullet list"),
         icon: icons.bulletList,
+        hideOnCollapse: true,
         sortOrder: 100
     });
 }

@@ -6,6 +6,7 @@
  */
 
 import {validateHref, DEFAULT_LINK_REL} from "../../util/linkUtil";
+import {filterFileUrl} from "../../humhub-bridge";
 
 const schema = {
     marks: {
@@ -38,17 +39,16 @@ const schema = {
             toDOM(node) { let {href, title} = node.attrs; return ["a", {href, title}, 0] },
             parseMarkdown: {
                 mark: "link", getAttrs: function (tok) {
-                    let href = (window.humhub) ? humhub.modules.file.filterFileUrl(tok.attrGet("href")).url : tok.attrGet("href");
-                    let fileGuid = (window.humhub) ? humhub.modules.file.filterFileUrl(tok.attrGet("href")).guid : null;
+                    let {url, guid} = filterFileUrl(tok.attrGet("href"));
 
-                    if (!validateHref(href))  {
-                        href = '#';
+                    if (!validateHref(url))  {
+                        url = '#';
                     }
 
                     return ({
-                        href: href,
+                        href: url,
                         title: tok.attrGet("title") || null,
-                        fileGuid: fileGuid
+                        fileGuid: guid
                     });
                 }
             },

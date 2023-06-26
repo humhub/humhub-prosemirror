@@ -2,32 +2,49 @@
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2018 HumHub GmbH & Co. KG
  * @license https://www.humhub.com/licences
- *
  */
 
-import {icons, MenuItem} from "../../menu/menu"
+import {icons, MenuItem} from "../../menu/menu";
 
 function fullScreen(context) {
     return new MenuItem({
         id: 'fullscreen',
         title: "Fullscreen",
+        icon: icons.enlarge,
         sortOrder: 300,
-        run: function() {
-            let $editor = context.editor.$;
-            if($editor.is('.fullscreen')) {
-               minimize(context);
+        hideOnCollapse: true,
+        run: () => {
+            const $editor = context.editor.$;
+            let $textarea = $editor.find('.ProseMirror-editor-source');
+
+            if ($editor.is('.fullscreen')) {
+                minimize(context);
+
+                if ($textarea.length) {
+                    const elem = $textarea.get(0);
+                    const paddingTop = window.getComputedStyle(elem, null).getPropertyValue('padding-top');
+                    const paddingTopValue = parseFloat(paddingTop.replace('px', ''));
+
+                    $textarea.css({height: elem.scrollHeight + paddingTopValue});
+                }
             } else {
                 maximize(context);
+
+                $editor.find('.ProseMirror-menubar-wrapper').css({height: $textarea.length ? 'auto' : '100%'});
+                if ($textarea.length) {
+                    $textarea.css({
+                        height: 'calc(100% - ' + $editor.find('.ProseMirror-menubar').outerHeight() + 'px)',
+                    });
+                }
             }
-        },
-        icon: icons.enlarge
+        }
     });
 }
 
 export function minimize(context, menuItem) {
     let $editor = context.editor.$;
-    if($editor.is('.fullscreen')) {
 
+    if ($editor.is('.fullscreen')) {
         $('body').removeClass('modal-open');
         $editor.removeClass('fullscreen');
         $editor.find('.Prosemirror').blur();
@@ -38,11 +55,13 @@ export function minimize(context, menuItem) {
 
 export function maximize(context, menuItem) {
     let $editor = context.editor.$;
-    if(!$editor.is('.fullscreen')) {
 
+    if (!$editor.is('.fullscreen')) {
         // Fixes a bug in ios safari when displaying a position:fixed element with input focus...
         document.activeElement.blur();
-        setTimeout(() =>  {context.editor.view.focus()}, 200);
+        setTimeout(() => {
+            context.editor.view.focus();
+        }, 200);
 
         $('body').addClass('modal-open');
         $editor.addClass('fullscreen');
@@ -58,5 +77,5 @@ export function menu(context) {
             group: 'resize',
             item: fullScreen(context)
         },
-    ]
+    ];
 }

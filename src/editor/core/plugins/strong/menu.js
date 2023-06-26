@@ -5,7 +5,7 @@
  *
  */
 
-import {icons, markItem} from "../../menu/menu"
+import {icons, markItem, wrapSourceTextMark} from "../../menu"
 
 
 function markStrong(context) {
@@ -13,7 +13,7 @@ function markStrong(context) {
         title: context.translate("Toggle strong style"),
         icon: icons.strong,
         sortOrder: 100
-    });
+    }, context);
 }
 
 export function menu(context) {

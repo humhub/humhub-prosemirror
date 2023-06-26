@@ -7,6 +7,7 @@
 
 import {Plugin} from "prosemirror-state"
 import {Decoration, DecorationSet} from "prosemirror-view"
+import {getLoaderWidget} from "../../humhub-bridge";
 
 
 const loaderPlugin = (context) => {
@@ -21,15 +22,7 @@ const loaderPlugin = (context) => {
                 // See if the transaction adds or removes any placeholders
                 let action = tr.getMeta(this);
                 if (action && action.add) {
-                    let widget = humhub.require('ui.loader').set($('<span class="ProseMirror-placeholder">'), {
-                        span: true,
-                        size: '8px',
-                        css: {
-                            padding: '0px',
-                            width: '60px'
-                        }
-                    })[0];
-                    let deco = Decoration.widget(action.add.pos, widget, {id: action.add.id, content: true});
+                    let deco = Decoration.widget(action.add.pos, getLoaderWidget()[0], {id: action.add.id, content: true});
                     set = set.add(tr.doc, [deco]);
                     context.addContentDecoration('loader');
                 } else if (action && action.remove) {

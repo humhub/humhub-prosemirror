@@ -5,6 +5,8 @@
  *
  */
 
+import {encode, getLoaderWidget} from "../../humhub-bridge";
+
 let MentionProvider = function(options) {
     this.event = $({});
     this.options = options;
@@ -96,12 +98,12 @@ MentionProvider.prototype.update = function(loading) {
     });
 
 
-    var that = this;
-    if(this.result && this.result.length) {
+    const that = this;
+    if (this.result && this.result.length) {
         let $list = $('<ul style="list-style-type: none;padding:0px;margin:0px;">');
         this.result.forEach(function (item) {
-            var name =  humhub.modules.util.string.encode(item.name);
-            var $li = (item.image) ? $('<li>' + item.image + ' ' + name + '</li>') : $('<li>' + name + '</li>');
+            const name = humhub.modules.util.string.encode(item.name);
+            const $li = (item.image) ? $('<li>' + item.image + ' ' + name + '</li>') : $('<li>' + name + '</li>');
 
             $li.data('item', item).on('click', () => {
                 that.$container.find('.cur').removeClass('cur');
@@ -116,17 +118,10 @@ MentionProvider.prototype.update = function(loading) {
 
         this.$container.append($list);
     } else if(this.result.text) {
-        var name =  humhub.modules.util.string.encode(this.result.text);
+        const name = encode(this.result.text);
         this.$container.append($('<span>'+name+'</span>'));
     } else if(this.result.loader) {
-        let $loader = humhub.require('ui.loader').set($('<span>'), {
-            span: true,
-            size: '8px',
-            css: {
-                padding: '0px',
-                width: '60px'
-            }
-        });
+        let $loader = getLoaderWidget();
 
         this.$container.append($('<div style="text-align:center;">').append($loader));
     } else {

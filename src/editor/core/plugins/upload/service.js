@@ -5,7 +5,7 @@
  *
  */
 
-import {loaderStart, replaceLoader, removeLoader} from "../loader/plugin"
+import {loaderStart, replaceLoader, removeLoader} from "../loader/plugin";
 
 export function triggerUpload(state, view, context, files) {
     // A fresh object to act as the ID for this upload
@@ -13,50 +13,48 @@ export function triggerUpload(state, view, context, files) {
 
     let uploadWidget = humhub.require('ui.widget.Widget').instance($('#'+context.id+'-file-upload'));
 
-    uploadWidget.off('uploadStart.richtext').on('uploadStart.richtext', (evt, response) => {
-        // Replace the selection with a placeholder
-        loaderStart(context, id, true);
-    }).off('uploadEnd.richtext').on('uploadEnd.richtext', (evt, response) => {
-        replaceLoader(context, id, createNodesFromResponse(context, response), true);
-    }).off('uploadFinish.richtext').on('uploadFinish.richtext', () => {
-        // Make sure our loader is removed after upload
-        removeLoader(context, id, true);
-    });
+    if (uploadWidget) {
+        uploadWidget.off('uploadStart.richtext').on('uploadStart.richtext', (evt, response) => {
+            // Replace the selection with a placeholder
+            loaderStart(context, id, true);
+        }).off('uploadEnd.richtext').on('uploadEnd.richtext', (evt, response) => {
+            replaceLoader(context, id, createNodesFromResponse(context, response), true);
+        }).off('uploadFinish.richtext').on('uploadFinish.richtext', () => {
+            // Make sure our loader is removed after upload
+            removeLoader(context, id, true);
+        });
 
-    if(files) {
-        uploadWidget.$.fileupload('add', {files: files});
-    } else {
-        uploadWidget.run();
+        if (files) {
+            uploadWidget.$.fileupload('add', {files: files});
+        } else {
+            uploadWidget.run();
+        }
     }
-
 }
 
 let createNodesFromResponse = function(context, response) {
     let schema = context.schema;
     let nodes = [];
 
-    let error =
+    // Otherwise, insert it at the placeholder's position, and remove the placeholder
+    let error = response.result.files.forEach((file) => {
+        let node;
 
-        // Otherwise, insert it at the placeholder's position, and remove the placeholder
-        response.result.files.forEach((file) => {
+        if (file.error) {
+            return;
+        }
 
-            let node;
+        let url = file.url;
 
-            if(file.error) {
-                return;
-            }
+        if (file.mimeIcon === 'mime-image') {
+            node = schema.nodes.image.create({src : url, title: file.name, alt: file.name, fileGuid: file.guid});
+        } else {
+            let linkMark = schema.marks.link.create({href: url, fileGuid: file.guid});
+            node = schema.text(file.name, [linkMark]);
+        }
 
-            let url = file.url;
-
-            if(file.mimeIcon === 'mime-image') {
-                node = schema.nodes.image.create({src : url, title: file.name, alt: file.name, fileGuid: file.guid});
-            } else {
-                let linkMark = schema.marks.link.create({href: url, fileGuid: file.guid});
-                node = schema.text(file.name, [linkMark]);
-            }
-
-            nodes.push(node);
-        });
+        nodes.push(node);
+    });
 
     return nodes;
 };

@@ -13,12 +13,14 @@ import {
     deleteSelection,
     joinBackward,
     selectNodeBackward,
-    newlineInCode, createParagraphNear, liftEmptyBlock
-} from "prosemirror-commands"
-import {wrapInList, splitListItem, liftListItem, sinkListItem} from "prosemirror-schema-list"
-import {undo, redo} from "prosemirror-history"
-import {undoInputRule} from "prosemirror-inputrules"
-import {Selection, TextSelection} from "prosemirror-state"
+    newlineInCode,
+    createParagraphNear,
+    liftEmptyBlock,
+} from "prosemirror-commands";
+import {wrapInList, splitListItem, liftListItem, sinkListItem} from "prosemirror-schema-list";
+import {undo, redo} from "prosemirror-history";
+import {undoInputRule} from "prosemirror-inputrules";
+import {Selection, TextSelection} from "prosemirror-state";
 
 const mac = typeof navigator != "undefined" ? /Mac/.test(navigator.platform) : false;
 
@@ -39,7 +41,6 @@ function exitCodeAtLast(state, dispatch) {
         || $anchor.parentOffset != $head.parentOffset
         || !$head.sameParent($anchor)
         || $head.parent.content.size != $head.parentOffset) {
-
         return false;
     }
 
@@ -73,13 +74,11 @@ function exitMarkAtLast(state, dispatch) {
         && selection.$head.nodeBefore
         && selection.$head.nodeBefore.isText
         && selection.$head.nodeBefore.marks.length) {
-
         if (dispatch) {
             selection.$head.nodeBefore.marks.forEach((mark) => {
                 removeMark(mark.type, state, dispatch);
             });
         }
-        return true;
     }
 
     return false;
@@ -91,34 +90,34 @@ function removeMark(markType, state, dispatch) {
     if (dispatch) {
         if ($cursor) {
             if (markType.isInSet(state.storedMarks || $cursor.marks()))
-                dispatch(state.tr.removeStoredMark(markType))
+                dispatch(state.tr.removeStoredMark(markType));
         } else {
             let has = false, tr = state.tr;
             for (let i = 0; !has && i < ranges.length; i++) {
                 let {$from, $to} = ranges[i];
-                has = state.doc.rangeHasMark($from.pos, $to.pos, markType)
+                has = state.doc.rangeHasMark($from.pos, $to.pos, markType);
             }
             for (let i = 0; i < ranges.length; i++) {
                 let {$from, $to} = ranges[i];
                 if (has) tr.removeMark($from.pos, $to.pos, markType);
             }
-            dispatch(tr.scrollIntoView())
+            dispatch(tr.scrollIntoView());
         }
     }
-    return true
+    return true;
 }
 
 function markApplies(doc, ranges, type) {
     for (let i = 0; i < ranges.length; i++) {
-        let {$from, $to} = ranges[i]
-        let can = $from.depth == 0 ? doc.type.allowsMarkType(type) : false
+        let {$from, $to} = ranges[i];
+        let can = $from.depth == 0 ? doc.type.allowsMarkType(type) : false;
         doc.nodesBetween($from.pos, $to.pos, node => {
-            if (can) return false
-            can = node.inlineContent && node.type.allowsMarkType(type)
+            if (can) return false;
+            can = node.inlineContent && node.type.allowsMarkType(type);
         })
-        if (can) return true
+        if (can) return true;
     }
-    return false
+    return false;
 }
 
 // :: (Schema, ?Object) → Object
@@ -157,42 +156,42 @@ export function buildKeymap(context) {
 
     function bind(key, cmd) {
         if (mapKeys) {
-            let mapped = mapKeys[key]
-            if (mapped === false) return
-            if (mapped) key = mapped
+            let mapped = mapKeys[key];
+            if (mapped === false) return;
+            if (mapped) key = mapped;
         }
-        keys[key] = cmd
+        keys[key] = cmd;
     }
 
-    bind('ArrowDown', exitCodeAtLast)
-    bind('ArrowRight', exitMarkAtLast)
+    bind("Escape", selectParentNode);
+    bind('ArrowDown', exitCodeAtLast);
+    bind('ArrowRight', exitMarkAtLast);
 
-    bind("Mod-z", undo)
-    bind("Shift-Mod-z", redo)
+    bind("Alt-ArrowUp", joinUp);
+    bind("Alt-ArrowDown", joinDown);
+    bind("Mod-BracketLeft", lift);
 
-    if (!mac) bind("Mod-y", redo)
+    bind("Mod-z", undo);
+    bind("Shift-Mod-z", redo);
 
-    bind("Alt-ArrowUp", joinUp)
-    bind("Alt-ArrowDown", joinDown)
-    bind("Mod-BracketLeft", lift)
-    bind("Escape", selectParentNode)
+    if (!mac) bind("Mod-y", redo);
 
     if (type = schema.marks.strong)
-        bind("Mod-b", toggleMark(type))
+        bind("Mod-b", toggleMark(type));
     if (type = schema.marks.em)
-        bind("Mod-i", toggleMark(type))
+        bind("Mod-i", toggleMark(type));
     if (type = schema.marks.code)
-        bind("Mod-`", toggleMark(type))
+        bind("Mod-`", toggleMark(type));
 
     if (type = schema.nodes.bullet_list)
-        bind("Shift-Ctrl-8", wrapInList(type))
+        bind("Shift-Ctrl-8", wrapInList(type));
     if (type = schema.nodes.ordered_list)
-        bind("Shift-Ctrl-9", wrapInList(type))
+        bind("Shift-Ctrl-9", wrapInList(type));
     if (type = schema.nodes.blockquote)
-        bind("Ctrl->", wrapIn(type))
+        bind("Ctrl->", wrapIn(type));
     if (type = schema.nodes.hard_break) {
         let br = type, cmd = chainCommands(exitCode, (state, dispatch) => {
-            if(state.selection
+            if (state.selection
                 && state.selection.$anchor.parent
                 && state.selection.$anchor.parent.type === schema.nodes.heading) {
                 splitBlock(state, dispatch);
@@ -201,46 +200,44 @@ export function buildKeymap(context) {
             dispatch(state.tr.replaceSelectionWith(br.create()).scrollIntoView());
             return true;
         });
-        bind("Mod-Enter", cmd)
-        bind("Shift-Enter", cmd)
-        if (mac) bind("Ctrl-Enter", cmd)
+        bind("Mod-Enter", cmd);
+        bind("Shift-Enter", cmd);
+        if (mac) bind("Ctrl-Enter", cmd);
     }
 
     let splitList;
 
     if (type = schema.nodes.list_item) {
         splitList = splitListItem(type);
-        bind("Mod-[", liftListItem(type))
-        bind("Mod-]", sinkListItem(type))
+        bind("Mod-[", liftListItem(type));
+        bind("Mod-]", sinkListItem(type));
     }
     if (type = schema.nodes.paragraph)
-        bind("Shift-Ctrl-0", setBlockType(type))
+        bind("Shift-Ctrl-0", setBlockType(type));
     if (type = schema.nodes.code_block)
-        bind("Shift-Ctrl-\\", setBlockType(type))
+        bind("Shift-Ctrl-\\", setBlockType(type));
     if (type = schema.nodes.heading)
-        for (let i = 1; i <= 6; i++) bind("Shift-Ctrl-" + i, setBlockType(type, {level: i}))
+        for (let i = 1; i <= 6; i++)
+            bind("Shift-Ctrl-" + i, setBlockType(type, {level: i}));
     if (type = schema.nodes.horizontal_rule) {
-        let hr = type
+        let hr = type;
         bind("Mod-_", (state, dispatch) => {
-            dispatch(state.tr.replaceSelectionWith(hr.create()).scrollIntoView())
-            return true
+            dispatch(state.tr.replaceSelectionWith(hr.create()).scrollIntoView());
+            return true;
         })
     }
 
     baseKeymap['Backspace'] = chainCommands(undoInputRule, deleteSelection, joinBackward, selectNodeBackward);
 
-    if(splitList) {
+    if (splitList) {
         baseKeymap['Enter'] = chainCommands(splitList, newlineInCode, createParagraphNear, liftEmptyBlock, splitBlock);
     } else {
         baseKeymap['Enter'] = chainCommands(newlineInCode, createParagraphNear, liftEmptyBlock, splitBlock);
     }
 
-
     for (const key in baseKeymap) {
         bind(key, baseKeymap[key]);
     }
 
-    return keys
+    return keys;
 }
-
-chainCommands

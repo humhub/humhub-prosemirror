@@ -11,6 +11,7 @@ function wrapBlockQuote(context) {
     return wrapItem(context.schema.nodes.blockquote, {
         title: context.translate("Wrap in block quote"),
         icon: icons.blockquote,
+        hideOnCollapse: true,
         sortOrder: 300
     });
 }

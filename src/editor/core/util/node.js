@@ -10,14 +10,14 @@ class NodePos {
     }
 
     push(childNodePos) {
-        if(!this.hasChild(childNodePos.pos)) {
+        if (!this.hasChild(childNodePos.pos)) {
             this.children.push(childNodePos);
         }
     }
 
     hasChild(pos) {
-        for(let i = 0; i < this.children.length; i++) {
-            if(this.children[i].pos === pos) {
+        for (let i = 0; i < this.children.length; i++) {
+            if (this.children[i].pos === pos) {
                 return true;
             }
         }
@@ -34,17 +34,17 @@ class NodePos {
 
     hasMark(mark) {
         return this.getMark(mark) != null;
-    };
+    }
 
     getMark(mark) {
         let result = null;
 
-        if(mark instanceof MarkType) {
+        if (mark instanceof MarkType) {
             mark = mark.name;
         }
 
         this.node.marks.forEach((activeMark) => {
-            if(activeMark.type.name === mark) {
+            if (activeMark.type.name === mark) {
                 result = activeMark;
             }
         });
@@ -57,7 +57,7 @@ class NodePos {
     }
 
     addMarks(marks) {
-        if(!marks || !marks.length) {
+        if (!marks || !marks.length) {
             return;
         }
 
@@ -70,7 +70,7 @@ class NodePos {
         this.content.nodesBetween(from, to, (childNode, childPos, parent, i, level) => {
             f(childNode, childPos , parent, i, level);
         }, pos, this.node, level);
-    };
+    }
 
     start() {
         return this.pos;
@@ -121,7 +121,7 @@ let $node = function (node, pos = 0) {
 };
 
 $node.prototype.push = function (nodePos, parentPos) {
-    if(this._hasNodePos(nodePos.pos)) {
+    if (this._hasNodePos(nodePos.pos)) {
         return;
     }
 
@@ -137,7 +137,7 @@ $node.prototype.push = function (nodePos, parentPos) {
 $node.prototype.find = function (selector) {
     this.filters = [];
 
-    if(!selector) {
+    if (!selector) {
         this.findFlag = true;
         return this;
     }
@@ -146,8 +146,8 @@ $node.prototype.find = function (selector) {
 };
 
 $node.prototype._hasNodePos = function(pos) {
-    for(let i = 0; i < this.flat.length; i++) {
-        if(this.flat[i].pos === pos) {
+    for (let i = 0; i < this.flat.length; i++) {
+        if (this.flat[i].pos === pos) {
             return true;
         }
     }
@@ -201,7 +201,7 @@ $node.prototype.to = function (from, to) {
 $node.prototype.mark = function (filterMark, attributes) {
     if (!filterMark) {
         this.where((node) => {
-            return !node.marks.length
+            return !node.marks.length;
         })
     }
 
@@ -315,7 +315,7 @@ $node.prototype.replaceWith = function (node, view, dispatch = true) {
         tr = tr.setSelection(new TextSelection(doc.resolve(nodePos.start()), doc.resolve(nodePos.end()))).replaceSelectionWith(node);
     });
 
-    if(dispatch) {
+    if (dispatch) {
         view.dispatch(tr);
     }
 };
@@ -330,7 +330,7 @@ $node.prototype.removeMark = function (mark, state) {
 };
 
 $node.prototype.getMark = function(mark) {
-    if(!this.flat.length) {
+    if (!this.flat.length) {
         return;
     }
 
@@ -350,7 +350,6 @@ $node.prototype.where = function (filter, includeSelf = true) {
     $result.filters = this.filters;
 
     this.tree.forEach((rootNodePos) => {
-
         let branchMatch = [];
 
         if (!this.findFlag && includeSelf && checkFilter(this.filters, rootNodePos.node, rootNodePos.pos)) {
@@ -363,7 +362,7 @@ $node.prototype.where = function (filter, includeSelf = true) {
 
         rootNodePos.nodesBetween(0, rootNodePos.content.size, (childNode, pos, parent, i, level) => {
             // We moved one tree level back or switched to another branch
-            if(lastLevel >= level) {
+            if (lastLevel >= level) {
                 branchMatch = clearLevelBranch(branchMatch, level);
             }
 
@@ -392,8 +391,8 @@ let clearLevelBranch = function(branchMatches, level) {
 };
 
 let findBranchMatch = function(branchMatches, level) {
-    for(let i = level - 1; i >= 0; i--) {
-        if(branchMatches[i]) {
+    for (let i = level - 1; i >= 0; i--) {
+        if (branchMatches[i]) {
             return branchMatches[i];
         }
     }
@@ -411,25 +410,20 @@ let checkFilter = function (filters, node, pos, parent, searchRoot) {
 let hasMark = function (node, markType) {
     let result = false;
 
-    if(!node) {
+    if (!node) {
         return false;
     }
 
-
-
     node.marks.forEach((mark) => {
-        if(markType instanceof Mark && mark.eq(markType)) {
+        if (markType instanceof Mark && mark.eq(markType)) {
             result = true;
-        }else if (markType instanceof MarkType && ((mark.type.name === markType.name) || mark.eq(markType))) {
+        } else if (markType instanceof MarkType && ((mark.type.name === markType.name) || mark.eq(markType))) {
             result = true;
         } else if (typeof markType === 'string' && mark.type.name === markType) {
             result = true;
         }
-
-        if(result) {
-
-        }
     });
+
     return result;
 };
 

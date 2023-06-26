@@ -20,27 +20,27 @@ export function getAltExtensionByFloat(float) {
 }
 
 export function parseFloatFromAlt(alt) {
-    var float = FLOAT_NONE;
-    var ext = FLOAT_ALT_EXT_NONE;
+    let float = FLOAT_NONE;
+    let ext = FLOAT_ALT_EXT_NONE;
 
-    if(!alt) {
+    if (!alt) {
         return {
             alt: alt,
             float: float,
             ext: ext
-        }
+        };
     }
 
-    if(endsWith(alt, FLOAT_ALT_EXT_CENTER)) {
-        alt = alt.substring(0, alt.length -2);
+    if (endsWith(alt, FLOAT_ALT_EXT_CENTER)) {
+        alt = alt.substring(0, alt.length - 2);
         ext = FLOAT_ALT_EXT_CENTER;
         float = FLOAT_CENTER;
-    } else if(endsWith(alt, FLOAT_ALT_EXT_LEFT)) {
-        alt = alt.substring(0, alt.length -1);
+    } else if (endsWith(alt, FLOAT_ALT_EXT_LEFT)) {
+        alt = alt.substring(0, alt.length - 1);
         ext = FLOAT_ALT_EXT_LEFT;
         float = FLOAT_LEFT;
-    } else if(endsWith(alt, FLOAT_ALT_EXT_RIGHT)) {
-        alt = alt.substring(0, alt.length -1);
+    } else if (endsWith(alt, FLOAT_ALT_EXT_RIGHT)) {
+        alt = alt.substring(0, alt.length - 1);
         ext = FLOAT_ALT_EXT_RIGHT;
         float = FLOAT_RIGHT;
     }
@@ -49,7 +49,7 @@ export function parseFloatFromAlt(alt) {
         alt: alt,
         ext: ext,
         float: float
-    }
+    };
 }
 
 export function getClassForFloat(float) {
@@ -66,6 +66,6 @@ export function getClassForFloat(float) {
     }
 }
 
-let endsWith = function(string, suffix) {
+let endsWith = (string, suffix) => {
     return string.indexOf(suffix, string.length - suffix.length) !== -1;
 };

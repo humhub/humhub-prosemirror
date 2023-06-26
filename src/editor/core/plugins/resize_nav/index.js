@@ -5,20 +5,18 @@
  *
  */
 
-import {menu, getNodes} from "./menu"
+import {menu, menuWrapper} from "./menu"
+import {toggleNavPlugin} from "./plugin"
 
 const resizeNav = {
     id: 'resizeNav',
-    init(context) {
-        context.event.on('afterMenuBarInit', (evt, instance) => {
-            getNodes(context).hide();
-        }).on('afterMenuBarUpdate', (evt, instance) => {
-            if(!$(instance.menu).find('.ProseMirror-menu-resizeNav').data('state')) {
-                getNodes(context).hide();
-            }
-        });
-    },
-    menu: (context) => menu(context)
-};
+    menu: (context) => menu(context),
+    menuWrapper: (context) => menuWrapper(context),
+    plugins: (context) => {
+        return [
+            toggleNavPlugin(context)
+        ]
+    }
+}
 
 export default resizeNav;

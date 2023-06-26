@@ -5,7 +5,6 @@
  *
  */
 import {schema} from './schema'
-import {createLinkExtension} from "../../../markdown";
 import {htmlBreak} from "./extension";
 
 const hard_break = {

@@ -2,33 +2,33 @@
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2018 HumHub GmbH & Co. KG
  * @license https://www.humhub.com/licences
- *
  */
 
-import { Plugin, NodeSelection } from 'prosemirror-state';
+import {Plugin, NodeSelection} from 'prosemirror-state';
 
-import { editNode } from './menu';
-import { getClassForFloat } from './imageFloat';
+import {editNode} from './menu';
+import {getClassForFloat} from './imageFloat';
 import {validateHref} from "../../util/linkUtil";
 
 const imagePlugin = (context) => {
-
     context.editor.$.on('mouseleave', e => {
-        let target =  e.toElement || e.relatedTarget;
-        if(!$(target).closest('.humhub-richtext-inline-menu').length) {
-          $('.humhub-richtext-inline-menu').remove();
+        let target = e.toElement || e.relatedTarget;
+        if (!$(target).closest('.humhub-richtext-inline-menu').length) {
+            $('.humhub-richtext-inline-menu').remove();
         }
     });
 
     return new Plugin({
         props: {
             nodeViews: {
-                image(node) { return new ImageView(node, context) }
+                image(node) {
+                    return new ImageView(node, context);
+                }
             },
         },
         filterTransaction: (tr, state) => {
-            if(!(tr.curSelection instanceof NodeSelection)) {
-             $('.humhub-richtext-image-edit').remove();
+            if (!(tr.curSelection instanceof NodeSelection)) {
+                $('.humhub-richtext-image-edit').remove();
             }
 
             return true;
@@ -41,17 +41,16 @@ class ImageView {
         // The editor will use this as the node's DOM representation
         this.createDom(node);
 
-        context.event.on('clear, serialize', function() {
-           $('.humhub-richtext-inline-menu').remove();
+        context.event.on('clear, serialize', function () {
+            $('.humhub-richtext-inline-menu').remove();
         });
-
 
         this.dom.addEventListener("mouseenter", e => {
             let $img = $(this.dom);
             let offset = $img.offset();
             let editorOffset = context.editor.$.offset();
 
-            if(offset.top < editorOffset.top) {
+            if (offset.top < editorOffset.top) {
                 return;
             }
 
@@ -73,8 +72,8 @@ class ImageView {
         });
 
         this.dom.addEventListener("mouseleave", e => {
-            let target =  e.toElement || e.relatedTarget;
-            if(!$(target).closest('.humhub-richtext-inline-menu').length) {
+            let target = e.toElement || e.relatedTarget;
+            if (!$(target).closest('.humhub-richtext-inline-menu').length) {
                 $('.humhub-richtext-inline-menu').remove();
             }
         });
@@ -97,4 +96,4 @@ class ImageView {
     //stopEvent() { return true }
 }
 
-export {imagePlugin}
+export {imagePlugin};

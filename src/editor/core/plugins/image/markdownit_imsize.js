@@ -2,7 +2,6 @@
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2017 HumHub GmbH & Co. KG
  * @license https://www.humhub.com/licences
- *
  */
 
 // Process ![test]( x =100x200)
@@ -10,13 +9,12 @@
 
 'use strict';
 
-var imageFloat = require('./imageFloat')
-
-var parseImageSize = require('./parse_image_size');
+const imageFloat = require('./imageFloat')
+const parseImageSize = require('./parse_image_size');
 
 function image_with_size(md, options) {
-    return function(state, silent) {
-        var attrs,
+    return function (state, silent) {
+        let attrs,
             code,
             label,
             labelEnd,
@@ -34,30 +32,37 @@ function image_with_size(md, options) {
             oldPos = state.pos,
             max = state.posMax;
 
-        if (state.src.charCodeAt(state.pos) !== 0x21/* ! */) { return false; }
-        if (state.src.charCodeAt(state.pos + 1) !== 0x5B/* [ */) { return false; }
+        if (state.src.charCodeAt(state.pos) !== 0x21/* ! */) {
+            return false;
+        }
+        if (state.src.charCodeAt(state.pos + 1) !== 0x5B/* [ */) {
+            return false;
+        }
 
         labelStart = state.pos + 2;
         labelEnd = md.helpers.parseLinkLabel(state, state.pos + 1, false);
 
         // parser failed to find ']', so it's not a valid link
-        if (labelEnd < 0) { return false; }
+        if (labelEnd < 0) {
+            return false;
+        }
 
         pos = labelEnd + 1;
-        if (pos < max && state.src.charCodeAt(pos) === 0x28/* ( */) {
-
-            //
+        if (pos < max && state.src.charCodeAt(pos) === 0x28) {
             // Inline link
-            //
 
             // [link](  <href>  "title"  )
             //        ^^ skipping these spaces
             pos++;
             for (; pos < max; pos++) {
                 code = state.src.charCodeAt(pos);
-                if (code !== 0x20 && code !== 0x0A) { break; }
+                if (code !== 0x20 && code !== 0x0A) {
+                    break;
+                }
             }
-            if (pos >= max) { return false; }
+            if (pos >= max) {
+                return false;
+            }
 
             // [link](  <href>  "title"  )
             //          ^^^^^^ parsing link destination
@@ -77,7 +82,9 @@ function image_with_size(md, options) {
             start = pos;
             for (; pos < max; pos++) {
                 code = state.src.charCodeAt(pos);
-                if (code !== 0x20 && code !== 0x0A) { break; }
+                if (code !== 0x20 && code !== 0x0A) {
+                    break;
+                }
             }
 
             // [link](  <href>  "title"  )
@@ -91,7 +98,9 @@ function image_with_size(md, options) {
                 //                         ^^ skipping these spaces
                 for (; pos < max; pos++) {
                     code = state.src.charCodeAt(pos);
-                    if (code !== 0x20 && code !== 0x0A) { break; }
+                    if (code !== 0x20 && code !== 0x0A) {
+                        break;
+                    }
                 }
             } else {
                 title = '';
@@ -115,7 +124,9 @@ function image_with_size(md, options) {
                         //                              ^^ skipping these spaces
                         for (; pos < max; pos++) {
                             code = state.src.charCodeAt(pos);
-                            if (code !== 0x20 && code !== 0x0A) { break; }
+                            if (code !== 0x20 && code !== 0x0A) {
+                                break;
+                            }
                         }
                     }
                 }
@@ -128,16 +139,18 @@ function image_with_size(md, options) {
             pos++;
 
         } else {
-            //
             // Link reference
-            //
-            if (typeof state.env.references === 'undefined') { return false; }
+            if (typeof state.env.references === 'undefined') {
+                return false;
+            }
 
             // [foo]  [bar]
             //      ^^ optional whitespace (can include newlines)
             for (; pos < max; pos++) {
                 code = state.src.charCodeAt(pos);
-                if (code !== 0x20 && code !== 0x0A) { break; }
+                if (code !== 0x20 && code !== 0x0A) {
+                    break;
+                }
             }
 
             if (pos < max && state.src.charCodeAt(pos) === 0x5B/* [ */) {
@@ -154,7 +167,9 @@ function image_with_size(md, options) {
 
             // covers label === '' and label === undefined
             // (collapsed reference link and shortcut reference link respectively)
-            if (!label) { label = state.src.slice(labelStart, labelEnd); }
+            if (!label) {
+                label = state.src.slice(labelStart, labelEnd);
+            }
 
             ref = state.env.references[md.utils.normalizeReference(label)];
             if (!ref) {
@@ -165,15 +180,13 @@ function image_with_size(md, options) {
             title = ref.title;
         }
 
-        //
         // We found the end of the link, and know for a fact it's a valid link;
         // so all that's left to do is to call tokenizer.
-        //
         if (!silent) {
             state.pos = labelStart;
             state.posMax = labelEnd;
 
-            var newState = new state.md.inline.State(
+            const newState = new state.md.inline.State(
                 state.src.slice(labelStart, labelEnd),
                 state.md,
                 state.env,
@@ -187,21 +200,23 @@ function image_with_size(md, options) {
             if (options) {
                 if (options.autofill && width === '' && height === '') {
                     try {
-                        var dimensions = sizeOf(href);
+                        const dimensions = sizeOf(href);
                         width = dimensions.width;
                         height = dimensions.height;
-                    } catch (e) { }
+                    } catch (e) {
+                        /* empty */
+                    }
                 }
             }
 
-            token          = state.push('image', 'img', 0);
-            token.attrs    = attrs = [ [ 'src', href ], [ 'alt', '' ] ];
+            token = state.push('image', 'img', 0);
+            token.attrs = attrs = [['src', href], ['alt', '']];
             token.children = tokens;
 
             // Parse image float extension
             let altTextToken = tokens.length ? tokens[tokens.length - 1] : null;
 
-            if(altTextToken) {
+            if (altTextToken) {
                 let {float, alt} = imageFloat.parseFloatFromAlt(altTextToken['content']);
                 altTextToken['content'] = alt;
                 token.attrs.push(['float', float]);
@@ -210,15 +225,15 @@ function image_with_size(md, options) {
             }
 
             if (title) {
-                attrs.push([ 'title', title ]);
+                attrs.push(['title', title]);
             }
 
             if (width !== '') {
-                attrs.push([ 'width', width ]);
+                attrs.push(['width', width]);
             }
 
             if (height !== '') {
-                attrs.push([ 'height', height ]);
+                attrs.push(['height', height]);
             }
         }
 
