@@ -142,19 +142,6 @@ class MarkdownEditor extends BaseView {
 
         this.$editor = $(this.view.dom);
 
-        // TODO: put into menu class...
-        if (this.$.is('.focusMenu')) {
-            this.$menuBar = this.$.find('.ProseMirror-menubar').hide();
-
-            this.$.on('focus', '.ProseMirror, textarea', () => {
-                this.$menuBar.show();
-            }).on('blur', () => {
-                if (!this.$.is('.fullscreen')) {
-                    this.$menuBar.hide();
-                }
-            });
-        }
-
         // Dirty workaround, force inline menus to be removed, this is required e.g. if the editor is removed from dom
         $('.humhub-richtext-inline-menu').remove();
         this.trigger('init');
@@ -241,7 +228,7 @@ class MarkdownEditor extends BaseView {
     }
 
     showSourceView() {
-        switchToSourceMode(this.context);
+        switchToSourceMode(this.context, false);
         this.view.dispatch(this.view.state.tr.setMeta(sourcePluginKey, EDIT_MODE_SOURCE));
     }
 
