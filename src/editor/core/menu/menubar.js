@@ -1,8 +1,7 @@
-import crelt from "crelt"
+import crelt from "crelt";
+import {Plugin} from "prosemirror-state";
 
-import {Plugin} from "prosemirror-state"
-
-import {MenuItemGroup, MenuItem, icons, liftItem, redoItem, undoItem} from "./menu"
+import {MenuItemGroup, MenuItem, icons, liftItem} from "./menu";
 import {buildMenuClass} from "./menu-helper";
 
 const prefix = "ProseMirror-menubar";
@@ -172,11 +171,11 @@ function wrapMenuItem(plugin, context, menuItem) {
     }
 
     if (menuItem.items) {
-        wrapMenuItem(plugin, context, menuItem.items)
+        wrapMenuItem(plugin, context, menuItem.items);
     }
 
     if (menuItem instanceof MenuItemGroup) {
-        wrapMenuItem(plugin, context, menuItem.content.items)
+        wrapMenuItem(plugin, context, menuItem.content.items);
     }
 }
 
@@ -215,9 +214,9 @@ export function buildMenuBar(context) {
 
 
 function isIOS() {
-    if (typeof navigator == "undefined") return false
-    let agent = navigator.userAgent
-    return !/Edge\/\d/.test(agent) && /AppleWebKit/.test(agent) && /Mobile\/\w+/.test(agent)
+    if (typeof navigator == "undefined") return false;
+    let agent = navigator.userAgent;
+    return !/Edge\/\d/.test(agent) && /AppleWebKit/.test(agent) && /Mobile\/\w+/.test(agent);
 }
 
 // :: (Object) → Plugin
@@ -246,7 +245,7 @@ export function menuBar(options) {
 }
 
 function translate(view, text) {
-    return view._props.translate ? view._props.translate(text) : text
+    return view._props.translate ? view._props.translate(text) : text;
 }
 
 class MenuBarView {
@@ -274,6 +273,7 @@ class MenuBarView {
         this.maxHeight = 0;
         this.widthForMaxHeight = 0;
         this.floating = false;
+        this.eventType = 'click';
 
         this.groupItem = new MenuItemGroup(this.options.content, {id: 'main-menu-group'});
 
@@ -282,27 +282,47 @@ class MenuBarView {
         });
 
         // TODO: In case of focus menu render only on first focus
-        let dom = this.groupItem.render(this.editorView);
-        this.menu.appendChild(dom);
+        this.menu.appendChild(this.groupItem.render(this.editorView));
 
         this.$ = $(this.menu);
 
         // Focus and blur editor handler
         if ($editor.is('.focusMenu')) {
             this.$.hide();
+
             $editor.off('focus', '.ProseMirror, textarea').off('blur', '.ProseMirror, textarea')
-                .on('focus', '.ProseMirror, textarea', () => {this.$.show();})
-                .on('blur', '.ProseMirror, textarea', () => {
-                    if (!$editor.is('.fullscreen')) {
+                .on('focus', '.ProseMirror, textarea', () => {
+                    const isVisible = this.$.is(':visible');
+                    const that = this;
+
+                    if (!isVisible) {
+                        this.$.show();
+
+                        $editor.on('keyup', (e) => {
+                            const code = e.keyCode ? e.keyCode : e.which;
+
+                            if (code === 9) {
+                                setTimeout(() => {
+                                    $(that.groupItem.dom).find('.' + buildMenuClass('trigger:first')).attr('tabindex', 0).focus();
+                                    $editor.off('keyup');
+                                },0);
+                            }
+                        });
+                    }
+                })
+                .on('blur', '.ProseMirror, textarea', (e) => {
+                    const targetHasMenuBtn = e.relatedTarget ? e.relatedTarget.classList.contains('ProseMirror-menu-trigger') : false;
+
+                    if (!$editor.is('.fullscreen') && !targetHasMenuBtn) {
                         this.$.hide();
                     }
                 });
         }
 
-        this.$.on('mousedown', function (evt) {
+        this.$.on('mousedown', (e) => {
             // Prevent focusout if we click outside of a menu item, but still inside menu container
-            evt.preventDefault();
-        }).on("keydown", e => {
+            e.preventDefault();
+        }).on("keydown", (e) => {
             const keyCode = e.keyCode || e.which;
 
             switch (keyCode) {
@@ -338,34 +358,16 @@ class MenuBarView {
         this.groupItem.update(this.editorView.state, this.context);
 
         if (this.floating) {
-            this.updateScrollCursor()
+            this.updateScrollCursor();
         } else {
-            if (this.menu.offsetWidth != this.widthForMaxHeight) {
-                this.widthForMaxHeight = this.menu.offsetWidth
+            if (this.menu.offsetWidth !== this.widthForMaxHeight) {
+                this.widthForMaxHeight = this.menu.offsetWidth;
                 this.maxHeight = 0
             }
             if (this.menu.offsetHeight > this.maxHeight) {
                 this.maxHeight = this.menu.offsetHeight;
             }
         }
-
-        let currentTabindex = this.focusIconIndex;
-        const that = this;
-        this.$.find('.' + buildMenuClass('trigger')).each(function (index) {
-            let $this = $(this);
-            let isVisible = $this.is(':visible');
-            let tabindex = -1;
-            let isCurrentIndex = index === currentTabindex;
-
-            if (!isVisible && isCurrentIndex) {
-                // Note here we expect the first menu item is always visible
-                $(that.groupItem.dom).find('.' + buildMenuClass('trigger:first')).attr('tabindex', 0);
-            } else if (isCurrentIndex) {
-                tabindex = 0;
-            }
-
-            $this.attr('tabindex', tabindex);
-        });
 
         this.context.event.trigger('afterMenuBarUpdate', this);
     }
@@ -406,7 +408,7 @@ class MenuBarView {
         let $next = null;
         let newFocusIconIndex = 0;
         let focusNextItem = false;
-        let $current = this.$.find('.' + buildMenuClass('trigger:focus'))
+        let $current = this.$.find('.' + buildMenuClass('trigger:focus'));
 
         this.$.find('.' + buildMenuClass('trigger')).each(function (index) {
             let $this = $(this);
@@ -425,7 +427,7 @@ class MenuBarView {
         });
 
         if (!$next) {
-            $next = this.$.find('.' + buildMenuClass('trigger:first'))
+            $next = this.$.find('.' + buildMenuClass('trigger:first'));
         }
 
         this.focusIconIndex = newFocusIconIndex;
@@ -442,7 +444,7 @@ class MenuBarView {
         let menuRect = this.menu.getBoundingClientRect();
         if (selRect.top < menuRect.bottom && selRect.bottom > menuRect.top) {
             let scrollable = findWrappingScrollable(this.wrapper);
-            if (scrollable) scrollable.scrollTop -= (menuRect.bottom - selRect.top)
+            if (scrollable) scrollable.scrollTop -= (menuRect.bottom - selRect.top);
         }
     }
 
@@ -454,11 +456,11 @@ class MenuBarView {
                 this.menu.style.position = this.menu.style.left = this.menu.style.width = "";
                 this.menu.style.display = "";
                 this.spacer.parentNode.removeChild(this.spacer);
-                this.spacer = null
+                this.spacer = null;
             } else {
                 let border = (parent.offsetWidth - parent.clientWidth) / 2;
                 this.menu.style.left = (editorRect.left + border) + "px";
-                this.menu.style.display = (editorRect.top > window.innerHeight ? "none" : "")
+                this.menu.style.display = (editorRect.top > window.innerHeight ? "none" : "");
             }
         } else {
             if (editorRect.top < 0 && editorRect.bottom >= this.menu.offsetHeight + 10) {
@@ -468,24 +470,25 @@ class MenuBarView {
                 this.menu.style.width = menuRect.width + "px";
                 this.menu.style.position = "fixed";
                 this.spacer = crel("div", {class: prefix + "-spacer", style: `height: ${menuRect.height}px`});
-                parent.insertBefore(this.spacer, this.menu)
+                parent.insertBefore(this.spacer, this.menu);
             }
         }
     }
 
     destroy() {
         if (this.wrapper.parentNode)
-            this.wrapper.parentNode.replaceChild(this.editorView.dom, this.wrapper)
+            this.wrapper.parentNode.replaceChild(this.editorView.dom, this.wrapper);
     }
 }
 
 // Not precise, but close enough
 function selectionIsInverted(selection) {
-    if (selection.anchorNode == selection.focusNode) return selection.anchorOffset > selection.focusOffset;
-    return selection.anchorNode.compareDocumentPosition(selection.focusNode) == Node.DOCUMENT_POSITION_FOLLOWING;
+    if (selection.anchorNode === selection.focusNode)
+        return selection.anchorOffset > selection.focusOffset;
+    return selection.anchorNode.compareDocumentPosition(selection.focusNode) === Node.DOCUMENT_POSITION_FOLLOWING;
 }
 
 function findWrappingScrollable(node) {
     for (let cur = node.parentNode; cur; cur = cur.parentNode)
-        if (cur.scrollHeight > cur.clientHeight) return cur
+        if (cur.scrollHeight > cur.clientHeight) return cur;
 }
