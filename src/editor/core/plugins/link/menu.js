@@ -5,10 +5,11 @@
  *
  */
 
-import {MenuItem, icons, markActive, canInsertLink} from "../../menu/menu"
-import { TextSelection } from 'prosemirror-state';
-import {openPrompt, TextField} from "../../prompt";
+import {TextSelection} from 'prosemirror-state';
 import {toggleMark} from "prosemirror-commands";
+
+import {MenuItem, icons, markActive, canInsertLink} from "../../menu/menu";
+import {openPrompt, TextField} from "../../prompt";
 import {validateHref} from "../../util/linkUtil";
 
 function linkItem(context) {
@@ -30,10 +31,15 @@ function linkItem(context) {
         run(state, dispatch, view) {
             if (markActive(state, mark)) {
                 toggleMark(mark)(state, dispatch);
-                return true
+                return true;
             }
 
-            promt(context.translate("Create a link"), context);
+            const { $from, $to } = state.selection;
+            const node = $from.node($from.depth);
+            const nodeText = node.textBetween($from.parentOffset, $to.parentOffset, "\n");
+            const attrs = {text: nodeText, title: nodeText, href: validateHref(nodeText) ? nodeText : ''};
+
+            promt(context.translate("Create a link"), context, $.extend({}, mark.attrs, attrs));
         }
     })
 }
@@ -45,7 +51,7 @@ export function editNode(dom, context) {
     let nodePos = view.posAtDOM(dom);
     let node = doc.nodeAt(nodePos);
 
-    if (node.type != context.schema.nodes.text) {
+    if (node.type !== context.schema.nodes.text) {
         return;
     }
 
@@ -59,16 +65,16 @@ export function editNode(dom, context) {
 }
 
 export function promt(title, context, attrs, node, mark) {
-    let view = context.editor.view;
+    const view = context.editor.view;
 
-    let fields =  {
-        text:  new TextField({label: "Text", value: attrs && attrs.text}),
+    const fields = {
+        text: new TextField({label: "Text", value: attrs && attrs.text}),
         href: new TextField({
             label: context.translate("Link target"),
             value: attrs && attrs.href,
             required: true,
             clean: (val) => {
-                if (!validateHref(val))  {
+                if (!validateHref(val)) {
                     return 'https://' + val;
                 }
 
@@ -83,36 +89,29 @@ export function promt(title, context, attrs, node, mark) {
     }
 
     openPrompt({
-        title: title,
+        title,
         fields: fields,
         callback(attrs) {
             if (node) {
                 if (mark.attrs.href === attrs.href) {
                     attrs.fileGuid = mark.attrs.fileGuid;
                 }
+                const newLinkMark = context.schema.marks.link.create(attrs);
+                const newLinkNode = context.schema.text(attrs.text).mark([newLinkMark]);
 
-                let newSet = mark.type.removeFromSet(node.marks);
-                let newNode = node.copy(attrs.text);
-                newNode.marks = newSet;
-
-                delete attrs.text;
-
-                mark.attrs = attrs;
-
-                newNode.marks = mark.addToSet(newNode.marks);
-                view.dispatch(view.state.tr.replaceSelectionWith(newNode, false));
+                view.dispatch(view.state.tr.replaceSelectionWith(newLinkNode, false));
             } else {
                 toggleMark(context.schema.marks.link, attrs)(view.state, view.dispatch);
             }
-            view.focus()
+            view.focus();
         }
-    })
+    });
 }
 
 function getLinkMark(node, context) {
     let result = null;
     node.marks.forEach((mark) => {
-        if (mark.type == context.schema.marks.link) {
+        if (mark.type === context.schema.marks.link) {
             result = mark;
         }
     });
@@ -121,12 +120,10 @@ function getLinkMark(node, context) {
 }
 
 export function menu(context) {
-    return [
-        {
-            id: 'linkItem',
-            mark: 'link',
-            group: 'marks',
-            item: linkItem(context)
-        }
-    ]
+    return [{
+        id: 'linkItem',
+        mark: 'link',
+        group: 'marks',
+        item: linkItem(context)
+    }];
 }
