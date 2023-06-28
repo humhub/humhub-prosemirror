@@ -459,6 +459,7 @@ li.ProseMirror-selectednode:after {
     border: 1px solid silver;
     border-radius: 3px;
     box-shadow: -0.5px 2px 5px rgba(0, 0, 0, 0.2);
+    color: #000;
     min-width: 300px;
     padding: 5px 10px 5px 15px;
     position: fixed;
@@ -468,6 +469,7 @@ li.ProseMirror-selectednode:after {
 .ProseMirror-prompt h5 {
     font-size: 100%;
     font-weight: bold;
+    margin: 0 0 10px;
 }
 
 .ProseMirror-prompt input {
@@ -499,7 +501,6 @@ li.ProseMirror-selectednode:after {
 }
 
 .ProseMirror-prompt-buttons {
-    display: none;
     margin-top: 5px;
 }
 

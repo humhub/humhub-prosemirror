@@ -117,13 +117,13 @@ export function promt(title, context, attrs, view, node) {
         },
         callback(attrs) {
             if (node && node.attrs.src === attrs.src) {
-                attrs.fileGuid = node.attrs.fileGuid
+                attrs.fileGuid = node.attrs.fileGuid;
             }
 
             attrs.float = parseInt(attrs.float);
 
             view.dispatch(view.state.tr.replaceSelectionWith(context.schema.nodes.image.createAndFill(attrs)));
-            view.focus()
+            view.focus();
         }
     });
 }

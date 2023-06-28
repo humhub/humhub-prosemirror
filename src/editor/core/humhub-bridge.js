@@ -43,7 +43,7 @@ export function filterFileUrl(url) {
         return {url: url, guid: null};
     }
 
-    return humhub.modules.file.filterFileUrl(url);
+    return humhub.modules ? humhub.modules.file.filterFileUrl(url) : url;
 }
 
 export function getLoaderWidget() {
@@ -66,7 +66,7 @@ export function encode(str) {
         return $('<div/>').text(str).html();
     }
 
-    return humhub.modules.util.string.encode(str);
+    return humhub.modules ? humhub.modules.util.string.encode(str) : str;
 }
 
 // TODO: Implement oembed provider interface

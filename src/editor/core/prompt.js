@@ -1,4 +1,4 @@
-const prefix = "ProseMirror-prompt"
+const prefix = "ProseMirror-prompt";
 
 let close = ($node) => {
     $node.remove();
@@ -21,7 +21,7 @@ class Promt {
     initWrapper() {
         let box = this.$wrapper[0].getBoundingClientRect();
         this.$wrapper.css({
-            top: ((window.innerHeight - box.height) / 2)+ "px",
+            top: ((window.innerHeight - box.height) / 2) + "px",
             left: ((window.innerWidth - box.width) / 2) + "px"
         });
 
@@ -32,7 +32,7 @@ class Promt {
         this.$form = $('<form>').appendTo(this.$wrapper);
 
         if (this.options.title) {
-            this.$form.append('<h5>'+this.options.title+'</h5>');
+            this.$form.append('<h5>' + this.options.title + '</h5>');
         }
 
         this.buildFormFields();
@@ -53,7 +53,7 @@ class Promt {
         this.domFields = [];
         for (let name in this.options.fields) {
             let field = this.options.fields[name];
-            let $field = $('<div>').append('<label>'+(field.options.label || name)+':</label>').append(this.options.fields[name].render());
+            let $field = $('<div>').append('<label>' + (field.options.label || name) + ':</label><br>').append(this.options.fields[name].render());
             this.domFields.push($field[0]);
         }
     }
@@ -65,10 +65,15 @@ class Promt {
 
         this.$buttons.append(document.createTextNode(' '));
 
-        $('<button type="button" class="btn btn-default">').addClass(prefix + "-cancel").text('Cancel').appendTo(this.$buttons)
-            .on('click', () => {this.close()});
+        $('<button type="button" class="btn btn-default">').addClass(prefix + "-cancel")
+            .text('Cancel').appendTo(this.$buttons)
+            .on('click', () => this.close());
 
         this.$form.append(this.$buttons);
+    }
+
+    close() {
+        this.$wrapper.remove();
     }
 
     submit() {
@@ -92,12 +97,12 @@ class Promt {
 
             if (bad) {
                 this.reportInvalid(dom, bad);
-                return null
+                return null;
             }
-            result[name] = field.clean(value)
+            result[name] = field.clean(value);
         }
 
-        return result
+        return result;
     }
 
     reportInvalid(dom, message) {
@@ -108,23 +113,23 @@ class Promt {
         msg.style.top = (dom.offsetTop - 5) + "px";
         msg.className = "ProseMirror-invalid";
         msg.textContent = message;
-        setTimeout(() => parent.removeChild(msg), 1500)
+        setTimeout(() => parent.removeChild(msg), 1500);
     }
 
     initEvents() {
-        this.$form.on("keydown", e => {
-            if (e.keyCode == 27) {
+        this.$form.on("keydown", (e) => {
+            if (e.keyCode === 27) {
                 e.preventDefault();
-                this.close()
-            } else if (e.keyCode == 13 && !(e.ctrlKey || e.metaKey || e.shiftKey)) {
+                this.close();
+            } else if (e.keyCode === 13 && !(e.ctrlKey || e.metaKey || e.shiftKey)) {
                 e.preventDefault();
-                this.submit()
-            } else if (e.keyCode == 9) {
+                this.submit();
+            } else if (e.keyCode === 9) {
                 window.setTimeout(() => {
                     if (!$.contains(this.$wrapper[0], document.activeElement)) {
                         this.close();
                     }
-                }, 500)
+                }, 500);
             }
         }).on('mousedown', (e) => {
             if (!$.contains(this.$wrapper[0], e.target)) {
@@ -132,11 +137,6 @@ class Promt {
             }
         })
     }
-
-    close() {
-        this.$wrapper.remove();
-    }
-
 }
 
 export function openPrompt(options) {
@@ -171,7 +171,7 @@ export class Field {
     // :: (dom.Node) → any
     // Read the field's value from its DOM node.
     read(dom) {
-        if(dom.value) {
+        if (dom.value) {
             return dom.value;
         } else {
             return $(dom).find('input, select')[0].value;
@@ -185,12 +185,12 @@ export class Field {
 
     validate(value) {
         if (!value && this.options.required)
-            return "Required field"
-        return this.validateType(value) || (this.options.validate && this.options.validate(value))
+            return "Required field";
+        return this.validateType(value) || (this.options.validate && this.options.validate(value));
     }
 
     clean(value) {
-        return this.options.clean ? this.options.clean(value) : value
+        return this.options.clean ? this.options.clean(value) : value;
     }
 }
 
@@ -202,7 +202,7 @@ export class TextField extends Field {
         input.className = 'form-control';
         input.value = this.options.value || "";
         input.autocomplete = "off";
-        return input
+        return input;
     }
 }
 
@@ -216,12 +216,12 @@ export class SelectField extends Field {
         let select = document.createElement("select");
         select.className = 'form-control';
 
-        this.options.options.forEach(o => {
+        this.options.options.forEach((o) => {
             let opt = select.appendChild(document.createElement("option"));
             opt.value = o.value;
-            opt.selected = o.value == this.options.value
-            opt.label = o.label
+            opt.selected = o.value === this.options.value;
+            opt.label = o.label;
         });
-        return select
+        return select;
     }
 }
