@@ -27,6 +27,7 @@ Changelog
 - Fix #97: [Bug] Images duplicate on drag and drop
 - Enh #43: Make menu accessible
 - Fix #51: Link creation does not copy URL from selected text
+- Enh #47: Edit code block in codemirror
 
 1.1.7 (August 31, 2021)
 -----------------------

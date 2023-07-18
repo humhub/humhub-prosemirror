@@ -6,7 +6,8 @@ import {
     setAttributesFromOptions,
     setTabindex,
     setTitle,
-    initMenuItemTrigger, buildMenuClass
+    initMenuItemTrigger,
+    buildMenuClass
 } from "./menu-helper";
 
 // MenuItemSpec:: interface

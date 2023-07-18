@@ -9,17 +9,14 @@ const code_block = {
     group: "block",
     code: true,
     defining: true,
+    isolating: true,
     marks: "",
-    attrs: {params: {default: ""}},
     parseDOM: [{
         tag: "pre",
         preserveWhitespace: true,
-        getAttrs: (node) => {
-            return ({params: node.getAttribute("data-params") || ""});
-        }
     }],
     toDOM: (node) => {
-        return ["pre", node.attrs.params ? {"data-params": node.attrs.params} : {}, ["code", 0]];
+        return ["pre"];
     },
     parseMarkdown: {block: "code_block"},
     toMarkdown: (state, node) => {

@@ -131,13 +131,13 @@ describe("Plugin:tab_behavior", () => {
         const editor = initEditor();
         type('This is a code block');
         clickDropdownMenuItem('type','makeCodeBlock');
-        expect(toHtml()).to.equal('<pre><code>This is a code block</code></pre>');
+        expect(toHtml()).to.equal('<div class="cm-editor ͼ1 ͼ2 ͼ4" contenteditable="false"><div aria-live="polite" style="position: fixed; top: -10000px;"></div><div tabindex="-1" class="cm-scroller"><div spellcheck="false" autocorrect="off" autocapitalize="off" translate="no" contenteditable="true" class="cm-content" style="tab-size: 4" role="textbox" aria-multiline="true" data-language="javascript"><div class="cm-line">This is a code block</div></div><div class="cm-layer cm-layer-above cm-cursorLayer" aria-hidden="true" style="z-index: 150; animation-duration: 1200ms;"></div><div class="cm-layer cm-selectionLayer" aria-hidden="true" style="z-index: -2;"></div></div></div>');
         expect(serialize()).to.equal('```\nThis is a code block\n```');
         pressKeyTab();
-        expect(toHtml()).to.equal('<pre><code>	This is a code block</code></pre>');
+        expect(toHtml()).to.equal('<div class="cm-editor ͼ1 ͼ2 ͼ4" contenteditable="false"><div aria-live="polite" style="position: fixed; top: -10000px;"></div><div tabindex="-1" class="cm-scroller"><div spellcheck="false" autocorrect="off" autocapitalize="off" translate="no" contenteditable="true" class="cm-content" style="tab-size: 4;" role="textbox" aria-multiline="true" data-language="javascript"><div class="cm-line">\tThis is a code block</div></div><div class="cm-layer cm-layer-above cm-cursorLayer" aria-hidden="true" style="z-index: 150; animation-duration: 1200ms;"></div><div class="cm-layer cm-selectionLayer" aria-hidden="true" style="z-index: -2;"></div></div></div>');
         expect(serialize()).to.equal('```\n\tThis is a code block\n```');
         pressKeyShiftTab();
-        expect(toHtml()).to.equal('<pre><code>This is a code block</code></pre>');
+        expect(toHtml()).to.equal('<div class="cm-editor ͼ1 ͼ2 ͼ4" contenteditable="false"><div aria-live="polite" style="position: fixed; top: -10000px;"></div><div tabindex="-1" class="cm-scroller"><div spellcheck="false" autocorrect="off" autocapitalize="off" translate="no" contenteditable="true" class="cm-content" style="tab-size: 4;" role="textbox" aria-multiline="true" data-language="javascript"><div class="cm-line">This is a code block</div></div><div class="cm-layer cm-layer-above cm-cursorLayer" aria-hidden="true" style="z-index: 150; animation-duration: 1200ms;"></div><div class="cm-layer cm-selectionLayer" aria-hidden="true" style="z-index: -2;"></div></div></div>');
         expect(serialize()).to.equal('```\nThis is a code block\n```');
         done();
     });

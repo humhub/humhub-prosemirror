@@ -5,14 +5,20 @@
  */
 
 import {schema} from './schema';
-import {codeBlockRule} from './input-rules';
 import {menu} from './menu';
+import {keymap} from './keymap';
+import {codeBlockPlugin} from "./plugin";
+import {codeBlockRule} from './input-rules';
 
 const code_block = {
     id: 'code_block',
-    schema: schema,
+    schema,
     menu: (context) => menu(context),
-    inputRules: (schema) => {return [codeBlockRule(schema)]}
+    inputRules: (schema) => {return [codeBlockRule(schema)]},
+    keymap: () => keymap(),
+    plugins: (context) => {
+        return [codeBlockPlugin(context)];
+    }
 };
 
 export default code_block;

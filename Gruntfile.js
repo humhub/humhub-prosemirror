@@ -56,18 +56,16 @@ module.exports = function(grunt) {
                         extensions: ['.js', '.json'],
                     }),
                     pluginJson(),
-                    pluginCommonjs({
-                        namedExports: {
-                            'node_modules/react/react.js': ['Children', 'Component', 'PropTypes', 'createElement'],
-                            'node_modules/react-dom/index.js': ['render']
-                        }
-                    }),
+                    pluginCommonjs(),
                     pluginBuble({
-                        'objectAssign': 'Object.assign',
-                        'transforms': {
+                        objectAssign: 'Object.assign',
+                        transforms: {
                             'forOf': false,
                             'generator': false
-                        }
+                        },
+                        exclude: [
+                            'node_modules/@lezer/**'
+                        ]
                     }),
                     pluginReplace({
                         'process.env.NODE_ENV': JSON.stringify( 'development' ),

@@ -199,10 +199,10 @@ class MarkdownEditor extends BaseView {
             return this.context.$source.focus();
         } else {
             if (atEnd) {
-                const selection = Selection.atEnd(this.view.docView.node)
-                const tr = this.view.state.tr.setSelection(selection)
-                const state = this.view.state.apply(tr)
-                this.view.updateState(state)
+                const selection = Selection.atEnd(this.view.docView.node);
+                const tr = this.view.state.tr.setSelection(selection);
+                const state = this.view.state.apply(tr);
+                this.view.updateState(state);
             }
             this.view.focus();
         }
