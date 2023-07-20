@@ -48,10 +48,7 @@ const fence = {
 };
 
 const schema = {
-    nodes: {
-        code_block: code_block,
-        fence: fence
-    }
+    nodes: { code_block, fence }
 };
 
 export {schema};

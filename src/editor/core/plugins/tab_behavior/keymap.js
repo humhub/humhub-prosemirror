@@ -66,11 +66,6 @@ let keymap = () => {
                             addRowAfter(state, dispatch);
                             view.dispatchEvent(new KeyboardEvent('keydown', {key: 'Tab', code: 9}));
                         }
-                    } else if (state.selection.empty && $from.node($from.depth).type.name === 'code_block') {
-                        // Insert a tab character at the start of the text or current line
-                        const lineStart = getLineStartPos($from);
-                        const tr = state.tr.insertText('\t', lineStart + 1);
-                        dispatch(tr);
                     } else {
                         return false;
                     }
@@ -90,16 +85,6 @@ let keymap = () => {
                     const nextSelection = getNextSelectionCell($from);
                     if (nextSelection !== null) {
                         goToNextCell(-1)(state, dispatch);
-                    } else if (state.selection.empty && $from.node($from.depth).type.name === 'code_block') {
-                        // Delete a tab character at the start of the text or current line
-                        const lineStart = getLineStartPos($from);
-                        const content = $from.node($from.depth).content.content[0];
-                        if ((content ? content.text : '').charAt(lineStart - $from.start() + 1) === '\t') {
-                            const tr = state.tr.delete(lineStart + 1, lineStart + 2);
-                            dispatch(tr);
-                        } else {
-                            return false;
-                        }
                     } else {
                         return false;
                     }

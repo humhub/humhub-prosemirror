@@ -2,8 +2,8 @@ import {Plugin, Selection, TextSelection} from 'prosemirror-state';
 import {redo, undo} from "prosemirror-history";
 import {exitCode} from "prosemirror-commands";
 
-import {EditorView as CodeMirror, keymap as cmKeymap, drawSelection} from "@codemirror/view";
-import {defaultKeymap} from "@codemirror/commands";
+import {EditorView as CodeMirror, keymap as cmKeymap, drawSelection, lineNumbers} from "@codemirror/view";
+import {defaultKeymap, indentWithTab} from "@codemirror/commands";
 import {defaultHighlightStyle, syntaxHighlighting} from "@codemirror/language";
 import {javascript} from "@codemirror/lang-javascript";
 
@@ -20,11 +20,13 @@ class CodeBlockView {
             extensions: [
                 cmKeymap.of([
                     ...this.codeMirrorKeymap(),
+                    ...indentWithTab,
                     ...defaultKeymap
                 ]),
                 drawSelection(),
-                syntaxHighlighting(defaultHighlightStyle),
+                lineNumbers(),
                 javascript(),
+                syntaxHighlighting(defaultHighlightStyle),
                 CodeMirror.updateListener.of(update => this.forwardUpdate(update))
             ]
         });
