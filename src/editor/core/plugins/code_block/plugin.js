@@ -24,7 +24,7 @@ class CodeBlockView {
                     ...defaultKeymap
                 ]),
                 drawSelection(),
-                // lineNumbers(),
+                lineNumbers(),
                 javascript(),
                 syntaxHighlighting(defaultHighlightStyle),
                 CodeMirror.updateListener.of(update => this.forwardUpdate(update))
