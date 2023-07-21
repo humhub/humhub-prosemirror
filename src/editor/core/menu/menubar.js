@@ -290,15 +290,13 @@ class MenuBarView {
 
         // Focus and blur editor handler
         if ($editor.is('.focusMenu')) {
-            this.$.hide();
+            this.$.addClass('hidden');
 
             $editor.off('focus', '.ProseMirror, textarea').off('blur', '.ProseMirror, textarea')
                 .on('focus', '.ProseMirror, textarea', (event) => {
-                    const isVisible = this.$.is(':visible');
-                    const that = this;
-
-                    if (!isVisible) {
-                        this.$.show();
+                    if (this.$.hasClass('hidden')) {
+                        this.$.removeClass('hidden');
+                        const that = this;
 
                         $editor.on('keyup', (e) => {
                             const code = e.keyCode ? e.keyCode : e.which;
@@ -314,8 +312,10 @@ class MenuBarView {
                 .on('blur', '.ProseMirror, textarea', (e) => {
                     const targetHasMenuBtn = e.relatedTarget ? e.relatedTarget.classList.contains('ProseMirror-menu-trigger') : false;
                     lastFocusedElement = e.target;
-                    if (!$editor.is('.fullscreen') && !targetHasMenuBtn) {
-                        this.$.hide();
+
+                    if (!$editor.is('.fullscreen') && !targetHasMenuBtn && !$(e.target).hasClass('cm-editor')) {
+                        lastFocusedElement = null;
+                        this.$.addClass('hidden');
                     }
                 });
         }
