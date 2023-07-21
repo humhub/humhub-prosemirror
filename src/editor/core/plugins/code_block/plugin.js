@@ -60,20 +60,7 @@ class CodeBlockView {
                 offset += (toB - fromB) - (toA - fromA);
             });
 
-            // Solution from official example not worked
-            // tr.setSelection(TextSelection.create(tr.doc, selFrom, selTo));
-
-            let codePosAfterTr = tr.mapping.map(codePos);
-            let mappedProseSelection = pmSel.map(tr.doc, tr.mapping);
-            let desiredProseSelection = TextSelection.create(
-                tr.doc,
-                codePosAfterTr + 1 + main.from, // +1 skips code_block start token
-                codePosAfterTr + 1 + main.to    // +1 skips code_block start token
-            );
-            if (!mappedProseSelection.eq(desiredProseSelection)) {
-                tr = tr.setSelection(desiredProseSelection);
-            }
-
+            tr.setSelection(TextSelection.create(tr.doc, selFrom, selTo));
             this.view.dispatch(tr);
         }
     }
