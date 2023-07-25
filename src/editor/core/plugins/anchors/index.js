@@ -17,18 +17,18 @@ const anchors = {
     id: 'anchor',
     renderOnly: true,
     init: (context, isEdit) => {
-        if(!isEdit) {
-            context.editor.$.on('mouseenter', ':header', function() {
+        if (!isEdit) {
+            context.editor.$.on('mouseenter', ':header', function () {
                 $(this).find('.header-anchor').show();
-            }).on('mouseleave', ':header', function() {
+            }).on('mouseleave', ':header', function () {
                 $(this).find('.header-anchor').hide();
             });
         }
     },
     registerMarkdownIt: (markdownIt) => {
-        let anchorOptions =  {permalink: true};
-        anchorOptions.renderPermalink =  (slug, opts, state, idx) => {
-            const space = () => Object.assign(new state.Token('text', '', 0), { content: ' ' });
+        let anchorOptions = {permalink: true};
+        anchorOptions.renderPermalink = (slug, opts, state, idx) => {
+            const space = () => Object.assign(new state.Token('text', '', 0), {content: ' '});
 
             const linkTokens = [
                 Object.assign(new state.Token('link_open', 'a', 1), {
@@ -41,17 +41,17 @@ const anchors = {
                         ['aria-hidden', 'true']
                     ]
                 }),
-                Object.assign(new state.Token('text', '', 0), {content: opts.permalinkSymbol }),
+                Object.assign(new state.Token('text', '', 0), {content: opts.permalinkSymbol}),
                 new state.Token('link_close', 'a', -1)
             ];
 
             // `push` or `unshift` according to position option.
             // Space is at the opposite side.
             let tokens = linkTokens[position[!opts.permalinkBefore]](space());
-            state.tokens[idx + 1].children[position[opts.permalinkBefore]](...linkTokens)
+            state.tokens[idx + 1].children[position[opts.permalinkBefore]](Object.assign({}, linkTokens))
         };
 
-        if(anchorOptions) {
+        if (anchorOptions) {
             markdownIt.use(markdown_it_anchor_plugin, anchorOptions);
         }
     }

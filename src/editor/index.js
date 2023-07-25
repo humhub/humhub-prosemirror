@@ -144,6 +144,7 @@ class MarkdownEditor extends BaseView {
 
         // Dirty workaround, force inline menus to be removed, this is required e.g. if the editor is removed from dom
         $('.humhub-richtext-inline-menu').remove();
+
         this.trigger('init');
     }
 
@@ -199,10 +200,10 @@ class MarkdownEditor extends BaseView {
             return this.context.$source.focus();
         } else {
             if (atEnd) {
-                const selection = Selection.atEnd(this.view.docView.node)
-                const tr = this.view.state.tr.setSelection(selection)
-                const state = this.view.state.apply(tr)
-                this.view.updateState(state)
+                const selection = Selection.atEnd(this.view.docView.node);
+                const tr = this.view.state.tr.setSelection(selection);
+                const state = this.view.state.apply(tr);
+                this.view.updateState(state);
             }
             this.view.focus();
         }

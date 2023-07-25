@@ -1,15 +1,23 @@
 # HumHub Richtext
 
 ## Build
-
+### Build with Gruntfile.js
 In order to build the project, run the following command:
 
 ```
 grunt rollup
 ```
 
-## Test environment
+### Build with rollup.config.js
+**NOTE**: Before using this configuration, change the parameter 'type' in package.json to 'module'
 
+For using run the following command in the console:
+
+```
+rollup -c
+```
+
+## Test environment
 ### Run tests in browser
 
 - Build and run test server:
@@ -28,8 +36,6 @@ npm test-server
 ```
 npm run test
 ```
-
-
 
 ### Test editor build in HumHub
 

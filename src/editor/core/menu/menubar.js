@@ -248,6 +248,8 @@ function translate(view, text) {
     return view._props.translate ? view._props.translate(text) : text;
 }
 
+let lastFocusedElement = null;
+
 class MenuBarView {
     constructor(editorView, options) {
         this.editorView = editorView;
@@ -288,20 +290,17 @@ class MenuBarView {
 
         // Focus and blur editor handler
         if ($editor.is('.focusMenu')) {
-            this.$.hide();
+            this.$.addClass('hidden');
 
             $editor.off('focus', '.ProseMirror, textarea').off('blur', '.ProseMirror, textarea')
-                .on('focus', '.ProseMirror, textarea', () => {
-                    const isVisible = this.$.is(':visible');
-                    const that = this;
-
-                    if (!isVisible) {
-                        this.$.show();
+                .on('focus', '.ProseMirror, textarea', (event) => {
+                    if (this.$.hasClass('hidden')) {
+                        this.$.removeClass('hidden');
+                        const that = this;
 
                         $editor.on('keyup', (e) => {
                             const code = e.keyCode ? e.keyCode : e.which;
-
-                            if (code === 9) {
+                            if (code === 9 && lastFocusedElement !== $(lastFocusedElement).closest(event.target).prevObject[0]) {
                                 setTimeout(() => {
                                     $(that.groupItem.dom).find('.' + buildMenuClass('trigger:first')).attr('tabindex', 0).focus();
                                     $editor.off('keyup');
@@ -312,15 +311,17 @@ class MenuBarView {
                 })
                 .on('blur', '.ProseMirror, textarea', (e) => {
                     const targetHasMenuBtn = e.relatedTarget ? e.relatedTarget.classList.contains('ProseMirror-menu-trigger') : false;
+                    lastFocusedElement = e.target;
 
-                    if (!$editor.is('.fullscreen') && !targetHasMenuBtn) {
-                        this.$.hide();
+                    if (!$editor.is('.fullscreen') && !targetHasMenuBtn && !$(e.target).hasClass('cm-editor')) {
+                        lastFocusedElement = null;
+                        this.$.addClass('hidden');
                     }
                 });
         }
 
         this.$.on('mousedown', (e) => {
-            // Prevent focusout if we click outside of a menu item, but still inside menu container
+            // Prevent focusout if we click outside a menu item, but still inside menu container
             e.preventDefault();
         }).on("keydown", (e) => {
             const keyCode = e.keyCode || e.which;

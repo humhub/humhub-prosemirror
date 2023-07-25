@@ -61,7 +61,7 @@ class HumHubMarkdownSerializer extends MarkdownSerializer {
         let state = new HumHubMarkdownSerializerState(
           this.nodes,
           this.marks,
-          {...options, tightLists: false}
+          Object.assign(options || {}, {tightLists: false})
         );
         state.renderContent(content);
         return state.out;
