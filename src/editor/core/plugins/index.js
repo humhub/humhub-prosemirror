@@ -45,11 +45,11 @@ import {PluginRegistry} from "./registry";
 
 const registry = new PluginRegistry();
 
-let registerPlugin = function (plugin, options) {
+const registerPlugin = (plugin, options) => {
     registry.register(plugin, options);
 };
 
-let registerPreset = function (id, plugins) {
+const registerPreset = (id, plugins) => {
     registry.registerPreset(id, plugins);
 };
 
@@ -61,38 +61,37 @@ registerPlugin(loader, 'markdown');
 registerPlugin(paragraph, 'markdown');
 registerPlugin(heading, 'markdown');
 registerPlugin(blockquote, 'markdown');
-registerPlugin(bullet_list, 'markdown');
 registerPlugin(strikethrough, 'markdown');
 registerPlugin(em, 'markdown');
 registerPlugin(strong, 'markdown');
 registerPlugin(code, 'markdown');
 registerPlugin(link, 'markdown');
 registerPlugin(code_block, 'markdown');
-registerPlugin(emoji);
 registerPlugin(hard_break, 'markdown');
-
 registerPlugin(horizontal_rule, 'markdown');
 registerPlugin(image, 'markdown');
 registerPlugin(list_item, 'markdown');
-registerPlugin(mention);
-registerPlugin(oembed);
+registerPlugin(bullet_list, 'markdown');
 registerPlugin(ordered_list, 'markdown');
 registerPlugin(table, 'markdown');
 registerPlugin(text, 'markdown');
 registerPlugin(attributes, 'markdown');
 registerPlugin(upload, 'markdown');
 registerPlugin(placeholder, 'markdown');
-registerPlugin(anchors);
 registerPlugin(fullscreen, 'markdown');
 registerPlugin(resizeNav, 'markdown');
 registerPlugin(maxHeight, 'markdown');
 registerPlugin(save, 'markdown');
 registerPlugin(source, 'markdown');
 registerPlugin(tabBehavior, 'markdown');
+registerPlugin(emoji);
+registerPlugin(mention);
+registerPlugin(oembed);
+registerPlugin(anchors);
 
 registerPreset('normal', {
     extend: 'markdown',
-    callback: function (addToPreset) {
+    callback: (addToPreset) => {
         addToPreset('emoji', 'normal', {
             'before': 'hard_break'
         });
@@ -113,9 +112,9 @@ registerPreset('full', {
 
 registerPreset('document', {
     extend: 'full',
-    callback: function (addToPreset) {
+    callback: (addToPreset) => {
         addToPreset('anchor', 'document', {
-            'before': 'fullscreen'
+            'before': 'save'
         });
     }
 });
@@ -167,15 +166,15 @@ class PresetManager {
     }
 }
 
-let getPlugins = function (context) {
-    let options = context.options;
+const getPlugins = (context) => {
+    const options = context.options;
 
     if (context.plugins) {
         return context.plugins;
     }
 
-    let presetMap = registry.getPresetRegistry(context);
-    let toExtend = presetMap.get(options.preset) ? presetMap.get(options.preset) : registry.plugins;
+    const presetMap = registry.getPresetRegistry(context);
+    const toExtend = presetMap.get(options.preset) ? presetMap.get(options.preset) : registry.plugins;
 
     if (!PresetManager.isCustomPluginSet(options)) {
         return context.plugins = toExtend.slice();
@@ -214,12 +213,13 @@ let getPlugins = function (context) {
             }
         });
     }
+
     return context.plugins = result;
 };
 
-let buildInputRules = function (context) {
-    let plugins = context.plugins;
-    let schema = context.schema;
+const buildInputRules = (context) => {
+    const plugins = context.plugins;
+    const schema = context.schema;
 
     let rules = smartQuotes.concat([ellipsis, emDash]);
     plugins.forEach((plugin) => {
@@ -231,17 +231,17 @@ let buildInputRules = function (context) {
     return inputRules({rules})
 };
 
-let buildPlugins = function (context) {
-    let plugins = context.plugins;
+const buildPlugins = (context) => {
+    const plugins = context.plugins;
 
     let result = [];
     plugins.forEach((plugin) => {
-
+        const isEdit = context.editor.isEdit();
         if (plugin.init) {
-            plugin.init(context, context.editor.isEdit());
+            plugin.init(context, isEdit);
         }
 
-        if (context.editor.isEdit() && plugin.plugins) {
+        if (isEdit && plugin.plugins) {
             let pl = plugin.plugins(context);
             if (pl && pl.length) {
                 result = result.concat(pl);
@@ -253,10 +253,10 @@ let buildPlugins = function (context) {
     return result;
 };
 
-let buildPluginKeymap = function (context) {
-    let plugins = context.plugins;
+const buildPluginKeymap = (context) => {
+    const plugins = context.plugins;
 
-    let result = [];
+    const result = [];
     plugins.forEach((plugin) => {
         if (plugin.keymap) {
             result.push(keymap(plugin.keymap(context)));
