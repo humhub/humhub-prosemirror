@@ -1,7 +1,12 @@
 Changelog
 =========
 
-2.0.0 (Unreleased)
+2.0.2 (July 28, 2023)
+---------------------
+- Fix #113: Header anchors lost
+
+
+2.0.0
 -----------------------------------------
 - Enh #37: Add link mark to collapsed menu items
 - Fix: Initializing a new editor by constructor now destroys existing instances on the same node
@@ -28,7 +33,6 @@ Changelog
 - Enh #43: Make menu accessible
 - Fix #51: Link creation does not copy URL from selected text
 - Enh #47: Edit code block in codemirror
-- Fix #113: Header anchors lost
 
 1.1.7 (August 31, 2021)
 -----------------------
