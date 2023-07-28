@@ -60,6 +60,10 @@ class BaseView {
 
         this.context = new Context(this, options);
 
+        if (!this.isEdit()) {
+            buildPlugins(this.context);
+        }
+
         this.$.data('richtextInstance', this);
     }
 
@@ -249,8 +253,6 @@ class MarkdownView extends BaseView {
         super(selector, options);
 
         this.renderer = getRenderer(this.context);
-
-        buildPlugins(this.context);
     }
 
     init(md) {

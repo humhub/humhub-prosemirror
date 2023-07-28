@@ -16,9 +16,9 @@ export class PluginRegistry {
         this.plugins.push(plugin);
         this.pluginMap[plugin.id] = plugin;
 
-        options = (typeof options === 'string') ? { preset: options } : options;
+        options = (typeof options === 'string') ? {preset: options} : options;
 
-        if(options.preset) {
+        if (options.preset) {
             this.addToPreset(plugin, options.preset, options);
         }
     }
@@ -27,28 +27,28 @@ export class PluginRegistry {
         this.presets.register(id, plugins);
         this.editorPresets.register(id, plugins);
 
-        if(plugins.callback) {
+        if (plugins.callback) {
             plugins.callback($.proxy(this.addToPreset, this));
         }
     }
 
-    addToPreset(plugin, presetId,  options) {
+    addToPreset(plugin, presetId, options) {
         options = options || {};
 
-        if(typeof plugin === 'string') {
+        if (typeof plugin === 'string') {
             plugin = this.pluginMap[plugin];
         }
 
-        if(!plugin) {
-            console.warn('Could not add plugin to preset '+presetId);
+        if (!plugin) {
+            console.warn('Could not add plugin to preset ' + presetId);
             return;
         }
 
-        if(!plugin.renderOnly) {
+        if (!plugin.renderOnly) {
             this.editorPresets.add(presetId, plugin, options);
         }
 
-        if(!plugin.editorOnly) {
+        if (!plugin.editorOnly) {
             this.presets.add(presetId, plugin, options);
         }
     }
@@ -65,27 +65,26 @@ export class PresetRegistry {
     }
 
     register(id, plugins) {
-
         let result = [];
 
-        if(Array.isArray(plugins)) {
+        if (Array.isArray(plugins)) {
             plugins.forEach((pluginId) => {
                 let plugin = this.pluginRegistry.pluginMap[pluginId];
-                if(plugin) {
+                if (plugin) {
                     result.push(plugin);
                 }
             })
-        } else if(plugins.extend) {
-            let toExtend =  this.map[plugins.extend];
+        } else if (plugins.extend) {
+            let toExtend = this.map[plugins.extend];
 
-            if(!toExtend) {
-                console.error('Could not extend richtext preset '+plugins.extend+' preset not registered!');
+            if (!toExtend) {
+                console.error('Could not extend richtext preset ' + plugins.extend + ' preset not registered!');
                 return;
             }
 
-            if(plugins.exclude && Array.isArray(plugins.exclude)) {
+            if (plugins.exclude && Array.isArray(plugins.exclude)) {
                 toExtend.forEach((plugin) => {
-                    if(plugin && !plugins.exclude.includes(plugin.id)) {
+                    if (plugin && !plugins.exclude.includes(plugin.id)) {
                         result.push(plugin);
                     }
                 });
@@ -93,10 +92,10 @@ export class PresetRegistry {
                 result = toExtend.slice(0);
             }
 
-            if(plugins.include && Array.isArray(plugins.include)) {
+            if (plugins.include && Array.isArray(plugins.include)) {
                 plugins.include.forEach((plugin) => {
-                    if(!this.pluginRegistry.pluginMap[plugin]) {
-                        console.error('Could not include plugin '+plugin+' to preset '+id+' plugin not found!');
+                    if (!this.pluginRegistry.pluginMap[plugin]) {
+                        console.error('Could not include plugin ' + plugin + ' to preset ' + id + ' plugin not found!');
                     } else {
                         result.push(this.pluginRegistry.pluginMap[plugin]);
                     }
@@ -109,22 +108,22 @@ export class PresetRegistry {
 
     add(presetId, plugin, options) {
         options = options || {};
-        let preset = this.map[presetId] ? this.map[presetId].slice() : [];
+        const preset = this.map[presetId] ? this.map[presetId].slice() : [];
 
-        if(options['before'] && this.pluginRegistry.pluginMap[options['before']]) {
+        if (options['before'] && this.pluginRegistry.pluginMap[options['before']]) {
             let index = preset.indexOf(this.pluginRegistry.pluginMap[options['before']]);
             if (index >= 0) {
                 preset.splice(index, 0, plugin);
             } else {
-                console.warn('Tried appending plugin before non existing preset plugin: '+presetId+' before:'+options['before']);
+                console.warn('Tried appending plugin before non existing preset plugin: ' + presetId + ' before:' + options['before']);
                 preset.push(plugin);
             }
-        } else if(options['after'] && this.pluginRegistry.pluginMap[options['after']]) {
+        } else if (options['after'] && this.pluginRegistry.pluginMap[options['after']]) {
             let index = preset.indexOf(this.pluginRegistry.pluginMap[options['after']]);
             if (index >= 0) {
-                preset.splice(index+1, 0, plugin);
+                preset.splice(index + 1, 0, plugin);
             } else {
-                console.warn('Tried appending plugin after non existing preset plugin: '+presetId+' after:'+options['after']);
+                console.warn('Tried appending plugin after non existing preset plugin: ' + presetId + ' after:' + options['after']);
                 preset.push(plugin);
             }
         } else {
@@ -133,5 +132,4 @@ export class PresetRegistry {
 
         this.map[presetId] = preset;
     }
-
 }

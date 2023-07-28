@@ -12,7 +12,6 @@ let inst = new MarkdownIt();
 let isSpace = inst.utils.isSpace;
 
 function createLinkExtension(id, options) {
-
     options = options || {};
 
     options.node = options.node || 'a';
@@ -31,7 +30,7 @@ function createLinkExtension(id, options) {
             title,
             token,
             href = '',
-            prefix = id+':',
+            prefix = id + ':',
             oldPos = state.pos,
             max = state.posMax,
             start = state.pos;
@@ -67,7 +66,7 @@ function createLinkExtension(id, options) {
 
             // [link](  <id>:<href>  "title"  )
             //          ^^^^ parsing prefix
-            for (let i = 0;i < prefix.length; i++) {
+            for (let i = 0; i < prefix.length; i++) {
                 if (state.src.charAt(pos++) !== prefix.charAt(i)) {
                     return false;
                 }
@@ -135,7 +134,7 @@ function createLinkExtension(id, options) {
             token = state.push(id, options.node, 0);
             token.attrs = attrs = [[options.hrefAttr, href]];
 
-            if(label) {
+            if (label) {
                 attrs.push([options.labelAttr, label]);
             }
 
@@ -156,4 +155,5 @@ function createLinkExtension(id, options) {
         return true;
     };
 }
-export {createLinkExtension}
+
+export {createLinkExtension};

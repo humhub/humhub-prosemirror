@@ -2,7 +2,6 @@
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2017 HumHub GmbH & Co. KG
  * @license https://www.humhub.com/licences
- *
  */
 
 import {TextSelection} from 'prosemirror-state';
@@ -37,7 +36,7 @@ function linkItem(context) {
             const { $from, $to } = state.selection;
             const node = $from.node($from.depth);
             const nodeText = node.textBetween($from.parentOffset, $to.parentOffset, "\n");
-            const attrs = {text: nodeText, title: nodeText, href: validateHref(nodeText) ? nodeText : ''};
+            const attrs = {text: nodeText, title: nodeText, href: validateHref(nodeText, {anchor: '#'}) ? nodeText : ''};
 
             promt(context.translate("Create a link"), context, $.extend({}, mark.attrs, attrs));
         }
@@ -45,21 +44,21 @@ function linkItem(context) {
 }
 
 export function editNode(dom, context) {
-    let doc = context.editor.view.state.doc;
-    let view = context.editor.view;
+    const doc = context.editor.view.state.doc;
+    const view = context.editor.view;
 
-    let nodePos = view.posAtDOM(dom);
-    let node = doc.nodeAt(nodePos);
+    const nodePos = view.posAtDOM(dom);
+    const node = doc.nodeAt(nodePos);
 
     if (node.type !== context.schema.nodes.text) {
         return;
     }
 
-    let $pos = doc.resolve(nodePos);
-    let $end = $pos.node(0).resolve($pos.pos + node.nodeSize);
+    const $pos = doc.resolve(nodePos);
+    const $end = $pos.node(0).resolve($pos.pos + node.nodeSize);
     view.dispatch(view.state.tr.setSelection(new TextSelection($pos, $end)).scrollIntoView());
 
-    let mark = getLinkMark(node, context);
+    const mark = getLinkMark(node, context);
 
     promt(context.translate("Edit link"), context, $.extend({}, mark.attrs, {text: node.text}), node, mark);
 }
@@ -74,7 +73,7 @@ export function promt(title, context, attrs, node, mark) {
             value: attrs && attrs.href,
             required: true,
             clean: (val) => {
-                if (!validateHref(val)) {
+                if (!validateHref(val, {anchor: '#'}))  {
                     return 'https://' + val;
                 }
 
@@ -90,7 +89,7 @@ export function promt(title, context, attrs, node, mark) {
 
     openPrompt({
         title,
-        fields: fields,
+        fields,
         callback(attrs) {
             if (node) {
                 if (mark.attrs.href === attrs.href) {
