@@ -1,5 +1,15 @@
 // TODO: enable global default config e.g. for emoji, locale, etc
 
+export const isHumhub = () => {
+    return humhub && humhub.modules;
+}
+
+export const showSuccessNotify = (message) => {
+    if (isHumhub) {
+        humhub.modules.ui.status.success(message);
+    }
+}
+
 export function onDocumentReady(callback) {
     if (!window.humhub) {
         return $(document).ready(() => {
@@ -23,7 +33,7 @@ export function isSmallView() {
         return getClientWidth() <= 767;
     }
 
-    return humhub.modules ? humhub.modules.ui.view.isSmall() : null;
+    return isHumhub() ? humhub.modules.ui.view.isSmall() : null;
 }
 
 const getClientWidth = () => {
@@ -35,7 +45,7 @@ export function getUserLocale() {
         return (navigator.languages && navigator.languages.length) ? navigator.languages[0] : navigator.language;
     }
 
-    return humhub.modules ? humhub.modules.user.config.locale.split("-")[0] : null;
+    return isHumhub() ? humhub.modules.user.config.locale.split("-")[0] : null;
 }
 
 export function filterFileUrl(url) {
@@ -43,7 +53,7 @@ export function filterFileUrl(url) {
         return {url: url, guid: null};
     }
 
-    return humhub.modules ? humhub.modules.file.filterFileUrl(url) : url;
+    return isHumhub() ? humhub.modules.file.filterFileUrl(url) : url;
 }
 
 export function getLoaderWidget() {
@@ -66,7 +76,7 @@ export function encode(str) {
         return $('<div/>').text(str).html();
     }
 
-    return humhub.modules ? humhub.modules.util.string.encode(str) : str;
+    return isHumhub() ? humhub.modules.util.string.encode(str) : str;
 }
 
 // TODO: Implement oembed provider interface
