@@ -73,17 +73,13 @@ class CodeBlockView {
     }
 
     codeMirrorKeymap() {
-        let view = this.view;
+        const view = this.view;
         return [
             {key: "ArrowUp", run: () => this.maybeEscape("line", -1)},
             {key: "ArrowLeft", run: () => this.maybeEscape("char", -1)},
             {key: "ArrowDown", run: () => this.maybeEscape("line", 1)},
             {key: "ArrowRight", run: () => this.maybeEscape("char", 1)},
-            {key: "Ctrl-Enter", run: () => {
-                    if (!exitCode(view.state, view.dispatch)) return false;
-                    view.focus();
-                    return true;
-                }},
+            {key: "Ctrl-Enter", run: () => this.escapeBlock()},
             {key: "Ctrl-z", mac: "Cmd-z",
                 run: () => undo(view.state, view.dispatch)},
             {key: "Shift-Ctrl-z", mac: "Shift-Cmd-z",
@@ -93,14 +89,23 @@ class CodeBlockView {
         ];
     }
 
+    escapeBlock() {
+        if (!exitCode(this.view.state, this.view.dispatch)) return false;
+        this.view.focus();
+        return true;
+    }
+
     maybeEscape(unit, dir) {
         let {state} = this.cm, {main} = state.selection;
         if (!main.empty) return false;
         if (unit === "line") main = state.doc.lineAt(main.head);
         if (dir < 0 ? main.from > 0 : main.to < state.doc.length) return false;
-        let targetPos = this.getPos() + (dir < 0 ? 0 : this.node.nodeSize);
-        let selection = Selection.near(this.view.state.doc.resolve(targetPos), dir);
-        let tr = this.view.state.tr.setSelection(selection).scrollIntoView();
+        const targetPos = this.getPos() + (dir < 0 ? 0 : this.node.nodeSize);
+        if (dir > 0 && main.to === state.doc.length && targetPos === this.view.state.doc.content.size) {
+            this.escapeBlock();
+        }
+        const selection = Selection.near(this.view.state.doc.resolve(targetPos), dir);
+        const tr = this.view.state.tr.setSelection(selection).scrollIntoView();
         this.view.dispatch(tr);
         this.view.focus();
     }

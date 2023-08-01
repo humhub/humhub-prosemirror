@@ -4,6 +4,7 @@ Changelog
 2.0.2 (July 28, 2023)
 ---------------------
 - Fix #113: Header anchors lost
+- Enh #116: CodeMirror - Leave editor with Arrow/Up Down
 
 
 2.0.0

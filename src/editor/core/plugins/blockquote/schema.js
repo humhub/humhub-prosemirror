@@ -1,6 +1,6 @@
 const schema = {
     nodes: {
-        blockquote : {
+        blockquote: {
             sortOrder: 200,
             content: "block+",
             group: "block",
@@ -10,12 +10,12 @@ const schema = {
                 return ["blockquote", 0]
             },
             parseMarkdown: {block: "blockquote"},
-            toMarkdown: (state, node) =>  {
-                if(state.table) return state.renderContent(node);
-                state.wrapBlock("> ", null, node, function () { return state.renderContent(node); });
+            toMarkdown: (state, node) => {
+                if (state.table) return state.renderContent(node);
+                state.wrapBlock("> ", null, node, () => state.renderContent(node));
             }
         }
     }
 };
 
-export {schema}
+export {schema};
