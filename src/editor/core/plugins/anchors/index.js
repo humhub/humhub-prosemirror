@@ -5,13 +5,13 @@
  */
 
 import anchor_plugin from "markdown-it-anchor";
+import {showSuccessNotify} from "../../humhub-bridge";
 
 const copyHrefToClipboard = (target, context) => {
     const href = target.href || target.parentElement.href;
     if (href) {
-        navigator.clipboard.writeText(href).then(r => {
-            humhub.modules.ui.status.success(context.translate('Copied'));
-        });
+        const successMsg = context.translate('Link has been copied to clipboard');
+        navigator.clipboard.writeText(href).then(r => showSuccessNotify(successMsg));
     }
 }
 
