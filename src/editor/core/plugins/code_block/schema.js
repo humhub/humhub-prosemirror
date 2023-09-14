@@ -16,7 +16,7 @@ const code_block = {
         preserveWhitespace: true,
     }],
     toDOM: () => {
-        return ["pre"];
+        return ["pre", 0];
     },
     parseMarkdown: {block: "code_block"},
     toMarkdown: (state, node) => {

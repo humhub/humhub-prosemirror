@@ -6,7 +6,7 @@ const schema = {
             group: "block",
             marks: "",
             parseDOM: [{tag: "blockquote"}],
-            toDOM: function toDOM() {
+            toDOM: () => {
                 return ["blockquote", 0]
             },
             parseMarkdown: {block: "blockquote"},
