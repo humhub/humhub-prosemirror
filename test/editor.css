@@ -1035,3 +1035,8 @@ ProsemirrorEditor img {
     border-left: 0;
     border-top: 2px solid #21A1B3;
 }
+
+/* Codemirror styles */
+.cm-editor .cm-line {
+    caret-color: auto !important;
+}
