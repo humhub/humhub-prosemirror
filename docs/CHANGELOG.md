@@ -1,7 +1,7 @@
 Changelog
 =========
 
-2.0.3 (Unreleased)
+2.0.4
 ------------------
 - Enh #116: CodeMirror - Leave editor with Arrow/Up Down
 - Enh #115: Headline Anchor - Change Icon
