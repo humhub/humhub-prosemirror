@@ -67,7 +67,8 @@
     "prosemirror-transform": "^1.7.3",
     "prosemirror-view": "^1.31.5",
     "rollup": "^3.26.2",
-    "twemoji": "^14.0.2"
+    "twemoji": "^14.0.2",
+    "unicode-emoji-json": "^0.4.0"
   },
   "scripts": {
     "build": "grunt rollup",
