@@ -30,7 +30,7 @@
     "chai": "^4.3.7",
     "emoji-name-map": "^1.2.9",
     "emoji-unicode-map": "^1.1.11",
-    "emojilib": "github:git-assassin/emojilib",
+    "emojilib": "3.0.11",
     "eslint": "^8.40.0",
     "eslint-plugin-mocha": "^10.1.0",
     "grunt": "^1.6.1",
