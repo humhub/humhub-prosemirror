@@ -6,17 +6,20 @@
 
 import emoji_shortcuts from "markdown-it-emoji/lib/data/shortcuts";
 import emojiNameMap from "emoji-name-map";
-import emojilib from "emojilib";
 import twemoji from "twemoji";
+import keywordSet from "emojilib";
+import emojiData from "unicode-emoji-json";
+import groupedEmojiData from "unicode-emoji-json/data-by-group";
 import {getEmojiConfig} from "../../humhub-bridge";
 
 let emoji_markdown_it_defs = {};
 
-let emoji_defs_by_char = (() => {
+let emoji_defs_by_char = (function() {
     let result = {};
-    $.each(emojilib.lib, (name, def) => {
-        result[def['char']] = name;
-        emoji_markdown_it_defs[name] = def['char'];
+
+    $.each(emojiData, function (emoji, def) {
+        result[emoji] = def.name;
+        emoji_markdown_it_defs[def.name] = emoji;
     });
 
     return result;
@@ -89,17 +92,17 @@ let getCharToDom = (emojiChar, name) => {
 };
 
 
-let byCategory = undefined;
+let byCategory = {};
 
 let getByCategory = (category) => {
-    if (!byCategory) {
-        byCategory = {};
-        emojilib.ordered.forEach((name) => {
-            let emojiDef = emojilib.lib[name];
-            emojiDef.name = String(name);
-            byCategory[emojiDef.category] = byCategory[emojiDef.category] || [];
-            byCategory[emojiDef.category].push(emojiDef);
+    if (category === 'Search')
+        return [];
+
+    if (!byCategory[category]) {
+        groupedEmojiData[category].forEach((emojiDef) => {
+            emojiDef.keywords = keywordSet[emojiDef.emoji];
         });
+        byCategory[category] = groupedEmojiData[category];
     }
 
     return byCategory[category];
@@ -113,7 +116,6 @@ export {
     shortcuts,
     getNameByChar,
     getCharByName,
-    emojilib,
     twemoji,
     getEmojiDefinitionByShortcut,
     getCharToDom,

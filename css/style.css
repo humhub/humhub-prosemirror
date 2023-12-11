@@ -931,6 +931,25 @@ ProsemirrorEditor img {
     padding: 5px;
 }
 
+/* Emojis window style */
+.emoji-nav {
+    display: flex;
+    padding-top: 10px;
+}
+
+.emoji-nav-item {
+    border-top: 2px solid #00d6b2;
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.emoji-nav-item.cur {
+    border-left: 0;
+    border-top: 2px solid #21A1B3;
+}
+
 /* NOT REQUIRED FOR EDITOR !!!!*/
 .column {
     float: left;

@@ -6,6 +6,7 @@ Changelog
 - Enh #116: CodeMirror - Leave editor with Arrow/Up Down
 - Enh #115: Headline Anchor - Change Icon
 - Fix #122: Cannot copy & paste Codeblock
+- Fix #129: Build broken emojilib.git
 
 2.0.2 (July 28, 2023)
 ---------------------
