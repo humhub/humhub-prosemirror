@@ -12,8 +12,7 @@ const code_block = {
     isolating: true,
     marks: "",
     parseDOM: [{
-        tag: "pre",
-        preserveWhitespace: true,
+        tag: "pre"
     }],
     toDOM: () => {
         return ["pre", 0];

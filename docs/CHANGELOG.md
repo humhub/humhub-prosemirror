@@ -7,6 +7,7 @@ Changelog
 - Enh #115: Headline Anchor - Change Icon
 - Fix #122: Cannot copy & paste Codeblock
 - Fix #129: Build broken emojilib.git
+- Fix #130: Copied Codeblock gets in single line e.g.
 
 2.0.2 (July 28, 2023)
 ---------------------
