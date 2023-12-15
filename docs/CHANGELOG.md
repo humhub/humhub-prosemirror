@@ -1,6 +1,10 @@
 Changelog
 =========
 
+2.0.5 (Unreleased)
+------------------
+- Enh #121: File handler
+
 2.0.4
 ------------------
 - Enh #116: CodeMirror - Leave editor with Arrow/Up Down
