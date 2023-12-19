@@ -128086,9 +128086,10 @@ PresetRegistry.prototype.add = function add (presetId, plugin, options) {
  *
  */
 
-function getFileHandler(context, link, index) {
+var getFileHandlerItem = function(context, link, index) {
     return new MenuItem({
         label: link.html(),
+        title: link.text(),
         sortOrder: 300 + index,
         enable: function enable(state) {
             return canInsertLink(state)
@@ -128097,7 +128098,39 @@ function getFileHandler(context, link, index) {
             link.click();
         }
     })
-}
+};
+
+var initFileHandler = function(context) {
+    if (!isHumhub()) {
+        return
+    }
+
+    humhub.event.on('humhub:file:created', function (evt, file) {
+        if (typeof context.editor.view !== 'undefined') {
+            var view = context.editor.view;
+            view.dispatch(view.state.tr.replaceSelectionWith(createFileHandlerNodesFromResponse(context, file)));
+        }
+    });
+};
+
+var createFileHandlerNodesFromResponse = function(context, file) {
+    if (file.error) {
+        return
+    }
+
+    var schema = context.schema;
+    if (file.mimeIcon === 'mime-image') {
+        return schema.nodes.image.create({src : file.url, title: file.name, alt: file.name, fileGuid: file.guid})
+    }
+
+    var linkMark = schema.marks.link.create({href: file.url, fileGuid: file.guid});
+    return schema.text(file.name, [linkMark])
+};/*
+ * @link https://www.humhub.org/
+ * @copyright Copyright (c) 2023 HumHub GmbH & Co. KG
+ * @license https://www.humhub.com/licences
+ *
+ */
 
 function menu(context) {
     var links = context.editor.$.closest('form').find('a[data-action-process=file-handler]');
@@ -128108,12 +128141,11 @@ function menu(context) {
 
     var menus = [];
     for (var l = 0; l < links.length; l++) {
-        console.log('FH: ', links[l]);
         menus.push({
             id: 'insertFileHandler',
             node: 'file_handler',
             group: 'insert',
-            item: getFileHandler(context, links.eq(l), l)
+            item: getFileHandlerItem(context, links.eq(l), l)
         });
     }
 
@@ -128138,7 +128170,8 @@ var schema = {
 var file_handler = {
     id: 'file_handler',
     schema: schema,
-    menu: function (context) { return menu(context); }
+    menu: function (context) { return menu(context); },
+    init: function (context) { return initFileHandler(context); }
 };/*
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2017 HumHub GmbH & Co. KG

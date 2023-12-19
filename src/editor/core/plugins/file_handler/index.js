@@ -4,13 +4,15 @@
  * @license https://www.humhub.com/licences
  *
  */
-import {menu} from './menu'
-import {schema} from "./schema";
+import {menu} from "./menu"
+import {schema} from "./schema"
+import {initFileHandler} from "./service"
 
 const file_handler = {
     id: 'file_handler',
-    schema: schema,
-    menu: (context) => menu(context)
-};
+    schema,
+    menu: (context) => menu(context),
+    init: (context) => initFileHandler(context)
+}
 
-export default file_handler;
+export default file_handler
