@@ -128108,12 +128108,12 @@ var initFileHandler = function(context) {
     humhub.event.on('humhub:file:created', function (evt, file) {
         if (typeof context.editor.view !== 'undefined') {
             var view = context.editor.view;
-            view.dispatch(view.state.tr.replaceSelectionWith(createFileHandlerNodesFromResponse(context, file)));
+            view.dispatch(view.state.tr.replaceSelectionWith(createFileHandlerNode(context, file)));
         }
     });
 };
 
-var createFileHandlerNodesFromResponse = function(context, file) {
+var createFileHandlerNode = function(context, file) {
     if (file.error) {
         return
     }
@@ -128124,7 +128124,7 @@ var createFileHandlerNodesFromResponse = function(context, file) {
     }
 
     var linkMark = schema.marks.link.create({href: file.url, fileGuid: file.guid});
-    return schema.text(file.name, [linkMark])
+    return schema.text(file.name).mark([linkMark])
 };/*
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2023 HumHub GmbH & Co. KG

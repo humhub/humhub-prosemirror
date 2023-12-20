@@ -30,23 +30,23 @@ const initFileHandler = function(context) {
     humhub.event.on('humhub:file:created', (evt, file) => {
         if (typeof context.editor.view !== 'undefined') {
             const view = context.editor.view
-            view.dispatch(view.state.tr.replaceSelectionWith(createFileHandlerNodesFromResponse(context, file)));
+            view.dispatch(view.state.tr.replaceSelectionWith(createFileHandlerNode(context, file)));
         }
     })
 }
 
-const createFileHandlerNodesFromResponse = function(context, file) {
+const createFileHandlerNode = function(context, file) {
     if (file.error) {
         return
     }
 
-    let schema = context.schema
+    const schema = context.schema
     if (file.mimeIcon === 'mime-image') {
         return schema.nodes.image.create({src : file.url, title: file.name, alt: file.name, fileGuid: file.guid})
     }
 
-    let linkMark = schema.marks.link.create({href: file.url, fileGuid: file.guid})
-    return schema.text(file.name, [linkMark])
+    const linkMark = schema.marks.link.create({href: file.url, fileGuid: file.guid})
+    return schema.text(file.name).mark([linkMark])
 }
 
 export {
