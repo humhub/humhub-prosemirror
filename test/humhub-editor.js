@@ -128108,7 +128108,7 @@ var initFileHandler = function(context) {
     humhub.event.on('humhub:file:created', function (evt, file) {
         if (typeof context.editor.view !== 'undefined') {
             var view = context.editor.view;
-            view.dispatch(view.state.tr.replaceSelectionWith(createFileHandlerNode(context, file)));
+            view.dispatch(view.state.tr.replaceSelectionWith(createFileHandlerNode(context, file), false));
         }
     });
 };
@@ -128159,6 +128159,55 @@ function menu(context) {
 var schema = {
     nodes: {
         file_handler: {}
+    },
+    marks: {
+        sortOrder: 100,
+        link: {
+            attrs: {
+                href: {},
+                fileGuid: {default: null}
+            },
+            inclusive: false,
+            parseDOM:
+                [{
+                    tag: "a[href]", getAttrs: function getAttrs(dom) {
+                        var href = dom.getAttribute("href");
+                        if (!validateHref(href))  {
+                            href = '#';
+                        }
+
+                        return {
+                            href: href,
+                            fileGuid: dom.getAttribute("data-file-guid")
+                        }
+                    }
+                }],
+            toDOM: function toDOM(node) { var ref = node.attrs;
+            var href = ref.href; return ["a", {href: href}, 0] },
+            parseMarkdown: {
+                mark: "link", getAttrs: function (tok) {
+                    var ref = filterFileUrl(tok.attrGet("href"));
+                    var url = ref.url;
+                    var guid = ref.guid;
+
+                    if (!validateHref(url))  {
+                        url = '#';
+                    }
+
+                    return ({
+                        href: url,
+                        fileGuid: guid
+                    });
+                }
+            },
+            toMarkdown: {
+                open: "[",
+                close: function close(state, mark) {
+                    var href = (mark.attrs.fileGuid) ? 'file-guid:' + mark.attrs.fileGuid  : mark.attrs.href;
+                    return "](" + state.esc(href) + ")"
+                }
+            }
+        }
     }
 };/*
  * @link https://www.humhub.org/

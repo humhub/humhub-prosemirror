@@ -30,7 +30,7 @@ const initFileHandler = function(context) {
     humhub.event.on('humhub:file:created', (evt, file) => {
         if (typeof context.editor.view !== 'undefined') {
             const view = context.editor.view
-            view.dispatch(view.state.tr.replaceSelectionWith(createFileHandlerNode(context, file)));
+            view.dispatch(view.state.tr.replaceSelectionWith(createFileHandlerNode(context, file), false));
         }
     })
 }
