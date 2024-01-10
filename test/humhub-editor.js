@@ -128111,6 +128111,23 @@ var initFileHandler = function(context) {
             view.dispatch(view.state.tr.replaceSelectionWith(createFileHandlerNode(context, file), false));
         }
     });
+
+    if (typeof(context.editor.$) !== 'undefined' && context.editor.$.length) {
+        var uploadWidget = context.editor.$.closest('form').find('[data-ui-widget="file.Upload"]').last();
+        if (uploadWidget.length) {
+            humhub.require('ui.widget').Widget.instance(uploadWidget).on('humhub:file:uploadEnd', function (evt, response) {
+                if (typeof context.editor.view !== 'undefined' &&
+                    response._response.result.files instanceof Array &&
+                    response._response.result.files.length) {
+                    var view = context.editor.view;
+                    for (var i = 0; i < response._response.result.files.length; i++) {
+                        console.log('FH humhub:file:uploadEnd', evt, response, response._response.result.files[i]);
+                        view.dispatch(view.state.tr.replaceSelectionWith(createFileHandlerNode(context, response._response.result.files[i]), false));
+                    }
+                }
+            });
+        }
+    }
 };
 
 var createFileHandlerNode = function(context, file) {
@@ -128168,24 +128185,24 @@ var schema = {
                 fileGuid: {default: null}
             },
             inclusive: false,
-            parseDOM:
-                [{
-                    tag: "a[href]", getAttrs: function getAttrs(dom) {
-                        var href = dom.getAttribute("href");
-                        if (!validateHref(href))  {
-                            href = '#';
-                        }
-
-                        return {
-                            href: href,
-                            fileGuid: dom.getAttribute("data-file-guid")
-                        }
+            parseDOM: [{
+                tag: "a[href]", getAttrs: function getAttrs(dom) {
+                    var href = dom.getAttribute("href");
+                    if (!validateHref(href))  {
+                        href = '#';
                     }
-                }],
+
+                    return {
+                        href: href,
+                        fileGuid: dom.getAttribute("data-file-guid")
+                    }
+                }
+            }],
             toDOM: function toDOM(node) { var ref = node.attrs;
             var href = ref.href; return ["a", {href: href}, 0] },
             parseMarkdown: {
-                mark: "link", getAttrs: function (tok) {
+                mark: "link",
+                getAttrs: function (tok) {
                     var ref = filterFileUrl(tok.attrGet("href"));
                     var url = ref.url;
                     var guid = ref.guid;
