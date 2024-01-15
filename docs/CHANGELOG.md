@@ -8,6 +8,7 @@ Changelog
 - Fix #122: Cannot copy & paste Codeblock
 - Fix #129: Build broken emojilib.git
 - Fix #130: Copied Codeblock gets in single line e.g.
+- Fix #135: Open file link in new tab
 
 2.0.2 (July 28, 2023)
 ---------------------
