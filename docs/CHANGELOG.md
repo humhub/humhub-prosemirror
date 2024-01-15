@@ -1,6 +1,11 @@
 Changelog
 =========
 
+2.0.5 (unreleased)
+------------------
+
+
+
 2.0.4
 ------------------
 - Enh #116: CodeMirror - Leave editor with Arrow/Up Down
