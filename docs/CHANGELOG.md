@@ -3,8 +3,7 @@ Changelog
 
 2.0.5 (unreleased)
 ------------------
-
-
+- Fix #136: Allow relative URL for links
 
 2.0.4
 ------------------
