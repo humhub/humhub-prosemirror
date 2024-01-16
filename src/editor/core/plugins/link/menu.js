@@ -9,7 +9,7 @@ import {toggleMark} from "prosemirror-commands";
 
 import {MenuItem, icons, markActive, canInsertLink} from "../../menu/menu";
 import {openPrompt, TextField} from "../../prompt";
-import {validateHref} from "../../util/linkUtil";
+import {validateHref, validateRelative} from "../../util/linkUtil";
 
 function linkItem(context) {
     let mark = context.schema.marks.link;
@@ -73,7 +73,7 @@ export function promt(title, context, attrs, node, mark) {
             value: attrs && attrs.href,
             required: true,
             clean: (val) => {
-                if (!validateHref(val, {anchor: '#'}))  {
+                if (!validateHref(val, {anchor: '#'}) && !validateRelative(val))  {
                     return 'https://' + val;
                 }
 
