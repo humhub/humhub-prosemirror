@@ -38,7 +38,7 @@ const schema = {
             toDOM(node) { let {href, title} = node.attrs; return ["a", {href, title}, 0] },
             parseMarkdown: {
                 mark: "link", getAttrs: function (tok) {
-                    let {url, guid} = filterFileUrl(tok.attrGet("href"));
+                    let {url, guid} = filterFileUrl(tok.attrGet("href"), 'view');
 
                     if (!validateHref(url))  {
                         url = '#';

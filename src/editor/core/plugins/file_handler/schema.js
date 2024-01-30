@@ -36,7 +36,7 @@ const schema = {
             parseMarkdown: {
                 mark: "link",
                 getAttrs: function (tok) {
-                    let {url, guid} = filterFileUrl(tok.attrGet("href"));
+                    let {url, guid} = filterFileUrl(tok.attrGet("href"), 'view');
 
                     if (!validateHref(url))  {
                         url = '#';

@@ -19093,12 +19093,12 @@ function getUserLocale() {
     return isHumhub() ? humhub.modules.user.config.locale.split("-")[0] : null;
 }
 
-function filterFileUrl(url) {
+function filterFileUrl(url, mode) {
     if (!window.humhub) {
         return {url: url, guid: null};
     }
 
-    return isHumhub() ? humhub.modules.file.filterFileUrl(url) : url;
+    return isHumhub() ? humhub.modules.file.filterFileUrl(url, mode) : url;
 }
 
 function getLoaderWidget() {
@@ -125222,7 +125222,7 @@ var schema$a = {
             var title = ref.title; return ["a", {href: href, title: title}, 0] },
             parseMarkdown: {
                 mark: "link", getAttrs: function (tok) {
-                    var ref = filterFileUrl(tok.attrGet("href"));
+                    var ref = filterFileUrl(tok.attrGet("href"), 'view');
                     var url = ref.url;
                     var guid = ref.guid;
 
@@ -125463,7 +125463,7 @@ var link = {
         md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
             var hrefIndex = tokens[idx].attrIndex('href');
 
-            var ref = filterFileUrl(tokens[idx].attrs[hrefIndex][1]);
+            var ref = filterFileUrl(tokens[idx].attrs[hrefIndex][1], 'view');
             var url = ref.url;
             var guid = ref.guid;
 
@@ -125473,6 +125473,7 @@ var link = {
                 tokens[idx].attrPush(['data-file-guid', guid]); // add new attribute
                 tokens[idx].attrPush(['data-file-download', '']); // add new attribute
                 tokens[idx].attrPush(['data-file-url', url]); // add new attribute
+                tokens[idx].attrPush(['data-target', '#globalModal']);
             }
 
             // If you are sure other plugins can't add `target` - drop check below
@@ -128210,7 +128211,7 @@ var schema = {
             parseMarkdown: {
                 mark: "link",
                 getAttrs: function (tok) {
-                    var ref = filterFileUrl(tok.attrGet("href"));
+                    var ref = filterFileUrl(tok.attrGet("href"), 'view');
                     var url = ref.url;
                     var guid = ref.guid;
 
