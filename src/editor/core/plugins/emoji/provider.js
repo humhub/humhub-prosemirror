@@ -275,15 +275,19 @@ class EmojiChooser {
             items = [];
         }
 
-        let $list = this.categories[categoryName].$.find('.humhub-emoji-chooser-item-list').empty();
+        const $list = this.categories[categoryName].$.find('.humhub-emoji-chooser-item-list').empty();
 
         items.forEach((emojiDef) => {
-            let $li = $('<li class="atwho-emoji-entry">').append(getCharToDom(emojiDef.emoji, emojiDef.name));
+            const $img = getCharToDom(emojiDef.emoji, emojiDef.name);
 
-            if (categoryName === 'Flags' && emojiDef.emoji === findUserFlag()) {
-                $list.prepend($li);
-            } else {
-                $list.append($li);
+            if ($img && $img !== '' && $img.length) {
+                const $li = $('<li class="atwho-emoji-entry">').append($img);
+
+                if (categoryName === 'Flags' && emojiDef.emoji === findUserFlag()) {
+                    $list.prepend($li);
+                } else {
+                    $list.append($li);
+                }
             }
         });
 

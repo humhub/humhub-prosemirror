@@ -12,10 +12,10 @@ import emojiData from "unicode-emoji-json";
 import groupedEmojiData from "unicode-emoji-json/data-by-group";
 import {getEmojiConfig} from "../../humhub-bridge";
 
-let emoji_markdown_it_defs = {};
+const emoji_markdown_it_defs = {};
 
-let emoji_defs_by_char = (function() {
-    let result = {};
+const emoji_defs_by_char = (function() {
+    const result = {};
 
     $.each(emojiData, function (emoji, def) {
         result[emoji] = def.name;
@@ -26,7 +26,7 @@ let emoji_defs_by_char = (function() {
 })();
 
 // Flatten shortcuts to simple object: { alias: emoji_name }
-let shortcuts = Object.keys(emoji_shortcuts).reduce((acc, key) => {
+const shortcuts = Object.keys(emoji_shortcuts).reduce((acc, key) => {
     if (Array.isArray(emoji_shortcuts[key])) {
         emoji_shortcuts[key].forEach((alias) => {
             acc[alias] = key;
@@ -38,8 +38,8 @@ let shortcuts = Object.keys(emoji_shortcuts).reduce((acc, key) => {
     return acc;
 }, {});
 
-let getEmojiDefinitionByShortcut = (shortcut) => {
-    let result = {
+const getEmojiDefinitionByShortcut = (shortcut) => {
+    const result = {
         name: getNameByShortcut(shortcut)
     };
 
@@ -54,24 +54,24 @@ let getEmojiDefinitionByShortcut = (shortcut) => {
     return result;
 };
 
-let getNameByShortcut = (shortcut) => {
+const getNameByShortcut = (shortcut) => {
     return String(shortcuts[shortcut]);
 };
 
-let getCharByName = (name) => {
+const getCharByName = (name) => {
     return emojiNameMap.get(name);
 };
 
-let getNameByChar = (emojiChar) => {
+const getNameByChar = (emojiChar) => {
     return String(emoji_defs_by_char[emojiChar]);
 };
 
-let getCharToDom = (emojiChar, name) => {
+const getCharToDom = (emojiChar, name) => {
     name = (typeof name !== 'undefined') ? name : emoji_defs_by_char[emojiChar];
     name = String(name);
 
-    let config = getEmojiConfig();
-    let twemojiConfig = config.twemoji || {};
+    const config = getEmojiConfig();
+    const twemojiConfig = config.twemoji || {};
     twemojiConfig.attributes = (icon, variant) => {
         return {
             'data-name': name,
@@ -79,11 +79,11 @@ let getCharToDom = (emojiChar, name) => {
         };
     };
 
-    let parsed = twemoji.parse(emojiChar, twemojiConfig);
+    const parsed = twemoji.parse(emojiChar, twemojiConfig);
 
     if (parsed && parsed.length) {
         try {
-            return $(parsed);
+            return $(parsed).first();
         } catch (e) {
             console.error(e);
         }
@@ -92,9 +92,9 @@ let getCharToDom = (emojiChar, name) => {
 };
 
 
-let byCategory = {};
+const byCategory = {};
 
-let getByCategory = (category) => {
+const getByCategory = (category) => {
     if (category === 'Search')
         return [];
 
@@ -108,7 +108,7 @@ let getByCategory = (category) => {
     return byCategory[category];
 };
 
-let getMarkdownItOpts = () => {
+const getMarkdownItOpts = () => {
     return {defs: emoji_markdown_it_defs};
 };
 
