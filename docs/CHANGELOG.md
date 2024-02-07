@@ -3,6 +3,7 @@ Changelog
 
 2.0.5 (unreleased)
 ------------------
+- Fix #136: Allow relative URL for links
 - Enh #121: File handler
 
 2.0.4
