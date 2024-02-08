@@ -50,4 +50,15 @@ grunt rollup
 npm version 1.1.7
 npm publish
 git push
-``` 
+```
+
+
+### Supported HumHub Versions
+
+
+| Version  | HumHub Versions  |
+|---|---|
+| 2.0  | v1.15  |
+| 2.1  | v1.16  |
+
+
