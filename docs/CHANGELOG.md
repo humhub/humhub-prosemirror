@@ -4,6 +4,7 @@ Changelog
 2.0.5 (unreleased)
 ------------------
 - Fix #136: Allow relative URL for links
+- Enh #121: Use File handler
 - Fix #138: Emoji Implementation - In Twemoji there are some empty cards 
 
 2.0.4

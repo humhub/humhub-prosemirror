@@ -22,7 +22,7 @@ const link = {
         md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
             const hrefIndex = tokens[idx].attrIndex('href');
 
-            let {url, guid} = filterFileUrl(tokens[idx].attrs[hrefIndex][1]);
+            let {url, guid} = filterFileUrl(tokens[idx].attrs[hrefIndex][1], 'view');
 
             tokens[idx].attrs[hrefIndex][1] = url;
 
@@ -30,6 +30,7 @@ const link = {
                 tokens[idx].attrPush(['data-file-guid', guid]); // add new attribute
                 tokens[idx].attrPush(['data-file-download', '']); // add new attribute
                 tokens[idx].attrPush(['data-file-url', url]); // add new attribute
+                tokens[idx].attrPush(['data-target', '#globalModal']);
             }
 
             // If you are sure other plugins can't add `target` - drop check below

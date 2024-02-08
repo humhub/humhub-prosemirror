@@ -17201,12 +17201,11 @@ var icons = {
             "M4.285 9.567a.5.5 0 0 1 .683.183A3.498 3.498 0 0 0 8 11.5a3.498 3.498 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.498 4.498 0 0 1 8 12.5a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683zM7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z"
         ]
     },
-    image: {
-        name: 'image',
+    upload: {
+        name: 'upload',
         width: 16, height: 16,
         path: [
-            'M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z',
-            'M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54A.505.505 0 0 1 1 12.5v-9a.5.5 0 0 1 .5-.5h13z'
+            "M9.344 8.656h2l-3.344-3.313-3.344 3.313h2v2.688h2.688v-2.688zM12.906 6.688q1.281 0.094 2.188 1.047t0.906 2.266q0 1.375-0.984 2.359t-2.359 0.984h-8.656q-1.656 0-2.828-1.172t-1.172-2.828q0-1.469 1.047-2.641t2.516-1.328q0.656-1.219 1.844-1.969t2.594-0.75q1.688 0 3.141 1.188t1.766 2.844z"
         ]
     },
     undo: {
@@ -17261,6 +17260,13 @@ var icons = {
             "M3.56 11V7.01h.056l1.428 3.239h.774l1.42-3.24h.056V11h1.073V5.001h-1.2l-1.71 3.894h-.039l-1.71-3.894H2.5V11h1.06z"
         ]
     },
+    horizontalRule: {
+        name: 'horizontalRule',
+        width: 16, height: 16,
+        path: [
+            "M0 6.5v3c0 0.276 0.224 0.5 0.5 0.5h15c0.276 0 0.5-0.224 0.5-0.5v-3c0-0.276-0.224-0.5-0.5-0.5h-15c-0.276 0-0.5 0.224-0.5 0.5z"
+        ]
+    },
     selectParentNode: {name: 'selectParentNode',text: "\u2b1a", css: "font-weight: bold"}
 };var PREFIX = "ProseMirror-menu";
 
@@ -17286,11 +17292,15 @@ function addClassId(dom, options) {
 }
 
 function initMenuItemTrigger(view, options) {
-    var trigger = options.icon
-        ? getIcon(options.icon, options.htmlNode)
-        : options.label
-            ? crelt(options.htmlNode, {}, translate$1(view, options.label))
-            : null;
+    var trigger = null;
+    if (options.icon) {
+        trigger = getIcon(options.icon, options.htmlNode);
+    } else if (options.label) {
+        trigger = document.createElement(options.htmlNode);
+        trigger.innerHTML = translate$1(view, options.label).replace('</i>', '</i> ');
+    } else {
+        return null;
+    }
 
     trigger.classList.add(buildMenuClass('trigger'));
 
@@ -18353,7 +18363,7 @@ function buildMenuItems(context) {
             sortOrder: 400,
             title: context.translate("Insert"),
             seperator: true,
-            icon: icons.image,
+            icon: icons.upload,
             items: []
         },
         helper: {
@@ -18819,7 +18829,7 @@ function selectionIsInverted(selection) {
 function findWrappingScrollable(node) {
     for (var cur = node.parentNode; cur; cur = cur.parentNode)
         { if (cur.scrollHeight > cur.clientHeight) { return cur; } }
-}const menu$l=/*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({__proto__:null,menuBar,icons,Dropdown,DropdownSubmenu,MenuItem,MenuItemGroup,cmdItem,markItem,wrapSourceTextMark,markActive,wrapListItem,joinUpItem,liftItem,selectParentNodeItem,undoItem,redoItem,wrapItem,blockTypeItem,canInsert,canInsertLink},Symbol.toStringTag,{value:'Module'}));var prefix = "ProseMirror-prompt";
+}const menu$k=/*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({__proto__:null,menuBar,icons,Dropdown,DropdownSubmenu,MenuItem,MenuItemGroup,cmdItem,markItem,wrapSourceTextMark,markActive,wrapListItem,joinUpItem,liftItem,selectParentNodeItem,undoItem,redoItem,wrapItem,blockTypeItem,canInsert,canInsertLink},Symbol.toStringTag,{value:'Module'}));var prefix = "ProseMirror-prompt";
 
 var Promt = function Promt(options) {
     this.options = options;
@@ -19089,12 +19099,12 @@ function getUserLocale() {
     return isHumhub() ? humhub.modules.user.config.locale.split("-")[0] : null;
 }
 
-function filterFileUrl(url) {
+function filterFileUrl(url, mode) {
     if (!window.humhub) {
         return {url: url, guid: null};
     }
 
-    return isHumhub() ? humhub.modules.file.filterFileUrl(url) : url;
+    return isHumhub() ? humhub.modules.file.filterFileUrl(url, mode) : url;
 }
 
 function getLoaderWidget() {
@@ -31387,7 +31397,7 @@ var lib$3 = MarkdownIt;var markdownIt = lib$3;
 const markdownit = /*@__PURE__*/getDefaultExportFromCjs(markdownIt);/**
 Document schema for the data model used by CommonMark.
 */
-var schema$l = new Schema({
+var schema$m = new Schema({
     nodes: {
         doc: {
             content: "block+"
@@ -31719,7 +31729,7 @@ function listIsTight(tokens, i) {
 A parser parsing unextended [CommonMark](http://commonmark.org/),
 without inline HTML, and producing a document in the basic schema.
 */
-var defaultMarkdownParser = new MarkdownParser(schema$l, markdownit("commonmark", { html: false }), {
+var defaultMarkdownParser = new MarkdownParser(schema$m, markdownit("commonmark", { html: false }), {
     blockquote: { block: "blockquote" },
     paragraph: { block: "paragraph" },
     list_item: { block: "list_item" },
@@ -32204,7 +32214,7 @@ MarkdownSerializerState.prototype.getEnclosingWhitespace = function getEnclosing
  *
  */
 
-var schema$k = {
+var schema$l = {
     nodes: {
         doc: {
             sortOrder: 0,
@@ -32220,8 +32230,8 @@ var schema$k = {
 
 var doc$1 = {
     id: 'doc',
-    schema: schema$k
-};var schema$j = {
+    schema: schema$l
+};var schema$k = {
     nodes: {
         blockquote: {
             sortOrder: 200,
@@ -32257,7 +32267,7 @@ function wrapBlockQuote(context) {
     });
 }
 
-function menu$k(context) {
+function menu$j(context) {
     return [{
         id: 'wrapBlockQuote',
         node: 'blockquote',
@@ -32272,8 +32282,8 @@ function menu$k(context) {
 
 var blockquote = {
     id: 'blockquote',
-    schema: schema$j,
-    menu: function (context) { return menu$k(context); },
+    schema: schema$k,
+    menu: function (context) { return menu$j(context); },
     inputRules: function (schema) {
         return [blockquoteRule(schema)]
     }
@@ -32283,7 +32293,7 @@ var blockquote = {
  * @license https://www.humhub.com/licences
  *
  */
-var schema$i = {
+var schema$j = {
     nodes: {
         bullet_list: {
             sortOrder: 700,
@@ -32332,7 +32342,7 @@ function wrapBulletList(context) {
     });
 }
 
-function menu$j(context) {
+function menu$i(context) {
     return [
         {
             id: 'wrapBulletList',
@@ -32349,8 +32359,8 @@ function menu$j(context) {
 
 var bullet_list = {
     id: 'bullet_list',
-    schema: schema$i,
-    menu: function (context) { return menu$j(context); },
+    schema: schema$j,
+    menu: function (context) { return menu$i(context); },
     inputRules: function (schema) {return [bulletListRule(schema)]}
 };/*
  * @link https://www.humhub.org/
@@ -32359,7 +32369,7 @@ var bullet_list = {
  *
  */
 
-var schema$h = {
+var schema$i = {
     marks: {
         code:{
             isCode: true,
@@ -32389,7 +32399,7 @@ function markCode(context) {
     }, context);
 }
 
-function menu$i(context) {
+function menu$h(context) {
     return [
         {
             id: 'markCode',
@@ -32449,8 +32459,8 @@ function markInputRuleClosed(regexp, markType, getAttrs) {
 
 var code = {
     id: 'code',
-    schema: schema$h,
-    menu: function (context) { return menu$i(context); },
+    schema: schema$i,
+    menu: function (context) { return menu$h(context); },
     inputRules: function (schema) { return codeRules(schema); },
 };/*
  * @link https://www.humhub.org/
@@ -32500,7 +32510,7 @@ var fence = {
     }
 };
 
-var schema$g = {
+var schema$h = {
     nodes: { code_block: code_block$1, fence: fence }
 };/*
  * @link https://www.humhub.org/
@@ -32515,7 +32525,7 @@ function makeCodeBlock(context) {
     });
 }
 
-function menu$h(context) {
+function menu$g(context) {
     return [{
         id: 'makeCodeBlock',
         node: 'code_block',
@@ -54554,8 +54564,8 @@ var codeBlockRule = function (schema) {
 
 var code_block = {
     id: 'code_block',
-    schema: schema$g,
-    menu: function (context) { return menu$h(context); },
+    schema: schema$h,
+    menu: function (context) { return menu$g(context); },
     inputRules: function (schema) {return [codeBlockRule(schema)]},
     keymap: function () { return keymap$4(); },
     plugins: function (context) {
@@ -54567,7 +54577,7 @@ var code_block = {
  * @license https://www.humhub.com/licences
  */
 
-var schema$f = {
+var schema$g = {
     marks: {
         em: {
             sortOrder: 100,
@@ -54600,7 +54610,7 @@ function markEm(context) {
     }, context);
 }
 
-function menu$g(context) {
+function menu$f(context) {
     return [
         {
             id: 'markEm',
@@ -54618,11 +54628,11 @@ function menu$g(context) {
 
 var em = {
     id: 'em',
-    schema: schema$f,
-    menu: function (context) { return menu$g(context); }
+    schema: schema$g,
+    menu: function (context) { return menu$f(context); }
 };/*! Copyright Twitter Inc. and other contributors. Licensed under MIT */
 var twemoji=function(){var twemoji={base:"https://twemoji.maxcdn.com/v/14.0.2/",ext:".png",size:"72x72",className:"emoji",convert:{fromCodePoint:fromCodePoint,toCodePoint:toCodePoint},onerror:function onerror(){if(this.parentNode){this.parentNode.replaceChild(createText(this.alt,false),this);}},parse:parse,replace:replace,test:test},escaper={"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"},re=/(?:\ud83d\udc68\ud83c\udffb\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83d\udc68\ud83c[\udffb-\udfff]|\ud83d\udc68\ud83c\udffc\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83d\udc68\ud83c[\udffb-\udfff]|\ud83d\udc68\ud83c\udffd\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83d\udc68\ud83c[\udffb-\udfff]|\ud83d\udc68\ud83c\udffe\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83d\udc68\ud83c[\udffb-\udfff]|\ud83d\udc68\ud83c\udfff\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83d\udc68\ud83c[\udffb-\udfff]|\ud83d\udc69\ud83c\udffb\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83d\udc68\ud83c[\udffb-\udfff]|\ud83d\udc69\ud83c\udffb\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83d\udc69\ud83c[\udffb-\udfff]|\ud83d\udc69\ud83c\udffc\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83d\udc68\ud83c[\udffb-\udfff]|\ud83d\udc69\ud83c\udffc\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83d\udc69\ud83c[\udffb-\udfff]|\ud83d\udc69\ud83c\udffd\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83d\udc68\ud83c[\udffb-\udfff]|\ud83d\udc69\ud83c\udffd\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83d\udc69\ud83c[\udffb-\udfff]|\ud83d\udc69\ud83c\udffe\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83d\udc68\ud83c[\udffb-\udfff]|\ud83d\udc69\ud83c\udffe\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83d\udc69\ud83c[\udffb-\udfff]|\ud83d\udc69\ud83c\udfff\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83d\udc68\ud83c[\udffb-\udfff]|\ud83d\udc69\ud83c\udfff\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83d\udc69\ud83c[\udffb-\udfff]|\ud83e\uddd1\ud83c\udffb\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83e\uddd1\ud83c[\udffc-\udfff]|\ud83e\uddd1\ud83c\udffc\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83e\uddd1\ud83c[\udffb\udffd-\udfff]|\ud83e\uddd1\ud83c\udffd\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83e\uddd1\ud83c[\udffb\udffc\udffe\udfff]|\ud83e\uddd1\ud83c\udffe\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83e\uddd1\ud83c[\udffb-\udffd\udfff]|\ud83e\uddd1\ud83c\udfff\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83e\uddd1\ud83c[\udffb-\udffe]|\ud83d\udc68\ud83c\udffb\u200d\u2764\ufe0f\u200d\ud83d\udc68\ud83c[\udffb-\udfff]|\ud83d\udc68\ud83c\udffb\u200d\ud83e\udd1d\u200d\ud83d\udc68\ud83c[\udffc-\udfff]|\ud83d\udc68\ud83c\udffc\u200d\u2764\ufe0f\u200d\ud83d\udc68\ud83c[\udffb-\udfff]|\ud83d\udc68\ud83c\udffc\u200d\ud83e\udd1d\u200d\ud83d\udc68\ud83c[\udffb\udffd-\udfff]|\ud83d\udc68\ud83c\udffd\u200d\u2764\ufe0f\u200d\ud83d\udc68\ud83c[\udffb-\udfff]|\ud83d\udc68\ud83c\udffd\u200d\ud83e\udd1d\u200d\ud83d\udc68\ud83c[\udffb\udffc\udffe\udfff]|\ud83d\udc68\ud83c\udffe\u200d\u2764\ufe0f\u200d\ud83d\udc68\ud83c[\udffb-\udfff]|\ud83d\udc68\ud83c\udffe\u200d\ud83e\udd1d\u200d\ud83d\udc68\ud83c[\udffb-\udffd\udfff]|\ud83d\udc68\ud83c\udfff\u200d\u2764\ufe0f\u200d\ud83d\udc68\ud83c[\udffb-\udfff]|\ud83d\udc68\ud83c\udfff\u200d\ud83e\udd1d\u200d\ud83d\udc68\ud83c[\udffb-\udffe]|\ud83d\udc69\ud83c\udffb\u200d\u2764\ufe0f\u200d\ud83d\udc68\ud83c[\udffb-\udfff]|\ud83d\udc69\ud83c\udffb\u200d\u2764\ufe0f\u200d\ud83d\udc69\ud83c[\udffb-\udfff]|\ud83d\udc69\ud83c\udffb\u200d\ud83e\udd1d\u200d\ud83d\udc68\ud83c[\udffc-\udfff]|\ud83d\udc69\ud83c\udffb\u200d\ud83e\udd1d\u200d\ud83d\udc69\ud83c[\udffc-\udfff]|\ud83d\udc69\ud83c\udffc\u200d\u2764\ufe0f\u200d\ud83d\udc68\ud83c[\udffb-\udfff]|\ud83d\udc69\ud83c\udffc\u200d\u2764\ufe0f\u200d\ud83d\udc69\ud83c[\udffb-\udfff]|\ud83d\udc69\ud83c\udffc\u200d\ud83e\udd1d\u200d\ud83d\udc68\ud83c[\udffb\udffd-\udfff]|\ud83d\udc69\ud83c\udffc\u200d\ud83e\udd1d\u200d\ud83d\udc69\ud83c[\udffb\udffd-\udfff]|\ud83d\udc69\ud83c\udffd\u200d\u2764\ufe0f\u200d\ud83d\udc68\ud83c[\udffb-\udfff]|\ud83d\udc69\ud83c\udffd\u200d\u2764\ufe0f\u200d\ud83d\udc69\ud83c[\udffb-\udfff]|\ud83d\udc69\ud83c\udffd\u200d\ud83e\udd1d\u200d\ud83d\udc68\ud83c[\udffb\udffc\udffe\udfff]|\ud83d\udc69\ud83c\udffd\u200d\ud83e\udd1d\u200d\ud83d\udc69\ud83c[\udffb\udffc\udffe\udfff]|\ud83d\udc69\ud83c\udffe\u200d\u2764\ufe0f\u200d\ud83d\udc68\ud83c[\udffb-\udfff]|\ud83d\udc69\ud83c\udffe\u200d\u2764\ufe0f\u200d\ud83d\udc69\ud83c[\udffb-\udfff]|\ud83d\udc69\ud83c\udffe\u200d\ud83e\udd1d\u200d\ud83d\udc68\ud83c[\udffb-\udffd\udfff]|\ud83d\udc69\ud83c\udffe\u200d\ud83e\udd1d\u200d\ud83d\udc69\ud83c[\udffb-\udffd\udfff]|\ud83d\udc69\ud83c\udfff\u200d\u2764\ufe0f\u200d\ud83d\udc68\ud83c[\udffb-\udfff]|\ud83d\udc69\ud83c\udfff\u200d\u2764\ufe0f\u200d\ud83d\udc69\ud83c[\udffb-\udfff]|\ud83d\udc69\ud83c\udfff\u200d\ud83e\udd1d\u200d\ud83d\udc68\ud83c[\udffb-\udffe]|\ud83d\udc69\ud83c\udfff\u200d\ud83e\udd1d\u200d\ud83d\udc69\ud83c[\udffb-\udffe]|\ud83e\uddd1\ud83c\udffb\u200d\u2764\ufe0f\u200d\ud83e\uddd1\ud83c[\udffc-\udfff]|\ud83e\uddd1\ud83c\udffb\u200d\ud83e\udd1d\u200d\ud83e\uddd1\ud83c[\udffb-\udfff]|\ud83e\uddd1\ud83c\udffc\u200d\u2764\ufe0f\u200d\ud83e\uddd1\ud83c[\udffb\udffd-\udfff]|\ud83e\uddd1\ud83c\udffc\u200d\ud83e\udd1d\u200d\ud83e\uddd1\ud83c[\udffb-\udfff]|\ud83e\uddd1\ud83c\udffd\u200d\u2764\ufe0f\u200d\ud83e\uddd1\ud83c[\udffb\udffc\udffe\udfff]|\ud83e\uddd1\ud83c\udffd\u200d\ud83e\udd1d\u200d\ud83e\uddd1\ud83c[\udffb-\udfff]|\ud83e\uddd1\ud83c\udffe\u200d\u2764\ufe0f\u200d\ud83e\uddd1\ud83c[\udffb-\udffd\udfff]|\ud83e\uddd1\ud83c\udffe\u200d\ud83e\udd1d\u200d\ud83e\uddd1\ud83c[\udffb-\udfff]|\ud83e\uddd1\ud83c\udfff\u200d\u2764\ufe0f\u200d\ud83e\uddd1\ud83c[\udffb-\udffe]|\ud83e\uddd1\ud83c\udfff\u200d\ud83e\udd1d\u200d\ud83e\uddd1\ud83c[\udffb-\udfff]|\ud83d\udc68\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83d\udc68|\ud83d\udc69\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83d[\udc68\udc69]|\ud83e\udef1\ud83c\udffb\u200d\ud83e\udef2\ud83c[\udffc-\udfff]|\ud83e\udef1\ud83c\udffc\u200d\ud83e\udef2\ud83c[\udffb\udffd-\udfff]|\ud83e\udef1\ud83c\udffd\u200d\ud83e\udef2\ud83c[\udffb\udffc\udffe\udfff]|\ud83e\udef1\ud83c\udffe\u200d\ud83e\udef2\ud83c[\udffb-\udffd\udfff]|\ud83e\udef1\ud83c\udfff\u200d\ud83e\udef2\ud83c[\udffb-\udffe]|\ud83d\udc68\u200d\u2764\ufe0f\u200d\ud83d\udc68|\ud83d\udc69\u200d\u2764\ufe0f\u200d\ud83d[\udc68\udc69]|\ud83e\uddd1\u200d\ud83e\udd1d\u200d\ud83e\uddd1|\ud83d\udc6b\ud83c[\udffb-\udfff]|\ud83d\udc6c\ud83c[\udffb-\udfff]|\ud83d\udc6d\ud83c[\udffb-\udfff]|\ud83d\udc8f\ud83c[\udffb-\udfff]|\ud83d\udc91\ud83c[\udffb-\udfff]|\ud83e\udd1d\ud83c[\udffb-\udfff]|\ud83d[\udc6b-\udc6d\udc8f\udc91]|\ud83e\udd1d)|(?:\ud83d[\udc68\udc69]|\ud83e\uddd1)(?:\ud83c[\udffb-\udfff])?\u200d(?:\u2695\ufe0f|\u2696\ufe0f|\u2708\ufe0f|\ud83c[\udf3e\udf73\udf7c\udf84\udf93\udfa4\udfa8\udfeb\udfed]|\ud83d[\udcbb\udcbc\udd27\udd2c\ude80\ude92]|\ud83e[\uddaf-\uddb3\uddbc\uddbd])|(?:\ud83c[\udfcb\udfcc]|\ud83d[\udd74\udd75]|\u26f9)((?:\ud83c[\udffb-\udfff]|\ufe0f)\u200d[\u2640\u2642]\ufe0f)|(?:\ud83c[\udfc3\udfc4\udfca]|\ud83d[\udc6e\udc70\udc71\udc73\udc77\udc81\udc82\udc86\udc87\ude45-\ude47\ude4b\ude4d\ude4e\udea3\udeb4-\udeb6]|\ud83e[\udd26\udd35\udd37-\udd39\udd3d\udd3e\uddb8\uddb9\uddcd-\uddcf\uddd4\uddd6-\udddd])(?:\ud83c[\udffb-\udfff])?\u200d[\u2640\u2642]\ufe0f|(?:\ud83d\udc68\u200d\ud83d\udc68\u200d\ud83d\udc66\u200d\ud83d\udc66|\ud83d\udc68\u200d\ud83d\udc68\u200d\ud83d\udc67\u200d\ud83d[\udc66\udc67]|\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc66\u200d\ud83d\udc66|\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67\u200d\ud83d[\udc66\udc67]|\ud83d\udc69\u200d\ud83d\udc69\u200d\ud83d\udc66\u200d\ud83d\udc66|\ud83d\udc69\u200d\ud83d\udc69\u200d\ud83d\udc67\u200d\ud83d[\udc66\udc67]|\ud83d\udc68\u200d\ud83d\udc66\u200d\ud83d\udc66|\ud83d\udc68\u200d\ud83d\udc67\u200d\ud83d[\udc66\udc67]|\ud83d\udc68\u200d\ud83d\udc68\u200d\ud83d[\udc66\udc67]|\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d[\udc66\udc67]|\ud83d\udc69\u200d\ud83d\udc66\u200d\ud83d\udc66|\ud83d\udc69\u200d\ud83d\udc67\u200d\ud83d[\udc66\udc67]|\ud83d\udc69\u200d\ud83d\udc69\u200d\ud83d[\udc66\udc67]|\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f|\ud83c\udff3\ufe0f\u200d\ud83c\udf08|\ud83d\ude36\u200d\ud83c\udf2b\ufe0f|\u2764\ufe0f\u200d\ud83d\udd25|\u2764\ufe0f\u200d\ud83e\ude79|\ud83c\udff4\u200d\u2620\ufe0f|\ud83d\udc15\u200d\ud83e\uddba|\ud83d\udc3b\u200d\u2744\ufe0f|\ud83d\udc41\u200d\ud83d\udde8|\ud83d\udc68\u200d\ud83d[\udc66\udc67]|\ud83d\udc69\u200d\ud83d[\udc66\udc67]|\ud83d\udc6f\u200d\u2640\ufe0f|\ud83d\udc6f\u200d\u2642\ufe0f|\ud83d\ude2e\u200d\ud83d\udca8|\ud83d\ude35\u200d\ud83d\udcab|\ud83e\udd3c\u200d\u2640\ufe0f|\ud83e\udd3c\u200d\u2642\ufe0f|\ud83e\uddde\u200d\u2640\ufe0f|\ud83e\uddde\u200d\u2642\ufe0f|\ud83e\udddf\u200d\u2640\ufe0f|\ud83e\udddf\u200d\u2642\ufe0f|\ud83d\udc08\u200d\u2b1b)|[#*0-9]\ufe0f?\u20e3|(?:[©®\u2122\u265f]\ufe0f)|(?:\ud83c[\udc04\udd70\udd71\udd7e\udd7f\ude02\ude1a\ude2f\ude37\udf21\udf24-\udf2c\udf36\udf7d\udf96\udf97\udf99-\udf9b\udf9e\udf9f\udfcd\udfce\udfd4-\udfdf\udff3\udff5\udff7]|\ud83d[\udc3f\udc41\udcfd\udd49\udd4a\udd6f\udd70\udd73\udd76-\udd79\udd87\udd8a-\udd8d\udda5\udda8\uddb1\uddb2\uddbc\uddc2-\uddc4\uddd1-\uddd3\udddc-\uddde\udde1\udde3\udde8\uddef\uddf3\uddfa\udecb\udecd-\udecf\udee0-\udee5\udee9\udef0\udef3]|[\u203c\u2049\u2139\u2194-\u2199\u21a9\u21aa\u231a\u231b\u2328\u23cf\u23ed-\u23ef\u23f1\u23f2\u23f8-\u23fa\u24c2\u25aa\u25ab\u25b6\u25c0\u25fb-\u25fe\u2600-\u2604\u260e\u2611\u2614\u2615\u2618\u2620\u2622\u2623\u2626\u262a\u262e\u262f\u2638-\u263a\u2640\u2642\u2648-\u2653\u2660\u2663\u2665\u2666\u2668\u267b\u267f\u2692-\u2697\u2699\u269b\u269c\u26a0\u26a1\u26a7\u26aa\u26ab\u26b0\u26b1\u26bd\u26be\u26c4\u26c5\u26c8\u26cf\u26d1\u26d3\u26d4\u26e9\u26ea\u26f0-\u26f5\u26f8\u26fa\u26fd\u2702\u2708\u2709\u270f\u2712\u2714\u2716\u271d\u2721\u2733\u2734\u2744\u2747\u2757\u2763\u2764\u27a1\u2934\u2935\u2b05-\u2b07\u2b1b\u2b1c\u2b50\u2b55\u3030\u303d\u3297\u3299])(?:\ufe0f|(?!\ufe0e))|(?:(?:\ud83c[\udfcb\udfcc]|\ud83d[\udd74\udd75\udd90]|[\u261d\u26f7\u26f9\u270c\u270d])(?:\ufe0f|(?!\ufe0e))|(?:\ud83c[\udf85\udfc2-\udfc4\udfc7\udfca]|\ud83d[\udc42\udc43\udc46-\udc50\udc66-\udc69\udc6e\udc70-\udc78\udc7c\udc81-\udc83\udc85-\udc87\udcaa\udd7a\udd95\udd96\ude45-\ude47\ude4b-\ude4f\udea3\udeb4-\udeb6\udec0\udecc]|\ud83e[\udd0c\udd0f\udd18-\udd1c\udd1e\udd1f\udd26\udd30-\udd39\udd3d\udd3e\udd77\uddb5\uddb6\uddb8\uddb9\uddbb\uddcd-\uddcf\uddd1-\udddd\udec3-\udec5\udef0-\udef6]|[\u270a\u270b]))(?:\ud83c[\udffb-\udfff])?|(?:\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f|\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc73\udb40\udc63\udb40\udc74\udb40\udc7f|\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc77\udb40\udc6c\udb40\udc73\udb40\udc7f|\ud83c\udde6\ud83c[\udde8-\uddec\uddee\uddf1\uddf2\uddf4\uddf6-\uddfa\uddfc\uddfd\uddff]|\ud83c\udde7\ud83c[\udde6\udde7\udde9-\uddef\uddf1-\uddf4\uddf6-\uddf9\uddfb\uddfc\uddfe\uddff]|\ud83c\udde8\ud83c[\udde6\udde8\udde9\uddeb-\uddee\uddf0-\uddf5\uddf7\uddfa-\uddff]|\ud83c\udde9\ud83c[\uddea\uddec\uddef\uddf0\uddf2\uddf4\uddff]|\ud83c\uddea\ud83c[\udde6\udde8\uddea\uddec\udded\uddf7-\uddfa]|\ud83c\uddeb\ud83c[\uddee-\uddf0\uddf2\uddf4\uddf7]|\ud83c\uddec\ud83c[\udde6\udde7\udde9-\uddee\uddf1-\uddf3\uddf5-\uddfa\uddfc\uddfe]|\ud83c\udded\ud83c[\uddf0\uddf2\uddf3\uddf7\uddf9\uddfa]|\ud83c\uddee\ud83c[\udde8-\uddea\uddf1-\uddf4\uddf6-\uddf9]|\ud83c\uddef\ud83c[\uddea\uddf2\uddf4\uddf5]|\ud83c\uddf0\ud83c[\uddea\uddec-\uddee\uddf2\uddf3\uddf5\uddf7\uddfc\uddfe\uddff]|\ud83c\uddf1\ud83c[\udde6-\udde8\uddee\uddf0\uddf7-\uddfb\uddfe]|\ud83c\uddf2\ud83c[\udde6\udde8-\udded\uddf0-\uddff]|\ud83c\uddf3\ud83c[\udde6\udde8\uddea-\uddec\uddee\uddf1\uddf4\uddf5\uddf7\uddfa\uddff]|\ud83c\uddf4\ud83c\uddf2|\ud83c\uddf5\ud83c[\udde6\uddea-\udded\uddf0-\uddf3\uddf7-\uddf9\uddfc\uddfe]|\ud83c\uddf6\ud83c\udde6|\ud83c\uddf7\ud83c[\uddea\uddf4\uddf8\uddfa\uddfc]|\ud83c\uddf8\ud83c[\udde6-\uddea\uddec-\uddf4\uddf7-\uddf9\uddfb\uddfd-\uddff]|\ud83c\uddf9\ud83c[\udde6\udde8\udde9\uddeb-\udded\uddef-\uddf4\uddf7\uddf9\uddfb\uddfc\uddff]|\ud83c\uddfa\ud83c[\udde6\uddec\uddf2\uddf3\uddf8\uddfe\uddff]|\ud83c\uddfb\ud83c[\udde6\udde8\uddea\uddec\uddee\uddf3\uddfa]|\ud83c\uddfc\ud83c[\uddeb\uddf8]|\ud83c\uddfd\ud83c\uddf0|\ud83c\uddfe\ud83c[\uddea\uddf9]|\ud83c\uddff\ud83c[\udde6\uddf2\uddfc]|\ud83c[\udccf\udd8e\udd91-\udd9a\udde6-\uddff\ude01\ude32-\ude36\ude38-\ude3a\ude50\ude51\udf00-\udf20\udf2d-\udf35\udf37-\udf7c\udf7e-\udf84\udf86-\udf93\udfa0-\udfc1\udfc5\udfc6\udfc8\udfc9\udfcf-\udfd3\udfe0-\udff0\udff4\udff8-\udfff]|\ud83d[\udc00-\udc3e\udc40\udc44\udc45\udc51-\udc65\udc6a\udc6f\udc79-\udc7b\udc7d-\udc80\udc84\udc88-\udc8e\udc90\udc92-\udca9\udcab-\udcfc\udcff-\udd3d\udd4b-\udd4e\udd50-\udd67\udda4\uddfb-\ude44\ude48-\ude4a\ude80-\udea2\udea4-\udeb3\udeb7-\udebf\udec1-\udec5\uded0-\uded2\uded5-\uded7\udedd-\udedf\udeeb\udeec\udef4-\udefc\udfe0-\udfeb\udff0]|\ud83e[\udd0d\udd0e\udd10-\udd17\udd20-\udd25\udd27-\udd2f\udd3a\udd3c\udd3f-\udd45\udd47-\udd76\udd78-\uddb4\uddb7\uddba\uddbc-\uddcc\uddd0\uddde-\uddff\ude70-\ude74\ude78-\ude7c\ude80-\ude86\ude90-\udeac\udeb0-\udeba\udec0-\udec2\uded0-\uded9\udee0-\udee7]|[\u23e9-\u23ec\u23f0\u23f3\u267e\u26ce\u2705\u2728\u274c\u274e\u2753-\u2755\u2795-\u2797\u27b0\u27bf\ue50a])|\ufe0f/g,UFE0Fg=/\uFE0F/g,U200D=String.fromCharCode(8205),rescaper=/[&<>'"]/g,shouldntBeParsed=/^(?:iframe|noframes|noscript|script|select|style|textarea)$/,fromCharCode=String.fromCharCode;return twemoji;function createText(text,clean){return document.createTextNode(clean?text.replace(UFE0Fg,""):text)}function escapeHTML(s){return s.replace(rescaper,replacer)}function defaultImageSrcGenerator(icon,options){return "".concat(options.base,options.size,"/",icon,options.ext)}function grabAllTextNodes(node,allText){var childNodes=node.childNodes,length=childNodes.length,subnode,nodeType;while(length--){subnode=childNodes[length];nodeType=subnode.nodeType;if(nodeType===3){allText.push(subnode);}else if(nodeType===1&&!("ownerSVGElement"in subnode)&&!shouldntBeParsed.test(subnode.nodeName.toLowerCase())){grabAllTextNodes(subnode,allText);}}return allText}function grabTheRightIcon(rawText){return toCodePoint(rawText.indexOf(U200D)<0?rawText.replace(UFE0Fg,""):rawText)}function parseNode(node,options){var allText=grabAllTextNodes(node,[]),length=allText.length,attrib,attrname,modified,fragment,subnode,text,match,i,index,img,rawText,iconId,src;while(length--){modified=false;fragment=document.createDocumentFragment();subnode=allText[length];text=subnode.nodeValue;i=0;while(match=re.exec(text)){index=match.index;if(index!==i){fragment.appendChild(createText(text.slice(i,index),true));}rawText=match[0];iconId=grabTheRightIcon(rawText);i=index+rawText.length;src=options.callback(iconId,options);if(iconId&&src){img=new Image;img.onerror=options.onerror;img.setAttribute("draggable","false");attrib=options.attributes(rawText,iconId);for(attrname in attrib){if(attrib.hasOwnProperty(attrname)&&attrname.indexOf("on")!==0&&!img.hasAttribute(attrname)){img.setAttribute(attrname,attrib[attrname]);}}img.className=options.className;img.alt=rawText;img.src=src;modified=true;fragment.appendChild(img);}if(!img){ fragment.appendChild(createText(rawText,false)); }img=null;}if(modified){if(i<text.length){fragment.appendChild(createText(text.slice(i),true));}subnode.parentNode.replaceChild(fragment,subnode);}}return node}function parseString(str,options){return replace(str,function(rawText){var ret=rawText,iconId=grabTheRightIcon(rawText),src=options.callback(iconId,options),attrib,attrname;if(iconId&&src){ret="<img ".concat('class="',options.className,'" ','draggable="false" ','alt="',rawText,'"',' src="',src,'"');attrib=options.attributes(rawText,iconId);for(attrname in attrib){if(attrib.hasOwnProperty(attrname)&&attrname.indexOf("on")!==0&&ret.indexOf(" "+attrname+"=")===-1){ret=ret.concat(" ",attrname,'="',escapeHTML(attrib[attrname]),'"');}}ret=ret.concat("/>");}return ret})}function replacer(m){return escaper[m]}function returnNull(){return null}function toSizeSquaredAsset(value){return typeof value==="number"?value+"x"+value:value}function fromCodePoint(codepoint){var code=typeof codepoint==="string"?parseInt(codepoint,16):codepoint;if(code<65536){return fromCharCode(code)}code-=65536;return fromCharCode(55296+(code>>10),56320+(code&1023))}function parse(what,how){if(!how||typeof how==="function"){how={callback:how};}return (typeof what==="string"?parseString:parseNode)(what,{callback:how.callback||defaultImageSrcGenerator,attributes:typeof how.attributes==="function"?how.attributes:returnNull,base:typeof how.base==="string"?how.base:twemoji.base,ext:how.ext||twemoji.ext,size:how.folder||toSizeSquaredAsset(how.size||twemoji.size),className:how.className||twemoji.className,onerror:how.onerror||twemoji.onerror})}function replace(text,callback){return String(text).replace(re,callback)}function test(text){re.lastIndex=0;var result=re.test(text);re.lastIndex=0;return result}function toCodePoint(unicodeSurrogates,sep){var r=[],c=0,p=0,i=0;while(i<unicodeSurrogates.length){c=unicodeSurrogates.charCodeAt(i++);if(p){r.push((65536+(p-55296<<10)+(c-56320)).toString(16));p=0;}else if(55296<=c&&c<=56319){p=c;}else {r.push(c.toString(16));}}return r.join(sep||"-")}}();
-var schema$e = {
+var schema$f = {
     nodes: {
         emoji: {
             attrs: {
@@ -124111,7 +124121,7 @@ function insertEmoji(context) {
     })
 }
 
-function menu$f(context) {
+function menu$e(context) {
     return [{
         id: 'insertEmoji',
         node: 'emoji',
@@ -124125,8 +124135,8 @@ function menu$f(context) {
 
 var emoji = {
     id: 'emoji',
-    schema: schema$e,
-    menu: function (context) { return menu$f(context); },
+    schema: schema$f,
+    menu: function (context) { return menu$e(context); },
     inputRules: function (schema) {
         return [
             emojiAutoCompleteRule(),
@@ -124163,7 +124173,7 @@ var emoji = {
  *
  */
 
-var schema$d = {
+var schema$e = {
     nodes: {
         hard_break: {
             sortOrder: 1100,
@@ -124217,11 +124227,11 @@ function htmlBreak(state, silent) {
 
 var hard_break = {
     id: 'hard_break',
-    schema: schema$d,
+    schema: schema$e,
     registerMarkdownIt: function (markdownIt) {
         markdownIt.inline.ruler.before('newline','htmlbreak', htmlBreak);
     }
-};var schema$c = {
+};var schema$d = {
     nodes: {
         heading: {
             attrs: {level: {default: 1}},
@@ -124283,7 +124293,7 @@ function makeHeading(context, i) {
     });
 }
 
-function menu$e(context) {
+function menu$d(context) {
     var headers = [];
 
     for (var i = 1; i <= 4; i++) {
@@ -124304,8 +124314,8 @@ function menu$e(context) {
 
 var heading = {
     id: 'heading',
-    schema: schema$c,
-    menu: function (context) { return menu$e(context); },
+    schema: schema$d,
+    menu: function (context) { return menu$d(context); },
     inputRules: function (schema) {return [headingRule(schema)]}
 };/*
  * @link https://www.humhub.org/
@@ -124314,7 +124324,7 @@ var heading = {
  *
  */
 
-function menu$d(context) {
+function menu$c(context) {
     return [
         {
             id: 'undo',
@@ -124335,7 +124345,7 @@ function menu$d(context) {
 
 var historyPlugin = {
     id: 'history',
-    menu: function (context) { return menu$d(); },
+    menu: function (context) { return menu$c(); },
     plugins: function (context) {
         return [
             history()
@@ -124347,7 +124357,7 @@ var historyPlugin = {
  * @license https://www.humhub.com/licences
  */
 
-var schema$b = {
+var schema$c = {
     nodes: {
         horizontal_rule: {
             sortOrder: 300,
@@ -124370,41 +124380,10 @@ var schema$b = {
  *
  */
 
-function insertHorizontalRule(context) {
-    var hr = context.schema.nodes.horizontal_rule;
-    return new MenuItem({
-        title: context.translate("Insert horizontal rule"),
-        label: context.translate("Horizontal rule"),
-        sortOrder: 200,
-        enable: function enable(state) {
-            return canInsert(state, hr)
-        },
-        run: function run(state, dispatch) {
-            dispatch(state.tr.replaceSelectionWith(hr.create()));
-        }
-    })
-}
-
-function menu$c(context) {
-    return [
-        {
-            id: 'insertHorizontalRule',
-            node: 'horizontal_rule',
-            group: 'insert',
-            item: insertHorizontalRule(context)
-        }
-    ]
-}/*
- * @link https://www.humhub.org/
- * @copyright Copyright (c) 2017 HumHub GmbH & Co. KG
- * @license https://www.humhub.com/licences
- *
- */
-
 var horizontal_rule = {
     id: 'horizontal_rule',
-    schema: schema$b,
-    menu: function (context) { return menu$c(context); }
+    schema: schema$c,
+    // menu: (context) => menu(context)
 };var FLOAT_NONE = 0;
 var FLOAT_LEFT = 1;
 var FLOAT_CENTER = 2;
@@ -124519,7 +124498,7 @@ function buildLink(href, attrs, text, validate) {
  * @license https://www.humhub.com/licences
  */
 
-var schema$a = {
+var schema$b = {
     nodes: {
         image: {
             sortOrder: 1000,
@@ -124915,24 +124894,6 @@ const imsize_plugin = /*@__PURE__*/getDefaultExportFromCjs(markdownit_imsize);/*
  * @license https://www.humhub.com/licences
  */
 
-function insertImageItem(context) {
-    return new MenuItem({
-        title: context.translate("Insert image"),
-        label: context.translate("Image"),
-        sortOrder: 100,
-        enable: function enable(state) {
-            return canInsert(state, context.schema.nodes.image) && canInsertLink(state);
-        },
-        run: function run(state, _, view) {
-            if (state.selection instanceof NodeSelection && state.selection.node.type === context.schema.nodes.image) {
-                editNode$1(state.selection.node, context, view);
-            } else {
-                promt$1(context.translate("Insert image"), context, null, view);
-            }
-        }
-    })
-}
-
 function editNode$1(node, context, view) {
     promt$1(context.translate("Edit image"), context, node.attrs, view, node);
 }
@@ -125034,15 +124995,6 @@ function promt$1(title, context, attrs, view, node) {
             view.focus();
         }
     });
-}
-
-function menu$b(context) {
-    return [{
-        id: 'insertImage',
-        node: 'image',
-        group: 'insert',
-        item: insertImageItem(context)
-    }];
 }/*
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2018 HumHub GmbH & Co. KG
@@ -125139,8 +125091,8 @@ ImageView.prototype.createDom = function createDom (node) {
 
 var image = {
     id: 'image',
-    schema: schema$a,
-    menu: function (context) { return menu$b(context); },
+    schema: schema$b,
+    // menu: (context) => menu(context),
     plugins: function (context) {
         return [
             imagePlugin(context)
@@ -125185,7 +125137,7 @@ var image = {
  * @license https://www.humhub.com/licences
  */
 
-var schema$9 = {
+var schema$a = {
     marks: {
         sortOrder: 300,
         link: {
@@ -125218,7 +125170,7 @@ var schema$9 = {
             var title = ref.title; return ["a", {href: href, title: title}, 0] },
             parseMarkdown: {
                 mark: "link", getAttrs: function (tok) {
-                    var ref = filterFileUrl(tok.attrGet("href"));
+                    var ref = filterFileUrl(tok.attrGet("href"), 'view');
                     var url = ref.url;
                     var guid = ref.guid;
 
@@ -125312,7 +125264,7 @@ function promt(title, context, attrs, node, mark) {
             value: attrs && attrs.href,
             required: true,
             clean: function (val) {
-                if (!validateHref(val, {anchor: '#'}))  {
+                if (!validateHref(val, {anchor: '#'}) && !validateRelative(val))  {
                     return 'https://' + val;
                 }
 
@@ -125357,7 +125309,7 @@ function getLinkMark(node, context) {
     return result;
 }
 
-function menu$a(context) {
+function menu$b(context) {
     return [{
         id: 'linkItem',
         mark: 'link',
@@ -125449,8 +125401,8 @@ var linkify = function(fragment, context) {
 
 var link = {
     id: 'link',
-    schema: schema$9,
-    menu: function (context) { return menu$a(context); },
+    schema: schema$a,
+    menu: function (context) { return menu$b(context); },
     registerMarkdownIt: function (md) {
         var defaultRender = md.renderer.rules.link_open || function(tokens, idx, options, env, self) {
             return self.renderToken(tokens, idx, options);
@@ -125459,7 +125411,7 @@ var link = {
         md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
             var hrefIndex = tokens[idx].attrIndex('href');
 
-            var ref = filterFileUrl(tokens[idx].attrs[hrefIndex][1]);
+            var ref = filterFileUrl(tokens[idx].attrs[hrefIndex][1], 'view');
             var url = ref.url;
             var guid = ref.guid;
 
@@ -125469,6 +125421,7 @@ var link = {
                 tokens[idx].attrPush(['data-file-guid', guid]); // add new attribute
                 tokens[idx].attrPush(['data-file-download', '']); // add new attribute
                 tokens[idx].attrPush(['data-file-url', url]); // add new attribute
+                tokens[idx].attrPush(['data-target', '#globalModal']);
             }
 
             // If you are sure other plugins can't add `target` - drop check below
@@ -125505,7 +125458,7 @@ var link = {
  * @license https://www.humhub.com/licences
  */
 
-var schema$8 = {
+var schema$9 = {
     nodes: {
         list_item: {
             sortOrder: 800,
@@ -125544,7 +125497,7 @@ function indentListItem(context) {
     });
 }
 
-function menu$9(context) {
+function menu$a(context) {
     return [
         {
             id: 'outdentListItem',
@@ -125568,11 +125521,11 @@ function menu$9(context) {
 
 var list_item = {
     id: 'list_item',
-    schema: schema$8,
+    schema: schema$9,
     menu: function (context) {
-        return menu$9(context);
+        return menu$a(context);
     },
-};var schema$7 = {
+};var schema$8 = {
     nodes: {
         mention: {
             inline: true,
@@ -125619,7 +125572,7 @@ var list_item = {
             toMarkdown: function (state, node) {
                 var linkMark = $node(node).getMark('link');
                 if (linkMark) {
-                    state.write(schema$9.marks.link.toMarkdown.close(state, linkMark));
+                    state.write(schema$a.marks.link.toMarkdown.close(state, linkMark));
                 }
 
                 var ref = node.attrs;
@@ -125629,7 +125582,7 @@ var list_item = {
                 state.write("[" + state.esc(name) + "](mention:" + state.esc(guid) + " " + state.quote(href) + ")");
 
                 if (linkMark) {
-                    state.write(schema$9.marks.link.toMarkdown.open);
+                    state.write(schema$a.marks.link.toMarkdown.open);
                 }
             },
         }
@@ -126004,7 +125957,7 @@ function createLinkExtension(id, options) {
 
 var mention$1 = {
     id: 'mention',
-    schema: schema$7,
+    schema: schema$8,
     plugins: function (context) {
         if (!context.options.mention || !context.options.mention.provider) {
             return [];
@@ -126081,7 +126034,7 @@ var mention$1 = {
     }
 };
 
-var schema$6 = {
+var schema$7 = {
     nodes: {
         oembed: oembed$1
     }
@@ -126100,7 +126053,7 @@ var oembed_plugin = createLinkExtension('oembed', {node : 'div'});/*
 
 var oembed = {
     id: 'oembed',
-    schema: schema$6,
+    schema: schema$7,
     init: function (context, isEdit) {
         if (!isEdit) {
             return;
@@ -126199,7 +126152,7 @@ var focus = {
  * @license https://www.humhub.com/licences
  */
 
-var schema$5 = {
+var schema$6 = {
     nodes: {
         ordered_list: {
             sortOrder: 600,
@@ -126271,7 +126224,7 @@ function wrapOrderedList(context) {
     });
 }
 
-function menu$8(context) {
+function menu$9(context) {
     return [
         {
             id: 'wrapOrderedList',
@@ -126289,10 +126242,10 @@ function menu$8(context) {
 
 var ordered_list = {
     id: 'ordered_list',
-    menu: function (context) { return menu$8(context); },
-    schema: schema$5,
+    menu: function (context) { return menu$9(context); },
+    schema: schema$6,
     inputRules: function (schema) {return [orderedListRule(schema)]}
-};var schema$4 = {
+};var schema$5 = {
     nodes: {
         paragraph:  {
             content: "inline*",
@@ -126326,7 +126279,7 @@ function makeParagraph(context) {
     });
 }
 
-function menu$7(context) {
+function menu$8(context) {
     return [{
         id: 'makeParagraph',
         node: 'paragraph',
@@ -126342,8 +126295,8 @@ function menu$7(context) {
  */
 var paragraph = {
     id: 'paragraph',
-    schema: schema$4,
-    menu: function (context) { return menu$7(context); }
+    schema: schema$5,
+    menu: function (context) { return menu$8(context); }
 };/*
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2017 HumHub GmbH & Co. KG
@@ -126351,7 +126304,7 @@ var paragraph = {
  *
  */
 
-var schema$3 = {
+var schema$4 = {
     marks: {
         strikethrough: {
             parseDOM: [{tag: "s"}],
@@ -126378,7 +126331,7 @@ function markStrikethrough(context) {
     }, context);
 }
 
-function menu$6(context) {
+function menu$7(context) {
     return [
         {
             id: 'markStrikethrough',
@@ -126396,8 +126349,8 @@ function menu$6(context) {
 
 var strikethrough = {
     id: 'strikethrough',
-    schema: schema$3,
-    menu: function (context) { return menu$6(context); }
+    schema: schema$4,
+    menu: function (context) { return menu$7(context); }
 };/*
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2017 HumHub GmbH & Co. KG
@@ -126405,7 +126358,7 @@ var strikethrough = {
  *
  */
 
-var schema$2 = {
+var schema$3 = {
     marks: {
         strong: {
             sortOrder: 200,
@@ -126438,7 +126391,7 @@ function markStrong(context) {
     }, context);
 }
 
-function menu$5(context) {
+function menu$6(context) {
     return [
         {
             id: 'markStrong',
@@ -126506,8 +126459,8 @@ function markInputRule(regexp, markType, getAttrs) {
 
 var strong = {
     id: 'strong',
-    schema: schema$2,
-    menu: function (context) { return menu$5(context); },
+    schema: schema$3,
+    menu: function (context) { return menu$6(context); },
     inputRules: function (schema) { return [strongRule(schema)]; },
 };var nodes = tableNodes({
     tableGroup: "block",
@@ -126632,7 +126585,7 @@ var renderCell = function(state, node, headMarker) {
 };
 
 
-var schema$1 = {
+var schema$2 = {
     nodes: nodes
 };/*
  * @link https://www.humhub.org/
@@ -126685,7 +126638,7 @@ function wrapTableItem(context) {
     return new MenuItem(itemOptions);
 }
 
-function menu$4(context) {
+function menu$5(context) {
     return [
         {
             id: 'insertTable',
@@ -126971,8 +126924,8 @@ const table_plugin = /*@__PURE__*/getDefaultExportFromCjs(markdownit_table);/*
 
 var table = {
     id: 'table',
-    schema: schema$1,
-    menu: function (context) { return menu$4(context); },
+    schema: schema$2,
+    menu: function (context) { return menu$5(context); },
     registerMarkdownIt: function (markdownIt) {
         markdownIt.block.ruler.at('table', table_plugin);
     }
@@ -126982,7 +126935,7 @@ var table = {
  * @license https://www.humhub.com/licences
  */
 
-var schema = {
+var schema$1 = {
     nodes: {
         text: {
             sortOrder: 900,
@@ -127017,7 +126970,7 @@ var schema = {
 
 var text = {
     id: 'text',
-    schema: schema
+    schema: schema$1
 };/*
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2017 HumHub GmbH & Co. KG
@@ -127207,7 +127160,7 @@ var uploadFile = function (context) {
     });
 };
 
-function menu$3(context) {
+function menu$4(context) {
     return [
         {
             id: 'uploadFile',
@@ -127225,7 +127178,7 @@ function menu$3(context) {
 
 var upload = {
     id: 'upload',
-    menu:  function (context) { return menu$3(context); }
+    menu:  function (context) { return menu$4(context); }
 };/*
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2017 HumHub GmbH & Co. KG
@@ -127417,7 +127370,7 @@ function maximize(context, menuItem) {
     }
 }
 
-function menu$2(context) {
+function menu$3(context) {
     return [
         {
             id: 'fullScreen',
@@ -127446,7 +127399,7 @@ var fullscreen = {
         });
     },
     menu: function (context) {
-        var fullScreenMenu = menu$2(context);
+        var fullScreenMenu = menu$3(context);
         context.fullScreenMenuItem = fullScreenMenu[0].item;
         return fullScreenMenu;
     }
@@ -127498,7 +127451,7 @@ function resizeNav$1(context) {
     });
 }
 
-function menu$1(context) {
+function menu$2(context) {
     return [{
         id: 'resizeNav',
         group: 'resize',
@@ -127527,7 +127480,7 @@ function menuWrapper$1(context) {
 
 var resizeNav = {
     id: 'resizeNav',
-    menu: function (context) { return menu$1(); },
+    menu: function (context) { return menu$2(); },
     menuWrapper: function (context) { return menuWrapper$1(); },
     plugins: function (context) {
         return [
@@ -127792,7 +127745,7 @@ var switchMode = function (context) {
     });
 };
 
-function menu(context) {
+function menu$1(context) {
     return [{
         type: 'group',
         id: 'source-group',
@@ -127850,7 +127803,7 @@ function menuWrapper(context) {
 
 var source = {
     id: 'source',
-    menu: function (context) { return menu(context); },
+    menu: function (context) { return menu$1(context); },
     menuWrapper: function (context) { return menuWrapper(); },
     plugins: function (context) {
         return [
@@ -128077,6 +128030,180 @@ PresetRegistry.prototype.add = function add (presetId, plugin, options) {
     this.map[presetId] = preset;
 };/*
  * @link https://www.humhub.org/
+ * @copyright Copyright (c) 2023 HumHub GmbH & Co. KG
+ * @license https://www.humhub.com/licences
+ *
+ */
+
+var isActiveFileHandler = function () {
+    return isHumhub() &&
+        typeof humhub.prosemirrorFileHandler !== 'undefined' &&
+        humhub.prosemirrorFileHandler === true;
+};
+
+var getFileHandlerItem = function(context, link, index) {
+    link.on('click', function () {
+        if (isHumhub()) {
+            humhub.prosemirrorFileHandler = false;
+        }
+    });
+
+    return new MenuItem({
+        label: link.html(),
+        title: link.text(),
+        sortOrder: 300 + index,
+        enable: function enable(state) {
+            return canInsertLink(state)
+        },
+        run: function run() {
+            link.click();
+            if (isHumhub()) {
+                humhub.prosemirrorFileHandler = true;
+            }
+        }
+    })
+};
+
+var initFileHandler = function(context) {
+    if (!isHumhub()) {
+        return
+    }
+
+    humhub.event.on('humhub:file:created', function (evt, file) {
+        if (isActiveFileHandler() && typeof context.editor.view !== 'undefined') {
+            var view = context.editor.view;
+            view.dispatch(view.state.tr.replaceSelectionWith(createFileHandlerNode(context, file), false));
+        }
+    });
+
+    if (typeof(context.editor.$) !== 'undefined' && context.editor.$.length) {
+        var uploadWidget = context.editor.$.closest('form').find('[data-ui-widget="file.Upload"]').last();
+        if (uploadWidget.length) {
+            humhub.require('ui.widget').Widget.instance(uploadWidget).on('humhub:file:uploadEnd', function (evt, response) {
+                if (isActiveFileHandler() &&
+                    typeof context.editor.view !== 'undefined' &&
+                    response._response.result.files instanceof Array &&
+                    response._response.result.files.length) {
+                    var view = context.editor.view;
+                    for (var i = 0; i < response._response.result.files.length; i++) {
+                        view.dispatch(view.state.tr.replaceSelectionWith(createFileHandlerNode(context, response._response.result.files[i]), false));
+                    }
+                }
+            });
+        }
+    }
+};
+
+var createFileHandlerNode = function(context, file) {
+    if (file.error) {
+        return
+    }
+
+    var schema = context.schema;
+    if (file.mimeIcon === 'mime-image') {
+        return schema.nodes.image.create({src : file.url, title: file.name, alt: file.name, fileGuid: file.guid})
+    }
+
+    var linkMark = schema.marks.link.create({href: file.url, fileGuid: file.guid});
+    return schema.text(file.name).mark([linkMark])
+};/*
+ * @link https://www.humhub.org/
+ * @copyright Copyright (c) 2023 HumHub GmbH & Co. KG
+ * @license https://www.humhub.com/licences
+ *
+ */
+
+function menu(context) {
+    var links = context.editor.$.closest('form').find('a[data-action-process=file-handler]');
+
+    if (links.length === 0) {
+        return []
+    }
+
+    var menus = [];
+    for (var l = 0; l < links.length; l++) {
+        menus.push({
+            id: 'insertFileHandler',
+            node: 'file_handler',
+            group: 'insert',
+            item: getFileHandlerItem(context, links.eq(l), l)
+        });
+    }
+
+    return menus
+}/*
+ * @link https://www.humhub.org/
+ * @copyright Copyright (c) 2023 HumHub GmbH & Co. KG
+ * @license https://www.humhub.com/licences
+ */
+
+var schema = {
+    nodes: {
+        file_handler: {}
+    },
+    marks: {
+        sortOrder: 100,
+        link: {
+            attrs: {
+                href: {},
+                fileGuid: {default: null}
+            },
+            inclusive: false,
+            parseDOM: [{
+                tag: "a[href]", getAttrs: function getAttrs(dom) {
+                    var href = dom.getAttribute("href");
+                    if (!validateHref(href))  {
+                        href = '#';
+                    }
+
+                    return {
+                        href: href,
+                        fileGuid: dom.getAttribute("data-file-guid")
+                    }
+                }
+            }],
+            toDOM: function toDOM(node) { var ref = node.attrs;
+            var href = ref.href; return ["a", {href: href}, 0] },
+            parseMarkdown: {
+                mark: "link",
+                getAttrs: function (tok) {
+                    var ref = filterFileUrl(tok.attrGet("href"), 'view');
+                    var url = ref.url;
+                    var guid = ref.guid;
+
+                    if (!validateHref(url))  {
+                        url = '#';
+                    }
+
+                    return ({
+                        href: url,
+                        fileGuid: guid
+                    });
+                }
+            },
+            toMarkdown: {
+                open: "[",
+                close: function close(state, mark) {
+                    var href = (mark.attrs.fileGuid) ? 'file-guid:' + mark.attrs.fileGuid  : mark.attrs.href;
+                    return "](" + state.esc(href) + ")"
+                }
+            }
+        }
+    }
+};/*
+ * @link https://www.humhub.org/
+ * @copyright Copyright (c) 2023 HumHub GmbH & Co. KG
+ * @license https://www.humhub.com/licences
+ *
+ */
+
+var file_handler = {
+    id: 'file_handler',
+    schema: schema,
+    menu: function (context) { return menu(context); },
+    init: function (context) { return initFileHandler(context); }
+};/*
+ * @link https://www.humhub.org/
  * @copyright Copyright (c) 2017 HumHub GmbH & Co. KG
  * @license https://www.humhub.com/licences
  */
@@ -128107,6 +128234,7 @@ registerPlugin(link, 'markdown');
 registerPlugin(code_block, 'markdown');
 registerPlugin(hard_break, 'markdown');
 registerPlugin(horizontal_rule, 'markdown');
+registerPlugin(file_handler, 'markdown');
 registerPlugin(image, 'markdown');
 registerPlugin(list_item, 'markdown');
 registerPlugin(bullet_list, 'markdown');
@@ -128501,7 +128629,7 @@ var HumHubMarkdownSerializerState = /*@__PURE__*/(function (MarkdownSerializerSt
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2017 HumHub GmbH & Co. KG
  * @license https://www.humhub.com/licences
- */const markdown=/*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({__proto__:null,getParser,getSerializer,getRenderer,createLinkExtension,MarkdownParser,MarkdownSerializer,MarkdownSerializerState,defaultMarkdownParser,defaultMarkdownSerializer,schema:schema$l},Symbol.toStringTag,{value:'Module'}));/**
+ */const markdown=/*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({__proto__:null,getParser,getSerializer,getRenderer,createLinkExtension,MarkdownParser,MarkdownSerializer,MarkdownSerializerState,defaultMarkdownParser,defaultMarkdownSerializer,schema:schema$m},Symbol.toStringTag,{value:'Module'}));/**
 Create a plugin that, when added to a ProseMirror instance,
 causes a decoration to show up at the drop position when something
 is dragged over the editor.
@@ -129773,7 +129901,7 @@ window.prosemirror = window.humhub.richtext = {
     commands: commands,
     history: history$1,
     keymap: keymap$6,
-    menu: menu$l,
+    menu: menu$k,
     loader: loader$1,
     pmmenu: pmmenu,
     prompt: prompt,

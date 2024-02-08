@@ -42,6 +42,7 @@ import save from "./save";
 import source from "./source";
 import tabBehavior from "./tab_behavior";
 import {PluginRegistry} from "./registry";
+import file_handler from "./file_handler";
 
 const registry = new PluginRegistry();
 
@@ -69,6 +70,7 @@ registerPlugin(link, 'markdown');
 registerPlugin(code_block, 'markdown');
 registerPlugin(hard_break, 'markdown');
 registerPlugin(horizontal_rule, 'markdown');
+registerPlugin(file_handler, 'markdown');
 registerPlugin(image, 'markdown');
 registerPlugin(list_item, 'markdown');
 registerPlugin(bullet_list, 'markdown');
