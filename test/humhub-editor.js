@@ -125264,7 +125264,7 @@ function promt(title, context, attrs, node, mark) {
             value: attrs && attrs.href,
             required: true,
             clean: function (val) {
-                if (!validateHref(val, {anchor: '#'}))  {
+                if (!validateHref(val, {anchor: '#'}) && !validateRelative(val))  {
                     return 'https://' + val;
                 }
 
@@ -128035,11 +128035,17 @@ PresetRegistry.prototype.add = function add (presetId, plugin, options) {
  *
  */
 
-var isProsemirrorFileHandlerActive = false;
+var isActiveFileHandler = function () {
+    return isHumhub() &&
+        typeof humhub.prosemirrorFileHandler !== 'undefined' &&
+        humhub.prosemirrorFileHandler === true;
+};
 
 var getFileHandlerItem = function(context, link, index) {
     link.on('click', function () {
-        isProsemirrorFileHandlerActive = false;
+        if (isHumhub()) {
+            humhub.prosemirrorFileHandler = false;
+        }
     });
 
     return new MenuItem({
@@ -128051,7 +128057,9 @@ var getFileHandlerItem = function(context, link, index) {
         },
         run: function run() {
             link.click();
-            isProsemirrorFileHandlerActive = true;
+            if (isHumhub()) {
+                humhub.prosemirrorFileHandler = true;
+            }
         }
     })
 };
@@ -128062,7 +128070,7 @@ var initFileHandler = function(context) {
     }
 
     humhub.event.on('humhub:file:created', function (evt, file) {
-        if (isProsemirrorFileHandlerActive && typeof context.editor.view !== 'undefined') {
+        if (isActiveFileHandler() && typeof context.editor.view !== 'undefined') {
             var view = context.editor.view;
             view.dispatch(view.state.tr.replaceSelectionWith(createFileHandlerNode(context, file), false));
         }
@@ -128072,7 +128080,7 @@ var initFileHandler = function(context) {
         var uploadWidget = context.editor.$.closest('form').find('[data-ui-widget="file.Upload"]').last();
         if (uploadWidget.length) {
             humhub.require('ui.widget').Widget.instance(uploadWidget).on('humhub:file:uploadEnd', function (evt, response) {
-                if (isProsemirrorFileHandlerActive &&
+                if (isActiveFileHandler() &&
                     typeof context.editor.view !== 'undefined' &&
                     response._response.result.files instanceof Array &&
                     response._response.result.files.length) {

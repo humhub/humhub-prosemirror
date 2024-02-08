@@ -8,11 +8,17 @@
 import {isHumhub} from "../../humhub-bridge"
 import {canInsertLink, MenuItem} from "../../menu"
 
-let isProsemirrorFileHandlerActive = false
+const isActiveFileHandler = function () {
+    return isHumhub() &&
+        typeof humhub.prosemirrorFileHandler !== 'undefined' &&
+        humhub.prosemirrorFileHandler === true;
+}
 
 const getFileHandlerItem = function(context, link, index) {
     link.on('click', function () {
-        isProsemirrorFileHandlerActive = false
+        if (isHumhub()) {
+            humhub.prosemirrorFileHandler = false
+        }
     })
 
     return new MenuItem({
@@ -24,7 +30,9 @@ const getFileHandlerItem = function(context, link, index) {
         },
         run() {
             link.click()
-            isProsemirrorFileHandlerActive = true
+            if (isHumhub()) {
+                humhub.prosemirrorFileHandler = true
+            }
         }
     })
 }
@@ -35,7 +43,7 @@ const initFileHandler = function(context) {
     }
 
     humhub.event.on('humhub:file:created', (evt, file) => {
-        if (isProsemirrorFileHandlerActive && typeof context.editor.view !== 'undefined') {
+        if (isActiveFileHandler() && typeof context.editor.view !== 'undefined') {
             const view = context.editor.view
             view.dispatch(view.state.tr.replaceSelectionWith(createFileHandlerNode(context, file), false));
         }
@@ -45,7 +53,7 @@ const initFileHandler = function(context) {
         const uploadWidget = context.editor.$.closest('form').find('[data-ui-widget="file.Upload"]').last()
         if (uploadWidget.length) {
             humhub.require('ui.widget').Widget.instance(uploadWidget).on('humhub:file:uploadEnd', (evt, response) => {
-                if (isProsemirrorFileHandlerActive &&
+                if (isActiveFileHandler() &&
                     typeof context.editor.view !== 'undefined' &&
                     response._response.result.files instanceof Array &&
                     response._response.result.files.length) {
