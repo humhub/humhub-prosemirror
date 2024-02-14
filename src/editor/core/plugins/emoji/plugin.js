@@ -2,7 +2,6 @@
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2018 HumHub GmbH & Co. KG
  * @license https://www.humhub.com/licences
- *
  */
 
 import twemoji from "twemoji";
@@ -20,8 +19,8 @@ const emojiPlugin = (context) => {
                 text = twemoji.parse(text, context.getPluginOption('emoji', 'twemoji'));
 
                 // eslint-disable-next-line
-                return text.replace(/\<img class="emoji"[^\\\>]* alt=\"([^\"]*)\"[^\\\>]*\/>/g, function(match, char) {
-                    return ':'+getNameByChar(char)+':';
+                return text.replace(/\<img class="emoji"[^\\\>]* alt=\"([^\"]*)\"[^\\\>]*\/>/g, function (match, char) {
+                    return ':' + getNameByChar(char) + ':';
                 });
             },
         },
@@ -49,4 +48,4 @@ const emojiPlugin = (context) => {
     });
 };
 
-export {emojiPlugin, pluginKey}
+export {emojiPlugin, pluginKey};
