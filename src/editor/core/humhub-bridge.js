@@ -48,12 +48,12 @@ export function getUserLocale() {
     return isHumhub() ? humhub.modules.user.config.locale.split("-")[0] : null;
 }
 
-export function filterFileUrl(url) {
+export function filterFileUrl(url, mode) {
     if (!window.humhub) {
         return {url: url, guid: null};
     }
 
-    return isHumhub() ? humhub.modules.file.filterFileUrl(url) : url;
+    return isHumhub() ? humhub.modules.file.filterFileUrl(url, mode) : url;
 }
 
 export function getLoaderWidget() {

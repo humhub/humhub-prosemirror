@@ -1,12 +1,21 @@
 Changelog
 =========
 
+2.0.5 (unreleased)
+------------------
+- Fix #136: Allow relative URL for links
+- Enh #121: Use File handler
+- Fix #138: Emoji Implementation - In Twemoji there are some empty cards 
+- Enh #131: Support `file:///` links
+
 2.0.4
 ------------------
 - Enh #116: CodeMirror - Leave editor with Arrow/Up Down
 - Enh #115: Headline Anchor - Change Icon
 - Fix #122: Cannot copy & paste Codeblock
-- Enh #131: Support `file:///` links
+- Fix #129: Build broken emojilib.git
+- Fix #130: Copied Codeblock gets in single line e.g.
+- Fix #135: Open file link in new tab
 
 2.0.2 (July 28, 2023)
 ---------------------

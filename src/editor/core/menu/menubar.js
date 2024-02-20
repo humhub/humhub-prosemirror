@@ -26,7 +26,7 @@ function buildMenuItems(context) {
             sortOrder: 400,
             title: context.translate("Insert"),
             seperator: true,
-            icon: icons.image,
+            icon: icons.upload,
             items: []
         },
         helper: {

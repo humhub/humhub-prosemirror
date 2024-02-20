@@ -15,7 +15,7 @@ import {filterFileUrl} from "../../humhub-bridge";
 const image = {
     id: 'image',
     schema: schema,
-    menu: (context) => menu(context),
+    // menu: (context) => menu(context),
     plugins: (context) => {
         return [
             imagePlugin(context)
