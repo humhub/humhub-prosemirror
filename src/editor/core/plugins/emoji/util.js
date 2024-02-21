@@ -4,6 +4,7 @@
  * @license https://www.humhub.com/licences
  */
 
+import old_emojilib from "./emojilib-legacy";
 import emoji_shortcuts from "markdown-it-emoji/lib/data/shortcuts";
 import emojiNameMap from "emoji-name-map";
 import twemoji from "twemoji";
@@ -12,13 +13,24 @@ import emojiData from "unicode-emoji-json";
 import groupedEmojiData from "unicode-emoji-json/data-by-group";
 import {getEmojiConfig} from "../../humhub-bridge";
 
+const emoji_defs = {};
 const emoji_markdown_it_defs = {};
-
 const emoji_defs_by_char = (function() {
     const result = {};
 
     $.each(emojiData, function (emoji, def) {
+        $.each(old_emojilib, function (key, item) {
+            if (emoji === item.char && key !== def.name) {
+                def.char = emoji;
+                def.keywords = item.keywords;
+                emoji_defs[key] = def;
+                emoji_markdown_it_defs[key] = emoji;
+                return false;
+            }
+        });
+
         result[emoji] = def.name;
+        emojiNameMap.emoji[def.name] = emoji;
         emoji_markdown_it_defs[def.name] = emoji;
     });
 
@@ -114,9 +126,9 @@ const getMarkdownItOpts = () => {
 
 export {
     shortcuts,
+    twemoji,
     getNameByChar,
     getCharByName,
-    twemoji,
     getEmojiDefinitionByShortcut,
     getCharToDom,
     getMarkdownItOpts,
