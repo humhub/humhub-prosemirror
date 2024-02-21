@@ -1,12 +1,9 @@
 Changelog
 =========
 
-2.1.1 (unreleased)
+2.0.5
 ------------------
 - Fix #155: Prosemirror - Emoji Support Broken
-
-2.1.0
-------------------
 - Fix #136: Allow relative URL for links
 - Fix #138: Emoji Implementation - In Twemoji there are some empty cards 
 
