@@ -4,6 +4,7 @@ Changelog
 2.1.1 (unreleased)
 ------------------
 - Fix #155: Prosemirror - Emoji Support Broken
+- Enh #16: Security Update
 
 2.1.0
 ------------------
