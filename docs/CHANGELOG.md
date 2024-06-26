@@ -5,6 +5,7 @@ Changelog
 ------------------
 - Fix #155: Prosemirror - Emoji Support Broken
 - Enh #16: Security Update
+- Fix #146: Fix visibility of the edit image button
 
 2.1.0
 ------------------

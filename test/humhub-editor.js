@@ -13471,8 +13471,8 @@ var macBaseKeymap = {
     "Ctrl-a": selectTextblockStart,
     "Ctrl-e": selectTextblockEnd
 };
-for (var key$2 in pcBaseKeymap)
-    { macBaseKeymap[key$2] = pcBaseKeymap[key$2]; }
+for (var key$3 in pcBaseKeymap)
+    { macBaseKeymap[key$3] = pcBaseKeymap[key$3]; }
 var mac$3 = typeof navigator != "undefined" ? /Mac|iP(hone|[oa]d)/.test(navigator.platform)
     // @ts-ignore
     : typeof os != "undefined" && os.platform ? os.platform() == "darwin" : false;
@@ -19539,7 +19539,7 @@ var cirscir = "⧂";
 var ClockwiseContourIntegral = "∲";
 var CloseCurlyDoubleQuote = "”";
 var CloseCurlyQuote = "’";
-var clubs$2 = "♣";
+var clubs$3 = "♣";
 var clubsuit = "♣";
 var colon = ":";
 var Colon = "∷";
@@ -19605,13 +19605,13 @@ var cuwed = "⋏";
 var cwconint = "∲";
 var cwint = "∱";
 var cylcty = "⌭";
-var dagger$2 = "†";
+var dagger$3 = "†";
 var Dagger = "‡";
 var daleth = "ℸ";
 var darr = "↓";
 var Darr = "↡";
 var dArr = "⇓";
-var dash$2 = "‐";
+var dash$3 = "‐";
 var Dashv = "⫤";
 var dashv = "⊣";
 var dbkarow = "⤏";
@@ -19659,7 +19659,7 @@ var DJcy = "Ђ";
 var djcy = "ђ";
 var dlcorn = "⌞";
 var dlcrop = "⌍";
-var dollar$2 = "$";
+var dollar$3 = "$";
 var Dopf = "𝔻";
 var dopf = "𝕕";
 var Dot = "¨";
@@ -19803,7 +19803,7 @@ var ETH = "Ð";
 var eth = "ð";
 var Euml = "Ë";
 var euml = "ë";
-var euro$2 = "€";
+var euro$3 = "€";
 var excl = "!";
 var exist = "∃";
 var Exists = "∃";
@@ -19948,7 +19948,7 @@ var Hat = "^";
 var hbar = "ℏ";
 var Hcirc = "Ĥ";
 var hcirc = "ĥ";
-var hearts$2 = "♥";
+var hearts$3 = "♥";
 var heartsuit = "♥";
 var hellip = "…";
 var hercon = "⊹";
@@ -20041,7 +20041,7 @@ var isinE = "⋹";
 var isins = "⋴";
 var isinsv = "⋳";
 var isinv = "∈";
-var it$2 = "⁢";
+var it$3 = "⁢";
 var Itilde = "Ĩ";
 var itilde = "ĩ";
 var Iukcy = "І";
@@ -20172,7 +20172,7 @@ var LeftUpVector = "↿";
 var LeftVectorBar = "⥒";
 var LeftVector = "↼";
 var lEg = "⪋";
-var leg$2 = "⋚";
+var leg$3 = "⋚";
 var leq = "≤";
 var leqq = "≦";
 var leqslant = "⩽";
@@ -20669,7 +20669,7 @@ var Phi = "Φ";
 var phi = "φ";
 var phiv = "ϕ";
 var phmmat = "ℳ";
-var phone$2 = "☎";
+var phone$3 = "☎";
 var Pi = "Π";
 var pi = "π";
 var pitchfork = "⋔";
@@ -20693,7 +20693,7 @@ var Poincareplane = "ℌ";
 var pointint = "⨕";
 var popf = "𝕡";
 var Popf = "ℙ";
-var pound$2 = "£";
+var pound$3 = "£";
 var prap = "⪷";
 var Pr = "⪻";
 var pr = "≺";
@@ -20855,7 +20855,7 @@ var RightUpVectorBar = "⥔";
 var RightUpVector = "↾";
 var RightVectorBar = "⥓";
 var RightVector = "⇀";
-var ring$2 = "˚";
+var ring$3 = "˚";
 var risingdotseq = "≓";
 var rlarr = "⇄";
 var rlhar = "⇌";
@@ -20965,7 +20965,7 @@ var smallsetminus = "∖";
 var smashp = "⨳";
 var smeparsl = "⧤";
 var smid = "∣";
-var smile$2 = "⌣";
+var smile$3 = "⌣";
 var smt = "⪪";
 var smte = "⪬";
 var smtes = "⪬︀";
@@ -20976,7 +20976,7 @@ var solb = "⧄";
 var sol = "/";
 var Sopf = "𝕊";
 var sopf = "𝕤";
-var spades$2 = "♠";
+var spades$3 = "♠";
 var spadesuit = "♠";
 var spar = "∥";
 var sqcap = "⊓";
@@ -21010,7 +21010,7 @@ var ssetmn = "∖";
 var ssmile = "⌣";
 var sstarf = "⋆";
 var Star = "⋆";
-var star$3 = "☆";
+var star$4 = "☆";
 var starf = "★";
 var straightepsilon = "ϵ";
 var straightphi = "ϕ";
@@ -21130,7 +21130,7 @@ var tint = "∭";
 var toea = "⤨";
 var topbot = "⌶";
 var topcir = "⫱";
-var top$3 = "⊤";
+var top$4 = "⊤";
 var Topf = "𝕋";
 var topf = "𝕥";
 var topfork = "⫚";
@@ -21358,7 +21358,7 @@ var Ycirc = "Ŷ";
 var ycirc = "ŷ";
 var Ycy = "Ы";
 var ycy = "ы";
-var yen$2 = "¥";
+var yen$3 = "¥";
 var Yfr = "𝔜";
 var yfr = "𝔶";
 var YIcy = "Ї";
@@ -21663,7 +21663,7 @@ const require$$0$3 = {
 	ClockwiseContourIntegral: ClockwiseContourIntegral,
 	CloseCurlyDoubleQuote: CloseCurlyDoubleQuote,
 	CloseCurlyQuote: CloseCurlyQuote,
-	clubs: clubs$2,
+	clubs: clubs$3,
 	clubsuit: clubsuit,
 	colon: colon,
 	Colon: Colon,
@@ -21729,13 +21729,13 @@ const require$$0$3 = {
 	cwconint: cwconint,
 	cwint: cwint,
 	cylcty: cylcty,
-	dagger: dagger$2,
+	dagger: dagger$3,
 	Dagger: Dagger,
 	daleth: daleth,
 	darr: darr,
 	Darr: Darr,
 	dArr: dArr,
-	dash: dash$2,
+	dash: dash$3,
 	Dashv: Dashv,
 	dashv: dashv,
 	dbkarow: dbkarow,
@@ -21783,7 +21783,7 @@ const require$$0$3 = {
 	djcy: djcy,
 	dlcorn: dlcorn,
 	dlcrop: dlcrop,
-	dollar: dollar$2,
+	dollar: dollar$3,
 	Dopf: Dopf,
 	dopf: dopf,
 	Dot: Dot,
@@ -21927,7 +21927,7 @@ const require$$0$3 = {
 	eth: eth,
 	Euml: Euml,
 	euml: euml,
-	euro: euro$2,
+	euro: euro$3,
 	excl: excl,
 	exist: exist,
 	Exists: Exists,
@@ -22072,7 +22072,7 @@ const require$$0$3 = {
 	hbar: hbar,
 	Hcirc: Hcirc,
 	hcirc: hcirc,
-	hearts: hearts$2,
+	hearts: hearts$3,
 	heartsuit: heartsuit,
 	hellip: hellip,
 	hercon: hercon,
@@ -22166,7 +22166,7 @@ const require$$0$3 = {
 	isins: isins,
 	isinsv: isinsv,
 	isinv: isinv,
-	it: it$2,
+	it: it$3,
 	Itilde: Itilde,
 	itilde: itilde,
 	Iukcy: Iukcy,
@@ -22297,7 +22297,7 @@ const require$$0$3 = {
 	LeftVectorBar: LeftVectorBar,
 	LeftVector: LeftVector,
 	lEg: lEg,
-	leg: leg$2,
+	leg: leg$3,
 	leq: leq,
 	leqq: leqq,
 	leqslant: leqslant,
@@ -22795,7 +22795,7 @@ const require$$0$3 = {
 	phi: phi,
 	phiv: phiv,
 	phmmat: phmmat,
-	phone: phone$2,
+	phone: phone$3,
 	Pi: Pi,
 	pi: pi,
 	pitchfork: pitchfork,
@@ -22819,7 +22819,7 @@ const require$$0$3 = {
 	pointint: pointint,
 	popf: popf,
 	Popf: Popf,
-	pound: pound$2,
+	pound: pound$3,
 	prap: prap,
 	Pr: Pr,
 	pr: pr,
@@ -22981,7 +22981,7 @@ const require$$0$3 = {
 	RightUpVector: RightUpVector,
 	RightVectorBar: RightVectorBar,
 	RightVector: RightVector,
-	ring: ring$2,
+	ring: ring$3,
 	risingdotseq: risingdotseq,
 	rlarr: rlarr,
 	rlhar: rlhar,
@@ -23091,7 +23091,7 @@ const require$$0$3 = {
 	smashp: smashp,
 	smeparsl: smeparsl,
 	smid: smid,
-	smile: smile$2,
+	smile: smile$3,
 	smt: smt,
 	smte: smte,
 	smtes: smtes,
@@ -23102,7 +23102,7 @@ const require$$0$3 = {
 	sol: sol,
 	Sopf: Sopf,
 	sopf: sopf,
-	spades: spades$2,
+	spades: spades$3,
 	spadesuit: spadesuit,
 	spar: spar,
 	sqcap: sqcap,
@@ -23136,7 +23136,7 @@ const require$$0$3 = {
 	ssmile: ssmile,
 	sstarf: sstarf,
 	Star: Star,
-	star: star$3,
+	star: star$4,
 	starf: starf,
 	straightepsilon: straightepsilon,
 	straightphi: straightphi,
@@ -23256,7 +23256,7 @@ const require$$0$3 = {
 	toea: toea,
 	topbot: topbot,
 	topcir: topcir,
-	top: top$3,
+	top: top$4,
 	Topf: Topf,
 	topf: topf,
 	topfork: topfork,
@@ -23484,7 +23484,7 @@ const require$$0$3 = {
 	ycirc: ycirc,
 	Ycy: Ycy,
 	ycy: ycy,
-	yen: yen$2,
+	yen: yen$3,
 	Yfr: Yfr,
 	yfr: yfr,
 	YIcy: YIcy,
@@ -28415,7 +28415,7 @@ emphasis.postProcess = function emphasis(state) {
 var isSpace$4              = utils$1.isSpace;
 
 
-var link$3 = function link(state, silent) {
+var link$4 = function link(state, silent) {
   var attrs,
       code,
       label,
@@ -29201,7 +29201,7 @@ var _rules = [
   [ 'backticks',       backticks ],
   [ 'strikethrough',   strikethrough$1.tokenize ],
   [ 'emphasis',        emphasis.tokenize ],
-  [ 'link',            link$3 ],
+  [ 'link',            link$4 ],
   [ 'image',           image$1 ],
   [ 'autolink',        autolink ],
   [ 'html_inline',     html_inline ],
@@ -30685,7 +30685,7 @@ var punycode$1 = {
     block: {},
     inline: {}
   }
-};var zero$2 = {
+};var zero$3 = {
   options: {
     html:         false,        // Enable HTML tags in source
     xhtmlOut:     false,        // Use '/' to close single tags (<br />)
@@ -30829,7 +30829,7 @@ var punycode     = require$$8;
 
 var config = {
   default: _default,
-  zero: zero$2,
+  zero: zero$3,
   commonmark: commonmark
 };
 
@@ -36598,7 +36598,7 @@ function findColumn(string, col, tabSize, strict) {
 }var C = "\u037c";
 var COUNT = typeof Symbol == "undefined" ? "__" + C : Symbol.for(C);
 var SET = typeof Symbol == "undefined" ? "__styleSet" + Math.floor(Math.random() * 1e8) : Symbol("styleSet");
-var top$2 = typeof globalThis != "undefined" ? globalThis : typeof window != "undefined" ? window : {};
+var top$3 = typeof globalThis != "undefined" ? globalThis : typeof window != "undefined" ? window : {};
 
 // :: - Style modules encapsulate a set of CSS rules defined from
 // JavaScript. Their definitions are only available in a given DOM
@@ -36649,8 +36649,8 @@ StyleModule.prototype.getRules = function getRules () { return this.rules.join("
 // :: () → string
 // Generate a new unique CSS class name.
 StyleModule.newName = function newName () {
-  var id = top$2[COUNT] || 1;
-  top$2[COUNT] = id + 1;
+  var id = top$3[COUNT] || 1;
+  top$3[COUNT] = id + 1;
   return C + id.toString(36)
 };
 
@@ -52307,7 +52307,7 @@ class Dialect {
     }
     allows(term) { return !this.disabled || this.disabled[term] == 0; }
 }
-const id$2 = x => x;
+const id$3 = x => x;
 /// Context trackers are used to track stateful context (such as
 /// indentation in the Python grammar, or parent elements in the XML
 /// grammar) needed by external tokenizers. You declare them in a
@@ -52322,9 +52322,9 @@ class ContextTracker {
     /// Define a context tracker.
     constructor(spec) {
         this.start = spec.start;
-        this.shift = spec.shift || id$2;
-        this.reduce = spec.reduce || id$2;
-        this.reuse = spec.reuse || id$2;
+        this.shift = spec.shift || id$3;
+        this.reduce = spec.reduce || id$3;
+        this.reuse = spec.reuse || id$3;
         this.hash = spec.hash || (() => 0);
         this.strict = spec.strict !== false;
     }
@@ -52612,7 +52612,7 @@ const noSemi = 303,
 const space = [9, 10, 11, 12, 13, 32, 133, 160, 5760, 8192, 8193, 8194, 8195, 8196, 8197, 8198, 8199, 8200,
                8201, 8202, 8232, 8233, 8239, 8287, 12288];
 
-const braceR = 125, semicolon = 59, slash = 47, star$2 = 42, plus = 43, minus = 45;
+const braceR = 125, semicolon = 59, slash = 47, star$3 = 42, plus = 43, minus = 45;
 
 const trackNewline = new ContextTracker({
   start: false,
@@ -52631,7 +52631,7 @@ const insertSemicolon = new ExternalTokenizer((input, stack) => {
 const noSemicolon = new ExternalTokenizer((input, stack) => {
   let {next} = input, after;
   if (space.indexOf(next) > -1) return
-  if (next == slash && ((after = input.peek(1)) == slash || after == star$2)) return
+  if (next == slash && ((after = input.peek(1)) == slash || after == star$3)) return
   if (next != braceR && next != semicolon && next != -1 && !stack.context)
     input.acceptToken(noSemi);
 }, {contextual: true});
@@ -54701,230 +54701,230 @@ var schema$f = {
             }
         }
     }
-};var grinning$1 = "😀";
-var smiley$1 = "😃";
-var smile$1 = "😄";
-var grin$1 = "😁";
-var laughing$1 = "😆";
+};var grinning$2 = "😀";
+var smiley$2 = "😃";
+var smile$2 = "😄";
+var grin$2 = "😁";
+var laughing$2 = "😆";
 var satisfied = "😆";
-var sweat_smile$1 = "😅";
-var rofl$1 = "🤣";
-var joy$1 = "😂";
-var slightly_smiling_face$1 = "🙂";
-var upside_down_face$1 = "🙃";
-var wink$1 = "😉";
-var blush$1 = "😊";
-var innocent$1 = "😇";
-var smiling_face_with_three_hearts$1 = "🥰";
-var heart_eyes$1 = "😍";
-var star_struck$1 = "🤩";
-var kissing_heart$1 = "😘";
-var kissing$1 = "😗";
-var relaxed$1 = "☺️";
-var kissing_closed_eyes$1 = "😚";
-var kissing_smiling_eyes$1 = "😙";
+var sweat_smile$2 = "😅";
+var rofl$2 = "🤣";
+var joy$2 = "😂";
+var slightly_smiling_face$2 = "🙂";
+var upside_down_face$2 = "🙃";
+var wink$2 = "😉";
+var blush$2 = "😊";
+var innocent$2 = "😇";
+var smiling_face_with_three_hearts$2 = "🥰";
+var heart_eyes$2 = "😍";
+var star_struck$2 = "🤩";
+var kissing_heart$2 = "😘";
+var kissing$2 = "😗";
+var relaxed$2 = "☺️";
+var kissing_closed_eyes$2 = "😚";
+var kissing_smiling_eyes$2 = "😙";
 var smiling_face_with_tear = "🥲";
-var yum$1 = "😋";
-var stuck_out_tongue$1 = "😛";
-var stuck_out_tongue_winking_eye$1 = "😜";
+var yum$2 = "😋";
+var stuck_out_tongue$2 = "😛";
+var stuck_out_tongue_winking_eye$2 = "😜";
 var zany_face = "🤪";
-var stuck_out_tongue_closed_eyes$1 = "😝";
-var money_mouth_face$1 = "🤑";
-var hugs$1 = "🤗";
-var hand_over_mouth$1 = "🤭";
+var stuck_out_tongue_closed_eyes$2 = "😝";
+var money_mouth_face$2 = "🤑";
+var hugs$2 = "🤗";
+var hand_over_mouth$2 = "🤭";
 var shushing_face = "🤫";
-var thinking$1 = "🤔";
-var zipper_mouth_face$1 = "🤐";
-var raised_eyebrow$1 = "🤨";
-var neutral_face$1 = "😐";
-var expressionless$1 = "😑";
-var no_mouth$1 = "😶";
-var smirk$1 = "😏";
-var unamused$1 = "😒";
-var roll_eyes$1 = "🙄";
-var grimacing$1 = "😬";
-var lying_face$1 = "🤥";
-var relieved$1 = "😌";
-var pensive$1 = "😔";
-var sleepy$1 = "😪";
-var drooling_face$1 = "🤤";
-var sleeping$1 = "😴";
-var mask$1 = "😷";
-var face_with_thermometer$1 = "🤒";
-var face_with_head_bandage$1 = "🤕";
-var nauseated_face$1 = "🤢";
+var thinking$2 = "🤔";
+var zipper_mouth_face$2 = "🤐";
+var raised_eyebrow$2 = "🤨";
+var neutral_face$2 = "😐";
+var expressionless$2 = "😑";
+var no_mouth$2 = "😶";
+var smirk$2 = "😏";
+var unamused$2 = "😒";
+var roll_eyes$2 = "🙄";
+var grimacing$2 = "😬";
+var lying_face$2 = "🤥";
+var relieved$2 = "😌";
+var pensive$2 = "😔";
+var sleepy$2 = "😪";
+var drooling_face$2 = "🤤";
+var sleeping$2 = "😴";
+var mask$2 = "😷";
+var face_with_thermometer$2 = "🤒";
+var face_with_head_bandage$2 = "🤕";
+var nauseated_face$2 = "🤢";
 var vomiting_face = "🤮";
-var sneezing_face$1 = "🤧";
+var sneezing_face$2 = "🤧";
 var hot_face = "🥵";
 var cold_face = "🥶";
 var woozy_face = "🥴";
-var dizzy_face$1 = "😵";
-var exploding_head$1 = "🤯";
-var cowboy_hat_face$1 = "🤠";
+var dizzy_face$2 = "😵";
+var exploding_head$2 = "🤯";
+var cowboy_hat_face$2 = "🤠";
 var partying_face = "🥳";
 var disguised_face = "🥸";
-var sunglasses$1 = "😎";
-var nerd_face$1 = "🤓";
+var sunglasses$2 = "😎";
+var nerd_face$2 = "🤓";
 var monocle_face = "🧐";
-var confused$1 = "😕";
-var worried$1 = "😟";
-var slightly_frowning_face$1 = "🙁";
-var frowning_face$1 = "☹️";
-var open_mouth$1 = "😮";
-var hushed$1 = "😯";
-var astonished$1 = "😲";
-var flushed$1 = "😳";
+var confused$2 = "😕";
+var worried$2 = "😟";
+var slightly_frowning_face$2 = "🙁";
+var frowning_face$2 = "☹️";
+var open_mouth$2 = "😮";
+var hushed$2 = "😯";
+var astonished$2 = "😲";
+var flushed$2 = "😳";
 var pleading_face = "🥺";
-var frowning$1 = "😦";
-var anguished$1 = "😧";
-var fearful$1 = "😨";
-var cold_sweat$1 = "😰";
-var disappointed_relieved$1 = "😥";
-var cry$1 = "😢";
-var sob$1 = "😭";
-var scream$1 = "😱";
-var confounded$1 = "😖";
-var persevere$1 = "😣";
-var disappointed$1 = "😞";
-var sweat$1 = "😓";
-var weary$1 = "😩";
-var tired_face$1 = "😫";
+var frowning$2 = "😦";
+var anguished$2 = "😧";
+var fearful$2 = "😨";
+var cold_sweat$2 = "😰";
+var disappointed_relieved$2 = "😥";
+var cry$2 = "😢";
+var sob$2 = "😭";
+var scream$2 = "😱";
+var confounded$2 = "😖";
+var persevere$2 = "😣";
+var disappointed$2 = "😞";
+var sweat$2 = "😓";
+var weary$2 = "😩";
+var tired_face$2 = "😫";
 var yawning_face = "🥱";
-var triumph$1 = "😤";
-var rage$1 = "😡";
+var triumph$2 = "😤";
+var rage$2 = "😡";
 var pout = "😡";
-var angry$1 = "😠";
+var angry$2 = "😠";
 var cursing_face = "🤬";
-var smiling_imp$1 = "😈";
-var imp$1 = "👿";
-var skull$1 = "💀";
-var skull_and_crossbones$1 = "☠️";
+var smiling_imp$2 = "😈";
+var imp$2 = "👿";
+var skull$2 = "💀";
+var skull_and_crossbones$2 = "☠️";
 var hankey = "💩";
-var poop$1 = "💩";
+var poop$2 = "💩";
 var shit = "💩";
-var clown_face$1 = "🤡";
-var japanese_ogre$1 = "👹";
-var japanese_goblin$1 = "👺";
-var ghost$1 = "👻";
-var alien$1 = "👽";
-var space_invader$1 = "👾";
-var robot$1 = "🤖";
-var smiley_cat$1 = "😺";
-var smile_cat$1 = "😸";
-var joy_cat$1 = "😹";
-var heart_eyes_cat$1 = "😻";
-var smirk_cat$1 = "😼";
-var kissing_cat$1 = "😽";
-var scream_cat$1 = "🙀";
-var crying_cat_face$1 = "😿";
-var pouting_cat$1 = "😾";
-var see_no_evil$1 = "🙈";
-var hear_no_evil$1 = "🙉";
-var speak_no_evil$1 = "🙊";
-var kiss$1 = "💋";
-var love_letter$1 = "💌";
-var cupid$1 = "💘";
-var gift_heart$1 = "💝";
-var sparkling_heart$1 = "💖";
-var heartpulse$1 = "💗";
-var heartbeat$1 = "💓";
-var revolving_hearts$1 = "💞";
-var two_hearts$1 = "💕";
-var heart_decoration$1 = "💟";
-var heavy_heart_exclamation$1 = "❣️";
-var broken_heart$1 = "💔";
-var heart$1 = "❤️";
-var orange_heart$1 = "🧡";
-var yellow_heart$1 = "💛";
-var green_heart$1 = "💚";
-var blue_heart$1 = "💙";
-var purple_heart$1 = "💜";
+var clown_face$2 = "🤡";
+var japanese_ogre$2 = "👹";
+var japanese_goblin$2 = "👺";
+var ghost$2 = "👻";
+var alien$2 = "👽";
+var space_invader$2 = "👾";
+var robot$2 = "🤖";
+var smiley_cat$2 = "😺";
+var smile_cat$2 = "😸";
+var joy_cat$2 = "😹";
+var heart_eyes_cat$2 = "😻";
+var smirk_cat$2 = "😼";
+var kissing_cat$2 = "😽";
+var scream_cat$2 = "🙀";
+var crying_cat_face$2 = "😿";
+var pouting_cat$2 = "😾";
+var see_no_evil$2 = "🙈";
+var hear_no_evil$2 = "🙉";
+var speak_no_evil$2 = "🙊";
+var kiss$2 = "💋";
+var love_letter$2 = "💌";
+var cupid$2 = "💘";
+var gift_heart$2 = "💝";
+var sparkling_heart$2 = "💖";
+var heartpulse$2 = "💗";
+var heartbeat$2 = "💓";
+var revolving_hearts$2 = "💞";
+var two_hearts$2 = "💕";
+var heart_decoration$2 = "💟";
+var heavy_heart_exclamation$2 = "❣️";
+var broken_heart$2 = "💔";
+var heart$2 = "❤️";
+var orange_heart$2 = "🧡";
+var yellow_heart$2 = "💛";
+var green_heart$2 = "💚";
+var blue_heart$2 = "💙";
+var purple_heart$2 = "💜";
 var brown_heart = "🤎";
-var black_heart$1 = "🖤";
+var black_heart$2 = "🖤";
 var white_heart = "🤍";
-var anger$1 = "💢";
-var boom$1 = "💥";
+var anger$2 = "💢";
+var boom$2 = "💥";
 var collision = "💥";
-var dizzy$1 = "💫";
-var sweat_drops$1 = "💦";
-var dash$1 = "💨";
-var hole$1 = "🕳️";
-var bomb$1 = "💣";
-var speech_balloon$1 = "💬";
+var dizzy$2 = "💫";
+var sweat_drops$2 = "💦";
+var dash$2 = "💨";
+var hole$2 = "🕳️";
+var bomb$2 = "💣";
+var speech_balloon$2 = "💬";
 var eye_speech_bubble = "👁️‍🗨️";
-var left_speech_bubble$1 = "🗨️";
-var right_anger_bubble$1 = "🗯️";
-var thought_balloon$1 = "💭";
-var zzz$1 = "💤";
-var wave$1 = "👋";
-var raised_back_of_hand$1 = "🤚";
-var raised_hand_with_fingers_splayed$1 = "🖐️";
+var left_speech_bubble$2 = "🗨️";
+var right_anger_bubble$2 = "🗯️";
+var thought_balloon$2 = "💭";
+var zzz$2 = "💤";
+var wave$2 = "👋";
+var raised_back_of_hand$2 = "🤚";
+var raised_hand_with_fingers_splayed$2 = "🖐️";
 var hand = "✋";
-var raised_hand$1 = "✋";
-var vulcan_salute$1 = "🖖";
-var ok_hand$1 = "👌";
+var raised_hand$2 = "✋";
+var vulcan_salute$2 = "🖖";
+var ok_hand$2 = "👌";
 var pinched_fingers = "🤌";
 var pinching_hand = "🤏";
-var v$1 = "✌️";
-var crossed_fingers$1 = "🤞";
+var v$2 = "✌️";
+var crossed_fingers$2 = "🤞";
 var love_you_gesture = "🤟";
-var metal$1 = "🤘";
-var call_me_hand$1 = "🤙";
-var point_left$1 = "👈";
-var point_right$1 = "👉";
-var point_up_2$1 = "👆";
+var metal$2 = "🤘";
+var call_me_hand$2 = "🤙";
+var point_left$2 = "👈";
+var point_right$2 = "👉";
+var point_up_2$2 = "👆";
 var middle_finger = "🖕";
-var fu$1 = "🖕";
-var point_down$1 = "👇";
-var point_up$1 = "☝️";
+var fu$2 = "🖕";
+var point_down$2 = "👇";
+var point_up$2 = "☝️";
 var thumbsup = "👍";
 var thumbsdown = "👎";
 var fist_raised = "✊";
-var fist$1 = "✊";
+var fist$2 = "✊";
 var fist_oncoming = "👊";
-var facepunch$1 = "👊";
+var facepunch$2 = "👊";
 var punch = "👊";
-var fist_left$1 = "🤛";
-var fist_right$1 = "🤜";
-var clap$1 = "👏";
-var raised_hands$1 = "🙌";
-var open_hands$1 = "👐";
+var fist_left$2 = "🤛";
+var fist_right$2 = "🤜";
+var clap$2 = "👏";
+var raised_hands$2 = "🙌";
+var open_hands$2 = "👐";
 var palms_up_together = "🤲";
-var handshake$1 = "🤝";
-var pray$1 = "🙏";
-var writing_hand$1 = "✍️";
-var nail_care$1 = "💅";
-var selfie$1 = "🤳";
-var muscle$1 = "💪";
+var handshake$2 = "🤝";
+var pray$2 = "🙏";
+var writing_hand$2 = "✍️";
+var nail_care$2 = "💅";
+var selfie$2 = "🤳";
+var muscle$2 = "💪";
 var mechanical_arm = "🦾";
 var mechanical_leg = "🦿";
-var leg$1 = "🦵";
-var foot$1 = "🦶";
-var ear$1 = "👂";
+var leg$2 = "🦵";
+var foot$2 = "🦶";
+var ear$2 = "👂";
 var ear_with_hearing_aid = "🦻";
-var nose$1 = "👃";
-var brain$1 = "🧠";
+var nose$2 = "👃";
+var brain$2 = "🧠";
 var anatomical_heart = "🫀";
 var lungs = "🫁";
-var tooth$1 = "🦷";
-var bone$1 = "🦴";
-var eyes$1 = "👀";
-var eye$1 = "👁️";
-var tongue$1 = "👅";
-var lips$1 = "👄";
-var baby$1 = "👶";
-var child$1 = "🧒";
-var boy$1 = "👦";
-var girl$1 = "👧";
-var adult$1 = "🧑";
+var tooth$2 = "🦷";
+var bone$2 = "🦴";
+var eyes$2 = "👀";
+var eye$2 = "👁️";
+var tongue$2 = "👅";
+var lips$2 = "👄";
+var baby$2 = "👶";
+var child$2 = "🧒";
+var boy$2 = "👦";
+var girl$2 = "👧";
+var adult$2 = "🧑";
 var blond_haired_person = "👱";
-var man$1 = "👨";
-var bearded_person$1 = "🧔";
+var man$2 = "👨";
+var bearded_person$2 = "🧔";
 var red_haired_man = "👨‍🦰";
 var curly_haired_man = "👨‍🦱";
 var white_haired_man = "👨‍🦳";
 var bald_man = "👨‍🦲";
-var woman$1 = "👩";
+var woman$2 = "👩";
 var red_haired_woman = "👩‍🦰";
 var person_red_hair = "🧑‍🦰";
 var curly_haired_woman = "👩‍🦱";
@@ -54934,130 +54934,130 @@ var person_white_hair = "🧑‍🦳";
 var bald_woman = "👩‍🦲";
 var person_bald = "🧑‍🦲";
 var blond_haired_woman = "👱‍♀️";
-var blonde_woman$1 = "👱‍♀️";
+var blonde_woman$2 = "👱‍♀️";
 var blond_haired_man = "👱‍♂️";
-var older_adult$1 = "🧓";
-var older_man$1 = "👴";
-var older_woman$1 = "👵";
+var older_adult$2 = "🧓";
+var older_man$2 = "👴";
+var older_woman$2 = "👵";
 var frowning_person = "🙍";
-var frowning_man$1 = "🙍‍♂️";
-var frowning_woman$1 = "🙍‍♀️";
+var frowning_man$2 = "🙍‍♂️";
+var frowning_woman$2 = "🙍‍♀️";
 var pouting_face = "🙎";
-var pouting_man$1 = "🙎‍♂️";
-var pouting_woman$1 = "🙎‍♀️";
+var pouting_man$2 = "🙎‍♂️";
+var pouting_woman$2 = "🙎‍♀️";
 var no_good = "🙅";
-var no_good_man$1 = "🙅‍♂️";
+var no_good_man$2 = "🙅‍♂️";
 var ng_man = "🙅‍♂️";
-var no_good_woman$1 = "🙅‍♀️";
+var no_good_woman$2 = "🙅‍♀️";
 var ng_woman = "🙅‍♀️";
 var ok_person = "🙆";
-var ok_man$1 = "🙆‍♂️";
-var ok_woman$1 = "🙆‍♀️";
+var ok_man$2 = "🙆‍♂️";
+var ok_woman$2 = "🙆‍♀️";
 var tipping_hand_person = "💁";
 var information_desk_person = "💁";
-var tipping_hand_man$1 = "💁‍♂️";
+var tipping_hand_man$2 = "💁‍♂️";
 var sassy_man = "💁‍♂️";
-var tipping_hand_woman$1 = "💁‍♀️";
+var tipping_hand_woman$2 = "💁‍♀️";
 var sassy_woman = "💁‍♀️";
 var raising_hand = "🙋";
-var raising_hand_man$1 = "🙋‍♂️";
-var raising_hand_woman$1 = "🙋‍♀️";
+var raising_hand_man$2 = "🙋‍♂️";
+var raising_hand_woman$2 = "🙋‍♀️";
 var deaf_person = "🧏";
 var deaf_man = "🧏‍♂️";
 var deaf_woman = "🧏‍♀️";
 var bow = "🙇";
-var bowing_man$1 = "🙇‍♂️";
-var bowing_woman$1 = "🙇‍♀️";
+var bowing_man$2 = "🙇‍♂️";
+var bowing_woman$2 = "🙇‍♀️";
 var facepalm = "🤦";
-var man_facepalming$1 = "🤦‍♂️";
-var woman_facepalming$1 = "🤦‍♀️";
+var man_facepalming$2 = "🤦‍♂️";
+var woman_facepalming$2 = "🤦‍♀️";
 var shrug = "🤷";
-var man_shrugging$1 = "🤷‍♂️";
-var woman_shrugging$1 = "🤷‍♀️";
+var man_shrugging$2 = "🤷‍♂️";
+var woman_shrugging$2 = "🤷‍♀️";
 var health_worker = "🧑‍⚕️";
-var man_health_worker$1 = "👨‍⚕️";
-var woman_health_worker$1 = "👩‍⚕️";
+var man_health_worker$2 = "👨‍⚕️";
+var woman_health_worker$2 = "👩‍⚕️";
 var student = "🧑‍🎓";
-var man_student$1 = "👨‍🎓";
-var woman_student$1 = "👩‍🎓";
+var man_student$2 = "👨‍🎓";
+var woman_student$2 = "👩‍🎓";
 var teacher = "🧑‍🏫";
-var man_teacher$1 = "👨‍🏫";
-var woman_teacher$1 = "👩‍🏫";
+var man_teacher$2 = "👨‍🏫";
+var woman_teacher$2 = "👩‍🏫";
 var judge = "🧑‍⚖️";
-var man_judge$1 = "👨‍⚖️";
-var woman_judge$1 = "👩‍⚖️";
+var man_judge$2 = "👨‍⚖️";
+var woman_judge$2 = "👩‍⚖️";
 var farmer = "🧑‍🌾";
-var man_farmer$1 = "👨‍🌾";
-var woman_farmer$1 = "👩‍🌾";
+var man_farmer$2 = "👨‍🌾";
+var woman_farmer$2 = "👩‍🌾";
 var cook = "🧑‍🍳";
-var man_cook$1 = "👨‍🍳";
-var woman_cook$1 = "👩‍🍳";
+var man_cook$2 = "👨‍🍳";
+var woman_cook$2 = "👩‍🍳";
 var mechanic = "🧑‍🔧";
-var man_mechanic$1 = "👨‍🔧";
-var woman_mechanic$1 = "👩‍🔧";
+var man_mechanic$2 = "👨‍🔧";
+var woman_mechanic$2 = "👩‍🔧";
 var factory_worker = "🧑‍🏭";
-var man_factory_worker$1 = "👨‍🏭";
-var woman_factory_worker$1 = "👩‍🏭";
+var man_factory_worker$2 = "👨‍🏭";
+var woman_factory_worker$2 = "👩‍🏭";
 var office_worker = "🧑‍💼";
-var man_office_worker$1 = "👨‍💼";
-var woman_office_worker$1 = "👩‍💼";
+var man_office_worker$2 = "👨‍💼";
+var woman_office_worker$2 = "👩‍💼";
 var scientist = "🧑‍🔬";
-var man_scientist$1 = "👨‍🔬";
-var woman_scientist$1 = "👩‍🔬";
+var man_scientist$2 = "👨‍🔬";
+var woman_scientist$2 = "👩‍🔬";
 var technologist = "🧑‍💻";
-var man_technologist$1 = "👨‍💻";
-var woman_technologist$1 = "👩‍💻";
+var man_technologist$2 = "👨‍💻";
+var woman_technologist$2 = "👩‍💻";
 var singer = "🧑‍🎤";
-var man_singer$1 = "👨‍🎤";
-var woman_singer$1 = "👩‍🎤";
+var man_singer$2 = "👨‍🎤";
+var woman_singer$2 = "👩‍🎤";
 var artist = "🧑‍🎨";
-var man_artist$1 = "👨‍🎨";
-var woman_artist$1 = "👩‍🎨";
+var man_artist$2 = "👨‍🎨";
+var woman_artist$2 = "👩‍🎨";
 var pilot = "🧑‍✈️";
-var man_pilot$1 = "👨‍✈️";
-var woman_pilot$1 = "👩‍✈️";
+var man_pilot$2 = "👨‍✈️";
+var woman_pilot$2 = "👩‍✈️";
 var astronaut = "🧑‍🚀";
-var man_astronaut$1 = "👨‍🚀";
-var woman_astronaut$1 = "👩‍🚀";
+var man_astronaut$2 = "👨‍🚀";
+var woman_astronaut$2 = "👩‍🚀";
 var firefighter = "🧑‍🚒";
-var man_firefighter$1 = "👨‍🚒";
-var woman_firefighter$1 = "👩‍🚒";
+var man_firefighter$2 = "👨‍🚒";
+var woman_firefighter$2 = "👩‍🚒";
 var police_officer = "👮";
 var cop = "👮";
-var policeman$1 = "👮‍♂️";
-var policewoman$1 = "👮‍♀️";
+var policeman$2 = "👮‍♂️";
+var policewoman$2 = "👮‍♀️";
 var detective = "🕵️";
-var male_detective$1 = "🕵️‍♂️";
-var female_detective$1 = "🕵️‍♀️";
+var male_detective$2 = "🕵️‍♂️";
+var female_detective$2 = "🕵️‍♀️";
 var guard = "💂";
-var guardsman$1 = "💂‍♂️";
-var guardswoman$1 = "💂‍♀️";
+var guardsman$2 = "💂‍♂️";
+var guardswoman$2 = "💂‍♀️";
 var ninja = "🥷";
 var construction_worker = "👷";
-var construction_worker_man$1 = "👷‍♂️";
-var construction_worker_woman$1 = "👷‍♀️";
-var prince$1 = "🤴";
-var princess$1 = "👸";
+var construction_worker_man$2 = "👷‍♂️";
+var construction_worker_woman$2 = "👷‍♀️";
+var prince$2 = "🤴";
+var princess$2 = "👸";
 var person_with_turban = "👳";
-var man_with_turban$1 = "👳‍♂️";
-var woman_with_turban$1 = "👳‍♀️";
-var man_with_gua_pi_mao$1 = "👲";
-var woman_with_headscarf$1 = "🧕";
+var man_with_turban$2 = "👳‍♂️";
+var woman_with_turban$2 = "👳‍♀️";
+var man_with_gua_pi_mao$2 = "👲";
+var woman_with_headscarf$2 = "🧕";
 var person_in_tuxedo = "🤵";
-var man_in_tuxedo$1 = "🤵‍♂️";
+var man_in_tuxedo$2 = "🤵‍♂️";
 var woman_in_tuxedo = "🤵‍♀️";
 var person_with_veil = "👰";
 var man_with_veil = "👰‍♂️";
 var woman_with_veil = "👰‍♀️";
-var bride_with_veil$1 = "👰‍♀️";
-var pregnant_woman$1 = "🤰";
+var bride_with_veil$2 = "👰‍♀️";
+var pregnant_woman$2 = "🤰";
 var breast_feeding = "🤱";
 var woman_feeding_baby = "👩‍🍼";
 var man_feeding_baby = "👨‍🍼";
 var person_feeding_baby = "🧑‍🍼";
-var angel$1 = "👼";
-var santa$1 = "🎅";
-var mrs_claus$1 = "🤶";
+var angel$2 = "👼";
+var santa$2 = "🎅";
+var mrs_claus$2 = "🤶";
 var mx_claus = "🧑‍🎄";
 var superhero = "🦸";
 var superhero_man = "🦸‍♂️";
@@ -55075,8 +55075,8 @@ var vampire = "🧛";
 var vampire_man = "🧛‍♂️";
 var vampire_woman = "🧛‍♀️";
 var merperson = "🧜";
-var merman$1 = "🧜‍♂️";
-var mermaid$1 = "🧜‍♀️";
+var merman$2 = "🧜‍♂️";
+var mermaid$2 = "🧜‍♀️";
 var elf = "🧝";
 var elf_man = "🧝‍♂️";
 var elf_woman = "🧝‍♀️";
@@ -55087,14 +55087,14 @@ var zombie = "🧟";
 var zombie_man = "🧟‍♂️";
 var zombie_woman = "🧟‍♀️";
 var massage = "💆";
-var massage_man$1 = "💆‍♂️";
-var massage_woman$1 = "💆‍♀️";
+var massage_man$2 = "💆‍♂️";
+var massage_woman$2 = "💆‍♀️";
 var haircut = "💇";
-var haircut_man$1 = "💇‍♂️";
-var haircut_woman$1 = "💇‍♀️";
+var haircut_man$2 = "💇‍♂️";
+var haircut_woman$2 = "💇‍♀️";
 var walking = "🚶";
-var walking_man$1 = "🚶‍♂️";
-var walking_woman$1 = "🚶‍♀️";
+var walking_man$2 = "🚶‍♂️";
+var walking_woman$2 = "🚶‍♀️";
 var standing_person = "🧍";
 var standing_man = "🧍‍♂️";
 var standing_woman = "🧍‍♀️";
@@ -55112,1124 +55112,1124 @@ var man_in_manual_wheelchair = "👨‍🦽";
 var woman_in_manual_wheelchair = "👩‍🦽";
 var runner = "🏃";
 var running = "🏃";
-var running_man$1 = "🏃‍♂️";
-var running_woman$1 = "🏃‍♀️";
+var running_man$2 = "🏃‍♂️";
+var running_woman$2 = "🏃‍♀️";
 var woman_dancing = "💃";
-var dancer$1 = "💃";
-var man_dancing$1 = "🕺";
-var business_suit_levitating$1 = "🕴️";
+var dancer$2 = "💃";
+var man_dancing$2 = "🕺";
+var business_suit_levitating$2 = "🕴️";
 var dancers = "👯";
-var dancing_men$1 = "👯‍♂️";
-var dancing_women$1 = "👯‍♀️";
+var dancing_men$2 = "👯‍♂️";
+var dancing_women$2 = "👯‍♀️";
 var sauna_person = "🧖";
 var sauna_man = "🧖‍♂️";
 var sauna_woman = "🧖‍♀️";
 var climbing = "🧗";
-var climbing_man$1 = "🧗‍♂️";
-var climbing_woman$1 = "🧗‍♀️";
-var person_fencing$1 = "🤺";
-var horse_racing$1 = "🏇";
-var skier$1 = "⛷️";
-var snowboarder$1 = "🏂";
+var climbing_man$2 = "🧗‍♂️";
+var climbing_woman$2 = "🧗‍♀️";
+var person_fencing$2 = "🤺";
+var horse_racing$2 = "🏇";
+var skier$2 = "⛷️";
+var snowboarder$2 = "🏂";
 var golfing = "🏌️";
-var golfing_man$1 = "🏌️‍♂️";
-var golfing_woman$1 = "🏌️‍♀️";
+var golfing_man$2 = "🏌️‍♂️";
+var golfing_woman$2 = "🏌️‍♀️";
 var surfer = "🏄";
-var surfing_man$1 = "🏄‍♂️";
-var surfing_woman$1 = "🏄‍♀️";
+var surfing_man$2 = "🏄‍♂️";
+var surfing_woman$2 = "🏄‍♀️";
 var rowboat = "🚣";
-var rowing_man$1 = "🚣‍♂️";
-var rowing_woman$1 = "🚣‍♀️";
+var rowing_man$2 = "🚣‍♂️";
+var rowing_woman$2 = "🚣‍♀️";
 var swimmer = "🏊";
-var swimming_man$1 = "🏊‍♂️";
-var swimming_woman$1 = "🏊‍♀️";
+var swimming_man$2 = "🏊‍♂️";
+var swimming_woman$2 = "🏊‍♀️";
 var bouncing_ball_person = "⛹️";
 var bouncing_ball_man = "⛹️‍♂️";
-var basketball_man$1 = "⛹️‍♂️";
+var basketball_man$2 = "⛹️‍♂️";
 var bouncing_ball_woman = "⛹️‍♀️";
-var basketball_woman$1 = "⛹️‍♀️";
+var basketball_woman$2 = "⛹️‍♀️";
 var weight_lifting = "🏋️";
-var weight_lifting_man$1 = "🏋️‍♂️";
-var weight_lifting_woman$1 = "🏋️‍♀️";
+var weight_lifting_man$2 = "🏋️‍♂️";
+var weight_lifting_woman$2 = "🏋️‍♀️";
 var bicyclist = "🚴";
-var biking_man$1 = "🚴‍♂️";
-var biking_woman$1 = "🚴‍♀️";
+var biking_man$2 = "🚴‍♂️";
+var biking_woman$2 = "🚴‍♀️";
 var mountain_bicyclist = "🚵";
-var mountain_biking_man$1 = "🚵‍♂️";
-var mountain_biking_woman$1 = "🚵‍♀️";
+var mountain_biking_man$2 = "🚵‍♂️";
+var mountain_biking_woman$2 = "🚵‍♀️";
 var cartwheeling = "🤸";
-var man_cartwheeling$1 = "🤸‍♂️";
-var woman_cartwheeling$1 = "🤸‍♀️";
+var man_cartwheeling$2 = "🤸‍♂️";
+var woman_cartwheeling$2 = "🤸‍♀️";
 var wrestling = "🤼";
-var men_wrestling$1 = "🤼‍♂️";
-var women_wrestling$1 = "🤼‍♀️";
+var men_wrestling$2 = "🤼‍♂️";
+var women_wrestling$2 = "🤼‍♀️";
 var water_polo = "🤽";
-var man_playing_water_polo$1 = "🤽‍♂️";
-var woman_playing_water_polo$1 = "🤽‍♀️";
+var man_playing_water_polo$2 = "🤽‍♂️";
+var woman_playing_water_polo$2 = "🤽‍♀️";
 var handball_person = "🤾";
-var man_playing_handball$1 = "🤾‍♂️";
-var woman_playing_handball$1 = "🤾‍♀️";
+var man_playing_handball$2 = "🤾‍♂️";
+var woman_playing_handball$2 = "🤾‍♀️";
 var juggling_person = "🤹";
-var man_juggling$1 = "🤹‍♂️";
-var woman_juggling$1 = "🤹‍♀️";
+var man_juggling$2 = "🤹‍♂️";
+var woman_juggling$2 = "🤹‍♀️";
 var lotus_position = "🧘";
 var lotus_position_man = "🧘‍♂️";
 var lotus_position_woman = "🧘‍♀️";
-var bath$1 = "🛀";
-var sleeping_bed$1 = "🛌";
+var bath$2 = "🛀";
+var sleeping_bed$2 = "🛌";
 var people_holding_hands = "🧑‍🤝‍🧑";
-var two_women_holding_hands$1 = "👭";
-var couple$1 = "👫";
-var two_men_holding_hands$1 = "👬";
+var two_women_holding_hands$2 = "👭";
+var couple$2 = "👫";
+var two_men_holding_hands$2 = "👬";
 var couplekiss = "💏";
-var couplekiss_man_woman$1 = "👩‍❤️‍💋‍👨";
-var couplekiss_man_man$1 = "👨‍❤️‍💋‍👨";
-var couplekiss_woman_woman$1 = "👩‍❤️‍💋‍👩";
+var couplekiss_man_woman$2 = "👩‍❤️‍💋‍👨";
+var couplekiss_man_man$2 = "👨‍❤️‍💋‍👨";
+var couplekiss_woman_woman$2 = "👩‍❤️‍💋‍👩";
 var couple_with_heart = "💑";
-var couple_with_heart_woman_man$1 = "👩‍❤️‍👨";
-var couple_with_heart_man_man$1 = "👨‍❤️‍👨";
-var couple_with_heart_woman_woman$1 = "👩‍❤️‍👩";
+var couple_with_heart_woman_man$2 = "👩‍❤️‍👨";
+var couple_with_heart_man_man$2 = "👨‍❤️‍👨";
+var couple_with_heart_woman_woman$2 = "👩‍❤️‍👩";
 var family = "👪";
-var family_man_woman_boy$1 = "👨‍👩‍👦";
-var family_man_woman_girl$1 = "👨‍👩‍👧";
-var family_man_woman_girl_boy$1 = "👨‍👩‍👧‍👦";
-var family_man_woman_boy_boy$1 = "👨‍👩‍👦‍👦";
-var family_man_woman_girl_girl$1 = "👨‍👩‍👧‍👧";
-var family_man_man_boy$1 = "👨‍👨‍👦";
-var family_man_man_girl$1 = "👨‍👨‍👧";
-var family_man_man_girl_boy$1 = "👨‍👨‍👧‍👦";
-var family_man_man_boy_boy$1 = "👨‍👨‍👦‍👦";
-var family_man_man_girl_girl$1 = "👨‍👨‍👧‍👧";
-var family_woman_woman_boy$1 = "👩‍👩‍👦";
-var family_woman_woman_girl$1 = "👩‍👩‍👧";
-var family_woman_woman_girl_boy$1 = "👩‍👩‍👧‍👦";
-var family_woman_woman_boy_boy$1 = "👩‍👩‍👦‍👦";
-var family_woman_woman_girl_girl$1 = "👩‍👩‍👧‍👧";
-var family_man_boy$1 = "👨‍👦";
-var family_man_boy_boy$1 = "👨‍👦‍👦";
-var family_man_girl$1 = "👨‍👧";
-var family_man_girl_boy$1 = "👨‍👧‍👦";
-var family_man_girl_girl$1 = "👨‍👧‍👧";
-var family_woman_boy$1 = "👩‍👦";
-var family_woman_boy_boy$1 = "👩‍👦‍👦";
-var family_woman_girl$1 = "👩‍👧";
-var family_woman_girl_boy$1 = "👩‍👧‍👦";
-var family_woman_girl_girl$1 = "👩‍👧‍👧";
-var speaking_head$1 = "🗣️";
-var bust_in_silhouette$1 = "👤";
-var busts_in_silhouette$1 = "👥";
+var family_man_woman_boy$2 = "👨‍👩‍👦";
+var family_man_woman_girl$2 = "👨‍👩‍👧";
+var family_man_woman_girl_boy$2 = "👨‍👩‍👧‍👦";
+var family_man_woman_boy_boy$2 = "👨‍👩‍👦‍👦";
+var family_man_woman_girl_girl$2 = "👨‍👩‍👧‍👧";
+var family_man_man_boy$2 = "👨‍👨‍👦";
+var family_man_man_girl$2 = "👨‍👨‍👧";
+var family_man_man_girl_boy$2 = "👨‍👨‍👧‍👦";
+var family_man_man_boy_boy$2 = "👨‍👨‍👦‍👦";
+var family_man_man_girl_girl$2 = "👨‍👨‍👧‍👧";
+var family_woman_woman_boy$2 = "👩‍👩‍👦";
+var family_woman_woman_girl$2 = "👩‍👩‍👧";
+var family_woman_woman_girl_boy$2 = "👩‍👩‍👧‍👦";
+var family_woman_woman_boy_boy$2 = "👩‍👩‍👦‍👦";
+var family_woman_woman_girl_girl$2 = "👩‍👩‍👧‍👧";
+var family_man_boy$2 = "👨‍👦";
+var family_man_boy_boy$2 = "👨‍👦‍👦";
+var family_man_girl$2 = "👨‍👧";
+var family_man_girl_boy$2 = "👨‍👧‍👦";
+var family_man_girl_girl$2 = "👨‍👧‍👧";
+var family_woman_boy$2 = "👩‍👦";
+var family_woman_boy_boy$2 = "👩‍👦‍👦";
+var family_woman_girl$2 = "👩‍👧";
+var family_woman_girl_boy$2 = "👩‍👧‍👦";
+var family_woman_girl_girl$2 = "👩‍👧‍👧";
+var speaking_head$2 = "🗣️";
+var bust_in_silhouette$2 = "👤";
+var busts_in_silhouette$2 = "👥";
 var people_hugging = "🫂";
-var footprints$1 = "👣";
-var monkey_face$1 = "🐵";
-var monkey$1 = "🐒";
-var gorilla$1 = "🦍";
+var footprints$2 = "👣";
+var monkey_face$2 = "🐵";
+var monkey$2 = "🐒";
+var gorilla$2 = "🦍";
 var orangutan = "🦧";
-var dog$1 = "🐶";
-var dog2$1 = "🐕";
+var dog$2 = "🐶";
+var dog2$2 = "🐕";
 var guide_dog = "🦮";
 var service_dog = "🐕‍🦺";
-var poodle$1 = "🐩";
-var wolf$1 = "🐺";
-var fox_face$1 = "🦊";
-var raccoon$1 = "🦝";
-var cat$1 = "🐱";
-var cat2$1 = "🐈";
+var poodle$2 = "🐩";
+var wolf$2 = "🐺";
+var fox_face$2 = "🦊";
+var raccoon$2 = "🦝";
+var cat$2 = "🐱";
+var cat2$2 = "🐈";
 var black_cat = "🐈‍⬛";
-var lion$1 = "🦁";
-var tiger$1 = "🐯";
-var tiger2$1 = "🐅";
-var leopard$1 = "🐆";
-var horse$1 = "🐴";
-var racehorse$1 = "🐎";
-var unicorn$1 = "🦄";
-var zebra$1 = "🦓";
-var deer$1 = "🦌";
+var lion$2 = "🦁";
+var tiger$2 = "🐯";
+var tiger2$2 = "🐅";
+var leopard$2 = "🐆";
+var horse$2 = "🐴";
+var racehorse$2 = "🐎";
+var unicorn$2 = "🦄";
+var zebra$2 = "🦓";
+var deer$2 = "🦌";
 var bison = "🦬";
-var cow$1 = "🐮";
-var ox$1 = "🐂";
-var water_buffalo$1 = "🐃";
-var cow2$1 = "🐄";
-var pig$1 = "🐷";
-var pig2$1 = "🐖";
-var boar$1 = "🐗";
-var pig_nose$1 = "🐽";
-var ram$1 = "🐏";
-var sheep$1 = "🐑";
-var goat$1 = "🐐";
-var dromedary_camel$1 = "🐪";
-var camel$1 = "🐫";
-var llama$1 = "🦙";
-var giraffe$1 = "🦒";
-var elephant$1 = "🐘";
+var cow$2 = "🐮";
+var ox$2 = "🐂";
+var water_buffalo$2 = "🐃";
+var cow2$2 = "🐄";
+var pig$2 = "🐷";
+var pig2$2 = "🐖";
+var boar$2 = "🐗";
+var pig_nose$2 = "🐽";
+var ram$2 = "🐏";
+var sheep$2 = "🐑";
+var goat$2 = "🐐";
+var dromedary_camel$2 = "🐪";
+var camel$2 = "🐫";
+var llama$2 = "🦙";
+var giraffe$2 = "🦒";
+var elephant$2 = "🐘";
 var mammoth = "🦣";
-var rhinoceros$1 = "🦏";
-var hippopotamus$1 = "🦛";
-var mouse$1 = "🐭";
-var mouse2$1 = "🐁";
-var rat$1 = "🐀";
-var hamster$1 = "🐹";
-var rabbit$1 = "🐰";
-var rabbit2$1 = "🐇";
-var chipmunk$1 = "🐿️";
+var rhinoceros$2 = "🦏";
+var hippopotamus$2 = "🦛";
+var mouse$2 = "🐭";
+var mouse2$2 = "🐁";
+var rat$2 = "🐀";
+var hamster$2 = "🐹";
+var rabbit$2 = "🐰";
+var rabbit2$2 = "🐇";
+var chipmunk$2 = "🐿️";
 var beaver = "🦫";
-var hedgehog$1 = "🦔";
-var bat$1 = "🦇";
-var bear$1 = "🐻";
+var hedgehog$2 = "🦔";
+var bat$2 = "🦇";
+var bear$2 = "🐻";
 var polar_bear = "🐻‍❄️";
-var koala$1 = "🐨";
-var panda_face$1 = "🐼";
+var koala$2 = "🐨";
+var panda_face$2 = "🐼";
 var sloth = "🦥";
 var otter = "🦦";
 var skunk = "🦨";
-var kangaroo$1 = "🦘";
-var badger$1 = "🦡";
+var kangaroo$2 = "🦘";
+var badger$2 = "🦡";
 var feet = "🐾";
-var paw_prints$1 = "🐾";
-var turkey$1 = "🦃";
-var chicken$1 = "🐔";
-var rooster$1 = "🐓";
-var hatching_chick$1 = "🐣";
-var baby_chick$1 = "🐤";
-var hatched_chick$1 = "🐥";
-var bird$1 = "🐦";
-var penguin$1 = "🐧";
-var dove$1 = "🕊️";
-var eagle$1 = "🦅";
-var duck$1 = "🦆";
-var swan$1 = "🦢";
-var owl$1 = "🦉";
+var paw_prints$2 = "🐾";
+var turkey$2 = "🦃";
+var chicken$2 = "🐔";
+var rooster$2 = "🐓";
+var hatching_chick$2 = "🐣";
+var baby_chick$2 = "🐤";
+var hatched_chick$2 = "🐥";
+var bird$2 = "🐦";
+var penguin$2 = "🐧";
+var dove$2 = "🕊️";
+var eagle$2 = "🦅";
+var duck$2 = "🦆";
+var swan$2 = "🦢";
+var owl$2 = "🦉";
 var dodo = "🦤";
 var feather = "🪶";
 var flamingo = "🦩";
-var peacock$1 = "🦚";
-var parrot$1 = "🦜";
-var frog$1 = "🐸";
-var crocodile$1 = "🐊";
-var turtle$1 = "🐢";
-var lizard$1 = "🦎";
-var snake$1 = "🐍";
-var dragon_face$1 = "🐲";
-var dragon$1 = "🐉";
-var sauropod$1 = "🦕";
-var whale$1 = "🐳";
-var whale2$1 = "🐋";
-var dolphin$1 = "🐬";
+var peacock$2 = "🦚";
+var parrot$2 = "🦜";
+var frog$2 = "🐸";
+var crocodile$2 = "🐊";
+var turtle$2 = "🐢";
+var lizard$2 = "🦎";
+var snake$2 = "🐍";
+var dragon_face$2 = "🐲";
+var dragon$2 = "🐉";
+var sauropod$2 = "🦕";
+var whale$2 = "🐳";
+var whale2$2 = "🐋";
+var dolphin$2 = "🐬";
 var flipper = "🐬";
 var seal = "🦭";
-var fish$1 = "🐟";
-var tropical_fish$1 = "🐠";
-var blowfish$1 = "🐡";
-var shark$1 = "🦈";
-var octopus$1 = "🐙";
-var shell$1 = "🐚";
-var snail$1 = "🐌";
-var butterfly$1 = "🦋";
-var bug$1 = "🐛";
-var ant$1 = "🐜";
+var fish$2 = "🐟";
+var tropical_fish$2 = "🐠";
+var blowfish$2 = "🐡";
+var shark$2 = "🦈";
+var octopus$2 = "🐙";
+var shell$2 = "🐚";
+var snail$2 = "🐌";
+var butterfly$2 = "🦋";
+var bug$2 = "🐛";
+var ant$2 = "🐜";
 var bee = "🐝";
-var honeybee$1 = "🐝";
-var beetle$1 = "🪲";
+var honeybee$2 = "🐝";
+var beetle$2 = "🪲";
 var lady_beetle = "🐞";
-var cricket$1 = "🦗";
+var cricket$2 = "🦗";
 var cockroach = "🪳";
-var spider$1 = "🕷️";
-var spider_web$1 = "🕸️";
-var scorpion$1 = "🦂";
-var mosquito$1 = "🦟";
+var spider$2 = "🕷️";
+var spider_web$2 = "🕸️";
+var scorpion$2 = "🦂";
+var mosquito$2 = "🦟";
 var fly = "🪰";
 var worm = "🪱";
-var microbe$1 = "🦠";
-var bouquet$1 = "💐";
-var cherry_blossom$1 = "🌸";
-var white_flower$1 = "💮";
-var rosette$1 = "🏵️";
-var rose$1 = "🌹";
-var wilted_flower$1 = "🥀";
-var hibiscus$1 = "🌺";
-var sunflower$1 = "🌻";
-var blossom$1 = "🌼";
-var tulip$1 = "🌷";
-var seedling$1 = "🌱";
+var microbe$2 = "🦠";
+var bouquet$2 = "💐";
+var cherry_blossom$2 = "🌸";
+var white_flower$2 = "💮";
+var rosette$2 = "🏵️";
+var rose$2 = "🌹";
+var wilted_flower$2 = "🥀";
+var hibiscus$2 = "🌺";
+var sunflower$2 = "🌻";
+var blossom$2 = "🌼";
+var tulip$2 = "🌷";
+var seedling$2 = "🌱";
 var potted_plant = "🪴";
-var evergreen_tree$1 = "🌲";
-var deciduous_tree$1 = "🌳";
-var palm_tree$1 = "🌴";
-var cactus$1 = "🌵";
-var ear_of_rice$1 = "🌾";
-var herb$1 = "🌿";
-var shamrock$1 = "☘️";
-var four_leaf_clover$1 = "🍀";
-var maple_leaf$1 = "🍁";
-var fallen_leaf$1 = "🍂";
-var leaves$1 = "🍃";
-var grapes$1 = "🍇";
-var melon$1 = "🍈";
-var watermelon$1 = "🍉";
-var tangerine$1 = "🍊";
+var evergreen_tree$2 = "🌲";
+var deciduous_tree$2 = "🌳";
+var palm_tree$2 = "🌴";
+var cactus$2 = "🌵";
+var ear_of_rice$2 = "🌾";
+var herb$2 = "🌿";
+var shamrock$2 = "☘️";
+var four_leaf_clover$2 = "🍀";
+var maple_leaf$2 = "🍁";
+var fallen_leaf$2 = "🍂";
+var leaves$2 = "🍃";
+var grapes$2 = "🍇";
+var melon$2 = "🍈";
+var watermelon$2 = "🍉";
+var tangerine$2 = "🍊";
 var orange = "🍊";
 var mandarin = "🍊";
-var lemon$1 = "🍋";
-var banana$1 = "🍌";
-var pineapple$1 = "🍍";
-var mango$1 = "🥭";
-var apple$1 = "🍎";
-var green_apple$1 = "🍏";
-var pear$1 = "🍐";
-var peach$1 = "🍑";
-var cherries$1 = "🍒";
-var strawberry$1 = "🍓";
+var lemon$2 = "🍋";
+var banana$2 = "🍌";
+var pineapple$2 = "🍍";
+var mango$2 = "🥭";
+var apple$2 = "🍎";
+var green_apple$2 = "🍏";
+var pear$2 = "🍐";
+var peach$2 = "🍑";
+var cherries$2 = "🍒";
+var strawberry$2 = "🍓";
 var blueberries = "🫐";
-var kiwi_fruit$1 = "🥝";
-var tomato$1 = "🍅";
+var kiwi_fruit$2 = "🥝";
+var tomato$2 = "🍅";
 var olive = "🫒";
-var coconut$1 = "🥥";
-var avocado$1 = "🥑";
-var eggplant$1 = "🍆";
-var potato$1 = "🥔";
-var carrot$1 = "🥕";
-var corn$1 = "🌽";
-var hot_pepper$1 = "🌶️";
+var coconut$2 = "🥥";
+var avocado$2 = "🥑";
+var eggplant$2 = "🍆";
+var potato$2 = "🥔";
+var carrot$2 = "🥕";
+var corn$2 = "🌽";
+var hot_pepper$2 = "🌶️";
 var bell_pepper = "🫑";
-var cucumber$1 = "🥒";
+var cucumber$2 = "🥒";
 var leafy_green = "🥬";
-var broccoli$1 = "🥦";
+var broccoli$2 = "🥦";
 var garlic = "🧄";
 var onion = "🧅";
-var mushroom$1 = "🍄";
-var peanuts$1 = "🥜";
-var chestnut$1 = "🌰";
-var bread$1 = "🍞";
-var croissant$1 = "🥐";
-var baguette_bread$1 = "🥖";
+var mushroom$2 = "🍄";
+var peanuts$2 = "🥜";
+var chestnut$2 = "🌰";
+var bread$2 = "🍞";
+var croissant$2 = "🥐";
+var baguette_bread$2 = "🥖";
 var flatbread = "🫓";
-var pretzel$1 = "🥨";
-var bagel$1 = "🥯";
-var pancakes$1 = "🥞";
+var pretzel$2 = "🥨";
+var bagel$2 = "🥯";
+var pancakes$2 = "🥞";
 var waffle = "🧇";
-var cheese$1 = "🧀";
-var meat_on_bone$1 = "🍖";
-var poultry_leg$1 = "🍗";
+var cheese$2 = "🧀";
+var meat_on_bone$2 = "🍖";
+var poultry_leg$2 = "🍗";
 var cut_of_meat = "🥩";
-var bacon$1 = "🥓";
-var hamburger$1 = "🍔";
-var fries$1 = "🍟";
-var pizza$1 = "🍕";
-var hotdog$1 = "🌭";
-var sandwich$1 = "🥪";
-var taco$1 = "🌮";
-var burrito$1 = "🌯";
+var bacon$2 = "🥓";
+var hamburger$2 = "🍔";
+var fries$2 = "🍟";
+var pizza$2 = "🍕";
+var hotdog$2 = "🌭";
+var sandwich$2 = "🥪";
+var taco$2 = "🌮";
+var burrito$2 = "🌯";
 var tamale = "🫔";
-var stuffed_flatbread$1 = "🥙";
+var stuffed_flatbread$2 = "🥙";
 var falafel = "🧆";
-var egg$1 = "🥚";
-var fried_egg$1 = "🍳";
-var shallow_pan_of_food$1 = "🥘";
-var stew$1 = "🍲";
+var egg$2 = "🥚";
+var fried_egg$2 = "🍳";
+var shallow_pan_of_food$2 = "🥘";
+var stew$2 = "🍲";
 var fondue = "🫕";
-var bowl_with_spoon$1 = "🥣";
-var green_salad$1 = "🥗";
-var popcorn$1 = "🍿";
+var bowl_with_spoon$2 = "🥣";
+var green_salad$2 = "🥗";
+var popcorn$2 = "🍿";
 var butter = "🧈";
-var salt$1 = "🧂";
-var canned_food$1 = "🥫";
-var bento$1 = "🍱";
-var rice_cracker$1 = "🍘";
-var rice_ball$1 = "🍙";
-var rice$1 = "🍚";
-var curry$1 = "🍛";
-var ramen$1 = "🍜";
-var spaghetti$1 = "🍝";
-var sweet_potato$1 = "🍠";
-var oden$1 = "🍢";
-var sushi$1 = "🍣";
-var fried_shrimp$1 = "🍤";
-var fish_cake$1 = "🍥";
-var moon_cake$1 = "🥮";
-var dango$1 = "🍡";
-var dumpling$1 = "🥟";
-var fortune_cookie$1 = "🥠";
-var takeout_box$1 = "🥡";
-var crab$1 = "🦀";
-var lobster$1 = "🦞";
-var shrimp$1 = "🦐";
-var squid$1 = "🦑";
+var salt$2 = "🧂";
+var canned_food$2 = "🥫";
+var bento$2 = "🍱";
+var rice_cracker$2 = "🍘";
+var rice_ball$2 = "🍙";
+var rice$2 = "🍚";
+var curry$2 = "🍛";
+var ramen$2 = "🍜";
+var spaghetti$2 = "🍝";
+var sweet_potato$2 = "🍠";
+var oden$2 = "🍢";
+var sushi$2 = "🍣";
+var fried_shrimp$2 = "🍤";
+var fish_cake$2 = "🍥";
+var moon_cake$2 = "🥮";
+var dango$2 = "🍡";
+var dumpling$2 = "🥟";
+var fortune_cookie$2 = "🥠";
+var takeout_box$2 = "🥡";
+var crab$2 = "🦀";
+var lobster$2 = "🦞";
+var shrimp$2 = "🦐";
+var squid$2 = "🦑";
 var oyster = "🦪";
-var icecream$1 = "🍦";
-var shaved_ice$1 = "🍧";
-var ice_cream$1 = "🍨";
-var doughnut$1 = "🍩";
-var cookie$1 = "🍪";
-var birthday$1 = "🎂";
-var cake$1 = "🍰";
-var cupcake$1 = "🧁";
-var pie$1 = "🥧";
-var chocolate_bar$1 = "🍫";
-var candy$1 = "🍬";
-var lollipop$1 = "🍭";
-var custard$1 = "🍮";
-var honey_pot$1 = "🍯";
-var baby_bottle$1 = "🍼";
-var milk_glass$1 = "🥛";
-var coffee$1 = "☕";
+var icecream$2 = "🍦";
+var shaved_ice$2 = "🍧";
+var ice_cream$2 = "🍨";
+var doughnut$2 = "🍩";
+var cookie$2 = "🍪";
+var birthday$2 = "🎂";
+var cake$2 = "🍰";
+var cupcake$2 = "🧁";
+var pie$2 = "🥧";
+var chocolate_bar$2 = "🍫";
+var candy$2 = "🍬";
+var lollipop$2 = "🍭";
+var custard$2 = "🍮";
+var honey_pot$2 = "🍯";
+var baby_bottle$2 = "🍼";
+var milk_glass$2 = "🥛";
+var coffee$2 = "☕";
 var teapot = "🫖";
-var tea$1 = "🍵";
-var sake$1 = "🍶";
-var champagne$1 = "🍾";
-var wine_glass$1 = "🍷";
-var cocktail$1 = "🍸";
-var tropical_drink$1 = "🍹";
-var beer$1 = "🍺";
-var beers$1 = "🍻";
-var clinking_glasses$1 = "🥂";
-var tumbler_glass$1 = "🥃";
-var cup_with_straw$1 = "🥤";
+var tea$2 = "🍵";
+var sake$2 = "🍶";
+var champagne$2 = "🍾";
+var wine_glass$2 = "🍷";
+var cocktail$2 = "🍸";
+var tropical_drink$2 = "🍹";
+var beer$2 = "🍺";
+var beers$2 = "🍻";
+var clinking_glasses$2 = "🥂";
+var tumbler_glass$2 = "🥃";
+var cup_with_straw$2 = "🥤";
 var bubble_tea = "🧋";
 var beverage_box = "🧃";
 var mate = "🧉";
 var ice_cube = "🧊";
-var chopsticks$1 = "🥢";
-var plate_with_cutlery$1 = "🍽️";
-var fork_and_knife$1 = "🍴";
-var spoon$1 = "🥄";
-var hocho$1 = "🔪";
+var chopsticks$2 = "🥢";
+var plate_with_cutlery$2 = "🍽️";
+var fork_and_knife$2 = "🍴";
+var spoon$2 = "🥄";
+var hocho$2 = "🔪";
 var knife = "🔪";
-var amphora$1 = "🏺";
-var earth_africa$1 = "🌍";
-var earth_americas$1 = "🌎";
-var earth_asia$1 = "🌏";
-var globe_with_meridians$1 = "🌐";
-var world_map$1 = "🗺️";
-var japan$1 = "🗾";
-var compass$1 = "🧭";
-var mountain_snow$1 = "🏔️";
-var mountain$1 = "⛰️";
-var volcano$1 = "🌋";
-var mount_fuji$1 = "🗻";
-var camping$1 = "🏕️";
-var beach_umbrella$1 = "🏖️";
-var desert$1 = "🏜️";
-var desert_island$1 = "🏝️";
-var national_park$1 = "🏞️";
-var stadium$1 = "🏟️";
-var classical_building$1 = "🏛️";
-var building_construction$1 = "🏗️";
+var amphora$2 = "🏺";
+var earth_africa$2 = "🌍";
+var earth_americas$2 = "🌎";
+var earth_asia$2 = "🌏";
+var globe_with_meridians$2 = "🌐";
+var world_map$2 = "🗺️";
+var japan$2 = "🗾";
+var compass$2 = "🧭";
+var mountain_snow$2 = "🏔️";
+var mountain$2 = "⛰️";
+var volcano$2 = "🌋";
+var mount_fuji$2 = "🗻";
+var camping$2 = "🏕️";
+var beach_umbrella$2 = "🏖️";
+var desert$2 = "🏜️";
+var desert_island$2 = "🏝️";
+var national_park$2 = "🏞️";
+var stadium$2 = "🏟️";
+var classical_building$2 = "🏛️";
+var building_construction$2 = "🏗️";
 var bricks = "🧱";
 var rock = "🪨";
 var wood = "🪵";
 var hut = "🛖";
-var houses$1 = "🏘️";
-var derelict_house$1 = "🏚️";
-var house$1 = "🏠";
-var house_with_garden$1 = "🏡";
-var office$1 = "🏢";
-var post_office$1 = "🏣";
-var european_post_office$1 = "🏤";
-var hospital$1 = "🏥";
-var bank$1 = "🏦";
-var hotel$1 = "🏨";
-var love_hotel$1 = "🏩";
-var convenience_store$1 = "🏪";
-var school$1 = "🏫";
-var department_store$1 = "🏬";
-var factory$1 = "🏭";
-var japanese_castle$1 = "🏯";
-var european_castle$1 = "🏰";
-var wedding$1 = "💒";
-var tokyo_tower$1 = "🗼";
-var statue_of_liberty$1 = "🗽";
-var church$1 = "⛪";
-var mosque$1 = "🕌";
+var houses$2 = "🏘️";
+var derelict_house$2 = "🏚️";
+var house$2 = "🏠";
+var house_with_garden$2 = "🏡";
+var office$2 = "🏢";
+var post_office$2 = "🏣";
+var european_post_office$2 = "🏤";
+var hospital$2 = "🏥";
+var bank$2 = "🏦";
+var hotel$2 = "🏨";
+var love_hotel$2 = "🏩";
+var convenience_store$2 = "🏪";
+var school$2 = "🏫";
+var department_store$2 = "🏬";
+var factory$2 = "🏭";
+var japanese_castle$2 = "🏯";
+var european_castle$2 = "🏰";
+var wedding$2 = "💒";
+var tokyo_tower$2 = "🗼";
+var statue_of_liberty$2 = "🗽";
+var church$2 = "⛪";
+var mosque$2 = "🕌";
 var hindu_temple = "🛕";
-var synagogue$1 = "🕍";
-var shinto_shrine$1 = "⛩️";
-var kaaba$1 = "🕋";
-var fountain$1 = "⛲";
-var tent$1 = "⛺";
-var foggy$1 = "🌁";
-var night_with_stars$1 = "🌃";
-var cityscape$1 = "🏙️";
-var sunrise_over_mountains$1 = "🌄";
-var sunrise$1 = "🌅";
-var city_sunset$1 = "🌆";
-var city_sunrise$1 = "🌇";
-var bridge_at_night$1 = "🌉";
-var hotsprings$1 = "♨️";
-var carousel_horse$1 = "🎠";
-var ferris_wheel$1 = "🎡";
-var roller_coaster$1 = "🎢";
-var barber$1 = "💈";
-var circus_tent$1 = "🎪";
-var steam_locomotive$1 = "🚂";
-var railway_car$1 = "🚃";
-var bullettrain_side$1 = "🚄";
-var bullettrain_front$1 = "🚅";
-var train2$1 = "🚆";
-var metro$1 = "🚇";
-var light_rail$1 = "🚈";
-var station$1 = "🚉";
-var tram$1 = "🚊";
-var monorail$1 = "🚝";
-var mountain_railway$1 = "🚞";
-var train$1 = "🚋";
-var bus$1 = "🚌";
-var oncoming_bus$1 = "🚍";
-var trolleybus$1 = "🚎";
-var minibus$1 = "🚐";
-var ambulance$1 = "🚑";
-var fire_engine$1 = "🚒";
-var police_car$1 = "🚓";
-var oncoming_police_car$1 = "🚔";
-var taxi$1 = "🚕";
-var oncoming_taxi$1 = "🚖";
+var synagogue$2 = "🕍";
+var shinto_shrine$2 = "⛩️";
+var kaaba$2 = "🕋";
+var fountain$2 = "⛲";
+var tent$2 = "⛺";
+var foggy$2 = "🌁";
+var night_with_stars$2 = "🌃";
+var cityscape$2 = "🏙️";
+var sunrise_over_mountains$2 = "🌄";
+var sunrise$2 = "🌅";
+var city_sunset$2 = "🌆";
+var city_sunrise$2 = "🌇";
+var bridge_at_night$2 = "🌉";
+var hotsprings$2 = "♨️";
+var carousel_horse$2 = "🎠";
+var ferris_wheel$2 = "🎡";
+var roller_coaster$2 = "🎢";
+var barber$2 = "💈";
+var circus_tent$2 = "🎪";
+var steam_locomotive$2 = "🚂";
+var railway_car$2 = "🚃";
+var bullettrain_side$2 = "🚄";
+var bullettrain_front$2 = "🚅";
+var train2$2 = "🚆";
+var metro$2 = "🚇";
+var light_rail$2 = "🚈";
+var station$2 = "🚉";
+var tram$2 = "🚊";
+var monorail$2 = "🚝";
+var mountain_railway$2 = "🚞";
+var train$2 = "🚋";
+var bus$2 = "🚌";
+var oncoming_bus$2 = "🚍";
+var trolleybus$2 = "🚎";
+var minibus$2 = "🚐";
+var ambulance$2 = "🚑";
+var fire_engine$2 = "🚒";
+var police_car$2 = "🚓";
+var oncoming_police_car$2 = "🚔";
+var taxi$2 = "🚕";
+var oncoming_taxi$2 = "🚖";
 var car = "🚗";
-var red_car$1 = "🚗";
-var oncoming_automobile$1 = "🚘";
-var blue_car$1 = "🚙";
+var red_car$2 = "🚗";
+var oncoming_automobile$2 = "🚘";
+var blue_car$2 = "🚙";
 var pickup_truck = "🛻";
-var truck$1 = "🚚";
-var articulated_lorry$1 = "🚛";
-var tractor$1 = "🚜";
-var racing_car$1 = "🏎️";
-var motorcycle$1 = "🏍️";
-var motor_scooter$1 = "🛵";
+var truck$2 = "🚚";
+var articulated_lorry$2 = "🚛";
+var tractor$2 = "🚜";
+var racing_car$2 = "🏎️";
+var motorcycle$2 = "🏍️";
+var motor_scooter$2 = "🛵";
 var manual_wheelchair = "🦽";
 var motorized_wheelchair = "🦼";
 var auto_rickshaw = "🛺";
-var bike$1 = "🚲";
-var kick_scooter$1 = "🛴";
-var skateboard$1 = "🛹";
+var bike$2 = "🚲";
+var kick_scooter$2 = "🛴";
+var skateboard$2 = "🛹";
 var roller_skate = "🛼";
-var busstop$1 = "🚏";
-var motorway$1 = "🛣️";
-var railway_track$1 = "🛤️";
-var oil_drum$1 = "🛢️";
-var fuelpump$1 = "⛽";
-var rotating_light$1 = "🚨";
-var traffic_light$1 = "🚥";
-var vertical_traffic_light$1 = "🚦";
-var stop_sign$1 = "🛑";
-var construction$1 = "🚧";
-var anchor$1 = "⚓";
+var busstop$2 = "🚏";
+var motorway$2 = "🛣️";
+var railway_track$2 = "🛤️";
+var oil_drum$2 = "🛢️";
+var fuelpump$2 = "⛽";
+var rotating_light$2 = "🚨";
+var traffic_light$2 = "🚥";
+var vertical_traffic_light$2 = "🚦";
+var stop_sign$2 = "🛑";
+var construction$2 = "🚧";
+var anchor$2 = "⚓";
 var boat = "⛵";
-var sailboat$1 = "⛵";
-var canoe$1 = "🛶";
-var speedboat$1 = "🚤";
-var passenger_ship$1 = "🛳️";
-var ferry$1 = "⛴️";
-var motor_boat$1 = "🛥️";
-var ship$1 = "🚢";
-var airplane$1 = "✈️";
-var small_airplane$1 = "🛩️";
-var flight_departure$1 = "🛫";
-var flight_arrival$1 = "🛬";
+var sailboat$2 = "⛵";
+var canoe$2 = "🛶";
+var speedboat$2 = "🚤";
+var passenger_ship$2 = "🛳️";
+var ferry$2 = "⛴️";
+var motor_boat$2 = "🛥️";
+var ship$2 = "🚢";
+var airplane$2 = "✈️";
+var small_airplane$2 = "🛩️";
+var flight_departure$2 = "🛫";
+var flight_arrival$2 = "🛬";
 var parachute = "🪂";
-var seat$1 = "💺";
-var helicopter$1 = "🚁";
-var suspension_railway$1 = "🚟";
-var mountain_cableway$1 = "🚠";
-var aerial_tramway$1 = "🚡";
-var artificial_satellite$1 = "🛰️";
-var rocket$1 = "🚀";
-var flying_saucer$1 = "🛸";
-var bellhop_bell$1 = "🛎️";
-var luggage$1 = "🧳";
-var hourglass$1 = "⌛";
-var hourglass_flowing_sand$1 = "⏳";
-var watch$1 = "⌚";
-var alarm_clock$1 = "⏰";
-var stopwatch$1 = "⏱️";
-var timer_clock$1 = "⏲️";
-var mantelpiece_clock$1 = "🕰️";
-var clock12$1 = "🕛";
-var clock1230$1 = "🕧";
-var clock1$1 = "🕐";
-var clock130$1 = "🕜";
-var clock2$1 = "🕑";
-var clock230$1 = "🕝";
-var clock3$1 = "🕒";
-var clock330$1 = "🕞";
-var clock4$1 = "🕓";
-var clock430$1 = "🕟";
-var clock5$1 = "🕔";
-var clock530$1 = "🕠";
-var clock6$1 = "🕕";
-var clock630$1 = "🕡";
-var clock7$1 = "🕖";
-var clock730$1 = "🕢";
-var clock8$1 = "🕗";
-var clock830$1 = "🕣";
-var clock9$1 = "🕘";
-var clock930$1 = "🕤";
-var clock10$1 = "🕙";
-var clock1030$1 = "🕥";
-var clock11$1 = "🕚";
-var clock1130$1 = "🕦";
-var new_moon$1 = "🌑";
-var waxing_crescent_moon$1 = "🌒";
-var first_quarter_moon$1 = "🌓";
+var seat$2 = "💺";
+var helicopter$2 = "🚁";
+var suspension_railway$2 = "🚟";
+var mountain_cableway$2 = "🚠";
+var aerial_tramway$2 = "🚡";
+var artificial_satellite$2 = "🛰️";
+var rocket$2 = "🚀";
+var flying_saucer$2 = "🛸";
+var bellhop_bell$2 = "🛎️";
+var luggage$2 = "🧳";
+var hourglass$2 = "⌛";
+var hourglass_flowing_sand$2 = "⏳";
+var watch$2 = "⌚";
+var alarm_clock$2 = "⏰";
+var stopwatch$2 = "⏱️";
+var timer_clock$2 = "⏲️";
+var mantelpiece_clock$2 = "🕰️";
+var clock12$2 = "🕛";
+var clock1230$2 = "🕧";
+var clock1$2 = "🕐";
+var clock130$2 = "🕜";
+var clock2$2 = "🕑";
+var clock230$2 = "🕝";
+var clock3$2 = "🕒";
+var clock330$2 = "🕞";
+var clock4$2 = "🕓";
+var clock430$2 = "🕟";
+var clock5$2 = "🕔";
+var clock530$2 = "🕠";
+var clock6$2 = "🕕";
+var clock630$2 = "🕡";
+var clock7$2 = "🕖";
+var clock730$2 = "🕢";
+var clock8$2 = "🕗";
+var clock830$2 = "🕣";
+var clock9$2 = "🕘";
+var clock930$2 = "🕤";
+var clock10$2 = "🕙";
+var clock1030$2 = "🕥";
+var clock11$2 = "🕚";
+var clock1130$2 = "🕦";
+var new_moon$2 = "🌑";
+var waxing_crescent_moon$2 = "🌒";
+var first_quarter_moon$2 = "🌓";
 var moon = "🌔";
-var waxing_gibbous_moon$1 = "🌔";
-var full_moon$1 = "🌕";
-var waning_gibbous_moon$1 = "🌖";
-var last_quarter_moon$1 = "🌗";
-var waning_crescent_moon$1 = "🌘";
-var crescent_moon$1 = "🌙";
-var new_moon_with_face$1 = "🌚";
-var first_quarter_moon_with_face$1 = "🌛";
-var last_quarter_moon_with_face$1 = "🌜";
-var thermometer$1 = "🌡️";
-var sunny$1 = "☀️";
-var full_moon_with_face$1 = "🌝";
-var sun_with_face$1 = "🌞";
+var waxing_gibbous_moon$2 = "🌔";
+var full_moon$2 = "🌕";
+var waning_gibbous_moon$2 = "🌖";
+var last_quarter_moon$2 = "🌗";
+var waning_crescent_moon$2 = "🌘";
+var crescent_moon$2 = "🌙";
+var new_moon_with_face$2 = "🌚";
+var first_quarter_moon_with_face$2 = "🌛";
+var last_quarter_moon_with_face$2 = "🌜";
+var thermometer$2 = "🌡️";
+var sunny$2 = "☀️";
+var full_moon_with_face$2 = "🌝";
+var sun_with_face$2 = "🌞";
 var ringed_planet = "🪐";
-var star$1 = "⭐";
-var star2$1 = "🌟";
-var stars$1 = "🌠";
-var milky_way$1 = "🌌";
-var cloud$1 = "☁️";
-var partly_sunny$1 = "⛅";
-var cloud_with_lightning_and_rain$1 = "⛈️";
-var sun_behind_small_cloud$1 = "🌤️";
-var sun_behind_large_cloud$1 = "🌥️";
-var sun_behind_rain_cloud$1 = "🌦️";
-var cloud_with_rain$1 = "🌧️";
-var cloud_with_snow$1 = "🌨️";
-var cloud_with_lightning$1 = "🌩️";
-var tornado$1 = "🌪️";
-var fog$1 = "🌫️";
-var wind_face$1 = "🌬️";
-var cyclone$1 = "🌀";
-var rainbow$1 = "🌈";
-var closed_umbrella$1 = "🌂";
-var open_umbrella$1 = "☂️";
-var umbrella$1 = "☔";
-var parasol_on_ground$1 = "⛱️";
-var zap$1 = "⚡";
-var snowflake$1 = "❄️";
-var snowman_with_snow$1 = "☃️";
-var snowman$1 = "⛄";
-var comet$1 = "☄️";
-var fire$1 = "🔥";
-var droplet$1 = "💧";
-var ocean$1 = "🌊";
-var jack_o_lantern$1 = "🎃";
-var christmas_tree$1 = "🎄";
-var fireworks$1 = "🎆";
-var sparkler$1 = "🎇";
-var firecracker$1 = "🧨";
-var sparkles$1 = "✨";
-var balloon$1 = "🎈";
-var tada$1 = "🎉";
-var confetti_ball$1 = "🎊";
-var tanabata_tree$1 = "🎋";
-var bamboo$1 = "🎍";
-var dolls$1 = "🎎";
-var flags$1 = "🎏";
-var wind_chime$1 = "🎐";
-var rice_scene$1 = "🎑";
-var red_envelope$1 = "🧧";
-var ribbon$1 = "🎀";
-var gift$1 = "🎁";
-var reminder_ribbon$1 = "🎗️";
-var tickets$1 = "🎟️";
-var ticket$1 = "🎫";
-var medal_military$1 = "🎖️";
-var trophy$1 = "🏆";
-var medal_sports$1 = "🏅";
-var soccer$1 = "⚽";
-var baseball$1 = "⚾";
-var softball$1 = "🥎";
-var basketball$1 = "🏀";
-var volleyball$1 = "🏐";
-var football$1 = "🏈";
-var rugby_football$1 = "🏉";
-var tennis$1 = "🎾";
-var flying_disc$1 = "🥏";
-var bowling$1 = "🎳";
+var star$2 = "⭐";
+var star2$2 = "🌟";
+var stars$2 = "🌠";
+var milky_way$2 = "🌌";
+var cloud$2 = "☁️";
+var partly_sunny$2 = "⛅";
+var cloud_with_lightning_and_rain$2 = "⛈️";
+var sun_behind_small_cloud$2 = "🌤️";
+var sun_behind_large_cloud$2 = "🌥️";
+var sun_behind_rain_cloud$2 = "🌦️";
+var cloud_with_rain$2 = "🌧️";
+var cloud_with_snow$2 = "🌨️";
+var cloud_with_lightning$2 = "🌩️";
+var tornado$2 = "🌪️";
+var fog$2 = "🌫️";
+var wind_face$2 = "🌬️";
+var cyclone$2 = "🌀";
+var rainbow$2 = "🌈";
+var closed_umbrella$2 = "🌂";
+var open_umbrella$2 = "☂️";
+var umbrella$2 = "☔";
+var parasol_on_ground$2 = "⛱️";
+var zap$2 = "⚡";
+var snowflake$2 = "❄️";
+var snowman_with_snow$2 = "☃️";
+var snowman$2 = "⛄";
+var comet$2 = "☄️";
+var fire$2 = "🔥";
+var droplet$2 = "💧";
+var ocean$2 = "🌊";
+var jack_o_lantern$2 = "🎃";
+var christmas_tree$2 = "🎄";
+var fireworks$2 = "🎆";
+var sparkler$2 = "🎇";
+var firecracker$2 = "🧨";
+var sparkles$2 = "✨";
+var balloon$2 = "🎈";
+var tada$2 = "🎉";
+var confetti_ball$2 = "🎊";
+var tanabata_tree$2 = "🎋";
+var bamboo$2 = "🎍";
+var dolls$2 = "🎎";
+var flags$2 = "🎏";
+var wind_chime$2 = "🎐";
+var rice_scene$2 = "🎑";
+var red_envelope$2 = "🧧";
+var ribbon$2 = "🎀";
+var gift$2 = "🎁";
+var reminder_ribbon$2 = "🎗️";
+var tickets$2 = "🎟️";
+var ticket$2 = "🎫";
+var medal_military$2 = "🎖️";
+var trophy$2 = "🏆";
+var medal_sports$2 = "🏅";
+var soccer$2 = "⚽";
+var baseball$2 = "⚾";
+var softball$2 = "🥎";
+var basketball$2 = "🏀";
+var volleyball$2 = "🏐";
+var football$2 = "🏈";
+var rugby_football$2 = "🏉";
+var tennis$2 = "🎾";
+var flying_disc$2 = "🥏";
+var bowling$2 = "🎳";
 var cricket_game = "🏏";
-var field_hockey$1 = "🏑";
-var ice_hockey$1 = "🏒";
-var lacrosse$1 = "🥍";
-var ping_pong$1 = "🏓";
-var badminton$1 = "🏸";
-var boxing_glove$1 = "🥊";
-var martial_arts_uniform$1 = "🥋";
-var goal_net$1 = "🥅";
-var golf$1 = "⛳";
-var ice_skate$1 = "⛸️";
-var fishing_pole_and_fish$1 = "🎣";
+var field_hockey$2 = "🏑";
+var ice_hockey$2 = "🏒";
+var lacrosse$2 = "🥍";
+var ping_pong$2 = "🏓";
+var badminton$2 = "🏸";
+var boxing_glove$2 = "🥊";
+var martial_arts_uniform$2 = "🥋";
+var goal_net$2 = "🥅";
+var golf$2 = "⛳";
+var ice_skate$2 = "⛸️";
+var fishing_pole_and_fish$2 = "🎣";
 var diving_mask = "🤿";
-var running_shirt_with_sash$1 = "🎽";
-var ski$1 = "🎿";
-var sled$1 = "🛷";
-var curling_stone$1 = "🥌";
-var dart$1 = "🎯";
+var running_shirt_with_sash$2 = "🎽";
+var ski$2 = "🎿";
+var sled$2 = "🛷";
+var curling_stone$2 = "🥌";
+var dart$2 = "🎯";
 var yo_yo = "🪀";
 var kite = "🪁";
-var crystal_ball$1 = "🔮";
+var crystal_ball$2 = "🔮";
 var magic_wand = "🪄";
-var nazar_amulet$1 = "🧿";
-var video_game$1 = "🎮";
-var joystick$1 = "🕹️";
-var slot_machine$1 = "🎰";
-var game_die$1 = "🎲";
-var jigsaw$1 = "🧩";
-var teddy_bear$1 = "🧸";
+var nazar_amulet$2 = "🧿";
+var video_game$2 = "🎮";
+var joystick$2 = "🕹️";
+var slot_machine$2 = "🎰";
+var game_die$2 = "🎲";
+var jigsaw$2 = "🧩";
+var teddy_bear$2 = "🧸";
 var pinata = "🪅";
 var nesting_dolls = "🪆";
-var spades$1 = "♠️";
-var hearts$1 = "♥️";
-var diamonds$1 = "♦️";
-var clubs$1 = "♣️";
-var chess_pawn$1 = "♟️";
-var black_joker$1 = "🃏";
-var mahjong$1 = "🀄";
-var flower_playing_cards$1 = "🎴";
-var performing_arts$1 = "🎭";
-var framed_picture$1 = "🖼️";
-var art$1 = "🎨";
-var thread$1 = "🧵";
+var spades$2 = "♠️";
+var hearts$2 = "♥️";
+var diamonds$2 = "♦️";
+var clubs$2 = "♣️";
+var chess_pawn$2 = "♟️";
+var black_joker$2 = "🃏";
+var mahjong$2 = "🀄";
+var flower_playing_cards$2 = "🎴";
+var performing_arts$2 = "🎭";
+var framed_picture$2 = "🖼️";
+var art$2 = "🎨";
+var thread$2 = "🧵";
 var sewing_needle = "🪡";
-var yarn$1 = "🧶";
+var yarn$2 = "🧶";
 var knot = "🪢";
-var eyeglasses$1 = "👓";
-var dark_sunglasses$1 = "🕶️";
-var goggles$1 = "🥽";
+var eyeglasses$2 = "👓";
+var dark_sunglasses$2 = "🕶️";
+var goggles$2 = "🥽";
 var lab_coat = "🥼";
 var safety_vest = "🦺";
-var necktie$1 = "👔";
+var necktie$2 = "👔";
 var shirt = "👕";
-var tshirt$1 = "👕";
-var jeans$1 = "👖";
-var scarf$1 = "🧣";
-var gloves$1 = "🧤";
-var coat$1 = "🧥";
-var socks$1 = "🧦";
-var dress$1 = "👗";
-var kimono$1 = "👘";
+var tshirt$2 = "👕";
+var jeans$2 = "👖";
+var scarf$2 = "🧣";
+var gloves$2 = "🧤";
+var coat$2 = "🧥";
+var socks$2 = "🧦";
+var dress$2 = "👗";
+var kimono$2 = "👘";
 var sari = "🥻";
 var one_piece_swimsuit = "🩱";
 var swim_brief = "🩲";
 var shorts = "🩳";
-var bikini$1 = "👙";
-var womans_clothes$1 = "👚";
-var purse$1 = "👛";
-var handbag$1 = "👜";
-var pouch$1 = "👝";
-var shopping$1 = "🛍️";
-var school_satchel$1 = "🎒";
+var bikini$2 = "👙";
+var womans_clothes$2 = "👚";
+var purse$2 = "👛";
+var handbag$2 = "👜";
+var pouch$2 = "👝";
+var shopping$2 = "🛍️";
+var school_satchel$2 = "🎒";
 var thong_sandal = "🩴";
-var mans_shoe$1 = "👞";
+var mans_shoe$2 = "👞";
 var shoe = "👞";
-var athletic_shoe$1 = "👟";
-var hiking_boot$1 = "🥾";
-var flat_shoe$1 = "🥿";
-var high_heel$1 = "👠";
-var sandal$1 = "👡";
+var athletic_shoe$2 = "👟";
+var hiking_boot$2 = "🥾";
+var flat_shoe$2 = "🥿";
+var high_heel$2 = "👠";
+var sandal$2 = "👡";
 var ballet_shoes = "🩰";
-var boot$1 = "👢";
-var crown$1 = "👑";
-var womans_hat$1 = "👒";
-var tophat$1 = "🎩";
-var mortar_board$1 = "🎓";
+var boot$2 = "👢";
+var crown$2 = "👑";
+var womans_hat$2 = "👒";
+var tophat$2 = "🎩";
+var mortar_board$2 = "🎓";
 var billed_cap = "🧢";
 var military_helmet = "🪖";
-var rescue_worker_helmet$1 = "⛑️";
-var prayer_beads$1 = "📿";
-var lipstick$1 = "💄";
-var ring$1 = "💍";
-var gem$1 = "💎";
-var mute$1 = "🔇";
-var speaker$1 = "🔈";
-var sound$1 = "🔉";
-var loud_sound$1 = "🔊";
-var loudspeaker$1 = "📢";
-var mega$1 = "📣";
-var postal_horn$1 = "📯";
-var bell$1 = "🔔";
-var no_bell$1 = "🔕";
-var musical_score$1 = "🎼";
-var musical_note$1 = "🎵";
-var notes$1 = "🎶";
-var studio_microphone$1 = "🎙️";
-var level_slider$1 = "🎚️";
-var control_knobs$1 = "🎛️";
-var microphone$1 = "🎤";
-var headphones$1 = "🎧";
-var radio$1 = "📻";
-var saxophone$1 = "🎷";
+var rescue_worker_helmet$2 = "⛑️";
+var prayer_beads$2 = "📿";
+var lipstick$2 = "💄";
+var ring$2 = "💍";
+var gem$2 = "💎";
+var mute$2 = "🔇";
+var speaker$2 = "🔈";
+var sound$2 = "🔉";
+var loud_sound$2 = "🔊";
+var loudspeaker$2 = "📢";
+var mega$2 = "📣";
+var postal_horn$2 = "📯";
+var bell$2 = "🔔";
+var no_bell$2 = "🔕";
+var musical_score$2 = "🎼";
+var musical_note$2 = "🎵";
+var notes$2 = "🎶";
+var studio_microphone$2 = "🎙️";
+var level_slider$2 = "🎚️";
+var control_knobs$2 = "🎛️";
+var microphone$2 = "🎤";
+var headphones$2 = "🎧";
+var radio$2 = "📻";
+var saxophone$2 = "🎷";
 var accordion = "🪗";
-var guitar$1 = "🎸";
-var musical_keyboard$1 = "🎹";
-var trumpet$1 = "🎺";
-var violin$1 = "🎻";
+var guitar$2 = "🎸";
+var musical_keyboard$2 = "🎹";
+var trumpet$2 = "🎺";
+var violin$2 = "🎻";
 var banjo = "🪕";
-var drum$1 = "🥁";
+var drum$2 = "🥁";
 var long_drum = "🪘";
-var iphone$1 = "📱";
-var calling$1 = "📲";
-var phone$1 = "☎️";
+var iphone$2 = "📱";
+var calling$2 = "📲";
+var phone$2 = "☎️";
 var telephone = "☎️";
-var telephone_receiver$1 = "📞";
-var pager$1 = "📟";
-var fax$1 = "📠";
-var battery$1 = "🔋";
-var electric_plug$1 = "🔌";
-var computer$1 = "💻";
-var desktop_computer$1 = "🖥️";
-var printer$1 = "🖨️";
-var keyboard$1 = "⌨️";
-var computer_mouse$1 = "🖱️";
-var trackball$1 = "🖲️";
-var minidisc$1 = "💽";
-var floppy_disk$1 = "💾";
-var cd$1 = "💿";
-var dvd$1 = "📀";
-var abacus$1 = "🧮";
-var movie_camera$1 = "🎥";
-var film_strip$1 = "🎞️";
-var film_projector$1 = "📽️";
-var clapper$1 = "🎬";
-var tv$1 = "📺";
-var camera$1 = "📷";
-var camera_flash$1 = "📸";
-var video_camera$1 = "📹";
-var vhs$1 = "📼";
-var mag$1 = "🔍";
-var mag_right$1 = "🔎";
-var candle$1 = "🕯️";
-var bulb$1 = "💡";
-var flashlight$1 = "🔦";
-var izakaya_lantern$1 = "🏮";
+var telephone_receiver$2 = "📞";
+var pager$2 = "📟";
+var fax$2 = "📠";
+var battery$2 = "🔋";
+var electric_plug$2 = "🔌";
+var computer$2 = "💻";
+var desktop_computer$2 = "🖥️";
+var printer$2 = "🖨️";
+var keyboard$2 = "⌨️";
+var computer_mouse$2 = "🖱️";
+var trackball$2 = "🖲️";
+var minidisc$2 = "💽";
+var floppy_disk$2 = "💾";
+var cd$2 = "💿";
+var dvd$2 = "📀";
+var abacus$2 = "🧮";
+var movie_camera$2 = "🎥";
+var film_strip$2 = "🎞️";
+var film_projector$2 = "📽️";
+var clapper$2 = "🎬";
+var tv$2 = "📺";
+var camera$2 = "📷";
+var camera_flash$2 = "📸";
+var video_camera$2 = "📹";
+var vhs$2 = "📼";
+var mag$2 = "🔍";
+var mag_right$2 = "🔎";
+var candle$2 = "🕯️";
+var bulb$2 = "💡";
+var flashlight$2 = "🔦";
+var izakaya_lantern$2 = "🏮";
 var lantern = "🏮";
 var diya_lamp = "🪔";
-var notebook_with_decorative_cover$1 = "📔";
-var closed_book$1 = "📕";
+var notebook_with_decorative_cover$2 = "📔";
+var closed_book$2 = "📕";
 var book = "📖";
-var open_book$1 = "📖";
-var green_book$1 = "📗";
-var blue_book$1 = "📘";
-var orange_book$1 = "📙";
-var books$1 = "📚";
-var notebook$1 = "📓";
-var ledger$1 = "📒";
-var page_with_curl$1 = "📃";
-var scroll$1 = "📜";
-var page_facing_up$1 = "📄";
-var newspaper$1 = "📰";
-var newspaper_roll$1 = "🗞️";
-var bookmark_tabs$1 = "📑";
-var bookmark$1 = "🔖";
-var label$1 = "🏷️";
-var moneybag$1 = "💰";
+var open_book$2 = "📖";
+var green_book$2 = "📗";
+var blue_book$2 = "📘";
+var orange_book$2 = "📙";
+var books$2 = "📚";
+var notebook$2 = "📓";
+var ledger$2 = "📒";
+var page_with_curl$2 = "📃";
+var scroll$2 = "📜";
+var page_facing_up$2 = "📄";
+var newspaper$2 = "📰";
+var newspaper_roll$2 = "🗞️";
+var bookmark_tabs$2 = "📑";
+var bookmark$2 = "🔖";
+var label$2 = "🏷️";
+var moneybag$2 = "💰";
 var coin = "🪙";
-var yen$1 = "💴";
-var dollar$1 = "💵";
-var euro$1 = "💶";
-var pound$1 = "💷";
-var money_with_wings$1 = "💸";
-var credit_card$1 = "💳";
-var receipt$1 = "🧾";
-var chart$1 = "💹";
+var yen$2 = "💴";
+var dollar$2 = "💵";
+var euro$2 = "💶";
+var pound$2 = "💷";
+var money_with_wings$2 = "💸";
+var credit_card$2 = "💳";
+var receipt$2 = "🧾";
+var chart$2 = "💹";
 var envelope = "✉️";
-var email$1 = "📧";
-var incoming_envelope$1 = "📨";
-var envelope_with_arrow$1 = "📩";
-var outbox_tray$1 = "📤";
-var inbox_tray$1 = "📥";
-var mailbox$1 = "📫";
-var mailbox_closed$1 = "📪";
-var mailbox_with_mail$1 = "📬";
-var mailbox_with_no_mail$1 = "📭";
-var postbox$1 = "📮";
-var ballot_box$1 = "🗳️";
-var pencil2$1 = "✏️";
-var black_nib$1 = "✒️";
-var fountain_pen$1 = "🖋️";
-var pen$1 = "🖊️";
-var paintbrush$1 = "🖌️";
-var crayon$1 = "🖍️";
-var memo$1 = "📝";
+var email$2 = "📧";
+var incoming_envelope$2 = "📨";
+var envelope_with_arrow$2 = "📩";
+var outbox_tray$2 = "📤";
+var inbox_tray$2 = "📥";
+var mailbox$2 = "📫";
+var mailbox_closed$2 = "📪";
+var mailbox_with_mail$2 = "📬";
+var mailbox_with_no_mail$2 = "📭";
+var postbox$2 = "📮";
+var ballot_box$2 = "🗳️";
+var pencil2$2 = "✏️";
+var black_nib$2 = "✒️";
+var fountain_pen$2 = "🖋️";
+var pen$2 = "🖊️";
+var paintbrush$2 = "🖌️";
+var crayon$2 = "🖍️";
+var memo$2 = "📝";
 var pencil = "📝";
-var briefcase$1 = "💼";
-var file_folder$1 = "📁";
-var open_file_folder$1 = "📂";
-var card_index_dividers$1 = "🗂️";
-var date$1 = "📅";
-var calendar$1 = "📆";
-var spiral_notepad$1 = "🗒️";
-var spiral_calendar$1 = "🗓️";
-var card_index$1 = "📇";
-var chart_with_upwards_trend$1 = "📈";
-var chart_with_downwards_trend$1 = "📉";
-var bar_chart$1 = "📊";
-var clipboard$2 = "📋";
-var pushpin$1 = "📌";
-var round_pushpin$1 = "📍";
-var paperclip$1 = "📎";
-var paperclips$1 = "🖇️";
-var straight_ruler$1 = "📏";
-var triangular_ruler$1 = "📐";
-var scissors$1 = "✂️";
-var card_file_box$1 = "🗃️";
-var file_cabinet$1 = "🗄️";
-var wastebasket$1 = "🗑️";
-var lock$1 = "🔒";
-var unlock$1 = "🔓";
-var lock_with_ink_pen$1 = "🔏";
-var closed_lock_with_key$1 = "🔐";
-var key$1 = "🔑";
-var old_key$1 = "🗝️";
-var hammer$1 = "🔨";
+var briefcase$2 = "💼";
+var file_folder$2 = "📁";
+var open_file_folder$2 = "📂";
+var card_index_dividers$2 = "🗂️";
+var date$2 = "📅";
+var calendar$2 = "📆";
+var spiral_notepad$2 = "🗒️";
+var spiral_calendar$2 = "🗓️";
+var card_index$2 = "📇";
+var chart_with_upwards_trend$2 = "📈";
+var chart_with_downwards_trend$2 = "📉";
+var bar_chart$2 = "📊";
+var clipboard$3 = "📋";
+var pushpin$2 = "📌";
+var round_pushpin$2 = "📍";
+var paperclip$2 = "📎";
+var paperclips$2 = "🖇️";
+var straight_ruler$2 = "📏";
+var triangular_ruler$2 = "📐";
+var scissors$2 = "✂️";
+var card_file_box$2 = "🗃️";
+var file_cabinet$2 = "🗄️";
+var wastebasket$2 = "🗑️";
+var lock$2 = "🔒";
+var unlock$2 = "🔓";
+var lock_with_ink_pen$2 = "🔏";
+var closed_lock_with_key$2 = "🔐";
+var key$2 = "🔑";
+var old_key$2 = "🗝️";
+var hammer$2 = "🔨";
 var axe = "🪓";
-var pick$1 = "⛏️";
-var hammer_and_pick$1 = "⚒️";
-var hammer_and_wrench$1 = "🛠️";
-var dagger$1 = "🗡️";
-var crossed_swords$1 = "⚔️";
-var gun$1 = "🔫";
+var pick$2 = "⛏️";
+var hammer_and_pick$2 = "⚒️";
+var hammer_and_wrench$2 = "🛠️";
+var dagger$2 = "🗡️";
+var crossed_swords$2 = "⚔️";
+var gun$2 = "🔫";
 var boomerang = "🪃";
-var bow_and_arrow$1 = "🏹";
-var shield$1 = "🛡️";
+var bow_and_arrow$2 = "🏹";
+var shield$2 = "🛡️";
 var carpentry_saw = "🪚";
-var wrench$1 = "🔧";
+var wrench$2 = "🔧";
 var screwdriver = "🪛";
-var nut_and_bolt$1 = "🔩";
-var gear$1 = "⚙️";
-var clamp$1 = "🗜️";
-var balance_scale$1 = "⚖️";
+var nut_and_bolt$2 = "🔩";
+var gear$2 = "⚙️";
+var clamp$2 = "🗜️";
+var balance_scale$2 = "⚖️";
 var probing_cane = "🦯";
-var link$2 = "🔗";
-var chains$1 = "⛓️";
+var link$3 = "🔗";
+var chains$2 = "⛓️";
 var hook = "🪝";
-var toolbox$1 = "🧰";
-var magnet$1 = "🧲";
+var toolbox$2 = "🧰";
+var magnet$2 = "🧲";
 var ladder = "🪜";
-var alembic$1 = "⚗️";
-var test_tube$1 = "🧪";
-var petri_dish$1 = "🧫";
-var dna$1 = "🧬";
-var microscope$1 = "🔬";
-var telescope$1 = "🔭";
-var satellite$1 = "📡";
-var syringe$1 = "💉";
+var alembic$2 = "⚗️";
+var test_tube$2 = "🧪";
+var petri_dish$2 = "🧫";
+var dna$2 = "🧬";
+var microscope$2 = "🔬";
+var telescope$2 = "🔭";
+var satellite$2 = "📡";
+var syringe$2 = "💉";
 var drop_of_blood = "🩸";
-var pill$1 = "💊";
+var pill$2 = "💊";
 var adhesive_bandage = "🩹";
 var stethoscope = "🩺";
-var door$1 = "🚪";
+var door$2 = "🚪";
 var elevator = "🛗";
 var mirror = "🪞";
 var window$1 = "🪟";
-var bed$1 = "🛏️";
-var couch_and_lamp$1 = "🛋️";
+var bed$2 = "🛏️";
+var couch_and_lamp$2 = "🛋️";
 var chair = "🪑";
-var toilet$1 = "🚽";
+var toilet$2 = "🚽";
 var plunger = "🪠";
-var shower$1 = "🚿";
-var bathtub$1 = "🛁";
+var shower$2 = "🚿";
+var bathtub$2 = "🛁";
 var mouse_trap = "🪤";
 var razor = "🪒";
-var lotion_bottle$1 = "🧴";
-var safety_pin$1 = "🧷";
-var broom$1 = "🧹";
-var basket$1 = "🧺";
+var lotion_bottle$2 = "🧴";
+var safety_pin$2 = "🧷";
+var broom$2 = "🧹";
+var basket$2 = "🧺";
 var roll_of_paper = "🧻";
 var bucket = "🪣";
-var soap$1 = "🧼";
+var soap$2 = "🧼";
 var toothbrush = "🪥";
-var sponge$1 = "🧽";
-var fire_extinguisher$1 = "🧯";
-var shopping_cart$1 = "🛒";
-var smoking$1 = "🚬";
-var coffin$1 = "⚰️";
+var sponge$2 = "🧽";
+var fire_extinguisher$2 = "🧯";
+var shopping_cart$2 = "🛒";
+var smoking$2 = "🚬";
+var coffin$2 = "⚰️";
 var headstone = "🪦";
-var funeral_urn$1 = "⚱️";
-var moyai$1 = "🗿";
+var funeral_urn$2 = "⚱️";
+var moyai$2 = "🗿";
 var placard = "🪧";
-var atm$1 = "🏧";
-var put_litter_in_its_place$1 = "🚮";
-var potable_water$1 = "🚰";
-var wheelchair$1 = "♿";
-var mens$1 = "🚹";
-var womens$1 = "🚺";
-var restroom$1 = "🚻";
-var baby_symbol$1 = "🚼";
-var wc$1 = "🚾";
-var passport_control$1 = "🛂";
-var customs$1 = "🛃";
-var baggage_claim$1 = "🛄";
-var left_luggage$1 = "🛅";
-var warning$1 = "⚠️";
-var children_crossing$1 = "🚸";
-var no_entry$1 = "⛔";
-var no_entry_sign$1 = "🚫";
-var no_bicycles$1 = "🚳";
-var no_smoking$1 = "🚭";
-var do_not_litter$1 = "🚯";
-var no_pedestrians$1 = "🚷";
-var no_mobile_phones$1 = "📵";
-var underage$1 = "🔞";
-var radioactive$1 = "☢️";
-var biohazard$1 = "☣️";
-var arrow_up$1 = "⬆️";
-var arrow_upper_right$1 = "↗️";
-var arrow_right$1 = "➡️";
-var arrow_lower_right$1 = "↘️";
-var arrow_down$1 = "⬇️";
-var arrow_lower_left$1 = "↙️";
-var arrow_left$1 = "⬅️";
-var arrow_upper_left$1 = "↖️";
-var arrow_up_down$1 = "↕️";
-var left_right_arrow$1 = "↔️";
-var leftwards_arrow_with_hook$1 = "↩️";
-var arrow_right_hook$1 = "↪️";
-var arrow_heading_up$1 = "⤴️";
-var arrow_heading_down$1 = "⤵️";
-var arrows_clockwise$1 = "🔃";
-var arrows_counterclockwise$1 = "🔄";
-var back$1 = "🔙";
-var end$1 = "🔚";
-var on$1 = "🔛";
-var soon$1 = "🔜";
-var top$1 = "🔝";
-var place_of_worship$1 = "🛐";
-var atom_symbol$1 = "⚛️";
-var om$1 = "🕉️";
-var star_of_david$1 = "✡️";
-var wheel_of_dharma$1 = "☸️";
-var yin_yang$1 = "☯️";
-var latin_cross$1 = "✝️";
-var orthodox_cross$1 = "☦️";
-var star_and_crescent$1 = "☪️";
-var peace_symbol$1 = "☮️";
-var menorah$1 = "🕎";
-var six_pointed_star$1 = "🔯";
-var aries$1 = "♈";
-var taurus$1 = "♉";
-var gemini$1 = "♊";
-var cancer$1 = "♋";
-var leo$1 = "♌";
-var virgo$1 = "♍";
-var libra$1 = "♎";
-var scorpius$1 = "♏";
-var sagittarius$1 = "♐";
-var capricorn$1 = "♑";
-var aquarius$1 = "♒";
-var pisces$1 = "♓";
-var ophiuchus$1 = "⛎";
-var twisted_rightwards_arrows$1 = "🔀";
-var repeat$1 = "🔁";
-var repeat_one$1 = "🔂";
-var arrow_forward$1 = "▶️";
-var fast_forward$1 = "⏩";
-var next_track_button$1 = "⏭️";
-var play_or_pause_button$1 = "⏯️";
-var arrow_backward$1 = "◀️";
-var rewind$1 = "⏪";
-var previous_track_button$1 = "⏮️";
-var arrow_up_small$1 = "🔼";
-var arrow_double_up$1 = "⏫";
-var arrow_down_small$1 = "🔽";
-var arrow_double_down$1 = "⏬";
-var pause_button$1 = "⏸️";
-var stop_button$1 = "⏹️";
-var record_button$1 = "⏺️";
-var eject_button$1 = "⏏️";
-var cinema$1 = "🎦";
-var low_brightness$1 = "🔅";
-var high_brightness$1 = "🔆";
-var signal_strength$1 = "📶";
-var vibration_mode$1 = "📳";
-var mobile_phone_off$1 = "📴";
+var atm$2 = "🏧";
+var put_litter_in_its_place$2 = "🚮";
+var potable_water$2 = "🚰";
+var wheelchair$2 = "♿";
+var mens$2 = "🚹";
+var womens$2 = "🚺";
+var restroom$2 = "🚻";
+var baby_symbol$2 = "🚼";
+var wc$2 = "🚾";
+var passport_control$2 = "🛂";
+var customs$2 = "🛃";
+var baggage_claim$2 = "🛄";
+var left_luggage$2 = "🛅";
+var warning$2 = "⚠️";
+var children_crossing$2 = "🚸";
+var no_entry$2 = "⛔";
+var no_entry_sign$2 = "🚫";
+var no_bicycles$2 = "🚳";
+var no_smoking$2 = "🚭";
+var do_not_litter$2 = "🚯";
+var no_pedestrians$2 = "🚷";
+var no_mobile_phones$2 = "📵";
+var underage$2 = "🔞";
+var radioactive$2 = "☢️";
+var biohazard$2 = "☣️";
+var arrow_up$2 = "⬆️";
+var arrow_upper_right$2 = "↗️";
+var arrow_right$2 = "➡️";
+var arrow_lower_right$2 = "↘️";
+var arrow_down$2 = "⬇️";
+var arrow_lower_left$2 = "↙️";
+var arrow_left$2 = "⬅️";
+var arrow_upper_left$2 = "↖️";
+var arrow_up_down$2 = "↕️";
+var left_right_arrow$2 = "↔️";
+var leftwards_arrow_with_hook$2 = "↩️";
+var arrow_right_hook$2 = "↪️";
+var arrow_heading_up$2 = "⤴️";
+var arrow_heading_down$2 = "⤵️";
+var arrows_clockwise$2 = "🔃";
+var arrows_counterclockwise$2 = "🔄";
+var back$2 = "🔙";
+var end$2 = "🔚";
+var on$2 = "🔛";
+var soon$2 = "🔜";
+var top$2 = "🔝";
+var place_of_worship$2 = "🛐";
+var atom_symbol$2 = "⚛️";
+var om$2 = "🕉️";
+var star_of_david$2 = "✡️";
+var wheel_of_dharma$2 = "☸️";
+var yin_yang$2 = "☯️";
+var latin_cross$2 = "✝️";
+var orthodox_cross$2 = "☦️";
+var star_and_crescent$2 = "☪️";
+var peace_symbol$2 = "☮️";
+var menorah$2 = "🕎";
+var six_pointed_star$2 = "🔯";
+var aries$2 = "♈";
+var taurus$2 = "♉";
+var gemini$2 = "♊";
+var cancer$2 = "♋";
+var leo$2 = "♌";
+var virgo$2 = "♍";
+var libra$2 = "♎";
+var scorpius$2 = "♏";
+var sagittarius$2 = "♐";
+var capricorn$2 = "♑";
+var aquarius$2 = "♒";
+var pisces$2 = "♓";
+var ophiuchus$2 = "⛎";
+var twisted_rightwards_arrows$2 = "🔀";
+var repeat$2 = "🔁";
+var repeat_one$2 = "🔂";
+var arrow_forward$2 = "▶️";
+var fast_forward$2 = "⏩";
+var next_track_button$2 = "⏭️";
+var play_or_pause_button$2 = "⏯️";
+var arrow_backward$2 = "◀️";
+var rewind$2 = "⏪";
+var previous_track_button$2 = "⏮️";
+var arrow_up_small$2 = "🔼";
+var arrow_double_up$2 = "⏫";
+var arrow_down_small$2 = "🔽";
+var arrow_double_down$2 = "⏬";
+var pause_button$2 = "⏸️";
+var stop_button$2 = "⏹️";
+var record_button$2 = "⏺️";
+var eject_button$2 = "⏏️";
+var cinema$2 = "🎦";
+var low_brightness$2 = "🔅";
+var high_brightness$2 = "🔆";
+var signal_strength$2 = "📶";
+var vibration_mode$2 = "📳";
+var mobile_phone_off$2 = "📴";
 var female_sign = "♀️";
 var male_sign = "♂️";
 var transgender_symbol = "⚧️";
-var heavy_multiplication_x$1 = "✖️";
-var heavy_plus_sign$1 = "➕";
-var heavy_minus_sign$1 = "➖";
-var heavy_division_sign$1 = "➗";
-var infinity$1 = "♾️";
-var bangbang$1 = "‼️";
-var interrobang$1 = "⁉️";
-var question$1 = "❓";
-var grey_question$1 = "❔";
-var grey_exclamation$1 = "❕";
-var exclamation$1 = "❗";
+var heavy_multiplication_x$2 = "✖️";
+var heavy_plus_sign$2 = "➕";
+var heavy_minus_sign$2 = "➖";
+var heavy_division_sign$2 = "➗";
+var infinity$2 = "♾️";
+var bangbang$2 = "‼️";
+var interrobang$2 = "⁉️";
+var question$2 = "❓";
+var grey_question$2 = "❔";
+var grey_exclamation$2 = "❕";
+var exclamation$2 = "❗";
 var heavy_exclamation_mark = "❗";
-var wavy_dash$1 = "〰️";
-var currency_exchange$1 = "💱";
-var heavy_dollar_sign$1 = "💲";
+var wavy_dash$2 = "〰️";
+var currency_exchange$2 = "💱";
+var heavy_dollar_sign$2 = "💲";
 var medical_symbol = "⚕️";
-var recycle$1 = "♻️";
-var fleur_de_lis$1 = "⚜️";
-var trident$1 = "🔱";
-var name_badge$1 = "📛";
-var beginner$1 = "🔰";
-var o$2 = "⭕";
-var white_check_mark$1 = "✅";
-var ballot_box_with_check$1 = "☑️";
-var heavy_check_mark$1 = "✔️";
-var x$1 = "❌";
-var negative_squared_cross_mark$1 = "❎";
-var curly_loop$1 = "➰";
-var loop$1 = "➿";
-var part_alternation_mark$1 = "〽️";
-var eight_spoked_asterisk$1 = "✳️";
-var eight_pointed_black_star$1 = "✴️";
-var sparkle$1 = "❇️";
-var copyright$1 = "©️";
-var registered$1 = "®️";
-var tm$1 = "™️";
-var hash$1 = "#️⃣";
-var asterisk$1 = "*️⃣";
-var zero$1 = "0️⃣";
-var one$1 = "1️⃣";
-var two$1 = "2️⃣";
-var three$1 = "3️⃣";
-var four$1 = "4️⃣";
-var five$1 = "5️⃣";
-var six$1 = "6️⃣";
-var seven$1 = "7️⃣";
-var eight$1 = "8️⃣";
-var nine$1 = "9️⃣";
-var keycap_ten$1 = "🔟";
-var capital_abcd$1 = "🔠";
-var abcd$1 = "🔡";
-var symbols$1 = "🔣";
-var abc$1 = "🔤";
-var a$2 = "🅰️";
-var ab$1 = "🆎";
-var b$1 = "🅱️";
-var cl$1 = "🆑";
-var cool$1 = "🆒";
-var free$1 = "🆓";
-var information_source$1 = "ℹ️";
-var id$1 = "🆔";
-var m$1 = "Ⓜ️";
-var ng$1 = "🆖";
-var o2$1 = "🅾️";
-var ok$1 = "🆗";
-var parking$1 = "🅿️";
-var sos$1 = "🆘";
-var up$1 = "🆙";
-var vs$1 = "🆚";
-var koko$1 = "🈁";
-var sa$1 = "🈂️";
-var ideograph_advantage$1 = "🉐";
-var accept$1 = "🉑";
-var congratulations$1 = "㊗️";
-var secret$1 = "㊙️";
-var u6e80$1 = "🈵";
-var red_circle$1 = "🔴";
+var recycle$2 = "♻️";
+var fleur_de_lis$2 = "⚜️";
+var trident$2 = "🔱";
+var name_badge$2 = "📛";
+var beginner$2 = "🔰";
+var o$3 = "⭕";
+var white_check_mark$2 = "✅";
+var ballot_box_with_check$2 = "☑️";
+var heavy_check_mark$2 = "✔️";
+var x$2 = "❌";
+var negative_squared_cross_mark$2 = "❎";
+var curly_loop$2 = "➰";
+var loop$2 = "➿";
+var part_alternation_mark$2 = "〽️";
+var eight_spoked_asterisk$2 = "✳️";
+var eight_pointed_black_star$2 = "✴️";
+var sparkle$2 = "❇️";
+var copyright$2 = "©️";
+var registered$2 = "®️";
+var tm$2 = "™️";
+var hash$2 = "#️⃣";
+var asterisk$2 = "*️⃣";
+var zero$2 = "0️⃣";
+var one$2 = "1️⃣";
+var two$2 = "2️⃣";
+var three$2 = "3️⃣";
+var four$2 = "4️⃣";
+var five$2 = "5️⃣";
+var six$2 = "6️⃣";
+var seven$2 = "7️⃣";
+var eight$2 = "8️⃣";
+var nine$2 = "9️⃣";
+var keycap_ten$2 = "🔟";
+var capital_abcd$2 = "🔠";
+var abcd$2 = "🔡";
+var symbols$2 = "🔣";
+var abc$2 = "🔤";
+var a$3 = "🅰️";
+var ab$2 = "🆎";
+var b$2 = "🅱️";
+var cl$2 = "🆑";
+var cool$2 = "🆒";
+var free$2 = "🆓";
+var information_source$2 = "ℹ️";
+var id$2 = "🆔";
+var m$2 = "Ⓜ️";
+var ng$2 = "🆖";
+var o2$2 = "🅾️";
+var ok$2 = "🆗";
+var parking$2 = "🅿️";
+var sos$2 = "🆘";
+var up$2 = "🆙";
+var vs$2 = "🆚";
+var koko$2 = "🈁";
+var sa$2 = "🈂️";
+var ideograph_advantage$2 = "🉐";
+var accept$2 = "🉑";
+var congratulations$2 = "㊗️";
+var secret$2 = "㊙️";
+var u6e80$2 = "🈵";
+var red_circle$2 = "🔴";
 var orange_circle = "🟠";
 var yellow_circle = "🟡";
 var green_circle = "🟢";
-var large_blue_circle$1 = "🔵";
+var large_blue_circle$2 = "🔵";
 var purple_circle = "🟣";
 var brown_circle = "🟤";
-var black_circle$1 = "⚫";
-var white_circle$1 = "⚪";
+var black_circle$2 = "⚫";
+var white_circle$2 = "⚪";
 var red_square = "🟥";
 var orange_square = "🟧";
 var yellow_square = "🟨";
@@ -56237,524 +56237,524 @@ var green_square = "🟩";
 var blue_square = "🟦";
 var purple_square = "🟪";
 var brown_square = "🟫";
-var black_large_square$1 = "⬛";
-var white_large_square$1 = "⬜";
-var black_medium_square$1 = "◼️";
-var white_medium_square$1 = "◻️";
-var black_medium_small_square$1 = "◾";
-var white_medium_small_square$1 = "◽";
-var black_small_square$1 = "▪️";
-var white_small_square$1 = "▫️";
-var large_orange_diamond$1 = "🔶";
-var large_blue_diamond$1 = "🔷";
-var small_orange_diamond$1 = "🔸";
-var small_blue_diamond$1 = "🔹";
-var small_red_triangle$1 = "🔺";
-var small_red_triangle_down$1 = "🔻";
-var diamond_shape_with_a_dot_inside$1 = "💠";
-var radio_button$1 = "🔘";
-var white_square_button$1 = "🔳";
-var black_square_button$1 = "🔲";
-var checkered_flag$1 = "🏁";
-var triangular_flag_on_post$1 = "🚩";
-var crossed_flags$1 = "🎌";
-var black_flag$1 = "🏴";
-var white_flag$1 = "🏳️";
-var rainbow_flag$1 = "🏳️‍🌈";
+var black_large_square$2 = "⬛";
+var white_large_square$2 = "⬜";
+var black_medium_square$2 = "◼️";
+var white_medium_square$2 = "◻️";
+var black_medium_small_square$2 = "◾";
+var white_medium_small_square$2 = "◽";
+var black_small_square$2 = "▪️";
+var white_small_square$2 = "▫️";
+var large_orange_diamond$2 = "🔶";
+var large_blue_diamond$2 = "🔷";
+var small_orange_diamond$2 = "🔸";
+var small_blue_diamond$2 = "🔹";
+var small_red_triangle$2 = "🔺";
+var small_red_triangle_down$2 = "🔻";
+var diamond_shape_with_a_dot_inside$2 = "💠";
+var radio_button$2 = "🔘";
+var white_square_button$2 = "🔳";
+var black_square_button$2 = "🔲";
+var checkered_flag$2 = "🏁";
+var triangular_flag_on_post$2 = "🚩";
+var crossed_flags$2 = "🎌";
+var black_flag$2 = "🏴";
+var white_flag$2 = "🏳️";
+var rainbow_flag$2 = "🏳️‍🌈";
 var transgender_flag = "🏳️‍⚧️";
-var pirate_flag$1 = "🏴‍☠️";
+var pirate_flag$2 = "🏴‍☠️";
 var ascension_island = "🇦🇨";
-var andorra$1 = "🇦🇩";
-var united_arab_emirates$1 = "🇦🇪";
-var afghanistan$1 = "🇦🇫";
-var antigua_barbuda$1 = "🇦🇬";
-var anguilla$1 = "🇦🇮";
-var albania$1 = "🇦🇱";
-var armenia$1 = "🇦🇲";
-var angola$1 = "🇦🇴";
-var antarctica$1 = "🇦🇶";
-var argentina$1 = "🇦🇷";
-var american_samoa$1 = "🇦🇸";
-var austria$1 = "🇦🇹";
-var australia$1 = "🇦🇺";
-var aruba$1 = "🇦🇼";
-var aland_islands$1 = "🇦🇽";
-var azerbaijan$1 = "🇦🇿";
-var bosnia_herzegovina$1 = "🇧🇦";
-var barbados$1 = "🇧🇧";
-var bangladesh$1 = "🇧🇩";
-var belgium$1 = "🇧🇪";
-var burkina_faso$1 = "🇧🇫";
-var bulgaria$1 = "🇧🇬";
-var bahrain$1 = "🇧🇭";
-var burundi$1 = "🇧🇮";
-var benin$1 = "🇧🇯";
-var st_barthelemy$1 = "🇧🇱";
-var bermuda$1 = "🇧🇲";
-var brunei$1 = "🇧🇳";
-var bolivia$1 = "🇧🇴";
-var caribbean_netherlands$1 = "🇧🇶";
-var brazil$1 = "🇧🇷";
-var bahamas$1 = "🇧🇸";
-var bhutan$1 = "🇧🇹";
+var andorra$2 = "🇦🇩";
+var united_arab_emirates$2 = "🇦🇪";
+var afghanistan$2 = "🇦🇫";
+var antigua_barbuda$2 = "🇦🇬";
+var anguilla$2 = "🇦🇮";
+var albania$2 = "🇦🇱";
+var armenia$2 = "🇦🇲";
+var angola$2 = "🇦🇴";
+var antarctica$2 = "🇦🇶";
+var argentina$2 = "🇦🇷";
+var american_samoa$2 = "🇦🇸";
+var austria$2 = "🇦🇹";
+var australia$2 = "🇦🇺";
+var aruba$2 = "🇦🇼";
+var aland_islands$2 = "🇦🇽";
+var azerbaijan$2 = "🇦🇿";
+var bosnia_herzegovina$2 = "🇧🇦";
+var barbados$2 = "🇧🇧";
+var bangladesh$2 = "🇧🇩";
+var belgium$2 = "🇧🇪";
+var burkina_faso$2 = "🇧🇫";
+var bulgaria$2 = "🇧🇬";
+var bahrain$2 = "🇧🇭";
+var burundi$2 = "🇧🇮";
+var benin$2 = "🇧🇯";
+var st_barthelemy$2 = "🇧🇱";
+var bermuda$2 = "🇧🇲";
+var brunei$2 = "🇧🇳";
+var bolivia$2 = "🇧🇴";
+var caribbean_netherlands$2 = "🇧🇶";
+var brazil$2 = "🇧🇷";
+var bahamas$2 = "🇧🇸";
+var bhutan$2 = "🇧🇹";
 var bouvet_island = "🇧🇻";
-var botswana$1 = "🇧🇼";
-var belarus$1 = "🇧🇾";
-var belize$1 = "🇧🇿";
-var canada$1 = "🇨🇦";
-var cocos_islands$1 = "🇨🇨";
-var congo_kinshasa$1 = "🇨🇩";
-var central_african_republic$1 = "🇨🇫";
-var congo_brazzaville$1 = "🇨🇬";
-var switzerland$1 = "🇨🇭";
-var cote_divoire$1 = "🇨🇮";
-var cook_islands$1 = "🇨🇰";
-var chile$1 = "🇨🇱";
-var cameroon$1 = "🇨🇲";
-var cn$1 = "🇨🇳";
-var colombia$1 = "🇨🇴";
+var botswana$2 = "🇧🇼";
+var belarus$2 = "🇧🇾";
+var belize$2 = "🇧🇿";
+var canada$2 = "🇨🇦";
+var cocos_islands$2 = "🇨🇨";
+var congo_kinshasa$2 = "🇨🇩";
+var central_african_republic$2 = "🇨🇫";
+var congo_brazzaville$2 = "🇨🇬";
+var switzerland$2 = "🇨🇭";
+var cote_divoire$2 = "🇨🇮";
+var cook_islands$2 = "🇨🇰";
+var chile$2 = "🇨🇱";
+var cameroon$2 = "🇨🇲";
+var cn$2 = "🇨🇳";
+var colombia$2 = "🇨🇴";
 var clipperton_island = "🇨🇵";
-var costa_rica$1 = "🇨🇷";
-var cuba$1 = "🇨🇺";
-var cape_verde$1 = "🇨🇻";
-var curacao$1 = "🇨🇼";
-var christmas_island$1 = "🇨🇽";
-var cyprus$1 = "🇨🇾";
-var czech_republic$1 = "🇨🇿";
-var de$1 = "🇩🇪";
+var costa_rica$2 = "🇨🇷";
+var cuba$2 = "🇨🇺";
+var cape_verde$2 = "🇨🇻";
+var curacao$2 = "🇨🇼";
+var christmas_island$2 = "🇨🇽";
+var cyprus$2 = "🇨🇾";
+var czech_republic$2 = "🇨🇿";
+var de$2 = "🇩🇪";
 var diego_garcia = "🇩🇬";
-var djibouti$1 = "🇩🇯";
-var denmark$1 = "🇩🇰";
-var dominica$1 = "🇩🇲";
-var dominican_republic$1 = "🇩🇴";
-var algeria$1 = "🇩🇿";
+var djibouti$2 = "🇩🇯";
+var denmark$2 = "🇩🇰";
+var dominica$2 = "🇩🇲";
+var dominican_republic$2 = "🇩🇴";
+var algeria$2 = "🇩🇿";
 var ceuta_melilla = "🇪🇦";
-var ecuador$1 = "🇪🇨";
-var estonia$1 = "🇪🇪";
-var egypt$1 = "🇪🇬";
-var western_sahara$1 = "🇪🇭";
-var eritrea$1 = "🇪🇷";
-var es$1 = "🇪🇸";
-var ethiopia$1 = "🇪🇹";
-var eu$1 = "🇪🇺";
+var ecuador$2 = "🇪🇨";
+var estonia$2 = "🇪🇪";
+var egypt$2 = "🇪🇬";
+var western_sahara$2 = "🇪🇭";
+var eritrea$2 = "🇪🇷";
+var es$2 = "🇪🇸";
+var ethiopia$2 = "🇪🇹";
+var eu$2 = "🇪🇺";
 var european_union = "🇪🇺";
-var finland$1 = "🇫🇮";
-var fiji$1 = "🇫🇯";
-var falkland_islands$1 = "🇫🇰";
-var micronesia$1 = "🇫🇲";
-var faroe_islands$1 = "🇫🇴";
-var fr$1 = "🇫🇷";
-var gabon$1 = "🇬🇦";
+var finland$2 = "🇫🇮";
+var fiji$2 = "🇫🇯";
+var falkland_islands$2 = "🇫🇰";
+var micronesia$2 = "🇫🇲";
+var faroe_islands$2 = "🇫🇴";
+var fr$2 = "🇫🇷";
+var gabon$2 = "🇬🇦";
 var gb = "🇬🇧";
-var uk$1 = "🇬🇧";
-var grenada$1 = "🇬🇩";
-var georgia$1 = "🇬🇪";
-var french_guiana$1 = "🇬🇫";
-var guernsey$1 = "🇬🇬";
-var ghana$1 = "🇬🇭";
-var gibraltar$1 = "🇬🇮";
-var greenland$1 = "🇬🇱";
-var gambia$1 = "🇬🇲";
-var guinea$1 = "🇬🇳";
-var guadeloupe$1 = "🇬🇵";
-var equatorial_guinea$1 = "🇬🇶";
-var greece$1 = "🇬🇷";
-var south_georgia_south_sandwich_islands$1 = "🇬🇸";
-var guatemala$1 = "🇬🇹";
-var guam$1 = "🇬🇺";
-var guinea_bissau$1 = "🇬🇼";
-var guyana$1 = "🇬🇾";
-var hong_kong$1 = "🇭🇰";
+var uk$2 = "🇬🇧";
+var grenada$2 = "🇬🇩";
+var georgia$2 = "🇬🇪";
+var french_guiana$2 = "🇬🇫";
+var guernsey$2 = "🇬🇬";
+var ghana$2 = "🇬🇭";
+var gibraltar$2 = "🇬🇮";
+var greenland$2 = "🇬🇱";
+var gambia$2 = "🇬🇲";
+var guinea$2 = "🇬🇳";
+var guadeloupe$2 = "🇬🇵";
+var equatorial_guinea$2 = "🇬🇶";
+var greece$2 = "🇬🇷";
+var south_georgia_south_sandwich_islands$2 = "🇬🇸";
+var guatemala$2 = "🇬🇹";
+var guam$2 = "🇬🇺";
+var guinea_bissau$2 = "🇬🇼";
+var guyana$2 = "🇬🇾";
+var hong_kong$2 = "🇭🇰";
 var heard_mcdonald_islands = "🇭🇲";
-var honduras$1 = "🇭🇳";
-var croatia$1 = "🇭🇷";
-var haiti$1 = "🇭🇹";
-var hungary$1 = "🇭🇺";
-var canary_islands$1 = "🇮🇨";
-var indonesia$1 = "🇮🇩";
-var ireland$1 = "🇮🇪";
-var israel$1 = "🇮🇱";
-var isle_of_man$1 = "🇮🇲";
-var india$1 = "🇮🇳";
-var british_indian_ocean_territory$1 = "🇮🇴";
-var iraq$1 = "🇮🇶";
-var iran$1 = "🇮🇷";
-var iceland$1 = "🇮🇸";
-var it$1 = "🇮🇹";
-var jersey$1 = "🇯🇪";
-var jamaica$1 = "🇯🇲";
-var jordan$1 = "🇯🇴";
-var jp$1 = "🇯🇵";
-var kenya$1 = "🇰🇪";
-var kyrgyzstan$1 = "🇰🇬";
-var cambodia$1 = "🇰🇭";
-var kiribati$1 = "🇰🇮";
-var comoros$1 = "🇰🇲";
-var st_kitts_nevis$1 = "🇰🇳";
-var north_korea$1 = "🇰🇵";
-var kr$1 = "🇰🇷";
-var kuwait$1 = "🇰🇼";
-var cayman_islands$1 = "🇰🇾";
-var kazakhstan$1 = "🇰🇿";
-var laos$1 = "🇱🇦";
-var lebanon$1 = "🇱🇧";
-var st_lucia$1 = "🇱🇨";
-var liechtenstein$1 = "🇱🇮";
-var sri_lanka$1 = "🇱🇰";
-var liberia$1 = "🇱🇷";
-var lesotho$1 = "🇱🇸";
-var lithuania$1 = "🇱🇹";
-var luxembourg$1 = "🇱🇺";
-var latvia$1 = "🇱🇻";
-var libya$1 = "🇱🇾";
-var morocco$1 = "🇲🇦";
-var monaco$1 = "🇲🇨";
-var moldova$1 = "🇲🇩";
-var montenegro$1 = "🇲🇪";
+var honduras$2 = "🇭🇳";
+var croatia$2 = "🇭🇷";
+var haiti$2 = "🇭🇹";
+var hungary$2 = "🇭🇺";
+var canary_islands$2 = "🇮🇨";
+var indonesia$2 = "🇮🇩";
+var ireland$2 = "🇮🇪";
+var israel$2 = "🇮🇱";
+var isle_of_man$2 = "🇮🇲";
+var india$2 = "🇮🇳";
+var british_indian_ocean_territory$2 = "🇮🇴";
+var iraq$2 = "🇮🇶";
+var iran$2 = "🇮🇷";
+var iceland$2 = "🇮🇸";
+var it$2 = "🇮🇹";
+var jersey$2 = "🇯🇪";
+var jamaica$2 = "🇯🇲";
+var jordan$2 = "🇯🇴";
+var jp$2 = "🇯🇵";
+var kenya$2 = "🇰🇪";
+var kyrgyzstan$2 = "🇰🇬";
+var cambodia$2 = "🇰🇭";
+var kiribati$2 = "🇰🇮";
+var comoros$2 = "🇰🇲";
+var st_kitts_nevis$2 = "🇰🇳";
+var north_korea$2 = "🇰🇵";
+var kr$2 = "🇰🇷";
+var kuwait$2 = "🇰🇼";
+var cayman_islands$2 = "🇰🇾";
+var kazakhstan$2 = "🇰🇿";
+var laos$2 = "🇱🇦";
+var lebanon$2 = "🇱🇧";
+var st_lucia$2 = "🇱🇨";
+var liechtenstein$2 = "🇱🇮";
+var sri_lanka$2 = "🇱🇰";
+var liberia$2 = "🇱🇷";
+var lesotho$2 = "🇱🇸";
+var lithuania$2 = "🇱🇹";
+var luxembourg$2 = "🇱🇺";
+var latvia$2 = "🇱🇻";
+var libya$2 = "🇱🇾";
+var morocco$2 = "🇲🇦";
+var monaco$2 = "🇲🇨";
+var moldova$2 = "🇲🇩";
+var montenegro$2 = "🇲🇪";
 var st_martin = "🇲🇫";
-var madagascar$1 = "🇲🇬";
-var marshall_islands$1 = "🇲🇭";
-var macedonia$1 = "🇲🇰";
-var mali$1 = "🇲🇱";
-var myanmar$1 = "🇲🇲";
-var mongolia$1 = "🇲🇳";
-var macau$1 = "🇲🇴";
-var northern_mariana_islands$1 = "🇲🇵";
-var martinique$1 = "🇲🇶";
-var mauritania$1 = "🇲🇷";
-var montserrat$1 = "🇲🇸";
-var malta$1 = "🇲🇹";
-var mauritius$1 = "🇲🇺";
-var maldives$1 = "🇲🇻";
-var malawi$1 = "🇲🇼";
-var mexico$1 = "🇲🇽";
-var malaysia$1 = "🇲🇾";
-var mozambique$1 = "🇲🇿";
-var namibia$1 = "🇳🇦";
-var new_caledonia$1 = "🇳🇨";
-var niger$1 = "🇳🇪";
-var norfolk_island$1 = "🇳🇫";
-var nigeria$1 = "🇳🇬";
-var nicaragua$1 = "🇳🇮";
-var netherlands$1 = "🇳🇱";
-var norway$1 = "🇳🇴";
-var nepal$1 = "🇳🇵";
-var nauru$1 = "🇳🇷";
-var niue$1 = "🇳🇺";
-var new_zealand$1 = "🇳🇿";
-var oman$1 = "🇴🇲";
-var panama$1 = "🇵🇦";
-var peru$1 = "🇵🇪";
-var french_polynesia$1 = "🇵🇫";
-var papua_new_guinea$1 = "🇵🇬";
-var philippines$1 = "🇵🇭";
-var pakistan$1 = "🇵🇰";
-var poland$1 = "🇵🇱";
-var st_pierre_miquelon$1 = "🇵🇲";
-var pitcairn_islands$1 = "🇵🇳";
-var puerto_rico$1 = "🇵🇷";
-var palestinian_territories$1 = "🇵🇸";
-var portugal$1 = "🇵🇹";
-var palau$1 = "🇵🇼";
-var paraguay$1 = "🇵🇾";
-var qatar$1 = "🇶🇦";
-var reunion$1 = "🇷🇪";
-var romania$1 = "🇷🇴";
-var serbia$1 = "🇷🇸";
-var ru$1 = "🇷🇺";
-var rwanda$1 = "🇷🇼";
-var saudi_arabia$1 = "🇸🇦";
-var solomon_islands$1 = "🇸🇧";
-var seychelles$1 = "🇸🇨";
-var sudan$1 = "🇸🇩";
-var sweden$1 = "🇸🇪";
-var singapore$1 = "🇸🇬";
-var st_helena$1 = "🇸🇭";
-var slovenia$1 = "🇸🇮";
+var madagascar$2 = "🇲🇬";
+var marshall_islands$2 = "🇲🇭";
+var macedonia$2 = "🇲🇰";
+var mali$2 = "🇲🇱";
+var myanmar$2 = "🇲🇲";
+var mongolia$2 = "🇲🇳";
+var macau$2 = "🇲🇴";
+var northern_mariana_islands$2 = "🇲🇵";
+var martinique$2 = "🇲🇶";
+var mauritania$2 = "🇲🇷";
+var montserrat$2 = "🇲🇸";
+var malta$2 = "🇲🇹";
+var mauritius$2 = "🇲🇺";
+var maldives$2 = "🇲🇻";
+var malawi$2 = "🇲🇼";
+var mexico$2 = "🇲🇽";
+var malaysia$2 = "🇲🇾";
+var mozambique$2 = "🇲🇿";
+var namibia$2 = "🇳🇦";
+var new_caledonia$2 = "🇳🇨";
+var niger$2 = "🇳🇪";
+var norfolk_island$2 = "🇳🇫";
+var nigeria$2 = "🇳🇬";
+var nicaragua$2 = "🇳🇮";
+var netherlands$2 = "🇳🇱";
+var norway$2 = "🇳🇴";
+var nepal$2 = "🇳🇵";
+var nauru$2 = "🇳🇷";
+var niue$2 = "🇳🇺";
+var new_zealand$2 = "🇳🇿";
+var oman$2 = "🇴🇲";
+var panama$2 = "🇵🇦";
+var peru$2 = "🇵🇪";
+var french_polynesia$2 = "🇵🇫";
+var papua_new_guinea$2 = "🇵🇬";
+var philippines$2 = "🇵🇭";
+var pakistan$2 = "🇵🇰";
+var poland$2 = "🇵🇱";
+var st_pierre_miquelon$2 = "🇵🇲";
+var pitcairn_islands$2 = "🇵🇳";
+var puerto_rico$2 = "🇵🇷";
+var palestinian_territories$2 = "🇵🇸";
+var portugal$2 = "🇵🇹";
+var palau$2 = "🇵🇼";
+var paraguay$2 = "🇵🇾";
+var qatar$2 = "🇶🇦";
+var reunion$2 = "🇷🇪";
+var romania$2 = "🇷🇴";
+var serbia$2 = "🇷🇸";
+var ru$2 = "🇷🇺";
+var rwanda$2 = "🇷🇼";
+var saudi_arabia$2 = "🇸🇦";
+var solomon_islands$2 = "🇸🇧";
+var seychelles$2 = "🇸🇨";
+var sudan$2 = "🇸🇩";
+var sweden$2 = "🇸🇪";
+var singapore$2 = "🇸🇬";
+var st_helena$2 = "🇸🇭";
+var slovenia$2 = "🇸🇮";
 var svalbard_jan_mayen = "🇸🇯";
-var slovakia$1 = "🇸🇰";
-var sierra_leone$1 = "🇸🇱";
-var san_marino$1 = "🇸🇲";
-var senegal$1 = "🇸🇳";
-var somalia$1 = "🇸🇴";
-var suriname$1 = "🇸🇷";
-var south_sudan$1 = "🇸🇸";
-var sao_tome_principe$1 = "🇸🇹";
-var el_salvador$1 = "🇸🇻";
-var sint_maarten$1 = "🇸🇽";
-var syria$1 = "🇸🇾";
-var swaziland$1 = "🇸🇿";
+var slovakia$2 = "🇸🇰";
+var sierra_leone$2 = "🇸🇱";
+var san_marino$2 = "🇸🇲";
+var senegal$2 = "🇸🇳";
+var somalia$2 = "🇸🇴";
+var suriname$2 = "🇸🇷";
+var south_sudan$2 = "🇸🇸";
+var sao_tome_principe$2 = "🇸🇹";
+var el_salvador$2 = "🇸🇻";
+var sint_maarten$2 = "🇸🇽";
+var syria$2 = "🇸🇾";
+var swaziland$2 = "🇸🇿";
 var tristan_da_cunha = "🇹🇦";
-var turks_caicos_islands$1 = "🇹🇨";
-var chad$1 = "🇹🇩";
-var french_southern_territories$1 = "🇹🇫";
-var togo$1 = "🇹🇬";
-var thailand$1 = "🇹🇭";
-var tajikistan$1 = "🇹🇯";
-var tokelau$1 = "🇹🇰";
-var timor_leste$1 = "🇹🇱";
-var turkmenistan$1 = "🇹🇲";
-var tunisia$1 = "🇹🇳";
-var tonga$1 = "🇹🇴";
-var tr$1 = "🇹🇷";
-var trinidad_tobago$1 = "🇹🇹";
-var tuvalu$1 = "🇹🇻";
-var taiwan$1 = "🇹🇼";
-var tanzania$1 = "🇹🇿";
-var ukraine$1 = "🇺🇦";
-var uganda$1 = "🇺🇬";
+var turks_caicos_islands$2 = "🇹🇨";
+var chad$2 = "🇹🇩";
+var french_southern_territories$2 = "🇹🇫";
+var togo$2 = "🇹🇬";
+var thailand$2 = "🇹🇭";
+var tajikistan$2 = "🇹🇯";
+var tokelau$2 = "🇹🇰";
+var timor_leste$2 = "🇹🇱";
+var turkmenistan$2 = "🇹🇲";
+var tunisia$2 = "🇹🇳";
+var tonga$2 = "🇹🇴";
+var tr$2 = "🇹🇷";
+var trinidad_tobago$2 = "🇹🇹";
+var tuvalu$2 = "🇹🇻";
+var taiwan$2 = "🇹🇼";
+var tanzania$2 = "🇹🇿";
+var ukraine$2 = "🇺🇦";
+var uganda$2 = "🇺🇬";
 var us_outlying_islands = "🇺🇲";
-var united_nations$1 = "🇺🇳";
-var us$1 = "🇺🇸";
-var uruguay$1 = "🇺🇾";
-var uzbekistan$1 = "🇺🇿";
-var vatican_city$1 = "🇻🇦";
-var st_vincent_grenadines$1 = "🇻🇨";
-var venezuela$1 = "🇻🇪";
-var british_virgin_islands$1 = "🇻🇬";
-var us_virgin_islands$1 = "🇻🇮";
-var vietnam$1 = "🇻🇳";
-var vanuatu$1 = "🇻🇺";
-var wallis_futuna$1 = "🇼🇫";
-var samoa$1 = "🇼🇸";
-var kosovo$1 = "🇽🇰";
-var yemen$1 = "🇾🇪";
-var mayotte$1 = "🇾🇹";
-var south_africa$1 = "🇿🇦";
-var zambia$1 = "🇿🇲";
-var zimbabwe$1 = "🇿🇼";
-var england$1 = "🏴󠁧󠁢󠁥󠁮󠁧󠁿";
-var scotland$1 = "🏴󠁧󠁢󠁳󠁣󠁴󠁿";
-var wales$1 = "🏴󠁧󠁢󠁷󠁬󠁳󠁿";
+var united_nations$2 = "🇺🇳";
+var us$2 = "🇺🇸";
+var uruguay$2 = "🇺🇾";
+var uzbekistan$2 = "🇺🇿";
+var vatican_city$2 = "🇻🇦";
+var st_vincent_grenadines$2 = "🇻🇨";
+var venezuela$2 = "🇻🇪";
+var british_virgin_islands$2 = "🇻🇬";
+var us_virgin_islands$2 = "🇻🇮";
+var vietnam$2 = "🇻🇳";
+var vanuatu$2 = "🇻🇺";
+var wallis_futuna$2 = "🇼🇫";
+var samoa$2 = "🇼🇸";
+var kosovo$2 = "🇽🇰";
+var yemen$2 = "🇾🇪";
+var mayotte$2 = "🇾🇹";
+var south_africa$2 = "🇿🇦";
+var zambia$2 = "🇿🇲";
+var zimbabwe$2 = "🇿🇼";
+var england$2 = "🏴󠁧󠁢󠁥󠁮󠁧󠁿";
+var scotland$2 = "🏴󠁧󠁢󠁳󠁣󠁴󠁿";
+var wales$2 = "🏴󠁧󠁢󠁷󠁬󠁳󠁿";
 const require$$0$2 = {
 	"100": "💯",
 	"1234": "🔢",
-	grinning: grinning$1,
-	smiley: smiley$1,
-	smile: smile$1,
-	grin: grin$1,
-	laughing: laughing$1,
+	grinning: grinning$2,
+	smiley: smiley$2,
+	smile: smile$2,
+	grin: grin$2,
+	laughing: laughing$2,
 	satisfied: satisfied,
-	sweat_smile: sweat_smile$1,
-	rofl: rofl$1,
-	joy: joy$1,
-	slightly_smiling_face: slightly_smiling_face$1,
-	upside_down_face: upside_down_face$1,
-	wink: wink$1,
-	blush: blush$1,
-	innocent: innocent$1,
-	smiling_face_with_three_hearts: smiling_face_with_three_hearts$1,
-	heart_eyes: heart_eyes$1,
-	star_struck: star_struck$1,
-	kissing_heart: kissing_heart$1,
-	kissing: kissing$1,
-	relaxed: relaxed$1,
-	kissing_closed_eyes: kissing_closed_eyes$1,
-	kissing_smiling_eyes: kissing_smiling_eyes$1,
+	sweat_smile: sweat_smile$2,
+	rofl: rofl$2,
+	joy: joy$2,
+	slightly_smiling_face: slightly_smiling_face$2,
+	upside_down_face: upside_down_face$2,
+	wink: wink$2,
+	blush: blush$2,
+	innocent: innocent$2,
+	smiling_face_with_three_hearts: smiling_face_with_three_hearts$2,
+	heart_eyes: heart_eyes$2,
+	star_struck: star_struck$2,
+	kissing_heart: kissing_heart$2,
+	kissing: kissing$2,
+	relaxed: relaxed$2,
+	kissing_closed_eyes: kissing_closed_eyes$2,
+	kissing_smiling_eyes: kissing_smiling_eyes$2,
 	smiling_face_with_tear: smiling_face_with_tear,
-	yum: yum$1,
-	stuck_out_tongue: stuck_out_tongue$1,
-	stuck_out_tongue_winking_eye: stuck_out_tongue_winking_eye$1,
+	yum: yum$2,
+	stuck_out_tongue: stuck_out_tongue$2,
+	stuck_out_tongue_winking_eye: stuck_out_tongue_winking_eye$2,
 	zany_face: zany_face,
-	stuck_out_tongue_closed_eyes: stuck_out_tongue_closed_eyes$1,
-	money_mouth_face: money_mouth_face$1,
-	hugs: hugs$1,
-	hand_over_mouth: hand_over_mouth$1,
+	stuck_out_tongue_closed_eyes: stuck_out_tongue_closed_eyes$2,
+	money_mouth_face: money_mouth_face$2,
+	hugs: hugs$2,
+	hand_over_mouth: hand_over_mouth$2,
 	shushing_face: shushing_face,
-	thinking: thinking$1,
-	zipper_mouth_face: zipper_mouth_face$1,
-	raised_eyebrow: raised_eyebrow$1,
-	neutral_face: neutral_face$1,
-	expressionless: expressionless$1,
-	no_mouth: no_mouth$1,
-	smirk: smirk$1,
-	unamused: unamused$1,
-	roll_eyes: roll_eyes$1,
-	grimacing: grimacing$1,
-	lying_face: lying_face$1,
-	relieved: relieved$1,
-	pensive: pensive$1,
-	sleepy: sleepy$1,
-	drooling_face: drooling_face$1,
-	sleeping: sleeping$1,
-	mask: mask$1,
-	face_with_thermometer: face_with_thermometer$1,
-	face_with_head_bandage: face_with_head_bandage$1,
-	nauseated_face: nauseated_face$1,
+	thinking: thinking$2,
+	zipper_mouth_face: zipper_mouth_face$2,
+	raised_eyebrow: raised_eyebrow$2,
+	neutral_face: neutral_face$2,
+	expressionless: expressionless$2,
+	no_mouth: no_mouth$2,
+	smirk: smirk$2,
+	unamused: unamused$2,
+	roll_eyes: roll_eyes$2,
+	grimacing: grimacing$2,
+	lying_face: lying_face$2,
+	relieved: relieved$2,
+	pensive: pensive$2,
+	sleepy: sleepy$2,
+	drooling_face: drooling_face$2,
+	sleeping: sleeping$2,
+	mask: mask$2,
+	face_with_thermometer: face_with_thermometer$2,
+	face_with_head_bandage: face_with_head_bandage$2,
+	nauseated_face: nauseated_face$2,
 	vomiting_face: vomiting_face,
-	sneezing_face: sneezing_face$1,
+	sneezing_face: sneezing_face$2,
 	hot_face: hot_face,
 	cold_face: cold_face,
 	woozy_face: woozy_face,
-	dizzy_face: dizzy_face$1,
-	exploding_head: exploding_head$1,
-	cowboy_hat_face: cowboy_hat_face$1,
+	dizzy_face: dizzy_face$2,
+	exploding_head: exploding_head$2,
+	cowboy_hat_face: cowboy_hat_face$2,
 	partying_face: partying_face,
 	disguised_face: disguised_face,
-	sunglasses: sunglasses$1,
-	nerd_face: nerd_face$1,
+	sunglasses: sunglasses$2,
+	nerd_face: nerd_face$2,
 	monocle_face: monocle_face,
-	confused: confused$1,
-	worried: worried$1,
-	slightly_frowning_face: slightly_frowning_face$1,
-	frowning_face: frowning_face$1,
-	open_mouth: open_mouth$1,
-	hushed: hushed$1,
-	astonished: astonished$1,
-	flushed: flushed$1,
+	confused: confused$2,
+	worried: worried$2,
+	slightly_frowning_face: slightly_frowning_face$2,
+	frowning_face: frowning_face$2,
+	open_mouth: open_mouth$2,
+	hushed: hushed$2,
+	astonished: astonished$2,
+	flushed: flushed$2,
 	pleading_face: pleading_face,
-	frowning: frowning$1,
-	anguished: anguished$1,
-	fearful: fearful$1,
-	cold_sweat: cold_sweat$1,
-	disappointed_relieved: disappointed_relieved$1,
-	cry: cry$1,
-	sob: sob$1,
-	scream: scream$1,
-	confounded: confounded$1,
-	persevere: persevere$1,
-	disappointed: disappointed$1,
-	sweat: sweat$1,
-	weary: weary$1,
-	tired_face: tired_face$1,
+	frowning: frowning$2,
+	anguished: anguished$2,
+	fearful: fearful$2,
+	cold_sweat: cold_sweat$2,
+	disappointed_relieved: disappointed_relieved$2,
+	cry: cry$2,
+	sob: sob$2,
+	scream: scream$2,
+	confounded: confounded$2,
+	persevere: persevere$2,
+	disappointed: disappointed$2,
+	sweat: sweat$2,
+	weary: weary$2,
+	tired_face: tired_face$2,
 	yawning_face: yawning_face,
-	triumph: triumph$1,
-	rage: rage$1,
+	triumph: triumph$2,
+	rage: rage$2,
 	pout: pout,
-	angry: angry$1,
+	angry: angry$2,
 	cursing_face: cursing_face,
-	smiling_imp: smiling_imp$1,
-	imp: imp$1,
-	skull: skull$1,
-	skull_and_crossbones: skull_and_crossbones$1,
+	smiling_imp: smiling_imp$2,
+	imp: imp$2,
+	skull: skull$2,
+	skull_and_crossbones: skull_and_crossbones$2,
 	hankey: hankey,
-	poop: poop$1,
+	poop: poop$2,
 	shit: shit,
-	clown_face: clown_face$1,
-	japanese_ogre: japanese_ogre$1,
-	japanese_goblin: japanese_goblin$1,
-	ghost: ghost$1,
-	alien: alien$1,
-	space_invader: space_invader$1,
-	robot: robot$1,
-	smiley_cat: smiley_cat$1,
-	smile_cat: smile_cat$1,
-	joy_cat: joy_cat$1,
-	heart_eyes_cat: heart_eyes_cat$1,
-	smirk_cat: smirk_cat$1,
-	kissing_cat: kissing_cat$1,
-	scream_cat: scream_cat$1,
-	crying_cat_face: crying_cat_face$1,
-	pouting_cat: pouting_cat$1,
-	see_no_evil: see_no_evil$1,
-	hear_no_evil: hear_no_evil$1,
-	speak_no_evil: speak_no_evil$1,
-	kiss: kiss$1,
-	love_letter: love_letter$1,
-	cupid: cupid$1,
-	gift_heart: gift_heart$1,
-	sparkling_heart: sparkling_heart$1,
-	heartpulse: heartpulse$1,
-	heartbeat: heartbeat$1,
-	revolving_hearts: revolving_hearts$1,
-	two_hearts: two_hearts$1,
-	heart_decoration: heart_decoration$1,
-	heavy_heart_exclamation: heavy_heart_exclamation$1,
-	broken_heart: broken_heart$1,
-	heart: heart$1,
-	orange_heart: orange_heart$1,
-	yellow_heart: yellow_heart$1,
-	green_heart: green_heart$1,
-	blue_heart: blue_heart$1,
-	purple_heart: purple_heart$1,
+	clown_face: clown_face$2,
+	japanese_ogre: japanese_ogre$2,
+	japanese_goblin: japanese_goblin$2,
+	ghost: ghost$2,
+	alien: alien$2,
+	space_invader: space_invader$2,
+	robot: robot$2,
+	smiley_cat: smiley_cat$2,
+	smile_cat: smile_cat$2,
+	joy_cat: joy_cat$2,
+	heart_eyes_cat: heart_eyes_cat$2,
+	smirk_cat: smirk_cat$2,
+	kissing_cat: kissing_cat$2,
+	scream_cat: scream_cat$2,
+	crying_cat_face: crying_cat_face$2,
+	pouting_cat: pouting_cat$2,
+	see_no_evil: see_no_evil$2,
+	hear_no_evil: hear_no_evil$2,
+	speak_no_evil: speak_no_evil$2,
+	kiss: kiss$2,
+	love_letter: love_letter$2,
+	cupid: cupid$2,
+	gift_heart: gift_heart$2,
+	sparkling_heart: sparkling_heart$2,
+	heartpulse: heartpulse$2,
+	heartbeat: heartbeat$2,
+	revolving_hearts: revolving_hearts$2,
+	two_hearts: two_hearts$2,
+	heart_decoration: heart_decoration$2,
+	heavy_heart_exclamation: heavy_heart_exclamation$2,
+	broken_heart: broken_heart$2,
+	heart: heart$2,
+	orange_heart: orange_heart$2,
+	yellow_heart: yellow_heart$2,
+	green_heart: green_heart$2,
+	blue_heart: blue_heart$2,
+	purple_heart: purple_heart$2,
 	brown_heart: brown_heart,
-	black_heart: black_heart$1,
+	black_heart: black_heart$2,
 	white_heart: white_heart,
-	anger: anger$1,
-	boom: boom$1,
+	anger: anger$2,
+	boom: boom$2,
 	collision: collision,
-	dizzy: dizzy$1,
-	sweat_drops: sweat_drops$1,
-	dash: dash$1,
-	hole: hole$1,
-	bomb: bomb$1,
-	speech_balloon: speech_balloon$1,
+	dizzy: dizzy$2,
+	sweat_drops: sweat_drops$2,
+	dash: dash$2,
+	hole: hole$2,
+	bomb: bomb$2,
+	speech_balloon: speech_balloon$2,
 	eye_speech_bubble: eye_speech_bubble,
-	left_speech_bubble: left_speech_bubble$1,
-	right_anger_bubble: right_anger_bubble$1,
-	thought_balloon: thought_balloon$1,
-	zzz: zzz$1,
-	wave: wave$1,
-	raised_back_of_hand: raised_back_of_hand$1,
-	raised_hand_with_fingers_splayed: raised_hand_with_fingers_splayed$1,
+	left_speech_bubble: left_speech_bubble$2,
+	right_anger_bubble: right_anger_bubble$2,
+	thought_balloon: thought_balloon$2,
+	zzz: zzz$2,
+	wave: wave$2,
+	raised_back_of_hand: raised_back_of_hand$2,
+	raised_hand_with_fingers_splayed: raised_hand_with_fingers_splayed$2,
 	hand: hand,
-	raised_hand: raised_hand$1,
-	vulcan_salute: vulcan_salute$1,
-	ok_hand: ok_hand$1,
+	raised_hand: raised_hand$2,
+	vulcan_salute: vulcan_salute$2,
+	ok_hand: ok_hand$2,
 	pinched_fingers: pinched_fingers,
 	pinching_hand: pinching_hand,
-	v: v$1,
-	crossed_fingers: crossed_fingers$1,
+	v: v$2,
+	crossed_fingers: crossed_fingers$2,
 	love_you_gesture: love_you_gesture,
-	metal: metal$1,
-	call_me_hand: call_me_hand$1,
-	point_left: point_left$1,
-	point_right: point_right$1,
-	point_up_2: point_up_2$1,
+	metal: metal$2,
+	call_me_hand: call_me_hand$2,
+	point_left: point_left$2,
+	point_right: point_right$2,
+	point_up_2: point_up_2$2,
 	middle_finger: middle_finger,
-	fu: fu$1,
-	point_down: point_down$1,
-	point_up: point_up$1,
+	fu: fu$2,
+	point_down: point_down$2,
+	point_up: point_up$2,
 	"+1": "👍",
 	thumbsup: thumbsup,
 	"-1": "👎",
 	thumbsdown: thumbsdown,
 	fist_raised: fist_raised,
-	fist: fist$1,
+	fist: fist$2,
 	fist_oncoming: fist_oncoming,
-	facepunch: facepunch$1,
+	facepunch: facepunch$2,
 	punch: punch,
-	fist_left: fist_left$1,
-	fist_right: fist_right$1,
-	clap: clap$1,
-	raised_hands: raised_hands$1,
-	open_hands: open_hands$1,
+	fist_left: fist_left$2,
+	fist_right: fist_right$2,
+	clap: clap$2,
+	raised_hands: raised_hands$2,
+	open_hands: open_hands$2,
 	palms_up_together: palms_up_together,
-	handshake: handshake$1,
-	pray: pray$1,
-	writing_hand: writing_hand$1,
-	nail_care: nail_care$1,
-	selfie: selfie$1,
-	muscle: muscle$1,
+	handshake: handshake$2,
+	pray: pray$2,
+	writing_hand: writing_hand$2,
+	nail_care: nail_care$2,
+	selfie: selfie$2,
+	muscle: muscle$2,
 	mechanical_arm: mechanical_arm,
 	mechanical_leg: mechanical_leg,
-	leg: leg$1,
-	foot: foot$1,
-	ear: ear$1,
+	leg: leg$2,
+	foot: foot$2,
+	ear: ear$2,
 	ear_with_hearing_aid: ear_with_hearing_aid,
-	nose: nose$1,
-	brain: brain$1,
+	nose: nose$2,
+	brain: brain$2,
 	anatomical_heart: anatomical_heart,
 	lungs: lungs,
-	tooth: tooth$1,
-	bone: bone$1,
-	eyes: eyes$1,
-	eye: eye$1,
-	tongue: tongue$1,
-	lips: lips$1,
-	baby: baby$1,
-	child: child$1,
-	boy: boy$1,
-	girl: girl$1,
-	adult: adult$1,
+	tooth: tooth$2,
+	bone: bone$2,
+	eyes: eyes$2,
+	eye: eye$2,
+	tongue: tongue$2,
+	lips: lips$2,
+	baby: baby$2,
+	child: child$2,
+	boy: boy$2,
+	girl: girl$2,
+	adult: adult$2,
 	blond_haired_person: blond_haired_person,
-	man: man$1,
-	bearded_person: bearded_person$1,
+	man: man$2,
+	bearded_person: bearded_person$2,
 	red_haired_man: red_haired_man,
 	curly_haired_man: curly_haired_man,
 	white_haired_man: white_haired_man,
 	bald_man: bald_man,
-	woman: woman$1,
+	woman: woman$2,
 	red_haired_woman: red_haired_woman,
 	person_red_hair: person_red_hair,
 	curly_haired_woman: curly_haired_woman,
@@ -56764,130 +56764,130 @@ const require$$0$2 = {
 	bald_woman: bald_woman,
 	person_bald: person_bald,
 	blond_haired_woman: blond_haired_woman,
-	blonde_woman: blonde_woman$1,
+	blonde_woman: blonde_woman$2,
 	blond_haired_man: blond_haired_man,
-	older_adult: older_adult$1,
-	older_man: older_man$1,
-	older_woman: older_woman$1,
+	older_adult: older_adult$2,
+	older_man: older_man$2,
+	older_woman: older_woman$2,
 	frowning_person: frowning_person,
-	frowning_man: frowning_man$1,
-	frowning_woman: frowning_woman$1,
+	frowning_man: frowning_man$2,
+	frowning_woman: frowning_woman$2,
 	pouting_face: pouting_face,
-	pouting_man: pouting_man$1,
-	pouting_woman: pouting_woman$1,
+	pouting_man: pouting_man$2,
+	pouting_woman: pouting_woman$2,
 	no_good: no_good,
-	no_good_man: no_good_man$1,
+	no_good_man: no_good_man$2,
 	ng_man: ng_man,
-	no_good_woman: no_good_woman$1,
+	no_good_woman: no_good_woman$2,
 	ng_woman: ng_woman,
 	ok_person: ok_person,
-	ok_man: ok_man$1,
-	ok_woman: ok_woman$1,
+	ok_man: ok_man$2,
+	ok_woman: ok_woman$2,
 	tipping_hand_person: tipping_hand_person,
 	information_desk_person: information_desk_person,
-	tipping_hand_man: tipping_hand_man$1,
+	tipping_hand_man: tipping_hand_man$2,
 	sassy_man: sassy_man,
-	tipping_hand_woman: tipping_hand_woman$1,
+	tipping_hand_woman: tipping_hand_woman$2,
 	sassy_woman: sassy_woman,
 	raising_hand: raising_hand,
-	raising_hand_man: raising_hand_man$1,
-	raising_hand_woman: raising_hand_woman$1,
+	raising_hand_man: raising_hand_man$2,
+	raising_hand_woman: raising_hand_woman$2,
 	deaf_person: deaf_person,
 	deaf_man: deaf_man,
 	deaf_woman: deaf_woman,
 	bow: bow,
-	bowing_man: bowing_man$1,
-	bowing_woman: bowing_woman$1,
+	bowing_man: bowing_man$2,
+	bowing_woman: bowing_woman$2,
 	facepalm: facepalm,
-	man_facepalming: man_facepalming$1,
-	woman_facepalming: woman_facepalming$1,
+	man_facepalming: man_facepalming$2,
+	woman_facepalming: woman_facepalming$2,
 	shrug: shrug,
-	man_shrugging: man_shrugging$1,
-	woman_shrugging: woman_shrugging$1,
+	man_shrugging: man_shrugging$2,
+	woman_shrugging: woman_shrugging$2,
 	health_worker: health_worker,
-	man_health_worker: man_health_worker$1,
-	woman_health_worker: woman_health_worker$1,
+	man_health_worker: man_health_worker$2,
+	woman_health_worker: woman_health_worker$2,
 	student: student,
-	man_student: man_student$1,
-	woman_student: woman_student$1,
+	man_student: man_student$2,
+	woman_student: woman_student$2,
 	teacher: teacher,
-	man_teacher: man_teacher$1,
-	woman_teacher: woman_teacher$1,
+	man_teacher: man_teacher$2,
+	woman_teacher: woman_teacher$2,
 	judge: judge,
-	man_judge: man_judge$1,
-	woman_judge: woman_judge$1,
+	man_judge: man_judge$2,
+	woman_judge: woman_judge$2,
 	farmer: farmer,
-	man_farmer: man_farmer$1,
-	woman_farmer: woman_farmer$1,
+	man_farmer: man_farmer$2,
+	woman_farmer: woman_farmer$2,
 	cook: cook,
-	man_cook: man_cook$1,
-	woman_cook: woman_cook$1,
+	man_cook: man_cook$2,
+	woman_cook: woman_cook$2,
 	mechanic: mechanic,
-	man_mechanic: man_mechanic$1,
-	woman_mechanic: woman_mechanic$1,
+	man_mechanic: man_mechanic$2,
+	woman_mechanic: woman_mechanic$2,
 	factory_worker: factory_worker,
-	man_factory_worker: man_factory_worker$1,
-	woman_factory_worker: woman_factory_worker$1,
+	man_factory_worker: man_factory_worker$2,
+	woman_factory_worker: woman_factory_worker$2,
 	office_worker: office_worker,
-	man_office_worker: man_office_worker$1,
-	woman_office_worker: woman_office_worker$1,
+	man_office_worker: man_office_worker$2,
+	woman_office_worker: woman_office_worker$2,
 	scientist: scientist,
-	man_scientist: man_scientist$1,
-	woman_scientist: woman_scientist$1,
+	man_scientist: man_scientist$2,
+	woman_scientist: woman_scientist$2,
 	technologist: technologist,
-	man_technologist: man_technologist$1,
-	woman_technologist: woman_technologist$1,
+	man_technologist: man_technologist$2,
+	woman_technologist: woman_technologist$2,
 	singer: singer,
-	man_singer: man_singer$1,
-	woman_singer: woman_singer$1,
+	man_singer: man_singer$2,
+	woman_singer: woman_singer$2,
 	artist: artist,
-	man_artist: man_artist$1,
-	woman_artist: woman_artist$1,
+	man_artist: man_artist$2,
+	woman_artist: woman_artist$2,
 	pilot: pilot,
-	man_pilot: man_pilot$1,
-	woman_pilot: woman_pilot$1,
+	man_pilot: man_pilot$2,
+	woman_pilot: woman_pilot$2,
 	astronaut: astronaut,
-	man_astronaut: man_astronaut$1,
-	woman_astronaut: woman_astronaut$1,
+	man_astronaut: man_astronaut$2,
+	woman_astronaut: woman_astronaut$2,
 	firefighter: firefighter,
-	man_firefighter: man_firefighter$1,
-	woman_firefighter: woman_firefighter$1,
+	man_firefighter: man_firefighter$2,
+	woman_firefighter: woman_firefighter$2,
 	police_officer: police_officer,
 	cop: cop,
-	policeman: policeman$1,
-	policewoman: policewoman$1,
+	policeman: policeman$2,
+	policewoman: policewoman$2,
 	detective: detective,
-	male_detective: male_detective$1,
-	female_detective: female_detective$1,
+	male_detective: male_detective$2,
+	female_detective: female_detective$2,
 	guard: guard,
-	guardsman: guardsman$1,
-	guardswoman: guardswoman$1,
+	guardsman: guardsman$2,
+	guardswoman: guardswoman$2,
 	ninja: ninja,
 	construction_worker: construction_worker,
-	construction_worker_man: construction_worker_man$1,
-	construction_worker_woman: construction_worker_woman$1,
-	prince: prince$1,
-	princess: princess$1,
+	construction_worker_man: construction_worker_man$2,
+	construction_worker_woman: construction_worker_woman$2,
+	prince: prince$2,
+	princess: princess$2,
 	person_with_turban: person_with_turban,
-	man_with_turban: man_with_turban$1,
-	woman_with_turban: woman_with_turban$1,
-	man_with_gua_pi_mao: man_with_gua_pi_mao$1,
-	woman_with_headscarf: woman_with_headscarf$1,
+	man_with_turban: man_with_turban$2,
+	woman_with_turban: woman_with_turban$2,
+	man_with_gua_pi_mao: man_with_gua_pi_mao$2,
+	woman_with_headscarf: woman_with_headscarf$2,
 	person_in_tuxedo: person_in_tuxedo,
-	man_in_tuxedo: man_in_tuxedo$1,
+	man_in_tuxedo: man_in_tuxedo$2,
 	woman_in_tuxedo: woman_in_tuxedo,
 	person_with_veil: person_with_veil,
 	man_with_veil: man_with_veil,
 	woman_with_veil: woman_with_veil,
-	bride_with_veil: bride_with_veil$1,
-	pregnant_woman: pregnant_woman$1,
+	bride_with_veil: bride_with_veil$2,
+	pregnant_woman: pregnant_woman$2,
 	breast_feeding: breast_feeding,
 	woman_feeding_baby: woman_feeding_baby,
 	man_feeding_baby: man_feeding_baby,
 	person_feeding_baby: person_feeding_baby,
-	angel: angel$1,
-	santa: santa$1,
-	mrs_claus: mrs_claus$1,
+	angel: angel$2,
+	santa: santa$2,
+	mrs_claus: mrs_claus$2,
 	mx_claus: mx_claus,
 	superhero: superhero,
 	superhero_man: superhero_man,
@@ -56905,8 +56905,8 @@ const require$$0$2 = {
 	vampire_man: vampire_man,
 	vampire_woman: vampire_woman,
 	merperson: merperson,
-	merman: merman$1,
-	mermaid: mermaid$1,
+	merman: merman$2,
+	mermaid: mermaid$2,
 	elf: elf,
 	elf_man: elf_man,
 	elf_woman: elf_woman,
@@ -56917,14 +56917,14 @@ const require$$0$2 = {
 	zombie_man: zombie_man,
 	zombie_woman: zombie_woman,
 	massage: massage,
-	massage_man: massage_man$1,
-	massage_woman: massage_woman$1,
+	massage_man: massage_man$2,
+	massage_woman: massage_woman$2,
 	haircut: haircut,
-	haircut_man: haircut_man$1,
-	haircut_woman: haircut_woman$1,
+	haircut_man: haircut_man$2,
+	haircut_woman: haircut_woman$2,
 	walking: walking,
-	walking_man: walking_man$1,
-	walking_woman: walking_woman$1,
+	walking_man: walking_man$2,
+	walking_woman: walking_woman$2,
 	standing_person: standing_person,
 	standing_man: standing_man,
 	standing_woman: standing_woman,
@@ -56942,1133 +56942,1133 @@ const require$$0$2 = {
 	woman_in_manual_wheelchair: woman_in_manual_wheelchair,
 	runner: runner,
 	running: running,
-	running_man: running_man$1,
-	running_woman: running_woman$1,
+	running_man: running_man$2,
+	running_woman: running_woman$2,
 	woman_dancing: woman_dancing,
-	dancer: dancer$1,
-	man_dancing: man_dancing$1,
-	business_suit_levitating: business_suit_levitating$1,
+	dancer: dancer$2,
+	man_dancing: man_dancing$2,
+	business_suit_levitating: business_suit_levitating$2,
 	dancers: dancers,
-	dancing_men: dancing_men$1,
-	dancing_women: dancing_women$1,
+	dancing_men: dancing_men$2,
+	dancing_women: dancing_women$2,
 	sauna_person: sauna_person,
 	sauna_man: sauna_man,
 	sauna_woman: sauna_woman,
 	climbing: climbing,
-	climbing_man: climbing_man$1,
-	climbing_woman: climbing_woman$1,
-	person_fencing: person_fencing$1,
-	horse_racing: horse_racing$1,
-	skier: skier$1,
-	snowboarder: snowboarder$1,
+	climbing_man: climbing_man$2,
+	climbing_woman: climbing_woman$2,
+	person_fencing: person_fencing$2,
+	horse_racing: horse_racing$2,
+	skier: skier$2,
+	snowboarder: snowboarder$2,
 	golfing: golfing,
-	golfing_man: golfing_man$1,
-	golfing_woman: golfing_woman$1,
+	golfing_man: golfing_man$2,
+	golfing_woman: golfing_woman$2,
 	surfer: surfer,
-	surfing_man: surfing_man$1,
-	surfing_woman: surfing_woman$1,
+	surfing_man: surfing_man$2,
+	surfing_woman: surfing_woman$2,
 	rowboat: rowboat,
-	rowing_man: rowing_man$1,
-	rowing_woman: rowing_woman$1,
+	rowing_man: rowing_man$2,
+	rowing_woman: rowing_woman$2,
 	swimmer: swimmer,
-	swimming_man: swimming_man$1,
-	swimming_woman: swimming_woman$1,
+	swimming_man: swimming_man$2,
+	swimming_woman: swimming_woman$2,
 	bouncing_ball_person: bouncing_ball_person,
 	bouncing_ball_man: bouncing_ball_man,
-	basketball_man: basketball_man$1,
+	basketball_man: basketball_man$2,
 	bouncing_ball_woman: bouncing_ball_woman,
-	basketball_woman: basketball_woman$1,
+	basketball_woman: basketball_woman$2,
 	weight_lifting: weight_lifting,
-	weight_lifting_man: weight_lifting_man$1,
-	weight_lifting_woman: weight_lifting_woman$1,
+	weight_lifting_man: weight_lifting_man$2,
+	weight_lifting_woman: weight_lifting_woman$2,
 	bicyclist: bicyclist,
-	biking_man: biking_man$1,
-	biking_woman: biking_woman$1,
+	biking_man: biking_man$2,
+	biking_woman: biking_woman$2,
 	mountain_bicyclist: mountain_bicyclist,
-	mountain_biking_man: mountain_biking_man$1,
-	mountain_biking_woman: mountain_biking_woman$1,
+	mountain_biking_man: mountain_biking_man$2,
+	mountain_biking_woman: mountain_biking_woman$2,
 	cartwheeling: cartwheeling,
-	man_cartwheeling: man_cartwheeling$1,
-	woman_cartwheeling: woman_cartwheeling$1,
+	man_cartwheeling: man_cartwheeling$2,
+	woman_cartwheeling: woman_cartwheeling$2,
 	wrestling: wrestling,
-	men_wrestling: men_wrestling$1,
-	women_wrestling: women_wrestling$1,
+	men_wrestling: men_wrestling$2,
+	women_wrestling: women_wrestling$2,
 	water_polo: water_polo,
-	man_playing_water_polo: man_playing_water_polo$1,
-	woman_playing_water_polo: woman_playing_water_polo$1,
+	man_playing_water_polo: man_playing_water_polo$2,
+	woman_playing_water_polo: woman_playing_water_polo$2,
 	handball_person: handball_person,
-	man_playing_handball: man_playing_handball$1,
-	woman_playing_handball: woman_playing_handball$1,
+	man_playing_handball: man_playing_handball$2,
+	woman_playing_handball: woman_playing_handball$2,
 	juggling_person: juggling_person,
-	man_juggling: man_juggling$1,
-	woman_juggling: woman_juggling$1,
+	man_juggling: man_juggling$2,
+	woman_juggling: woman_juggling$2,
 	lotus_position: lotus_position,
 	lotus_position_man: lotus_position_man,
 	lotus_position_woman: lotus_position_woman,
-	bath: bath$1,
-	sleeping_bed: sleeping_bed$1,
+	bath: bath$2,
+	sleeping_bed: sleeping_bed$2,
 	people_holding_hands: people_holding_hands,
-	two_women_holding_hands: two_women_holding_hands$1,
-	couple: couple$1,
-	two_men_holding_hands: two_men_holding_hands$1,
+	two_women_holding_hands: two_women_holding_hands$2,
+	couple: couple$2,
+	two_men_holding_hands: two_men_holding_hands$2,
 	couplekiss: couplekiss,
-	couplekiss_man_woman: couplekiss_man_woman$1,
-	couplekiss_man_man: couplekiss_man_man$1,
-	couplekiss_woman_woman: couplekiss_woman_woman$1,
+	couplekiss_man_woman: couplekiss_man_woman$2,
+	couplekiss_man_man: couplekiss_man_man$2,
+	couplekiss_woman_woman: couplekiss_woman_woman$2,
 	couple_with_heart: couple_with_heart,
-	couple_with_heart_woman_man: couple_with_heart_woman_man$1,
-	couple_with_heart_man_man: couple_with_heart_man_man$1,
-	couple_with_heart_woman_woman: couple_with_heart_woman_woman$1,
+	couple_with_heart_woman_man: couple_with_heart_woman_man$2,
+	couple_with_heart_man_man: couple_with_heart_man_man$2,
+	couple_with_heart_woman_woman: couple_with_heart_woman_woman$2,
 	family: family,
-	family_man_woman_boy: family_man_woman_boy$1,
-	family_man_woman_girl: family_man_woman_girl$1,
-	family_man_woman_girl_boy: family_man_woman_girl_boy$1,
-	family_man_woman_boy_boy: family_man_woman_boy_boy$1,
-	family_man_woman_girl_girl: family_man_woman_girl_girl$1,
-	family_man_man_boy: family_man_man_boy$1,
-	family_man_man_girl: family_man_man_girl$1,
-	family_man_man_girl_boy: family_man_man_girl_boy$1,
-	family_man_man_boy_boy: family_man_man_boy_boy$1,
-	family_man_man_girl_girl: family_man_man_girl_girl$1,
-	family_woman_woman_boy: family_woman_woman_boy$1,
-	family_woman_woman_girl: family_woman_woman_girl$1,
-	family_woman_woman_girl_boy: family_woman_woman_girl_boy$1,
-	family_woman_woman_boy_boy: family_woman_woman_boy_boy$1,
-	family_woman_woman_girl_girl: family_woman_woman_girl_girl$1,
-	family_man_boy: family_man_boy$1,
-	family_man_boy_boy: family_man_boy_boy$1,
-	family_man_girl: family_man_girl$1,
-	family_man_girl_boy: family_man_girl_boy$1,
-	family_man_girl_girl: family_man_girl_girl$1,
-	family_woman_boy: family_woman_boy$1,
-	family_woman_boy_boy: family_woman_boy_boy$1,
-	family_woman_girl: family_woman_girl$1,
-	family_woman_girl_boy: family_woman_girl_boy$1,
-	family_woman_girl_girl: family_woman_girl_girl$1,
-	speaking_head: speaking_head$1,
-	bust_in_silhouette: bust_in_silhouette$1,
-	busts_in_silhouette: busts_in_silhouette$1,
+	family_man_woman_boy: family_man_woman_boy$2,
+	family_man_woman_girl: family_man_woman_girl$2,
+	family_man_woman_girl_boy: family_man_woman_girl_boy$2,
+	family_man_woman_boy_boy: family_man_woman_boy_boy$2,
+	family_man_woman_girl_girl: family_man_woman_girl_girl$2,
+	family_man_man_boy: family_man_man_boy$2,
+	family_man_man_girl: family_man_man_girl$2,
+	family_man_man_girl_boy: family_man_man_girl_boy$2,
+	family_man_man_boy_boy: family_man_man_boy_boy$2,
+	family_man_man_girl_girl: family_man_man_girl_girl$2,
+	family_woman_woman_boy: family_woman_woman_boy$2,
+	family_woman_woman_girl: family_woman_woman_girl$2,
+	family_woman_woman_girl_boy: family_woman_woman_girl_boy$2,
+	family_woman_woman_boy_boy: family_woman_woman_boy_boy$2,
+	family_woman_woman_girl_girl: family_woman_woman_girl_girl$2,
+	family_man_boy: family_man_boy$2,
+	family_man_boy_boy: family_man_boy_boy$2,
+	family_man_girl: family_man_girl$2,
+	family_man_girl_boy: family_man_girl_boy$2,
+	family_man_girl_girl: family_man_girl_girl$2,
+	family_woman_boy: family_woman_boy$2,
+	family_woman_boy_boy: family_woman_boy_boy$2,
+	family_woman_girl: family_woman_girl$2,
+	family_woman_girl_boy: family_woman_girl_boy$2,
+	family_woman_girl_girl: family_woman_girl_girl$2,
+	speaking_head: speaking_head$2,
+	bust_in_silhouette: bust_in_silhouette$2,
+	busts_in_silhouette: busts_in_silhouette$2,
 	people_hugging: people_hugging,
-	footprints: footprints$1,
-	monkey_face: monkey_face$1,
-	monkey: monkey$1,
-	gorilla: gorilla$1,
+	footprints: footprints$2,
+	monkey_face: monkey_face$2,
+	monkey: monkey$2,
+	gorilla: gorilla$2,
 	orangutan: orangutan,
-	dog: dog$1,
-	dog2: dog2$1,
+	dog: dog$2,
+	dog2: dog2$2,
 	guide_dog: guide_dog,
 	service_dog: service_dog,
-	poodle: poodle$1,
-	wolf: wolf$1,
-	fox_face: fox_face$1,
-	raccoon: raccoon$1,
-	cat: cat$1,
-	cat2: cat2$1,
+	poodle: poodle$2,
+	wolf: wolf$2,
+	fox_face: fox_face$2,
+	raccoon: raccoon$2,
+	cat: cat$2,
+	cat2: cat2$2,
 	black_cat: black_cat,
-	lion: lion$1,
-	tiger: tiger$1,
-	tiger2: tiger2$1,
-	leopard: leopard$1,
-	horse: horse$1,
-	racehorse: racehorse$1,
-	unicorn: unicorn$1,
-	zebra: zebra$1,
-	deer: deer$1,
+	lion: lion$2,
+	tiger: tiger$2,
+	tiger2: tiger2$2,
+	leopard: leopard$2,
+	horse: horse$2,
+	racehorse: racehorse$2,
+	unicorn: unicorn$2,
+	zebra: zebra$2,
+	deer: deer$2,
 	bison: bison,
-	cow: cow$1,
-	ox: ox$1,
-	water_buffalo: water_buffalo$1,
-	cow2: cow2$1,
-	pig: pig$1,
-	pig2: pig2$1,
-	boar: boar$1,
-	pig_nose: pig_nose$1,
-	ram: ram$1,
-	sheep: sheep$1,
-	goat: goat$1,
-	dromedary_camel: dromedary_camel$1,
-	camel: camel$1,
-	llama: llama$1,
-	giraffe: giraffe$1,
-	elephant: elephant$1,
+	cow: cow$2,
+	ox: ox$2,
+	water_buffalo: water_buffalo$2,
+	cow2: cow2$2,
+	pig: pig$2,
+	pig2: pig2$2,
+	boar: boar$2,
+	pig_nose: pig_nose$2,
+	ram: ram$2,
+	sheep: sheep$2,
+	goat: goat$2,
+	dromedary_camel: dromedary_camel$2,
+	camel: camel$2,
+	llama: llama$2,
+	giraffe: giraffe$2,
+	elephant: elephant$2,
 	mammoth: mammoth,
-	rhinoceros: rhinoceros$1,
-	hippopotamus: hippopotamus$1,
-	mouse: mouse$1,
-	mouse2: mouse2$1,
-	rat: rat$1,
-	hamster: hamster$1,
-	rabbit: rabbit$1,
-	rabbit2: rabbit2$1,
-	chipmunk: chipmunk$1,
+	rhinoceros: rhinoceros$2,
+	hippopotamus: hippopotamus$2,
+	mouse: mouse$2,
+	mouse2: mouse2$2,
+	rat: rat$2,
+	hamster: hamster$2,
+	rabbit: rabbit$2,
+	rabbit2: rabbit2$2,
+	chipmunk: chipmunk$2,
 	beaver: beaver,
-	hedgehog: hedgehog$1,
-	bat: bat$1,
-	bear: bear$1,
+	hedgehog: hedgehog$2,
+	bat: bat$2,
+	bear: bear$2,
 	polar_bear: polar_bear,
-	koala: koala$1,
-	panda_face: panda_face$1,
+	koala: koala$2,
+	panda_face: panda_face$2,
 	sloth: sloth,
 	otter: otter,
 	skunk: skunk,
-	kangaroo: kangaroo$1,
-	badger: badger$1,
+	kangaroo: kangaroo$2,
+	badger: badger$2,
 	feet: feet,
-	paw_prints: paw_prints$1,
-	turkey: turkey$1,
-	chicken: chicken$1,
-	rooster: rooster$1,
-	hatching_chick: hatching_chick$1,
-	baby_chick: baby_chick$1,
-	hatched_chick: hatched_chick$1,
-	bird: bird$1,
-	penguin: penguin$1,
-	dove: dove$1,
-	eagle: eagle$1,
-	duck: duck$1,
-	swan: swan$1,
-	owl: owl$1,
+	paw_prints: paw_prints$2,
+	turkey: turkey$2,
+	chicken: chicken$2,
+	rooster: rooster$2,
+	hatching_chick: hatching_chick$2,
+	baby_chick: baby_chick$2,
+	hatched_chick: hatched_chick$2,
+	bird: bird$2,
+	penguin: penguin$2,
+	dove: dove$2,
+	eagle: eagle$2,
+	duck: duck$2,
+	swan: swan$2,
+	owl: owl$2,
 	dodo: dodo,
 	feather: feather,
 	flamingo: flamingo,
-	peacock: peacock$1,
-	parrot: parrot$1,
-	frog: frog$1,
-	crocodile: crocodile$1,
-	turtle: turtle$1,
-	lizard: lizard$1,
-	snake: snake$1,
-	dragon_face: dragon_face$1,
-	dragon: dragon$1,
-	sauropod: sauropod$1,
+	peacock: peacock$2,
+	parrot: parrot$2,
+	frog: frog$2,
+	crocodile: crocodile$2,
+	turtle: turtle$2,
+	lizard: lizard$2,
+	snake: snake$2,
+	dragon_face: dragon_face$2,
+	dragon: dragon$2,
+	sauropod: sauropod$2,
 	"t-rex": "🦖",
-	whale: whale$1,
-	whale2: whale2$1,
-	dolphin: dolphin$1,
+	whale: whale$2,
+	whale2: whale2$2,
+	dolphin: dolphin$2,
 	flipper: flipper,
 	seal: seal,
-	fish: fish$1,
-	tropical_fish: tropical_fish$1,
-	blowfish: blowfish$1,
-	shark: shark$1,
-	octopus: octopus$1,
-	shell: shell$1,
-	snail: snail$1,
-	butterfly: butterfly$1,
-	bug: bug$1,
-	ant: ant$1,
+	fish: fish$2,
+	tropical_fish: tropical_fish$2,
+	blowfish: blowfish$2,
+	shark: shark$2,
+	octopus: octopus$2,
+	shell: shell$2,
+	snail: snail$2,
+	butterfly: butterfly$2,
+	bug: bug$2,
+	ant: ant$2,
 	bee: bee,
-	honeybee: honeybee$1,
-	beetle: beetle$1,
+	honeybee: honeybee$2,
+	beetle: beetle$2,
 	lady_beetle: lady_beetle,
-	cricket: cricket$1,
+	cricket: cricket$2,
 	cockroach: cockroach,
-	spider: spider$1,
-	spider_web: spider_web$1,
-	scorpion: scorpion$1,
-	mosquito: mosquito$1,
+	spider: spider$2,
+	spider_web: spider_web$2,
+	scorpion: scorpion$2,
+	mosquito: mosquito$2,
 	fly: fly,
 	worm: worm,
-	microbe: microbe$1,
-	bouquet: bouquet$1,
-	cherry_blossom: cherry_blossom$1,
-	white_flower: white_flower$1,
-	rosette: rosette$1,
-	rose: rose$1,
-	wilted_flower: wilted_flower$1,
-	hibiscus: hibiscus$1,
-	sunflower: sunflower$1,
-	blossom: blossom$1,
-	tulip: tulip$1,
-	seedling: seedling$1,
+	microbe: microbe$2,
+	bouquet: bouquet$2,
+	cherry_blossom: cherry_blossom$2,
+	white_flower: white_flower$2,
+	rosette: rosette$2,
+	rose: rose$2,
+	wilted_flower: wilted_flower$2,
+	hibiscus: hibiscus$2,
+	sunflower: sunflower$2,
+	blossom: blossom$2,
+	tulip: tulip$2,
+	seedling: seedling$2,
 	potted_plant: potted_plant,
-	evergreen_tree: evergreen_tree$1,
-	deciduous_tree: deciduous_tree$1,
-	palm_tree: palm_tree$1,
-	cactus: cactus$1,
-	ear_of_rice: ear_of_rice$1,
-	herb: herb$1,
-	shamrock: shamrock$1,
-	four_leaf_clover: four_leaf_clover$1,
-	maple_leaf: maple_leaf$1,
-	fallen_leaf: fallen_leaf$1,
-	leaves: leaves$1,
-	grapes: grapes$1,
-	melon: melon$1,
-	watermelon: watermelon$1,
-	tangerine: tangerine$1,
+	evergreen_tree: evergreen_tree$2,
+	deciduous_tree: deciduous_tree$2,
+	palm_tree: palm_tree$2,
+	cactus: cactus$2,
+	ear_of_rice: ear_of_rice$2,
+	herb: herb$2,
+	shamrock: shamrock$2,
+	four_leaf_clover: four_leaf_clover$2,
+	maple_leaf: maple_leaf$2,
+	fallen_leaf: fallen_leaf$2,
+	leaves: leaves$2,
+	grapes: grapes$2,
+	melon: melon$2,
+	watermelon: watermelon$2,
+	tangerine: tangerine$2,
 	orange: orange,
 	mandarin: mandarin,
-	lemon: lemon$1,
-	banana: banana$1,
-	pineapple: pineapple$1,
-	mango: mango$1,
-	apple: apple$1,
-	green_apple: green_apple$1,
-	pear: pear$1,
-	peach: peach$1,
-	cherries: cherries$1,
-	strawberry: strawberry$1,
+	lemon: lemon$2,
+	banana: banana$2,
+	pineapple: pineapple$2,
+	mango: mango$2,
+	apple: apple$2,
+	green_apple: green_apple$2,
+	pear: pear$2,
+	peach: peach$2,
+	cherries: cherries$2,
+	strawberry: strawberry$2,
 	blueberries: blueberries,
-	kiwi_fruit: kiwi_fruit$1,
-	tomato: tomato$1,
+	kiwi_fruit: kiwi_fruit$2,
+	tomato: tomato$2,
 	olive: olive,
-	coconut: coconut$1,
-	avocado: avocado$1,
-	eggplant: eggplant$1,
-	potato: potato$1,
-	carrot: carrot$1,
-	corn: corn$1,
-	hot_pepper: hot_pepper$1,
+	coconut: coconut$2,
+	avocado: avocado$2,
+	eggplant: eggplant$2,
+	potato: potato$2,
+	carrot: carrot$2,
+	corn: corn$2,
+	hot_pepper: hot_pepper$2,
 	bell_pepper: bell_pepper,
-	cucumber: cucumber$1,
+	cucumber: cucumber$2,
 	leafy_green: leafy_green,
-	broccoli: broccoli$1,
+	broccoli: broccoli$2,
 	garlic: garlic,
 	onion: onion,
-	mushroom: mushroom$1,
-	peanuts: peanuts$1,
-	chestnut: chestnut$1,
-	bread: bread$1,
-	croissant: croissant$1,
-	baguette_bread: baguette_bread$1,
+	mushroom: mushroom$2,
+	peanuts: peanuts$2,
+	chestnut: chestnut$2,
+	bread: bread$2,
+	croissant: croissant$2,
+	baguette_bread: baguette_bread$2,
 	flatbread: flatbread,
-	pretzel: pretzel$1,
-	bagel: bagel$1,
-	pancakes: pancakes$1,
+	pretzel: pretzel$2,
+	bagel: bagel$2,
+	pancakes: pancakes$2,
 	waffle: waffle,
-	cheese: cheese$1,
-	meat_on_bone: meat_on_bone$1,
-	poultry_leg: poultry_leg$1,
+	cheese: cheese$2,
+	meat_on_bone: meat_on_bone$2,
+	poultry_leg: poultry_leg$2,
 	cut_of_meat: cut_of_meat,
-	bacon: bacon$1,
-	hamburger: hamburger$1,
-	fries: fries$1,
-	pizza: pizza$1,
-	hotdog: hotdog$1,
-	sandwich: sandwich$1,
-	taco: taco$1,
-	burrito: burrito$1,
+	bacon: bacon$2,
+	hamburger: hamburger$2,
+	fries: fries$2,
+	pizza: pizza$2,
+	hotdog: hotdog$2,
+	sandwich: sandwich$2,
+	taco: taco$2,
+	burrito: burrito$2,
 	tamale: tamale,
-	stuffed_flatbread: stuffed_flatbread$1,
+	stuffed_flatbread: stuffed_flatbread$2,
 	falafel: falafel,
-	egg: egg$1,
-	fried_egg: fried_egg$1,
-	shallow_pan_of_food: shallow_pan_of_food$1,
-	stew: stew$1,
+	egg: egg$2,
+	fried_egg: fried_egg$2,
+	shallow_pan_of_food: shallow_pan_of_food$2,
+	stew: stew$2,
 	fondue: fondue,
-	bowl_with_spoon: bowl_with_spoon$1,
-	green_salad: green_salad$1,
-	popcorn: popcorn$1,
+	bowl_with_spoon: bowl_with_spoon$2,
+	green_salad: green_salad$2,
+	popcorn: popcorn$2,
 	butter: butter,
-	salt: salt$1,
-	canned_food: canned_food$1,
-	bento: bento$1,
-	rice_cracker: rice_cracker$1,
-	rice_ball: rice_ball$1,
-	rice: rice$1,
-	curry: curry$1,
-	ramen: ramen$1,
-	spaghetti: spaghetti$1,
-	sweet_potato: sweet_potato$1,
-	oden: oden$1,
-	sushi: sushi$1,
-	fried_shrimp: fried_shrimp$1,
-	fish_cake: fish_cake$1,
-	moon_cake: moon_cake$1,
-	dango: dango$1,
-	dumpling: dumpling$1,
-	fortune_cookie: fortune_cookie$1,
-	takeout_box: takeout_box$1,
-	crab: crab$1,
-	lobster: lobster$1,
-	shrimp: shrimp$1,
-	squid: squid$1,
+	salt: salt$2,
+	canned_food: canned_food$2,
+	bento: bento$2,
+	rice_cracker: rice_cracker$2,
+	rice_ball: rice_ball$2,
+	rice: rice$2,
+	curry: curry$2,
+	ramen: ramen$2,
+	spaghetti: spaghetti$2,
+	sweet_potato: sweet_potato$2,
+	oden: oden$2,
+	sushi: sushi$2,
+	fried_shrimp: fried_shrimp$2,
+	fish_cake: fish_cake$2,
+	moon_cake: moon_cake$2,
+	dango: dango$2,
+	dumpling: dumpling$2,
+	fortune_cookie: fortune_cookie$2,
+	takeout_box: takeout_box$2,
+	crab: crab$2,
+	lobster: lobster$2,
+	shrimp: shrimp$2,
+	squid: squid$2,
 	oyster: oyster,
-	icecream: icecream$1,
-	shaved_ice: shaved_ice$1,
-	ice_cream: ice_cream$1,
-	doughnut: doughnut$1,
-	cookie: cookie$1,
-	birthday: birthday$1,
-	cake: cake$1,
-	cupcake: cupcake$1,
-	pie: pie$1,
-	chocolate_bar: chocolate_bar$1,
-	candy: candy$1,
-	lollipop: lollipop$1,
-	custard: custard$1,
-	honey_pot: honey_pot$1,
-	baby_bottle: baby_bottle$1,
-	milk_glass: milk_glass$1,
-	coffee: coffee$1,
+	icecream: icecream$2,
+	shaved_ice: shaved_ice$2,
+	ice_cream: ice_cream$2,
+	doughnut: doughnut$2,
+	cookie: cookie$2,
+	birthday: birthday$2,
+	cake: cake$2,
+	cupcake: cupcake$2,
+	pie: pie$2,
+	chocolate_bar: chocolate_bar$2,
+	candy: candy$2,
+	lollipop: lollipop$2,
+	custard: custard$2,
+	honey_pot: honey_pot$2,
+	baby_bottle: baby_bottle$2,
+	milk_glass: milk_glass$2,
+	coffee: coffee$2,
 	teapot: teapot,
-	tea: tea$1,
-	sake: sake$1,
-	champagne: champagne$1,
-	wine_glass: wine_glass$1,
-	cocktail: cocktail$1,
-	tropical_drink: tropical_drink$1,
-	beer: beer$1,
-	beers: beers$1,
-	clinking_glasses: clinking_glasses$1,
-	tumbler_glass: tumbler_glass$1,
-	cup_with_straw: cup_with_straw$1,
+	tea: tea$2,
+	sake: sake$2,
+	champagne: champagne$2,
+	wine_glass: wine_glass$2,
+	cocktail: cocktail$2,
+	tropical_drink: tropical_drink$2,
+	beer: beer$2,
+	beers: beers$2,
+	clinking_glasses: clinking_glasses$2,
+	tumbler_glass: tumbler_glass$2,
+	cup_with_straw: cup_with_straw$2,
 	bubble_tea: bubble_tea,
 	beverage_box: beverage_box,
 	mate: mate,
 	ice_cube: ice_cube,
-	chopsticks: chopsticks$1,
-	plate_with_cutlery: plate_with_cutlery$1,
-	fork_and_knife: fork_and_knife$1,
-	spoon: spoon$1,
-	hocho: hocho$1,
+	chopsticks: chopsticks$2,
+	plate_with_cutlery: plate_with_cutlery$2,
+	fork_and_knife: fork_and_knife$2,
+	spoon: spoon$2,
+	hocho: hocho$2,
 	knife: knife,
-	amphora: amphora$1,
-	earth_africa: earth_africa$1,
-	earth_americas: earth_americas$1,
-	earth_asia: earth_asia$1,
-	globe_with_meridians: globe_with_meridians$1,
-	world_map: world_map$1,
-	japan: japan$1,
-	compass: compass$1,
-	mountain_snow: mountain_snow$1,
-	mountain: mountain$1,
-	volcano: volcano$1,
-	mount_fuji: mount_fuji$1,
-	camping: camping$1,
-	beach_umbrella: beach_umbrella$1,
-	desert: desert$1,
-	desert_island: desert_island$1,
-	national_park: national_park$1,
-	stadium: stadium$1,
-	classical_building: classical_building$1,
-	building_construction: building_construction$1,
+	amphora: amphora$2,
+	earth_africa: earth_africa$2,
+	earth_americas: earth_americas$2,
+	earth_asia: earth_asia$2,
+	globe_with_meridians: globe_with_meridians$2,
+	world_map: world_map$2,
+	japan: japan$2,
+	compass: compass$2,
+	mountain_snow: mountain_snow$2,
+	mountain: mountain$2,
+	volcano: volcano$2,
+	mount_fuji: mount_fuji$2,
+	camping: camping$2,
+	beach_umbrella: beach_umbrella$2,
+	desert: desert$2,
+	desert_island: desert_island$2,
+	national_park: national_park$2,
+	stadium: stadium$2,
+	classical_building: classical_building$2,
+	building_construction: building_construction$2,
 	bricks: bricks,
 	rock: rock,
 	wood: wood,
 	hut: hut,
-	houses: houses$1,
-	derelict_house: derelict_house$1,
-	house: house$1,
-	house_with_garden: house_with_garden$1,
-	office: office$1,
-	post_office: post_office$1,
-	european_post_office: european_post_office$1,
-	hospital: hospital$1,
-	bank: bank$1,
-	hotel: hotel$1,
-	love_hotel: love_hotel$1,
-	convenience_store: convenience_store$1,
-	school: school$1,
-	department_store: department_store$1,
-	factory: factory$1,
-	japanese_castle: japanese_castle$1,
-	european_castle: european_castle$1,
-	wedding: wedding$1,
-	tokyo_tower: tokyo_tower$1,
-	statue_of_liberty: statue_of_liberty$1,
-	church: church$1,
-	mosque: mosque$1,
+	houses: houses$2,
+	derelict_house: derelict_house$2,
+	house: house$2,
+	house_with_garden: house_with_garden$2,
+	office: office$2,
+	post_office: post_office$2,
+	european_post_office: european_post_office$2,
+	hospital: hospital$2,
+	bank: bank$2,
+	hotel: hotel$2,
+	love_hotel: love_hotel$2,
+	convenience_store: convenience_store$2,
+	school: school$2,
+	department_store: department_store$2,
+	factory: factory$2,
+	japanese_castle: japanese_castle$2,
+	european_castle: european_castle$2,
+	wedding: wedding$2,
+	tokyo_tower: tokyo_tower$2,
+	statue_of_liberty: statue_of_liberty$2,
+	church: church$2,
+	mosque: mosque$2,
 	hindu_temple: hindu_temple,
-	synagogue: synagogue$1,
-	shinto_shrine: shinto_shrine$1,
-	kaaba: kaaba$1,
-	fountain: fountain$1,
-	tent: tent$1,
-	foggy: foggy$1,
-	night_with_stars: night_with_stars$1,
-	cityscape: cityscape$1,
-	sunrise_over_mountains: sunrise_over_mountains$1,
-	sunrise: sunrise$1,
-	city_sunset: city_sunset$1,
-	city_sunrise: city_sunrise$1,
-	bridge_at_night: bridge_at_night$1,
-	hotsprings: hotsprings$1,
-	carousel_horse: carousel_horse$1,
-	ferris_wheel: ferris_wheel$1,
-	roller_coaster: roller_coaster$1,
-	barber: barber$1,
-	circus_tent: circus_tent$1,
-	steam_locomotive: steam_locomotive$1,
-	railway_car: railway_car$1,
-	bullettrain_side: bullettrain_side$1,
-	bullettrain_front: bullettrain_front$1,
-	train2: train2$1,
-	metro: metro$1,
-	light_rail: light_rail$1,
-	station: station$1,
-	tram: tram$1,
-	monorail: monorail$1,
-	mountain_railway: mountain_railway$1,
-	train: train$1,
-	bus: bus$1,
-	oncoming_bus: oncoming_bus$1,
-	trolleybus: trolleybus$1,
-	minibus: minibus$1,
-	ambulance: ambulance$1,
-	fire_engine: fire_engine$1,
-	police_car: police_car$1,
-	oncoming_police_car: oncoming_police_car$1,
-	taxi: taxi$1,
-	oncoming_taxi: oncoming_taxi$1,
+	synagogue: synagogue$2,
+	shinto_shrine: shinto_shrine$2,
+	kaaba: kaaba$2,
+	fountain: fountain$2,
+	tent: tent$2,
+	foggy: foggy$2,
+	night_with_stars: night_with_stars$2,
+	cityscape: cityscape$2,
+	sunrise_over_mountains: sunrise_over_mountains$2,
+	sunrise: sunrise$2,
+	city_sunset: city_sunset$2,
+	city_sunrise: city_sunrise$2,
+	bridge_at_night: bridge_at_night$2,
+	hotsprings: hotsprings$2,
+	carousel_horse: carousel_horse$2,
+	ferris_wheel: ferris_wheel$2,
+	roller_coaster: roller_coaster$2,
+	barber: barber$2,
+	circus_tent: circus_tent$2,
+	steam_locomotive: steam_locomotive$2,
+	railway_car: railway_car$2,
+	bullettrain_side: bullettrain_side$2,
+	bullettrain_front: bullettrain_front$2,
+	train2: train2$2,
+	metro: metro$2,
+	light_rail: light_rail$2,
+	station: station$2,
+	tram: tram$2,
+	monorail: monorail$2,
+	mountain_railway: mountain_railway$2,
+	train: train$2,
+	bus: bus$2,
+	oncoming_bus: oncoming_bus$2,
+	trolleybus: trolleybus$2,
+	minibus: minibus$2,
+	ambulance: ambulance$2,
+	fire_engine: fire_engine$2,
+	police_car: police_car$2,
+	oncoming_police_car: oncoming_police_car$2,
+	taxi: taxi$2,
+	oncoming_taxi: oncoming_taxi$2,
 	car: car,
-	red_car: red_car$1,
-	oncoming_automobile: oncoming_automobile$1,
-	blue_car: blue_car$1,
+	red_car: red_car$2,
+	oncoming_automobile: oncoming_automobile$2,
+	blue_car: blue_car$2,
 	pickup_truck: pickup_truck,
-	truck: truck$1,
-	articulated_lorry: articulated_lorry$1,
-	tractor: tractor$1,
-	racing_car: racing_car$1,
-	motorcycle: motorcycle$1,
-	motor_scooter: motor_scooter$1,
+	truck: truck$2,
+	articulated_lorry: articulated_lorry$2,
+	tractor: tractor$2,
+	racing_car: racing_car$2,
+	motorcycle: motorcycle$2,
+	motor_scooter: motor_scooter$2,
 	manual_wheelchair: manual_wheelchair,
 	motorized_wheelchair: motorized_wheelchair,
 	auto_rickshaw: auto_rickshaw,
-	bike: bike$1,
-	kick_scooter: kick_scooter$1,
-	skateboard: skateboard$1,
+	bike: bike$2,
+	kick_scooter: kick_scooter$2,
+	skateboard: skateboard$2,
 	roller_skate: roller_skate,
-	busstop: busstop$1,
-	motorway: motorway$1,
-	railway_track: railway_track$1,
-	oil_drum: oil_drum$1,
-	fuelpump: fuelpump$1,
-	rotating_light: rotating_light$1,
-	traffic_light: traffic_light$1,
-	vertical_traffic_light: vertical_traffic_light$1,
-	stop_sign: stop_sign$1,
-	construction: construction$1,
-	anchor: anchor$1,
+	busstop: busstop$2,
+	motorway: motorway$2,
+	railway_track: railway_track$2,
+	oil_drum: oil_drum$2,
+	fuelpump: fuelpump$2,
+	rotating_light: rotating_light$2,
+	traffic_light: traffic_light$2,
+	vertical_traffic_light: vertical_traffic_light$2,
+	stop_sign: stop_sign$2,
+	construction: construction$2,
+	anchor: anchor$2,
 	boat: boat,
-	sailboat: sailboat$1,
-	canoe: canoe$1,
-	speedboat: speedboat$1,
-	passenger_ship: passenger_ship$1,
-	ferry: ferry$1,
-	motor_boat: motor_boat$1,
-	ship: ship$1,
-	airplane: airplane$1,
-	small_airplane: small_airplane$1,
-	flight_departure: flight_departure$1,
-	flight_arrival: flight_arrival$1,
+	sailboat: sailboat$2,
+	canoe: canoe$2,
+	speedboat: speedboat$2,
+	passenger_ship: passenger_ship$2,
+	ferry: ferry$2,
+	motor_boat: motor_boat$2,
+	ship: ship$2,
+	airplane: airplane$2,
+	small_airplane: small_airplane$2,
+	flight_departure: flight_departure$2,
+	flight_arrival: flight_arrival$2,
 	parachute: parachute,
-	seat: seat$1,
-	helicopter: helicopter$1,
-	suspension_railway: suspension_railway$1,
-	mountain_cableway: mountain_cableway$1,
-	aerial_tramway: aerial_tramway$1,
-	artificial_satellite: artificial_satellite$1,
-	rocket: rocket$1,
-	flying_saucer: flying_saucer$1,
-	bellhop_bell: bellhop_bell$1,
-	luggage: luggage$1,
-	hourglass: hourglass$1,
-	hourglass_flowing_sand: hourglass_flowing_sand$1,
-	watch: watch$1,
-	alarm_clock: alarm_clock$1,
-	stopwatch: stopwatch$1,
-	timer_clock: timer_clock$1,
-	mantelpiece_clock: mantelpiece_clock$1,
-	clock12: clock12$1,
-	clock1230: clock1230$1,
-	clock1: clock1$1,
-	clock130: clock130$1,
-	clock2: clock2$1,
-	clock230: clock230$1,
-	clock3: clock3$1,
-	clock330: clock330$1,
-	clock4: clock4$1,
-	clock430: clock430$1,
-	clock5: clock5$1,
-	clock530: clock530$1,
-	clock6: clock6$1,
-	clock630: clock630$1,
-	clock7: clock7$1,
-	clock730: clock730$1,
-	clock8: clock8$1,
-	clock830: clock830$1,
-	clock9: clock9$1,
-	clock930: clock930$1,
-	clock10: clock10$1,
-	clock1030: clock1030$1,
-	clock11: clock11$1,
-	clock1130: clock1130$1,
-	new_moon: new_moon$1,
-	waxing_crescent_moon: waxing_crescent_moon$1,
-	first_quarter_moon: first_quarter_moon$1,
+	seat: seat$2,
+	helicopter: helicopter$2,
+	suspension_railway: suspension_railway$2,
+	mountain_cableway: mountain_cableway$2,
+	aerial_tramway: aerial_tramway$2,
+	artificial_satellite: artificial_satellite$2,
+	rocket: rocket$2,
+	flying_saucer: flying_saucer$2,
+	bellhop_bell: bellhop_bell$2,
+	luggage: luggage$2,
+	hourglass: hourglass$2,
+	hourglass_flowing_sand: hourglass_flowing_sand$2,
+	watch: watch$2,
+	alarm_clock: alarm_clock$2,
+	stopwatch: stopwatch$2,
+	timer_clock: timer_clock$2,
+	mantelpiece_clock: mantelpiece_clock$2,
+	clock12: clock12$2,
+	clock1230: clock1230$2,
+	clock1: clock1$2,
+	clock130: clock130$2,
+	clock2: clock2$2,
+	clock230: clock230$2,
+	clock3: clock3$2,
+	clock330: clock330$2,
+	clock4: clock4$2,
+	clock430: clock430$2,
+	clock5: clock5$2,
+	clock530: clock530$2,
+	clock6: clock6$2,
+	clock630: clock630$2,
+	clock7: clock7$2,
+	clock730: clock730$2,
+	clock8: clock8$2,
+	clock830: clock830$2,
+	clock9: clock9$2,
+	clock930: clock930$2,
+	clock10: clock10$2,
+	clock1030: clock1030$2,
+	clock11: clock11$2,
+	clock1130: clock1130$2,
+	new_moon: new_moon$2,
+	waxing_crescent_moon: waxing_crescent_moon$2,
+	first_quarter_moon: first_quarter_moon$2,
 	moon: moon,
-	waxing_gibbous_moon: waxing_gibbous_moon$1,
-	full_moon: full_moon$1,
-	waning_gibbous_moon: waning_gibbous_moon$1,
-	last_quarter_moon: last_quarter_moon$1,
-	waning_crescent_moon: waning_crescent_moon$1,
-	crescent_moon: crescent_moon$1,
-	new_moon_with_face: new_moon_with_face$1,
-	first_quarter_moon_with_face: first_quarter_moon_with_face$1,
-	last_quarter_moon_with_face: last_quarter_moon_with_face$1,
-	thermometer: thermometer$1,
-	sunny: sunny$1,
-	full_moon_with_face: full_moon_with_face$1,
-	sun_with_face: sun_with_face$1,
+	waxing_gibbous_moon: waxing_gibbous_moon$2,
+	full_moon: full_moon$2,
+	waning_gibbous_moon: waning_gibbous_moon$2,
+	last_quarter_moon: last_quarter_moon$2,
+	waning_crescent_moon: waning_crescent_moon$2,
+	crescent_moon: crescent_moon$2,
+	new_moon_with_face: new_moon_with_face$2,
+	first_quarter_moon_with_face: first_quarter_moon_with_face$2,
+	last_quarter_moon_with_face: last_quarter_moon_with_face$2,
+	thermometer: thermometer$2,
+	sunny: sunny$2,
+	full_moon_with_face: full_moon_with_face$2,
+	sun_with_face: sun_with_face$2,
 	ringed_planet: ringed_planet,
-	star: star$1,
-	star2: star2$1,
-	stars: stars$1,
-	milky_way: milky_way$1,
-	cloud: cloud$1,
-	partly_sunny: partly_sunny$1,
-	cloud_with_lightning_and_rain: cloud_with_lightning_and_rain$1,
-	sun_behind_small_cloud: sun_behind_small_cloud$1,
-	sun_behind_large_cloud: sun_behind_large_cloud$1,
-	sun_behind_rain_cloud: sun_behind_rain_cloud$1,
-	cloud_with_rain: cloud_with_rain$1,
-	cloud_with_snow: cloud_with_snow$1,
-	cloud_with_lightning: cloud_with_lightning$1,
-	tornado: tornado$1,
-	fog: fog$1,
-	wind_face: wind_face$1,
-	cyclone: cyclone$1,
-	rainbow: rainbow$1,
-	closed_umbrella: closed_umbrella$1,
-	open_umbrella: open_umbrella$1,
-	umbrella: umbrella$1,
-	parasol_on_ground: parasol_on_ground$1,
-	zap: zap$1,
-	snowflake: snowflake$1,
-	snowman_with_snow: snowman_with_snow$1,
-	snowman: snowman$1,
-	comet: comet$1,
-	fire: fire$1,
-	droplet: droplet$1,
-	ocean: ocean$1,
-	jack_o_lantern: jack_o_lantern$1,
-	christmas_tree: christmas_tree$1,
-	fireworks: fireworks$1,
-	sparkler: sparkler$1,
-	firecracker: firecracker$1,
-	sparkles: sparkles$1,
-	balloon: balloon$1,
-	tada: tada$1,
-	confetti_ball: confetti_ball$1,
-	tanabata_tree: tanabata_tree$1,
-	bamboo: bamboo$1,
-	dolls: dolls$1,
-	flags: flags$1,
-	wind_chime: wind_chime$1,
-	rice_scene: rice_scene$1,
-	red_envelope: red_envelope$1,
-	ribbon: ribbon$1,
-	gift: gift$1,
-	reminder_ribbon: reminder_ribbon$1,
-	tickets: tickets$1,
-	ticket: ticket$1,
-	medal_military: medal_military$1,
-	trophy: trophy$1,
-	medal_sports: medal_sports$1,
+	star: star$2,
+	star2: star2$2,
+	stars: stars$2,
+	milky_way: milky_way$2,
+	cloud: cloud$2,
+	partly_sunny: partly_sunny$2,
+	cloud_with_lightning_and_rain: cloud_with_lightning_and_rain$2,
+	sun_behind_small_cloud: sun_behind_small_cloud$2,
+	sun_behind_large_cloud: sun_behind_large_cloud$2,
+	sun_behind_rain_cloud: sun_behind_rain_cloud$2,
+	cloud_with_rain: cloud_with_rain$2,
+	cloud_with_snow: cloud_with_snow$2,
+	cloud_with_lightning: cloud_with_lightning$2,
+	tornado: tornado$2,
+	fog: fog$2,
+	wind_face: wind_face$2,
+	cyclone: cyclone$2,
+	rainbow: rainbow$2,
+	closed_umbrella: closed_umbrella$2,
+	open_umbrella: open_umbrella$2,
+	umbrella: umbrella$2,
+	parasol_on_ground: parasol_on_ground$2,
+	zap: zap$2,
+	snowflake: snowflake$2,
+	snowman_with_snow: snowman_with_snow$2,
+	snowman: snowman$2,
+	comet: comet$2,
+	fire: fire$2,
+	droplet: droplet$2,
+	ocean: ocean$2,
+	jack_o_lantern: jack_o_lantern$2,
+	christmas_tree: christmas_tree$2,
+	fireworks: fireworks$2,
+	sparkler: sparkler$2,
+	firecracker: firecracker$2,
+	sparkles: sparkles$2,
+	balloon: balloon$2,
+	tada: tada$2,
+	confetti_ball: confetti_ball$2,
+	tanabata_tree: tanabata_tree$2,
+	bamboo: bamboo$2,
+	dolls: dolls$2,
+	flags: flags$2,
+	wind_chime: wind_chime$2,
+	rice_scene: rice_scene$2,
+	red_envelope: red_envelope$2,
+	ribbon: ribbon$2,
+	gift: gift$2,
+	reminder_ribbon: reminder_ribbon$2,
+	tickets: tickets$2,
+	ticket: ticket$2,
+	medal_military: medal_military$2,
+	trophy: trophy$2,
+	medal_sports: medal_sports$2,
 	"1st_place_medal": "🥇",
 	"2nd_place_medal": "🥈",
 	"3rd_place_medal": "🥉",
-	soccer: soccer$1,
-	baseball: baseball$1,
-	softball: softball$1,
-	basketball: basketball$1,
-	volleyball: volleyball$1,
-	football: football$1,
-	rugby_football: rugby_football$1,
-	tennis: tennis$1,
-	flying_disc: flying_disc$1,
-	bowling: bowling$1,
+	soccer: soccer$2,
+	baseball: baseball$2,
+	softball: softball$2,
+	basketball: basketball$2,
+	volleyball: volleyball$2,
+	football: football$2,
+	rugby_football: rugby_football$2,
+	tennis: tennis$2,
+	flying_disc: flying_disc$2,
+	bowling: bowling$2,
 	cricket_game: cricket_game,
-	field_hockey: field_hockey$1,
-	ice_hockey: ice_hockey$1,
-	lacrosse: lacrosse$1,
-	ping_pong: ping_pong$1,
-	badminton: badminton$1,
-	boxing_glove: boxing_glove$1,
-	martial_arts_uniform: martial_arts_uniform$1,
-	goal_net: goal_net$1,
-	golf: golf$1,
-	ice_skate: ice_skate$1,
-	fishing_pole_and_fish: fishing_pole_and_fish$1,
+	field_hockey: field_hockey$2,
+	ice_hockey: ice_hockey$2,
+	lacrosse: lacrosse$2,
+	ping_pong: ping_pong$2,
+	badminton: badminton$2,
+	boxing_glove: boxing_glove$2,
+	martial_arts_uniform: martial_arts_uniform$2,
+	goal_net: goal_net$2,
+	golf: golf$2,
+	ice_skate: ice_skate$2,
+	fishing_pole_and_fish: fishing_pole_and_fish$2,
 	diving_mask: diving_mask,
-	running_shirt_with_sash: running_shirt_with_sash$1,
-	ski: ski$1,
-	sled: sled$1,
-	curling_stone: curling_stone$1,
-	dart: dart$1,
+	running_shirt_with_sash: running_shirt_with_sash$2,
+	ski: ski$2,
+	sled: sled$2,
+	curling_stone: curling_stone$2,
+	dart: dart$2,
 	yo_yo: yo_yo,
 	kite: kite,
 	"8ball": "🎱",
-	crystal_ball: crystal_ball$1,
+	crystal_ball: crystal_ball$2,
 	magic_wand: magic_wand,
-	nazar_amulet: nazar_amulet$1,
-	video_game: video_game$1,
-	joystick: joystick$1,
-	slot_machine: slot_machine$1,
-	game_die: game_die$1,
-	jigsaw: jigsaw$1,
-	teddy_bear: teddy_bear$1,
+	nazar_amulet: nazar_amulet$2,
+	video_game: video_game$2,
+	joystick: joystick$2,
+	slot_machine: slot_machine$2,
+	game_die: game_die$2,
+	jigsaw: jigsaw$2,
+	teddy_bear: teddy_bear$2,
 	pinata: pinata,
 	nesting_dolls: nesting_dolls,
-	spades: spades$1,
-	hearts: hearts$1,
-	diamonds: diamonds$1,
-	clubs: clubs$1,
-	chess_pawn: chess_pawn$1,
-	black_joker: black_joker$1,
-	mahjong: mahjong$1,
-	flower_playing_cards: flower_playing_cards$1,
-	performing_arts: performing_arts$1,
-	framed_picture: framed_picture$1,
-	art: art$1,
-	thread: thread$1,
+	spades: spades$2,
+	hearts: hearts$2,
+	diamonds: diamonds$2,
+	clubs: clubs$2,
+	chess_pawn: chess_pawn$2,
+	black_joker: black_joker$2,
+	mahjong: mahjong$2,
+	flower_playing_cards: flower_playing_cards$2,
+	performing_arts: performing_arts$2,
+	framed_picture: framed_picture$2,
+	art: art$2,
+	thread: thread$2,
 	sewing_needle: sewing_needle,
-	yarn: yarn$1,
+	yarn: yarn$2,
 	knot: knot,
-	eyeglasses: eyeglasses$1,
-	dark_sunglasses: dark_sunglasses$1,
-	goggles: goggles$1,
+	eyeglasses: eyeglasses$2,
+	dark_sunglasses: dark_sunglasses$2,
+	goggles: goggles$2,
 	lab_coat: lab_coat,
 	safety_vest: safety_vest,
-	necktie: necktie$1,
+	necktie: necktie$2,
 	shirt: shirt,
-	tshirt: tshirt$1,
-	jeans: jeans$1,
-	scarf: scarf$1,
-	gloves: gloves$1,
-	coat: coat$1,
-	socks: socks$1,
-	dress: dress$1,
-	kimono: kimono$1,
+	tshirt: tshirt$2,
+	jeans: jeans$2,
+	scarf: scarf$2,
+	gloves: gloves$2,
+	coat: coat$2,
+	socks: socks$2,
+	dress: dress$2,
+	kimono: kimono$2,
 	sari: sari,
 	one_piece_swimsuit: one_piece_swimsuit,
 	swim_brief: swim_brief,
 	shorts: shorts,
-	bikini: bikini$1,
-	womans_clothes: womans_clothes$1,
-	purse: purse$1,
-	handbag: handbag$1,
-	pouch: pouch$1,
-	shopping: shopping$1,
-	school_satchel: school_satchel$1,
+	bikini: bikini$2,
+	womans_clothes: womans_clothes$2,
+	purse: purse$2,
+	handbag: handbag$2,
+	pouch: pouch$2,
+	shopping: shopping$2,
+	school_satchel: school_satchel$2,
 	thong_sandal: thong_sandal,
-	mans_shoe: mans_shoe$1,
+	mans_shoe: mans_shoe$2,
 	shoe: shoe,
-	athletic_shoe: athletic_shoe$1,
-	hiking_boot: hiking_boot$1,
-	flat_shoe: flat_shoe$1,
-	high_heel: high_heel$1,
-	sandal: sandal$1,
+	athletic_shoe: athletic_shoe$2,
+	hiking_boot: hiking_boot$2,
+	flat_shoe: flat_shoe$2,
+	high_heel: high_heel$2,
+	sandal: sandal$2,
 	ballet_shoes: ballet_shoes,
-	boot: boot$1,
-	crown: crown$1,
-	womans_hat: womans_hat$1,
-	tophat: tophat$1,
-	mortar_board: mortar_board$1,
+	boot: boot$2,
+	crown: crown$2,
+	womans_hat: womans_hat$2,
+	tophat: tophat$2,
+	mortar_board: mortar_board$2,
 	billed_cap: billed_cap,
 	military_helmet: military_helmet,
-	rescue_worker_helmet: rescue_worker_helmet$1,
-	prayer_beads: prayer_beads$1,
-	lipstick: lipstick$1,
-	ring: ring$1,
-	gem: gem$1,
-	mute: mute$1,
-	speaker: speaker$1,
-	sound: sound$1,
-	loud_sound: loud_sound$1,
-	loudspeaker: loudspeaker$1,
-	mega: mega$1,
-	postal_horn: postal_horn$1,
-	bell: bell$1,
-	no_bell: no_bell$1,
-	musical_score: musical_score$1,
-	musical_note: musical_note$1,
-	notes: notes$1,
-	studio_microphone: studio_microphone$1,
-	level_slider: level_slider$1,
-	control_knobs: control_knobs$1,
-	microphone: microphone$1,
-	headphones: headphones$1,
-	radio: radio$1,
-	saxophone: saxophone$1,
+	rescue_worker_helmet: rescue_worker_helmet$2,
+	prayer_beads: prayer_beads$2,
+	lipstick: lipstick$2,
+	ring: ring$2,
+	gem: gem$2,
+	mute: mute$2,
+	speaker: speaker$2,
+	sound: sound$2,
+	loud_sound: loud_sound$2,
+	loudspeaker: loudspeaker$2,
+	mega: mega$2,
+	postal_horn: postal_horn$2,
+	bell: bell$2,
+	no_bell: no_bell$2,
+	musical_score: musical_score$2,
+	musical_note: musical_note$2,
+	notes: notes$2,
+	studio_microphone: studio_microphone$2,
+	level_slider: level_slider$2,
+	control_knobs: control_knobs$2,
+	microphone: microphone$2,
+	headphones: headphones$2,
+	radio: radio$2,
+	saxophone: saxophone$2,
 	accordion: accordion,
-	guitar: guitar$1,
-	musical_keyboard: musical_keyboard$1,
-	trumpet: trumpet$1,
-	violin: violin$1,
+	guitar: guitar$2,
+	musical_keyboard: musical_keyboard$2,
+	trumpet: trumpet$2,
+	violin: violin$2,
 	banjo: banjo,
-	drum: drum$1,
+	drum: drum$2,
 	long_drum: long_drum,
-	iphone: iphone$1,
-	calling: calling$1,
-	phone: phone$1,
+	iphone: iphone$2,
+	calling: calling$2,
+	phone: phone$2,
 	telephone: telephone,
-	telephone_receiver: telephone_receiver$1,
-	pager: pager$1,
-	fax: fax$1,
-	battery: battery$1,
-	electric_plug: electric_plug$1,
-	computer: computer$1,
-	desktop_computer: desktop_computer$1,
-	printer: printer$1,
-	keyboard: keyboard$1,
-	computer_mouse: computer_mouse$1,
-	trackball: trackball$1,
-	minidisc: minidisc$1,
-	floppy_disk: floppy_disk$1,
-	cd: cd$1,
-	dvd: dvd$1,
-	abacus: abacus$1,
-	movie_camera: movie_camera$1,
-	film_strip: film_strip$1,
-	film_projector: film_projector$1,
-	clapper: clapper$1,
-	tv: tv$1,
-	camera: camera$1,
-	camera_flash: camera_flash$1,
-	video_camera: video_camera$1,
-	vhs: vhs$1,
-	mag: mag$1,
-	mag_right: mag_right$1,
-	candle: candle$1,
-	bulb: bulb$1,
-	flashlight: flashlight$1,
-	izakaya_lantern: izakaya_lantern$1,
+	telephone_receiver: telephone_receiver$2,
+	pager: pager$2,
+	fax: fax$2,
+	battery: battery$2,
+	electric_plug: electric_plug$2,
+	computer: computer$2,
+	desktop_computer: desktop_computer$2,
+	printer: printer$2,
+	keyboard: keyboard$2,
+	computer_mouse: computer_mouse$2,
+	trackball: trackball$2,
+	minidisc: minidisc$2,
+	floppy_disk: floppy_disk$2,
+	cd: cd$2,
+	dvd: dvd$2,
+	abacus: abacus$2,
+	movie_camera: movie_camera$2,
+	film_strip: film_strip$2,
+	film_projector: film_projector$2,
+	clapper: clapper$2,
+	tv: tv$2,
+	camera: camera$2,
+	camera_flash: camera_flash$2,
+	video_camera: video_camera$2,
+	vhs: vhs$2,
+	mag: mag$2,
+	mag_right: mag_right$2,
+	candle: candle$2,
+	bulb: bulb$2,
+	flashlight: flashlight$2,
+	izakaya_lantern: izakaya_lantern$2,
 	lantern: lantern,
 	diya_lamp: diya_lamp,
-	notebook_with_decorative_cover: notebook_with_decorative_cover$1,
-	closed_book: closed_book$1,
+	notebook_with_decorative_cover: notebook_with_decorative_cover$2,
+	closed_book: closed_book$2,
 	book: book,
-	open_book: open_book$1,
-	green_book: green_book$1,
-	blue_book: blue_book$1,
-	orange_book: orange_book$1,
-	books: books$1,
-	notebook: notebook$1,
-	ledger: ledger$1,
-	page_with_curl: page_with_curl$1,
-	scroll: scroll$1,
-	page_facing_up: page_facing_up$1,
-	newspaper: newspaper$1,
-	newspaper_roll: newspaper_roll$1,
-	bookmark_tabs: bookmark_tabs$1,
-	bookmark: bookmark$1,
-	label: label$1,
-	moneybag: moneybag$1,
+	open_book: open_book$2,
+	green_book: green_book$2,
+	blue_book: blue_book$2,
+	orange_book: orange_book$2,
+	books: books$2,
+	notebook: notebook$2,
+	ledger: ledger$2,
+	page_with_curl: page_with_curl$2,
+	scroll: scroll$2,
+	page_facing_up: page_facing_up$2,
+	newspaper: newspaper$2,
+	newspaper_roll: newspaper_roll$2,
+	bookmark_tabs: bookmark_tabs$2,
+	bookmark: bookmark$2,
+	label: label$2,
+	moneybag: moneybag$2,
 	coin: coin,
-	yen: yen$1,
-	dollar: dollar$1,
-	euro: euro$1,
-	pound: pound$1,
-	money_with_wings: money_with_wings$1,
-	credit_card: credit_card$1,
-	receipt: receipt$1,
-	chart: chart$1,
+	yen: yen$2,
+	dollar: dollar$2,
+	euro: euro$2,
+	pound: pound$2,
+	money_with_wings: money_with_wings$2,
+	credit_card: credit_card$2,
+	receipt: receipt$2,
+	chart: chart$2,
 	envelope: envelope,
-	email: email$1,
+	email: email$2,
 	"e-mail": "📧",
-	incoming_envelope: incoming_envelope$1,
-	envelope_with_arrow: envelope_with_arrow$1,
-	outbox_tray: outbox_tray$1,
-	inbox_tray: inbox_tray$1,
+	incoming_envelope: incoming_envelope$2,
+	envelope_with_arrow: envelope_with_arrow$2,
+	outbox_tray: outbox_tray$2,
+	inbox_tray: inbox_tray$2,
 	"package": "📦",
-	mailbox: mailbox$1,
-	mailbox_closed: mailbox_closed$1,
-	mailbox_with_mail: mailbox_with_mail$1,
-	mailbox_with_no_mail: mailbox_with_no_mail$1,
-	postbox: postbox$1,
-	ballot_box: ballot_box$1,
-	pencil2: pencil2$1,
-	black_nib: black_nib$1,
-	fountain_pen: fountain_pen$1,
-	pen: pen$1,
-	paintbrush: paintbrush$1,
-	crayon: crayon$1,
-	memo: memo$1,
+	mailbox: mailbox$2,
+	mailbox_closed: mailbox_closed$2,
+	mailbox_with_mail: mailbox_with_mail$2,
+	mailbox_with_no_mail: mailbox_with_no_mail$2,
+	postbox: postbox$2,
+	ballot_box: ballot_box$2,
+	pencil2: pencil2$2,
+	black_nib: black_nib$2,
+	fountain_pen: fountain_pen$2,
+	pen: pen$2,
+	paintbrush: paintbrush$2,
+	crayon: crayon$2,
+	memo: memo$2,
 	pencil: pencil,
-	briefcase: briefcase$1,
-	file_folder: file_folder$1,
-	open_file_folder: open_file_folder$1,
-	card_index_dividers: card_index_dividers$1,
-	date: date$1,
-	calendar: calendar$1,
-	spiral_notepad: spiral_notepad$1,
-	spiral_calendar: spiral_calendar$1,
-	card_index: card_index$1,
-	chart_with_upwards_trend: chart_with_upwards_trend$1,
-	chart_with_downwards_trend: chart_with_downwards_trend$1,
-	bar_chart: bar_chart$1,
-	clipboard: clipboard$2,
-	pushpin: pushpin$1,
-	round_pushpin: round_pushpin$1,
-	paperclip: paperclip$1,
-	paperclips: paperclips$1,
-	straight_ruler: straight_ruler$1,
-	triangular_ruler: triangular_ruler$1,
-	scissors: scissors$1,
-	card_file_box: card_file_box$1,
-	file_cabinet: file_cabinet$1,
-	wastebasket: wastebasket$1,
-	lock: lock$1,
-	unlock: unlock$1,
-	lock_with_ink_pen: lock_with_ink_pen$1,
-	closed_lock_with_key: closed_lock_with_key$1,
-	key: key$1,
-	old_key: old_key$1,
-	hammer: hammer$1,
+	briefcase: briefcase$2,
+	file_folder: file_folder$2,
+	open_file_folder: open_file_folder$2,
+	card_index_dividers: card_index_dividers$2,
+	date: date$2,
+	calendar: calendar$2,
+	spiral_notepad: spiral_notepad$2,
+	spiral_calendar: spiral_calendar$2,
+	card_index: card_index$2,
+	chart_with_upwards_trend: chart_with_upwards_trend$2,
+	chart_with_downwards_trend: chart_with_downwards_trend$2,
+	bar_chart: bar_chart$2,
+	clipboard: clipboard$3,
+	pushpin: pushpin$2,
+	round_pushpin: round_pushpin$2,
+	paperclip: paperclip$2,
+	paperclips: paperclips$2,
+	straight_ruler: straight_ruler$2,
+	triangular_ruler: triangular_ruler$2,
+	scissors: scissors$2,
+	card_file_box: card_file_box$2,
+	file_cabinet: file_cabinet$2,
+	wastebasket: wastebasket$2,
+	lock: lock$2,
+	unlock: unlock$2,
+	lock_with_ink_pen: lock_with_ink_pen$2,
+	closed_lock_with_key: closed_lock_with_key$2,
+	key: key$2,
+	old_key: old_key$2,
+	hammer: hammer$2,
 	axe: axe,
-	pick: pick$1,
-	hammer_and_pick: hammer_and_pick$1,
-	hammer_and_wrench: hammer_and_wrench$1,
-	dagger: dagger$1,
-	crossed_swords: crossed_swords$1,
-	gun: gun$1,
+	pick: pick$2,
+	hammer_and_pick: hammer_and_pick$2,
+	hammer_and_wrench: hammer_and_wrench$2,
+	dagger: dagger$2,
+	crossed_swords: crossed_swords$2,
+	gun: gun$2,
 	boomerang: boomerang,
-	bow_and_arrow: bow_and_arrow$1,
-	shield: shield$1,
+	bow_and_arrow: bow_and_arrow$2,
+	shield: shield$2,
 	carpentry_saw: carpentry_saw,
-	wrench: wrench$1,
+	wrench: wrench$2,
 	screwdriver: screwdriver,
-	nut_and_bolt: nut_and_bolt$1,
-	gear: gear$1,
-	clamp: clamp$1,
-	balance_scale: balance_scale$1,
+	nut_and_bolt: nut_and_bolt$2,
+	gear: gear$2,
+	clamp: clamp$2,
+	balance_scale: balance_scale$2,
 	probing_cane: probing_cane,
-	link: link$2,
-	chains: chains$1,
+	link: link$3,
+	chains: chains$2,
 	hook: hook,
-	toolbox: toolbox$1,
-	magnet: magnet$1,
+	toolbox: toolbox$2,
+	magnet: magnet$2,
 	ladder: ladder,
-	alembic: alembic$1,
-	test_tube: test_tube$1,
-	petri_dish: petri_dish$1,
-	dna: dna$1,
-	microscope: microscope$1,
-	telescope: telescope$1,
-	satellite: satellite$1,
-	syringe: syringe$1,
+	alembic: alembic$2,
+	test_tube: test_tube$2,
+	petri_dish: petri_dish$2,
+	dna: dna$2,
+	microscope: microscope$2,
+	telescope: telescope$2,
+	satellite: satellite$2,
+	syringe: syringe$2,
 	drop_of_blood: drop_of_blood,
-	pill: pill$1,
+	pill: pill$2,
 	adhesive_bandage: adhesive_bandage,
 	stethoscope: stethoscope,
-	door: door$1,
+	door: door$2,
 	elevator: elevator,
 	mirror: mirror,
 	window: window$1,
-	bed: bed$1,
-	couch_and_lamp: couch_and_lamp$1,
+	bed: bed$2,
+	couch_and_lamp: couch_and_lamp$2,
 	chair: chair,
-	toilet: toilet$1,
+	toilet: toilet$2,
 	plunger: plunger,
-	shower: shower$1,
-	bathtub: bathtub$1,
+	shower: shower$2,
+	bathtub: bathtub$2,
 	mouse_trap: mouse_trap,
 	razor: razor,
-	lotion_bottle: lotion_bottle$1,
-	safety_pin: safety_pin$1,
-	broom: broom$1,
-	basket: basket$1,
+	lotion_bottle: lotion_bottle$2,
+	safety_pin: safety_pin$2,
+	broom: broom$2,
+	basket: basket$2,
 	roll_of_paper: roll_of_paper,
 	bucket: bucket,
-	soap: soap$1,
+	soap: soap$2,
 	toothbrush: toothbrush,
-	sponge: sponge$1,
-	fire_extinguisher: fire_extinguisher$1,
-	shopping_cart: shopping_cart$1,
-	smoking: smoking$1,
-	coffin: coffin$1,
+	sponge: sponge$2,
+	fire_extinguisher: fire_extinguisher$2,
+	shopping_cart: shopping_cart$2,
+	smoking: smoking$2,
+	coffin: coffin$2,
 	headstone: headstone,
-	funeral_urn: funeral_urn$1,
-	moyai: moyai$1,
+	funeral_urn: funeral_urn$2,
+	moyai: moyai$2,
 	placard: placard,
-	atm: atm$1,
-	put_litter_in_its_place: put_litter_in_its_place$1,
-	potable_water: potable_water$1,
-	wheelchair: wheelchair$1,
-	mens: mens$1,
-	womens: womens$1,
-	restroom: restroom$1,
-	baby_symbol: baby_symbol$1,
-	wc: wc$1,
-	passport_control: passport_control$1,
-	customs: customs$1,
-	baggage_claim: baggage_claim$1,
-	left_luggage: left_luggage$1,
-	warning: warning$1,
-	children_crossing: children_crossing$1,
-	no_entry: no_entry$1,
-	no_entry_sign: no_entry_sign$1,
-	no_bicycles: no_bicycles$1,
-	no_smoking: no_smoking$1,
-	do_not_litter: do_not_litter$1,
+	atm: atm$2,
+	put_litter_in_its_place: put_litter_in_its_place$2,
+	potable_water: potable_water$2,
+	wheelchair: wheelchair$2,
+	mens: mens$2,
+	womens: womens$2,
+	restroom: restroom$2,
+	baby_symbol: baby_symbol$2,
+	wc: wc$2,
+	passport_control: passport_control$2,
+	customs: customs$2,
+	baggage_claim: baggage_claim$2,
+	left_luggage: left_luggage$2,
+	warning: warning$2,
+	children_crossing: children_crossing$2,
+	no_entry: no_entry$2,
+	no_entry_sign: no_entry_sign$2,
+	no_bicycles: no_bicycles$2,
+	no_smoking: no_smoking$2,
+	do_not_litter: do_not_litter$2,
 	"non-potable_water": "🚱",
-	no_pedestrians: no_pedestrians$1,
-	no_mobile_phones: no_mobile_phones$1,
-	underage: underage$1,
-	radioactive: radioactive$1,
-	biohazard: biohazard$1,
-	arrow_up: arrow_up$1,
-	arrow_upper_right: arrow_upper_right$1,
-	arrow_right: arrow_right$1,
-	arrow_lower_right: arrow_lower_right$1,
-	arrow_down: arrow_down$1,
-	arrow_lower_left: arrow_lower_left$1,
-	arrow_left: arrow_left$1,
-	arrow_upper_left: arrow_upper_left$1,
-	arrow_up_down: arrow_up_down$1,
-	left_right_arrow: left_right_arrow$1,
-	leftwards_arrow_with_hook: leftwards_arrow_with_hook$1,
-	arrow_right_hook: arrow_right_hook$1,
-	arrow_heading_up: arrow_heading_up$1,
-	arrow_heading_down: arrow_heading_down$1,
-	arrows_clockwise: arrows_clockwise$1,
-	arrows_counterclockwise: arrows_counterclockwise$1,
-	back: back$1,
-	end: end$1,
-	on: on$1,
-	soon: soon$1,
-	top: top$1,
-	place_of_worship: place_of_worship$1,
-	atom_symbol: atom_symbol$1,
-	om: om$1,
-	star_of_david: star_of_david$1,
-	wheel_of_dharma: wheel_of_dharma$1,
-	yin_yang: yin_yang$1,
-	latin_cross: latin_cross$1,
-	orthodox_cross: orthodox_cross$1,
-	star_and_crescent: star_and_crescent$1,
-	peace_symbol: peace_symbol$1,
-	menorah: menorah$1,
-	six_pointed_star: six_pointed_star$1,
-	aries: aries$1,
-	taurus: taurus$1,
-	gemini: gemini$1,
-	cancer: cancer$1,
-	leo: leo$1,
-	virgo: virgo$1,
-	libra: libra$1,
-	scorpius: scorpius$1,
-	sagittarius: sagittarius$1,
-	capricorn: capricorn$1,
-	aquarius: aquarius$1,
-	pisces: pisces$1,
-	ophiuchus: ophiuchus$1,
-	twisted_rightwards_arrows: twisted_rightwards_arrows$1,
-	repeat: repeat$1,
-	repeat_one: repeat_one$1,
-	arrow_forward: arrow_forward$1,
-	fast_forward: fast_forward$1,
-	next_track_button: next_track_button$1,
-	play_or_pause_button: play_or_pause_button$1,
-	arrow_backward: arrow_backward$1,
-	rewind: rewind$1,
-	previous_track_button: previous_track_button$1,
-	arrow_up_small: arrow_up_small$1,
-	arrow_double_up: arrow_double_up$1,
-	arrow_down_small: arrow_down_small$1,
-	arrow_double_down: arrow_double_down$1,
-	pause_button: pause_button$1,
-	stop_button: stop_button$1,
-	record_button: record_button$1,
-	eject_button: eject_button$1,
-	cinema: cinema$1,
-	low_brightness: low_brightness$1,
-	high_brightness: high_brightness$1,
-	signal_strength: signal_strength$1,
-	vibration_mode: vibration_mode$1,
-	mobile_phone_off: mobile_phone_off$1,
+	no_pedestrians: no_pedestrians$2,
+	no_mobile_phones: no_mobile_phones$2,
+	underage: underage$2,
+	radioactive: radioactive$2,
+	biohazard: biohazard$2,
+	arrow_up: arrow_up$2,
+	arrow_upper_right: arrow_upper_right$2,
+	arrow_right: arrow_right$2,
+	arrow_lower_right: arrow_lower_right$2,
+	arrow_down: arrow_down$2,
+	arrow_lower_left: arrow_lower_left$2,
+	arrow_left: arrow_left$2,
+	arrow_upper_left: arrow_upper_left$2,
+	arrow_up_down: arrow_up_down$2,
+	left_right_arrow: left_right_arrow$2,
+	leftwards_arrow_with_hook: leftwards_arrow_with_hook$2,
+	arrow_right_hook: arrow_right_hook$2,
+	arrow_heading_up: arrow_heading_up$2,
+	arrow_heading_down: arrow_heading_down$2,
+	arrows_clockwise: arrows_clockwise$2,
+	arrows_counterclockwise: arrows_counterclockwise$2,
+	back: back$2,
+	end: end$2,
+	on: on$2,
+	soon: soon$2,
+	top: top$2,
+	place_of_worship: place_of_worship$2,
+	atom_symbol: atom_symbol$2,
+	om: om$2,
+	star_of_david: star_of_david$2,
+	wheel_of_dharma: wheel_of_dharma$2,
+	yin_yang: yin_yang$2,
+	latin_cross: latin_cross$2,
+	orthodox_cross: orthodox_cross$2,
+	star_and_crescent: star_and_crescent$2,
+	peace_symbol: peace_symbol$2,
+	menorah: menorah$2,
+	six_pointed_star: six_pointed_star$2,
+	aries: aries$2,
+	taurus: taurus$2,
+	gemini: gemini$2,
+	cancer: cancer$2,
+	leo: leo$2,
+	virgo: virgo$2,
+	libra: libra$2,
+	scorpius: scorpius$2,
+	sagittarius: sagittarius$2,
+	capricorn: capricorn$2,
+	aquarius: aquarius$2,
+	pisces: pisces$2,
+	ophiuchus: ophiuchus$2,
+	twisted_rightwards_arrows: twisted_rightwards_arrows$2,
+	repeat: repeat$2,
+	repeat_one: repeat_one$2,
+	arrow_forward: arrow_forward$2,
+	fast_forward: fast_forward$2,
+	next_track_button: next_track_button$2,
+	play_or_pause_button: play_or_pause_button$2,
+	arrow_backward: arrow_backward$2,
+	rewind: rewind$2,
+	previous_track_button: previous_track_button$2,
+	arrow_up_small: arrow_up_small$2,
+	arrow_double_up: arrow_double_up$2,
+	arrow_down_small: arrow_down_small$2,
+	arrow_double_down: arrow_double_down$2,
+	pause_button: pause_button$2,
+	stop_button: stop_button$2,
+	record_button: record_button$2,
+	eject_button: eject_button$2,
+	cinema: cinema$2,
+	low_brightness: low_brightness$2,
+	high_brightness: high_brightness$2,
+	signal_strength: signal_strength$2,
+	vibration_mode: vibration_mode$2,
+	mobile_phone_off: mobile_phone_off$2,
 	female_sign: female_sign,
 	male_sign: male_sign,
 	transgender_symbol: transgender_symbol,
-	heavy_multiplication_x: heavy_multiplication_x$1,
-	heavy_plus_sign: heavy_plus_sign$1,
-	heavy_minus_sign: heavy_minus_sign$1,
-	heavy_division_sign: heavy_division_sign$1,
-	infinity: infinity$1,
-	bangbang: bangbang$1,
-	interrobang: interrobang$1,
-	question: question$1,
-	grey_question: grey_question$1,
-	grey_exclamation: grey_exclamation$1,
-	exclamation: exclamation$1,
+	heavy_multiplication_x: heavy_multiplication_x$2,
+	heavy_plus_sign: heavy_plus_sign$2,
+	heavy_minus_sign: heavy_minus_sign$2,
+	heavy_division_sign: heavy_division_sign$2,
+	infinity: infinity$2,
+	bangbang: bangbang$2,
+	interrobang: interrobang$2,
+	question: question$2,
+	grey_question: grey_question$2,
+	grey_exclamation: grey_exclamation$2,
+	exclamation: exclamation$2,
 	heavy_exclamation_mark: heavy_exclamation_mark,
-	wavy_dash: wavy_dash$1,
-	currency_exchange: currency_exchange$1,
-	heavy_dollar_sign: heavy_dollar_sign$1,
+	wavy_dash: wavy_dash$2,
+	currency_exchange: currency_exchange$2,
+	heavy_dollar_sign: heavy_dollar_sign$2,
 	medical_symbol: medical_symbol,
-	recycle: recycle$1,
-	fleur_de_lis: fleur_de_lis$1,
-	trident: trident$1,
-	name_badge: name_badge$1,
-	beginner: beginner$1,
-	o: o$2,
-	white_check_mark: white_check_mark$1,
-	ballot_box_with_check: ballot_box_with_check$1,
-	heavy_check_mark: heavy_check_mark$1,
-	x: x$1,
-	negative_squared_cross_mark: negative_squared_cross_mark$1,
-	curly_loop: curly_loop$1,
-	loop: loop$1,
-	part_alternation_mark: part_alternation_mark$1,
-	eight_spoked_asterisk: eight_spoked_asterisk$1,
-	eight_pointed_black_star: eight_pointed_black_star$1,
-	sparkle: sparkle$1,
-	copyright: copyright$1,
-	registered: registered$1,
-	tm: tm$1,
-	hash: hash$1,
-	asterisk: asterisk$1,
-	zero: zero$1,
-	one: one$1,
-	two: two$1,
-	three: three$1,
-	four: four$1,
-	five: five$1,
-	six: six$1,
-	seven: seven$1,
-	eight: eight$1,
-	nine: nine$1,
-	keycap_ten: keycap_ten$1,
-	capital_abcd: capital_abcd$1,
-	abcd: abcd$1,
-	symbols: symbols$1,
-	abc: abc$1,
-	a: a$2,
-	ab: ab$1,
-	b: b$1,
-	cl: cl$1,
-	cool: cool$1,
-	free: free$1,
-	information_source: information_source$1,
-	id: id$1,
-	m: m$1,
+	recycle: recycle$2,
+	fleur_de_lis: fleur_de_lis$2,
+	trident: trident$2,
+	name_badge: name_badge$2,
+	beginner: beginner$2,
+	o: o$3,
+	white_check_mark: white_check_mark$2,
+	ballot_box_with_check: ballot_box_with_check$2,
+	heavy_check_mark: heavy_check_mark$2,
+	x: x$2,
+	negative_squared_cross_mark: negative_squared_cross_mark$2,
+	curly_loop: curly_loop$2,
+	loop: loop$2,
+	part_alternation_mark: part_alternation_mark$2,
+	eight_spoked_asterisk: eight_spoked_asterisk$2,
+	eight_pointed_black_star: eight_pointed_black_star$2,
+	sparkle: sparkle$2,
+	copyright: copyright$2,
+	registered: registered$2,
+	tm: tm$2,
+	hash: hash$2,
+	asterisk: asterisk$2,
+	zero: zero$2,
+	one: one$2,
+	two: two$2,
+	three: three$2,
+	four: four$2,
+	five: five$2,
+	six: six$2,
+	seven: seven$2,
+	eight: eight$2,
+	nine: nine$2,
+	keycap_ten: keycap_ten$2,
+	capital_abcd: capital_abcd$2,
+	abcd: abcd$2,
+	symbols: symbols$2,
+	abc: abc$2,
+	a: a$3,
+	ab: ab$2,
+	b: b$2,
+	cl: cl$2,
+	cool: cool$2,
+	free: free$2,
+	information_source: information_source$2,
+	id: id$2,
+	m: m$2,
 	"new": "🆕",
-	ng: ng$1,
-	o2: o2$1,
-	ok: ok$1,
-	parking: parking$1,
-	sos: sos$1,
-	up: up$1,
-	vs: vs$1,
-	koko: koko$1,
-	sa: sa$1,
-	ideograph_advantage: ideograph_advantage$1,
-	accept: accept$1,
-	congratulations: congratulations$1,
-	secret: secret$1,
-	u6e80: u6e80$1,
-	red_circle: red_circle$1,
+	ng: ng$2,
+	o2: o2$2,
+	ok: ok$2,
+	parking: parking$2,
+	sos: sos$2,
+	up: up$2,
+	vs: vs$2,
+	koko: koko$2,
+	sa: sa$2,
+	ideograph_advantage: ideograph_advantage$2,
+	accept: accept$2,
+	congratulations: congratulations$2,
+	secret: secret$2,
+	u6e80: u6e80$2,
+	red_circle: red_circle$2,
 	orange_circle: orange_circle,
 	yellow_circle: yellow_circle,
 	green_circle: green_circle,
-	large_blue_circle: large_blue_circle$1,
+	large_blue_circle: large_blue_circle$2,
 	purple_circle: purple_circle,
 	brown_circle: brown_circle,
-	black_circle: black_circle$1,
-	white_circle: white_circle$1,
+	black_circle: black_circle$2,
+	white_circle: white_circle$2,
 	red_square: red_square,
 	orange_square: orange_square,
 	yellow_square: yellow_square,
@@ -58076,295 +58076,295 @@ const require$$0$2 = {
 	blue_square: blue_square,
 	purple_square: purple_square,
 	brown_square: brown_square,
-	black_large_square: black_large_square$1,
-	white_large_square: white_large_square$1,
-	black_medium_square: black_medium_square$1,
-	white_medium_square: white_medium_square$1,
-	black_medium_small_square: black_medium_small_square$1,
-	white_medium_small_square: white_medium_small_square$1,
-	black_small_square: black_small_square$1,
-	white_small_square: white_small_square$1,
-	large_orange_diamond: large_orange_diamond$1,
-	large_blue_diamond: large_blue_diamond$1,
-	small_orange_diamond: small_orange_diamond$1,
-	small_blue_diamond: small_blue_diamond$1,
-	small_red_triangle: small_red_triangle$1,
-	small_red_triangle_down: small_red_triangle_down$1,
-	diamond_shape_with_a_dot_inside: diamond_shape_with_a_dot_inside$1,
-	radio_button: radio_button$1,
-	white_square_button: white_square_button$1,
-	black_square_button: black_square_button$1,
-	checkered_flag: checkered_flag$1,
-	triangular_flag_on_post: triangular_flag_on_post$1,
-	crossed_flags: crossed_flags$1,
-	black_flag: black_flag$1,
-	white_flag: white_flag$1,
-	rainbow_flag: rainbow_flag$1,
+	black_large_square: black_large_square$2,
+	white_large_square: white_large_square$2,
+	black_medium_square: black_medium_square$2,
+	white_medium_square: white_medium_square$2,
+	black_medium_small_square: black_medium_small_square$2,
+	white_medium_small_square: white_medium_small_square$2,
+	black_small_square: black_small_square$2,
+	white_small_square: white_small_square$2,
+	large_orange_diamond: large_orange_diamond$2,
+	large_blue_diamond: large_blue_diamond$2,
+	small_orange_diamond: small_orange_diamond$2,
+	small_blue_diamond: small_blue_diamond$2,
+	small_red_triangle: small_red_triangle$2,
+	small_red_triangle_down: small_red_triangle_down$2,
+	diamond_shape_with_a_dot_inside: diamond_shape_with_a_dot_inside$2,
+	radio_button: radio_button$2,
+	white_square_button: white_square_button$2,
+	black_square_button: black_square_button$2,
+	checkered_flag: checkered_flag$2,
+	triangular_flag_on_post: triangular_flag_on_post$2,
+	crossed_flags: crossed_flags$2,
+	black_flag: black_flag$2,
+	white_flag: white_flag$2,
+	rainbow_flag: rainbow_flag$2,
 	transgender_flag: transgender_flag,
-	pirate_flag: pirate_flag$1,
+	pirate_flag: pirate_flag$2,
 	ascension_island: ascension_island,
-	andorra: andorra$1,
-	united_arab_emirates: united_arab_emirates$1,
-	afghanistan: afghanistan$1,
-	antigua_barbuda: antigua_barbuda$1,
-	anguilla: anguilla$1,
-	albania: albania$1,
-	armenia: armenia$1,
-	angola: angola$1,
-	antarctica: antarctica$1,
-	argentina: argentina$1,
-	american_samoa: american_samoa$1,
-	austria: austria$1,
-	australia: australia$1,
-	aruba: aruba$1,
-	aland_islands: aland_islands$1,
-	azerbaijan: azerbaijan$1,
-	bosnia_herzegovina: bosnia_herzegovina$1,
-	barbados: barbados$1,
-	bangladesh: bangladesh$1,
-	belgium: belgium$1,
-	burkina_faso: burkina_faso$1,
-	bulgaria: bulgaria$1,
-	bahrain: bahrain$1,
-	burundi: burundi$1,
-	benin: benin$1,
-	st_barthelemy: st_barthelemy$1,
-	bermuda: bermuda$1,
-	brunei: brunei$1,
-	bolivia: bolivia$1,
-	caribbean_netherlands: caribbean_netherlands$1,
-	brazil: brazil$1,
-	bahamas: bahamas$1,
-	bhutan: bhutan$1,
+	andorra: andorra$2,
+	united_arab_emirates: united_arab_emirates$2,
+	afghanistan: afghanistan$2,
+	antigua_barbuda: antigua_barbuda$2,
+	anguilla: anguilla$2,
+	albania: albania$2,
+	armenia: armenia$2,
+	angola: angola$2,
+	antarctica: antarctica$2,
+	argentina: argentina$2,
+	american_samoa: american_samoa$2,
+	austria: austria$2,
+	australia: australia$2,
+	aruba: aruba$2,
+	aland_islands: aland_islands$2,
+	azerbaijan: azerbaijan$2,
+	bosnia_herzegovina: bosnia_herzegovina$2,
+	barbados: barbados$2,
+	bangladesh: bangladesh$2,
+	belgium: belgium$2,
+	burkina_faso: burkina_faso$2,
+	bulgaria: bulgaria$2,
+	bahrain: bahrain$2,
+	burundi: burundi$2,
+	benin: benin$2,
+	st_barthelemy: st_barthelemy$2,
+	bermuda: bermuda$2,
+	brunei: brunei$2,
+	bolivia: bolivia$2,
+	caribbean_netherlands: caribbean_netherlands$2,
+	brazil: brazil$2,
+	bahamas: bahamas$2,
+	bhutan: bhutan$2,
 	bouvet_island: bouvet_island,
-	botswana: botswana$1,
-	belarus: belarus$1,
-	belize: belize$1,
-	canada: canada$1,
-	cocos_islands: cocos_islands$1,
-	congo_kinshasa: congo_kinshasa$1,
-	central_african_republic: central_african_republic$1,
-	congo_brazzaville: congo_brazzaville$1,
-	switzerland: switzerland$1,
-	cote_divoire: cote_divoire$1,
-	cook_islands: cook_islands$1,
-	chile: chile$1,
-	cameroon: cameroon$1,
-	cn: cn$1,
-	colombia: colombia$1,
+	botswana: botswana$2,
+	belarus: belarus$2,
+	belize: belize$2,
+	canada: canada$2,
+	cocos_islands: cocos_islands$2,
+	congo_kinshasa: congo_kinshasa$2,
+	central_african_republic: central_african_republic$2,
+	congo_brazzaville: congo_brazzaville$2,
+	switzerland: switzerland$2,
+	cote_divoire: cote_divoire$2,
+	cook_islands: cook_islands$2,
+	chile: chile$2,
+	cameroon: cameroon$2,
+	cn: cn$2,
+	colombia: colombia$2,
 	clipperton_island: clipperton_island,
-	costa_rica: costa_rica$1,
-	cuba: cuba$1,
-	cape_verde: cape_verde$1,
-	curacao: curacao$1,
-	christmas_island: christmas_island$1,
-	cyprus: cyprus$1,
-	czech_republic: czech_republic$1,
-	de: de$1,
+	costa_rica: costa_rica$2,
+	cuba: cuba$2,
+	cape_verde: cape_verde$2,
+	curacao: curacao$2,
+	christmas_island: christmas_island$2,
+	cyprus: cyprus$2,
+	czech_republic: czech_republic$2,
+	de: de$2,
 	diego_garcia: diego_garcia,
-	djibouti: djibouti$1,
-	denmark: denmark$1,
-	dominica: dominica$1,
-	dominican_republic: dominican_republic$1,
-	algeria: algeria$1,
+	djibouti: djibouti$2,
+	denmark: denmark$2,
+	dominica: dominica$2,
+	dominican_republic: dominican_republic$2,
+	algeria: algeria$2,
 	ceuta_melilla: ceuta_melilla,
-	ecuador: ecuador$1,
-	estonia: estonia$1,
-	egypt: egypt$1,
-	western_sahara: western_sahara$1,
-	eritrea: eritrea$1,
-	es: es$1,
-	ethiopia: ethiopia$1,
-	eu: eu$1,
+	ecuador: ecuador$2,
+	estonia: estonia$2,
+	egypt: egypt$2,
+	western_sahara: western_sahara$2,
+	eritrea: eritrea$2,
+	es: es$2,
+	ethiopia: ethiopia$2,
+	eu: eu$2,
 	european_union: european_union,
-	finland: finland$1,
-	fiji: fiji$1,
-	falkland_islands: falkland_islands$1,
-	micronesia: micronesia$1,
-	faroe_islands: faroe_islands$1,
-	fr: fr$1,
-	gabon: gabon$1,
+	finland: finland$2,
+	fiji: fiji$2,
+	falkland_islands: falkland_islands$2,
+	micronesia: micronesia$2,
+	faroe_islands: faroe_islands$2,
+	fr: fr$2,
+	gabon: gabon$2,
 	gb: gb,
-	uk: uk$1,
-	grenada: grenada$1,
-	georgia: georgia$1,
-	french_guiana: french_guiana$1,
-	guernsey: guernsey$1,
-	ghana: ghana$1,
-	gibraltar: gibraltar$1,
-	greenland: greenland$1,
-	gambia: gambia$1,
-	guinea: guinea$1,
-	guadeloupe: guadeloupe$1,
-	equatorial_guinea: equatorial_guinea$1,
-	greece: greece$1,
-	south_georgia_south_sandwich_islands: south_georgia_south_sandwich_islands$1,
-	guatemala: guatemala$1,
-	guam: guam$1,
-	guinea_bissau: guinea_bissau$1,
-	guyana: guyana$1,
-	hong_kong: hong_kong$1,
+	uk: uk$2,
+	grenada: grenada$2,
+	georgia: georgia$2,
+	french_guiana: french_guiana$2,
+	guernsey: guernsey$2,
+	ghana: ghana$2,
+	gibraltar: gibraltar$2,
+	greenland: greenland$2,
+	gambia: gambia$2,
+	guinea: guinea$2,
+	guadeloupe: guadeloupe$2,
+	equatorial_guinea: equatorial_guinea$2,
+	greece: greece$2,
+	south_georgia_south_sandwich_islands: south_georgia_south_sandwich_islands$2,
+	guatemala: guatemala$2,
+	guam: guam$2,
+	guinea_bissau: guinea_bissau$2,
+	guyana: guyana$2,
+	hong_kong: hong_kong$2,
 	heard_mcdonald_islands: heard_mcdonald_islands,
-	honduras: honduras$1,
-	croatia: croatia$1,
-	haiti: haiti$1,
-	hungary: hungary$1,
-	canary_islands: canary_islands$1,
-	indonesia: indonesia$1,
-	ireland: ireland$1,
-	israel: israel$1,
-	isle_of_man: isle_of_man$1,
-	india: india$1,
-	british_indian_ocean_territory: british_indian_ocean_territory$1,
-	iraq: iraq$1,
-	iran: iran$1,
-	iceland: iceland$1,
-	it: it$1,
-	jersey: jersey$1,
-	jamaica: jamaica$1,
-	jordan: jordan$1,
-	jp: jp$1,
-	kenya: kenya$1,
-	kyrgyzstan: kyrgyzstan$1,
-	cambodia: cambodia$1,
-	kiribati: kiribati$1,
-	comoros: comoros$1,
-	st_kitts_nevis: st_kitts_nevis$1,
-	north_korea: north_korea$1,
-	kr: kr$1,
-	kuwait: kuwait$1,
-	cayman_islands: cayman_islands$1,
-	kazakhstan: kazakhstan$1,
-	laos: laos$1,
-	lebanon: lebanon$1,
-	st_lucia: st_lucia$1,
-	liechtenstein: liechtenstein$1,
-	sri_lanka: sri_lanka$1,
-	liberia: liberia$1,
-	lesotho: lesotho$1,
-	lithuania: lithuania$1,
-	luxembourg: luxembourg$1,
-	latvia: latvia$1,
-	libya: libya$1,
-	morocco: morocco$1,
-	monaco: monaco$1,
-	moldova: moldova$1,
-	montenegro: montenegro$1,
+	honduras: honduras$2,
+	croatia: croatia$2,
+	haiti: haiti$2,
+	hungary: hungary$2,
+	canary_islands: canary_islands$2,
+	indonesia: indonesia$2,
+	ireland: ireland$2,
+	israel: israel$2,
+	isle_of_man: isle_of_man$2,
+	india: india$2,
+	british_indian_ocean_territory: british_indian_ocean_territory$2,
+	iraq: iraq$2,
+	iran: iran$2,
+	iceland: iceland$2,
+	it: it$2,
+	jersey: jersey$2,
+	jamaica: jamaica$2,
+	jordan: jordan$2,
+	jp: jp$2,
+	kenya: kenya$2,
+	kyrgyzstan: kyrgyzstan$2,
+	cambodia: cambodia$2,
+	kiribati: kiribati$2,
+	comoros: comoros$2,
+	st_kitts_nevis: st_kitts_nevis$2,
+	north_korea: north_korea$2,
+	kr: kr$2,
+	kuwait: kuwait$2,
+	cayman_islands: cayman_islands$2,
+	kazakhstan: kazakhstan$2,
+	laos: laos$2,
+	lebanon: lebanon$2,
+	st_lucia: st_lucia$2,
+	liechtenstein: liechtenstein$2,
+	sri_lanka: sri_lanka$2,
+	liberia: liberia$2,
+	lesotho: lesotho$2,
+	lithuania: lithuania$2,
+	luxembourg: luxembourg$2,
+	latvia: latvia$2,
+	libya: libya$2,
+	morocco: morocco$2,
+	monaco: monaco$2,
+	moldova: moldova$2,
+	montenegro: montenegro$2,
 	st_martin: st_martin,
-	madagascar: madagascar$1,
-	marshall_islands: marshall_islands$1,
-	macedonia: macedonia$1,
-	mali: mali$1,
-	myanmar: myanmar$1,
-	mongolia: mongolia$1,
-	macau: macau$1,
-	northern_mariana_islands: northern_mariana_islands$1,
-	martinique: martinique$1,
-	mauritania: mauritania$1,
-	montserrat: montserrat$1,
-	malta: malta$1,
-	mauritius: mauritius$1,
-	maldives: maldives$1,
-	malawi: malawi$1,
-	mexico: mexico$1,
-	malaysia: malaysia$1,
-	mozambique: mozambique$1,
-	namibia: namibia$1,
-	new_caledonia: new_caledonia$1,
-	niger: niger$1,
-	norfolk_island: norfolk_island$1,
-	nigeria: nigeria$1,
-	nicaragua: nicaragua$1,
-	netherlands: netherlands$1,
-	norway: norway$1,
-	nepal: nepal$1,
-	nauru: nauru$1,
-	niue: niue$1,
-	new_zealand: new_zealand$1,
-	oman: oman$1,
-	panama: panama$1,
-	peru: peru$1,
-	french_polynesia: french_polynesia$1,
-	papua_new_guinea: papua_new_guinea$1,
-	philippines: philippines$1,
-	pakistan: pakistan$1,
-	poland: poland$1,
-	st_pierre_miquelon: st_pierre_miquelon$1,
-	pitcairn_islands: pitcairn_islands$1,
-	puerto_rico: puerto_rico$1,
-	palestinian_territories: palestinian_territories$1,
-	portugal: portugal$1,
-	palau: palau$1,
-	paraguay: paraguay$1,
-	qatar: qatar$1,
-	reunion: reunion$1,
-	romania: romania$1,
-	serbia: serbia$1,
-	ru: ru$1,
-	rwanda: rwanda$1,
-	saudi_arabia: saudi_arabia$1,
-	solomon_islands: solomon_islands$1,
-	seychelles: seychelles$1,
-	sudan: sudan$1,
-	sweden: sweden$1,
-	singapore: singapore$1,
-	st_helena: st_helena$1,
-	slovenia: slovenia$1,
+	madagascar: madagascar$2,
+	marshall_islands: marshall_islands$2,
+	macedonia: macedonia$2,
+	mali: mali$2,
+	myanmar: myanmar$2,
+	mongolia: mongolia$2,
+	macau: macau$2,
+	northern_mariana_islands: northern_mariana_islands$2,
+	martinique: martinique$2,
+	mauritania: mauritania$2,
+	montserrat: montserrat$2,
+	malta: malta$2,
+	mauritius: mauritius$2,
+	maldives: maldives$2,
+	malawi: malawi$2,
+	mexico: mexico$2,
+	malaysia: malaysia$2,
+	mozambique: mozambique$2,
+	namibia: namibia$2,
+	new_caledonia: new_caledonia$2,
+	niger: niger$2,
+	norfolk_island: norfolk_island$2,
+	nigeria: nigeria$2,
+	nicaragua: nicaragua$2,
+	netherlands: netherlands$2,
+	norway: norway$2,
+	nepal: nepal$2,
+	nauru: nauru$2,
+	niue: niue$2,
+	new_zealand: new_zealand$2,
+	oman: oman$2,
+	panama: panama$2,
+	peru: peru$2,
+	french_polynesia: french_polynesia$2,
+	papua_new_guinea: papua_new_guinea$2,
+	philippines: philippines$2,
+	pakistan: pakistan$2,
+	poland: poland$2,
+	st_pierre_miquelon: st_pierre_miquelon$2,
+	pitcairn_islands: pitcairn_islands$2,
+	puerto_rico: puerto_rico$2,
+	palestinian_territories: palestinian_territories$2,
+	portugal: portugal$2,
+	palau: palau$2,
+	paraguay: paraguay$2,
+	qatar: qatar$2,
+	reunion: reunion$2,
+	romania: romania$2,
+	serbia: serbia$2,
+	ru: ru$2,
+	rwanda: rwanda$2,
+	saudi_arabia: saudi_arabia$2,
+	solomon_islands: solomon_islands$2,
+	seychelles: seychelles$2,
+	sudan: sudan$2,
+	sweden: sweden$2,
+	singapore: singapore$2,
+	st_helena: st_helena$2,
+	slovenia: slovenia$2,
 	svalbard_jan_mayen: svalbard_jan_mayen,
-	slovakia: slovakia$1,
-	sierra_leone: sierra_leone$1,
-	san_marino: san_marino$1,
-	senegal: senegal$1,
-	somalia: somalia$1,
-	suriname: suriname$1,
-	south_sudan: south_sudan$1,
-	sao_tome_principe: sao_tome_principe$1,
-	el_salvador: el_salvador$1,
-	sint_maarten: sint_maarten$1,
-	syria: syria$1,
-	swaziland: swaziland$1,
+	slovakia: slovakia$2,
+	sierra_leone: sierra_leone$2,
+	san_marino: san_marino$2,
+	senegal: senegal$2,
+	somalia: somalia$2,
+	suriname: suriname$2,
+	south_sudan: south_sudan$2,
+	sao_tome_principe: sao_tome_principe$2,
+	el_salvador: el_salvador$2,
+	sint_maarten: sint_maarten$2,
+	syria: syria$2,
+	swaziland: swaziland$2,
 	tristan_da_cunha: tristan_da_cunha,
-	turks_caicos_islands: turks_caicos_islands$1,
-	chad: chad$1,
-	french_southern_territories: french_southern_territories$1,
-	togo: togo$1,
-	thailand: thailand$1,
-	tajikistan: tajikistan$1,
-	tokelau: tokelau$1,
-	timor_leste: timor_leste$1,
-	turkmenistan: turkmenistan$1,
-	tunisia: tunisia$1,
-	tonga: tonga$1,
-	tr: tr$1,
-	trinidad_tobago: trinidad_tobago$1,
-	tuvalu: tuvalu$1,
-	taiwan: taiwan$1,
-	tanzania: tanzania$1,
-	ukraine: ukraine$1,
-	uganda: uganda$1,
+	turks_caicos_islands: turks_caicos_islands$2,
+	chad: chad$2,
+	french_southern_territories: french_southern_territories$2,
+	togo: togo$2,
+	thailand: thailand$2,
+	tajikistan: tajikistan$2,
+	tokelau: tokelau$2,
+	timor_leste: timor_leste$2,
+	turkmenistan: turkmenistan$2,
+	tunisia: tunisia$2,
+	tonga: tonga$2,
+	tr: tr$2,
+	trinidad_tobago: trinidad_tobago$2,
+	tuvalu: tuvalu$2,
+	taiwan: taiwan$2,
+	tanzania: tanzania$2,
+	ukraine: ukraine$2,
+	uganda: uganda$2,
 	us_outlying_islands: us_outlying_islands,
-	united_nations: united_nations$1,
-	us: us$1,
-	uruguay: uruguay$1,
-	uzbekistan: uzbekistan$1,
-	vatican_city: vatican_city$1,
-	st_vincent_grenadines: st_vincent_grenadines$1,
-	venezuela: venezuela$1,
-	british_virgin_islands: british_virgin_islands$1,
-	us_virgin_islands: us_virgin_islands$1,
-	vietnam: vietnam$1,
-	vanuatu: vanuatu$1,
-	wallis_futuna: wallis_futuna$1,
-	samoa: samoa$1,
-	kosovo: kosovo$1,
-	yemen: yemen$1,
-	mayotte: mayotte$1,
-	south_africa: south_africa$1,
-	zambia: zambia$1,
-	zimbabwe: zimbabwe$1,
-	england: england$1,
-	scotland: scotland$1,
-	wales: wales$1
+	united_nations: united_nations$2,
+	us: us$2,
+	uruguay: uruguay$2,
+	uzbekistan: uzbekistan$2,
+	vatican_city: vatican_city$2,
+	st_vincent_grenadines: st_vincent_grenadines$2,
+	venezuela: venezuela$2,
+	british_virgin_islands: british_virgin_islands$2,
+	us_virgin_islands: us_virgin_islands$2,
+	vietnam: vietnam$2,
+	vanuatu: vanuatu$2,
+	wallis_futuna: wallis_futuna$2,
+	samoa: samoa$2,
+	kosovo: kosovo$2,
+	yemen: yemen$2,
+	mayotte: mayotte$2,
+	south_africa: south_africa$2,
+	zambia: zambia$2,
+	zimbabwe: zimbabwe$2,
+	england: england$2,
+	scotland: scotland$2,
+	wales: wales$2
 };var shortcuts$1 = {
   angry:            [ '>:(', '>:-(' ],
   blush:            [ ':")', ':-")' ],
@@ -58573,7 +58573,18997 @@ var markdownItEmoji = function emoji_plugin(md, options) {
   bare_emoji_plugin(md, opts);
 };
 
-const emoji_plugin = /*@__PURE__*/getDefaultExportFromCjs(markdownItEmoji);var lib$2 = {exports: {}};var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+const emoji_plugin = /*@__PURE__*/getDefaultExportFromCjs(markdownItEmoji);var grinning$1 = {
+	keywords: [
+		"face",
+		"smile",
+		"happy",
+		"joy",
+		":D",
+		"grin"
+	],
+	char: "😀",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var grimacing$1 = {
+	keywords: [
+		"face",
+		"grimace",
+		"teeth"
+	],
+	char: "😬",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var grin$1 = {
+	keywords: [
+		"face",
+		"happy",
+		"smile",
+		"joy",
+		"kawaii"
+	],
+	char: "😁",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var joy$1 = {
+	keywords: [
+		"face",
+		"cry",
+		"tears",
+		"weep",
+		"happy",
+		"happytears",
+		"haha"
+	],
+	char: "😂",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var rofl$1 = {
+	keywords: [
+		"face",
+		"rolling",
+		"floor",
+		"laughing",
+		"lol",
+		"haha"
+	],
+	char: "🤣",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var partying$1 = {
+	keywords: [
+		"face",
+		"celebration",
+		"woohoo"
+	],
+	char: "🥳",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var smiley$1 = {
+	keywords: [
+		"face",
+		"happy",
+		"joy",
+		"haha",
+		":D",
+		":)",
+		"smile",
+		"funny"
+	],
+	char: "😃",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var smile$1 = {
+	keywords: [
+		"face",
+		"happy",
+		"joy",
+		"funny",
+		"haha",
+		"laugh",
+		"like",
+		":D",
+		":)"
+	],
+	char: "😄",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var sweat_smile$1 = {
+	keywords: [
+		"face",
+		"hot",
+		"happy",
+		"laugh",
+		"sweat",
+		"smile",
+		"relief"
+	],
+	char: "😅",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var laughing$1 = {
+	keywords: [
+		"happy",
+		"joy",
+		"lol",
+		"satisfied",
+		"haha",
+		"face",
+		"glad",
+		"XD",
+		"laugh"
+	],
+	char: "😆",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var innocent$1 = {
+	keywords: [
+		"face",
+		"angel",
+		"heaven",
+		"halo"
+	],
+	char: "😇",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var wink$1 = {
+	keywords: [
+		"face",
+		"happy",
+		"mischievous",
+		"secret",
+		";)",
+		"smile",
+		"eye"
+	],
+	char: "😉",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var blush$1 = {
+	keywords: [
+		"face",
+		"smile",
+		"happy",
+		"flushed",
+		"crush",
+		"embarrassed",
+		"shy",
+		"joy"
+	],
+	char: "😊",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var slightly_smiling_face$1 = {
+	keywords: [
+		"face",
+		"smile"
+	],
+	char: "🙂",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var upside_down_face$1 = {
+	keywords: [
+		"face",
+		"flipped",
+		"silly",
+		"smile"
+	],
+	char: "🙃",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var relaxed$1 = {
+	keywords: [
+		"face",
+		"blush",
+		"massage",
+		"happiness"
+	],
+	char: "☺️",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var yum$1 = {
+	keywords: [
+		"happy",
+		"joy",
+		"tongue",
+		"smile",
+		"face",
+		"silly",
+		"yummy",
+		"nom",
+		"delicious",
+		"savouring"
+	],
+	char: "😋",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var relieved$1 = {
+	keywords: [
+		"face",
+		"relaxed",
+		"phew",
+		"massage",
+		"happiness"
+	],
+	char: "😌",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var heart_eyes$1 = {
+	keywords: [
+		"face",
+		"love",
+		"like",
+		"affection",
+		"valentines",
+		"infatuation",
+		"crush",
+		"heart"
+	],
+	char: "😍",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var smiling_face_with_three_hearts$1 = {
+	keywords: [
+		"face",
+		"love",
+		"like",
+		"affection",
+		"valentines",
+		"infatuation",
+		"crush",
+		"hearts",
+		"adore"
+	],
+	char: "🥰",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var kissing_heart$1 = {
+	keywords: [
+		"face",
+		"love",
+		"like",
+		"affection",
+		"valentines",
+		"infatuation",
+		"kiss"
+	],
+	char: "😘",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var kissing$1 = {
+	keywords: [
+		"love",
+		"like",
+		"face",
+		"3",
+		"valentines",
+		"infatuation",
+		"kiss"
+	],
+	char: "😗",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var kissing_smiling_eyes$1 = {
+	keywords: [
+		"face",
+		"affection",
+		"valentines",
+		"infatuation",
+		"kiss"
+	],
+	char: "😙",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var kissing_closed_eyes$1 = {
+	keywords: [
+		"face",
+		"love",
+		"like",
+		"affection",
+		"valentines",
+		"infatuation",
+		"kiss"
+	],
+	char: "😚",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var stuck_out_tongue_winking_eye$1 = {
+	keywords: [
+		"face",
+		"prank",
+		"childish",
+		"playful",
+		"mischievous",
+		"smile",
+		"wink",
+		"tongue"
+	],
+	char: "😜",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var zany$1 = {
+	keywords: [
+		"face",
+		"goofy",
+		"crazy"
+	],
+	char: "🤪",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var raised_eyebrow$1 = {
+	keywords: [
+		"face",
+		"distrust",
+		"scepticism",
+		"disapproval",
+		"disbelief",
+		"surprise"
+	],
+	char: "🤨",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var monocle$1 = {
+	keywords: [
+		"face",
+		"stuffy",
+		"wealthy"
+	],
+	char: "🧐",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var stuck_out_tongue_closed_eyes$1 = {
+	keywords: [
+		"face",
+		"prank",
+		"playful",
+		"mischievous",
+		"smile",
+		"tongue"
+	],
+	char: "😝",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var stuck_out_tongue$1 = {
+	keywords: [
+		"face",
+		"prank",
+		"childish",
+		"playful",
+		"mischievous",
+		"smile",
+		"tongue"
+	],
+	char: "😛",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var money_mouth_face$1 = {
+	keywords: [
+		"face",
+		"rich",
+		"dollar",
+		"money"
+	],
+	char: "🤑",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var nerd_face$1 = {
+	keywords: [
+		"face",
+		"nerdy",
+		"geek",
+		"dork"
+	],
+	char: "🤓",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var sunglasses$1 = {
+	keywords: [
+		"face",
+		"cool",
+		"smile",
+		"summer",
+		"beach",
+		"sunglass"
+	],
+	char: "😎",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var star_struck$1 = {
+	keywords: [
+		"face",
+		"smile",
+		"starry",
+		"eyes",
+		"grinning"
+	],
+	char: "🤩",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var clown_face$1 = {
+	keywords: [
+		"face"
+	],
+	char: "🤡",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var cowboy_hat_face$1 = {
+	keywords: [
+		"face",
+		"cowgirl",
+		"hat"
+	],
+	char: "🤠",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var hugs$1 = {
+	keywords: [
+		"face",
+		"smile",
+		"hug"
+	],
+	char: "🤗",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var smirk$1 = {
+	keywords: [
+		"face",
+		"smile",
+		"mean",
+		"prank",
+		"smug",
+		"sarcasm"
+	],
+	char: "😏",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var no_mouth$1 = {
+	keywords: [
+		"face",
+		"hellokitty"
+	],
+	char: "😶",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var neutral_face$1 = {
+	keywords: [
+		"indifference",
+		"meh",
+		":|",
+		"neutral"
+	],
+	char: "😐",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var expressionless$1 = {
+	keywords: [
+		"face",
+		"indifferent",
+		"-_-",
+		"meh",
+		"deadpan"
+	],
+	char: "😑",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var unamused$1 = {
+	keywords: [
+		"indifference",
+		"bored",
+		"straight face",
+		"serious",
+		"sarcasm",
+		"unimpressed",
+		"skeptical",
+		"dubious",
+		"side_eye"
+	],
+	char: "😒",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var roll_eyes$1 = {
+	keywords: [
+		"face",
+		"eyeroll",
+		"frustrated"
+	],
+	char: "🙄",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var thinking$1 = {
+	keywords: [
+		"face",
+		"hmmm",
+		"think",
+		"consider"
+	],
+	char: "🤔",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var lying_face$1 = {
+	keywords: [
+		"face",
+		"lie",
+		"pinocchio"
+	],
+	char: "🤥",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var hand_over_mouth$1 = {
+	keywords: [
+		"face",
+		"whoops",
+		"shock",
+		"surprise"
+	],
+	char: "🤭",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var shushing$1 = {
+	keywords: [
+		"face",
+		"quiet",
+		"shhh"
+	],
+	char: "🤫",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var symbols_over_mouth$1 = {
+	keywords: [
+		"face",
+		"swearing",
+		"cursing",
+		"cussing",
+		"profanity",
+		"expletive"
+	],
+	char: "🤬",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var exploding_head$1 = {
+	keywords: [
+		"face",
+		"shocked",
+		"mind",
+		"blown"
+	],
+	char: "🤯",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var flushed$1 = {
+	keywords: [
+		"face",
+		"blush",
+		"shy",
+		"flattered"
+	],
+	char: "😳",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var disappointed$1 = {
+	keywords: [
+		"face",
+		"sad",
+		"upset",
+		"depressed",
+		":("
+	],
+	char: "😞",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var worried$1 = {
+	keywords: [
+		"face",
+		"concern",
+		"nervous",
+		":("
+	],
+	char: "😟",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var angry$1 = {
+	keywords: [
+		"mad",
+		"face",
+		"annoyed",
+		"frustrated"
+	],
+	char: "😠",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var rage$1 = {
+	keywords: [
+		"angry",
+		"mad",
+		"hate",
+		"despise"
+	],
+	char: "😡",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var pensive$1 = {
+	keywords: [
+		"face",
+		"sad",
+		"depressed",
+		"upset"
+	],
+	char: "😔",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var confused$1 = {
+	keywords: [
+		"face",
+		"indifference",
+		"huh",
+		"weird",
+		"hmmm",
+		":/"
+	],
+	char: "😕",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var slightly_frowning_face$1 = {
+	keywords: [
+		"face",
+		"frowning",
+		"disappointed",
+		"sad",
+		"upset"
+	],
+	char: "🙁",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var frowning_face$1 = {
+	keywords: [
+		"face",
+		"sad",
+		"upset",
+		"frown"
+	],
+	char: "☹",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var persevere$1 = {
+	keywords: [
+		"face",
+		"sick",
+		"no",
+		"upset",
+		"oops"
+	],
+	char: "😣",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var confounded$1 = {
+	keywords: [
+		"face",
+		"confused",
+		"sick",
+		"unwell",
+		"oops",
+		":S"
+	],
+	char: "😖",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var tired_face$1 = {
+	keywords: [
+		"sick",
+		"whine",
+		"upset",
+		"frustrated"
+	],
+	char: "😫",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var weary$1 = {
+	keywords: [
+		"face",
+		"tired",
+		"sleepy",
+		"sad",
+		"frustrated",
+		"upset"
+	],
+	char: "😩",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var pleading$1 = {
+	keywords: [
+		"face",
+		"begging",
+		"mercy"
+	],
+	char: "🥺",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var triumph$1 = {
+	keywords: [
+		"face",
+		"gas",
+		"phew",
+		"proud",
+		"pride"
+	],
+	char: "😤",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var open_mouth$1 = {
+	keywords: [
+		"face",
+		"surprise",
+		"impressed",
+		"wow",
+		"whoa",
+		":O"
+	],
+	char: "😮",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var scream$1 = {
+	keywords: [
+		"face",
+		"munch",
+		"scared",
+		"omg"
+	],
+	char: "😱",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var fearful$1 = {
+	keywords: [
+		"face",
+		"scared",
+		"terrified",
+		"nervous",
+		"oops",
+		"huh"
+	],
+	char: "😨",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var cold_sweat$1 = {
+	keywords: [
+		"face",
+		"nervous",
+		"sweat"
+	],
+	char: "😰",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var hushed$1 = {
+	keywords: [
+		"face",
+		"woo",
+		"shh"
+	],
+	char: "😯",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var frowning$1 = {
+	keywords: [
+		"face",
+		"aw",
+		"what"
+	],
+	char: "😦",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var anguished$1 = {
+	keywords: [
+		"face",
+		"stunned",
+		"nervous"
+	],
+	char: "😧",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var cry$1 = {
+	keywords: [
+		"face",
+		"tears",
+		"sad",
+		"depressed",
+		"upset",
+		":'("
+	],
+	char: "😢",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var disappointed_relieved$1 = {
+	keywords: [
+		"face",
+		"phew",
+		"sweat",
+		"nervous"
+	],
+	char: "😥",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var drooling_face$1 = {
+	keywords: [
+		"face"
+	],
+	char: "🤤",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var sleepy$1 = {
+	keywords: [
+		"face",
+		"tired",
+		"rest",
+		"nap"
+	],
+	char: "😪",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var sweat$1 = {
+	keywords: [
+		"face",
+		"hot",
+		"sad",
+		"tired",
+		"exercise"
+	],
+	char: "😓",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var hot$1 = {
+	keywords: [
+		"face",
+		"feverish",
+		"heat",
+		"red",
+		"sweating"
+	],
+	char: "🥵",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var cold$1 = {
+	keywords: [
+		"face",
+		"blue",
+		"freezing",
+		"frozen",
+		"frostbite",
+		"icicles"
+	],
+	char: "🥶",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var sob$1 = {
+	keywords: [
+		"face",
+		"cry",
+		"tears",
+		"sad",
+		"upset",
+		"depressed"
+	],
+	char: "😭",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var dizzy_face$1 = {
+	keywords: [
+		"spent",
+		"unconscious",
+		"xox",
+		"dizzy"
+	],
+	char: "😵",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var astonished$1 = {
+	keywords: [
+		"face",
+		"xox",
+		"surprised",
+		"poisoned"
+	],
+	char: "😲",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var zipper_mouth_face$1 = {
+	keywords: [
+		"face",
+		"sealed",
+		"zipper",
+		"secret"
+	],
+	char: "🤐",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var nauseated_face$1 = {
+	keywords: [
+		"face",
+		"vomit",
+		"gross",
+		"green",
+		"sick",
+		"throw up",
+		"ill"
+	],
+	char: "🤢",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var sneezing_face$1 = {
+	keywords: [
+		"face",
+		"gesundheit",
+		"sneeze",
+		"sick",
+		"allergy"
+	],
+	char: "🤧",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var vomiting$1 = {
+	keywords: [
+		"face",
+		"sick"
+	],
+	char: "🤮",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var mask$1 = {
+	keywords: [
+		"face",
+		"sick",
+		"ill",
+		"disease"
+	],
+	char: "😷",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var face_with_thermometer$1 = {
+	keywords: [
+		"sick",
+		"temperature",
+		"thermometer",
+		"cold",
+		"fever"
+	],
+	char: "🤒",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var face_with_head_bandage$1 = {
+	keywords: [
+		"injured",
+		"clumsy",
+		"bandage",
+		"hurt"
+	],
+	char: "🤕",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var woozy$1 = {
+	keywords: [
+		"face",
+		"dizzy",
+		"intoxicated",
+		"tipsy",
+		"wavy"
+	],
+	char: "🥴",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var sleeping$1 = {
+	keywords: [
+		"face",
+		"tired",
+		"sleepy",
+		"night",
+		"zzz"
+	],
+	char: "😴",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var zzz$1 = {
+	keywords: [
+		"sleepy",
+		"tired",
+		"dream"
+	],
+	char: "💤",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var poop$1 = {
+	keywords: [
+		"hankey",
+		"shitface",
+		"fail",
+		"turd",
+		"shit"
+	],
+	char: "💩",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var smiling_imp$1 = {
+	keywords: [
+		"devil",
+		"horns"
+	],
+	char: "😈",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var imp$1 = {
+	keywords: [
+		"devil",
+		"angry",
+		"horns"
+	],
+	char: "👿",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var japanese_ogre$1 = {
+	keywords: [
+		"monster",
+		"red",
+		"mask",
+		"halloween",
+		"scary",
+		"creepy",
+		"devil",
+		"demon",
+		"japanese",
+		"ogre"
+	],
+	char: "👹",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var japanese_goblin$1 = {
+	keywords: [
+		"red",
+		"evil",
+		"mask",
+		"monster",
+		"scary",
+		"creepy",
+		"japanese",
+		"goblin"
+	],
+	char: "👺",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var skull$1 = {
+	keywords: [
+		"dead",
+		"skeleton",
+		"creepy",
+		"death"
+	],
+	char: "💀",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var ghost$1 = {
+	keywords: [
+		"halloween",
+		"spooky",
+		"scary"
+	],
+	char: "👻",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var alien$1 = {
+	keywords: [
+		"UFO",
+		"paul",
+		"weird",
+		"outer_space"
+	],
+	char: "👽",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var robot$1 = {
+	keywords: [
+		"computer",
+		"machine",
+		"bot"
+	],
+	char: "🤖",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var smiley_cat$1 = {
+	keywords: [
+		"animal",
+		"cats",
+		"happy",
+		"smile"
+	],
+	char: "😺",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var smile_cat$1 = {
+	keywords: [
+		"animal",
+		"cats",
+		"smile"
+	],
+	char: "😸",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var joy_cat$1 = {
+	keywords: [
+		"animal",
+		"cats",
+		"haha",
+		"happy",
+		"tears"
+	],
+	char: "😹",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var heart_eyes_cat$1 = {
+	keywords: [
+		"animal",
+		"love",
+		"like",
+		"affection",
+		"cats",
+		"valentines",
+		"heart"
+	],
+	char: "😻",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var smirk_cat$1 = {
+	keywords: [
+		"animal",
+		"cats",
+		"smirk"
+	],
+	char: "😼",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var kissing_cat$1 = {
+	keywords: [
+		"animal",
+		"cats",
+		"kiss"
+	],
+	char: "😽",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var scream_cat$1 = {
+	keywords: [
+		"animal",
+		"cats",
+		"munch",
+		"scared",
+		"scream"
+	],
+	char: "🙀",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var crying_cat_face$1 = {
+	keywords: [
+		"animal",
+		"tears",
+		"weep",
+		"sad",
+		"cats",
+		"upset",
+		"cry"
+	],
+	char: "😿",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var pouting_cat$1 = {
+	keywords: [
+		"animal",
+		"cats"
+	],
+	char: "😾",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var palms_up$1 = {
+	keywords: [
+		"hands",
+		"gesture",
+		"cupped",
+		"prayer"
+	],
+	char: "🤲",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var raised_hands$1 = {
+	keywords: [
+		"gesture",
+		"hooray",
+		"yea",
+		"celebration",
+		"hands"
+	],
+	char: "🙌",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var clap$1 = {
+	keywords: [
+		"hands",
+		"praise",
+		"applause",
+		"congrats",
+		"yay"
+	],
+	char: "👏",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var wave$1 = {
+	keywords: [
+		"hands",
+		"gesture",
+		"goodbye",
+		"solong",
+		"farewell",
+		"hello",
+		"hi",
+		"palm"
+	],
+	char: "👋",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var call_me_hand$1 = {
+	keywords: [
+		"hands",
+		"gesture"
+	],
+	char: "🤙",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var facepunch$1 = {
+	keywords: [
+		"angry",
+		"violence",
+		"fist",
+		"hit",
+		"attack",
+		"hand"
+	],
+	char: "👊",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var fist$1 = {
+	keywords: [
+		"fingers",
+		"hand",
+		"grasp"
+	],
+	char: "✊",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var fist_left$1 = {
+	keywords: [
+		"hand",
+		"fistbump"
+	],
+	char: "🤛",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var fist_right$1 = {
+	keywords: [
+		"hand",
+		"fistbump"
+	],
+	char: "🤜",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var v$1 = {
+	keywords: [
+		"fingers",
+		"ohyeah",
+		"hand",
+		"peace",
+		"victory",
+		"two"
+	],
+	char: "✌",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var ok_hand$1 = {
+	keywords: [
+		"fingers",
+		"limbs",
+		"perfect",
+		"ok",
+		"okay"
+	],
+	char: "👌",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var raised_hand$1 = {
+	keywords: [
+		"fingers",
+		"stop",
+		"highfive",
+		"palm",
+		"ban"
+	],
+	char: "✋",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var raised_back_of_hand$1 = {
+	keywords: [
+		"fingers",
+		"raised",
+		"backhand"
+	],
+	char: "🤚",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var open_hands$1 = {
+	keywords: [
+		"fingers",
+		"butterfly",
+		"hands",
+		"open"
+	],
+	char: "👐",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var muscle$1 = {
+	keywords: [
+		"arm",
+		"flex",
+		"hand",
+		"summer",
+		"strong",
+		"biceps"
+	],
+	char: "💪",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var pray$1 = {
+	keywords: [
+		"please",
+		"hope",
+		"wish",
+		"namaste",
+		"highfive"
+	],
+	char: "🙏",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var foot$1 = {
+	keywords: [
+		"kick",
+		"stomp"
+	],
+	char: "🦶",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var leg$1 = {
+	keywords: [
+		"kick",
+		"limb"
+	],
+	char: "🦵",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var handshake$1 = {
+	keywords: [
+		"agreement",
+		"shake"
+	],
+	char: "🤝",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var point_up$1 = {
+	keywords: [
+		"hand",
+		"fingers",
+		"direction",
+		"up"
+	],
+	char: "☝",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var point_up_2$1 = {
+	keywords: [
+		"fingers",
+		"hand",
+		"direction",
+		"up"
+	],
+	char: "👆",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var point_down$1 = {
+	keywords: [
+		"fingers",
+		"hand",
+		"direction",
+		"down"
+	],
+	char: "👇",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var point_left$1 = {
+	keywords: [
+		"direction",
+		"fingers",
+		"hand",
+		"left"
+	],
+	char: "👈",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var point_right$1 = {
+	keywords: [
+		"fingers",
+		"hand",
+		"direction",
+		"right"
+	],
+	char: "👉",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var fu$1 = {
+	keywords: [
+		"hand",
+		"fingers",
+		"rude",
+		"middle",
+		"flipping"
+	],
+	char: "🖕",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var raised_hand_with_fingers_splayed$1 = {
+	keywords: [
+		"hand",
+		"fingers",
+		"palm"
+	],
+	char: "🖐",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var love_you$1 = {
+	keywords: [
+		"hand",
+		"fingers",
+		"gesture"
+	],
+	char: "🤟",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var metal$1 = {
+	keywords: [
+		"hand",
+		"fingers",
+		"evil_eye",
+		"sign_of_horns",
+		"rock_on"
+	],
+	char: "🤘",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var crossed_fingers$1 = {
+	keywords: [
+		"good",
+		"lucky"
+	],
+	char: "🤞",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var vulcan_salute$1 = {
+	keywords: [
+		"hand",
+		"fingers",
+		"spock",
+		"star trek"
+	],
+	char: "🖖",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var writing_hand$1 = {
+	keywords: [
+		"lower_left_ballpoint_pen",
+		"stationery",
+		"write",
+		"compose"
+	],
+	char: "✍",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var selfie$1 = {
+	keywords: [
+		"camera",
+		"phone"
+	],
+	char: "🤳",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var nail_care$1 = {
+	keywords: [
+		"beauty",
+		"manicure",
+		"finger",
+		"fashion",
+		"nail"
+	],
+	char: "💅",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var lips$1 = {
+	keywords: [
+		"mouth",
+		"kiss"
+	],
+	char: "👄",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var tooth$1 = {
+	keywords: [
+		"teeth",
+		"dentist"
+	],
+	char: "🦷",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var tongue$1 = {
+	keywords: [
+		"mouth",
+		"playful"
+	],
+	char: "👅",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var ear$1 = {
+	keywords: [
+		"face",
+		"hear",
+		"sound",
+		"listen"
+	],
+	char: "👂",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var nose$1 = {
+	keywords: [
+		"smell",
+		"sniff"
+	],
+	char: "👃",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var eye$1 = {
+	keywords: [
+		"face",
+		"look",
+		"see",
+		"watch",
+		"stare"
+	],
+	char: "👁",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var eyes$1 = {
+	keywords: [
+		"look",
+		"watch",
+		"stalk",
+		"peek",
+		"see"
+	],
+	char: "👀",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var brain$1 = {
+	keywords: [
+		"smart",
+		"intelligent"
+	],
+	char: "🧠",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var bust_in_silhouette$1 = {
+	keywords: [
+		"user",
+		"person",
+		"human"
+	],
+	char: "👤",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var busts_in_silhouette$1 = {
+	keywords: [
+		"user",
+		"person",
+		"human",
+		"group",
+		"team"
+	],
+	char: "👥",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var speaking_head$1 = {
+	keywords: [
+		"user",
+		"person",
+		"human",
+		"sing",
+		"say",
+		"talk"
+	],
+	char: "🗣",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var baby$1 = {
+	keywords: [
+		"child",
+		"boy",
+		"girl",
+		"toddler"
+	],
+	char: "👶",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var child$1 = {
+	keywords: [
+		"gender-neutral",
+		"young"
+	],
+	char: "🧒",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var boy$1 = {
+	keywords: [
+		"man",
+		"male",
+		"guy",
+		"teenager"
+	],
+	char: "👦",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var girl$1 = {
+	keywords: [
+		"female",
+		"woman",
+		"teenager"
+	],
+	char: "👧",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var adult$1 = {
+	keywords: [
+		"gender-neutral",
+		"person"
+	],
+	char: "🧑",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var man$1 = {
+	keywords: [
+		"mustache",
+		"father",
+		"dad",
+		"guy",
+		"classy",
+		"sir",
+		"moustache"
+	],
+	char: "👨",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var woman$1 = {
+	keywords: [
+		"female",
+		"girls",
+		"lady"
+	],
+	char: "👩",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var blonde_woman$1 = {
+	keywords: [
+		"woman",
+		"female",
+		"girl",
+		"blonde",
+		"person"
+	],
+	char: "👱‍♀️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var blonde_man$1 = {
+	keywords: [
+		"man",
+		"male",
+		"boy",
+		"blonde",
+		"guy",
+		"person"
+	],
+	char: "👱",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var bearded_person$1 = {
+	keywords: [
+		"person",
+		"bewhiskered"
+	],
+	char: "🧔",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var older_adult$1 = {
+	keywords: [
+		"human",
+		"elder",
+		"senior",
+		"gender-neutral"
+	],
+	char: "🧓",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var older_man$1 = {
+	keywords: [
+		"human",
+		"male",
+		"men",
+		"old",
+		"elder",
+		"senior"
+	],
+	char: "👴",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var older_woman$1 = {
+	keywords: [
+		"human",
+		"female",
+		"women",
+		"lady",
+		"old",
+		"elder",
+		"senior"
+	],
+	char: "👵",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var man_with_gua_pi_mao$1 = {
+	keywords: [
+		"male",
+		"boy",
+		"chinese"
+	],
+	char: "👲",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var woman_with_headscarf$1 = {
+	keywords: [
+		"female",
+		"hijab",
+		"mantilla",
+		"tichel"
+	],
+	char: "🧕",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var woman_with_turban$1 = {
+	keywords: [
+		"female",
+		"indian",
+		"hinduism",
+		"arabs",
+		"woman"
+	],
+	char: "👳‍♀️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var man_with_turban$1 = {
+	keywords: [
+		"male",
+		"indian",
+		"hinduism",
+		"arabs"
+	],
+	char: "👳",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var policewoman$1 = {
+	keywords: [
+		"woman",
+		"police",
+		"law",
+		"legal",
+		"enforcement",
+		"arrest",
+		"911",
+		"female"
+	],
+	char: "👮‍♀️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var policeman$1 = {
+	keywords: [
+		"man",
+		"police",
+		"law",
+		"legal",
+		"enforcement",
+		"arrest",
+		"911"
+	],
+	char: "👮",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var construction_worker_woman$1 = {
+	keywords: [
+		"female",
+		"human",
+		"wip",
+		"build",
+		"construction",
+		"worker",
+		"labor",
+		"woman"
+	],
+	char: "👷‍♀️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var construction_worker_man$1 = {
+	keywords: [
+		"male",
+		"human",
+		"wip",
+		"guy",
+		"build",
+		"construction",
+		"worker",
+		"labor"
+	],
+	char: "👷",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var guardswoman$1 = {
+	keywords: [
+		"uk",
+		"gb",
+		"british",
+		"female",
+		"royal",
+		"woman"
+	],
+	char: "💂‍♀️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var guardsman$1 = {
+	keywords: [
+		"uk",
+		"gb",
+		"british",
+		"male",
+		"guy",
+		"royal"
+	],
+	char: "💂",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var female_detective$1 = {
+	keywords: [
+		"human",
+		"spy",
+		"detective",
+		"female",
+		"woman"
+	],
+	char: "🕵️‍♀️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var male_detective$1 = {
+	keywords: [
+		"human",
+		"spy",
+		"detective"
+	],
+	char: "🕵",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var woman_health_worker$1 = {
+	keywords: [
+		"doctor",
+		"nurse",
+		"therapist",
+		"healthcare",
+		"woman",
+		"human"
+	],
+	char: "👩‍⚕️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var man_health_worker$1 = {
+	keywords: [
+		"doctor",
+		"nurse",
+		"therapist",
+		"healthcare",
+		"man",
+		"human"
+	],
+	char: "👨‍⚕️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var woman_farmer$1 = {
+	keywords: [
+		"rancher",
+		"gardener",
+		"woman",
+		"human"
+	],
+	char: "👩‍🌾",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var man_farmer$1 = {
+	keywords: [
+		"rancher",
+		"gardener",
+		"man",
+		"human"
+	],
+	char: "👨‍🌾",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var woman_cook$1 = {
+	keywords: [
+		"chef",
+		"woman",
+		"human"
+	],
+	char: "👩‍🍳",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var man_cook$1 = {
+	keywords: [
+		"chef",
+		"man",
+		"human"
+	],
+	char: "👨‍🍳",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var woman_student$1 = {
+	keywords: [
+		"graduate",
+		"woman",
+		"human"
+	],
+	char: "👩‍🎓",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var man_student$1 = {
+	keywords: [
+		"graduate",
+		"man",
+		"human"
+	],
+	char: "👨‍🎓",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var woman_singer$1 = {
+	keywords: [
+		"rockstar",
+		"entertainer",
+		"woman",
+		"human"
+	],
+	char: "👩‍🎤",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var man_singer$1 = {
+	keywords: [
+		"rockstar",
+		"entertainer",
+		"man",
+		"human"
+	],
+	char: "👨‍🎤",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var woman_teacher$1 = {
+	keywords: [
+		"instructor",
+		"professor",
+		"woman",
+		"human"
+	],
+	char: "👩‍🏫",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var man_teacher$1 = {
+	keywords: [
+		"instructor",
+		"professor",
+		"man",
+		"human"
+	],
+	char: "👨‍🏫",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var woman_factory_worker$1 = {
+	keywords: [
+		"assembly",
+		"industrial",
+		"woman",
+		"human"
+	],
+	char: "👩‍🏭",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var man_factory_worker$1 = {
+	keywords: [
+		"assembly",
+		"industrial",
+		"man",
+		"human"
+	],
+	char: "👨‍🏭",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var woman_technologist$1 = {
+	keywords: [
+		"coder",
+		"developer",
+		"engineer",
+		"programmer",
+		"software",
+		"woman",
+		"human",
+		"laptop",
+		"computer"
+	],
+	char: "👩‍💻",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var man_technologist$1 = {
+	keywords: [
+		"coder",
+		"developer",
+		"engineer",
+		"programmer",
+		"software",
+		"man",
+		"human",
+		"laptop",
+		"computer"
+	],
+	char: "👨‍💻",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var woman_office_worker$1 = {
+	keywords: [
+		"business",
+		"manager",
+		"woman",
+		"human"
+	],
+	char: "👩‍💼",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var man_office_worker$1 = {
+	keywords: [
+		"business",
+		"manager",
+		"man",
+		"human"
+	],
+	char: "👨‍💼",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var woman_mechanic$1 = {
+	keywords: [
+		"plumber",
+		"woman",
+		"human",
+		"wrench"
+	],
+	char: "👩‍🔧",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var man_mechanic$1 = {
+	keywords: [
+		"plumber",
+		"man",
+		"human",
+		"wrench"
+	],
+	char: "👨‍🔧",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var woman_scientist$1 = {
+	keywords: [
+		"biologist",
+		"chemist",
+		"engineer",
+		"physicist",
+		"woman",
+		"human"
+	],
+	char: "👩‍🔬",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var man_scientist$1 = {
+	keywords: [
+		"biologist",
+		"chemist",
+		"engineer",
+		"physicist",
+		"man",
+		"human"
+	],
+	char: "👨‍🔬",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var woman_artist$1 = {
+	keywords: [
+		"painter",
+		"woman",
+		"human"
+	],
+	char: "👩‍🎨",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var man_artist$1 = {
+	keywords: [
+		"painter",
+		"man",
+		"human"
+	],
+	char: "👨‍🎨",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var woman_firefighter$1 = {
+	keywords: [
+		"fireman",
+		"woman",
+		"human"
+	],
+	char: "👩‍🚒",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var man_firefighter$1 = {
+	keywords: [
+		"fireman",
+		"man",
+		"human"
+	],
+	char: "👨‍🚒",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var woman_pilot$1 = {
+	keywords: [
+		"aviator",
+		"plane",
+		"woman",
+		"human"
+	],
+	char: "👩‍✈️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var man_pilot$1 = {
+	keywords: [
+		"aviator",
+		"plane",
+		"man",
+		"human"
+	],
+	char: "👨‍✈️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var woman_astronaut$1 = {
+	keywords: [
+		"space",
+		"rocket",
+		"woman",
+		"human"
+	],
+	char: "👩‍🚀",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var man_astronaut$1 = {
+	keywords: [
+		"space",
+		"rocket",
+		"man",
+		"human"
+	],
+	char: "👨‍🚀",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var woman_judge$1 = {
+	keywords: [
+		"justice",
+		"court",
+		"woman",
+		"human"
+	],
+	char: "👩‍⚖️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var man_judge$1 = {
+	keywords: [
+		"justice",
+		"court",
+		"man",
+		"human"
+	],
+	char: "👨‍⚖️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var woman_superhero$1 = {
+	keywords: [
+		"woman",
+		"female",
+		"good",
+		"heroine",
+		"superpowers"
+	],
+	char: "🦸‍♀️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var man_superhero$1 = {
+	keywords: [
+		"man",
+		"male",
+		"good",
+		"hero",
+		"superpowers"
+	],
+	char: "🦸‍♂️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var woman_supervillain$1 = {
+	keywords: [
+		"woman",
+		"female",
+		"evil",
+		"bad",
+		"criminal",
+		"heroine",
+		"superpowers"
+	],
+	char: "🦹‍♀️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var man_supervillain$1 = {
+	keywords: [
+		"man",
+		"male",
+		"evil",
+		"bad",
+		"criminal",
+		"hero",
+		"superpowers"
+	],
+	char: "🦹‍♂️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var mrs_claus$1 = {
+	keywords: [
+		"woman",
+		"female",
+		"xmas",
+		"mother christmas"
+	],
+	char: "🤶",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var santa$1 = {
+	keywords: [
+		"festival",
+		"man",
+		"male",
+		"xmas",
+		"father christmas"
+	],
+	char: "🎅",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var sorceress$1 = {
+	keywords: [
+		"woman",
+		"female",
+		"mage",
+		"witch"
+	],
+	char: "🧙‍♀️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var wizard$1 = {
+	keywords: [
+		"man",
+		"male",
+		"mage",
+		"sorcerer"
+	],
+	char: "🧙‍♂️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var woman_elf$1 = {
+	keywords: [
+		"woman",
+		"female"
+	],
+	char: "🧝‍♀️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var man_elf$1 = {
+	keywords: [
+		"man",
+		"male"
+	],
+	char: "🧝‍♂️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var woman_vampire$1 = {
+	keywords: [
+		"woman",
+		"female"
+	],
+	char: "🧛‍♀️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var man_vampire$1 = {
+	keywords: [
+		"man",
+		"male",
+		"dracula"
+	],
+	char: "🧛‍♂️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var woman_zombie$1 = {
+	keywords: [
+		"woman",
+		"female",
+		"undead",
+		"walking dead"
+	],
+	char: "🧟‍♀️",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var man_zombie$1 = {
+	keywords: [
+		"man",
+		"male",
+		"dracula",
+		"undead",
+		"walking dead"
+	],
+	char: "🧟‍♂️",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var woman_genie$1 = {
+	keywords: [
+		"woman",
+		"female"
+	],
+	char: "🧞‍♀️",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var man_genie$1 = {
+	keywords: [
+		"man",
+		"male"
+	],
+	char: "🧞‍♂️",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var mermaid$1 = {
+	keywords: [
+		"woman",
+		"female",
+		"merwoman",
+		"ariel"
+	],
+	char: "🧜‍♀️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var merman$1 = {
+	keywords: [
+		"man",
+		"male",
+		"triton"
+	],
+	char: "🧜‍♂️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var woman_fairy$1 = {
+	keywords: [
+		"woman",
+		"female"
+	],
+	char: "🧚‍♀️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var man_fairy$1 = {
+	keywords: [
+		"man",
+		"male"
+	],
+	char: "🧚‍♂️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var angel$1 = {
+	keywords: [
+		"heaven",
+		"wings",
+		"halo"
+	],
+	char: "👼",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var pregnant_woman$1 = {
+	keywords: [
+		"baby"
+	],
+	char: "🤰",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var breastfeeding$1 = {
+	keywords: [
+		"nursing",
+		"baby"
+	],
+	char: "🤱",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var princess$1 = {
+	keywords: [
+		"girl",
+		"woman",
+		"female",
+		"blond",
+		"crown",
+		"royal",
+		"queen"
+	],
+	char: "👸",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var prince$1 = {
+	keywords: [
+		"boy",
+		"man",
+		"male",
+		"crown",
+		"royal",
+		"king"
+	],
+	char: "🤴",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var bride_with_veil$1 = {
+	keywords: [
+		"couple",
+		"marriage",
+		"wedding",
+		"woman",
+		"bride"
+	],
+	char: "👰",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var man_in_tuxedo$1 = {
+	keywords: [
+		"couple",
+		"marriage",
+		"wedding",
+		"groom"
+	],
+	char: "🤵",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var running_woman$1 = {
+	keywords: [
+		"woman",
+		"walking",
+		"exercise",
+		"race",
+		"running",
+		"female"
+	],
+	char: "🏃‍♀️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var running_man$1 = {
+	keywords: [
+		"man",
+		"walking",
+		"exercise",
+		"race",
+		"running"
+	],
+	char: "🏃",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var walking_woman$1 = {
+	keywords: [
+		"human",
+		"feet",
+		"steps",
+		"woman",
+		"female"
+	],
+	char: "🚶‍♀️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var walking_man$1 = {
+	keywords: [
+		"human",
+		"feet",
+		"steps"
+	],
+	char: "🚶",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var dancer$1 = {
+	keywords: [
+		"female",
+		"girl",
+		"woman",
+		"fun"
+	],
+	char: "💃",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var man_dancing$1 = {
+	keywords: [
+		"male",
+		"boy",
+		"fun",
+		"dancer"
+	],
+	char: "🕺",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var dancing_women$1 = {
+	keywords: [
+		"female",
+		"bunny",
+		"women",
+		"girls"
+	],
+	char: "👯",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var dancing_men$1 = {
+	keywords: [
+		"male",
+		"bunny",
+		"men",
+		"boys"
+	],
+	char: "👯‍♂️",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var couple$1 = {
+	keywords: [
+		"pair",
+		"people",
+		"human",
+		"love",
+		"date",
+		"dating",
+		"like",
+		"affection",
+		"valentines",
+		"marriage"
+	],
+	char: "👫",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var two_men_holding_hands$1 = {
+	keywords: [
+		"pair",
+		"couple",
+		"love",
+		"like",
+		"bromance",
+		"friendship",
+		"people",
+		"human"
+	],
+	char: "👬",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var two_women_holding_hands$1 = {
+	keywords: [
+		"pair",
+		"friendship",
+		"couple",
+		"love",
+		"like",
+		"female",
+		"people",
+		"human"
+	],
+	char: "👭",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var bowing_woman$1 = {
+	keywords: [
+		"woman",
+		"female",
+		"girl"
+	],
+	char: "🙇‍♀️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var bowing_man$1 = {
+	keywords: [
+		"man",
+		"male",
+		"boy"
+	],
+	char: "🙇",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var man_facepalming$1 = {
+	keywords: [
+		"man",
+		"male",
+		"boy",
+		"disbelief"
+	],
+	char: "🤦‍♂️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var woman_facepalming$1 = {
+	keywords: [
+		"woman",
+		"female",
+		"girl",
+		"disbelief"
+	],
+	char: "🤦‍♀️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var woman_shrugging$1 = {
+	keywords: [
+		"woman",
+		"female",
+		"girl",
+		"confused",
+		"indifferent",
+		"doubt"
+	],
+	char: "🤷",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var man_shrugging$1 = {
+	keywords: [
+		"man",
+		"male",
+		"boy",
+		"confused",
+		"indifferent",
+		"doubt"
+	],
+	char: "🤷‍♂️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var tipping_hand_woman$1 = {
+	keywords: [
+		"female",
+		"girl",
+		"woman",
+		"human",
+		"information"
+	],
+	char: "💁",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var tipping_hand_man$1 = {
+	keywords: [
+		"male",
+		"boy",
+		"man",
+		"human",
+		"information"
+	],
+	char: "💁‍♂️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var no_good_woman$1 = {
+	keywords: [
+		"female",
+		"girl",
+		"woman",
+		"nope"
+	],
+	char: "🙅",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var no_good_man$1 = {
+	keywords: [
+		"male",
+		"boy",
+		"man",
+		"nope"
+	],
+	char: "🙅‍♂️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var ok_woman$1 = {
+	keywords: [
+		"women",
+		"girl",
+		"female",
+		"pink",
+		"human",
+		"woman"
+	],
+	char: "🙆",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var ok_man$1 = {
+	keywords: [
+		"men",
+		"boy",
+		"male",
+		"blue",
+		"human",
+		"man"
+	],
+	char: "🙆‍♂️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var raising_hand_woman$1 = {
+	keywords: [
+		"female",
+		"girl",
+		"woman"
+	],
+	char: "🙋",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var raising_hand_man$1 = {
+	keywords: [
+		"male",
+		"boy",
+		"man"
+	],
+	char: "🙋‍♂️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var pouting_woman$1 = {
+	keywords: [
+		"female",
+		"girl",
+		"woman"
+	],
+	char: "🙎",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var pouting_man$1 = {
+	keywords: [
+		"male",
+		"boy",
+		"man"
+	],
+	char: "🙎‍♂️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var frowning_woman$1 = {
+	keywords: [
+		"female",
+		"girl",
+		"woman",
+		"sad",
+		"depressed",
+		"discouraged",
+		"unhappy"
+	],
+	char: "🙍",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var frowning_man$1 = {
+	keywords: [
+		"male",
+		"boy",
+		"man",
+		"sad",
+		"depressed",
+		"discouraged",
+		"unhappy"
+	],
+	char: "🙍‍♂️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var haircut_woman$1 = {
+	keywords: [
+		"female",
+		"girl",
+		"woman"
+	],
+	char: "💇",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var haircut_man$1 = {
+	keywords: [
+		"male",
+		"boy",
+		"man"
+	],
+	char: "💇‍♂️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var massage_woman$1 = {
+	keywords: [
+		"female",
+		"girl",
+		"woman",
+		"head"
+	],
+	char: "💆",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var massage_man$1 = {
+	keywords: [
+		"male",
+		"boy",
+		"man",
+		"head"
+	],
+	char: "💆‍♂️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var woman_in_steamy_room$1 = {
+	keywords: [
+		"female",
+		"woman",
+		"spa",
+		"steamroom",
+		"sauna"
+	],
+	char: "🧖‍♀️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var man_in_steamy_room$1 = {
+	keywords: [
+		"male",
+		"man",
+		"spa",
+		"steamroom",
+		"sauna"
+	],
+	char: "🧖‍♂️",
+	fitzpatrick_scale: true,
+	category: "people"
+};
+var couple_with_heart_woman_man$1 = {
+	keywords: [
+		"pair",
+		"love",
+		"like",
+		"affection",
+		"human",
+		"dating",
+		"valentines",
+		"marriage"
+	],
+	char: "💑",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var couple_with_heart_woman_woman$1 = {
+	keywords: [
+		"pair",
+		"love",
+		"like",
+		"affection",
+		"human",
+		"dating",
+		"valentines",
+		"marriage"
+	],
+	char: "👩‍❤️‍👩",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var couple_with_heart_man_man$1 = {
+	keywords: [
+		"pair",
+		"love",
+		"like",
+		"affection",
+		"human",
+		"dating",
+		"valentines",
+		"marriage"
+	],
+	char: "👨‍❤️‍👨",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var couplekiss_man_woman$1 = {
+	keywords: [
+		"pair",
+		"valentines",
+		"love",
+		"like",
+		"dating",
+		"marriage"
+	],
+	char: "💏",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var couplekiss_woman_woman$1 = {
+	keywords: [
+		"pair",
+		"valentines",
+		"love",
+		"like",
+		"dating",
+		"marriage"
+	],
+	char: "👩‍❤️‍💋‍👩",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var couplekiss_man_man$1 = {
+	keywords: [
+		"pair",
+		"valentines",
+		"love",
+		"like",
+		"dating",
+		"marriage"
+	],
+	char: "👨‍❤️‍💋‍👨",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var family_man_woman_boy$1 = {
+	keywords: [
+		"home",
+		"parents",
+		"child",
+		"mom",
+		"dad",
+		"father",
+		"mother",
+		"people",
+		"human"
+	],
+	char: "👪",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var family_man_woman_girl$1 = {
+	keywords: [
+		"home",
+		"parents",
+		"people",
+		"human",
+		"child"
+	],
+	char: "👨‍👩‍👧",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var family_man_woman_girl_boy$1 = {
+	keywords: [
+		"home",
+		"parents",
+		"people",
+		"human",
+		"children"
+	],
+	char: "👨‍👩‍👧‍👦",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var family_man_woman_boy_boy$1 = {
+	keywords: [
+		"home",
+		"parents",
+		"people",
+		"human",
+		"children"
+	],
+	char: "👨‍👩‍👦‍👦",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var family_man_woman_girl_girl$1 = {
+	keywords: [
+		"home",
+		"parents",
+		"people",
+		"human",
+		"children"
+	],
+	char: "👨‍👩‍👧‍👧",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var family_woman_woman_boy$1 = {
+	keywords: [
+		"home",
+		"parents",
+		"people",
+		"human",
+		"children"
+	],
+	char: "👩‍👩‍👦",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var family_woman_woman_girl$1 = {
+	keywords: [
+		"home",
+		"parents",
+		"people",
+		"human",
+		"children"
+	],
+	char: "👩‍👩‍👧",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var family_woman_woman_girl_boy$1 = {
+	keywords: [
+		"home",
+		"parents",
+		"people",
+		"human",
+		"children"
+	],
+	char: "👩‍👩‍👧‍👦",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var family_woman_woman_boy_boy$1 = {
+	keywords: [
+		"home",
+		"parents",
+		"people",
+		"human",
+		"children"
+	],
+	char: "👩‍👩‍👦‍👦",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var family_woman_woman_girl_girl$1 = {
+	keywords: [
+		"home",
+		"parents",
+		"people",
+		"human",
+		"children"
+	],
+	char: "👩‍👩‍👧‍👧",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var family_man_man_boy$1 = {
+	keywords: [
+		"home",
+		"parents",
+		"people",
+		"human",
+		"children"
+	],
+	char: "👨‍👨‍👦",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var family_man_man_girl$1 = {
+	keywords: [
+		"home",
+		"parents",
+		"people",
+		"human",
+		"children"
+	],
+	char: "👨‍👨‍👧",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var family_man_man_girl_boy$1 = {
+	keywords: [
+		"home",
+		"parents",
+		"people",
+		"human",
+		"children"
+	],
+	char: "👨‍👨‍👧‍👦",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var family_man_man_boy_boy$1 = {
+	keywords: [
+		"home",
+		"parents",
+		"people",
+		"human",
+		"children"
+	],
+	char: "👨‍👨‍👦‍👦",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var family_man_man_girl_girl$1 = {
+	keywords: [
+		"home",
+		"parents",
+		"people",
+		"human",
+		"children"
+	],
+	char: "👨‍👨‍👧‍👧",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var family_woman_boy$1 = {
+	keywords: [
+		"home",
+		"parent",
+		"people",
+		"human",
+		"child"
+	],
+	char: "👩‍👦",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var family_woman_girl$1 = {
+	keywords: [
+		"home",
+		"parent",
+		"people",
+		"human",
+		"child"
+	],
+	char: "👩‍👧",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var family_woman_girl_boy$1 = {
+	keywords: [
+		"home",
+		"parent",
+		"people",
+		"human",
+		"children"
+	],
+	char: "👩‍👧‍👦",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var family_woman_boy_boy$1 = {
+	keywords: [
+		"home",
+		"parent",
+		"people",
+		"human",
+		"children"
+	],
+	char: "👩‍👦‍👦",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var family_woman_girl_girl$1 = {
+	keywords: [
+		"home",
+		"parent",
+		"people",
+		"human",
+		"children"
+	],
+	char: "👩‍👧‍👧",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var family_man_boy$1 = {
+	keywords: [
+		"home",
+		"parent",
+		"people",
+		"human",
+		"child"
+	],
+	char: "👨‍👦",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var family_man_girl$1 = {
+	keywords: [
+		"home",
+		"parent",
+		"people",
+		"human",
+		"child"
+	],
+	char: "👨‍👧",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var family_man_girl_boy$1 = {
+	keywords: [
+		"home",
+		"parent",
+		"people",
+		"human",
+		"children"
+	],
+	char: "👨‍👧‍👦",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var family_man_boy_boy$1 = {
+	keywords: [
+		"home",
+		"parent",
+		"people",
+		"human",
+		"children"
+	],
+	char: "👨‍👦‍👦",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var family_man_girl_girl$1 = {
+	keywords: [
+		"home",
+		"parent",
+		"people",
+		"human",
+		"children"
+	],
+	char: "👨‍👧‍👧",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var yarn$1 = {
+	keywords: [
+		"ball",
+		"crochet",
+		"knit"
+	],
+	char: "🧶",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var thread$1 = {
+	keywords: [
+		"needle",
+		"sewing",
+		"spool",
+		"string"
+	],
+	char: "🧵",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var coat$1 = {
+	keywords: [
+		"jacket"
+	],
+	char: "🧥",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var labcoat$1 = {
+	keywords: [
+		"doctor",
+		"experiment",
+		"scientist",
+		"chemist"
+	],
+	char: "🥼",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var womans_clothes$1 = {
+	keywords: [
+		"fashion",
+		"shopping_bags",
+		"female"
+	],
+	char: "👚",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var tshirt$1 = {
+	keywords: [
+		"fashion",
+		"cloth",
+		"casual",
+		"shirt",
+		"tee"
+	],
+	char: "👕",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var jeans$1 = {
+	keywords: [
+		"fashion",
+		"shopping"
+	],
+	char: "👖",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var necktie$1 = {
+	keywords: [
+		"shirt",
+		"suitup",
+		"formal",
+		"fashion",
+		"cloth",
+		"business"
+	],
+	char: "👔",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var dress$1 = {
+	keywords: [
+		"clothes",
+		"fashion",
+		"shopping"
+	],
+	char: "👗",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var bikini$1 = {
+	keywords: [
+		"swimming",
+		"female",
+		"woman",
+		"girl",
+		"fashion",
+		"beach",
+		"summer"
+	],
+	char: "👙",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var kimono$1 = {
+	keywords: [
+		"dress",
+		"fashion",
+		"women",
+		"female",
+		"japanese"
+	],
+	char: "👘",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var lipstick$1 = {
+	keywords: [
+		"female",
+		"girl",
+		"fashion",
+		"woman"
+	],
+	char: "💄",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var kiss$1 = {
+	keywords: [
+		"face",
+		"lips",
+		"love",
+		"like",
+		"affection",
+		"valentines"
+	],
+	char: "💋",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var footprints$1 = {
+	keywords: [
+		"feet",
+		"tracking",
+		"walking",
+		"beach"
+	],
+	char: "👣",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var flat_shoe$1 = {
+	keywords: [
+		"ballet",
+		"slip-on",
+		"slipper"
+	],
+	char: "🥿",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var high_heel$1 = {
+	keywords: [
+		"fashion",
+		"shoes",
+		"female",
+		"pumps",
+		"stiletto"
+	],
+	char: "👠",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var sandal$1 = {
+	keywords: [
+		"shoes",
+		"fashion",
+		"flip flops"
+	],
+	char: "👡",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var boot$1 = {
+	keywords: [
+		"shoes",
+		"fashion"
+	],
+	char: "👢",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var mans_shoe$1 = {
+	keywords: [
+		"fashion",
+		"male"
+	],
+	char: "👞",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var athletic_shoe$1 = {
+	keywords: [
+		"shoes",
+		"sports",
+		"sneakers"
+	],
+	char: "👟",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var hiking_boot$1 = {
+	keywords: [
+		"backpacking",
+		"camping",
+		"hiking"
+	],
+	char: "🥾",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var socks$1 = {
+	keywords: [
+		"stockings",
+		"clothes"
+	],
+	char: "🧦",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var gloves$1 = {
+	keywords: [
+		"hands",
+		"winter",
+		"clothes"
+	],
+	char: "🧤",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var scarf$1 = {
+	keywords: [
+		"neck",
+		"winter",
+		"clothes"
+	],
+	char: "🧣",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var womans_hat$1 = {
+	keywords: [
+		"fashion",
+		"accessories",
+		"female",
+		"lady",
+		"spring"
+	],
+	char: "👒",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var tophat$1 = {
+	keywords: [
+		"magic",
+		"gentleman",
+		"classy",
+		"circus"
+	],
+	char: "🎩",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var billed_hat$1 = {
+	keywords: [
+		"cap",
+		"baseball"
+	],
+	char: "🧢",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var rescue_worker_helmet$1 = {
+	keywords: [
+		"construction",
+		"build"
+	],
+	char: "⛑",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var mortar_board$1 = {
+	keywords: [
+		"school",
+		"college",
+		"degree",
+		"university",
+		"graduation",
+		"cap",
+		"hat",
+		"legal",
+		"learn",
+		"education"
+	],
+	char: "🎓",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var crown$1 = {
+	keywords: [
+		"king",
+		"kod",
+		"leader",
+		"royalty",
+		"lord"
+	],
+	char: "👑",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var school_satchel$1 = {
+	keywords: [
+		"student",
+		"education",
+		"bag",
+		"backpack"
+	],
+	char: "🎒",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var luggage$1 = {
+	keywords: [
+		"packing",
+		"travel"
+	],
+	char: "🧳",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var pouch$1 = {
+	keywords: [
+		"bag",
+		"accessories",
+		"shopping"
+	],
+	char: "👝",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var purse$1 = {
+	keywords: [
+		"fashion",
+		"accessories",
+		"money",
+		"sales",
+		"shopping"
+	],
+	char: "👛",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var handbag$1 = {
+	keywords: [
+		"fashion",
+		"accessory",
+		"accessories",
+		"shopping"
+	],
+	char: "👜",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var briefcase$1 = {
+	keywords: [
+		"business",
+		"documents",
+		"work",
+		"law",
+		"legal",
+		"job",
+		"career"
+	],
+	char: "💼",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var eyeglasses$1 = {
+	keywords: [
+		"fashion",
+		"accessories",
+		"eyesight",
+		"nerdy",
+		"dork",
+		"geek"
+	],
+	char: "👓",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var dark_sunglasses$1 = {
+	keywords: [
+		"face",
+		"cool",
+		"accessories"
+	],
+	char: "🕶",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var goggles$1 = {
+	keywords: [
+		"eyes",
+		"protection",
+		"safety"
+	],
+	char: "🥽",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var ring$1 = {
+	keywords: [
+		"wedding",
+		"propose",
+		"marriage",
+		"valentines",
+		"diamond",
+		"fashion",
+		"jewelry",
+		"gem",
+		"engagement"
+	],
+	char: "💍",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var closed_umbrella$1 = {
+	keywords: [
+		"weather",
+		"rain",
+		"drizzle"
+	],
+	char: "🌂",
+	fitzpatrick_scale: false,
+	category: "people"
+};
+var dog$1 = {
+	keywords: [
+		"animal",
+		"friend",
+		"nature",
+		"woof",
+		"puppy",
+		"pet",
+		"faithful"
+	],
+	char: "🐶",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var cat$1 = {
+	keywords: [
+		"animal",
+		"meow",
+		"nature",
+		"pet",
+		"kitten"
+	],
+	char: "🐱",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var mouse$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"cheese_wedge",
+		"rodent"
+	],
+	char: "🐭",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var hamster$1 = {
+	keywords: [
+		"animal",
+		"nature"
+	],
+	char: "🐹",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var rabbit$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"pet",
+		"spring",
+		"magic",
+		"bunny"
+	],
+	char: "🐰",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var fox_face$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"face"
+	],
+	char: "🦊",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var bear$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"wild"
+	],
+	char: "🐻",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var panda_face$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"panda"
+	],
+	char: "🐼",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var koala$1 = {
+	keywords: [
+		"animal",
+		"nature"
+	],
+	char: "🐨",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var tiger$1 = {
+	keywords: [
+		"animal",
+		"cat",
+		"danger",
+		"wild",
+		"nature",
+		"roar"
+	],
+	char: "🐯",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var lion$1 = {
+	keywords: [
+		"animal",
+		"nature"
+	],
+	char: "🦁",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var cow$1 = {
+	keywords: [
+		"beef",
+		"ox",
+		"animal",
+		"nature",
+		"moo",
+		"milk"
+	],
+	char: "🐮",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var pig$1 = {
+	keywords: [
+		"animal",
+		"oink",
+		"nature"
+	],
+	char: "🐷",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var pig_nose$1 = {
+	keywords: [
+		"animal",
+		"oink"
+	],
+	char: "🐽",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var frog$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"croak",
+		"toad"
+	],
+	char: "🐸",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var squid$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"ocean",
+		"sea"
+	],
+	char: "🦑",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var octopus$1 = {
+	keywords: [
+		"animal",
+		"creature",
+		"ocean",
+		"sea",
+		"nature",
+		"beach"
+	],
+	char: "🐙",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var shrimp$1 = {
+	keywords: [
+		"animal",
+		"ocean",
+		"nature",
+		"seafood"
+	],
+	char: "🦐",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var monkey_face$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"circus"
+	],
+	char: "🐵",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var gorilla$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"circus"
+	],
+	char: "🦍",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var see_no_evil$1 = {
+	keywords: [
+		"monkey",
+		"animal",
+		"nature",
+		"haha"
+	],
+	char: "🙈",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var hear_no_evil$1 = {
+	keywords: [
+		"animal",
+		"monkey",
+		"nature"
+	],
+	char: "🙉",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var speak_no_evil$1 = {
+	keywords: [
+		"monkey",
+		"animal",
+		"nature",
+		"omg"
+	],
+	char: "🙊",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var monkey$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"banana",
+		"circus"
+	],
+	char: "🐒",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var chicken$1 = {
+	keywords: [
+		"animal",
+		"cluck",
+		"nature",
+		"bird"
+	],
+	char: "🐔",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var penguin$1 = {
+	keywords: [
+		"animal",
+		"nature"
+	],
+	char: "🐧",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var bird$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"fly",
+		"tweet",
+		"spring"
+	],
+	char: "🐦",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var baby_chick$1 = {
+	keywords: [
+		"animal",
+		"chicken",
+		"bird"
+	],
+	char: "🐤",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var hatching_chick$1 = {
+	keywords: [
+		"animal",
+		"chicken",
+		"egg",
+		"born",
+		"baby",
+		"bird"
+	],
+	char: "🐣",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var hatched_chick$1 = {
+	keywords: [
+		"animal",
+		"chicken",
+		"baby",
+		"bird"
+	],
+	char: "🐥",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var duck$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"bird",
+		"mallard"
+	],
+	char: "🦆",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var eagle$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"bird"
+	],
+	char: "🦅",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var owl$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"bird",
+		"hoot"
+	],
+	char: "🦉",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var bat$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"blind",
+		"vampire"
+	],
+	char: "🦇",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var wolf$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"wild"
+	],
+	char: "🐺",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var boar$1 = {
+	keywords: [
+		"animal",
+		"nature"
+	],
+	char: "🐗",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var horse$1 = {
+	keywords: [
+		"animal",
+		"brown",
+		"nature"
+	],
+	char: "🐴",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var unicorn$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"mystical"
+	],
+	char: "🦄",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var honeybee$1 = {
+	keywords: [
+		"animal",
+		"insect",
+		"nature",
+		"bug",
+		"spring",
+		"honey"
+	],
+	char: "🐝",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var bug$1 = {
+	keywords: [
+		"animal",
+		"insect",
+		"nature",
+		"worm"
+	],
+	char: "🐛",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var butterfly$1 = {
+	keywords: [
+		"animal",
+		"insect",
+		"nature",
+		"caterpillar"
+	],
+	char: "🦋",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var snail$1 = {
+	keywords: [
+		"slow",
+		"animal",
+		"shell"
+	],
+	char: "🐌",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var beetle$1 = {
+	keywords: [
+		"animal",
+		"insect",
+		"nature",
+		"ladybug"
+	],
+	char: "🐞",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var ant$1 = {
+	keywords: [
+		"animal",
+		"insect",
+		"nature",
+		"bug"
+	],
+	char: "🐜",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var grasshopper$1 = {
+	keywords: [
+		"animal",
+		"cricket",
+		"chirp"
+	],
+	char: "🦗",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var spider$1 = {
+	keywords: [
+		"animal",
+		"arachnid"
+	],
+	char: "🕷",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var scorpion$1 = {
+	keywords: [
+		"animal",
+		"arachnid"
+	],
+	char: "🦂",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var crab$1 = {
+	keywords: [
+		"animal",
+		"crustacean"
+	],
+	char: "🦀",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var snake$1 = {
+	keywords: [
+		"animal",
+		"evil",
+		"nature",
+		"hiss",
+		"python"
+	],
+	char: "🐍",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var lizard$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"reptile"
+	],
+	char: "🦎",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var sauropod$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"dinosaur",
+		"brachiosaurus",
+		"brontosaurus",
+		"diplodocus",
+		"extinct"
+	],
+	char: "🦕",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var turtle$1 = {
+	keywords: [
+		"animal",
+		"slow",
+		"nature",
+		"tortoise"
+	],
+	char: "🐢",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var tropical_fish$1 = {
+	keywords: [
+		"animal",
+		"swim",
+		"ocean",
+		"beach",
+		"nemo"
+	],
+	char: "🐠",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var fish$1 = {
+	keywords: [
+		"animal",
+		"food",
+		"nature"
+	],
+	char: "🐟",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var blowfish$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"food",
+		"sea",
+		"ocean"
+	],
+	char: "🐡",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var dolphin$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"fish",
+		"sea",
+		"ocean",
+		"flipper",
+		"fins",
+		"beach"
+	],
+	char: "🐬",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var shark$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"fish",
+		"sea",
+		"ocean",
+		"jaws",
+		"fins",
+		"beach"
+	],
+	char: "🦈",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var whale$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"sea",
+		"ocean"
+	],
+	char: "🐳",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var whale2$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"sea",
+		"ocean"
+	],
+	char: "🐋",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var crocodile$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"reptile",
+		"lizard",
+		"alligator"
+	],
+	char: "🐊",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var leopard$1 = {
+	keywords: [
+		"animal",
+		"nature"
+	],
+	char: "🐆",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var zebra$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"stripes",
+		"safari"
+	],
+	char: "🦓",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var tiger2$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"roar"
+	],
+	char: "🐅",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var water_buffalo$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"ox",
+		"cow"
+	],
+	char: "🐃",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var ox$1 = {
+	keywords: [
+		"animal",
+		"cow",
+		"beef"
+	],
+	char: "🐂",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var cow2$1 = {
+	keywords: [
+		"beef",
+		"ox",
+		"animal",
+		"nature",
+		"moo",
+		"milk"
+	],
+	char: "🐄",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var deer$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"horns",
+		"venison"
+	],
+	char: "🦌",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var dromedary_camel$1 = {
+	keywords: [
+		"animal",
+		"hot",
+		"desert",
+		"hump"
+	],
+	char: "🐪",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var camel$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"hot",
+		"desert",
+		"hump"
+	],
+	char: "🐫",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var giraffe$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"spots",
+		"safari"
+	],
+	char: "🦒",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var elephant$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"nose",
+		"th",
+		"circus"
+	],
+	char: "🐘",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var rhinoceros$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"horn"
+	],
+	char: "🦏",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var goat$1 = {
+	keywords: [
+		"animal",
+		"nature"
+	],
+	char: "🐐",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var ram$1 = {
+	keywords: [
+		"animal",
+		"sheep",
+		"nature"
+	],
+	char: "🐏",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var sheep$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"wool",
+		"shipit"
+	],
+	char: "🐑",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var racehorse$1 = {
+	keywords: [
+		"animal",
+		"gamble",
+		"luck"
+	],
+	char: "🐎",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var pig2$1 = {
+	keywords: [
+		"animal",
+		"nature"
+	],
+	char: "🐖",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var rat$1 = {
+	keywords: [
+		"animal",
+		"mouse",
+		"rodent"
+	],
+	char: "🐀",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var mouse2$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"rodent"
+	],
+	char: "🐁",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var rooster$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"chicken"
+	],
+	char: "🐓",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var turkey$1 = {
+	keywords: [
+		"animal",
+		"bird"
+	],
+	char: "🦃",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var dove$1 = {
+	keywords: [
+		"animal",
+		"bird"
+	],
+	char: "🕊",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var dog2$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"friend",
+		"doge",
+		"pet",
+		"faithful"
+	],
+	char: "🐕",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var poodle$1 = {
+	keywords: [
+		"dog",
+		"animal",
+		"101",
+		"nature",
+		"pet"
+	],
+	char: "🐩",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var cat2$1 = {
+	keywords: [
+		"animal",
+		"meow",
+		"pet",
+		"cats"
+	],
+	char: "🐈",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var rabbit2$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"pet",
+		"magic",
+		"spring"
+	],
+	char: "🐇",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var chipmunk$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"rodent",
+		"squirrel"
+	],
+	char: "🐿",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var hedgehog$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"spiny"
+	],
+	char: "🦔",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var raccoon$1 = {
+	keywords: [
+		"animal",
+		"nature"
+	],
+	char: "🦝",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var llama$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"alpaca"
+	],
+	char: "🦙",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var hippopotamus$1 = {
+	keywords: [
+		"animal",
+		"nature"
+	],
+	char: "🦛",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var kangaroo$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"australia",
+		"joey",
+		"hop",
+		"marsupial"
+	],
+	char: "🦘",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var badger$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"honey"
+	],
+	char: "🦡",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var swan$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"bird"
+	],
+	char: "🦢",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var peacock$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"peahen",
+		"bird"
+	],
+	char: "🦚",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var parrot$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"bird",
+		"pirate",
+		"talk"
+	],
+	char: "🦜",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var lobster$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"bisque",
+		"claws",
+		"seafood"
+	],
+	char: "🦞",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var mosquito$1 = {
+	keywords: [
+		"animal",
+		"nature",
+		"insect",
+		"malaria"
+	],
+	char: "🦟",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var paw_prints$1 = {
+	keywords: [
+		"animal",
+		"tracking",
+		"footprints",
+		"dog",
+		"cat",
+		"pet",
+		"feet"
+	],
+	char: "🐾",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var dragon$1 = {
+	keywords: [
+		"animal",
+		"myth",
+		"nature",
+		"chinese",
+		"green"
+	],
+	char: "🐉",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var dragon_face$1 = {
+	keywords: [
+		"animal",
+		"myth",
+		"nature",
+		"chinese",
+		"green"
+	],
+	char: "🐲",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var cactus$1 = {
+	keywords: [
+		"vegetable",
+		"plant",
+		"nature"
+	],
+	char: "🌵",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var christmas_tree$1 = {
+	keywords: [
+		"festival",
+		"vacation",
+		"december",
+		"xmas",
+		"celebration"
+	],
+	char: "🎄",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var evergreen_tree$1 = {
+	keywords: [
+		"plant",
+		"nature"
+	],
+	char: "🌲",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var deciduous_tree$1 = {
+	keywords: [
+		"plant",
+		"nature"
+	],
+	char: "🌳",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var palm_tree$1 = {
+	keywords: [
+		"plant",
+		"vegetable",
+		"nature",
+		"summer",
+		"beach",
+		"mojito",
+		"tropical"
+	],
+	char: "🌴",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var seedling$1 = {
+	keywords: [
+		"plant",
+		"nature",
+		"grass",
+		"lawn",
+		"spring"
+	],
+	char: "🌱",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var herb$1 = {
+	keywords: [
+		"vegetable",
+		"plant",
+		"medicine",
+		"weed",
+		"grass",
+		"lawn"
+	],
+	char: "🌿",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var shamrock$1 = {
+	keywords: [
+		"vegetable",
+		"plant",
+		"nature",
+		"irish",
+		"clover"
+	],
+	char: "☘",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var four_leaf_clover$1 = {
+	keywords: [
+		"vegetable",
+		"plant",
+		"nature",
+		"lucky",
+		"irish"
+	],
+	char: "🍀",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var bamboo$1 = {
+	keywords: [
+		"plant",
+		"nature",
+		"vegetable",
+		"panda",
+		"pine_decoration"
+	],
+	char: "🎍",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var tanabata_tree$1 = {
+	keywords: [
+		"plant",
+		"nature",
+		"branch",
+		"summer"
+	],
+	char: "🎋",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var leaves$1 = {
+	keywords: [
+		"nature",
+		"plant",
+		"tree",
+		"vegetable",
+		"grass",
+		"lawn",
+		"spring"
+	],
+	char: "🍃",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var fallen_leaf$1 = {
+	keywords: [
+		"nature",
+		"plant",
+		"vegetable",
+		"leaves"
+	],
+	char: "🍂",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var maple_leaf$1 = {
+	keywords: [
+		"nature",
+		"plant",
+		"vegetable",
+		"ca",
+		"fall"
+	],
+	char: "🍁",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var ear_of_rice$1 = {
+	keywords: [
+		"nature",
+		"plant"
+	],
+	char: "🌾",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var hibiscus$1 = {
+	keywords: [
+		"plant",
+		"vegetable",
+		"flowers",
+		"beach"
+	],
+	char: "🌺",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var sunflower$1 = {
+	keywords: [
+		"nature",
+		"plant",
+		"fall"
+	],
+	char: "🌻",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var rose$1 = {
+	keywords: [
+		"flowers",
+		"valentines",
+		"love",
+		"spring"
+	],
+	char: "🌹",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var wilted_flower$1 = {
+	keywords: [
+		"plant",
+		"nature",
+		"flower"
+	],
+	char: "🥀",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var tulip$1 = {
+	keywords: [
+		"flowers",
+		"plant",
+		"nature",
+		"summer",
+		"spring"
+	],
+	char: "🌷",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var blossom$1 = {
+	keywords: [
+		"nature",
+		"flowers",
+		"yellow"
+	],
+	char: "🌼",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var cherry_blossom$1 = {
+	keywords: [
+		"nature",
+		"plant",
+		"spring",
+		"flower"
+	],
+	char: "🌸",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var bouquet$1 = {
+	keywords: [
+		"flowers",
+		"nature",
+		"spring"
+	],
+	char: "💐",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var mushroom$1 = {
+	keywords: [
+		"plant",
+		"vegetable"
+	],
+	char: "🍄",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var chestnut$1 = {
+	keywords: [
+		"food",
+		"squirrel"
+	],
+	char: "🌰",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var jack_o_lantern$1 = {
+	keywords: [
+		"halloween",
+		"light",
+		"pumpkin",
+		"creepy",
+		"fall"
+	],
+	char: "🎃",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var shell$1 = {
+	keywords: [
+		"nature",
+		"sea",
+		"beach"
+	],
+	char: "🐚",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var spider_web$1 = {
+	keywords: [
+		"animal",
+		"insect",
+		"arachnid",
+		"silk"
+	],
+	char: "🕸",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var earth_americas$1 = {
+	keywords: [
+		"globe",
+		"world",
+		"USA",
+		"international"
+	],
+	char: "🌎",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var earth_africa$1 = {
+	keywords: [
+		"globe",
+		"world",
+		"international"
+	],
+	char: "🌍",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var earth_asia$1 = {
+	keywords: [
+		"globe",
+		"world",
+		"east",
+		"international"
+	],
+	char: "🌏",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var full_moon$1 = {
+	keywords: [
+		"nature",
+		"yellow",
+		"twilight",
+		"planet",
+		"space",
+		"night",
+		"evening",
+		"sleep"
+	],
+	char: "🌕",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var waning_gibbous_moon$1 = {
+	keywords: [
+		"nature",
+		"twilight",
+		"planet",
+		"space",
+		"night",
+		"evening",
+		"sleep",
+		"waxing_gibbous_moon"
+	],
+	char: "🌖",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var last_quarter_moon$1 = {
+	keywords: [
+		"nature",
+		"twilight",
+		"planet",
+		"space",
+		"night",
+		"evening",
+		"sleep"
+	],
+	char: "🌗",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var waning_crescent_moon$1 = {
+	keywords: [
+		"nature",
+		"twilight",
+		"planet",
+		"space",
+		"night",
+		"evening",
+		"sleep"
+	],
+	char: "🌘",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var new_moon$1 = {
+	keywords: [
+		"nature",
+		"twilight",
+		"planet",
+		"space",
+		"night",
+		"evening",
+		"sleep"
+	],
+	char: "🌑",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var waxing_crescent_moon$1 = {
+	keywords: [
+		"nature",
+		"twilight",
+		"planet",
+		"space",
+		"night",
+		"evening",
+		"sleep"
+	],
+	char: "🌒",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var first_quarter_moon$1 = {
+	keywords: [
+		"nature",
+		"twilight",
+		"planet",
+		"space",
+		"night",
+		"evening",
+		"sleep"
+	],
+	char: "🌓",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var waxing_gibbous_moon$1 = {
+	keywords: [
+		"nature",
+		"night",
+		"sky",
+		"gray",
+		"twilight",
+		"planet",
+		"space",
+		"evening",
+		"sleep"
+	],
+	char: "🌔",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var new_moon_with_face$1 = {
+	keywords: [
+		"nature",
+		"twilight",
+		"planet",
+		"space",
+		"night",
+		"evening",
+		"sleep"
+	],
+	char: "🌚",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var full_moon_with_face$1 = {
+	keywords: [
+		"nature",
+		"twilight",
+		"planet",
+		"space",
+		"night",
+		"evening",
+		"sleep"
+	],
+	char: "🌝",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var first_quarter_moon_with_face$1 = {
+	keywords: [
+		"nature",
+		"twilight",
+		"planet",
+		"space",
+		"night",
+		"evening",
+		"sleep"
+	],
+	char: "🌛",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var last_quarter_moon_with_face$1 = {
+	keywords: [
+		"nature",
+		"twilight",
+		"planet",
+		"space",
+		"night",
+		"evening",
+		"sleep"
+	],
+	char: "🌜",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var sun_with_face$1 = {
+	keywords: [
+		"nature",
+		"morning",
+		"sky"
+	],
+	char: "🌞",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var crescent_moon$1 = {
+	keywords: [
+		"night",
+		"sleep",
+		"sky",
+		"evening",
+		"magic"
+	],
+	char: "🌙",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var star$1 = {
+	keywords: [
+		"night",
+		"yellow"
+	],
+	char: "⭐",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var star2$1 = {
+	keywords: [
+		"night",
+		"sparkle",
+		"awesome",
+		"good",
+		"magic"
+	],
+	char: "🌟",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var dizzy$1 = {
+	keywords: [
+		"star",
+		"sparkle",
+		"shoot",
+		"magic"
+	],
+	char: "💫",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var sparkles$1 = {
+	keywords: [
+		"stars",
+		"shine",
+		"shiny",
+		"cool",
+		"awesome",
+		"good",
+		"magic"
+	],
+	char: "✨",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var comet$1 = {
+	keywords: [
+		"space"
+	],
+	char: "☄",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var sunny$1 = {
+	keywords: [
+		"weather",
+		"nature",
+		"brightness",
+		"summer",
+		"beach",
+		"spring"
+	],
+	char: "☀️",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var sun_behind_small_cloud$1 = {
+	keywords: [
+		"weather"
+	],
+	char: "🌤",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var partly_sunny$1 = {
+	keywords: [
+		"weather",
+		"nature",
+		"cloudy",
+		"morning",
+		"fall",
+		"spring"
+	],
+	char: "⛅",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var sun_behind_large_cloud$1 = {
+	keywords: [
+		"weather"
+	],
+	char: "🌥",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var sun_behind_rain_cloud$1 = {
+	keywords: [
+		"weather"
+	],
+	char: "🌦",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var cloud$1 = {
+	keywords: [
+		"weather",
+		"sky"
+	],
+	char: "☁️",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var cloud_with_rain$1 = {
+	keywords: [
+		"weather"
+	],
+	char: "🌧",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var cloud_with_lightning_and_rain$1 = {
+	keywords: [
+		"weather",
+		"lightning"
+	],
+	char: "⛈",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var cloud_with_lightning$1 = {
+	keywords: [
+		"weather",
+		"thunder"
+	],
+	char: "🌩",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var zap$1 = {
+	keywords: [
+		"thunder",
+		"weather",
+		"lightning bolt",
+		"fast"
+	],
+	char: "⚡",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var fire$1 = {
+	keywords: [
+		"hot",
+		"cook",
+		"flame"
+	],
+	char: "🔥",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var boom$1 = {
+	keywords: [
+		"bomb",
+		"explode",
+		"explosion",
+		"collision",
+		"blown"
+	],
+	char: "💥",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var snowflake$1 = {
+	keywords: [
+		"winter",
+		"season",
+		"cold",
+		"weather",
+		"christmas",
+		"xmas"
+	],
+	char: "❄️",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var cloud_with_snow$1 = {
+	keywords: [
+		"weather"
+	],
+	char: "🌨",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var snowman$1 = {
+	keywords: [
+		"winter",
+		"season",
+		"cold",
+		"weather",
+		"christmas",
+		"xmas",
+		"frozen",
+		"without_snow"
+	],
+	char: "⛄",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var snowman_with_snow$1 = {
+	keywords: [
+		"winter",
+		"season",
+		"cold",
+		"weather",
+		"christmas",
+		"xmas",
+		"frozen"
+	],
+	char: "☃",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var wind_face$1 = {
+	keywords: [
+		"gust",
+		"air"
+	],
+	char: "🌬",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var dash$1 = {
+	keywords: [
+		"wind",
+		"air",
+		"fast",
+		"shoo",
+		"fart",
+		"smoke",
+		"puff"
+	],
+	char: "💨",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var tornado$1 = {
+	keywords: [
+		"weather",
+		"cyclone",
+		"twister"
+	],
+	char: "🌪",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var fog$1 = {
+	keywords: [
+		"weather"
+	],
+	char: "🌫",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var open_umbrella$1 = {
+	keywords: [
+		"weather",
+		"spring"
+	],
+	char: "☂",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var umbrella$1 = {
+	keywords: [
+		"rainy",
+		"weather",
+		"spring"
+	],
+	char: "☔",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var droplet$1 = {
+	keywords: [
+		"water",
+		"drip",
+		"faucet",
+		"spring"
+	],
+	char: "💧",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var sweat_drops$1 = {
+	keywords: [
+		"water",
+		"drip",
+		"oops"
+	],
+	char: "💦",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var ocean$1 = {
+	keywords: [
+		"sea",
+		"water",
+		"wave",
+		"nature",
+		"tsunami",
+		"disaster"
+	],
+	char: "🌊",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+};
+var green_apple$1 = {
+	keywords: [
+		"fruit",
+		"nature"
+	],
+	char: "🍏",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var apple$1 = {
+	keywords: [
+		"fruit",
+		"mac",
+		"school"
+	],
+	char: "🍎",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var pear$1 = {
+	keywords: [
+		"fruit",
+		"nature",
+		"food"
+	],
+	char: "🍐",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var tangerine$1 = {
+	keywords: [
+		"food",
+		"fruit",
+		"nature",
+		"orange"
+	],
+	char: "🍊",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var lemon$1 = {
+	keywords: [
+		"fruit",
+		"nature"
+	],
+	char: "🍋",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var banana$1 = {
+	keywords: [
+		"fruit",
+		"food",
+		"monkey"
+	],
+	char: "🍌",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var watermelon$1 = {
+	keywords: [
+		"fruit",
+		"food",
+		"picnic",
+		"summer"
+	],
+	char: "🍉",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var grapes$1 = {
+	keywords: [
+		"fruit",
+		"food",
+		"wine"
+	],
+	char: "🍇",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var strawberry$1 = {
+	keywords: [
+		"fruit",
+		"food",
+		"nature"
+	],
+	char: "🍓",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var melon$1 = {
+	keywords: [
+		"fruit",
+		"nature",
+		"food"
+	],
+	char: "🍈",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var cherries$1 = {
+	keywords: [
+		"food",
+		"fruit"
+	],
+	char: "🍒",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var peach$1 = {
+	keywords: [
+		"fruit",
+		"nature",
+		"food"
+	],
+	char: "🍑",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var pineapple$1 = {
+	keywords: [
+		"fruit",
+		"nature",
+		"food"
+	],
+	char: "🍍",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var coconut$1 = {
+	keywords: [
+		"fruit",
+		"nature",
+		"food",
+		"palm"
+	],
+	char: "🥥",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var kiwi_fruit$1 = {
+	keywords: [
+		"fruit",
+		"food"
+	],
+	char: "🥝",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var mango$1 = {
+	keywords: [
+		"fruit",
+		"food",
+		"tropical"
+	],
+	char: "🥭",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var avocado$1 = {
+	keywords: [
+		"fruit",
+		"food"
+	],
+	char: "🥑",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var broccoli$1 = {
+	keywords: [
+		"fruit",
+		"food",
+		"vegetable"
+	],
+	char: "🥦",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var tomato$1 = {
+	keywords: [
+		"fruit",
+		"vegetable",
+		"nature",
+		"food"
+	],
+	char: "🍅",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var eggplant$1 = {
+	keywords: [
+		"vegetable",
+		"nature",
+		"food",
+		"aubergine"
+	],
+	char: "🍆",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var cucumber$1 = {
+	keywords: [
+		"fruit",
+		"food",
+		"pickle"
+	],
+	char: "🥒",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var carrot$1 = {
+	keywords: [
+		"vegetable",
+		"food",
+		"orange"
+	],
+	char: "🥕",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var hot_pepper$1 = {
+	keywords: [
+		"food",
+		"spicy",
+		"chilli",
+		"chili"
+	],
+	char: "🌶",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var potato$1 = {
+	keywords: [
+		"food",
+		"tuber",
+		"vegatable",
+		"starch"
+	],
+	char: "🥔",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var corn$1 = {
+	keywords: [
+		"food",
+		"vegetable",
+		"plant"
+	],
+	char: "🌽",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var leafy_greens$1 = {
+	keywords: [
+		"food",
+		"vegetable",
+		"plant",
+		"bok choy",
+		"cabbage",
+		"kale",
+		"lettuce"
+	],
+	char: "🥬",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var sweet_potato$1 = {
+	keywords: [
+		"food",
+		"nature"
+	],
+	char: "🍠",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var peanuts$1 = {
+	keywords: [
+		"food",
+		"nut"
+	],
+	char: "🥜",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var honey_pot$1 = {
+	keywords: [
+		"bees",
+		"sweet",
+		"kitchen"
+	],
+	char: "🍯",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var croissant$1 = {
+	keywords: [
+		"food",
+		"bread",
+		"french"
+	],
+	char: "🥐",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var bread$1 = {
+	keywords: [
+		"food",
+		"wheat",
+		"breakfast",
+		"toast"
+	],
+	char: "🍞",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var baguette_bread$1 = {
+	keywords: [
+		"food",
+		"bread",
+		"french"
+	],
+	char: "🥖",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var bagel$1 = {
+	keywords: [
+		"food",
+		"bread",
+		"bakery",
+		"schmear"
+	],
+	char: "🥯",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var pretzel$1 = {
+	keywords: [
+		"food",
+		"bread",
+		"twisted"
+	],
+	char: "🥨",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var cheese$1 = {
+	keywords: [
+		"food",
+		"chadder"
+	],
+	char: "🧀",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var egg$1 = {
+	keywords: [
+		"food",
+		"chicken",
+		"breakfast"
+	],
+	char: "🥚",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var bacon$1 = {
+	keywords: [
+		"food",
+		"breakfast",
+		"pork",
+		"pig",
+		"meat"
+	],
+	char: "🥓",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var steak$1 = {
+	keywords: [
+		"food",
+		"cow",
+		"meat",
+		"cut",
+		"chop",
+		"lambchop",
+		"porkchop"
+	],
+	char: "🥩",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var pancakes$1 = {
+	keywords: [
+		"food",
+		"breakfast",
+		"flapjacks",
+		"hotcakes"
+	],
+	char: "🥞",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var poultry_leg$1 = {
+	keywords: [
+		"food",
+		"meat",
+		"drumstick",
+		"bird",
+		"chicken",
+		"turkey"
+	],
+	char: "🍗",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var meat_on_bone$1 = {
+	keywords: [
+		"good",
+		"food",
+		"drumstick"
+	],
+	char: "🍖",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var bone$1 = {
+	keywords: [
+		"skeleton"
+	],
+	char: "🦴",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var fried_shrimp$1 = {
+	keywords: [
+		"food",
+		"animal",
+		"appetizer",
+		"summer"
+	],
+	char: "🍤",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var fried_egg$1 = {
+	keywords: [
+		"food",
+		"breakfast",
+		"kitchen",
+		"egg"
+	],
+	char: "🍳",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var hamburger$1 = {
+	keywords: [
+		"meat",
+		"fast food",
+		"beef",
+		"cheeseburger",
+		"mcdonalds",
+		"burger king"
+	],
+	char: "🍔",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var fries$1 = {
+	keywords: [
+		"chips",
+		"snack",
+		"fast food"
+	],
+	char: "🍟",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var stuffed_flatbread$1 = {
+	keywords: [
+		"food",
+		"flatbread",
+		"stuffed",
+		"gyro"
+	],
+	char: "🥙",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var hotdog$1 = {
+	keywords: [
+		"food",
+		"frankfurter"
+	],
+	char: "🌭",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var pizza$1 = {
+	keywords: [
+		"food",
+		"party"
+	],
+	char: "🍕",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var sandwich$1 = {
+	keywords: [
+		"food",
+		"lunch",
+		"bread"
+	],
+	char: "🥪",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var canned_food$1 = {
+	keywords: [
+		"food",
+		"soup"
+	],
+	char: "🥫",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var spaghetti$1 = {
+	keywords: [
+		"food",
+		"italian",
+		"noodle"
+	],
+	char: "🍝",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var taco$1 = {
+	keywords: [
+		"food",
+		"mexican"
+	],
+	char: "🌮",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var burrito$1 = {
+	keywords: [
+		"food",
+		"mexican"
+	],
+	char: "🌯",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var green_salad$1 = {
+	keywords: [
+		"food",
+		"healthy",
+		"lettuce"
+	],
+	char: "🥗",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var shallow_pan_of_food$1 = {
+	keywords: [
+		"food",
+		"cooking",
+		"casserole",
+		"paella"
+	],
+	char: "🥘",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var ramen$1 = {
+	keywords: [
+		"food",
+		"japanese",
+		"noodle",
+		"chopsticks"
+	],
+	char: "🍜",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var stew$1 = {
+	keywords: [
+		"food",
+		"meat",
+		"soup"
+	],
+	char: "🍲",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var fish_cake$1 = {
+	keywords: [
+		"food",
+		"japan",
+		"sea",
+		"beach",
+		"narutomaki",
+		"pink",
+		"swirl",
+		"kamaboko",
+		"surimi",
+		"ramen"
+	],
+	char: "🍥",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var fortune_cookie$1 = {
+	keywords: [
+		"food",
+		"prophecy"
+	],
+	char: "🥠",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var sushi$1 = {
+	keywords: [
+		"food",
+		"fish",
+		"japanese",
+		"rice"
+	],
+	char: "🍣",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var bento$1 = {
+	keywords: [
+		"food",
+		"japanese",
+		"box"
+	],
+	char: "🍱",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var curry$1 = {
+	keywords: [
+		"food",
+		"spicy",
+		"hot",
+		"indian"
+	],
+	char: "🍛",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var rice_ball$1 = {
+	keywords: [
+		"food",
+		"japanese"
+	],
+	char: "🍙",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var rice$1 = {
+	keywords: [
+		"food",
+		"china",
+		"asian"
+	],
+	char: "🍚",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var rice_cracker$1 = {
+	keywords: [
+		"food",
+		"japanese"
+	],
+	char: "🍘",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var oden$1 = {
+	keywords: [
+		"food",
+		"japanese"
+	],
+	char: "🍢",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var dango$1 = {
+	keywords: [
+		"food",
+		"dessert",
+		"sweet",
+		"japanese",
+		"barbecue",
+		"meat"
+	],
+	char: "🍡",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var shaved_ice$1 = {
+	keywords: [
+		"hot",
+		"dessert",
+		"summer"
+	],
+	char: "🍧",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var ice_cream$1 = {
+	keywords: [
+		"food",
+		"hot",
+		"dessert"
+	],
+	char: "🍨",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var icecream$1 = {
+	keywords: [
+		"food",
+		"hot",
+		"dessert",
+		"summer"
+	],
+	char: "🍦",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var pie$1 = {
+	keywords: [
+		"food",
+		"dessert",
+		"pastry"
+	],
+	char: "🥧",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var cake$1 = {
+	keywords: [
+		"food",
+		"dessert"
+	],
+	char: "🍰",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var cupcake$1 = {
+	keywords: [
+		"food",
+		"dessert",
+		"bakery",
+		"sweet"
+	],
+	char: "🧁",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var moon_cake$1 = {
+	keywords: [
+		"food",
+		"autumn"
+	],
+	char: "🥮",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var birthday$1 = {
+	keywords: [
+		"food",
+		"dessert",
+		"cake"
+	],
+	char: "🎂",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var custard$1 = {
+	keywords: [
+		"dessert",
+		"food"
+	],
+	char: "🍮",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var candy$1 = {
+	keywords: [
+		"snack",
+		"dessert",
+		"sweet",
+		"lolly"
+	],
+	char: "🍬",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var lollipop$1 = {
+	keywords: [
+		"food",
+		"snack",
+		"candy",
+		"sweet"
+	],
+	char: "🍭",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var chocolate_bar$1 = {
+	keywords: [
+		"food",
+		"snack",
+		"dessert",
+		"sweet"
+	],
+	char: "🍫",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var popcorn$1 = {
+	keywords: [
+		"food",
+		"movie theater",
+		"films",
+		"snack"
+	],
+	char: "🍿",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var dumpling$1 = {
+	keywords: [
+		"food",
+		"empanada",
+		"pierogi",
+		"potsticker"
+	],
+	char: "🥟",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var doughnut$1 = {
+	keywords: [
+		"food",
+		"dessert",
+		"snack",
+		"sweet",
+		"donut"
+	],
+	char: "🍩",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var cookie$1 = {
+	keywords: [
+		"food",
+		"snack",
+		"oreo",
+		"chocolate",
+		"sweet",
+		"dessert"
+	],
+	char: "🍪",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var milk_glass$1 = {
+	keywords: [
+		"beverage",
+		"drink",
+		"cow"
+	],
+	char: "🥛",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var beer$1 = {
+	keywords: [
+		"relax",
+		"beverage",
+		"drink",
+		"drunk",
+		"party",
+		"pub",
+		"summer",
+		"alcohol",
+		"booze"
+	],
+	char: "🍺",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var beers$1 = {
+	keywords: [
+		"relax",
+		"beverage",
+		"drink",
+		"drunk",
+		"party",
+		"pub",
+		"summer",
+		"alcohol",
+		"booze"
+	],
+	char: "🍻",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var clinking_glasses$1 = {
+	keywords: [
+		"beverage",
+		"drink",
+		"party",
+		"alcohol",
+		"celebrate",
+		"cheers",
+		"wine",
+		"champagne",
+		"toast"
+	],
+	char: "🥂",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var wine_glass$1 = {
+	keywords: [
+		"drink",
+		"beverage",
+		"drunk",
+		"alcohol",
+		"booze"
+	],
+	char: "🍷",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var tumbler_glass$1 = {
+	keywords: [
+		"drink",
+		"beverage",
+		"drunk",
+		"alcohol",
+		"liquor",
+		"booze",
+		"bourbon",
+		"scotch",
+		"whisky",
+		"glass",
+		"shot"
+	],
+	char: "🥃",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var cocktail$1 = {
+	keywords: [
+		"drink",
+		"drunk",
+		"alcohol",
+		"beverage",
+		"booze",
+		"mojito"
+	],
+	char: "🍸",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var tropical_drink$1 = {
+	keywords: [
+		"beverage",
+		"cocktail",
+		"summer",
+		"beach",
+		"alcohol",
+		"booze",
+		"mojito"
+	],
+	char: "🍹",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var champagne$1 = {
+	keywords: [
+		"drink",
+		"wine",
+		"bottle",
+		"celebration"
+	],
+	char: "🍾",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var sake$1 = {
+	keywords: [
+		"wine",
+		"drink",
+		"drunk",
+		"beverage",
+		"japanese",
+		"alcohol",
+		"booze"
+	],
+	char: "🍶",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var tea$1 = {
+	keywords: [
+		"drink",
+		"bowl",
+		"breakfast",
+		"green",
+		"british"
+	],
+	char: "🍵",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var cup_with_straw$1 = {
+	keywords: [
+		"drink",
+		"soda"
+	],
+	char: "🥤",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var coffee$1 = {
+	keywords: [
+		"beverage",
+		"caffeine",
+		"latte",
+		"espresso"
+	],
+	char: "☕",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var baby_bottle$1 = {
+	keywords: [
+		"food",
+		"container",
+		"milk"
+	],
+	char: "🍼",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var salt$1 = {
+	keywords: [
+		"condiment",
+		"shaker"
+	],
+	char: "🧂",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var spoon$1 = {
+	keywords: [
+		"cutlery",
+		"kitchen",
+		"tableware"
+	],
+	char: "🥄",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var fork_and_knife$1 = {
+	keywords: [
+		"cutlery",
+		"kitchen"
+	],
+	char: "🍴",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var plate_with_cutlery$1 = {
+	keywords: [
+		"food",
+		"eat",
+		"meal",
+		"lunch",
+		"dinner",
+		"restaurant"
+	],
+	char: "🍽",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var bowl_with_spoon$1 = {
+	keywords: [
+		"food",
+		"breakfast",
+		"cereal",
+		"oatmeal",
+		"porridge"
+	],
+	char: "🥣",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var takeout_box$1 = {
+	keywords: [
+		"food",
+		"leftovers"
+	],
+	char: "🥡",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var chopsticks$1 = {
+	keywords: [
+		"food"
+	],
+	char: "🥢",
+	fitzpatrick_scale: false,
+	category: "food_and_drink"
+};
+var soccer$1 = {
+	keywords: [
+		"sports",
+		"football"
+	],
+	char: "⚽",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var basketball$1 = {
+	keywords: [
+		"sports",
+		"balls",
+		"NBA"
+	],
+	char: "🏀",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var football$1 = {
+	keywords: [
+		"sports",
+		"balls",
+		"NFL"
+	],
+	char: "🏈",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var baseball$1 = {
+	keywords: [
+		"sports",
+		"balls"
+	],
+	char: "⚾",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var softball$1 = {
+	keywords: [
+		"sports",
+		"balls"
+	],
+	char: "🥎",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var tennis$1 = {
+	keywords: [
+		"sports",
+		"balls",
+		"green"
+	],
+	char: "🎾",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var volleyball$1 = {
+	keywords: [
+		"sports",
+		"balls"
+	],
+	char: "🏐",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var rugby_football$1 = {
+	keywords: [
+		"sports",
+		"team"
+	],
+	char: "🏉",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var flying_disc$1 = {
+	keywords: [
+		"sports",
+		"frisbee",
+		"ultimate"
+	],
+	char: "🥏",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var golf$1 = {
+	keywords: [
+		"sports",
+		"business",
+		"flag",
+		"hole",
+		"summer"
+	],
+	char: "⛳",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var golfing_woman$1 = {
+	keywords: [
+		"sports",
+		"business",
+		"woman",
+		"female"
+	],
+	char: "🏌️‍♀️",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var golfing_man$1 = {
+	keywords: [
+		"sports",
+		"business"
+	],
+	char: "🏌",
+	fitzpatrick_scale: true,
+	category: "activity"
+};
+var ping_pong$1 = {
+	keywords: [
+		"sports",
+		"pingpong"
+	],
+	char: "🏓",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var badminton$1 = {
+	keywords: [
+		"sports"
+	],
+	char: "🏸",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var goal_net$1 = {
+	keywords: [
+		"sports"
+	],
+	char: "🥅",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var ice_hockey$1 = {
+	keywords: [
+		"sports"
+	],
+	char: "🏒",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var field_hockey$1 = {
+	keywords: [
+		"sports"
+	],
+	char: "🏑",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var lacrosse$1 = {
+	keywords: [
+		"sports",
+		"ball",
+		"stick"
+	],
+	char: "🥍",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var cricket$1 = {
+	keywords: [
+		"sports"
+	],
+	char: "🏏",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var ski$1 = {
+	keywords: [
+		"sports",
+		"winter",
+		"cold",
+		"snow"
+	],
+	char: "🎿",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var skier$1 = {
+	keywords: [
+		"sports",
+		"winter",
+		"snow"
+	],
+	char: "⛷",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var snowboarder$1 = {
+	keywords: [
+		"sports",
+		"winter"
+	],
+	char: "🏂",
+	fitzpatrick_scale: true,
+	category: "activity"
+};
+var person_fencing$1 = {
+	keywords: [
+		"sports",
+		"fencing",
+		"sword"
+	],
+	char: "🤺",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var women_wrestling$1 = {
+	keywords: [
+		"sports",
+		"wrestlers"
+	],
+	char: "🤼‍♀️",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var men_wrestling$1 = {
+	keywords: [
+		"sports",
+		"wrestlers"
+	],
+	char: "🤼‍♂️",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var woman_cartwheeling$1 = {
+	keywords: [
+		"gymnastics"
+	],
+	char: "🤸‍♀️",
+	fitzpatrick_scale: true,
+	category: "activity"
+};
+var man_cartwheeling$1 = {
+	keywords: [
+		"gymnastics"
+	],
+	char: "🤸‍♂️",
+	fitzpatrick_scale: true,
+	category: "activity"
+};
+var woman_playing_handball$1 = {
+	keywords: [
+		"sports"
+	],
+	char: "🤾‍♀️",
+	fitzpatrick_scale: true,
+	category: "activity"
+};
+var man_playing_handball$1 = {
+	keywords: [
+		"sports"
+	],
+	char: "🤾‍♂️",
+	fitzpatrick_scale: true,
+	category: "activity"
+};
+var ice_skate$1 = {
+	keywords: [
+		"sports"
+	],
+	char: "⛸",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var curling_stone$1 = {
+	keywords: [
+		"sports"
+	],
+	char: "🥌",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var skateboard$1 = {
+	keywords: [
+		"board"
+	],
+	char: "🛹",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var sled$1 = {
+	keywords: [
+		"sleigh",
+		"luge",
+		"toboggan"
+	],
+	char: "🛷",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var bow_and_arrow$1 = {
+	keywords: [
+		"sports"
+	],
+	char: "🏹",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var fishing_pole_and_fish$1 = {
+	keywords: [
+		"food",
+		"hobby",
+		"summer"
+	],
+	char: "🎣",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var boxing_glove$1 = {
+	keywords: [
+		"sports",
+		"fighting"
+	],
+	char: "🥊",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var martial_arts_uniform$1 = {
+	keywords: [
+		"judo",
+		"karate",
+		"taekwondo"
+	],
+	char: "🥋",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var rowing_woman$1 = {
+	keywords: [
+		"sports",
+		"hobby",
+		"water",
+		"ship",
+		"woman",
+		"female"
+	],
+	char: "🚣‍♀️",
+	fitzpatrick_scale: true,
+	category: "activity"
+};
+var rowing_man$1 = {
+	keywords: [
+		"sports",
+		"hobby",
+		"water",
+		"ship"
+	],
+	char: "🚣",
+	fitzpatrick_scale: true,
+	category: "activity"
+};
+var climbing_woman$1 = {
+	keywords: [
+		"sports",
+		"hobby",
+		"woman",
+		"female",
+		"rock"
+	],
+	char: "🧗‍♀️",
+	fitzpatrick_scale: true,
+	category: "activity"
+};
+var climbing_man$1 = {
+	keywords: [
+		"sports",
+		"hobby",
+		"man",
+		"male",
+		"rock"
+	],
+	char: "🧗‍♂️",
+	fitzpatrick_scale: true,
+	category: "activity"
+};
+var swimming_woman$1 = {
+	keywords: [
+		"sports",
+		"exercise",
+		"human",
+		"athlete",
+		"water",
+		"summer",
+		"woman",
+		"female"
+	],
+	char: "🏊‍♀️",
+	fitzpatrick_scale: true,
+	category: "activity"
+};
+var swimming_man$1 = {
+	keywords: [
+		"sports",
+		"exercise",
+		"human",
+		"athlete",
+		"water",
+		"summer"
+	],
+	char: "🏊",
+	fitzpatrick_scale: true,
+	category: "activity"
+};
+var woman_playing_water_polo$1 = {
+	keywords: [
+		"sports",
+		"pool"
+	],
+	char: "🤽‍♀️",
+	fitzpatrick_scale: true,
+	category: "activity"
+};
+var man_playing_water_polo$1 = {
+	keywords: [
+		"sports",
+		"pool"
+	],
+	char: "🤽‍♂️",
+	fitzpatrick_scale: true,
+	category: "activity"
+};
+var woman_in_lotus_position$1 = {
+	keywords: [
+		"woman",
+		"female",
+		"meditation",
+		"yoga",
+		"serenity",
+		"zen",
+		"mindfulness"
+	],
+	char: "🧘‍♀️",
+	fitzpatrick_scale: true,
+	category: "activity"
+};
+var man_in_lotus_position$1 = {
+	keywords: [
+		"man",
+		"male",
+		"meditation",
+		"yoga",
+		"serenity",
+		"zen",
+		"mindfulness"
+	],
+	char: "🧘‍♂️",
+	fitzpatrick_scale: true,
+	category: "activity"
+};
+var surfing_woman$1 = {
+	keywords: [
+		"sports",
+		"ocean",
+		"sea",
+		"summer",
+		"beach",
+		"woman",
+		"female"
+	],
+	char: "🏄‍♀️",
+	fitzpatrick_scale: true,
+	category: "activity"
+};
+var surfing_man$1 = {
+	keywords: [
+		"sports",
+		"ocean",
+		"sea",
+		"summer",
+		"beach"
+	],
+	char: "🏄",
+	fitzpatrick_scale: true,
+	category: "activity"
+};
+var bath$1 = {
+	keywords: [
+		"clean",
+		"shower",
+		"bathroom"
+	],
+	char: "🛀",
+	fitzpatrick_scale: true,
+	category: "activity"
+};
+var basketball_woman$1 = {
+	keywords: [
+		"sports",
+		"human",
+		"woman",
+		"female"
+	],
+	char: "⛹️‍♀️",
+	fitzpatrick_scale: true,
+	category: "activity"
+};
+var basketball_man$1 = {
+	keywords: [
+		"sports",
+		"human"
+	],
+	char: "⛹",
+	fitzpatrick_scale: true,
+	category: "activity"
+};
+var weight_lifting_woman$1 = {
+	keywords: [
+		"sports",
+		"training",
+		"exercise",
+		"woman",
+		"female"
+	],
+	char: "🏋️‍♀️",
+	fitzpatrick_scale: true,
+	category: "activity"
+};
+var weight_lifting_man$1 = {
+	keywords: [
+		"sports",
+		"training",
+		"exercise"
+	],
+	char: "🏋",
+	fitzpatrick_scale: true,
+	category: "activity"
+};
+var biking_woman$1 = {
+	keywords: [
+		"sports",
+		"bike",
+		"exercise",
+		"hipster",
+		"woman",
+		"female"
+	],
+	char: "🚴‍♀️",
+	fitzpatrick_scale: true,
+	category: "activity"
+};
+var biking_man$1 = {
+	keywords: [
+		"sports",
+		"bike",
+		"exercise",
+		"hipster"
+	],
+	char: "🚴",
+	fitzpatrick_scale: true,
+	category: "activity"
+};
+var mountain_biking_woman$1 = {
+	keywords: [
+		"transportation",
+		"sports",
+		"human",
+		"race",
+		"bike",
+		"woman",
+		"female"
+	],
+	char: "🚵‍♀️",
+	fitzpatrick_scale: true,
+	category: "activity"
+};
+var mountain_biking_man$1 = {
+	keywords: [
+		"transportation",
+		"sports",
+		"human",
+		"race",
+		"bike"
+	],
+	char: "🚵",
+	fitzpatrick_scale: true,
+	category: "activity"
+};
+var horse_racing$1 = {
+	keywords: [
+		"animal",
+		"betting",
+		"competition",
+		"gambling",
+		"luck"
+	],
+	char: "🏇",
+	fitzpatrick_scale: true,
+	category: "activity"
+};
+var business_suit_levitating$1 = {
+	keywords: [
+		"suit",
+		"business",
+		"levitate",
+		"hover",
+		"jump"
+	],
+	char: "🕴",
+	fitzpatrick_scale: true,
+	category: "activity"
+};
+var trophy$1 = {
+	keywords: [
+		"win",
+		"award",
+		"contest",
+		"place",
+		"ftw",
+		"ceremony"
+	],
+	char: "🏆",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var running_shirt_with_sash$1 = {
+	keywords: [
+		"play",
+		"pageant"
+	],
+	char: "🎽",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var medal_sports$1 = {
+	keywords: [
+		"award",
+		"winning"
+	],
+	char: "🏅",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var medal_military$1 = {
+	keywords: [
+		"award",
+		"winning",
+		"army"
+	],
+	char: "🎖",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var reminder_ribbon$1 = {
+	keywords: [
+		"sports",
+		"cause",
+		"support",
+		"awareness"
+	],
+	char: "🎗",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var rosette$1 = {
+	keywords: [
+		"flower",
+		"decoration",
+		"military"
+	],
+	char: "🏵",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var ticket$1 = {
+	keywords: [
+		"event",
+		"concert",
+		"pass"
+	],
+	char: "🎫",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var tickets$1 = {
+	keywords: [
+		"sports",
+		"concert",
+		"entrance"
+	],
+	char: "🎟",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var performing_arts$1 = {
+	keywords: [
+		"acting",
+		"theater",
+		"drama"
+	],
+	char: "🎭",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var art$1 = {
+	keywords: [
+		"design",
+		"paint",
+		"draw",
+		"colors"
+	],
+	char: "🎨",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var circus_tent$1 = {
+	keywords: [
+		"festival",
+		"carnival",
+		"party"
+	],
+	char: "🎪",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var woman_juggling$1 = {
+	keywords: [
+		"juggle",
+		"balance",
+		"skill",
+		"multitask"
+	],
+	char: "🤹‍♀️",
+	fitzpatrick_scale: true,
+	category: "activity"
+};
+var man_juggling$1 = {
+	keywords: [
+		"juggle",
+		"balance",
+		"skill",
+		"multitask"
+	],
+	char: "🤹‍♂️",
+	fitzpatrick_scale: true,
+	category: "activity"
+};
+var microphone$1 = {
+	keywords: [
+		"sound",
+		"music",
+		"PA",
+		"sing",
+		"talkshow"
+	],
+	char: "🎤",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var headphones$1 = {
+	keywords: [
+		"music",
+		"score",
+		"gadgets"
+	],
+	char: "🎧",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var musical_score$1 = {
+	keywords: [
+		"treble",
+		"clef",
+		"compose"
+	],
+	char: "🎼",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var musical_keyboard$1 = {
+	keywords: [
+		"piano",
+		"instrument",
+		"compose"
+	],
+	char: "🎹",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var drum$1 = {
+	keywords: [
+		"music",
+		"instrument",
+		"drumsticks",
+		"snare"
+	],
+	char: "🥁",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var saxophone$1 = {
+	keywords: [
+		"music",
+		"instrument",
+		"jazz",
+		"blues"
+	],
+	char: "🎷",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var trumpet$1 = {
+	keywords: [
+		"music",
+		"brass"
+	],
+	char: "🎺",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var guitar$1 = {
+	keywords: [
+		"music",
+		"instrument"
+	],
+	char: "🎸",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var violin$1 = {
+	keywords: [
+		"music",
+		"instrument",
+		"orchestra",
+		"symphony"
+	],
+	char: "🎻",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var clapper$1 = {
+	keywords: [
+		"movie",
+		"film",
+		"record"
+	],
+	char: "🎬",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var video_game$1 = {
+	keywords: [
+		"play",
+		"console",
+		"PS4",
+		"controller"
+	],
+	char: "🎮",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var space_invader$1 = {
+	keywords: [
+		"game",
+		"arcade",
+		"play"
+	],
+	char: "👾",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var dart$1 = {
+	keywords: [
+		"game",
+		"play",
+		"bar",
+		"target",
+		"bullseye"
+	],
+	char: "🎯",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var game_die$1 = {
+	keywords: [
+		"dice",
+		"random",
+		"tabletop",
+		"play",
+		"luck"
+	],
+	char: "🎲",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var chess_pawn$1 = {
+	keywords: [
+		"expendable"
+	],
+	char: "♟",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var slot_machine$1 = {
+	keywords: [
+		"bet",
+		"gamble",
+		"vegas",
+		"fruit machine",
+		"luck",
+		"casino"
+	],
+	char: "🎰",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var jigsaw$1 = {
+	keywords: [
+		"interlocking",
+		"puzzle",
+		"piece"
+	],
+	char: "🧩",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var bowling$1 = {
+	keywords: [
+		"sports",
+		"fun",
+		"play"
+	],
+	char: "🎳",
+	fitzpatrick_scale: false,
+	category: "activity"
+};
+var red_car$1 = {
+	keywords: [
+		"red",
+		"transportation",
+		"vehicle"
+	],
+	char: "🚗",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var taxi$1 = {
+	keywords: [
+		"uber",
+		"vehicle",
+		"cars",
+		"transportation"
+	],
+	char: "🚕",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var blue_car$1 = {
+	keywords: [
+		"transportation",
+		"vehicle"
+	],
+	char: "🚙",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var bus$1 = {
+	keywords: [
+		"car",
+		"vehicle",
+		"transportation"
+	],
+	char: "🚌",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var trolleybus$1 = {
+	keywords: [
+		"bart",
+		"transportation",
+		"vehicle"
+	],
+	char: "🚎",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var racing_car$1 = {
+	keywords: [
+		"sports",
+		"race",
+		"fast",
+		"formula",
+		"f1"
+	],
+	char: "🏎",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var police_car$1 = {
+	keywords: [
+		"vehicle",
+		"cars",
+		"transportation",
+		"law",
+		"legal",
+		"enforcement"
+	],
+	char: "🚓",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var ambulance$1 = {
+	keywords: [
+		"health",
+		"911",
+		"hospital"
+	],
+	char: "🚑",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var fire_engine$1 = {
+	keywords: [
+		"transportation",
+		"cars",
+		"vehicle"
+	],
+	char: "🚒",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var minibus$1 = {
+	keywords: [
+		"vehicle",
+		"car",
+		"transportation"
+	],
+	char: "🚐",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var truck$1 = {
+	keywords: [
+		"cars",
+		"transportation"
+	],
+	char: "🚚",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var articulated_lorry$1 = {
+	keywords: [
+		"vehicle",
+		"cars",
+		"transportation",
+		"express"
+	],
+	char: "🚛",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var tractor$1 = {
+	keywords: [
+		"vehicle",
+		"car",
+		"farming",
+		"agriculture"
+	],
+	char: "🚜",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var kick_scooter$1 = {
+	keywords: [
+		"vehicle",
+		"kick",
+		"razor"
+	],
+	char: "🛴",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var motorcycle$1 = {
+	keywords: [
+		"race",
+		"sports",
+		"fast"
+	],
+	char: "🏍",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var bike$1 = {
+	keywords: [
+		"sports",
+		"bicycle",
+		"exercise",
+		"hipster"
+	],
+	char: "🚲",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var motor_scooter$1 = {
+	keywords: [
+		"vehicle",
+		"vespa",
+		"sasha"
+	],
+	char: "🛵",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var rotating_light$1 = {
+	keywords: [
+		"police",
+		"ambulance",
+		"911",
+		"emergency",
+		"alert",
+		"error",
+		"pinged",
+		"law",
+		"legal"
+	],
+	char: "🚨",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var oncoming_police_car$1 = {
+	keywords: [
+		"vehicle",
+		"law",
+		"legal",
+		"enforcement",
+		"911"
+	],
+	char: "🚔",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var oncoming_bus$1 = {
+	keywords: [
+		"vehicle",
+		"transportation"
+	],
+	char: "🚍",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var oncoming_automobile$1 = {
+	keywords: [
+		"car",
+		"vehicle",
+		"transportation"
+	],
+	char: "🚘",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var oncoming_taxi$1 = {
+	keywords: [
+		"vehicle",
+		"cars",
+		"uber"
+	],
+	char: "🚖",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var aerial_tramway$1 = {
+	keywords: [
+		"transportation",
+		"vehicle",
+		"ski"
+	],
+	char: "🚡",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var mountain_cableway$1 = {
+	keywords: [
+		"transportation",
+		"vehicle",
+		"ski"
+	],
+	char: "🚠",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var suspension_railway$1 = {
+	keywords: [
+		"vehicle",
+		"transportation"
+	],
+	char: "🚟",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var railway_car$1 = {
+	keywords: [
+		"transportation",
+		"vehicle"
+	],
+	char: "🚃",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var train$1 = {
+	keywords: [
+		"transportation",
+		"vehicle",
+		"carriage",
+		"public",
+		"travel"
+	],
+	char: "🚋",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var monorail$1 = {
+	keywords: [
+		"transportation",
+		"vehicle"
+	],
+	char: "🚝",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var bullettrain_side$1 = {
+	keywords: [
+		"transportation",
+		"vehicle"
+	],
+	char: "🚄",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var bullettrain_front$1 = {
+	keywords: [
+		"transportation",
+		"vehicle",
+		"speed",
+		"fast",
+		"public",
+		"travel"
+	],
+	char: "🚅",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var light_rail$1 = {
+	keywords: [
+		"transportation",
+		"vehicle"
+	],
+	char: "🚈",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var mountain_railway$1 = {
+	keywords: [
+		"transportation",
+		"vehicle"
+	],
+	char: "🚞",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var steam_locomotive$1 = {
+	keywords: [
+		"transportation",
+		"vehicle",
+		"train"
+	],
+	char: "🚂",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var train2$1 = {
+	keywords: [
+		"transportation",
+		"vehicle"
+	],
+	char: "🚆",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var metro$1 = {
+	keywords: [
+		"transportation",
+		"blue-square",
+		"mrt",
+		"underground",
+		"tube"
+	],
+	char: "🚇",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var tram$1 = {
+	keywords: [
+		"transportation",
+		"vehicle"
+	],
+	char: "🚊",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var station$1 = {
+	keywords: [
+		"transportation",
+		"vehicle",
+		"public"
+	],
+	char: "🚉",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var flying_saucer$1 = {
+	keywords: [
+		"transportation",
+		"vehicle",
+		"ufo"
+	],
+	char: "🛸",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var helicopter$1 = {
+	keywords: [
+		"transportation",
+		"vehicle",
+		"fly"
+	],
+	char: "🚁",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var small_airplane$1 = {
+	keywords: [
+		"flight",
+		"transportation",
+		"fly",
+		"vehicle"
+	],
+	char: "🛩",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var airplane$1 = {
+	keywords: [
+		"vehicle",
+		"transportation",
+		"flight",
+		"fly"
+	],
+	char: "✈️",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var flight_departure$1 = {
+	keywords: [
+		"airport",
+		"flight",
+		"landing"
+	],
+	char: "🛫",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var flight_arrival$1 = {
+	keywords: [
+		"airport",
+		"flight",
+		"boarding"
+	],
+	char: "🛬",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var sailboat$1 = {
+	keywords: [
+		"ship",
+		"summer",
+		"transportation",
+		"water",
+		"sailing"
+	],
+	char: "⛵",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var motor_boat$1 = {
+	keywords: [
+		"ship"
+	],
+	char: "🛥",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var speedboat$1 = {
+	keywords: [
+		"ship",
+		"transportation",
+		"vehicle",
+		"summer"
+	],
+	char: "🚤",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var ferry$1 = {
+	keywords: [
+		"boat",
+		"ship",
+		"yacht"
+	],
+	char: "⛴",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var passenger_ship$1 = {
+	keywords: [
+		"yacht",
+		"cruise",
+		"ferry"
+	],
+	char: "🛳",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var rocket$1 = {
+	keywords: [
+		"launch",
+		"ship",
+		"staffmode",
+		"NASA",
+		"outer space",
+		"outer_space",
+		"fly"
+	],
+	char: "🚀",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var artificial_satellite$1 = {
+	keywords: [
+		"communication",
+		"gps",
+		"orbit",
+		"spaceflight",
+		"NASA",
+		"ISS"
+	],
+	char: "🛰",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var seat$1 = {
+	keywords: [
+		"sit",
+		"airplane",
+		"transport",
+		"bus",
+		"flight",
+		"fly"
+	],
+	char: "💺",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var canoe$1 = {
+	keywords: [
+		"boat",
+		"paddle",
+		"water",
+		"ship"
+	],
+	char: "🛶",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var anchor$1 = {
+	keywords: [
+		"ship",
+		"ferry",
+		"sea",
+		"boat"
+	],
+	char: "⚓",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var construction$1 = {
+	keywords: [
+		"wip",
+		"progress",
+		"caution",
+		"warning"
+	],
+	char: "🚧",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var fuelpump$1 = {
+	keywords: [
+		"gas station",
+		"petroleum"
+	],
+	char: "⛽",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var busstop$1 = {
+	keywords: [
+		"transportation",
+		"wait"
+	],
+	char: "🚏",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var vertical_traffic_light$1 = {
+	keywords: [
+		"transportation",
+		"driving"
+	],
+	char: "🚦",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var traffic_light$1 = {
+	keywords: [
+		"transportation",
+		"signal"
+	],
+	char: "🚥",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var checkered_flag$1 = {
+	keywords: [
+		"contest",
+		"finishline",
+		"race",
+		"gokart"
+	],
+	char: "🏁",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var ship$1 = {
+	keywords: [
+		"transportation",
+		"titanic",
+		"deploy"
+	],
+	char: "🚢",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var ferris_wheel$1 = {
+	keywords: [
+		"photo",
+		"carnival",
+		"londoneye"
+	],
+	char: "🎡",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var roller_coaster$1 = {
+	keywords: [
+		"carnival",
+		"playground",
+		"photo",
+		"fun"
+	],
+	char: "🎢",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var carousel_horse$1 = {
+	keywords: [
+		"photo",
+		"carnival"
+	],
+	char: "🎠",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var building_construction$1 = {
+	keywords: [
+		"wip",
+		"working",
+		"progress"
+	],
+	char: "🏗",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var foggy$1 = {
+	keywords: [
+		"photo",
+		"mountain"
+	],
+	char: "🌁",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var tokyo_tower$1 = {
+	keywords: [
+		"photo",
+		"japanese"
+	],
+	char: "🗼",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var factory$1 = {
+	keywords: [
+		"building",
+		"industry",
+		"pollution",
+		"smoke"
+	],
+	char: "🏭",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var fountain$1 = {
+	keywords: [
+		"photo",
+		"summer",
+		"water",
+		"fresh"
+	],
+	char: "⛲",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var rice_scene$1 = {
+	keywords: [
+		"photo",
+		"japan",
+		"asia",
+		"tsukimi"
+	],
+	char: "🎑",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var mountain$1 = {
+	keywords: [
+		"photo",
+		"nature",
+		"environment"
+	],
+	char: "⛰",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var mountain_snow$1 = {
+	keywords: [
+		"photo",
+		"nature",
+		"environment",
+		"winter",
+		"cold"
+	],
+	char: "🏔",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var mount_fuji$1 = {
+	keywords: [
+		"photo",
+		"mountain",
+		"nature",
+		"japanese"
+	],
+	char: "🗻",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var volcano$1 = {
+	keywords: [
+		"photo",
+		"nature",
+		"disaster"
+	],
+	char: "🌋",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var japan$1 = {
+	keywords: [
+		"nation",
+		"country",
+		"japanese",
+		"asia"
+	],
+	char: "🗾",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var camping$1 = {
+	keywords: [
+		"photo",
+		"outdoors",
+		"tent"
+	],
+	char: "🏕",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var tent$1 = {
+	keywords: [
+		"photo",
+		"camping",
+		"outdoors"
+	],
+	char: "⛺",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var national_park$1 = {
+	keywords: [
+		"photo",
+		"environment",
+		"nature"
+	],
+	char: "🏞",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var motorway$1 = {
+	keywords: [
+		"road",
+		"cupertino",
+		"interstate",
+		"highway"
+	],
+	char: "🛣",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var railway_track$1 = {
+	keywords: [
+		"train",
+		"transportation"
+	],
+	char: "🛤",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var sunrise$1 = {
+	keywords: [
+		"morning",
+		"view",
+		"vacation",
+		"photo"
+	],
+	char: "🌅",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var sunrise_over_mountains$1 = {
+	keywords: [
+		"view",
+		"vacation",
+		"photo"
+	],
+	char: "🌄",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var desert$1 = {
+	keywords: [
+		"photo",
+		"warm",
+		"saharah"
+	],
+	char: "🏜",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var beach_umbrella$1 = {
+	keywords: [
+		"weather",
+		"summer",
+		"sunny",
+		"sand",
+		"mojito"
+	],
+	char: "🏖",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var desert_island$1 = {
+	keywords: [
+		"photo",
+		"tropical",
+		"mojito"
+	],
+	char: "🏝",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var city_sunrise$1 = {
+	keywords: [
+		"photo",
+		"good morning",
+		"dawn"
+	],
+	char: "🌇",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var city_sunset$1 = {
+	keywords: [
+		"photo",
+		"evening",
+		"sky",
+		"buildings"
+	],
+	char: "🌆",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var cityscape$1 = {
+	keywords: [
+		"photo",
+		"night life",
+		"urban"
+	],
+	char: "🏙",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var night_with_stars$1 = {
+	keywords: [
+		"evening",
+		"city",
+		"downtown"
+	],
+	char: "🌃",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var bridge_at_night$1 = {
+	keywords: [
+		"photo",
+		"sanfrancisco"
+	],
+	char: "🌉",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var milky_way$1 = {
+	keywords: [
+		"photo",
+		"space",
+		"stars"
+	],
+	char: "🌌",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var stars$1 = {
+	keywords: [
+		"night",
+		"photo"
+	],
+	char: "🌠",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var sparkler$1 = {
+	keywords: [
+		"stars",
+		"night",
+		"shine"
+	],
+	char: "🎇",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var fireworks$1 = {
+	keywords: [
+		"photo",
+		"festival",
+		"carnival",
+		"congratulations"
+	],
+	char: "🎆",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var rainbow$1 = {
+	keywords: [
+		"nature",
+		"happy",
+		"unicorn_face",
+		"photo",
+		"sky",
+		"spring"
+	],
+	char: "🌈",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var houses$1 = {
+	keywords: [
+		"buildings",
+		"photo"
+	],
+	char: "🏘",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var european_castle$1 = {
+	keywords: [
+		"building",
+		"royalty",
+		"history"
+	],
+	char: "🏰",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var japanese_castle$1 = {
+	keywords: [
+		"photo",
+		"building"
+	],
+	char: "🏯",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var stadium$1 = {
+	keywords: [
+		"photo",
+		"place",
+		"sports",
+		"concert",
+		"venue"
+	],
+	char: "🏟",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var statue_of_liberty$1 = {
+	keywords: [
+		"american",
+		"newyork"
+	],
+	char: "🗽",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var house$1 = {
+	keywords: [
+		"building",
+		"home"
+	],
+	char: "🏠",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var house_with_garden$1 = {
+	keywords: [
+		"home",
+		"plant",
+		"nature"
+	],
+	char: "🏡",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var derelict_house$1 = {
+	keywords: [
+		"abandon",
+		"evict",
+		"broken",
+		"building"
+	],
+	char: "🏚",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var office$1 = {
+	keywords: [
+		"building",
+		"bureau",
+		"work"
+	],
+	char: "🏢",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var department_store$1 = {
+	keywords: [
+		"building",
+		"shopping",
+		"mall"
+	],
+	char: "🏬",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var post_office$1 = {
+	keywords: [
+		"building",
+		"envelope",
+		"communication"
+	],
+	char: "🏣",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var european_post_office$1 = {
+	keywords: [
+		"building",
+		"email"
+	],
+	char: "🏤",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var hospital$1 = {
+	keywords: [
+		"building",
+		"health",
+		"surgery",
+		"doctor"
+	],
+	char: "🏥",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var bank$1 = {
+	keywords: [
+		"building",
+		"money",
+		"sales",
+		"cash",
+		"business",
+		"enterprise"
+	],
+	char: "🏦",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var hotel$1 = {
+	keywords: [
+		"building",
+		"accomodation",
+		"checkin"
+	],
+	char: "🏨",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var convenience_store$1 = {
+	keywords: [
+		"building",
+		"shopping",
+		"groceries"
+	],
+	char: "🏪",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var school$1 = {
+	keywords: [
+		"building",
+		"student",
+		"education",
+		"learn",
+		"teach"
+	],
+	char: "🏫",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var love_hotel$1 = {
+	keywords: [
+		"like",
+		"affection",
+		"dating"
+	],
+	char: "🏩",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var wedding$1 = {
+	keywords: [
+		"love",
+		"like",
+		"affection",
+		"couple",
+		"marriage",
+		"bride",
+		"groom"
+	],
+	char: "💒",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var classical_building$1 = {
+	keywords: [
+		"art",
+		"culture",
+		"history"
+	],
+	char: "🏛",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var church$1 = {
+	keywords: [
+		"building",
+		"religion",
+		"christ"
+	],
+	char: "⛪",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var mosque$1 = {
+	keywords: [
+		"islam",
+		"worship",
+		"minaret"
+	],
+	char: "🕌",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var synagogue$1 = {
+	keywords: [
+		"judaism",
+		"worship",
+		"temple",
+		"jewish"
+	],
+	char: "🕍",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var kaaba$1 = {
+	keywords: [
+		"mecca",
+		"mosque",
+		"islam"
+	],
+	char: "🕋",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var shinto_shrine$1 = {
+	keywords: [
+		"temple",
+		"japan",
+		"kyoto"
+	],
+	char: "⛩",
+	fitzpatrick_scale: false,
+	category: "travel_and_places"
+};
+var watch$1 = {
+	keywords: [
+		"time",
+		"accessories"
+	],
+	char: "⌚",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var iphone$1 = {
+	keywords: [
+		"technology",
+		"apple",
+		"gadgets",
+		"dial"
+	],
+	char: "📱",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var calling$1 = {
+	keywords: [
+		"iphone",
+		"incoming"
+	],
+	char: "📲",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var computer$1 = {
+	keywords: [
+		"technology",
+		"laptop",
+		"screen",
+		"display",
+		"monitor"
+	],
+	char: "💻",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var keyboard$1 = {
+	keywords: [
+		"technology",
+		"computer",
+		"type",
+		"input",
+		"text"
+	],
+	char: "⌨",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var desktop_computer$1 = {
+	keywords: [
+		"technology",
+		"computing",
+		"screen"
+	],
+	char: "🖥",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var printer$1 = {
+	keywords: [
+		"paper",
+		"ink"
+	],
+	char: "🖨",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var computer_mouse$1 = {
+	keywords: [
+		"click"
+	],
+	char: "🖱",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var trackball$1 = {
+	keywords: [
+		"technology",
+		"trackpad"
+	],
+	char: "🖲",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var joystick$1 = {
+	keywords: [
+		"game",
+		"play"
+	],
+	char: "🕹",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var clamp$1 = {
+	keywords: [
+		"tool"
+	],
+	char: "🗜",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var minidisc$1 = {
+	keywords: [
+		"technology",
+		"record",
+		"data",
+		"disk",
+		"90s"
+	],
+	char: "💽",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var floppy_disk$1 = {
+	keywords: [
+		"oldschool",
+		"technology",
+		"save",
+		"90s",
+		"80s"
+	],
+	char: "💾",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var cd$1 = {
+	keywords: [
+		"technology",
+		"dvd",
+		"disk",
+		"disc",
+		"90s"
+	],
+	char: "💿",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var dvd$1 = {
+	keywords: [
+		"cd",
+		"disk",
+		"disc"
+	],
+	char: "📀",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var vhs$1 = {
+	keywords: [
+		"record",
+		"video",
+		"oldschool",
+		"90s",
+		"80s"
+	],
+	char: "📼",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var camera$1 = {
+	keywords: [
+		"gadgets",
+		"photography"
+	],
+	char: "📷",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var camera_flash$1 = {
+	keywords: [
+		"photography",
+		"gadgets"
+	],
+	char: "📸",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var video_camera$1 = {
+	keywords: [
+		"film",
+		"record"
+	],
+	char: "📹",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var movie_camera$1 = {
+	keywords: [
+		"film",
+		"record"
+	],
+	char: "🎥",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var film_projector$1 = {
+	keywords: [
+		"video",
+		"tape",
+		"record",
+		"movie"
+	],
+	char: "📽",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var film_strip$1 = {
+	keywords: [
+		"movie"
+	],
+	char: "🎞",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var telephone_receiver$1 = {
+	keywords: [
+		"technology",
+		"communication",
+		"dial"
+	],
+	char: "📞",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var phone$1 = {
+	keywords: [
+		"technology",
+		"communication",
+		"dial",
+		"telephone"
+	],
+	char: "☎️",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var pager$1 = {
+	keywords: [
+		"bbcall",
+		"oldschool",
+		"90s"
+	],
+	char: "📟",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var fax$1 = {
+	keywords: [
+		"communication",
+		"technology"
+	],
+	char: "📠",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var tv$1 = {
+	keywords: [
+		"technology",
+		"program",
+		"oldschool",
+		"show",
+		"television"
+	],
+	char: "📺",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var radio$1 = {
+	keywords: [
+		"communication",
+		"music",
+		"podcast",
+		"program"
+	],
+	char: "📻",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var studio_microphone$1 = {
+	keywords: [
+		"sing",
+		"recording",
+		"artist",
+		"talkshow"
+	],
+	char: "🎙",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var level_slider$1 = {
+	keywords: [
+		"scale"
+	],
+	char: "🎚",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var control_knobs$1 = {
+	keywords: [
+		"dial"
+	],
+	char: "🎛",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var compass$1 = {
+	keywords: [
+		"magnetic",
+		"navigation",
+		"orienteering"
+	],
+	char: "🧭",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var stopwatch$1 = {
+	keywords: [
+		"time",
+		"deadline"
+	],
+	char: "⏱",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var timer_clock$1 = {
+	keywords: [
+		"alarm"
+	],
+	char: "⏲",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var alarm_clock$1 = {
+	keywords: [
+		"time",
+		"wake"
+	],
+	char: "⏰",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var mantelpiece_clock$1 = {
+	keywords: [
+		"time"
+	],
+	char: "🕰",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var hourglass_flowing_sand$1 = {
+	keywords: [
+		"oldschool",
+		"time",
+		"countdown"
+	],
+	char: "⏳",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var hourglass$1 = {
+	keywords: [
+		"time",
+		"clock",
+		"oldschool",
+		"limit",
+		"exam",
+		"quiz",
+		"test"
+	],
+	char: "⌛",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var satellite$1 = {
+	keywords: [
+		"communication",
+		"future",
+		"radio",
+		"space"
+	],
+	char: "📡",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var battery$1 = {
+	keywords: [
+		"power",
+		"energy",
+		"sustain"
+	],
+	char: "🔋",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var electric_plug$1 = {
+	keywords: [
+		"charger",
+		"power"
+	],
+	char: "🔌",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var bulb$1 = {
+	keywords: [
+		"light",
+		"electricity",
+		"idea"
+	],
+	char: "💡",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var flashlight$1 = {
+	keywords: [
+		"dark",
+		"camping",
+		"sight",
+		"night"
+	],
+	char: "🔦",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var candle$1 = {
+	keywords: [
+		"fire",
+		"wax"
+	],
+	char: "🕯",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var fire_extinguisher$1 = {
+	keywords: [
+		"quench"
+	],
+	char: "🧯",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var wastebasket$1 = {
+	keywords: [
+		"bin",
+		"trash",
+		"rubbish",
+		"garbage",
+		"toss"
+	],
+	char: "🗑",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var oil_drum$1 = {
+	keywords: [
+		"barrell"
+	],
+	char: "🛢",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var money_with_wings$1 = {
+	keywords: [
+		"dollar",
+		"bills",
+		"payment",
+		"sale"
+	],
+	char: "💸",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var dollar$1 = {
+	keywords: [
+		"money",
+		"sales",
+		"bill",
+		"currency"
+	],
+	char: "💵",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var yen$1 = {
+	keywords: [
+		"money",
+		"sales",
+		"japanese",
+		"dollar",
+		"currency"
+	],
+	char: "💴",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var euro$1 = {
+	keywords: [
+		"money",
+		"sales",
+		"dollar",
+		"currency"
+	],
+	char: "💶",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var pound$1 = {
+	keywords: [
+		"british",
+		"sterling",
+		"money",
+		"sales",
+		"bills",
+		"uk",
+		"england",
+		"currency"
+	],
+	char: "💷",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var moneybag$1 = {
+	keywords: [
+		"dollar",
+		"payment",
+		"coins",
+		"sale"
+	],
+	char: "💰",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var credit_card$1 = {
+	keywords: [
+		"money",
+		"sales",
+		"dollar",
+		"bill",
+		"payment",
+		"shopping"
+	],
+	char: "💳",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var gem$1 = {
+	keywords: [
+		"blue",
+		"ruby",
+		"diamond",
+		"jewelry"
+	],
+	char: "💎",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var balance_scale$1 = {
+	keywords: [
+		"law",
+		"fairness",
+		"weight"
+	],
+	char: "⚖",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var toolbox$1 = {
+	keywords: [
+		"tools",
+		"diy",
+		"fix",
+		"maintainer",
+		"mechanic"
+	],
+	char: "🧰",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var wrench$1 = {
+	keywords: [
+		"tools",
+		"diy",
+		"ikea",
+		"fix",
+		"maintainer"
+	],
+	char: "🔧",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var hammer$1 = {
+	keywords: [
+		"tools",
+		"build",
+		"create"
+	],
+	char: "🔨",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var hammer_and_pick$1 = {
+	keywords: [
+		"tools",
+		"build",
+		"create"
+	],
+	char: "⚒",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var hammer_and_wrench$1 = {
+	keywords: [
+		"tools",
+		"build",
+		"create"
+	],
+	char: "🛠",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var pick$1 = {
+	keywords: [
+		"tools",
+		"dig"
+	],
+	char: "⛏",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var nut_and_bolt$1 = {
+	keywords: [
+		"handy",
+		"tools",
+		"fix"
+	],
+	char: "🔩",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var gear$1 = {
+	keywords: [
+		"cog"
+	],
+	char: "⚙",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var brick$1 = {
+	keywords: [
+		"bricks"
+	],
+	char: "🧱",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var chains$1 = {
+	keywords: [
+		"lock",
+		"arrest"
+	],
+	char: "⛓",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var magnet$1 = {
+	keywords: [
+		"attraction",
+		"magnetic"
+	],
+	char: "🧲",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var gun$1 = {
+	keywords: [
+		"violence",
+		"weapon",
+		"pistol",
+		"revolver"
+	],
+	char: "🔫",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var bomb$1 = {
+	keywords: [
+		"boom",
+		"explode",
+		"explosion",
+		"terrorism"
+	],
+	char: "💣",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var firecracker$1 = {
+	keywords: [
+		"dynamite",
+		"boom",
+		"explode",
+		"explosion",
+		"explosive"
+	],
+	char: "🧨",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var hocho$1 = {
+	keywords: [
+		"knife",
+		"blade",
+		"cutlery",
+		"kitchen",
+		"weapon"
+	],
+	char: "🔪",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var dagger$1 = {
+	keywords: [
+		"weapon"
+	],
+	char: "🗡",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var crossed_swords$1 = {
+	keywords: [
+		"weapon"
+	],
+	char: "⚔",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var shield$1 = {
+	keywords: [
+		"protection",
+		"security"
+	],
+	char: "🛡",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var smoking$1 = {
+	keywords: [
+		"kills",
+		"tobacco",
+		"cigarette",
+		"joint",
+		"smoke"
+	],
+	char: "🚬",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var skull_and_crossbones$1 = {
+	keywords: [
+		"poison",
+		"danger",
+		"deadly",
+		"scary",
+		"death",
+		"pirate",
+		"evil"
+	],
+	char: "☠",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var coffin$1 = {
+	keywords: [
+		"vampire",
+		"dead",
+		"die",
+		"death",
+		"rip",
+		"graveyard",
+		"cemetery",
+		"casket",
+		"funeral",
+		"box"
+	],
+	char: "⚰",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var funeral_urn$1 = {
+	keywords: [
+		"dead",
+		"die",
+		"death",
+		"rip",
+		"ashes"
+	],
+	char: "⚱",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var amphora$1 = {
+	keywords: [
+		"vase",
+		"jar"
+	],
+	char: "🏺",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var crystal_ball$1 = {
+	keywords: [
+		"disco",
+		"party",
+		"magic",
+		"circus",
+		"fortune_teller"
+	],
+	char: "🔮",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var prayer_beads$1 = {
+	keywords: [
+		"dhikr",
+		"religious"
+	],
+	char: "📿",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var nazar_amulet$1 = {
+	keywords: [
+		"bead",
+		"charm"
+	],
+	char: "🧿",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var barber$1 = {
+	keywords: [
+		"hair",
+		"salon",
+		"style"
+	],
+	char: "💈",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var alembic$1 = {
+	keywords: [
+		"distilling",
+		"science",
+		"experiment",
+		"chemistry"
+	],
+	char: "⚗",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var telescope$1 = {
+	keywords: [
+		"stars",
+		"space",
+		"zoom",
+		"science",
+		"astronomy"
+	],
+	char: "🔭",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var microscope$1 = {
+	keywords: [
+		"laboratory",
+		"experiment",
+		"zoomin",
+		"science",
+		"study"
+	],
+	char: "🔬",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var hole$1 = {
+	keywords: [
+		"embarrassing"
+	],
+	char: "🕳",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var pill$1 = {
+	keywords: [
+		"health",
+		"medicine",
+		"doctor",
+		"pharmacy",
+		"drug"
+	],
+	char: "💊",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var syringe$1 = {
+	keywords: [
+		"health",
+		"hospital",
+		"drugs",
+		"blood",
+		"medicine",
+		"needle",
+		"doctor",
+		"nurse"
+	],
+	char: "💉",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var dna$1 = {
+	keywords: [
+		"biologist",
+		"genetics",
+		"life"
+	],
+	char: "🧬",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var microbe$1 = {
+	keywords: [
+		"amoeba",
+		"bacteria",
+		"germs"
+	],
+	char: "🦠",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var petri_dish$1 = {
+	keywords: [
+		"bacteria",
+		"biology",
+		"culture",
+		"lab"
+	],
+	char: "🧫",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var test_tube$1 = {
+	keywords: [
+		"chemistry",
+		"experiment",
+		"lab",
+		"science"
+	],
+	char: "🧪",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var thermometer$1 = {
+	keywords: [
+		"weather",
+		"temperature",
+		"hot",
+		"cold"
+	],
+	char: "🌡",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var broom$1 = {
+	keywords: [
+		"cleaning",
+		"sweeping",
+		"witch"
+	],
+	char: "🧹",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var basket$1 = {
+	keywords: [
+		"laundry"
+	],
+	char: "🧺",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var toilet_paper$1 = {
+	keywords: [
+		"roll"
+	],
+	char: "🧻",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var label$1 = {
+	keywords: [
+		"sale",
+		"tag"
+	],
+	char: "🏷",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var bookmark$1 = {
+	keywords: [
+		"favorite",
+		"label",
+		"save"
+	],
+	char: "🔖",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var toilet$1 = {
+	keywords: [
+		"restroom",
+		"wc",
+		"washroom",
+		"bathroom",
+		"potty"
+	],
+	char: "🚽",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var shower$1 = {
+	keywords: [
+		"clean",
+		"water",
+		"bathroom"
+	],
+	char: "🚿",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var bathtub$1 = {
+	keywords: [
+		"clean",
+		"shower",
+		"bathroom"
+	],
+	char: "🛁",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var soap$1 = {
+	keywords: [
+		"bar",
+		"bathing",
+		"cleaning",
+		"lather"
+	],
+	char: "🧼",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var sponge$1 = {
+	keywords: [
+		"absorbing",
+		"cleaning",
+		"porous"
+	],
+	char: "🧽",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var lotion_bottle$1 = {
+	keywords: [
+		"moisturizer",
+		"sunscreen"
+	],
+	char: "🧴",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var key$1 = {
+	keywords: [
+		"lock",
+		"door",
+		"password"
+	],
+	char: "🔑",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var old_key$1 = {
+	keywords: [
+		"lock",
+		"door",
+		"password"
+	],
+	char: "🗝",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var couch_and_lamp$1 = {
+	keywords: [
+		"read",
+		"chill"
+	],
+	char: "🛋",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var sleeping_bed$1 = {
+	keywords: [
+		"bed",
+		"rest"
+	],
+	char: "🛌",
+	fitzpatrick_scale: true,
+	category: "objects"
+};
+var bed$1 = {
+	keywords: [
+		"sleep",
+		"rest"
+	],
+	char: "🛏",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var door$1 = {
+	keywords: [
+		"house",
+		"entry",
+		"exit"
+	],
+	char: "🚪",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var bellhop_bell$1 = {
+	keywords: [
+		"service"
+	],
+	char: "🛎",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var teddy_bear$1 = {
+	keywords: [
+		"plush",
+		"stuffed"
+	],
+	char: "🧸",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var framed_picture$1 = {
+	keywords: [
+		"photography"
+	],
+	char: "🖼",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var world_map$1 = {
+	keywords: [
+		"location",
+		"direction"
+	],
+	char: "🗺",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var parasol_on_ground$1 = {
+	keywords: [
+		"weather",
+		"summer"
+	],
+	char: "⛱",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var moyai$1 = {
+	keywords: [
+		"rock",
+		"easter island",
+		"moai"
+	],
+	char: "🗿",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var shopping$1 = {
+	keywords: [
+		"mall",
+		"buy",
+		"purchase"
+	],
+	char: "🛍",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var shopping_cart$1 = {
+	keywords: [
+		"trolley"
+	],
+	char: "🛒",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var balloon$1 = {
+	keywords: [
+		"party",
+		"celebration",
+		"birthday",
+		"circus"
+	],
+	char: "🎈",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var flags$1 = {
+	keywords: [
+		"fish",
+		"japanese",
+		"koinobori",
+		"carp",
+		"banner"
+	],
+	char: "🎏",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var ribbon$1 = {
+	keywords: [
+		"decoration",
+		"pink",
+		"girl",
+		"bowtie"
+	],
+	char: "🎀",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var gift$1 = {
+	keywords: [
+		"present",
+		"birthday",
+		"christmas",
+		"xmas"
+	],
+	char: "🎁",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var confetti_ball$1 = {
+	keywords: [
+		"festival",
+		"party",
+		"birthday",
+		"circus"
+	],
+	char: "🎊",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var tada$1 = {
+	keywords: [
+		"party",
+		"congratulations",
+		"birthday",
+		"magic",
+		"circus",
+		"celebration"
+	],
+	char: "🎉",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var dolls$1 = {
+	keywords: [
+		"japanese",
+		"toy",
+		"kimono"
+	],
+	char: "🎎",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var wind_chime$1 = {
+	keywords: [
+		"nature",
+		"ding",
+		"spring",
+		"bell"
+	],
+	char: "🎐",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var crossed_flags$1 = {
+	keywords: [
+		"japanese",
+		"nation",
+		"country",
+		"border"
+	],
+	char: "🎌",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var izakaya_lantern$1 = {
+	keywords: [
+		"light",
+		"paper",
+		"halloween",
+		"spooky"
+	],
+	char: "🏮",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var red_envelope$1 = {
+	keywords: [
+		"gift"
+	],
+	char: "🧧",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var email$1 = {
+	keywords: [
+		"letter",
+		"postal",
+		"inbox",
+		"communication"
+	],
+	char: "✉️",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var envelope_with_arrow$1 = {
+	keywords: [
+		"email",
+		"communication"
+	],
+	char: "📩",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var incoming_envelope$1 = {
+	keywords: [
+		"email",
+		"inbox"
+	],
+	char: "📨",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var love_letter$1 = {
+	keywords: [
+		"email",
+		"like",
+		"affection",
+		"envelope",
+		"valentines"
+	],
+	char: "💌",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var postbox$1 = {
+	keywords: [
+		"email",
+		"letter",
+		"envelope"
+	],
+	char: "📮",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var mailbox_closed$1 = {
+	keywords: [
+		"email",
+		"communication",
+		"inbox"
+	],
+	char: "📪",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var mailbox$1 = {
+	keywords: [
+		"email",
+		"inbox",
+		"communication"
+	],
+	char: "📫",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var mailbox_with_mail$1 = {
+	keywords: [
+		"email",
+		"inbox",
+		"communication"
+	],
+	char: "📬",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var mailbox_with_no_mail$1 = {
+	keywords: [
+		"email",
+		"inbox"
+	],
+	char: "📭",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var postal_horn$1 = {
+	keywords: [
+		"instrument",
+		"music"
+	],
+	char: "📯",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var inbox_tray$1 = {
+	keywords: [
+		"email",
+		"documents"
+	],
+	char: "📥",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var outbox_tray$1 = {
+	keywords: [
+		"inbox",
+		"email"
+	],
+	char: "📤",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var scroll$1 = {
+	keywords: [
+		"documents",
+		"ancient",
+		"history",
+		"paper"
+	],
+	char: "📜",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var page_with_curl$1 = {
+	keywords: [
+		"documents",
+		"office",
+		"paper"
+	],
+	char: "📃",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var bookmark_tabs$1 = {
+	keywords: [
+		"favorite",
+		"save",
+		"order",
+		"tidy"
+	],
+	char: "📑",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var receipt$1 = {
+	keywords: [
+		"accounting",
+		"expenses"
+	],
+	char: "🧾",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var bar_chart$1 = {
+	keywords: [
+		"graph",
+		"presentation",
+		"stats"
+	],
+	char: "📊",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var chart_with_upwards_trend$1 = {
+	keywords: [
+		"graph",
+		"presentation",
+		"stats",
+		"recovery",
+		"business",
+		"economics",
+		"money",
+		"sales",
+		"good",
+		"success"
+	],
+	char: "📈",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var chart_with_downwards_trend$1 = {
+	keywords: [
+		"graph",
+		"presentation",
+		"stats",
+		"recession",
+		"business",
+		"economics",
+		"money",
+		"sales",
+		"bad",
+		"failure"
+	],
+	char: "📉",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var page_facing_up$1 = {
+	keywords: [
+		"documents",
+		"office",
+		"paper",
+		"information"
+	],
+	char: "📄",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var date$1 = {
+	keywords: [
+		"calendar",
+		"schedule"
+	],
+	char: "📅",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var calendar$1 = {
+	keywords: [
+		"schedule",
+		"date",
+		"planning"
+	],
+	char: "📆",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var spiral_calendar$1 = {
+	keywords: [
+		"date",
+		"schedule",
+		"planning"
+	],
+	char: "🗓",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var card_index$1 = {
+	keywords: [
+		"business",
+		"stationery"
+	],
+	char: "📇",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var card_file_box$1 = {
+	keywords: [
+		"business",
+		"stationery"
+	],
+	char: "🗃",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var ballot_box$1 = {
+	keywords: [
+		"election",
+		"vote"
+	],
+	char: "🗳",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var file_cabinet$1 = {
+	keywords: [
+		"filing",
+		"organizing"
+	],
+	char: "🗄",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var clipboard$2 = {
+	keywords: [
+		"stationery",
+		"documents"
+	],
+	char: "📋",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var spiral_notepad$1 = {
+	keywords: [
+		"memo",
+		"stationery"
+	],
+	char: "🗒",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var file_folder$1 = {
+	keywords: [
+		"documents",
+		"business",
+		"office"
+	],
+	char: "📁",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var open_file_folder$1 = {
+	keywords: [
+		"documents",
+		"load"
+	],
+	char: "📂",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var card_index_dividers$1 = {
+	keywords: [
+		"organizing",
+		"business",
+		"stationery"
+	],
+	char: "🗂",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var newspaper_roll$1 = {
+	keywords: [
+		"press",
+		"headline"
+	],
+	char: "🗞",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var newspaper$1 = {
+	keywords: [
+		"press",
+		"headline"
+	],
+	char: "📰",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var notebook$1 = {
+	keywords: [
+		"stationery",
+		"record",
+		"notes",
+		"paper",
+		"study"
+	],
+	char: "📓",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var closed_book$1 = {
+	keywords: [
+		"read",
+		"library",
+		"knowledge",
+		"textbook",
+		"learn"
+	],
+	char: "📕",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var green_book$1 = {
+	keywords: [
+		"read",
+		"library",
+		"knowledge",
+		"study"
+	],
+	char: "📗",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var blue_book$1 = {
+	keywords: [
+		"read",
+		"library",
+		"knowledge",
+		"learn",
+		"study"
+	],
+	char: "📘",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var orange_book$1 = {
+	keywords: [
+		"read",
+		"library",
+		"knowledge",
+		"textbook",
+		"study"
+	],
+	char: "📙",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var notebook_with_decorative_cover$1 = {
+	keywords: [
+		"classroom",
+		"notes",
+		"record",
+		"paper",
+		"study"
+	],
+	char: "📔",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var ledger$1 = {
+	keywords: [
+		"notes",
+		"paper"
+	],
+	char: "📒",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var books$1 = {
+	keywords: [
+		"literature",
+		"library",
+		"study"
+	],
+	char: "📚",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var open_book$1 = {
+	keywords: [
+		"book",
+		"read",
+		"library",
+		"knowledge",
+		"literature",
+		"learn",
+		"study"
+	],
+	char: "📖",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var safety_pin$1 = {
+	keywords: [
+		"diaper"
+	],
+	char: "🧷",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var link$2 = {
+	keywords: [
+		"rings",
+		"url"
+	],
+	char: "🔗",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var paperclip$1 = {
+	keywords: [
+		"documents",
+		"stationery"
+	],
+	char: "📎",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var paperclips$1 = {
+	keywords: [
+		"documents",
+		"stationery"
+	],
+	char: "🖇",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var scissors$1 = {
+	keywords: [
+		"stationery",
+		"cut"
+	],
+	char: "✂️",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var triangular_ruler$1 = {
+	keywords: [
+		"stationery",
+		"math",
+		"architect",
+		"sketch"
+	],
+	char: "📐",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var straight_ruler$1 = {
+	keywords: [
+		"stationery",
+		"calculate",
+		"length",
+		"math",
+		"school",
+		"drawing",
+		"architect",
+		"sketch"
+	],
+	char: "📏",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var abacus$1 = {
+	keywords: [
+		"calculation"
+	],
+	char: "🧮",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var pushpin$1 = {
+	keywords: [
+		"stationery",
+		"mark",
+		"here"
+	],
+	char: "📌",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var round_pushpin$1 = {
+	keywords: [
+		"stationery",
+		"location",
+		"map",
+		"here"
+	],
+	char: "📍",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var triangular_flag_on_post$1 = {
+	keywords: [
+		"mark",
+		"milestone",
+		"place"
+	],
+	char: "🚩",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var white_flag$1 = {
+	keywords: [
+		"losing",
+		"loser",
+		"lost",
+		"surrender",
+		"give up",
+		"fail"
+	],
+	char: "🏳",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var black_flag$1 = {
+	keywords: [
+		"pirate"
+	],
+	char: "🏴",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var rainbow_flag$1 = {
+	keywords: [
+		"flag",
+		"rainbow",
+		"pride",
+		"gay",
+		"lgbt",
+		"glbt",
+		"queer",
+		"homosexual",
+		"lesbian",
+		"bisexual",
+		"transgender"
+	],
+	char: "🏳️‍🌈",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var closed_lock_with_key$1 = {
+	keywords: [
+		"security",
+		"privacy"
+	],
+	char: "🔐",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var lock$1 = {
+	keywords: [
+		"security",
+		"password",
+		"padlock"
+	],
+	char: "🔒",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var unlock$1 = {
+	keywords: [
+		"privacy",
+		"security"
+	],
+	char: "🔓",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var lock_with_ink_pen$1 = {
+	keywords: [
+		"security",
+		"secret"
+	],
+	char: "🔏",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var pen$1 = {
+	keywords: [
+		"stationery",
+		"writing",
+		"write"
+	],
+	char: "🖊",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var fountain_pen$1 = {
+	keywords: [
+		"stationery",
+		"writing",
+		"write"
+	],
+	char: "🖋",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var black_nib$1 = {
+	keywords: [
+		"pen",
+		"stationery",
+		"writing",
+		"write"
+	],
+	char: "✒️",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var memo$1 = {
+	keywords: [
+		"write",
+		"documents",
+		"stationery",
+		"pencil",
+		"paper",
+		"writing",
+		"legal",
+		"exam",
+		"quiz",
+		"test",
+		"study",
+		"compose"
+	],
+	char: "📝",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var pencil2$1 = {
+	keywords: [
+		"stationery",
+		"write",
+		"paper",
+		"writing",
+		"school",
+		"study"
+	],
+	char: "✏️",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var crayon$1 = {
+	keywords: [
+		"drawing",
+		"creativity"
+	],
+	char: "🖍",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var paintbrush$1 = {
+	keywords: [
+		"drawing",
+		"creativity",
+		"art"
+	],
+	char: "🖌",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var mag$1 = {
+	keywords: [
+		"search",
+		"zoom",
+		"find",
+		"detective"
+	],
+	char: "🔍",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var mag_right$1 = {
+	keywords: [
+		"search",
+		"zoom",
+		"find",
+		"detective"
+	],
+	char: "🔎",
+	fitzpatrick_scale: false,
+	category: "objects"
+};
+var heart$1 = {
+	keywords: [
+		"love",
+		"like",
+		"valentines"
+	],
+	char: "❤️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var orange_heart$1 = {
+	keywords: [
+		"love",
+		"like",
+		"affection",
+		"valentines"
+	],
+	char: "🧡",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var yellow_heart$1 = {
+	keywords: [
+		"love",
+		"like",
+		"affection",
+		"valentines"
+	],
+	char: "💛",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var green_heart$1 = {
+	keywords: [
+		"love",
+		"like",
+		"affection",
+		"valentines"
+	],
+	char: "💚",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var blue_heart$1 = {
+	keywords: [
+		"love",
+		"like",
+		"affection",
+		"valentines"
+	],
+	char: "💙",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var purple_heart$1 = {
+	keywords: [
+		"love",
+		"like",
+		"affection",
+		"valentines"
+	],
+	char: "💜",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var black_heart$1 = {
+	keywords: [
+		"evil"
+	],
+	char: "🖤",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var broken_heart$1 = {
+	keywords: [
+		"sad",
+		"sorry",
+		"break",
+		"heart",
+		"heartbreak"
+	],
+	char: "💔",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var heavy_heart_exclamation$1 = {
+	keywords: [
+		"decoration",
+		"love"
+	],
+	char: "❣",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var two_hearts$1 = {
+	keywords: [
+		"love",
+		"like",
+		"affection",
+		"valentines",
+		"heart"
+	],
+	char: "💕",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var revolving_hearts$1 = {
+	keywords: [
+		"love",
+		"like",
+		"affection",
+		"valentines"
+	],
+	char: "💞",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var heartbeat$1 = {
+	keywords: [
+		"love",
+		"like",
+		"affection",
+		"valentines",
+		"pink",
+		"heart"
+	],
+	char: "💓",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var heartpulse$1 = {
+	keywords: [
+		"like",
+		"love",
+		"affection",
+		"valentines",
+		"pink"
+	],
+	char: "💗",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var sparkling_heart$1 = {
+	keywords: [
+		"love",
+		"like",
+		"affection",
+		"valentines"
+	],
+	char: "💖",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var cupid$1 = {
+	keywords: [
+		"love",
+		"like",
+		"heart",
+		"affection",
+		"valentines"
+	],
+	char: "💘",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var gift_heart$1 = {
+	keywords: [
+		"love",
+		"valentines"
+	],
+	char: "💝",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var heart_decoration$1 = {
+	keywords: [
+		"purple-square",
+		"love",
+		"like"
+	],
+	char: "💟",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var peace_symbol$1 = {
+	keywords: [
+		"hippie"
+	],
+	char: "☮",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var latin_cross$1 = {
+	keywords: [
+		"christianity"
+	],
+	char: "✝",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var star_and_crescent$1 = {
+	keywords: [
+		"islam"
+	],
+	char: "☪",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var om$1 = {
+	keywords: [
+		"hinduism",
+		"buddhism",
+		"sikhism",
+		"jainism"
+	],
+	char: "🕉",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var wheel_of_dharma$1 = {
+	keywords: [
+		"hinduism",
+		"buddhism",
+		"sikhism",
+		"jainism"
+	],
+	char: "☸",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var star_of_david$1 = {
+	keywords: [
+		"judaism"
+	],
+	char: "✡",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var six_pointed_star$1 = {
+	keywords: [
+		"purple-square",
+		"religion",
+		"jewish",
+		"hexagram"
+	],
+	char: "🔯",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var menorah$1 = {
+	keywords: [
+		"hanukkah",
+		"candles",
+		"jewish"
+	],
+	char: "🕎",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var yin_yang$1 = {
+	keywords: [
+		"balance"
+	],
+	char: "☯",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var orthodox_cross$1 = {
+	keywords: [
+		"suppedaneum",
+		"religion"
+	],
+	char: "☦",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var place_of_worship$1 = {
+	keywords: [
+		"religion",
+		"church",
+		"temple",
+		"prayer"
+	],
+	char: "🛐",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var ophiuchus$1 = {
+	keywords: [
+		"sign",
+		"purple-square",
+		"constellation",
+		"astrology"
+	],
+	char: "⛎",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var aries$1 = {
+	keywords: [
+		"sign",
+		"purple-square",
+		"zodiac",
+		"astrology"
+	],
+	char: "♈",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var taurus$1 = {
+	keywords: [
+		"purple-square",
+		"sign",
+		"zodiac",
+		"astrology"
+	],
+	char: "♉",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var gemini$1 = {
+	keywords: [
+		"sign",
+		"zodiac",
+		"purple-square",
+		"astrology"
+	],
+	char: "♊",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var cancer$1 = {
+	keywords: [
+		"sign",
+		"zodiac",
+		"purple-square",
+		"astrology"
+	],
+	char: "♋",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var leo$1 = {
+	keywords: [
+		"sign",
+		"purple-square",
+		"zodiac",
+		"astrology"
+	],
+	char: "♌",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var virgo$1 = {
+	keywords: [
+		"sign",
+		"zodiac",
+		"purple-square",
+		"astrology"
+	],
+	char: "♍",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var libra$1 = {
+	keywords: [
+		"sign",
+		"purple-square",
+		"zodiac",
+		"astrology"
+	],
+	char: "♎",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var scorpius$1 = {
+	keywords: [
+		"sign",
+		"zodiac",
+		"purple-square",
+		"astrology",
+		"scorpio"
+	],
+	char: "♏",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var sagittarius$1 = {
+	keywords: [
+		"sign",
+		"zodiac",
+		"purple-square",
+		"astrology"
+	],
+	char: "♐",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var capricorn$1 = {
+	keywords: [
+		"sign",
+		"zodiac",
+		"purple-square",
+		"astrology"
+	],
+	char: "♑",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var aquarius$1 = {
+	keywords: [
+		"sign",
+		"purple-square",
+		"zodiac",
+		"astrology"
+	],
+	char: "♒",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var pisces$1 = {
+	keywords: [
+		"purple-square",
+		"sign",
+		"zodiac",
+		"astrology"
+	],
+	char: "♓",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var id$1 = {
+	keywords: [
+		"purple-square",
+		"words"
+	],
+	char: "🆔",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var atom_symbol$1 = {
+	keywords: [
+		"science",
+		"physics",
+		"chemistry"
+	],
+	char: "⚛",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var u7a7a$1 = {
+	keywords: [
+		"kanji",
+		"japanese",
+		"chinese",
+		"empty",
+		"sky",
+		"blue-square"
+	],
+	char: "🈳",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var u5272$1 = {
+	keywords: [
+		"cut",
+		"divide",
+		"chinese",
+		"kanji",
+		"pink-square"
+	],
+	char: "🈹",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var radioactive$1 = {
+	keywords: [
+		"nuclear",
+		"danger"
+	],
+	char: "☢",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var biohazard$1 = {
+	keywords: [
+		"danger"
+	],
+	char: "☣",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var mobile_phone_off$1 = {
+	keywords: [
+		"mute",
+		"orange-square",
+		"silence",
+		"quiet"
+	],
+	char: "📴",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var vibration_mode$1 = {
+	keywords: [
+		"orange-square",
+		"phone"
+	],
+	char: "📳",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var u6709$1 = {
+	keywords: [
+		"orange-square",
+		"chinese",
+		"have",
+		"kanji"
+	],
+	char: "🈶",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var u7121$1 = {
+	keywords: [
+		"nothing",
+		"chinese",
+		"kanji",
+		"japanese",
+		"orange-square"
+	],
+	char: "🈚",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var u7533$1 = {
+	keywords: [
+		"chinese",
+		"japanese",
+		"kanji",
+		"orange-square"
+	],
+	char: "🈸",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var u55b6$1 = {
+	keywords: [
+		"japanese",
+		"opening hours",
+		"orange-square"
+	],
+	char: "🈺",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var u6708$1 = {
+	keywords: [
+		"chinese",
+		"month",
+		"moon",
+		"japanese",
+		"orange-square",
+		"kanji"
+	],
+	char: "🈷️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var eight_pointed_black_star$1 = {
+	keywords: [
+		"orange-square",
+		"shape",
+		"polygon"
+	],
+	char: "✴️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var vs$1 = {
+	keywords: [
+		"words",
+		"orange-square"
+	],
+	char: "🆚",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var accept$1 = {
+	keywords: [
+		"ok",
+		"good",
+		"chinese",
+		"kanji",
+		"agree",
+		"yes",
+		"orange-circle"
+	],
+	char: "🉑",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var white_flower$1 = {
+	keywords: [
+		"japanese",
+		"spring"
+	],
+	char: "💮",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var ideograph_advantage$1 = {
+	keywords: [
+		"chinese",
+		"kanji",
+		"obtain",
+		"get",
+		"circle"
+	],
+	char: "🉐",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var secret$1 = {
+	keywords: [
+		"privacy",
+		"chinese",
+		"sshh",
+		"kanji",
+		"red-circle"
+	],
+	char: "㊙️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var congratulations$1 = {
+	keywords: [
+		"chinese",
+		"kanji",
+		"japanese",
+		"red-circle"
+	],
+	char: "㊗️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var u5408$1 = {
+	keywords: [
+		"japanese",
+		"chinese",
+		"join",
+		"kanji",
+		"red-square"
+	],
+	char: "🈴",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var u6e80$1 = {
+	keywords: [
+		"full",
+		"chinese",
+		"japanese",
+		"red-square",
+		"kanji"
+	],
+	char: "🈵",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var u7981$1 = {
+	keywords: [
+		"kanji",
+		"japanese",
+		"chinese",
+		"forbidden",
+		"limit",
+		"restricted",
+		"red-square"
+	],
+	char: "🈲",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var a$2 = {
+	keywords: [
+		"red-square",
+		"alphabet",
+		"letter"
+	],
+	char: "🅰️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var b$1 = {
+	keywords: [
+		"red-square",
+		"alphabet",
+		"letter"
+	],
+	char: "🅱️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var ab$1 = {
+	keywords: [
+		"red-square",
+		"alphabet"
+	],
+	char: "🆎",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var cl$1 = {
+	keywords: [
+		"alphabet",
+		"words",
+		"red-square"
+	],
+	char: "🆑",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var o2$1 = {
+	keywords: [
+		"alphabet",
+		"red-square",
+		"letter"
+	],
+	char: "🅾️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var sos$1 = {
+	keywords: [
+		"help",
+		"red-square",
+		"words",
+		"emergency",
+		"911"
+	],
+	char: "🆘",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var no_entry$1 = {
+	keywords: [
+		"limit",
+		"security",
+		"privacy",
+		"bad",
+		"denied",
+		"stop",
+		"circle"
+	],
+	char: "⛔",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var name_badge$1 = {
+	keywords: [
+		"fire",
+		"forbid"
+	],
+	char: "📛",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var no_entry_sign$1 = {
+	keywords: [
+		"forbid",
+		"stop",
+		"limit",
+		"denied",
+		"disallow",
+		"circle"
+	],
+	char: "🚫",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var x$1 = {
+	keywords: [
+		"no",
+		"delete",
+		"remove",
+		"cancel",
+		"red"
+	],
+	char: "❌",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var o$2 = {
+	keywords: [
+		"circle",
+		"round"
+	],
+	char: "⭕",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var stop_sign$1 = {
+	keywords: [
+		"stop"
+	],
+	char: "🛑",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var anger$1 = {
+	keywords: [
+		"angry",
+		"mad"
+	],
+	char: "💢",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var hotsprings$1 = {
+	keywords: [
+		"bath",
+		"warm",
+		"relax"
+	],
+	char: "♨️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var no_pedestrians$1 = {
+	keywords: [
+		"rules",
+		"crossing",
+		"walking",
+		"circle"
+	],
+	char: "🚷",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var do_not_litter$1 = {
+	keywords: [
+		"trash",
+		"bin",
+		"garbage",
+		"circle"
+	],
+	char: "🚯",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var no_bicycles$1 = {
+	keywords: [
+		"cyclist",
+		"prohibited",
+		"circle"
+	],
+	char: "🚳",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var underage$1 = {
+	keywords: [
+		"18",
+		"drink",
+		"pub",
+		"night",
+		"minor",
+		"circle"
+	],
+	char: "🔞",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var no_mobile_phones$1 = {
+	keywords: [
+		"iphone",
+		"mute",
+		"circle"
+	],
+	char: "📵",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var exclamation$1 = {
+	keywords: [
+		"heavy_exclamation_mark",
+		"danger",
+		"surprise",
+		"punctuation",
+		"wow",
+		"warning"
+	],
+	char: "❗",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var grey_exclamation$1 = {
+	keywords: [
+		"surprise",
+		"punctuation",
+		"gray",
+		"wow",
+		"warning"
+	],
+	char: "❕",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var question$1 = {
+	keywords: [
+		"doubt",
+		"confused"
+	],
+	char: "❓",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var grey_question$1 = {
+	keywords: [
+		"doubts",
+		"gray",
+		"huh",
+		"confused"
+	],
+	char: "❔",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var bangbang$1 = {
+	keywords: [
+		"exclamation",
+		"surprise"
+	],
+	char: "‼️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var interrobang$1 = {
+	keywords: [
+		"wat",
+		"punctuation",
+		"surprise"
+	],
+	char: "⁉️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var low_brightness$1 = {
+	keywords: [
+		"sun",
+		"afternoon",
+		"warm",
+		"summer"
+	],
+	char: "🔅",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var high_brightness$1 = {
+	keywords: [
+		"sun",
+		"light"
+	],
+	char: "🔆",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var trident$1 = {
+	keywords: [
+		"weapon",
+		"spear"
+	],
+	char: "🔱",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var fleur_de_lis$1 = {
+	keywords: [
+		"decorative",
+		"scout"
+	],
+	char: "⚜",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var part_alternation_mark$1 = {
+	keywords: [
+		"graph",
+		"presentation",
+		"stats",
+		"business",
+		"economics",
+		"bad"
+	],
+	char: "〽️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var warning$1 = {
+	keywords: [
+		"exclamation",
+		"wip",
+		"alert",
+		"error",
+		"problem",
+		"issue"
+	],
+	char: "⚠️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var children_crossing$1 = {
+	keywords: [
+		"school",
+		"warning",
+		"danger",
+		"sign",
+		"driving",
+		"yellow-diamond"
+	],
+	char: "🚸",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var beginner$1 = {
+	keywords: [
+		"badge",
+		"shield"
+	],
+	char: "🔰",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var recycle$1 = {
+	keywords: [
+		"arrow",
+		"environment",
+		"garbage",
+		"trash"
+	],
+	char: "♻️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var u6307$1 = {
+	keywords: [
+		"chinese",
+		"point",
+		"green-square",
+		"kanji"
+	],
+	char: "🈯",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var chart$1 = {
+	keywords: [
+		"green-square",
+		"graph",
+		"presentation",
+		"stats"
+	],
+	char: "💹",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var sparkle$1 = {
+	keywords: [
+		"stars",
+		"green-square",
+		"awesome",
+		"good",
+		"fireworks"
+	],
+	char: "❇️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var eight_spoked_asterisk$1 = {
+	keywords: [
+		"star",
+		"sparkle",
+		"green-square"
+	],
+	char: "✳️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var negative_squared_cross_mark$1 = {
+	keywords: [
+		"x",
+		"green-square",
+		"no",
+		"deny"
+	],
+	char: "❎",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var white_check_mark$1 = {
+	keywords: [
+		"green-square",
+		"ok",
+		"agree",
+		"vote",
+		"election",
+		"answer",
+		"tick"
+	],
+	char: "✅",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var diamond_shape_with_a_dot_inside$1 = {
+	keywords: [
+		"jewel",
+		"blue",
+		"gem",
+		"crystal",
+		"fancy"
+	],
+	char: "💠",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var cyclone$1 = {
+	keywords: [
+		"weather",
+		"swirl",
+		"blue",
+		"cloud",
+		"vortex",
+		"spiral",
+		"whirlpool",
+		"spin",
+		"tornado",
+		"hurricane",
+		"typhoon"
+	],
+	char: "🌀",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var loop$1 = {
+	keywords: [
+		"tape",
+		"cassette"
+	],
+	char: "➿",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var globe_with_meridians$1 = {
+	keywords: [
+		"earth",
+		"international",
+		"world",
+		"internet",
+		"interweb",
+		"i18n"
+	],
+	char: "🌐",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var m$1 = {
+	keywords: [
+		"alphabet",
+		"blue-circle",
+		"letter"
+	],
+	char: "Ⓜ️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var atm$1 = {
+	keywords: [
+		"money",
+		"sales",
+		"cash",
+		"blue-square",
+		"payment",
+		"bank"
+	],
+	char: "🏧",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var sa$1 = {
+	keywords: [
+		"japanese",
+		"blue-square",
+		"katakana"
+	],
+	char: "🈂️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var passport_control$1 = {
+	keywords: [
+		"custom",
+		"blue-square"
+	],
+	char: "🛂",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var customs$1 = {
+	keywords: [
+		"passport",
+		"border",
+		"blue-square"
+	],
+	char: "🛃",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var baggage_claim$1 = {
+	keywords: [
+		"blue-square",
+		"airport",
+		"transport"
+	],
+	char: "🛄",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var left_luggage$1 = {
+	keywords: [
+		"blue-square",
+		"travel"
+	],
+	char: "🛅",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var wheelchair$1 = {
+	keywords: [
+		"blue-square",
+		"disabled",
+		"a11y",
+		"accessibility"
+	],
+	char: "♿",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var no_smoking$1 = {
+	keywords: [
+		"cigarette",
+		"blue-square",
+		"smell",
+		"smoke"
+	],
+	char: "🚭",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var wc$1 = {
+	keywords: [
+		"toilet",
+		"restroom",
+		"blue-square"
+	],
+	char: "🚾",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var parking$1 = {
+	keywords: [
+		"cars",
+		"blue-square",
+		"alphabet",
+		"letter"
+	],
+	char: "🅿️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var potable_water$1 = {
+	keywords: [
+		"blue-square",
+		"liquid",
+		"restroom",
+		"cleaning",
+		"faucet"
+	],
+	char: "🚰",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var mens$1 = {
+	keywords: [
+		"toilet",
+		"restroom",
+		"wc",
+		"blue-square",
+		"gender",
+		"male"
+	],
+	char: "🚹",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var womens$1 = {
+	keywords: [
+		"purple-square",
+		"woman",
+		"female",
+		"toilet",
+		"loo",
+		"restroom",
+		"gender"
+	],
+	char: "🚺",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var baby_symbol$1 = {
+	keywords: [
+		"orange-square",
+		"child"
+	],
+	char: "🚼",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var restroom$1 = {
+	keywords: [
+		"blue-square",
+		"toilet",
+		"refresh",
+		"wc",
+		"gender"
+	],
+	char: "🚻",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var put_litter_in_its_place$1 = {
+	keywords: [
+		"blue-square",
+		"sign",
+		"human",
+		"info"
+	],
+	char: "🚮",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var cinema$1 = {
+	keywords: [
+		"blue-square",
+		"record",
+		"film",
+		"movie",
+		"curtain",
+		"stage",
+		"theater"
+	],
+	char: "🎦",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var signal_strength$1 = {
+	keywords: [
+		"blue-square",
+		"reception",
+		"phone",
+		"internet",
+		"connection",
+		"wifi",
+		"bluetooth",
+		"bars"
+	],
+	char: "📶",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var koko$1 = {
+	keywords: [
+		"blue-square",
+		"here",
+		"katakana",
+		"japanese",
+		"destination"
+	],
+	char: "🈁",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var ng$1 = {
+	keywords: [
+		"blue-square",
+		"words",
+		"shape",
+		"icon"
+	],
+	char: "🆖",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var ok$1 = {
+	keywords: [
+		"good",
+		"agree",
+		"yes",
+		"blue-square"
+	],
+	char: "🆗",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var up$1 = {
+	keywords: [
+		"blue-square",
+		"above",
+		"high"
+	],
+	char: "🆙",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var cool$1 = {
+	keywords: [
+		"words",
+		"blue-square"
+	],
+	char: "🆒",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var free$1 = {
+	keywords: [
+		"blue-square",
+		"words"
+	],
+	char: "🆓",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var zero$1 = {
+	keywords: [
+		"0",
+		"numbers",
+		"blue-square",
+		"null"
+	],
+	char: "0️⃣",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var one$1 = {
+	keywords: [
+		"blue-square",
+		"numbers",
+		"1"
+	],
+	char: "1️⃣",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var two$1 = {
+	keywords: [
+		"numbers",
+		"2",
+		"prime",
+		"blue-square"
+	],
+	char: "2️⃣",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var three$1 = {
+	keywords: [
+		"3",
+		"numbers",
+		"prime",
+		"blue-square"
+	],
+	char: "3️⃣",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var four$1 = {
+	keywords: [
+		"4",
+		"numbers",
+		"blue-square"
+	],
+	char: "4️⃣",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var five$1 = {
+	keywords: [
+		"5",
+		"numbers",
+		"blue-square",
+		"prime"
+	],
+	char: "5️⃣",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var six$1 = {
+	keywords: [
+		"6",
+		"numbers",
+		"blue-square"
+	],
+	char: "6️⃣",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var seven$1 = {
+	keywords: [
+		"7",
+		"numbers",
+		"blue-square",
+		"prime"
+	],
+	char: "7️⃣",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var eight$1 = {
+	keywords: [
+		"8",
+		"blue-square",
+		"numbers"
+	],
+	char: "8️⃣",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var nine$1 = {
+	keywords: [
+		"blue-square",
+		"numbers",
+		"9"
+	],
+	char: "9️⃣",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var keycap_ten$1 = {
+	keywords: [
+		"numbers",
+		"10",
+		"blue-square"
+	],
+	char: "🔟",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var asterisk$1 = {
+	keywords: [
+		"star",
+		"keycap"
+	],
+	char: "*⃣",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var eject_button$1 = {
+	keywords: [
+		"blue-square"
+	],
+	char: "⏏️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var arrow_forward$1 = {
+	keywords: [
+		"blue-square",
+		"right",
+		"direction",
+		"play"
+	],
+	char: "▶️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var pause_button$1 = {
+	keywords: [
+		"pause",
+		"blue-square"
+	],
+	char: "⏸",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var next_track_button$1 = {
+	keywords: [
+		"forward",
+		"next",
+		"blue-square"
+	],
+	char: "⏭",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var stop_button$1 = {
+	keywords: [
+		"blue-square"
+	],
+	char: "⏹",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var record_button$1 = {
+	keywords: [
+		"blue-square"
+	],
+	char: "⏺",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var play_or_pause_button$1 = {
+	keywords: [
+		"blue-square",
+		"play",
+		"pause"
+	],
+	char: "⏯",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var previous_track_button$1 = {
+	keywords: [
+		"backward"
+	],
+	char: "⏮",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var fast_forward$1 = {
+	keywords: [
+		"blue-square",
+		"play",
+		"speed",
+		"continue"
+	],
+	char: "⏩",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var rewind$1 = {
+	keywords: [
+		"play",
+		"blue-square"
+	],
+	char: "⏪",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var twisted_rightwards_arrows$1 = {
+	keywords: [
+		"blue-square",
+		"shuffle",
+		"music",
+		"random"
+	],
+	char: "🔀",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var repeat$1 = {
+	keywords: [
+		"loop",
+		"record"
+	],
+	char: "🔁",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var repeat_one$1 = {
+	keywords: [
+		"blue-square",
+		"loop"
+	],
+	char: "🔂",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var arrow_backward$1 = {
+	keywords: [
+		"blue-square",
+		"left",
+		"direction"
+	],
+	char: "◀️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var arrow_up_small$1 = {
+	keywords: [
+		"blue-square",
+		"triangle",
+		"direction",
+		"point",
+		"forward",
+		"top"
+	],
+	char: "🔼",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var arrow_down_small$1 = {
+	keywords: [
+		"blue-square",
+		"direction",
+		"bottom"
+	],
+	char: "🔽",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var arrow_double_up$1 = {
+	keywords: [
+		"blue-square",
+		"direction",
+		"top"
+	],
+	char: "⏫",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var arrow_double_down$1 = {
+	keywords: [
+		"blue-square",
+		"direction",
+		"bottom"
+	],
+	char: "⏬",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var arrow_right$1 = {
+	keywords: [
+		"blue-square",
+		"next"
+	],
+	char: "➡️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var arrow_left$1 = {
+	keywords: [
+		"blue-square",
+		"previous",
+		"back"
+	],
+	char: "⬅️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var arrow_up$1 = {
+	keywords: [
+		"blue-square",
+		"continue",
+		"top",
+		"direction"
+	],
+	char: "⬆️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var arrow_down$1 = {
+	keywords: [
+		"blue-square",
+		"direction",
+		"bottom"
+	],
+	char: "⬇️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var arrow_upper_right$1 = {
+	keywords: [
+		"blue-square",
+		"point",
+		"direction",
+		"diagonal",
+		"northeast"
+	],
+	char: "↗️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var arrow_lower_right$1 = {
+	keywords: [
+		"blue-square",
+		"direction",
+		"diagonal",
+		"southeast"
+	],
+	char: "↘️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var arrow_lower_left$1 = {
+	keywords: [
+		"blue-square",
+		"direction",
+		"diagonal",
+		"southwest"
+	],
+	char: "↙️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var arrow_upper_left$1 = {
+	keywords: [
+		"blue-square",
+		"point",
+		"direction",
+		"diagonal",
+		"northwest"
+	],
+	char: "↖️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var arrow_up_down$1 = {
+	keywords: [
+		"blue-square",
+		"direction",
+		"way",
+		"vertical"
+	],
+	char: "↕️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var left_right_arrow$1 = {
+	keywords: [
+		"shape",
+		"direction",
+		"horizontal",
+		"sideways"
+	],
+	char: "↔️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var arrows_counterclockwise$1 = {
+	keywords: [
+		"blue-square",
+		"sync",
+		"cycle"
+	],
+	char: "🔄",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var arrow_right_hook$1 = {
+	keywords: [
+		"blue-square",
+		"return",
+		"rotate",
+		"direction"
+	],
+	char: "↪️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var leftwards_arrow_with_hook$1 = {
+	keywords: [
+		"back",
+		"return",
+		"blue-square",
+		"undo",
+		"enter"
+	],
+	char: "↩️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var arrow_heading_up$1 = {
+	keywords: [
+		"blue-square",
+		"direction",
+		"top"
+	],
+	char: "⤴️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var arrow_heading_down$1 = {
+	keywords: [
+		"blue-square",
+		"direction",
+		"bottom"
+	],
+	char: "⤵️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var hash$1 = {
+	keywords: [
+		"symbol",
+		"blue-square",
+		"twitter"
+	],
+	char: "#️⃣",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var information_source$1 = {
+	keywords: [
+		"blue-square",
+		"alphabet",
+		"letter"
+	],
+	char: "ℹ️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var abc$1 = {
+	keywords: [
+		"blue-square",
+		"alphabet"
+	],
+	char: "🔤",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var abcd$1 = {
+	keywords: [
+		"blue-square",
+		"alphabet"
+	],
+	char: "🔡",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var capital_abcd$1 = {
+	keywords: [
+		"alphabet",
+		"words",
+		"blue-square"
+	],
+	char: "🔠",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var symbols$1 = {
+	keywords: [
+		"blue-square",
+		"music",
+		"note",
+		"ampersand",
+		"percent",
+		"glyphs",
+		"characters"
+	],
+	char: "🔣",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var musical_note$1 = {
+	keywords: [
+		"score",
+		"tone",
+		"sound"
+	],
+	char: "🎵",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var notes$1 = {
+	keywords: [
+		"music",
+		"score"
+	],
+	char: "🎶",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var wavy_dash$1 = {
+	keywords: [
+		"draw",
+		"line",
+		"moustache",
+		"mustache",
+		"squiggle",
+		"scribble"
+	],
+	char: "〰️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var curly_loop$1 = {
+	keywords: [
+		"scribble",
+		"draw",
+		"shape",
+		"squiggle"
+	],
+	char: "➰",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var heavy_check_mark$1 = {
+	keywords: [
+		"ok",
+		"nike",
+		"answer",
+		"yes",
+		"tick"
+	],
+	char: "✔️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var arrows_clockwise$1 = {
+	keywords: [
+		"sync",
+		"cycle",
+		"round",
+		"repeat"
+	],
+	char: "🔃",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var heavy_plus_sign$1 = {
+	keywords: [
+		"math",
+		"calculation",
+		"addition",
+		"more",
+		"increase"
+	],
+	char: "➕",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var heavy_minus_sign$1 = {
+	keywords: [
+		"math",
+		"calculation",
+		"subtract",
+		"less"
+	],
+	char: "➖",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var heavy_division_sign$1 = {
+	keywords: [
+		"divide",
+		"math",
+		"calculation"
+	],
+	char: "➗",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var heavy_multiplication_x$1 = {
+	keywords: [
+		"math",
+		"calculation"
+	],
+	char: "✖️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var infinity$1 = {
+	keywords: [
+		"forever"
+	],
+	char: "♾",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var heavy_dollar_sign$1 = {
+	keywords: [
+		"money",
+		"sales",
+		"payment",
+		"currency",
+		"buck"
+	],
+	char: "💲",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var currency_exchange$1 = {
+	keywords: [
+		"money",
+		"sales",
+		"dollar",
+		"travel"
+	],
+	char: "💱",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var copyright$1 = {
+	keywords: [
+		"ip",
+		"license",
+		"circle",
+		"law",
+		"legal"
+	],
+	char: "©️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var registered$1 = {
+	keywords: [
+		"alphabet",
+		"circle"
+	],
+	char: "®️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var tm$1 = {
+	keywords: [
+		"trademark",
+		"brand",
+		"law",
+		"legal"
+	],
+	char: "™️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var end$1 = {
+	keywords: [
+		"words",
+		"arrow"
+	],
+	char: "🔚",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var back$1 = {
+	keywords: [
+		"arrow",
+		"words",
+		"return"
+	],
+	char: "🔙",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var on$1 = {
+	keywords: [
+		"arrow",
+		"words"
+	],
+	char: "🔛",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var top$1 = {
+	keywords: [
+		"words",
+		"blue-square"
+	],
+	char: "🔝",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var soon$1 = {
+	keywords: [
+		"arrow",
+		"words"
+	],
+	char: "🔜",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var ballot_box_with_check$1 = {
+	keywords: [
+		"ok",
+		"agree",
+		"confirm",
+		"black-square",
+		"vote",
+		"election",
+		"yes",
+		"tick"
+	],
+	char: "☑️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var radio_button$1 = {
+	keywords: [
+		"input",
+		"old",
+		"music",
+		"circle"
+	],
+	char: "🔘",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var white_circle$1 = {
+	keywords: [
+		"shape",
+		"round"
+	],
+	char: "⚪",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var black_circle$1 = {
+	keywords: [
+		"shape",
+		"button",
+		"round"
+	],
+	char: "⚫",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var red_circle$1 = {
+	keywords: [
+		"shape",
+		"error",
+		"danger"
+	],
+	char: "🔴",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var large_blue_circle$1 = {
+	keywords: [
+		"shape",
+		"icon",
+		"button"
+	],
+	char: "🔵",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var small_orange_diamond$1 = {
+	keywords: [
+		"shape",
+		"jewel",
+		"gem"
+	],
+	char: "🔸",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var small_blue_diamond$1 = {
+	keywords: [
+		"shape",
+		"jewel",
+		"gem"
+	],
+	char: "🔹",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var large_orange_diamond$1 = {
+	keywords: [
+		"shape",
+		"jewel",
+		"gem"
+	],
+	char: "🔶",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var large_blue_diamond$1 = {
+	keywords: [
+		"shape",
+		"jewel",
+		"gem"
+	],
+	char: "🔷",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var small_red_triangle$1 = {
+	keywords: [
+		"shape",
+		"direction",
+		"up",
+		"top"
+	],
+	char: "🔺",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var black_small_square$1 = {
+	keywords: [
+		"shape",
+		"icon"
+	],
+	char: "▪️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var white_small_square$1 = {
+	keywords: [
+		"shape",
+		"icon"
+	],
+	char: "▫️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var black_large_square$1 = {
+	keywords: [
+		"shape",
+		"icon",
+		"button"
+	],
+	char: "⬛",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var white_large_square$1 = {
+	keywords: [
+		"shape",
+		"icon",
+		"stone",
+		"button"
+	],
+	char: "⬜",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var small_red_triangle_down$1 = {
+	keywords: [
+		"shape",
+		"direction",
+		"bottom"
+	],
+	char: "🔻",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var black_medium_square$1 = {
+	keywords: [
+		"shape",
+		"button",
+		"icon"
+	],
+	char: "◼️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var white_medium_square$1 = {
+	keywords: [
+		"shape",
+		"stone",
+		"icon"
+	],
+	char: "◻️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var black_medium_small_square$1 = {
+	keywords: [
+		"icon",
+		"shape",
+		"button"
+	],
+	char: "◾",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var white_medium_small_square$1 = {
+	keywords: [
+		"shape",
+		"stone",
+		"icon",
+		"button"
+	],
+	char: "◽",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var black_square_button$1 = {
+	keywords: [
+		"shape",
+		"input",
+		"frame"
+	],
+	char: "🔲",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var white_square_button$1 = {
+	keywords: [
+		"shape",
+		"input"
+	],
+	char: "🔳",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var speaker$1 = {
+	keywords: [
+		"sound",
+		"volume",
+		"silence",
+		"broadcast"
+	],
+	char: "🔈",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var sound$1 = {
+	keywords: [
+		"volume",
+		"speaker",
+		"broadcast"
+	],
+	char: "🔉",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var loud_sound$1 = {
+	keywords: [
+		"volume",
+		"noise",
+		"noisy",
+		"speaker",
+		"broadcast"
+	],
+	char: "🔊",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var mute$1 = {
+	keywords: [
+		"sound",
+		"volume",
+		"silence",
+		"quiet"
+	],
+	char: "🔇",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var mega$1 = {
+	keywords: [
+		"sound",
+		"speaker",
+		"volume"
+	],
+	char: "📣",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var loudspeaker$1 = {
+	keywords: [
+		"volume",
+		"sound"
+	],
+	char: "📢",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var bell$1 = {
+	keywords: [
+		"sound",
+		"notification",
+		"christmas",
+		"xmas",
+		"chime"
+	],
+	char: "🔔",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var no_bell$1 = {
+	keywords: [
+		"sound",
+		"volume",
+		"mute",
+		"quiet",
+		"silent"
+	],
+	char: "🔕",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var black_joker$1 = {
+	keywords: [
+		"poker",
+		"cards",
+		"game",
+		"play",
+		"magic"
+	],
+	char: "🃏",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var mahjong$1 = {
+	keywords: [
+		"game",
+		"play",
+		"chinese",
+		"kanji"
+	],
+	char: "🀄",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var spades$1 = {
+	keywords: [
+		"poker",
+		"cards",
+		"suits",
+		"magic"
+	],
+	char: "♠️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var clubs$1 = {
+	keywords: [
+		"poker",
+		"cards",
+		"magic",
+		"suits"
+	],
+	char: "♣️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var hearts$1 = {
+	keywords: [
+		"poker",
+		"cards",
+		"magic",
+		"suits"
+	],
+	char: "♥️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var diamonds$1 = {
+	keywords: [
+		"poker",
+		"cards",
+		"magic",
+		"suits"
+	],
+	char: "♦️",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var flower_playing_cards$1 = {
+	keywords: [
+		"game",
+		"sunset",
+		"red"
+	],
+	char: "🎴",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var thought_balloon$1 = {
+	keywords: [
+		"bubble",
+		"cloud",
+		"speech",
+		"thinking",
+		"dream"
+	],
+	char: "💭",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var right_anger_bubble$1 = {
+	keywords: [
+		"caption",
+		"speech",
+		"thinking",
+		"mad"
+	],
+	char: "🗯",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var speech_balloon$1 = {
+	keywords: [
+		"bubble",
+		"words",
+		"message",
+		"talk",
+		"chatting"
+	],
+	char: "💬",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var left_speech_bubble$1 = {
+	keywords: [
+		"words",
+		"message",
+		"talk",
+		"chatting"
+	],
+	char: "🗨",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var clock1$1 = {
+	keywords: [
+		"time",
+		"late",
+		"early",
+		"schedule"
+	],
+	char: "🕐",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var clock2$1 = {
+	keywords: [
+		"time",
+		"late",
+		"early",
+		"schedule"
+	],
+	char: "🕑",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var clock3$1 = {
+	keywords: [
+		"time",
+		"late",
+		"early",
+		"schedule"
+	],
+	char: "🕒",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var clock4$1 = {
+	keywords: [
+		"time",
+		"late",
+		"early",
+		"schedule"
+	],
+	char: "🕓",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var clock5$1 = {
+	keywords: [
+		"time",
+		"late",
+		"early",
+		"schedule"
+	],
+	char: "🕔",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var clock6$1 = {
+	keywords: [
+		"time",
+		"late",
+		"early",
+		"schedule",
+		"dawn",
+		"dusk"
+	],
+	char: "🕕",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var clock7$1 = {
+	keywords: [
+		"time",
+		"late",
+		"early",
+		"schedule"
+	],
+	char: "🕖",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var clock8$1 = {
+	keywords: [
+		"time",
+		"late",
+		"early",
+		"schedule"
+	],
+	char: "🕗",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var clock9$1 = {
+	keywords: [
+		"time",
+		"late",
+		"early",
+		"schedule"
+	],
+	char: "🕘",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var clock10$1 = {
+	keywords: [
+		"time",
+		"late",
+		"early",
+		"schedule"
+	],
+	char: "🕙",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var clock11$1 = {
+	keywords: [
+		"time",
+		"late",
+		"early",
+		"schedule"
+	],
+	char: "🕚",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var clock12$1 = {
+	keywords: [
+		"time",
+		"noon",
+		"midnight",
+		"midday",
+		"late",
+		"early",
+		"schedule"
+	],
+	char: "🕛",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var clock130$1 = {
+	keywords: [
+		"time",
+		"late",
+		"early",
+		"schedule"
+	],
+	char: "🕜",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var clock230$1 = {
+	keywords: [
+		"time",
+		"late",
+		"early",
+		"schedule"
+	],
+	char: "🕝",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var clock330$1 = {
+	keywords: [
+		"time",
+		"late",
+		"early",
+		"schedule"
+	],
+	char: "🕞",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var clock430$1 = {
+	keywords: [
+		"time",
+		"late",
+		"early",
+		"schedule"
+	],
+	char: "🕟",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var clock530$1 = {
+	keywords: [
+		"time",
+		"late",
+		"early",
+		"schedule"
+	],
+	char: "🕠",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var clock630$1 = {
+	keywords: [
+		"time",
+		"late",
+		"early",
+		"schedule"
+	],
+	char: "🕡",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var clock730$1 = {
+	keywords: [
+		"time",
+		"late",
+		"early",
+		"schedule"
+	],
+	char: "🕢",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var clock830$1 = {
+	keywords: [
+		"time",
+		"late",
+		"early",
+		"schedule"
+	],
+	char: "🕣",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var clock930$1 = {
+	keywords: [
+		"time",
+		"late",
+		"early",
+		"schedule"
+	],
+	char: "🕤",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var clock1030$1 = {
+	keywords: [
+		"time",
+		"late",
+		"early",
+		"schedule"
+	],
+	char: "🕥",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var clock1130$1 = {
+	keywords: [
+		"time",
+		"late",
+		"early",
+		"schedule"
+	],
+	char: "🕦",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var clock1230$1 = {
+	keywords: [
+		"time",
+		"late",
+		"early",
+		"schedule"
+	],
+	char: "🕧",
+	fitzpatrick_scale: false,
+	category: "symbols"
+};
+var afghanistan$1 = {
+	keywords: [
+		"af",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇦🇫",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var aland_islands$1 = {
+	keywords: [
+		"Åland",
+		"islands",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇦🇽",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var albania$1 = {
+	keywords: [
+		"al",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇦🇱",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var algeria$1 = {
+	keywords: [
+		"dz",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇩🇿",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var american_samoa$1 = {
+	keywords: [
+		"american",
+		"ws",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇦🇸",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var andorra$1 = {
+	keywords: [
+		"ad",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇦🇩",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var angola$1 = {
+	keywords: [
+		"ao",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇦🇴",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var anguilla$1 = {
+	keywords: [
+		"ai",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇦🇮",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var antarctica$1 = {
+	keywords: [
+		"aq",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇦🇶",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var antigua_barbuda$1 = {
+	keywords: [
+		"antigua",
+		"barbuda",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇦🇬",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var argentina$1 = {
+	keywords: [
+		"ar",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇦🇷",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var armenia$1 = {
+	keywords: [
+		"am",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇦🇲",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var aruba$1 = {
+	keywords: [
+		"aw",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇦🇼",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var australia$1 = {
+	keywords: [
+		"au",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇦🇺",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var austria$1 = {
+	keywords: [
+		"at",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇦🇹",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var azerbaijan$1 = {
+	keywords: [
+		"az",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇦🇿",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var bahamas$1 = {
+	keywords: [
+		"bs",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇧🇸",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var bahrain$1 = {
+	keywords: [
+		"bh",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇧🇭",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var bangladesh$1 = {
+	keywords: [
+		"bd",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇧🇩",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var barbados$1 = {
+	keywords: [
+		"bb",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇧🇧",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var belarus$1 = {
+	keywords: [
+		"by",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇧🇾",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var belgium$1 = {
+	keywords: [
+		"be",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇧🇪",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var belize$1 = {
+	keywords: [
+		"bz",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇧🇿",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var benin$1 = {
+	keywords: [
+		"bj",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇧🇯",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var bermuda$1 = {
+	keywords: [
+		"bm",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇧🇲",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var bhutan$1 = {
+	keywords: [
+		"bt",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇧🇹",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var bolivia$1 = {
+	keywords: [
+		"bo",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇧🇴",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var caribbean_netherlands$1 = {
+	keywords: [
+		"bonaire",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇧🇶",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var bosnia_herzegovina$1 = {
+	keywords: [
+		"bosnia",
+		"herzegovina",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇧🇦",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var botswana$1 = {
+	keywords: [
+		"bw",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇧🇼",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var brazil$1 = {
+	keywords: [
+		"br",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇧🇷",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var british_indian_ocean_territory$1 = {
+	keywords: [
+		"british",
+		"indian",
+		"ocean",
+		"territory",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇮🇴",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var british_virgin_islands$1 = {
+	keywords: [
+		"british",
+		"virgin",
+		"islands",
+		"bvi",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇻🇬",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var brunei$1 = {
+	keywords: [
+		"bn",
+		"darussalam",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇧🇳",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var bulgaria$1 = {
+	keywords: [
+		"bg",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇧🇬",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var burkina_faso$1 = {
+	keywords: [
+		"burkina",
+		"faso",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇧🇫",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var burundi$1 = {
+	keywords: [
+		"bi",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇧🇮",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var cape_verde$1 = {
+	keywords: [
+		"cabo",
+		"verde",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇨🇻",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var cambodia$1 = {
+	keywords: [
+		"kh",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇰🇭",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var cameroon$1 = {
+	keywords: [
+		"cm",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇨🇲",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var canada$1 = {
+	keywords: [
+		"ca",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇨🇦",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var canary_islands$1 = {
+	keywords: [
+		"canary",
+		"islands",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇮🇨",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var cayman_islands$1 = {
+	keywords: [
+		"cayman",
+		"islands",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇰🇾",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var central_african_republic$1 = {
+	keywords: [
+		"central",
+		"african",
+		"republic",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇨🇫",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var chad$1 = {
+	keywords: [
+		"td",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇹🇩",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var chile$1 = {
+	keywords: [
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇨🇱",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var cn$1 = {
+	keywords: [
+		"china",
+		"chinese",
+		"prc",
+		"flag",
+		"country",
+		"nation",
+		"banner"
+	],
+	char: "🇨🇳",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var christmas_island$1 = {
+	keywords: [
+		"christmas",
+		"island",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇨🇽",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var cocos_islands$1 = {
+	keywords: [
+		"cocos",
+		"keeling",
+		"islands",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇨🇨",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var colombia$1 = {
+	keywords: [
+		"co",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇨🇴",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var comoros$1 = {
+	keywords: [
+		"km",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇰🇲",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var congo_brazzaville$1 = {
+	keywords: [
+		"congo",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇨🇬",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var congo_kinshasa$1 = {
+	keywords: [
+		"congo",
+		"democratic",
+		"republic",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇨🇩",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var cook_islands$1 = {
+	keywords: [
+		"cook",
+		"islands",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇨🇰",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var costa_rica$1 = {
+	keywords: [
+		"costa",
+		"rica",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇨🇷",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var croatia$1 = {
+	keywords: [
+		"hr",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇭🇷",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var cuba$1 = {
+	keywords: [
+		"cu",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇨🇺",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var curacao$1 = {
+	keywords: [
+		"curaçao",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇨🇼",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var cyprus$1 = {
+	keywords: [
+		"cy",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇨🇾",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var czech_republic$1 = {
+	keywords: [
+		"cz",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇨🇿",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var denmark$1 = {
+	keywords: [
+		"dk",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇩🇰",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var djibouti$1 = {
+	keywords: [
+		"dj",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇩🇯",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var dominica$1 = {
+	keywords: [
+		"dm",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇩🇲",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var dominican_republic$1 = {
+	keywords: [
+		"dominican",
+		"republic",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇩🇴",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var ecuador$1 = {
+	keywords: [
+		"ec",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇪🇨",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var egypt$1 = {
+	keywords: [
+		"eg",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇪🇬",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var el_salvador$1 = {
+	keywords: [
+		"el",
+		"salvador",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇸🇻",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var equatorial_guinea$1 = {
+	keywords: [
+		"equatorial",
+		"gn",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇬🇶",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var eritrea$1 = {
+	keywords: [
+		"er",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇪🇷",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var estonia$1 = {
+	keywords: [
+		"ee",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇪🇪",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var ethiopia$1 = {
+	keywords: [
+		"et",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇪🇹",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var eu$1 = {
+	keywords: [
+		"european",
+		"union",
+		"flag",
+		"banner"
+	],
+	char: "🇪🇺",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var falkland_islands$1 = {
+	keywords: [
+		"falkland",
+		"islands",
+		"malvinas",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇫🇰",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var faroe_islands$1 = {
+	keywords: [
+		"faroe",
+		"islands",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇫🇴",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var fiji$1 = {
+	keywords: [
+		"fj",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇫🇯",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var finland$1 = {
+	keywords: [
+		"fi",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇫🇮",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var fr$1 = {
+	keywords: [
+		"banner",
+		"flag",
+		"nation",
+		"france",
+		"french",
+		"country"
+	],
+	char: "🇫🇷",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var french_guiana$1 = {
+	keywords: [
+		"french",
+		"guiana",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇬🇫",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var french_polynesia$1 = {
+	keywords: [
+		"french",
+		"polynesia",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇵🇫",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var french_southern_territories$1 = {
+	keywords: [
+		"french",
+		"southern",
+		"territories",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇹🇫",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var gabon$1 = {
+	keywords: [
+		"ga",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇬🇦",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var gambia$1 = {
+	keywords: [
+		"gm",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇬🇲",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var georgia$1 = {
+	keywords: [
+		"ge",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇬🇪",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var de$1 = {
+	keywords: [
+		"german",
+		"nation",
+		"flag",
+		"country",
+		"banner"
+	],
+	char: "🇩🇪",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var ghana$1 = {
+	keywords: [
+		"gh",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇬🇭",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var gibraltar$1 = {
+	keywords: [
+		"gi",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇬🇮",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var greece$1 = {
+	keywords: [
+		"gr",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇬🇷",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var greenland$1 = {
+	keywords: [
+		"gl",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇬🇱",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var grenada$1 = {
+	keywords: [
+		"gd",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇬🇩",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var guadeloupe$1 = {
+	keywords: [
+		"gp",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇬🇵",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var guam$1 = {
+	keywords: [
+		"gu",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇬🇺",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var guatemala$1 = {
+	keywords: [
+		"gt",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇬🇹",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var guernsey$1 = {
+	keywords: [
+		"gg",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇬🇬",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var guinea$1 = {
+	keywords: [
+		"gn",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇬🇳",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var guinea_bissau$1 = {
+	keywords: [
+		"gw",
+		"bissau",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇬🇼",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var guyana$1 = {
+	keywords: [
+		"gy",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇬🇾",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var haiti$1 = {
+	keywords: [
+		"ht",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇭🇹",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var honduras$1 = {
+	keywords: [
+		"hn",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇭🇳",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var hong_kong$1 = {
+	keywords: [
+		"hong",
+		"kong",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇭🇰",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var hungary$1 = {
+	keywords: [
+		"hu",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇭🇺",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var iceland$1 = {
+	keywords: [
+		"is",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇮🇸",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var india$1 = {
+	keywords: [
+		"in",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇮🇳",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var indonesia$1 = {
+	keywords: [
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇮🇩",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var iran$1 = {
+	keywords: [
+		"iran,",
+		"islamic",
+		"republic",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇮🇷",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var iraq$1 = {
+	keywords: [
+		"iq",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇮🇶",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var ireland$1 = {
+	keywords: [
+		"ie",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇮🇪",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var isle_of_man$1 = {
+	keywords: [
+		"isle",
+		"man",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇮🇲",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var israel$1 = {
+	keywords: [
+		"il",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇮🇱",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var it$1 = {
+	keywords: [
+		"italy",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇮🇹",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var cote_divoire$1 = {
+	keywords: [
+		"ivory",
+		"coast",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇨🇮",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var jamaica$1 = {
+	keywords: [
+		"jm",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇯🇲",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var jp$1 = {
+	keywords: [
+		"japanese",
+		"nation",
+		"flag",
+		"country",
+		"banner"
+	],
+	char: "🇯🇵",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var jersey$1 = {
+	keywords: [
+		"je",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇯🇪",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var jordan$1 = {
+	keywords: [
+		"jo",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇯🇴",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var kazakhstan$1 = {
+	keywords: [
+		"kz",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇰🇿",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var kenya$1 = {
+	keywords: [
+		"ke",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇰🇪",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var kiribati$1 = {
+	keywords: [
+		"ki",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇰🇮",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var kosovo$1 = {
+	keywords: [
+		"xk",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇽🇰",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var kuwait$1 = {
+	keywords: [
+		"kw",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇰🇼",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var kyrgyzstan$1 = {
+	keywords: [
+		"kg",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇰🇬",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var laos$1 = {
+	keywords: [
+		"lao",
+		"democratic",
+		"republic",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇱🇦",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var latvia$1 = {
+	keywords: [
+		"lv",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇱🇻",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var lebanon$1 = {
+	keywords: [
+		"lb",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇱🇧",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var lesotho$1 = {
+	keywords: [
+		"ls",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇱🇸",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var liberia$1 = {
+	keywords: [
+		"lr",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇱🇷",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var libya$1 = {
+	keywords: [
+		"ly",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇱🇾",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var liechtenstein$1 = {
+	keywords: [
+		"li",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇱🇮",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var lithuania$1 = {
+	keywords: [
+		"lt",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇱🇹",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var luxembourg$1 = {
+	keywords: [
+		"lu",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇱🇺",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var macau$1 = {
+	keywords: [
+		"macao",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇲🇴",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var macedonia$1 = {
+	keywords: [
+		"macedonia,",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇲🇰",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var madagascar$1 = {
+	keywords: [
+		"mg",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇲🇬",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var malawi$1 = {
+	keywords: [
+		"mw",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇲🇼",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var malaysia$1 = {
+	keywords: [
+		"my",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇲🇾",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var maldives$1 = {
+	keywords: [
+		"mv",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇲🇻",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var mali$1 = {
+	keywords: [
+		"ml",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇲🇱",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var malta$1 = {
+	keywords: [
+		"mt",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇲🇹",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var marshall_islands$1 = {
+	keywords: [
+		"marshall",
+		"islands",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇲🇭",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var martinique$1 = {
+	keywords: [
+		"mq",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇲🇶",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var mauritania$1 = {
+	keywords: [
+		"mr",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇲🇷",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var mauritius$1 = {
+	keywords: [
+		"mu",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇲🇺",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var mayotte$1 = {
+	keywords: [
+		"yt",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇾🇹",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var mexico$1 = {
+	keywords: [
+		"mx",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇲🇽",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var micronesia$1 = {
+	keywords: [
+		"micronesia,",
+		"federated",
+		"states",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇫🇲",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var moldova$1 = {
+	keywords: [
+		"moldova,",
+		"republic",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇲🇩",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var monaco$1 = {
+	keywords: [
+		"mc",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇲🇨",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var mongolia$1 = {
+	keywords: [
+		"mn",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇲🇳",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var montenegro$1 = {
+	keywords: [
+		"me",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇲🇪",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var montserrat$1 = {
+	keywords: [
+		"ms",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇲🇸",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var morocco$1 = {
+	keywords: [
+		"ma",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇲🇦",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var mozambique$1 = {
+	keywords: [
+		"mz",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇲🇿",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var myanmar$1 = {
+	keywords: [
+		"mm",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇲🇲",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var namibia$1 = {
+	keywords: [
+		"na",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇳🇦",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var nauru$1 = {
+	keywords: [
+		"nr",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇳🇷",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var nepal$1 = {
+	keywords: [
+		"np",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇳🇵",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var netherlands$1 = {
+	keywords: [
+		"nl",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇳🇱",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var new_caledonia$1 = {
+	keywords: [
+		"new",
+		"caledonia",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇳🇨",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var new_zealand$1 = {
+	keywords: [
+		"new",
+		"zealand",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇳🇿",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var nicaragua$1 = {
+	keywords: [
+		"ni",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇳🇮",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var niger$1 = {
+	keywords: [
+		"ne",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇳🇪",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var nigeria$1 = {
+	keywords: [
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇳🇬",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var niue$1 = {
+	keywords: [
+		"nu",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇳🇺",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var norfolk_island$1 = {
+	keywords: [
+		"norfolk",
+		"island",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇳🇫",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var northern_mariana_islands$1 = {
+	keywords: [
+		"northern",
+		"mariana",
+		"islands",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇲🇵",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var north_korea$1 = {
+	keywords: [
+		"north",
+		"korea",
+		"nation",
+		"flag",
+		"country",
+		"banner"
+	],
+	char: "🇰🇵",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var norway$1 = {
+	keywords: [
+		"no",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇳🇴",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var oman$1 = {
+	keywords: [
+		"om_symbol",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇴🇲",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var pakistan$1 = {
+	keywords: [
+		"pk",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇵🇰",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var palau$1 = {
+	keywords: [
+		"pw",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇵🇼",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var palestinian_territories$1 = {
+	keywords: [
+		"palestine",
+		"palestinian",
+		"territories",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇵🇸",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var panama$1 = {
+	keywords: [
+		"pa",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇵🇦",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var papua_new_guinea$1 = {
+	keywords: [
+		"papua",
+		"new",
+		"guinea",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇵🇬",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var paraguay$1 = {
+	keywords: [
+		"py",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇵🇾",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var peru$1 = {
+	keywords: [
+		"pe",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇵🇪",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var philippines$1 = {
+	keywords: [
+		"ph",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇵🇭",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var pitcairn_islands$1 = {
+	keywords: [
+		"pitcairn",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇵🇳",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var poland$1 = {
+	keywords: [
+		"pl",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇵🇱",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var portugal$1 = {
+	keywords: [
+		"pt",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇵🇹",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var puerto_rico$1 = {
+	keywords: [
+		"puerto",
+		"rico",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇵🇷",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var qatar$1 = {
+	keywords: [
+		"qa",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇶🇦",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var reunion$1 = {
+	keywords: [
+		"réunion",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇷🇪",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var romania$1 = {
+	keywords: [
+		"ro",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇷🇴",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var ru$1 = {
+	keywords: [
+		"russian",
+		"federation",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇷🇺",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var rwanda$1 = {
+	keywords: [
+		"rw",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇷🇼",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var st_barthelemy$1 = {
+	keywords: [
+		"saint",
+		"barthélemy",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇧🇱",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var st_helena$1 = {
+	keywords: [
+		"saint",
+		"helena",
+		"ascension",
+		"tristan",
+		"cunha",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇸🇭",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var st_kitts_nevis$1 = {
+	keywords: [
+		"saint",
+		"kitts",
+		"nevis",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇰🇳",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var st_lucia$1 = {
+	keywords: [
+		"saint",
+		"lucia",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇱🇨",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var st_pierre_miquelon$1 = {
+	keywords: [
+		"saint",
+		"pierre",
+		"miquelon",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇵🇲",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var st_vincent_grenadines$1 = {
+	keywords: [
+		"saint",
+		"vincent",
+		"grenadines",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇻🇨",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var samoa$1 = {
+	keywords: [
+		"ws",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇼🇸",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var san_marino$1 = {
+	keywords: [
+		"san",
+		"marino",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇸🇲",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var sao_tome_principe$1 = {
+	keywords: [
+		"sao",
+		"tome",
+		"principe",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇸🇹",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var saudi_arabia$1 = {
+	keywords: [
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇸🇦",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var senegal$1 = {
+	keywords: [
+		"sn",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇸🇳",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var serbia$1 = {
+	keywords: [
+		"rs",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇷🇸",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var seychelles$1 = {
+	keywords: [
+		"sc",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇸🇨",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var sierra_leone$1 = {
+	keywords: [
+		"sierra",
+		"leone",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇸🇱",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var singapore$1 = {
+	keywords: [
+		"sg",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇸🇬",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var sint_maarten$1 = {
+	keywords: [
+		"sint",
+		"maarten",
+		"dutch",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇸🇽",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var slovakia$1 = {
+	keywords: [
+		"sk",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇸🇰",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var slovenia$1 = {
+	keywords: [
+		"si",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇸🇮",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var solomon_islands$1 = {
+	keywords: [
+		"solomon",
+		"islands",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇸🇧",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var somalia$1 = {
+	keywords: [
+		"so",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇸🇴",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var south_africa$1 = {
+	keywords: [
+		"south",
+		"africa",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇿🇦",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var south_georgia_south_sandwich_islands$1 = {
+	keywords: [
+		"south",
+		"georgia",
+		"sandwich",
+		"islands",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇬🇸",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var kr$1 = {
+	keywords: [
+		"south",
+		"korea",
+		"nation",
+		"flag",
+		"country",
+		"banner"
+	],
+	char: "🇰🇷",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var south_sudan$1 = {
+	keywords: [
+		"south",
+		"sd",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇸🇸",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var es$1 = {
+	keywords: [
+		"spain",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇪🇸",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var sri_lanka$1 = {
+	keywords: [
+		"sri",
+		"lanka",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇱🇰",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var sudan$1 = {
+	keywords: [
+		"sd",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇸🇩",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var suriname$1 = {
+	keywords: [
+		"sr",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇸🇷",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var swaziland$1 = {
+	keywords: [
+		"sz",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇸🇿",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var sweden$1 = {
+	keywords: [
+		"se",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇸🇪",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var switzerland$1 = {
+	keywords: [
+		"ch",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇨🇭",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var syria$1 = {
+	keywords: [
+		"syrian",
+		"arab",
+		"republic",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇸🇾",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var taiwan$1 = {
+	keywords: [
+		"tw",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇹🇼",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var tajikistan$1 = {
+	keywords: [
+		"tj",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇹🇯",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var tanzania$1 = {
+	keywords: [
+		"tanzania,",
+		"united",
+		"republic",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇹🇿",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var thailand$1 = {
+	keywords: [
+		"th",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇹🇭",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var timor_leste$1 = {
+	keywords: [
+		"timor",
+		"leste",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇹🇱",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var togo$1 = {
+	keywords: [
+		"tg",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇹🇬",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var tokelau$1 = {
+	keywords: [
+		"tk",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇹🇰",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var tonga$1 = {
+	keywords: [
+		"to",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇹🇴",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var trinidad_tobago$1 = {
+	keywords: [
+		"trinidad",
+		"tobago",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇹🇹",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var tunisia$1 = {
+	keywords: [
+		"tn",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇹🇳",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var tr$1 = {
+	keywords: [
+		"turkey",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇹🇷",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var turkmenistan$1 = {
+	keywords: [
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇹🇲",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var turks_caicos_islands$1 = {
+	keywords: [
+		"turks",
+		"caicos",
+		"islands",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇹🇨",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var tuvalu$1 = {
+	keywords: [
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇹🇻",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var uganda$1 = {
+	keywords: [
+		"ug",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇺🇬",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var ukraine$1 = {
+	keywords: [
+		"ua",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇺🇦",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var united_arab_emirates$1 = {
+	keywords: [
+		"united",
+		"arab",
+		"emirates",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇦🇪",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var uk$1 = {
+	keywords: [
+		"united",
+		"kingdom",
+		"great",
+		"britain",
+		"northern",
+		"ireland",
+		"flag",
+		"nation",
+		"country",
+		"banner",
+		"british",
+		"UK",
+		"english",
+		"england",
+		"union jack"
+	],
+	char: "🇬🇧",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var england$1 = {
+	keywords: [
+		"flag",
+		"english"
+	],
+	char: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var scotland$1 = {
+	keywords: [
+		"flag",
+		"scottish"
+	],
+	char: "🏴󠁧󠁢󠁳󠁣󠁴󠁿",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var wales$1 = {
+	keywords: [
+		"flag",
+		"welsh"
+	],
+	char: "🏴󠁧󠁢󠁷󠁬󠁳󠁿",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var us$1 = {
+	keywords: [
+		"united",
+		"states",
+		"america",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇺🇸",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var us_virgin_islands$1 = {
+	keywords: [
+		"virgin",
+		"islands",
+		"us",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇻🇮",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var uruguay$1 = {
+	keywords: [
+		"uy",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇺🇾",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var uzbekistan$1 = {
+	keywords: [
+		"uz",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇺🇿",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var vanuatu$1 = {
+	keywords: [
+		"vu",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇻🇺",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var vatican_city$1 = {
+	keywords: [
+		"vatican",
+		"city",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇻🇦",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var venezuela$1 = {
+	keywords: [
+		"ve",
+		"bolivarian",
+		"republic",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇻🇪",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var vietnam$1 = {
+	keywords: [
+		"viet",
+		"nam",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇻🇳",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var wallis_futuna$1 = {
+	keywords: [
+		"wallis",
+		"futuna",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇼🇫",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var western_sahara$1 = {
+	keywords: [
+		"western",
+		"sahara",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇪🇭",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var yemen$1 = {
+	keywords: [
+		"ye",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇾🇪",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var zambia$1 = {
+	keywords: [
+		"zm",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇿🇲",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var zimbabwe$1 = {
+	keywords: [
+		"zw",
+		"flag",
+		"nation",
+		"country",
+		"banner"
+	],
+	char: "🇿🇼",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var united_nations$1 = {
+	keywords: [
+		"un",
+		"flag",
+		"banner"
+	],
+	char: "🇺🇳",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+var pirate_flag$1 = {
+	keywords: [
+		"skull",
+		"crossbones",
+		"flag",
+		"banner"
+	],
+	char: "🏴‍☠️",
+	fitzpatrick_scale: false,
+	category: "flags"
+};
+const old_emojilib = {
+	"100": {
+	keywords: [
+		"score",
+		"perfect",
+		"numbers",
+		"century",
+		"exam",
+		"quiz",
+		"test",
+		"pass",
+		"hundred"
+	],
+	char: "💯",
+	fitzpatrick_scale: false,
+	category: "symbols"
+},
+	"1234": {
+	keywords: [
+		"numbers",
+		"blue-square"
+	],
+	char: "🔢",
+	fitzpatrick_scale: false,
+	category: "symbols"
+},
+	grinning: grinning$1,
+	grimacing: grimacing$1,
+	grin: grin$1,
+	joy: joy$1,
+	rofl: rofl$1,
+	partying: partying$1,
+	smiley: smiley$1,
+	smile: smile$1,
+	sweat_smile: sweat_smile$1,
+	laughing: laughing$1,
+	innocent: innocent$1,
+	wink: wink$1,
+	blush: blush$1,
+	slightly_smiling_face: slightly_smiling_face$1,
+	upside_down_face: upside_down_face$1,
+	relaxed: relaxed$1,
+	yum: yum$1,
+	relieved: relieved$1,
+	heart_eyes: heart_eyes$1,
+	smiling_face_with_three_hearts: smiling_face_with_three_hearts$1,
+	kissing_heart: kissing_heart$1,
+	kissing: kissing$1,
+	kissing_smiling_eyes: kissing_smiling_eyes$1,
+	kissing_closed_eyes: kissing_closed_eyes$1,
+	stuck_out_tongue_winking_eye: stuck_out_tongue_winking_eye$1,
+	zany: zany$1,
+	raised_eyebrow: raised_eyebrow$1,
+	monocle: monocle$1,
+	stuck_out_tongue_closed_eyes: stuck_out_tongue_closed_eyes$1,
+	stuck_out_tongue: stuck_out_tongue$1,
+	money_mouth_face: money_mouth_face$1,
+	nerd_face: nerd_face$1,
+	sunglasses: sunglasses$1,
+	star_struck: star_struck$1,
+	clown_face: clown_face$1,
+	cowboy_hat_face: cowboy_hat_face$1,
+	hugs: hugs$1,
+	smirk: smirk$1,
+	no_mouth: no_mouth$1,
+	neutral_face: neutral_face$1,
+	expressionless: expressionless$1,
+	unamused: unamused$1,
+	roll_eyes: roll_eyes$1,
+	thinking: thinking$1,
+	lying_face: lying_face$1,
+	hand_over_mouth: hand_over_mouth$1,
+	shushing: shushing$1,
+	symbols_over_mouth: symbols_over_mouth$1,
+	exploding_head: exploding_head$1,
+	flushed: flushed$1,
+	disappointed: disappointed$1,
+	worried: worried$1,
+	angry: angry$1,
+	rage: rage$1,
+	pensive: pensive$1,
+	confused: confused$1,
+	slightly_frowning_face: slightly_frowning_face$1,
+	frowning_face: frowning_face$1,
+	persevere: persevere$1,
+	confounded: confounded$1,
+	tired_face: tired_face$1,
+	weary: weary$1,
+	pleading: pleading$1,
+	triumph: triumph$1,
+	open_mouth: open_mouth$1,
+	scream: scream$1,
+	fearful: fearful$1,
+	cold_sweat: cold_sweat$1,
+	hushed: hushed$1,
+	frowning: frowning$1,
+	anguished: anguished$1,
+	cry: cry$1,
+	disappointed_relieved: disappointed_relieved$1,
+	drooling_face: drooling_face$1,
+	sleepy: sleepy$1,
+	sweat: sweat$1,
+	hot: hot$1,
+	cold: cold$1,
+	sob: sob$1,
+	dizzy_face: dizzy_face$1,
+	astonished: astonished$1,
+	zipper_mouth_face: zipper_mouth_face$1,
+	nauseated_face: nauseated_face$1,
+	sneezing_face: sneezing_face$1,
+	vomiting: vomiting$1,
+	mask: mask$1,
+	face_with_thermometer: face_with_thermometer$1,
+	face_with_head_bandage: face_with_head_bandage$1,
+	woozy: woozy$1,
+	sleeping: sleeping$1,
+	zzz: zzz$1,
+	poop: poop$1,
+	smiling_imp: smiling_imp$1,
+	imp: imp$1,
+	japanese_ogre: japanese_ogre$1,
+	japanese_goblin: japanese_goblin$1,
+	skull: skull$1,
+	ghost: ghost$1,
+	alien: alien$1,
+	robot: robot$1,
+	smiley_cat: smiley_cat$1,
+	smile_cat: smile_cat$1,
+	joy_cat: joy_cat$1,
+	heart_eyes_cat: heart_eyes_cat$1,
+	smirk_cat: smirk_cat$1,
+	kissing_cat: kissing_cat$1,
+	scream_cat: scream_cat$1,
+	crying_cat_face: crying_cat_face$1,
+	pouting_cat: pouting_cat$1,
+	palms_up: palms_up$1,
+	raised_hands: raised_hands$1,
+	clap: clap$1,
+	wave: wave$1,
+	call_me_hand: call_me_hand$1,
+	"+1": {
+	keywords: [
+		"thumbsup",
+		"yes",
+		"awesome",
+		"good",
+		"agree",
+		"accept",
+		"cool",
+		"hand",
+		"like"
+	],
+	char: "👍",
+	fitzpatrick_scale: true,
+	category: "people"
+},
+	"-1": {
+	keywords: [
+		"thumbsdown",
+		"no",
+		"dislike",
+		"hand"
+	],
+	char: "👎",
+	fitzpatrick_scale: true,
+	category: "people"
+},
+	facepunch: facepunch$1,
+	fist: fist$1,
+	fist_left: fist_left$1,
+	fist_right: fist_right$1,
+	v: v$1,
+	ok_hand: ok_hand$1,
+	raised_hand: raised_hand$1,
+	raised_back_of_hand: raised_back_of_hand$1,
+	open_hands: open_hands$1,
+	muscle: muscle$1,
+	pray: pray$1,
+	foot: foot$1,
+	leg: leg$1,
+	handshake: handshake$1,
+	point_up: point_up$1,
+	point_up_2: point_up_2$1,
+	point_down: point_down$1,
+	point_left: point_left$1,
+	point_right: point_right$1,
+	fu: fu$1,
+	raised_hand_with_fingers_splayed: raised_hand_with_fingers_splayed$1,
+	love_you: love_you$1,
+	metal: metal$1,
+	crossed_fingers: crossed_fingers$1,
+	vulcan_salute: vulcan_salute$1,
+	writing_hand: writing_hand$1,
+	selfie: selfie$1,
+	nail_care: nail_care$1,
+	lips: lips$1,
+	tooth: tooth$1,
+	tongue: tongue$1,
+	ear: ear$1,
+	nose: nose$1,
+	eye: eye$1,
+	eyes: eyes$1,
+	brain: brain$1,
+	bust_in_silhouette: bust_in_silhouette$1,
+	busts_in_silhouette: busts_in_silhouette$1,
+	speaking_head: speaking_head$1,
+	baby: baby$1,
+	child: child$1,
+	boy: boy$1,
+	girl: girl$1,
+	adult: adult$1,
+	man: man$1,
+	woman: woman$1,
+	blonde_woman: blonde_woman$1,
+	blonde_man: blonde_man$1,
+	bearded_person: bearded_person$1,
+	older_adult: older_adult$1,
+	older_man: older_man$1,
+	older_woman: older_woman$1,
+	man_with_gua_pi_mao: man_with_gua_pi_mao$1,
+	woman_with_headscarf: woman_with_headscarf$1,
+	woman_with_turban: woman_with_turban$1,
+	man_with_turban: man_with_turban$1,
+	policewoman: policewoman$1,
+	policeman: policeman$1,
+	construction_worker_woman: construction_worker_woman$1,
+	construction_worker_man: construction_worker_man$1,
+	guardswoman: guardswoman$1,
+	guardsman: guardsman$1,
+	female_detective: female_detective$1,
+	male_detective: male_detective$1,
+	woman_health_worker: woman_health_worker$1,
+	man_health_worker: man_health_worker$1,
+	woman_farmer: woman_farmer$1,
+	man_farmer: man_farmer$1,
+	woman_cook: woman_cook$1,
+	man_cook: man_cook$1,
+	woman_student: woman_student$1,
+	man_student: man_student$1,
+	woman_singer: woman_singer$1,
+	man_singer: man_singer$1,
+	woman_teacher: woman_teacher$1,
+	man_teacher: man_teacher$1,
+	woman_factory_worker: woman_factory_worker$1,
+	man_factory_worker: man_factory_worker$1,
+	woman_technologist: woman_technologist$1,
+	man_technologist: man_technologist$1,
+	woman_office_worker: woman_office_worker$1,
+	man_office_worker: man_office_worker$1,
+	woman_mechanic: woman_mechanic$1,
+	man_mechanic: man_mechanic$1,
+	woman_scientist: woman_scientist$1,
+	man_scientist: man_scientist$1,
+	woman_artist: woman_artist$1,
+	man_artist: man_artist$1,
+	woman_firefighter: woman_firefighter$1,
+	man_firefighter: man_firefighter$1,
+	woman_pilot: woman_pilot$1,
+	man_pilot: man_pilot$1,
+	woman_astronaut: woman_astronaut$1,
+	man_astronaut: man_astronaut$1,
+	woman_judge: woman_judge$1,
+	man_judge: man_judge$1,
+	woman_superhero: woman_superhero$1,
+	man_superhero: man_superhero$1,
+	woman_supervillain: woman_supervillain$1,
+	man_supervillain: man_supervillain$1,
+	mrs_claus: mrs_claus$1,
+	santa: santa$1,
+	sorceress: sorceress$1,
+	wizard: wizard$1,
+	woman_elf: woman_elf$1,
+	man_elf: man_elf$1,
+	woman_vampire: woman_vampire$1,
+	man_vampire: man_vampire$1,
+	woman_zombie: woman_zombie$1,
+	man_zombie: man_zombie$1,
+	woman_genie: woman_genie$1,
+	man_genie: man_genie$1,
+	mermaid: mermaid$1,
+	merman: merman$1,
+	woman_fairy: woman_fairy$1,
+	man_fairy: man_fairy$1,
+	angel: angel$1,
+	pregnant_woman: pregnant_woman$1,
+	breastfeeding: breastfeeding$1,
+	princess: princess$1,
+	prince: prince$1,
+	bride_with_veil: bride_with_veil$1,
+	man_in_tuxedo: man_in_tuxedo$1,
+	running_woman: running_woman$1,
+	running_man: running_man$1,
+	walking_woman: walking_woman$1,
+	walking_man: walking_man$1,
+	dancer: dancer$1,
+	man_dancing: man_dancing$1,
+	dancing_women: dancing_women$1,
+	dancing_men: dancing_men$1,
+	couple: couple$1,
+	two_men_holding_hands: two_men_holding_hands$1,
+	two_women_holding_hands: two_women_holding_hands$1,
+	bowing_woman: bowing_woman$1,
+	bowing_man: bowing_man$1,
+	man_facepalming: man_facepalming$1,
+	woman_facepalming: woman_facepalming$1,
+	woman_shrugging: woman_shrugging$1,
+	man_shrugging: man_shrugging$1,
+	tipping_hand_woman: tipping_hand_woman$1,
+	tipping_hand_man: tipping_hand_man$1,
+	no_good_woman: no_good_woman$1,
+	no_good_man: no_good_man$1,
+	ok_woman: ok_woman$1,
+	ok_man: ok_man$1,
+	raising_hand_woman: raising_hand_woman$1,
+	raising_hand_man: raising_hand_man$1,
+	pouting_woman: pouting_woman$1,
+	pouting_man: pouting_man$1,
+	frowning_woman: frowning_woman$1,
+	frowning_man: frowning_man$1,
+	haircut_woman: haircut_woman$1,
+	haircut_man: haircut_man$1,
+	massage_woman: massage_woman$1,
+	massage_man: massage_man$1,
+	woman_in_steamy_room: woman_in_steamy_room$1,
+	man_in_steamy_room: man_in_steamy_room$1,
+	couple_with_heart_woman_man: couple_with_heart_woman_man$1,
+	couple_with_heart_woman_woman: couple_with_heart_woman_woman$1,
+	couple_with_heart_man_man: couple_with_heart_man_man$1,
+	couplekiss_man_woman: couplekiss_man_woman$1,
+	couplekiss_woman_woman: couplekiss_woman_woman$1,
+	couplekiss_man_man: couplekiss_man_man$1,
+	family_man_woman_boy: family_man_woman_boy$1,
+	family_man_woman_girl: family_man_woman_girl$1,
+	family_man_woman_girl_boy: family_man_woman_girl_boy$1,
+	family_man_woman_boy_boy: family_man_woman_boy_boy$1,
+	family_man_woman_girl_girl: family_man_woman_girl_girl$1,
+	family_woman_woman_boy: family_woman_woman_boy$1,
+	family_woman_woman_girl: family_woman_woman_girl$1,
+	family_woman_woman_girl_boy: family_woman_woman_girl_boy$1,
+	family_woman_woman_boy_boy: family_woman_woman_boy_boy$1,
+	family_woman_woman_girl_girl: family_woman_woman_girl_girl$1,
+	family_man_man_boy: family_man_man_boy$1,
+	family_man_man_girl: family_man_man_girl$1,
+	family_man_man_girl_boy: family_man_man_girl_boy$1,
+	family_man_man_boy_boy: family_man_man_boy_boy$1,
+	family_man_man_girl_girl: family_man_man_girl_girl$1,
+	family_woman_boy: family_woman_boy$1,
+	family_woman_girl: family_woman_girl$1,
+	family_woman_girl_boy: family_woman_girl_boy$1,
+	family_woman_boy_boy: family_woman_boy_boy$1,
+	family_woman_girl_girl: family_woman_girl_girl$1,
+	family_man_boy: family_man_boy$1,
+	family_man_girl: family_man_girl$1,
+	family_man_girl_boy: family_man_girl_boy$1,
+	family_man_boy_boy: family_man_boy_boy$1,
+	family_man_girl_girl: family_man_girl_girl$1,
+	yarn: yarn$1,
+	thread: thread$1,
+	coat: coat$1,
+	labcoat: labcoat$1,
+	womans_clothes: womans_clothes$1,
+	tshirt: tshirt$1,
+	jeans: jeans$1,
+	necktie: necktie$1,
+	dress: dress$1,
+	bikini: bikini$1,
+	kimono: kimono$1,
+	lipstick: lipstick$1,
+	kiss: kiss$1,
+	footprints: footprints$1,
+	flat_shoe: flat_shoe$1,
+	high_heel: high_heel$1,
+	sandal: sandal$1,
+	boot: boot$1,
+	mans_shoe: mans_shoe$1,
+	athletic_shoe: athletic_shoe$1,
+	hiking_boot: hiking_boot$1,
+	socks: socks$1,
+	gloves: gloves$1,
+	scarf: scarf$1,
+	womans_hat: womans_hat$1,
+	tophat: tophat$1,
+	billed_hat: billed_hat$1,
+	rescue_worker_helmet: rescue_worker_helmet$1,
+	mortar_board: mortar_board$1,
+	crown: crown$1,
+	school_satchel: school_satchel$1,
+	luggage: luggage$1,
+	pouch: pouch$1,
+	purse: purse$1,
+	handbag: handbag$1,
+	briefcase: briefcase$1,
+	eyeglasses: eyeglasses$1,
+	dark_sunglasses: dark_sunglasses$1,
+	goggles: goggles$1,
+	ring: ring$1,
+	closed_umbrella: closed_umbrella$1,
+	dog: dog$1,
+	cat: cat$1,
+	mouse: mouse$1,
+	hamster: hamster$1,
+	rabbit: rabbit$1,
+	fox_face: fox_face$1,
+	bear: bear$1,
+	panda_face: panda_face$1,
+	koala: koala$1,
+	tiger: tiger$1,
+	lion: lion$1,
+	cow: cow$1,
+	pig: pig$1,
+	pig_nose: pig_nose$1,
+	frog: frog$1,
+	squid: squid$1,
+	octopus: octopus$1,
+	shrimp: shrimp$1,
+	monkey_face: monkey_face$1,
+	gorilla: gorilla$1,
+	see_no_evil: see_no_evil$1,
+	hear_no_evil: hear_no_evil$1,
+	speak_no_evil: speak_no_evil$1,
+	monkey: monkey$1,
+	chicken: chicken$1,
+	penguin: penguin$1,
+	bird: bird$1,
+	baby_chick: baby_chick$1,
+	hatching_chick: hatching_chick$1,
+	hatched_chick: hatched_chick$1,
+	duck: duck$1,
+	eagle: eagle$1,
+	owl: owl$1,
+	bat: bat$1,
+	wolf: wolf$1,
+	boar: boar$1,
+	horse: horse$1,
+	unicorn: unicorn$1,
+	honeybee: honeybee$1,
+	bug: bug$1,
+	butterfly: butterfly$1,
+	snail: snail$1,
+	beetle: beetle$1,
+	ant: ant$1,
+	grasshopper: grasshopper$1,
+	spider: spider$1,
+	scorpion: scorpion$1,
+	crab: crab$1,
+	snake: snake$1,
+	lizard: lizard$1,
+	"t-rex": {
+	keywords: [
+		"animal",
+		"nature",
+		"dinosaur",
+		"tyrannosaurus",
+		"extinct"
+	],
+	char: "🦖",
+	fitzpatrick_scale: false,
+	category: "animals_and_nature"
+},
+	sauropod: sauropod$1,
+	turtle: turtle$1,
+	tropical_fish: tropical_fish$1,
+	fish: fish$1,
+	blowfish: blowfish$1,
+	dolphin: dolphin$1,
+	shark: shark$1,
+	whale: whale$1,
+	whale2: whale2$1,
+	crocodile: crocodile$1,
+	leopard: leopard$1,
+	zebra: zebra$1,
+	tiger2: tiger2$1,
+	water_buffalo: water_buffalo$1,
+	ox: ox$1,
+	cow2: cow2$1,
+	deer: deer$1,
+	dromedary_camel: dromedary_camel$1,
+	camel: camel$1,
+	giraffe: giraffe$1,
+	elephant: elephant$1,
+	rhinoceros: rhinoceros$1,
+	goat: goat$1,
+	ram: ram$1,
+	sheep: sheep$1,
+	racehorse: racehorse$1,
+	pig2: pig2$1,
+	rat: rat$1,
+	mouse2: mouse2$1,
+	rooster: rooster$1,
+	turkey: turkey$1,
+	dove: dove$1,
+	dog2: dog2$1,
+	poodle: poodle$1,
+	cat2: cat2$1,
+	rabbit2: rabbit2$1,
+	chipmunk: chipmunk$1,
+	hedgehog: hedgehog$1,
+	raccoon: raccoon$1,
+	llama: llama$1,
+	hippopotamus: hippopotamus$1,
+	kangaroo: kangaroo$1,
+	badger: badger$1,
+	swan: swan$1,
+	peacock: peacock$1,
+	parrot: parrot$1,
+	lobster: lobster$1,
+	mosquito: mosquito$1,
+	paw_prints: paw_prints$1,
+	dragon: dragon$1,
+	dragon_face: dragon_face$1,
+	cactus: cactus$1,
+	christmas_tree: christmas_tree$1,
+	evergreen_tree: evergreen_tree$1,
+	deciduous_tree: deciduous_tree$1,
+	palm_tree: palm_tree$1,
+	seedling: seedling$1,
+	herb: herb$1,
+	shamrock: shamrock$1,
+	four_leaf_clover: four_leaf_clover$1,
+	bamboo: bamboo$1,
+	tanabata_tree: tanabata_tree$1,
+	leaves: leaves$1,
+	fallen_leaf: fallen_leaf$1,
+	maple_leaf: maple_leaf$1,
+	ear_of_rice: ear_of_rice$1,
+	hibiscus: hibiscus$1,
+	sunflower: sunflower$1,
+	rose: rose$1,
+	wilted_flower: wilted_flower$1,
+	tulip: tulip$1,
+	blossom: blossom$1,
+	cherry_blossom: cherry_blossom$1,
+	bouquet: bouquet$1,
+	mushroom: mushroom$1,
+	chestnut: chestnut$1,
+	jack_o_lantern: jack_o_lantern$1,
+	shell: shell$1,
+	spider_web: spider_web$1,
+	earth_americas: earth_americas$1,
+	earth_africa: earth_africa$1,
+	earth_asia: earth_asia$1,
+	full_moon: full_moon$1,
+	waning_gibbous_moon: waning_gibbous_moon$1,
+	last_quarter_moon: last_quarter_moon$1,
+	waning_crescent_moon: waning_crescent_moon$1,
+	new_moon: new_moon$1,
+	waxing_crescent_moon: waxing_crescent_moon$1,
+	first_quarter_moon: first_quarter_moon$1,
+	waxing_gibbous_moon: waxing_gibbous_moon$1,
+	new_moon_with_face: new_moon_with_face$1,
+	full_moon_with_face: full_moon_with_face$1,
+	first_quarter_moon_with_face: first_quarter_moon_with_face$1,
+	last_quarter_moon_with_face: last_quarter_moon_with_face$1,
+	sun_with_face: sun_with_face$1,
+	crescent_moon: crescent_moon$1,
+	star: star$1,
+	star2: star2$1,
+	dizzy: dizzy$1,
+	sparkles: sparkles$1,
+	comet: comet$1,
+	sunny: sunny$1,
+	sun_behind_small_cloud: sun_behind_small_cloud$1,
+	partly_sunny: partly_sunny$1,
+	sun_behind_large_cloud: sun_behind_large_cloud$1,
+	sun_behind_rain_cloud: sun_behind_rain_cloud$1,
+	cloud: cloud$1,
+	cloud_with_rain: cloud_with_rain$1,
+	cloud_with_lightning_and_rain: cloud_with_lightning_and_rain$1,
+	cloud_with_lightning: cloud_with_lightning$1,
+	zap: zap$1,
+	fire: fire$1,
+	boom: boom$1,
+	snowflake: snowflake$1,
+	cloud_with_snow: cloud_with_snow$1,
+	snowman: snowman$1,
+	snowman_with_snow: snowman_with_snow$1,
+	wind_face: wind_face$1,
+	dash: dash$1,
+	tornado: tornado$1,
+	fog: fog$1,
+	open_umbrella: open_umbrella$1,
+	umbrella: umbrella$1,
+	droplet: droplet$1,
+	sweat_drops: sweat_drops$1,
+	ocean: ocean$1,
+	green_apple: green_apple$1,
+	apple: apple$1,
+	pear: pear$1,
+	tangerine: tangerine$1,
+	lemon: lemon$1,
+	banana: banana$1,
+	watermelon: watermelon$1,
+	grapes: grapes$1,
+	strawberry: strawberry$1,
+	melon: melon$1,
+	cherries: cherries$1,
+	peach: peach$1,
+	pineapple: pineapple$1,
+	coconut: coconut$1,
+	kiwi_fruit: kiwi_fruit$1,
+	mango: mango$1,
+	avocado: avocado$1,
+	broccoli: broccoli$1,
+	tomato: tomato$1,
+	eggplant: eggplant$1,
+	cucumber: cucumber$1,
+	carrot: carrot$1,
+	hot_pepper: hot_pepper$1,
+	potato: potato$1,
+	corn: corn$1,
+	leafy_greens: leafy_greens$1,
+	sweet_potato: sweet_potato$1,
+	peanuts: peanuts$1,
+	honey_pot: honey_pot$1,
+	croissant: croissant$1,
+	bread: bread$1,
+	baguette_bread: baguette_bread$1,
+	bagel: bagel$1,
+	pretzel: pretzel$1,
+	cheese: cheese$1,
+	egg: egg$1,
+	bacon: bacon$1,
+	steak: steak$1,
+	pancakes: pancakes$1,
+	poultry_leg: poultry_leg$1,
+	meat_on_bone: meat_on_bone$1,
+	bone: bone$1,
+	fried_shrimp: fried_shrimp$1,
+	fried_egg: fried_egg$1,
+	hamburger: hamburger$1,
+	fries: fries$1,
+	stuffed_flatbread: stuffed_flatbread$1,
+	hotdog: hotdog$1,
+	pizza: pizza$1,
+	sandwich: sandwich$1,
+	canned_food: canned_food$1,
+	spaghetti: spaghetti$1,
+	taco: taco$1,
+	burrito: burrito$1,
+	green_salad: green_salad$1,
+	shallow_pan_of_food: shallow_pan_of_food$1,
+	ramen: ramen$1,
+	stew: stew$1,
+	fish_cake: fish_cake$1,
+	fortune_cookie: fortune_cookie$1,
+	sushi: sushi$1,
+	bento: bento$1,
+	curry: curry$1,
+	rice_ball: rice_ball$1,
+	rice: rice$1,
+	rice_cracker: rice_cracker$1,
+	oden: oden$1,
+	dango: dango$1,
+	shaved_ice: shaved_ice$1,
+	ice_cream: ice_cream$1,
+	icecream: icecream$1,
+	pie: pie$1,
+	cake: cake$1,
+	cupcake: cupcake$1,
+	moon_cake: moon_cake$1,
+	birthday: birthday$1,
+	custard: custard$1,
+	candy: candy$1,
+	lollipop: lollipop$1,
+	chocolate_bar: chocolate_bar$1,
+	popcorn: popcorn$1,
+	dumpling: dumpling$1,
+	doughnut: doughnut$1,
+	cookie: cookie$1,
+	milk_glass: milk_glass$1,
+	beer: beer$1,
+	beers: beers$1,
+	clinking_glasses: clinking_glasses$1,
+	wine_glass: wine_glass$1,
+	tumbler_glass: tumbler_glass$1,
+	cocktail: cocktail$1,
+	tropical_drink: tropical_drink$1,
+	champagne: champagne$1,
+	sake: sake$1,
+	tea: tea$1,
+	cup_with_straw: cup_with_straw$1,
+	coffee: coffee$1,
+	baby_bottle: baby_bottle$1,
+	salt: salt$1,
+	spoon: spoon$1,
+	fork_and_knife: fork_and_knife$1,
+	plate_with_cutlery: plate_with_cutlery$1,
+	bowl_with_spoon: bowl_with_spoon$1,
+	takeout_box: takeout_box$1,
+	chopsticks: chopsticks$1,
+	soccer: soccer$1,
+	basketball: basketball$1,
+	football: football$1,
+	baseball: baseball$1,
+	softball: softball$1,
+	tennis: tennis$1,
+	volleyball: volleyball$1,
+	rugby_football: rugby_football$1,
+	flying_disc: flying_disc$1,
+	"8ball": {
+	keywords: [
+		"pool",
+		"hobby",
+		"game",
+		"luck",
+		"magic"
+	],
+	char: "🎱",
+	fitzpatrick_scale: false,
+	category: "activity"
+},
+	golf: golf$1,
+	golfing_woman: golfing_woman$1,
+	golfing_man: golfing_man$1,
+	ping_pong: ping_pong$1,
+	badminton: badminton$1,
+	goal_net: goal_net$1,
+	ice_hockey: ice_hockey$1,
+	field_hockey: field_hockey$1,
+	lacrosse: lacrosse$1,
+	cricket: cricket$1,
+	ski: ski$1,
+	skier: skier$1,
+	snowboarder: snowboarder$1,
+	person_fencing: person_fencing$1,
+	women_wrestling: women_wrestling$1,
+	men_wrestling: men_wrestling$1,
+	woman_cartwheeling: woman_cartwheeling$1,
+	man_cartwheeling: man_cartwheeling$1,
+	woman_playing_handball: woman_playing_handball$1,
+	man_playing_handball: man_playing_handball$1,
+	ice_skate: ice_skate$1,
+	curling_stone: curling_stone$1,
+	skateboard: skateboard$1,
+	sled: sled$1,
+	bow_and_arrow: bow_and_arrow$1,
+	fishing_pole_and_fish: fishing_pole_and_fish$1,
+	boxing_glove: boxing_glove$1,
+	martial_arts_uniform: martial_arts_uniform$1,
+	rowing_woman: rowing_woman$1,
+	rowing_man: rowing_man$1,
+	climbing_woman: climbing_woman$1,
+	climbing_man: climbing_man$1,
+	swimming_woman: swimming_woman$1,
+	swimming_man: swimming_man$1,
+	woman_playing_water_polo: woman_playing_water_polo$1,
+	man_playing_water_polo: man_playing_water_polo$1,
+	woman_in_lotus_position: woman_in_lotus_position$1,
+	man_in_lotus_position: man_in_lotus_position$1,
+	surfing_woman: surfing_woman$1,
+	surfing_man: surfing_man$1,
+	bath: bath$1,
+	basketball_woman: basketball_woman$1,
+	basketball_man: basketball_man$1,
+	weight_lifting_woman: weight_lifting_woman$1,
+	weight_lifting_man: weight_lifting_man$1,
+	biking_woman: biking_woman$1,
+	biking_man: biking_man$1,
+	mountain_biking_woman: mountain_biking_woman$1,
+	mountain_biking_man: mountain_biking_man$1,
+	horse_racing: horse_racing$1,
+	business_suit_levitating: business_suit_levitating$1,
+	trophy: trophy$1,
+	running_shirt_with_sash: running_shirt_with_sash$1,
+	medal_sports: medal_sports$1,
+	medal_military: medal_military$1,
+	"1st_place_medal": {
+	keywords: [
+		"award",
+		"winning",
+		"first"
+	],
+	char: "🥇",
+	fitzpatrick_scale: false,
+	category: "activity"
+},
+	"2nd_place_medal": {
+	keywords: [
+		"award",
+		"second"
+	],
+	char: "🥈",
+	fitzpatrick_scale: false,
+	category: "activity"
+},
+	"3rd_place_medal": {
+	keywords: [
+		"award",
+		"third"
+	],
+	char: "🥉",
+	fitzpatrick_scale: false,
+	category: "activity"
+},
+	reminder_ribbon: reminder_ribbon$1,
+	rosette: rosette$1,
+	ticket: ticket$1,
+	tickets: tickets$1,
+	performing_arts: performing_arts$1,
+	art: art$1,
+	circus_tent: circus_tent$1,
+	woman_juggling: woman_juggling$1,
+	man_juggling: man_juggling$1,
+	microphone: microphone$1,
+	headphones: headphones$1,
+	musical_score: musical_score$1,
+	musical_keyboard: musical_keyboard$1,
+	drum: drum$1,
+	saxophone: saxophone$1,
+	trumpet: trumpet$1,
+	guitar: guitar$1,
+	violin: violin$1,
+	clapper: clapper$1,
+	video_game: video_game$1,
+	space_invader: space_invader$1,
+	dart: dart$1,
+	game_die: game_die$1,
+	chess_pawn: chess_pawn$1,
+	slot_machine: slot_machine$1,
+	jigsaw: jigsaw$1,
+	bowling: bowling$1,
+	red_car: red_car$1,
+	taxi: taxi$1,
+	blue_car: blue_car$1,
+	bus: bus$1,
+	trolleybus: trolleybus$1,
+	racing_car: racing_car$1,
+	police_car: police_car$1,
+	ambulance: ambulance$1,
+	fire_engine: fire_engine$1,
+	minibus: minibus$1,
+	truck: truck$1,
+	articulated_lorry: articulated_lorry$1,
+	tractor: tractor$1,
+	kick_scooter: kick_scooter$1,
+	motorcycle: motorcycle$1,
+	bike: bike$1,
+	motor_scooter: motor_scooter$1,
+	rotating_light: rotating_light$1,
+	oncoming_police_car: oncoming_police_car$1,
+	oncoming_bus: oncoming_bus$1,
+	oncoming_automobile: oncoming_automobile$1,
+	oncoming_taxi: oncoming_taxi$1,
+	aerial_tramway: aerial_tramway$1,
+	mountain_cableway: mountain_cableway$1,
+	suspension_railway: suspension_railway$1,
+	railway_car: railway_car$1,
+	train: train$1,
+	monorail: monorail$1,
+	bullettrain_side: bullettrain_side$1,
+	bullettrain_front: bullettrain_front$1,
+	light_rail: light_rail$1,
+	mountain_railway: mountain_railway$1,
+	steam_locomotive: steam_locomotive$1,
+	train2: train2$1,
+	metro: metro$1,
+	tram: tram$1,
+	station: station$1,
+	flying_saucer: flying_saucer$1,
+	helicopter: helicopter$1,
+	small_airplane: small_airplane$1,
+	airplane: airplane$1,
+	flight_departure: flight_departure$1,
+	flight_arrival: flight_arrival$1,
+	sailboat: sailboat$1,
+	motor_boat: motor_boat$1,
+	speedboat: speedboat$1,
+	ferry: ferry$1,
+	passenger_ship: passenger_ship$1,
+	rocket: rocket$1,
+	artificial_satellite: artificial_satellite$1,
+	seat: seat$1,
+	canoe: canoe$1,
+	anchor: anchor$1,
+	construction: construction$1,
+	fuelpump: fuelpump$1,
+	busstop: busstop$1,
+	vertical_traffic_light: vertical_traffic_light$1,
+	traffic_light: traffic_light$1,
+	checkered_flag: checkered_flag$1,
+	ship: ship$1,
+	ferris_wheel: ferris_wheel$1,
+	roller_coaster: roller_coaster$1,
+	carousel_horse: carousel_horse$1,
+	building_construction: building_construction$1,
+	foggy: foggy$1,
+	tokyo_tower: tokyo_tower$1,
+	factory: factory$1,
+	fountain: fountain$1,
+	rice_scene: rice_scene$1,
+	mountain: mountain$1,
+	mountain_snow: mountain_snow$1,
+	mount_fuji: mount_fuji$1,
+	volcano: volcano$1,
+	japan: japan$1,
+	camping: camping$1,
+	tent: tent$1,
+	national_park: national_park$1,
+	motorway: motorway$1,
+	railway_track: railway_track$1,
+	sunrise: sunrise$1,
+	sunrise_over_mountains: sunrise_over_mountains$1,
+	desert: desert$1,
+	beach_umbrella: beach_umbrella$1,
+	desert_island: desert_island$1,
+	city_sunrise: city_sunrise$1,
+	city_sunset: city_sunset$1,
+	cityscape: cityscape$1,
+	night_with_stars: night_with_stars$1,
+	bridge_at_night: bridge_at_night$1,
+	milky_way: milky_way$1,
+	stars: stars$1,
+	sparkler: sparkler$1,
+	fireworks: fireworks$1,
+	rainbow: rainbow$1,
+	houses: houses$1,
+	european_castle: european_castle$1,
+	japanese_castle: japanese_castle$1,
+	stadium: stadium$1,
+	statue_of_liberty: statue_of_liberty$1,
+	house: house$1,
+	house_with_garden: house_with_garden$1,
+	derelict_house: derelict_house$1,
+	office: office$1,
+	department_store: department_store$1,
+	post_office: post_office$1,
+	european_post_office: european_post_office$1,
+	hospital: hospital$1,
+	bank: bank$1,
+	hotel: hotel$1,
+	convenience_store: convenience_store$1,
+	school: school$1,
+	love_hotel: love_hotel$1,
+	wedding: wedding$1,
+	classical_building: classical_building$1,
+	church: church$1,
+	mosque: mosque$1,
+	synagogue: synagogue$1,
+	kaaba: kaaba$1,
+	shinto_shrine: shinto_shrine$1,
+	watch: watch$1,
+	iphone: iphone$1,
+	calling: calling$1,
+	computer: computer$1,
+	keyboard: keyboard$1,
+	desktop_computer: desktop_computer$1,
+	printer: printer$1,
+	computer_mouse: computer_mouse$1,
+	trackball: trackball$1,
+	joystick: joystick$1,
+	clamp: clamp$1,
+	minidisc: minidisc$1,
+	floppy_disk: floppy_disk$1,
+	cd: cd$1,
+	dvd: dvd$1,
+	vhs: vhs$1,
+	camera: camera$1,
+	camera_flash: camera_flash$1,
+	video_camera: video_camera$1,
+	movie_camera: movie_camera$1,
+	film_projector: film_projector$1,
+	film_strip: film_strip$1,
+	telephone_receiver: telephone_receiver$1,
+	phone: phone$1,
+	pager: pager$1,
+	fax: fax$1,
+	tv: tv$1,
+	radio: radio$1,
+	studio_microphone: studio_microphone$1,
+	level_slider: level_slider$1,
+	control_knobs: control_knobs$1,
+	compass: compass$1,
+	stopwatch: stopwatch$1,
+	timer_clock: timer_clock$1,
+	alarm_clock: alarm_clock$1,
+	mantelpiece_clock: mantelpiece_clock$1,
+	hourglass_flowing_sand: hourglass_flowing_sand$1,
+	hourglass: hourglass$1,
+	satellite: satellite$1,
+	battery: battery$1,
+	electric_plug: electric_plug$1,
+	bulb: bulb$1,
+	flashlight: flashlight$1,
+	candle: candle$1,
+	fire_extinguisher: fire_extinguisher$1,
+	wastebasket: wastebasket$1,
+	oil_drum: oil_drum$1,
+	money_with_wings: money_with_wings$1,
+	dollar: dollar$1,
+	yen: yen$1,
+	euro: euro$1,
+	pound: pound$1,
+	moneybag: moneybag$1,
+	credit_card: credit_card$1,
+	gem: gem$1,
+	balance_scale: balance_scale$1,
+	toolbox: toolbox$1,
+	wrench: wrench$1,
+	hammer: hammer$1,
+	hammer_and_pick: hammer_and_pick$1,
+	hammer_and_wrench: hammer_and_wrench$1,
+	pick: pick$1,
+	nut_and_bolt: nut_and_bolt$1,
+	gear: gear$1,
+	brick: brick$1,
+	chains: chains$1,
+	magnet: magnet$1,
+	gun: gun$1,
+	bomb: bomb$1,
+	firecracker: firecracker$1,
+	hocho: hocho$1,
+	dagger: dagger$1,
+	crossed_swords: crossed_swords$1,
+	shield: shield$1,
+	smoking: smoking$1,
+	skull_and_crossbones: skull_and_crossbones$1,
+	coffin: coffin$1,
+	funeral_urn: funeral_urn$1,
+	amphora: amphora$1,
+	crystal_ball: crystal_ball$1,
+	prayer_beads: prayer_beads$1,
+	nazar_amulet: nazar_amulet$1,
+	barber: barber$1,
+	alembic: alembic$1,
+	telescope: telescope$1,
+	microscope: microscope$1,
+	hole: hole$1,
+	pill: pill$1,
+	syringe: syringe$1,
+	dna: dna$1,
+	microbe: microbe$1,
+	petri_dish: petri_dish$1,
+	test_tube: test_tube$1,
+	thermometer: thermometer$1,
+	broom: broom$1,
+	basket: basket$1,
+	toilet_paper: toilet_paper$1,
+	label: label$1,
+	bookmark: bookmark$1,
+	toilet: toilet$1,
+	shower: shower$1,
+	bathtub: bathtub$1,
+	soap: soap$1,
+	sponge: sponge$1,
+	lotion_bottle: lotion_bottle$1,
+	key: key$1,
+	old_key: old_key$1,
+	couch_and_lamp: couch_and_lamp$1,
+	sleeping_bed: sleeping_bed$1,
+	bed: bed$1,
+	door: door$1,
+	bellhop_bell: bellhop_bell$1,
+	teddy_bear: teddy_bear$1,
+	framed_picture: framed_picture$1,
+	world_map: world_map$1,
+	parasol_on_ground: parasol_on_ground$1,
+	moyai: moyai$1,
+	shopping: shopping$1,
+	shopping_cart: shopping_cart$1,
+	balloon: balloon$1,
+	flags: flags$1,
+	ribbon: ribbon$1,
+	gift: gift$1,
+	confetti_ball: confetti_ball$1,
+	tada: tada$1,
+	dolls: dolls$1,
+	wind_chime: wind_chime$1,
+	crossed_flags: crossed_flags$1,
+	izakaya_lantern: izakaya_lantern$1,
+	red_envelope: red_envelope$1,
+	email: email$1,
+	envelope_with_arrow: envelope_with_arrow$1,
+	incoming_envelope: incoming_envelope$1,
+	"e-mail": {
+	keywords: [
+		"communication",
+		"inbox"
+	],
+	char: "📧",
+	fitzpatrick_scale: false,
+	category: "objects"
+},
+	love_letter: love_letter$1,
+	postbox: postbox$1,
+	mailbox_closed: mailbox_closed$1,
+	mailbox: mailbox$1,
+	mailbox_with_mail: mailbox_with_mail$1,
+	mailbox_with_no_mail: mailbox_with_no_mail$1,
+	"package": {
+	keywords: [
+		"mail",
+		"gift",
+		"cardboard",
+		"box",
+		"moving"
+	],
+	char: "📦",
+	fitzpatrick_scale: false,
+	category: "objects"
+},
+	postal_horn: postal_horn$1,
+	inbox_tray: inbox_tray$1,
+	outbox_tray: outbox_tray$1,
+	scroll: scroll$1,
+	page_with_curl: page_with_curl$1,
+	bookmark_tabs: bookmark_tabs$1,
+	receipt: receipt$1,
+	bar_chart: bar_chart$1,
+	chart_with_upwards_trend: chart_with_upwards_trend$1,
+	chart_with_downwards_trend: chart_with_downwards_trend$1,
+	page_facing_up: page_facing_up$1,
+	date: date$1,
+	calendar: calendar$1,
+	spiral_calendar: spiral_calendar$1,
+	card_index: card_index$1,
+	card_file_box: card_file_box$1,
+	ballot_box: ballot_box$1,
+	file_cabinet: file_cabinet$1,
+	clipboard: clipboard$2,
+	spiral_notepad: spiral_notepad$1,
+	file_folder: file_folder$1,
+	open_file_folder: open_file_folder$1,
+	card_index_dividers: card_index_dividers$1,
+	newspaper_roll: newspaper_roll$1,
+	newspaper: newspaper$1,
+	notebook: notebook$1,
+	closed_book: closed_book$1,
+	green_book: green_book$1,
+	blue_book: blue_book$1,
+	orange_book: orange_book$1,
+	notebook_with_decorative_cover: notebook_with_decorative_cover$1,
+	ledger: ledger$1,
+	books: books$1,
+	open_book: open_book$1,
+	safety_pin: safety_pin$1,
+	link: link$2,
+	paperclip: paperclip$1,
+	paperclips: paperclips$1,
+	scissors: scissors$1,
+	triangular_ruler: triangular_ruler$1,
+	straight_ruler: straight_ruler$1,
+	abacus: abacus$1,
+	pushpin: pushpin$1,
+	round_pushpin: round_pushpin$1,
+	triangular_flag_on_post: triangular_flag_on_post$1,
+	white_flag: white_flag$1,
+	black_flag: black_flag$1,
+	rainbow_flag: rainbow_flag$1,
+	closed_lock_with_key: closed_lock_with_key$1,
+	lock: lock$1,
+	unlock: unlock$1,
+	lock_with_ink_pen: lock_with_ink_pen$1,
+	pen: pen$1,
+	fountain_pen: fountain_pen$1,
+	black_nib: black_nib$1,
+	memo: memo$1,
+	pencil2: pencil2$1,
+	crayon: crayon$1,
+	paintbrush: paintbrush$1,
+	mag: mag$1,
+	mag_right: mag_right$1,
+	heart: heart$1,
+	orange_heart: orange_heart$1,
+	yellow_heart: yellow_heart$1,
+	green_heart: green_heart$1,
+	blue_heart: blue_heart$1,
+	purple_heart: purple_heart$1,
+	black_heart: black_heart$1,
+	broken_heart: broken_heart$1,
+	heavy_heart_exclamation: heavy_heart_exclamation$1,
+	two_hearts: two_hearts$1,
+	revolving_hearts: revolving_hearts$1,
+	heartbeat: heartbeat$1,
+	heartpulse: heartpulse$1,
+	sparkling_heart: sparkling_heart$1,
+	cupid: cupid$1,
+	gift_heart: gift_heart$1,
+	heart_decoration: heart_decoration$1,
+	peace_symbol: peace_symbol$1,
+	latin_cross: latin_cross$1,
+	star_and_crescent: star_and_crescent$1,
+	om: om$1,
+	wheel_of_dharma: wheel_of_dharma$1,
+	star_of_david: star_of_david$1,
+	six_pointed_star: six_pointed_star$1,
+	menorah: menorah$1,
+	yin_yang: yin_yang$1,
+	orthodox_cross: orthodox_cross$1,
+	place_of_worship: place_of_worship$1,
+	ophiuchus: ophiuchus$1,
+	aries: aries$1,
+	taurus: taurus$1,
+	gemini: gemini$1,
+	cancer: cancer$1,
+	leo: leo$1,
+	virgo: virgo$1,
+	libra: libra$1,
+	scorpius: scorpius$1,
+	sagittarius: sagittarius$1,
+	capricorn: capricorn$1,
+	aquarius: aquarius$1,
+	pisces: pisces$1,
+	id: id$1,
+	atom_symbol: atom_symbol$1,
+	u7a7a: u7a7a$1,
+	u5272: u5272$1,
+	radioactive: radioactive$1,
+	biohazard: biohazard$1,
+	mobile_phone_off: mobile_phone_off$1,
+	vibration_mode: vibration_mode$1,
+	u6709: u6709$1,
+	u7121: u7121$1,
+	u7533: u7533$1,
+	u55b6: u55b6$1,
+	u6708: u6708$1,
+	eight_pointed_black_star: eight_pointed_black_star$1,
+	vs: vs$1,
+	accept: accept$1,
+	white_flower: white_flower$1,
+	ideograph_advantage: ideograph_advantage$1,
+	secret: secret$1,
+	congratulations: congratulations$1,
+	u5408: u5408$1,
+	u6e80: u6e80$1,
+	u7981: u7981$1,
+	a: a$2,
+	b: b$1,
+	ab: ab$1,
+	cl: cl$1,
+	o2: o2$1,
+	sos: sos$1,
+	no_entry: no_entry$1,
+	name_badge: name_badge$1,
+	no_entry_sign: no_entry_sign$1,
+	x: x$1,
+	o: o$2,
+	stop_sign: stop_sign$1,
+	anger: anger$1,
+	hotsprings: hotsprings$1,
+	no_pedestrians: no_pedestrians$1,
+	do_not_litter: do_not_litter$1,
+	no_bicycles: no_bicycles$1,
+	"non-potable_water": {
+	keywords: [
+		"drink",
+		"faucet",
+		"tap",
+		"circle"
+	],
+	char: "🚱",
+	fitzpatrick_scale: false,
+	category: "symbols"
+},
+	underage: underage$1,
+	no_mobile_phones: no_mobile_phones$1,
+	exclamation: exclamation$1,
+	grey_exclamation: grey_exclamation$1,
+	question: question$1,
+	grey_question: grey_question$1,
+	bangbang: bangbang$1,
+	interrobang: interrobang$1,
+	low_brightness: low_brightness$1,
+	high_brightness: high_brightness$1,
+	trident: trident$1,
+	fleur_de_lis: fleur_de_lis$1,
+	part_alternation_mark: part_alternation_mark$1,
+	warning: warning$1,
+	children_crossing: children_crossing$1,
+	beginner: beginner$1,
+	recycle: recycle$1,
+	u6307: u6307$1,
+	chart: chart$1,
+	sparkle: sparkle$1,
+	eight_spoked_asterisk: eight_spoked_asterisk$1,
+	negative_squared_cross_mark: negative_squared_cross_mark$1,
+	white_check_mark: white_check_mark$1,
+	diamond_shape_with_a_dot_inside: diamond_shape_with_a_dot_inside$1,
+	cyclone: cyclone$1,
+	loop: loop$1,
+	globe_with_meridians: globe_with_meridians$1,
+	m: m$1,
+	atm: atm$1,
+	sa: sa$1,
+	passport_control: passport_control$1,
+	customs: customs$1,
+	baggage_claim: baggage_claim$1,
+	left_luggage: left_luggage$1,
+	wheelchair: wheelchair$1,
+	no_smoking: no_smoking$1,
+	wc: wc$1,
+	parking: parking$1,
+	potable_water: potable_water$1,
+	mens: mens$1,
+	womens: womens$1,
+	baby_symbol: baby_symbol$1,
+	restroom: restroom$1,
+	put_litter_in_its_place: put_litter_in_its_place$1,
+	cinema: cinema$1,
+	signal_strength: signal_strength$1,
+	koko: koko$1,
+	ng: ng$1,
+	ok: ok$1,
+	up: up$1,
+	cool: cool$1,
+	"new": {
+	keywords: [
+		"blue-square",
+		"words",
+		"start"
+	],
+	char: "🆕",
+	fitzpatrick_scale: false,
+	category: "symbols"
+},
+	free: free$1,
+	zero: zero$1,
+	one: one$1,
+	two: two$1,
+	three: three$1,
+	four: four$1,
+	five: five$1,
+	six: six$1,
+	seven: seven$1,
+	eight: eight$1,
+	nine: nine$1,
+	keycap_ten: keycap_ten$1,
+	asterisk: asterisk$1,
+	eject_button: eject_button$1,
+	arrow_forward: arrow_forward$1,
+	pause_button: pause_button$1,
+	next_track_button: next_track_button$1,
+	stop_button: stop_button$1,
+	record_button: record_button$1,
+	play_or_pause_button: play_or_pause_button$1,
+	previous_track_button: previous_track_button$1,
+	fast_forward: fast_forward$1,
+	rewind: rewind$1,
+	twisted_rightwards_arrows: twisted_rightwards_arrows$1,
+	repeat: repeat$1,
+	repeat_one: repeat_one$1,
+	arrow_backward: arrow_backward$1,
+	arrow_up_small: arrow_up_small$1,
+	arrow_down_small: arrow_down_small$1,
+	arrow_double_up: arrow_double_up$1,
+	arrow_double_down: arrow_double_down$1,
+	arrow_right: arrow_right$1,
+	arrow_left: arrow_left$1,
+	arrow_up: arrow_up$1,
+	arrow_down: arrow_down$1,
+	arrow_upper_right: arrow_upper_right$1,
+	arrow_lower_right: arrow_lower_right$1,
+	arrow_lower_left: arrow_lower_left$1,
+	arrow_upper_left: arrow_upper_left$1,
+	arrow_up_down: arrow_up_down$1,
+	left_right_arrow: left_right_arrow$1,
+	arrows_counterclockwise: arrows_counterclockwise$1,
+	arrow_right_hook: arrow_right_hook$1,
+	leftwards_arrow_with_hook: leftwards_arrow_with_hook$1,
+	arrow_heading_up: arrow_heading_up$1,
+	arrow_heading_down: arrow_heading_down$1,
+	hash: hash$1,
+	information_source: information_source$1,
+	abc: abc$1,
+	abcd: abcd$1,
+	capital_abcd: capital_abcd$1,
+	symbols: symbols$1,
+	musical_note: musical_note$1,
+	notes: notes$1,
+	wavy_dash: wavy_dash$1,
+	curly_loop: curly_loop$1,
+	heavy_check_mark: heavy_check_mark$1,
+	arrows_clockwise: arrows_clockwise$1,
+	heavy_plus_sign: heavy_plus_sign$1,
+	heavy_minus_sign: heavy_minus_sign$1,
+	heavy_division_sign: heavy_division_sign$1,
+	heavy_multiplication_x: heavy_multiplication_x$1,
+	infinity: infinity$1,
+	heavy_dollar_sign: heavy_dollar_sign$1,
+	currency_exchange: currency_exchange$1,
+	copyright: copyright$1,
+	registered: registered$1,
+	tm: tm$1,
+	end: end$1,
+	back: back$1,
+	on: on$1,
+	top: top$1,
+	soon: soon$1,
+	ballot_box_with_check: ballot_box_with_check$1,
+	radio_button: radio_button$1,
+	white_circle: white_circle$1,
+	black_circle: black_circle$1,
+	red_circle: red_circle$1,
+	large_blue_circle: large_blue_circle$1,
+	small_orange_diamond: small_orange_diamond$1,
+	small_blue_diamond: small_blue_diamond$1,
+	large_orange_diamond: large_orange_diamond$1,
+	large_blue_diamond: large_blue_diamond$1,
+	small_red_triangle: small_red_triangle$1,
+	black_small_square: black_small_square$1,
+	white_small_square: white_small_square$1,
+	black_large_square: black_large_square$1,
+	white_large_square: white_large_square$1,
+	small_red_triangle_down: small_red_triangle_down$1,
+	black_medium_square: black_medium_square$1,
+	white_medium_square: white_medium_square$1,
+	black_medium_small_square: black_medium_small_square$1,
+	white_medium_small_square: white_medium_small_square$1,
+	black_square_button: black_square_button$1,
+	white_square_button: white_square_button$1,
+	speaker: speaker$1,
+	sound: sound$1,
+	loud_sound: loud_sound$1,
+	mute: mute$1,
+	mega: mega$1,
+	loudspeaker: loudspeaker$1,
+	bell: bell$1,
+	no_bell: no_bell$1,
+	black_joker: black_joker$1,
+	mahjong: mahjong$1,
+	spades: spades$1,
+	clubs: clubs$1,
+	hearts: hearts$1,
+	diamonds: diamonds$1,
+	flower_playing_cards: flower_playing_cards$1,
+	thought_balloon: thought_balloon$1,
+	right_anger_bubble: right_anger_bubble$1,
+	speech_balloon: speech_balloon$1,
+	left_speech_bubble: left_speech_bubble$1,
+	clock1: clock1$1,
+	clock2: clock2$1,
+	clock3: clock3$1,
+	clock4: clock4$1,
+	clock5: clock5$1,
+	clock6: clock6$1,
+	clock7: clock7$1,
+	clock8: clock8$1,
+	clock9: clock9$1,
+	clock10: clock10$1,
+	clock11: clock11$1,
+	clock12: clock12$1,
+	clock130: clock130$1,
+	clock230: clock230$1,
+	clock330: clock330$1,
+	clock430: clock430$1,
+	clock530: clock530$1,
+	clock630: clock630$1,
+	clock730: clock730$1,
+	clock830: clock830$1,
+	clock930: clock930$1,
+	clock1030: clock1030$1,
+	clock1130: clock1130$1,
+	clock1230: clock1230$1,
+	afghanistan: afghanistan$1,
+	aland_islands: aland_islands$1,
+	albania: albania$1,
+	algeria: algeria$1,
+	american_samoa: american_samoa$1,
+	andorra: andorra$1,
+	angola: angola$1,
+	anguilla: anguilla$1,
+	antarctica: antarctica$1,
+	antigua_barbuda: antigua_barbuda$1,
+	argentina: argentina$1,
+	armenia: armenia$1,
+	aruba: aruba$1,
+	australia: australia$1,
+	austria: austria$1,
+	azerbaijan: azerbaijan$1,
+	bahamas: bahamas$1,
+	bahrain: bahrain$1,
+	bangladesh: bangladesh$1,
+	barbados: barbados$1,
+	belarus: belarus$1,
+	belgium: belgium$1,
+	belize: belize$1,
+	benin: benin$1,
+	bermuda: bermuda$1,
+	bhutan: bhutan$1,
+	bolivia: bolivia$1,
+	caribbean_netherlands: caribbean_netherlands$1,
+	bosnia_herzegovina: bosnia_herzegovina$1,
+	botswana: botswana$1,
+	brazil: brazil$1,
+	british_indian_ocean_territory: british_indian_ocean_territory$1,
+	british_virgin_islands: british_virgin_islands$1,
+	brunei: brunei$1,
+	bulgaria: bulgaria$1,
+	burkina_faso: burkina_faso$1,
+	burundi: burundi$1,
+	cape_verde: cape_verde$1,
+	cambodia: cambodia$1,
+	cameroon: cameroon$1,
+	canada: canada$1,
+	canary_islands: canary_islands$1,
+	cayman_islands: cayman_islands$1,
+	central_african_republic: central_african_republic$1,
+	chad: chad$1,
+	chile: chile$1,
+	cn: cn$1,
+	christmas_island: christmas_island$1,
+	cocos_islands: cocos_islands$1,
+	colombia: colombia$1,
+	comoros: comoros$1,
+	congo_brazzaville: congo_brazzaville$1,
+	congo_kinshasa: congo_kinshasa$1,
+	cook_islands: cook_islands$1,
+	costa_rica: costa_rica$1,
+	croatia: croatia$1,
+	cuba: cuba$1,
+	curacao: curacao$1,
+	cyprus: cyprus$1,
+	czech_republic: czech_republic$1,
+	denmark: denmark$1,
+	djibouti: djibouti$1,
+	dominica: dominica$1,
+	dominican_republic: dominican_republic$1,
+	ecuador: ecuador$1,
+	egypt: egypt$1,
+	el_salvador: el_salvador$1,
+	equatorial_guinea: equatorial_guinea$1,
+	eritrea: eritrea$1,
+	estonia: estonia$1,
+	ethiopia: ethiopia$1,
+	eu: eu$1,
+	falkland_islands: falkland_islands$1,
+	faroe_islands: faroe_islands$1,
+	fiji: fiji$1,
+	finland: finland$1,
+	fr: fr$1,
+	french_guiana: french_guiana$1,
+	french_polynesia: french_polynesia$1,
+	french_southern_territories: french_southern_territories$1,
+	gabon: gabon$1,
+	gambia: gambia$1,
+	georgia: georgia$1,
+	de: de$1,
+	ghana: ghana$1,
+	gibraltar: gibraltar$1,
+	greece: greece$1,
+	greenland: greenland$1,
+	grenada: grenada$1,
+	guadeloupe: guadeloupe$1,
+	guam: guam$1,
+	guatemala: guatemala$1,
+	guernsey: guernsey$1,
+	guinea: guinea$1,
+	guinea_bissau: guinea_bissau$1,
+	guyana: guyana$1,
+	haiti: haiti$1,
+	honduras: honduras$1,
+	hong_kong: hong_kong$1,
+	hungary: hungary$1,
+	iceland: iceland$1,
+	india: india$1,
+	indonesia: indonesia$1,
+	iran: iran$1,
+	iraq: iraq$1,
+	ireland: ireland$1,
+	isle_of_man: isle_of_man$1,
+	israel: israel$1,
+	it: it$1,
+	cote_divoire: cote_divoire$1,
+	jamaica: jamaica$1,
+	jp: jp$1,
+	jersey: jersey$1,
+	jordan: jordan$1,
+	kazakhstan: kazakhstan$1,
+	kenya: kenya$1,
+	kiribati: kiribati$1,
+	kosovo: kosovo$1,
+	kuwait: kuwait$1,
+	kyrgyzstan: kyrgyzstan$1,
+	laos: laos$1,
+	latvia: latvia$1,
+	lebanon: lebanon$1,
+	lesotho: lesotho$1,
+	liberia: liberia$1,
+	libya: libya$1,
+	liechtenstein: liechtenstein$1,
+	lithuania: lithuania$1,
+	luxembourg: luxembourg$1,
+	macau: macau$1,
+	macedonia: macedonia$1,
+	madagascar: madagascar$1,
+	malawi: malawi$1,
+	malaysia: malaysia$1,
+	maldives: maldives$1,
+	mali: mali$1,
+	malta: malta$1,
+	marshall_islands: marshall_islands$1,
+	martinique: martinique$1,
+	mauritania: mauritania$1,
+	mauritius: mauritius$1,
+	mayotte: mayotte$1,
+	mexico: mexico$1,
+	micronesia: micronesia$1,
+	moldova: moldova$1,
+	monaco: monaco$1,
+	mongolia: mongolia$1,
+	montenegro: montenegro$1,
+	montserrat: montserrat$1,
+	morocco: morocco$1,
+	mozambique: mozambique$1,
+	myanmar: myanmar$1,
+	namibia: namibia$1,
+	nauru: nauru$1,
+	nepal: nepal$1,
+	netherlands: netherlands$1,
+	new_caledonia: new_caledonia$1,
+	new_zealand: new_zealand$1,
+	nicaragua: nicaragua$1,
+	niger: niger$1,
+	nigeria: nigeria$1,
+	niue: niue$1,
+	norfolk_island: norfolk_island$1,
+	northern_mariana_islands: northern_mariana_islands$1,
+	north_korea: north_korea$1,
+	norway: norway$1,
+	oman: oman$1,
+	pakistan: pakistan$1,
+	palau: palau$1,
+	palestinian_territories: palestinian_territories$1,
+	panama: panama$1,
+	papua_new_guinea: papua_new_guinea$1,
+	paraguay: paraguay$1,
+	peru: peru$1,
+	philippines: philippines$1,
+	pitcairn_islands: pitcairn_islands$1,
+	poland: poland$1,
+	portugal: portugal$1,
+	puerto_rico: puerto_rico$1,
+	qatar: qatar$1,
+	reunion: reunion$1,
+	romania: romania$1,
+	ru: ru$1,
+	rwanda: rwanda$1,
+	st_barthelemy: st_barthelemy$1,
+	st_helena: st_helena$1,
+	st_kitts_nevis: st_kitts_nevis$1,
+	st_lucia: st_lucia$1,
+	st_pierre_miquelon: st_pierre_miquelon$1,
+	st_vincent_grenadines: st_vincent_grenadines$1,
+	samoa: samoa$1,
+	san_marino: san_marino$1,
+	sao_tome_principe: sao_tome_principe$1,
+	saudi_arabia: saudi_arabia$1,
+	senegal: senegal$1,
+	serbia: serbia$1,
+	seychelles: seychelles$1,
+	sierra_leone: sierra_leone$1,
+	singapore: singapore$1,
+	sint_maarten: sint_maarten$1,
+	slovakia: slovakia$1,
+	slovenia: slovenia$1,
+	solomon_islands: solomon_islands$1,
+	somalia: somalia$1,
+	south_africa: south_africa$1,
+	south_georgia_south_sandwich_islands: south_georgia_south_sandwich_islands$1,
+	kr: kr$1,
+	south_sudan: south_sudan$1,
+	es: es$1,
+	sri_lanka: sri_lanka$1,
+	sudan: sudan$1,
+	suriname: suriname$1,
+	swaziland: swaziland$1,
+	sweden: sweden$1,
+	switzerland: switzerland$1,
+	syria: syria$1,
+	taiwan: taiwan$1,
+	tajikistan: tajikistan$1,
+	tanzania: tanzania$1,
+	thailand: thailand$1,
+	timor_leste: timor_leste$1,
+	togo: togo$1,
+	tokelau: tokelau$1,
+	tonga: tonga$1,
+	trinidad_tobago: trinidad_tobago$1,
+	tunisia: tunisia$1,
+	tr: tr$1,
+	turkmenistan: turkmenistan$1,
+	turks_caicos_islands: turks_caicos_islands$1,
+	tuvalu: tuvalu$1,
+	uganda: uganda$1,
+	ukraine: ukraine$1,
+	united_arab_emirates: united_arab_emirates$1,
+	uk: uk$1,
+	england: england$1,
+	scotland: scotland$1,
+	wales: wales$1,
+	us: us$1,
+	us_virgin_islands: us_virgin_islands$1,
+	uruguay: uruguay$1,
+	uzbekistan: uzbekistan$1,
+	vanuatu: vanuatu$1,
+	vatican_city: vatican_city$1,
+	venezuela: venezuela$1,
+	vietnam: vietnam$1,
+	wallis_futuna: wallis_futuna$1,
+	western_sahara: western_sahara$1,
+	yemen: yemen$1,
+	zambia: zambia$1,
+	zimbabwe: zimbabwe$1,
+	united_nations: united_nations$1,
+	pirate_flag: pirate_flag$1
+};var lib$2 = {exports: {}};var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 /**
  * iterateObject
@@ -122780,14 +141770,22 @@ const groupedEmojiData = {
  * @copyright Copyright (c) 2018 HumHub GmbH & Co. KG
  * @license https://www.humhub.com/licences
  */
-
 var emoji_markdown_it_defs = {};
-
 var emoji_defs_by_char = (function() {
     var result = {};
 
     $.each(emojiData, function (emoji, def) {
+        $.each(old_emojilib, function (key, item) {
+            if (emoji === item.char && key !== def.name) {
+                def.char = emoji;
+                def.keywords = item.keywords;
+                emoji_markdown_it_defs[key] = emoji;
+                return false;
+            }
+        });
+
         result[emoji] = def.name;
+        emojiNameMap.emoji[def.name] = emoji;
         emoji_markdown_it_defs[def.name] = emoji;
     });
 
@@ -122852,7 +141850,7 @@ var getCharToDom = function (emojiChar, name) {
 
     if (parsed && parsed.length) {
         try {
-            return $(parsed);
+            return $(parsed).first();
         } catch (e) {
             console.error(e);
         }
@@ -122883,7 +141881,6 @@ var getMarkdownItOpts = function () {
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2018 HumHub GmbH & Co. KG
  * @license https://www.humhub.com/licences
- *
  */
 
 var EmojiQueryState = function EmojiQueryState(state, options) {
@@ -122892,10 +141889,10 @@ var EmojiQueryState = function EmojiQueryState(state, options) {
     this.state = state;
     this.provider = options.provider;
     this.provider.event.on('closed', function () {
-        if(this$1$1.active) {
+        if (this$1$1.active) {
             var ref = this$1$1.state.schema.marks;
             var emojiQuery = ref.emojiQuery;
-            this$1$1.view.dispatch(this$1$1.state.tr.removeMark(0, this$1$1.state.doc.nodeSize -2, emojiQuery));
+            this$1$1.view.dispatch(this$1$1.state.tr.removeMark(0, this$1$1.state.doc.nodeSize - 2, emojiQuery));
         }
     }).on('focus', function () {
         this$1$1.view.focus();
@@ -122934,14 +141931,14 @@ EmojiQueryState.prototype.update = function update (state, view) {
 
     var nodeBefore = $from.nodeBefore;
 
-    if(!nodeBefore.text.length || nodeBefore.text.length > 1) {
+    if (!nodeBefore.text.length || nodeBefore.text.length > 1) {
         this.provider.reset();
         return;
     }
 
     var query = nodeBefore.text.substr(1);
 
-    if(query != this.query) {
+    if (query != this.query) {
         this.query = query;
         this.provider.query(this, $query[0]);
     }
@@ -122950,7 +141947,7 @@ EmojiQueryState.prototype.update = function update (state, view) {
 EmojiQueryState.prototype.reset = function reset () {
     this.active = false;
     this.query = null;
-    if(this.view) {
+    if (this.view) {
         this.provider.reset();
     }
 };
@@ -122969,10 +141966,10 @@ EmojiQueryState.prototype.addEmoji = function addEmoji (item) {
 
 
     var tr = this.state.tr
-        .removeMark(0, this.state.doc.nodeSize -2, emojiQuery)
+        .removeMark(0, this.state.doc.nodeSize - 2, emojiQuery)
         .replaceWith(this.queryMark.start, this.queryMark.end, nodes);
 
-    if(isChromeWithSelectionBug) {
+    if (isChromeWithSelectionBug) {
         document.getSelection().empty();
     }
 
@@ -122985,7 +141982,7 @@ var SimpleEmojiState = function SimpleEmojiState(provider) {
 
     this.provider = provider;
     this.provider.event.on('focus', function () {
-        if(this$1$1.view) {
+        if (this$1$1.view) {
             this$1$1.view.focus();
         }
     });
@@ -122999,7 +141996,7 @@ SimpleEmojiState.prototype.update = function update (state, view, node) {
 };
 
 SimpleEmojiState.prototype.reset = function reset () {
-    if(this.view) {
+    if (this.view) {
         this.provider.reset();
         this.view.focus();
     }
@@ -123298,12 +142295,16 @@ EmojiChooser.prototype.setCategoryItems = function setCategoryItems (categoryNam
     var $list = this.categories[categoryName].$.find('.humhub-emoji-chooser-item-list').empty();
 
     items.forEach(function (emojiDef) {
-        var $li = $('<li class="atwho-emoji-entry">').append(getCharToDom(emojiDef.emoji, emojiDef.name));
+        var $img = getCharToDom(emojiDef.emoji, emojiDef.name);
 
-        if (categoryName === 'Flags' && emojiDef.emoji === findUserFlag()) {
-            $list.prepend($li);
-        } else {
-            $list.append($li);
+        if ($img && $img !== '' && $img.length) {
+            var $li = $('<li class="atwho-emoji-entry">').append($img);
+
+            if (categoryName === 'Flags' && emojiDef.emoji === findUserFlag()) {
+                $list.prepend($li);
+            } else {
+                $list.append($li);
+            }
         }
     });
 
@@ -123482,7 +142483,6 @@ function getProvider(context) {
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2018 HumHub GmbH & Co. KG
  * @license https://www.humhub.com/licences
- *
  */
 
 var pluginKey$2 = new PluginKey('emoji');
@@ -123494,8 +142494,8 @@ var emojiPlugin = function (context) {
                 text = twemoji.parse(text, context.getPluginOption('emoji', 'twemoji'));
 
                 // eslint-disable-next-line
-                return text.replace(/\<img class="emoji"[^\\\>]* alt=\"([^\"]*)\"[^\\\>]*\/>/g, function(match, char) {
-                    return ':'+getNameByChar(char)+':';
+                return text.replace(/\<img class="emoji"[^\\\>]* alt=\"([^\"]*)\"[^\\\>]*\/>/g, function (match, char) {
+                    return ':' + getNameByChar(char) + ':';
                 });
             },
         },
@@ -123966,22 +142966,23 @@ var hasMark = function (node, markType) {
 var shortcutStr = Object.keys(shortcuts)
     .sort()
     .reverse()
-    .map(function (shortcut) {return quoteRE(shortcut); })
+    .map(function (shortcut) {
+        return quoteRE(shortcut);
+    })
     .join('|');
 
-var scanRE = new RegExp('(?:^|\\ )('+shortcutStr+')$');
+var scanRE = new RegExp('(?:^|\\ )(' + shortcutStr + ')$');
 
-var emojiAutoCompleteRule = function(schema) {
-
+var emojiAutoCompleteRule = function (schema) {
     return new InputRule(scanRE, function (state, match, start, end) {
         // Only handle match if match is at the end of the match input
-        if(match.index !== (match.input.length - match[0].length)) {
+        if (match.index !== (match.input.length - match[0].length)) {
             return false;
         }
 
         // Match e.g. :) => smiley
         var emojiDef = getEmojiDefinitionByShortcut(match[1]);
-        if(emojiDef.name && emojiDef.emoji && emojiDef.$dom) {
+        if (emojiDef.name && emojiDef.emoji && emojiDef.$dom) {
             var node = state.schema.nodes.emoji.create({
                 'data-name': emojiDef.name,
                 alt: emojiDef.$dom.attr('alt'),
@@ -123997,9 +142998,9 @@ var emojiAutoCompleteRule = function(schema) {
     })
 };
 
-var emojiChooser = function(schema) {
+var emojiChooser = function (schema) {
     return new InputRule(new RegExp('(^|\\ +)(:$)'), function (state, match, start, end) {
-        if(isSmallView()) {
+        if (isSmallView()) {
             return;
         }
 
@@ -124007,15 +143008,15 @@ var emojiChooser = function(schema) {
         var emojiText = schema.text(':', [mark]);
 
         // Prevents an error log when using IME
-        if(hasMark(state.selection.$anchor.nodeBefore, mark)) {
+        if (hasMark(state.selection.$anchor.nodeBefore, mark)) {
             return;
         }
 
-        start = start + (match[0].length -1);
+        start = start + (match[0].length - 1);
 
         return state.tr
-            .removeMark(0, state.doc.nodeSize -2, mark)
-            .setSelection(TextSelection.create(state.doc,  start, end))
+            .removeMark(0, state.doc.nodeSize - 2, mark)
+            .setSelection(TextSelection.create(state.doc, start, end))
             .replaceSelectionWith(emojiText, false);
     })
 };/*
@@ -125052,7 +144053,7 @@ var ImageView = function ImageView(node, context) {
                 position: 'absolute',
                 left: offset.left + $img.width() - (25),
                 top: offset.top + 5,
-                'z-index': 997
+                'z-index': 9999
             }).on('mousedown', function (evt) {
                 var view = context.editor.view;
                 var doc = view.state.doc;
