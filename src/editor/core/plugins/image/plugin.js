@@ -60,7 +60,7 @@ class ImageView {
                     position: 'absolute',
                     left: offset.left + $img.width() - (25),
                     top: offset.top + 5,
-                    'z-index': 997
+                    'z-index': 9999
                 }).on('mousedown', (evt) => {
                     let view = context.editor.view;
                     let doc = view.state.doc;
