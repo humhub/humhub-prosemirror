@@ -4,10 +4,10 @@
  * @license https://www.humhub.com/licences
  *
  */
-import {getFileHandlerItem} from "./service";
+import {getFileHandlerItem, getFileHandlerContainer} from "./service";
 
 export function menu(context) {
-    const links = context.editor.$.closest('form').find('a[data-action-process=file-handler]')
+    const links = getFileHandlerContainer(context).find('a[data-action-process=file-handler]')
 
     if (links.length === 0) {
         return []

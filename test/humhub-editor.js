@@ -146088,7 +146088,7 @@ var loader = {
  *
  */
 
-function triggerUpload(state, view, context, files) {
+var triggerUpload = function(state, view, context, files) {
     // A fresh object to act as the ID for this upload
     var id = {};
 
@@ -146100,6 +146100,7 @@ function triggerUpload(state, view, context, files) {
             loaderStart(context, id, true);
         }).off('uploadEnd.richtext').on('uploadEnd.richtext', function (evt, response) {
             replaceLoader(context, id, createNodesFromResponse(context, response), true);
+            console.log('UPLOADER uploadEnd.richtext');
         }).off('uploadFinish.richtext').on('uploadFinish.richtext', function () {
             // Make sure our loader is removed after upload
             removeLoader(context, id, true);
@@ -146111,7 +146112,7 @@ function triggerUpload(state, view, context, files) {
             uploadWidget.run();
         }
     }
-}
+};
 
 var createNodesFromResponse = function(context, response) {
     var schema = context.schema;
@@ -146125,12 +146126,10 @@ var createNodesFromResponse = function(context, response) {
             return;
         }
 
-        var url = file.url;
-
         if (file.mimeIcon === 'mime-image') {
-            node = schema.nodes.image.create({src : url, title: file.name, alt: file.name, fileGuid: file.guid});
+            node = schema.nodes.image.create({src : file.url, title: file.name, alt: file.name, fileGuid: file.guid});
         } else {
-            var linkMark = schema.marks.link.create({href: url, fileGuid: file.guid});
+            var linkMark = schema.marks.link.create({href: file.url, fileGuid: file.guid});
             node = schema.text(file.name, [linkMark]);
         }
 
@@ -147077,21 +147076,22 @@ var initFileHandler = function(context) {
         }
     });
 
-    if (typeof(context.editor.$) !== 'undefined' && context.editor.$.length) {
-        var uploadWidget = context.editor.$.closest('form').find('[data-ui-widget="file.Upload"]').last();
-        if (uploadWidget.length) {
-            humhub.require('ui.widget').Widget.instance(uploadWidget).on('humhub:file:uploadEnd', function (evt, response) {
-                if (isActiveFileHandler() &&
-                    typeof context.editor.view !== 'undefined' &&
-                    response._response.result.files instanceof Array &&
-                    response._response.result.files.length) {
-                    var view = context.editor.view;
-                    for (var i = 0; i < response._response.result.files.length; i++) {
-                        view.dispatch(view.state.tr.replaceSelectionWith(createFileHandlerNode(context, response._response.result.files[i]), false));
-                    }
-                }
-            });
-        }
+    var uploadWidget = humhub.require('ui.widget').Widget.instance(getFileHandlerContainer(context).find('[data-ui-widget="file.Upload"]').last());
+    if (uploadWidget) {
+        var id = context.id + '-file-handler';
+        uploadWidget.off('uploadStart.richtext').on('uploadStart.richtext', function () {
+            if (isActiveFileHandler()) {
+                loaderStart(context, id, true);
+            }
+        }).off('uploadEnd.richtext').on('uploadEnd.richtext', function (evt, response) {
+            if (isActiveFileHandler()) {
+                replaceLoader(context, id, createNodesFromResponse(context, response), true);
+            }
+        }).off('uploadFinish.richtext').on('uploadFinish.richtext', function () {
+            if (isActiveFileHandler()) {
+                removeLoader(context, id, true);
+            }
+        });
     }
 };
 
@@ -147107,6 +147107,12 @@ var createFileHandlerNode = function(context, file) {
 
     var linkMark = schema.marks.link.create({href: file.url, fileGuid: file.guid});
     return schema.text(file.name).mark([linkMark])
+};
+
+var getFileHandlerContainer = function (context) {
+    var form = context.editor.$.closest('form');
+    var uploadButton = form.find('#' + context.id + '-file-upload').closest('.btn-group');
+    return uploadButton.length ? uploadButton : form
 };/*
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2023 HumHub GmbH & Co. KG
@@ -147115,7 +147121,7 @@ var createFileHandlerNode = function(context, file) {
  */
 
 function menu(context) {
-    var links = context.editor.$.closest('form').find('a[data-action-process=file-handler]');
+    var links = getFileHandlerContainer(context).find('a[data-action-process=file-handler]');
 
     if (links.length === 0) {
         return []
