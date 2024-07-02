@@ -13,13 +13,23 @@ export function menu(context) {
         return []
     }
 
+    const isModalWindow = getFileHandlerContainer(context).closest('[data-ui-widget="ui.modal.Modal"]').length !== 0
+
     let menus = []
     for (let l = 0; l < links.length; l++) {
+        const link = links.eq(l)
+
+        if (isModalWindow && link.data('action-click') === 'ui.modal.load') {
+            // Skip File Handler if it works through modal window and current editor is initialized from modal window as well,
+            // because original modal window is replaced with the File Handler's modal window so impossible proper work there.
+            continue
+        }
+
         menus.push({
             id: 'insertFileHandler',
             node: 'file_handler',
             group: 'insert',
-            item: getFileHandlerItem(context, links.eq(l), l)
+            item: getFileHandlerItem(context, link, l)
         })
     }
 
