@@ -7,6 +7,8 @@
 
 import {isHumhub} from "../../humhub-bridge"
 import {canInsertLink, MenuItem} from "../../menu"
+import {loaderStart, replaceLoader, removeLoader} from "../loader/plugin"
+import {createNodesFromResponse} from "../upload/service"
 
 const isActiveFileHandler = function () {
     return isHumhub() &&
@@ -49,21 +51,22 @@ const initFileHandler = function(context) {
         }
     })
 
-    if (typeof(context.editor.$) !== 'undefined' && context.editor.$.length) {
-        const uploadWidget = context.editor.$.closest('form').find('[data-ui-widget="file.Upload"]').last()
-        if (uploadWidget.length) {
-            humhub.require('ui.widget').Widget.instance(uploadWidget).on('humhub:file:uploadEnd', (evt, response) => {
-                if (isActiveFileHandler() &&
-                    typeof context.editor.view !== 'undefined' &&
-                    response._response.result.files instanceof Array &&
-                    response._response.result.files.length) {
-                    const view = context.editor.view
-                    for (let i = 0; i < response._response.result.files.length; i++) {
-                        view.dispatch(view.state.tr.replaceSelectionWith(createFileHandlerNode(context, response._response.result.files[i]), false))
-                    }
-                }
-            })
-        }
+    const uploadWidget = humhub.require('ui.widget').Widget.instance(getFileHandlerContainer(context).find('[data-ui-widget="file.Upload"]').last())
+    if (uploadWidget) {
+        const id = context.id + '-file-handler'
+        uploadWidget.off('uploadStart.richtext').on('uploadStart.richtext', () => {
+            if (isActiveFileHandler()) {
+                loaderStart(context, id, true)
+            }
+        }).off('uploadEnd.richtext').on('uploadEnd.richtext', (evt, response) => {
+            if (isActiveFileHandler()) {
+                replaceLoader(context, id, createNodesFromResponse(context, response), true)
+            }
+        }).off('uploadFinish.richtext').on('uploadFinish.richtext', () => {
+            if (isActiveFileHandler()) {
+                removeLoader(context, id, true)
+            }
+        })
     }
 }
 
@@ -81,7 +84,14 @@ const createFileHandlerNode = function(context, file) {
     return schema.text(file.name).mark([linkMark])
 }
 
+const getFileHandlerContainer = function (context) {
+    const form = context.editor.$.closest('form')
+    const uploadButton = form.find('#' + context.id + '-file-upload').closest('.btn-group')
+    return uploadButton.length ? uploadButton : form
+}
+
 export {
     initFileHandler,
-    getFileHandlerItem
+    getFileHandlerItem,
+    getFileHandlerContainer,
 }
