@@ -7,7 +7,7 @@
 
 import {loaderStart, replaceLoader, removeLoader} from "../loader/plugin";
 
-export function triggerUpload(state, view, context, files) {
+const triggerUpload = function(state, view, context, files) {
     // A fresh object to act as the ID for this upload
     let id = {};
 
@@ -19,6 +19,7 @@ export function triggerUpload(state, view, context, files) {
             loaderStart(context, id, true);
         }).off('uploadEnd.richtext').on('uploadEnd.richtext', (evt, response) => {
             replaceLoader(context, id, createNodesFromResponse(context, response), true);
+            console.log('UPLOADER uploadEnd.richtext')
         }).off('uploadFinish.richtext').on('uploadFinish.richtext', () => {
             // Make sure our loader is removed after upload
             removeLoader(context, id, true);
@@ -32,24 +33,22 @@ export function triggerUpload(state, view, context, files) {
     }
 }
 
-let createNodesFromResponse = function(context, response) {
-    let schema = context.schema;
-    let nodes = [];
+const createNodesFromResponse = function(context, response) {
+    const schema = context.schema;
+    const nodes = [];
 
     // Otherwise, insert it at the placeholder's position, and remove the placeholder
-    let error = response.result.files.forEach((file) => {
+    response.result.files.forEach((file) => {
         let node;
 
         if (file.error) {
             return;
         }
 
-        let url = file.url;
-
         if (file.mimeIcon === 'mime-image') {
-            node = schema.nodes.image.create({src : url, title: file.name, alt: file.name, fileGuid: file.guid});
+            node = schema.nodes.image.create({src : file.url, title: file.name, alt: file.name, fileGuid: file.guid});
         } else {
-            let linkMark = schema.marks.link.create({href: url, fileGuid: file.guid});
+            const linkMark = schema.marks.link.create({href: file.url, fileGuid: file.guid});
             node = schema.text(file.name, [linkMark]);
         }
 
@@ -58,3 +57,8 @@ let createNodesFromResponse = function(context, response) {
 
     return nodes;
 };
+
+export {
+    triggerUpload,
+    createNodesFromResponse,
+}

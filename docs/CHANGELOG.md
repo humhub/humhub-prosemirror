@@ -1,6 +1,10 @@
 Changelog
 =========
 
+2.1.4 (Unreleased)
+------------------
+- Fix #147: Enable all file handlers on RichText editor toolbar
+
 2.1.3
 -----
 - Fix #146: Fix visibility of the edit image button
