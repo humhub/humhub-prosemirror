@@ -4,6 +4,7 @@ Changelog
 2.1.4 (Unreleased)
 ------------------
 - Fix #147: Enable all file handlers on RichText editor toolbar
+- Fix #148: Keep focus on a list item after apply the list style
 
 2.1.3
 -----

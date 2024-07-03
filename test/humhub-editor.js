@@ -17454,9 +17454,6 @@ MenuItem.prototype.initEvents = function initEvents (view) {
         e.preventDefault();
         if (!this$1$1.$.hasClass(buildMenuClass('disabled'))) {
             this$1$1.options.run.call(this$1$1, view.state, view.dispatch, view, e);
-            if (!this$1$1.$.is(':visible')) {
-                this$1$1.getMenuBar().focusPrev();
-            }
         }
     };
 
