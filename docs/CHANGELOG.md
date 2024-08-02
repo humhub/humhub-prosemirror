@@ -1,7 +1,11 @@
 Changelog
 =========
 
-2.1.4
+2.1.6 (Unreleased)
+-------------------
+TBD
+
+2.1.5
 -----
 - Fix #147: Enable all file handlers on RichText editor toolbar
 - Fix #148: Keep focus on a list item after apply the list style
