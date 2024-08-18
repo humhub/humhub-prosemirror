@@ -3,7 +3,7 @@ Changelog
 
 2.1.6 (Unreleased)
 -------------------
-TBD
+- Enh #149: JS Dependency Updates
 
 2.1.5
 -----
