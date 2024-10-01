@@ -4,6 +4,7 @@ Changelog
 2.1.6 (Unreleased)
 -------------------
 - Enh #149: JS Dependency Updates
+- Enh #152: Grunt JS Dependency Updates
 
 2.1.5
 -----
