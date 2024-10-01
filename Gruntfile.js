@@ -82,7 +82,6 @@ module.exports = function(grunt) {
     });
 
     rollupTask(grunt)
-
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.registerTask('default', ['rollup', 'copy']);
