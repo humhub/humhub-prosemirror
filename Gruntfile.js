@@ -1,11 +1,11 @@
 const path = require('path');
-
 const pluginNodeResolve = require('@rollup/plugin-node-resolve');
 const pluginEslint = require('@rollup/plugin-eslint');
 const pluginJson = require('@rollup/plugin-json');
 const pluginBuble = require('@rollup/plugin-buble');
 const pluginReplace = require('@rollup/plugin-replace');
 const pluginCommonjs = require('@rollup/plugin-commonjs');
+const rollupTask = require('./src/grunt-rollup/tasks/rollup.js');
 
 module.exports = function(grunt) {
     grunt.initConfig({
@@ -81,8 +81,9 @@ module.exports = function(grunt) {
         }
     });
 
+    rollupTask(grunt)
+
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-rollup');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.registerTask('default', ['rollup', 'copy']);
 };
