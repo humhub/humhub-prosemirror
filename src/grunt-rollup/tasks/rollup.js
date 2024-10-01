@@ -1,3 +1,11 @@
+/**
+ * @file Grunt plugin for rollup - next-generation ES6 module bundler
+ * This file defines a Grunt task for using Rollup to bundle JavaScript modules.
+ *
+ * The file is copied from the `grunt-rollup` package (https://www.npmjs.com/package/grunt-rollup) without dependencies,
+ * so outdated npm dependencies are ignored.
+ */
+
 const path = require("path");
 const rollup = require("rollup");
 
