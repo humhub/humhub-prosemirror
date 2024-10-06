@@ -554,7 +554,7 @@ var Mark = function Mark(
   /**
   The type of this mark.
   */
-  type, 
+  type,
   /**
   The attributes associated with this mark.
   */
@@ -690,7 +690,7 @@ var ReplaceError = /*@__PURE__*/(function (Error) {
   ReplaceError.prototype = Object.create( Error && Error.prototype );
   ReplaceError.prototype.constructor = ReplaceError;
 
-  
+
 
   return ReplaceError;
 }(Error));
@@ -714,11 +714,11 @@ var Slice = function Slice(
   /**
   The slice's content.
   */
-  content, 
+  content,
   /**
   The open depth at the start of the fragment.
   */
-  openStart, 
+  openStart,
   /**
   The open depth at the end.
   */
@@ -951,11 +951,11 @@ var ResolvedPos = function ResolvedPos(
   /**
   The position that was resolved.
   */
-  pos, 
+  pos,
   /**
   @internal
   */
-  path, 
+  path,
   /**
   The offset this position has into its parent node.
   */
@@ -1239,12 +1239,12 @@ var NodeRange = function NodeRange(
   these are the positions that were used to compute the range,
   not re-resolved positions directly at its boundaries.
   */
-  $from, 
+  $from,
   /**
   A position along the end of the content. See
   caveat for [`$from`](https://prosemirror.net/docs/ref/#model.NodeRange.$from).
   */
-  $to, 
+  $to,
   /**
   The depth of the node that this range points into.
   */
@@ -1297,15 +1297,15 @@ var Node$1 = function Node(
   /**
   The type of node that this is.
   */
-  type, 
+  type,
   /**
   An object mapping attribute names to values. The kind of
   attributes allowed and required are
   [determined](https://prosemirror.net/docs/ref/#model.NodeSpec.attrs) by the node type.
   */
-  attrs, 
+  attrs,
   // A fragment holding the node's children.
-  content, 
+  content,
   /**
   The marks (things like whether it is emphasized or part of a
   link) applied to this node.
@@ -2251,11 +2251,11 @@ var NodeType$2 = function NodeType(
   /**
   The name the node type has in this schema.
   */
-  name, 
+  name,
   /**
   A link back to the `Schema` the node type belongs to.
   */
-  schema, 
+  schema,
   /**
   The spec that this type is based on
   */
@@ -2476,15 +2476,15 @@ var MarkType = function MarkType(
   /**
   The name of the mark type.
   */
-  name, 
+  name,
   /**
   @internal
   */
-  rank, 
+  rank,
   /**
   The schema that this mark type instance is part of.
   */
-  schema, 
+  schema,
   /**
   The spec on which the type is based.
   */
@@ -2674,7 +2674,7 @@ var DOMParser = function DOMParser(
   /**
   The schema into which the parser parses.
   */
-  schema, 
+  schema,
   /**
   The set of [parse rules](https://prosemirror.net/docs/ref/#model.ParseRule) that the parser
   uses, in order of precedence.
@@ -2839,9 +2839,9 @@ function wsOptionsFor(type, preserveWhitespace, base) {
             (preserveWhitespace === "full" ? OPT_PRESERVE_WS_FULL : 0); }
     return type && type.whitespace == "pre" ? OPT_PRESERVE_WS | OPT_PRESERVE_WS_FULL : base & ~OPT_OPEN_LEFT;
 }
-var NodeContext = function NodeContext(type, attrs, 
+var NodeContext = function NodeContext(type, attrs,
   // Marks applied to this node itself
-  marks, 
+  marks,
   // Marks that can't apply here, but will be used in children if possible
   pendingMarks, solid, match, options) {
       this.type = type;
@@ -2918,7 +2918,7 @@ var NodeContext = function NodeContext(type, attrs,
   };
 var ParseContext$1 = function ParseContext(
   // The parser we are using.
-  parser, 
+  parser,
   // The options passed to this parse.
   options, isOpen) {
       this.parser = parser;
@@ -3452,7 +3452,7 @@ var DOMSerializer = function DOMSerializer(
   /**
   The node serialization functions.
   */
-  nodes, 
+  nodes,
   /**
   The mark serialization functions.
   */
@@ -3658,11 +3658,11 @@ var MapResult = function MapResult(
 /**
 The mapped version of the position.
 */
-pos, 
+pos,
 /**
 @internal
 */
-delInfo, 
+delInfo,
 /**
 @internal
 */
@@ -3705,7 +3705,7 @@ var StepMap = function StepMap(
 /**
 @internal
 */
-ranges, 
+ranges,
 /**
 @internal
 */
@@ -3825,16 +3825,16 @@ var Mapping = function Mapping(
 /**
 The step maps in this mapping.
 */
-maps, 
+maps,
 /**
 @internal
 */
-mirror, 
+mirror,
 /**
 The starting position in the `maps` array, used when `map` or
 `mapResult` is called.
 */
-from, 
+from,
 /**
 The end position in the `maps` array.
 */
@@ -4013,7 +4013,7 @@ var StepResult = function StepResult(
 /**
 The transformed document, if successful.
 */
-doc, 
+doc,
 /**
 The failure message, if unsuccessful.
 */
@@ -4065,11 +4065,11 @@ var AddMarkStep = /*@__PURE__*/(function (Step) {
     /**
     The start of the marked range.
     */
-    from, 
+    from,
     /**
     The end of the marked range.
     */
-    to, 
+    to,
     /**
     The mark to add.
     */
@@ -4135,11 +4135,11 @@ var RemoveMarkStep = /*@__PURE__*/(function (Step) {
     /**
     The start of the unmarked range.
     */
-    from, 
+    from,
     /**
     The end of the unmarked range.
     */
-    to, 
+    to,
     /**
     The mark to remove.
     */
@@ -4202,7 +4202,7 @@ var AddNodeMarkStep = /*@__PURE__*/(function (Step) {
     /**
     The position of the target node.
     */
-    pos, 
+    pos,
     /**
     The mark to add.
     */
@@ -4262,7 +4262,7 @@ var RemoveNodeMarkStep = /*@__PURE__*/(function (Step) {
     /**
     The position of the target node.
     */
-    pos, 
+    pos,
     /**
     The mark to remove.
     */
@@ -4316,15 +4316,15 @@ var ReplaceStep = /*@__PURE__*/(function (Step) {
     /**
     The start position of the replaced range.
     */
-    from, 
+    from,
     /**
     The end position of the replaced range.
     */
-    to, 
+    to,
     /**
     The slice to insert.
     */
-    slice, 
+    slice,
     /**
     @internal
     */
@@ -4405,28 +4405,28 @@ var ReplaceAroundStep = /*@__PURE__*/(function (Step) {
     /**
     The start position of the replaced range.
     */
-    from, 
+    from,
     /**
     The end position of the replaced range.
     */
-    to, 
+    to,
     /**
     The start of preserved range.
     */
-    gapFrom, 
+    gapFrom,
     /**
     The end of preserved range.
     */
-    gapTo, 
+    gapTo,
     /**
     The slice to insert.
     */
-    slice, 
+    slice,
     /**
     The position in the slice where the preserved range should be
     inserted.
     */
-    insert, 
+    insert,
     /**
     @internal
     */
@@ -5385,11 +5385,11 @@ var AttrStep = /*@__PURE__*/(function (Step) {
     /**
     The position of the target node.
     */
-    pos, 
+    pos,
     /**
     The attribute to set.
     */
-    attr, 
+    attr,
     // The attribute's new value.
     value) {
         Step.call(this);
@@ -5445,7 +5445,7 @@ var TransformError = /*@__PURE__*/(function (Error) {
     TransformError.prototype = Object.create( Error && Error.prototype );
     TransformError.prototype.constructor = TransformError;
 
-    
+
 
     return TransformError;
 }(Error));
@@ -5570,7 +5570,7 @@ marked [non-defining as
 context](https://prosemirror.net/docs/ref/#model.NodeSpec.definingAsContext), or including an
 open parent node from the slice that _is_ marked as [defining
 its content](https://prosemirror.net/docs/ref/#model.NodeSpec.definingForContent).
-    
+
 This is the method, for example, to handle paste. The similar
 [`replace`](https://prosemirror.net/docs/ref/#transform.Transform.replace) method is a more
 primitive tool which will _not_ move the start and end of its given
@@ -5734,7 +5734,7 @@ var Selection = function Selection(
 The resolved anchor of the selection (the side that stays in
 place when the selection is modified).
 */
-$anchor, 
+$anchor,
 /**
 The resolved head of the selection (the side that moves when
 the selection is modified).
@@ -5933,7 +5933,7 @@ var SelectionRange$1 = function SelectionRange(
 /**
 The lower bound of the range.
 */
-$from, 
+$from,
 /**
 The upper bound of the range.
 */
@@ -7430,7 +7430,7 @@ function endOfTextblock(view, state, dir) {
 var NOT_DIRTY = 0, CHILD_DIRTY = 1, CONTENT_DIRTY = 2, NODE_DIRTY = 3;
 // Superclass for the various kinds of descriptions. Defines their
 // basic structure and shared methods.
-var ViewDesc = function ViewDesc(parent, children, dom, 
+var ViewDesc = function ViewDesc(parent, children, dom,
 // This is the node that holds the child views. It may be null for
 // descs that don't have children.
 contentDOM) {
@@ -10602,12 +10602,12 @@ var Decoration$1 = function Decoration(
 /**
 The start position of the decoration.
 */
-from, 
+from,
 /**
 The end position. Will be the same as `from` for [widget
 decorations](https://prosemirror.net/docs/ref/#view.Decoration^widget).
 */
-to, 
+to,
 /**
 @internal
 */
@@ -12240,7 +12240,7 @@ position. When `side` is negative, find the position as close as
 possible to the content before the position. When positive,
 prefer positions close to the content after the position. When
 zero, prefer as shallow a position as possible.
-    
+
 Note that you should **not** mutate the editor's internal DOM,
 only inspect it (and even that is usually not necessary).
 */
@@ -12253,7 +12253,7 @@ EditorView$1.prototype.domAtPos = function domAtPos (pos, side) {
 Find the DOM node that represents the document node after the
 given position. May return `null` when the position doesn't point
 in front of a node or if the node is inside an opaque node view.
-    
+
 This is intended to be able to call things like
 `getBoundingClientRect` on that DOM node. Do **not** mutate the
 editor DOM directly, or add styling this way, since that will be
@@ -12269,7 +12269,7 @@ position. (Whenever possible, it is preferable to inspect the
 document structure directly, rather than poking around in the
 DOM, but sometimes—for example when interpreting an event
 target—you don't have a choice.)
-    
+
 The `bias` parameter can be used to influence which side of a DOM
 node to use when the position is inside a leaf node.
 */
@@ -13902,13 +13902,13 @@ function cutOffEvents(items, n) {
 }
 var Item = function Item(
 // The (forward) step map for this item.
-map, 
+map,
 // The inverted step
-step, 
+step,
 // If this is non-null, this item is the start of a group, and
 // this selection is the starting selection for the group (the one
 // that was active before the first step was applied)
-selection, 
+selection,
 // If this item is the inverse of a previous mapping on the stack,
 // this points at the inverse's offset
 mirrorOffset) {
@@ -14506,7 +14506,7 @@ function isMenuEvent$1(wrapper) {
 A drop-down menu, displayed as a label with a downwards-pointing
 triangle to the right of it.
 */
-var Dropdown$1 = function Dropdown(content, 
+var Dropdown$1 = function Dropdown(content,
 /**
 @internal
 */
@@ -14601,7 +14601,7 @@ function combineUpdates(updates, nodes) {
 Represents a submenu wrapping a group of elements that start
 hidden and expand to the right when hovered over or tapped.
 */
-var DropdownSubmenu$1 = function DropdownSubmenu(content, 
+var DropdownSubmenu$1 = function DropdownSubmenu(content,
 /**
 @internal
 */
@@ -17525,7 +17525,7 @@ MenuItem.prototype.setSelectedItemState = function setSelectedItemState (state, 
 
 MenuItem.prototype.setHidden = function setHidden (isHidden) {
     setAttribute(this.dom, 'aria-hidden', 'true', isHidden);
-    setClass(this.dom, 'hidden', isHidden);
+    setClass(this.dom, 'd-none', isHidden);
 
     if (this.isFocusable() && isHidden) {
         setAttribute(this.dom, 'tabindex', '-1', isHidden);
@@ -18625,12 +18625,12 @@ var MenuBarView = function MenuBarView(editorView, options) {
 
     // Focus and blur editor handler
     if ($editor.is('.focusMenu')) {
-        this.$.addClass('hidden');
+        this.$.addClass('d-none');
 
         $editor.off('focus', '.ProseMirror, textarea').off('blur', '.ProseMirror, textarea')
             .on('focus', '.ProseMirror, textarea', function (event) {
-                if (this$1$1.$.hasClass('hidden')) {
-                    this$1$1.$.removeClass('hidden');
+                if (this$1$1.$.hasClass('d-none')) {
+                    this$1$1.$.removeClass('d-none');
                     var that = this$1$1;
 
                     $editor.on('keyup', function (e) {
@@ -18650,7 +18650,7 @@ var MenuBarView = function MenuBarView(editorView, options) {
 
                 if (!$editor.is('.fullscreen') && !targetHasMenuBtn && !$(e.target).hasClass('cm-editor')) {
                     lastFocusedElement = null;
-                    this$1$1.$.addClass('hidden');
+                    this$1$1.$.addClass('d-none');
                 }
             });
     }
@@ -18892,7 +18892,7 @@ Promt.prototype.buildButtons = function buildButtons () {
 
     this.$buttons.append(document.createTextNode(' '));
 
-    $('<button type="button" class="btn btn-default">').addClass(prefix + "-cancel")
+    $('<button type="button" class="btn btn-secondary">').addClass(prefix + "-cancel")
         .text('Cancel').appendTo(this.$buttons)
         .on('click', function () { return this$1$1.close(); });
 
@@ -24397,7 +24397,7 @@ function requireUc_micro () {
 	exports.isMdAsciiPunct      = isMdAsciiPunct;
 	exports.isPunctChar         = isPunctChar;
 	exports.escapeRE            = escapeRE;
-	exports.normalizeReference  = normalizeReference; 
+	exports.normalizeReference  = normalizeReference;
 } (utils$1));var helpers$1 = {};var parse_link_label = function parseLinkLabel(state, start, disableNested) {
   var level, found, marker, prevPos,
       labelEnd = -1,
@@ -31681,11 +31681,11 @@ var MarkdownParser = function MarkdownParser(
 /**
 The parser's document schema.
 */
-schema, 
+schema,
 /**
 This parser's markdown-it tokenizer.
 */
-tokenizer, 
+tokenizer,
 /**
 The value of the `tokens` object used to construct this
 parser. Can be useful to copy and modify to base other parsers
@@ -31701,7 +31701,7 @@ tokens) {
 Parse a string as [CommonMark](http://commonmark.org/) markup,
 and create a ProseMirror document as prescribed by this parser's
 rules.
-    
+
 The second argument, when given, is passed through to the
 [Markdown
 parser](https://markdown-it.github.io/markdown-it/#MarkdownIt.parse).
@@ -31762,7 +31762,7 @@ var MarkdownSerializer = function MarkdownSerializer(
 /**
 The node serializer functions for this serializer.
 */
-nodes, 
+nodes,
 /**
 The mark serializer info.
 */
@@ -31894,11 +31894,11 @@ var MarkdownSerializerState = function MarkdownSerializerState(
 /**
 @internal
 */
-nodes, 
+nodes,
 /**
 @internal
 */
-marks, 
+marks,
 /**
 The options passed to the serializer.
 */
@@ -32639,7 +32639,7 @@ var Text = function Text() { };
  Return a cursor that iterates over the given range of lines,
  _without_ returning the line breaks between, and yielding empty
  strings for empty lines.
-    
+
  When `from` and `to` are given, they should be 1-based line numbers.
  */
  Text.prototype.iterLines = function iterLines (from, to) {
@@ -33119,16 +33119,16 @@ var Line = function Line(
  /**
  The position of the start of the line.
  */
- from, 
+ from,
  /**
  The position at the end of the line (_before_ the line break,
  or at the end of document for the last line).
  */
- to, 
+ to,
  /**
  This line's line number (1-based).
  */
- number, 
+ number,
  /**
  The line's content.
  */
@@ -33339,7 +33339,7 @@ var prototypeAccessors$4$2 = { length: { configurable: true },newLength: { confi
  `fromA`/`toA` provides the extent of the change in the starting
  document, `fromB`/`toB` the extent of the replacement in the
  changed document.
-    
+
  When `individual` is true, adjacent changes (which are kept
  separate for [position mapping](https://codemirror.net/6/docs/ref/#state.ChangeDesc.mapPos)) are
  reported separately.
@@ -33458,7 +33458,7 @@ stores the document length, and can only be applied to documents
 with exactly that length.
 */
 var ChangeSet = /*@__PURE__*/(function (ChangeDesc) {
-   function ChangeSet(sections, 
+   function ChangeSet(sections,
     /**
     @internal
     */
@@ -33520,7 +33520,7 @@ var ChangeSet = /*@__PURE__*/(function (ChangeDesc) {
     applied to the document produced by applying `other`. When
     `before` is `true`, order changes as if `this` comes before
     `other`, otherwise (the default) treat `other` as coming first.
-    
+
     Given two changes `A` and `B`, `A.compose(B.map(A))` and
     `B.compose(A.map(B, true))` will produce the same document. This
     provides a basic form of [operational
@@ -33535,7 +33535,7 @@ var ChangeSet = /*@__PURE__*/(function (ChangeDesc) {
     each, with the range in the original document (`fromA`-`toA`)
     and the range that replaces it in the new document
     (`fromB`-`toB`).
-    
+
     When `individual` is true, adjacent changes are reported
     separately.
     */
@@ -33938,7 +33938,7 @@ var SelectionRange = function SelectionRange(
  /**
  The lower boundary of the range.
  */
- from, 
+ from,
  /**
  The upper boundary of the range.
  */
@@ -34051,7 +34051,7 @@ var EditorSelection = function EditorSelection(
  The ranges in the selection, sorted by position. Ranges cannot
  overlap (but they may touch, if they aren't empty).
  */
- ranges, 
+ ranges,
  /**
  The index of the _main_ range in the selection (which is
  usually the range that was added last).
@@ -34220,11 +34220,11 @@ var Facet = function Facet(
  /**
  @internal
  */
- combine, 
+ combine,
  /**
  @internal
  */
- compareInput, 
+ compareInput,
  /**
  @internal
  */
@@ -34259,7 +34259,7 @@ var Facet = function Facet(
  state. You must take care to declare the parts of the state that
  this value depends on, since your function is only called again
  for a new state when one of those parts changed.
-    
+
  In cases where your value depends only on a single field, you'll
  want to use the [`from`](https://codemirror.net/6/docs/ref/#state.Facet.from) method instead.
  */
@@ -34417,7 +34417,7 @@ var StateField = function StateField(
  /**
  @internal
  */
- id, createF, updateF, compareF, 
+ id, createF, updateF, compareF,
  /**
  @internal
  */
@@ -34732,7 +34732,7 @@ var Annotation = function Annotation(
  /**
  The annotation type.
  */
- type, 
+ type,
  /**
  The value of this annotation.
  */
@@ -34781,7 +34781,7 @@ var StateEffect = function StateEffect(
  /**
  @internal
  */
- type, 
+ type,
  /**
  The value of this effect.
  */
@@ -34853,24 +34853,24 @@ var Transaction = function Transaction(
  /**
  The state from which the transaction starts.
  */
- startState, 
+ startState,
  /**
  The document changes made by this transaction.
  */
- changes, 
+ changes,
  /**
  The selection set by this transaction, or undefined if it
  doesn't explicitly set a selection.
  */
- selection, 
+ selection,
  /**
  The effects added to the transaction.
  */
- effects, 
+ effects,
  /**
  @internal
  */
- annotations, 
+ annotations,
  /**
  Whether the selection should be scrolled into view after this
  transaction is dispatched.
@@ -35193,15 +35193,15 @@ var EditorState = function EditorState(
  /**
  @internal
  */
- config, 
+ config,
  /**
  The current document.
  */
- doc, 
+ doc,
  /**
  The current selection.
  */
- selection, 
+ selection,
  /**
  @internal
  */
@@ -35456,7 +35456,7 @@ var prototypeAccessors$11$1 = { tabSize: { configurable: true },lineBreak: { con
  Look up a translation for the given phrase (via the
  [`phrases`](https://codemirror.net/6/docs/ref/#state.EditorState^phrases) facet), or return the
  original string if no translation is found.
-    
+
  If additional arguments are passed, they will be inserted in
  place of markers like `$1` (for the first value) and `$2`, etc.
  A single `$` is equivalent to `$1`, and `$$` will produce a
@@ -35483,9 +35483,9 @@ var prototypeAccessors$11$1 = { tabSize: { configurable: true },lineBreak: { con
  /**
  Find the values for a given language data field, provided by the
  the [`languageData`](https://codemirror.net/6/docs/ref/#state.EditorState^languageData) facet.
-    
+
  Examples of language data fields are...
-    
+
  - [`"commentTokens"`](https://codemirror.net/6/docs/ref/#commands.CommentTokens) for specifying
    comment syntax.
  - [`"autocomplete"`](https://codemirror.net/6/docs/ref/#autocomplete.autocompletion^config.override)
@@ -35512,7 +35512,7 @@ var prototypeAccessors$11$1 = { tabSize: { configurable: true },lineBreak: { con
  Return a function that can categorize strings (expected to
  represent a single [grapheme cluster](https://codemirror.net/6/docs/ref/#state.findClusterBreak))
  into one of:
-    
+
   - Word (contains an alphanumeric character or a character
     explicitly listed in the local language's `"wordChars"`
     language data, which should be a string)
@@ -35714,11 +35714,11 @@ var Range$1 = function Range(
  /**
  The range's start position.
  */
- from, 
+ from,
  /**
  Its end position.
  */
- to, 
+ to,
  /**
  The value associated with this range.
  */
@@ -35736,7 +35736,7 @@ var Range$1 = function Range(
 function cmpRange(a, b) {
     return a.from - b.from || a.value.startSide - b.value.startSide;
 }
-var Chunk = function Chunk(from, to, value, 
+var Chunk = function Chunk(from, to, value,
  // Chunks are marked with the largest point that occurs
  // in them (or -1 for no points), so that scans that are
  // only interested in points (such as the
@@ -35819,15 +35819,15 @@ var RangeSet = function RangeSet(
  /**
  @internal
  */
- chunkPos, 
+ chunkPos,
  /**
  @internal
  */
- chunk, 
+ chunk,
  /**
  @internal
  */
- nextLayer, 
+ nextLayer,
  /**
  @internal
  */
@@ -35872,7 +35872,7 @@ var prototypeAccessors$13 = { length: { configurable: true },size: { configurabl
  /**
  Update the range set, optionally adding new ranges or filtering
  out existing ones.
-    
+
  (Note: The type parameter is just there as a kludge to work
  around TypeScript variance issues that prevented `RangeSet<X>`
  from being a subtype of `RangeSet<Y>` when `X` is a subtype of
@@ -35987,12 +35987,12 @@ var prototypeAccessors$13 = { length: { configurable: true },size: { configurabl
  Iterate over two groups of sets, calling methods on `comparator`
  to notify it of possible differences.
  */
- RangeSet.compare = function compare$1 (oldSets, newSets, 
+ RangeSet.compare = function compare$1 (oldSets, newSets,
  /**
  This indicates how the underlying data changed between these
  ranges, and is needed to synchronize the iteration.
  */
- textDiff, comparator, 
+ textDiff, comparator,
  /**
  Can be used to ignore all non-point ranges, and points below
  the given size. When -1, all ranges are compared.
@@ -36044,7 +36044,7 @@ var prototypeAccessors$13 = { length: { configurable: true },size: { configurabl
  [`SpanIterator.span`](https://codemirror.net/6/docs/ref/#state.SpanIterator.span)) at the end
  of the iteration.
  */
- RangeSet.spans = function spans (sets, from, to, iterator, 
+ RangeSet.spans = function spans (sets, from, to, iterator,
  /**
  When given and greater than -1, only points of at least this
  size are taken into account.
@@ -38079,15 +38079,15 @@ var Decoration = /*@__PURE__*/(function (RangeValue) {
     /**
     @internal
     */
-    startSide, 
+    startSide,
     /**
     @internal
     */
-    endSide, 
+    endSide,
     /**
     @internal
     */
-    widget, 
+    widget,
     /**
     The config object used to create this decoration. You can
     include additional properties in there to store metadata about
@@ -38803,11 +38803,11 @@ var ViewPlugin = function ViewPlugin(
 /**
 @internal
 */
-id, 
+id,
 /**
 @internal
 */
-create, 
+create,
 /**
 @internal
 */
@@ -38981,11 +38981,11 @@ var ViewUpdate = function ViewUpdate(
 /**
 The editor view that the update is associated with.
 */
-view, 
+view,
 /**
 The new editor state.
 */
-state, 
+state,
 /**
 The transactions involved in the update. May be empty.
 */
@@ -39114,11 +39114,11 @@ var BidiSpan = function BidiSpan(
 /**
 The start of the span (relative to the start of the line).
 */
-from, 
+from,
 /**
 The end of the span.
 */
-to, 
+to,
 /**
 The ["bidi
 level"](https://unicode.org/reports/tr9/#Basic_Display_Algorithm)
@@ -41329,20 +41329,20 @@ var BlockInfo = function BlockInfo(
 /**
 The start of the element in the document.
 */
-from, 
+from,
 /**
 The length of the element.
 */
-length, 
+length,
 /**
 The top position of the element (relative to the top of the
 document).
 */
-top, 
+top,
 /**
 Its height.
 */
-height, 
+height,
 /**
 @internal Weird packed field that holds an array of children
 for composite blocks, a decoration for block widgets, and a
@@ -44208,7 +44208,7 @@ the editor's [text direction](https://codemirror.net/6/docs/ref/#view.EditorView
 When the start position was the last one on the line, the
 returned position will be across the line break. If there is no
 further line, the original position is returned.
-    
+
 By default, this method moves over a single cluster. The
 optional `by` argument can be used to move across more. It will
 be called with the first cluster as argument, and should return
@@ -44245,7 +44245,7 @@ Move a cursor position vertically. When `distance` isn't given,
 it defaults to moving to the next line (including wrapped
 lines). Otherwise, `distance` should provide a positive distance
 in pixels.
-    
+
 When `start` has a
 [`goalColumn`](https://codemirror.net/6/docs/ref/#state.SelectionRange.goalColumn), the vertical
 motion will use that as a target horizontal position. Otherwise,
@@ -44260,7 +44260,7 @@ EditorView.prototype.moveVertically = function moveVertically$1 (start, forward,
 Find the DOM parent node and offset (child offset if `node` is
 an element, character offset when it is a text node) at the
 given document position.
-    
+
 Note that for positions that aren't currently in
 `visibleRanges`, the resulting DOM position isn't necessarily
 meaningful (it may just point before or after a placeholder
@@ -44443,14 +44443,14 @@ Create a theme extension. The first argument can be a
 [`style-mod`](https://github.com/marijnh/style-mod#documentation)
 style spec providing the styles for the theme. These will be
 prefixed with a generated class for the style.
-    
+
 Because the selectors will be prefixed with a scope class, rule
 that directly match the editor's [wrapper
 element](https://codemirror.net/6/docs/ref/#view.EditorView.dom)—to which the scope class will be
 added—need to be explicitly differentiated by adding an `&` to
 the selector for that element—for example
 `&.cm-focused`.
-    
+
 When `dark` is set to true, the theme will be marked as dark,
 which will cause the `&dark` rules from [base
 themes](https://codemirror.net/6/docs/ref/#view.EditorView^baseTheme) to be used (as opposed to
@@ -46154,12 +46154,12 @@ class NodeType {
     /// grammar was written properly, different node types with the
     /// same name within a node set should play the same semantic
     /// role.
-    name, 
+    name,
     /// @internal
-    props, 
+    props,
     /// The id of this node in its set. Corresponds to the term ids
     /// used in the parser.
-    id, 
+    id,
     /// @internal
     flags = 0) {
         this.name = name;
@@ -46309,14 +46309,14 @@ class Tree {
     /// Construct a new tree. See also [`Tree.build`](#common.Tree^build).
     constructor(
     /// The type of the top node.
-    type, 
+    type,
     /// This node's child nodes.
-    children, 
+    children,
     /// The positions (offsets relative to the start of this tree) of
     /// the children.
-    positions, 
+    positions,
     /// The total length of this tree
-    length, 
+    length,
     /// Per-node [node props](#common.NodeProp) to associate with this node.
     props) {
         this.type = type;
@@ -46469,9 +46469,9 @@ class TreeBuffer {
     /// Create a tree buffer.
     constructor(
     /// The buffer's content.
-    buffer, 
+    buffer,
     /// The total length of the group of nodes in the buffer.
-    length, 
+    length,
     /// The node set used in this buffer.
     set) {
         this.buffer = buffer;
@@ -46583,7 +46583,7 @@ function resolveNode(node, pos, side, overlays) {
     }
 }
 class TreeNode {
-    constructor(_tree, from, 
+    constructor(_tree, from,
     // Index in parent node, set to -1 if the node is not a direct child of _parent.node (overlay)
     index, _parent) {
         this._tree = _tree;
@@ -46802,7 +46802,7 @@ class TreeCursor {
     /// Shorthand for `.type.name`.
     get name() { return this.type.name; }
     /// @internal
-    constructor(node, 
+    constructor(node,
     /// @internal
     mode = 0) {
         this.mode = mode;
@@ -47272,17 +47272,17 @@ function nodeSize(balanceType, node) {
 }
 function balanceRange(
 // The type the balanced tree's inner nodes.
-balanceType, 
+balanceType,
 // The direct children and their positions
-children, positions, 
+children, positions,
 // The index range in children/positions to use
-from, to, 
+from, to,
 // The start position of the nodes, relative to their parent.
-start, 
+start,
 // Length of the outer node
-length, 
+length,
 // Function to build the top node of the balanced tree
-mkTop, 
+mkTop,
 // Function to build internal nodes for the balanced tree
 mkTree) {
     let total = 0;
@@ -47377,11 +47377,11 @@ class TreeFragment {
     /// The start of the unchanged range pointed to by this fragment.
     /// This refers to an offset in the _updated_ document (as opposed
     /// to the original tree).
-    from, 
+    from,
     /// The end of the unchanged range.
-    to, 
+    to,
     /// The tree that this fragment is based on.
-    tree, 
+    tree,
     /// The offset between the fragment's tree and the document that
     /// this fragment can be used against. Add this when going from
     /// document to tree positions, subtract it to go from tree to
@@ -47510,12 +47510,12 @@ class Tag {
     The set of this tag and all its parent tags, starting with
     this one itself and sorted in order of decreasing specificity.
     */
-    set, 
+    set,
     /**
     The base unmodified tag that this one is based on, if it's
     modified @internal
     */
-    base, 
+    base,
     /**
     The modifiers applied to this.base @internal
     */
@@ -47551,7 +47551,7 @@ class Tag {
     same modifier to a twice tag will return the same value (`m1(t1)
     == m1(t1)`) and applying multiple modifiers will, regardless or
     order, produce the same tag (`m1(m2(t1)) == m2(m1(t1))`).
-    
+
     When multiple modifiers are applied to a given base tag, each
     smaller set of modifiers is registered as a parent, so that for
     example `m1(m2(m3(t1)))` is a subtype of `m1(m2(t1))`,
@@ -47757,17 +47757,17 @@ function highlightTags(highlighters, tags) {
 Highlight the given [tree](#common.Tree) with the given
 [highlighter](#highlight.Highlighter).
 */
-function highlightTree(tree, highlighter, 
+function highlightTree(tree, highlighter,
 /**
 Assign styling to a region of the text. Will be called, in order
 of position, for any ranges where more than zero classes apply.
 `classes` is a space separated string of CSS classes.
 */
-putStyle, 
+putStyle,
 /**
 The start of the range to highlight.
 */
-from = 0, 
+from = 0,
 /**
 The end of the range.
 */
@@ -48373,7 +48373,7 @@ var Language = function Language(
 The [language data](https://codemirror.net/6/docs/ref/#state.EditorState.languageDataAt) facet
 used for this language.
 */
-data, parser, extraExtensions, 
+data, parser, extraExtensions,
 /**
 A language name.
 */
@@ -48568,23 +48568,23 @@ var currentContext = null;
 /**
 A parse context provided to parsers working on the editor content.
 */
-var ParseContext = function ParseContext(parser, 
+var ParseContext = function ParseContext(parser,
 /**
 The current editor state.
 */
-state, 
+state,
 /**
 Tree fragments that can be reused by incremental re-parses.
 */
-fragments, 
+fragments,
 /**
 @internal
 */
-tree, 
+tree,
 /**
 @internal
 */
-treeLen, 
+treeLen,
 /**
 The current editor viewport (or some overapproximation
 thereof). Intended to be used for opportunistically avoiding
@@ -48593,11 +48593,11 @@ work (in which case
 should be called to make sure the parser is restarted when the
 skipped region becomes visible).
 */
-viewport, 
+viewport,
 /**
 @internal
 */
-skipped, 
+skipped,
 /**
 This is where skipping parsers can register a promise that,
 when resolved, will schedule a new parse. It is cleared when
@@ -48774,7 +48774,7 @@ Returns a parser intended to be used as placeholder when
 asynchronously loading a nested parser. It'll skip its input and
 mark it as not-really-parsed, so that the next update will parse
 it again.
-    
+
 When `until` is given, a reparse will be scheduled when that
 promise resolves.
 */
@@ -48992,7 +48992,7 @@ var LanguageSupport = function LanguageSupport(
 /**
 The language object.
 */
-language, 
+language,
 /**
 An optional set of supporting extensions. When nesting a
 language in another language, the outer language is encouraged
@@ -49091,7 +49091,7 @@ var IndentContext = function IndentContext(
 /**
 The editor state.
 */
-state, 
+state,
 /**
 @internal
 */
@@ -49234,11 +49234,11 @@ Objects of this type provide context information and helper
 methods to indentation functions registered on syntax nodes.
 */
 var TreeIndentContext = /*@__PURE__*/(function (IndentContext) {
-    function TreeIndentContext(base, 
+    function TreeIndentContext(base,
     /**
     The position at which indentation is being computed.
     */
-    pos, 
+    pos,
     /**
     The syntax tree node to which the indentation strategy
     applies.
@@ -49437,7 +49437,7 @@ or array of tags in their `tag` property, and either a single
 that rely on external styling), or a
 [`style-mod`](https://github.com/marijnh/style-mod#documentation)-style
 set of CSS properties (which define the styling for those tags).
-    
+
 The CSS rules created for a highlighter will be emitted in the
 order of the spec's properties. That means that for elements that
 have multiple tags associated with them, styles defined further
@@ -50875,40 +50875,40 @@ class Stack {
     /// @internal
     constructor(
     /// The parse that this stack is part of @internal
-    p, 
+    p,
     /// Holds state, input pos, buffer index triplets for all but the
     /// top state @internal
-    stack, 
+    stack,
     /// The current parse state @internal
-    state, 
+    state,
     // The position at which the next reduce should take place. This
     // can be less than `this.pos` when skipped expressions have been
     // added to the stack (which should be moved outside of the next
     // reduction)
     /// @internal
-    reducePos, 
+    reducePos,
     /// The input position up to which this stack has parsed.
-    pos, 
+    pos,
     /// The dynamic score of the stack, including dynamic precedence
     /// and error-recovery penalties
     /// @internal
-    score, 
+    score,
     // The output buffer. Holds (type, start, end, size) quads
     // representing nodes created by the parser, where `size` is
     // amount of buffer array entries covered by this node.
     /// @internal
-    buffer, 
+    buffer,
     // The base offset of the buffer. When stacks are split, the split
     // instance shared the buffer history with its parent up to
     // `bufferBase`, which is the absolute offset (including the
     // offset of previous splits) into the buffer at which this stack
     // starts writing.
     /// @internal
-    bufferBase, 
+    bufferBase,
     /// @internal
-    curContext, 
+    curContext,
     /// @internal
-    lookAhead = 0, 
+    lookAhead = 0,
     // A parent stack from which this was split off, if any. This is
     // set up so that it always points to a stack that has some
     // additional buffer content, never to a stack with an equal
@@ -51444,7 +51444,7 @@ class InputStream {
     /// @internal
     constructor(
     /// @internal
-    input, 
+    input,
     /// @internal
     ranges) {
         this.input = input;
@@ -52739,11 +52739,11 @@ var CompletionContext = function CompletionContext(
 /**
 The editor state that the completion happens in.
 */
-state, 
+state,
 /**
 The position at which the completion is happening.
 */
-pos, 
+pos,
 /**
 Indicates whether completion was activated explicitly, or
 implicitly by typing. The usual way to respond to this is to
@@ -54081,7 +54081,7 @@ var closedBracket = /*@__PURE__*/new /*@__PURE__*/(function (RangeValue) {
     anonymous$2.prototype = Object.create( RangeValue && RangeValue.prototype );
     anonymous$2.prototype.constructor = anonymous$2;
 
-    
+
 
     return anonymous$2;
 }(RangeValue));
@@ -143440,11 +143440,11 @@ function getClassForFloat(float) {
     float = parseInt(float);
     switch (float) {
         case FLOAT_LEFT:
-            return 'pull-left';
+            return 'float-start';
         case FLOAT_CENTER:
-            return 'center-block';
+            return 'd-block mx-auto';
         case FLOAT_RIGHT:
-            return 'pull-right';
+            return 'float-end';
         default:
             return '';
     }
@@ -144045,7 +144045,7 @@ var ImageView = function ImageView(node, context) {
         }
 
         var $edit = $('<div>').addClass('humhub-richtext-inline-menu').addClass('humhub-richtext-image-edit')
-            .html('<button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>')
+            .html('<button class="btn btn-primary btn-sm"><i class="fa fa-pencil"></i></button>')
             .css({
                 position: 'absolute',
                 left: offset.left + $img.width() - (25),
@@ -144419,7 +144419,7 @@ var link = {
                 tokens[idx].attrPush(['data-file-guid', guid]); // add new attribute
                 tokens[idx].attrPush(['data-file-download', '']); // add new attribute
                 tokens[idx].attrPush(['data-file-url', url]); // add new attribute
-                tokens[idx].attrPush(['data-target', '#globalModal']);
+                tokens[idx].attrPush(['data-bs-target', '#globalModal']);
             }
 
             // If you are sure other plugins can't add `target` - drop check below
@@ -146685,7 +146685,7 @@ function switchToSourceMode(context, focus) {
         width: '100%',
     });
 
-    $stage.addClass('hidden');
+    $stage.addClass('d-none');
     $textarea.val(context.editor.serialize());
 
     if (focus) {
@@ -146709,7 +146709,7 @@ function switchToRichtextMode(context) {
     $textarea.off('keydown', function (event) { return textareaHandler(event, context); });
     $textarea.remove();
 
-    $stage.removeClass('hidden');
+    $stage.removeClass('d-none');
     context.menu.update();
     context.editor.focus();
 

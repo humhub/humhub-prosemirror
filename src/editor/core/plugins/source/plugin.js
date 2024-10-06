@@ -62,7 +62,7 @@ export function switchToSourceMode(context, focus = true) {
         width: '100%',
     });
 
-    $stage.addClass('hidden');
+    $stage.addClass('d-none');
     $textarea.val(context.editor.serialize());
 
     if (focus) {
@@ -86,7 +86,7 @@ export function switchToRichtextMode(context) {
     $textarea.off('keydown', (event) => textareaHandler(event, context));
     $textarea.remove();
 
-    $stage.removeClass('hidden');
+    $stage.removeClass('d-none');
     context.menu.update();
     context.editor.focus();
 

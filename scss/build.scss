@@ -4,11 +4,9 @@
  * @license https://www.humhub.com/licences
  */
 
-@HUMHUB: "/codebase/humhub/1.3/static/less";
-
-@import "@{HUMHUB}/variables.less";
-@import "@{HUMHUB}/markdown.less";
-@import "@{HUMHUB}/richtext.less";
+@import "../../static/scss/_variables.scss";
+@import "../../static/scss/_markdown.scss";
+@import "../../static/scss/_richtext.scss";
 
 [data-ui-markdown] {
   border: 1px solid silver;

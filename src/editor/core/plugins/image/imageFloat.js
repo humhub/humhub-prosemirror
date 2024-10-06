@@ -56,11 +56,11 @@ export function getClassForFloat(float) {
     float = parseInt(float);
     switch (float) {
         case FLOAT_LEFT:
-            return 'pull-left';
+            return 'float-start';
         case FLOAT_CENTER:
-            return 'center-block';
+            return 'd-block mx-auto';
         case FLOAT_RIGHT:
-            return 'pull-right';
+            return 'float-end';
         default:
             return '';
     }

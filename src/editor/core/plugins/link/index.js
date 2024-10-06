@@ -7,7 +7,7 @@
 import {schema} from './schema'
 import {linkPlugin} from './plugin'
 import {menu} from './menu'
-import {validateHref, DEFAULT_LINK_REL} from "../../util/linkUtil";
+import {DEFAULT_LINK_REL} from "../../util/linkUtil";
 import {filterFileUrl} from "../../humhub-bridge";
 
 const link = {
@@ -30,7 +30,7 @@ const link = {
                 tokens[idx].attrPush(['data-file-guid', guid]); // add new attribute
                 tokens[idx].attrPush(['data-file-download', '']); // add new attribute
                 tokens[idx].attrPush(['data-file-url', url]); // add new attribute
-                tokens[idx].attrPush(['data-target', '#globalModal']);
+                tokens[idx].attrPush(['data-bs-target', '#globalModal']);
             }
 
             // If you are sure other plugins can't add `target` - drop check below

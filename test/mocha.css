@@ -110,10 +110,6 @@ body {
   font-size: .8em;
 }
 
-#mocha .hidden {
-  display: none;
-}
-
 #mocha h2 {
   font-size: 12px;
   font-weight: normal;

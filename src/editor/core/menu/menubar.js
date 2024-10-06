@@ -1,7 +1,7 @@
 import crelt from "crelt";
 import {Plugin} from "prosemirror-state";
 
-import {MenuItemGroup, MenuItem, icons, liftItem} from "./menu";
+import {icons, liftItem, MenuItem, MenuItemGroup} from "./menu";
 import {buildMenuClass} from "./menu-helper";
 
 const prefix = "ProseMirror-menubar";
@@ -290,12 +290,12 @@ class MenuBarView {
 
         // Focus and blur editor handler
         if ($editor.is('.focusMenu')) {
-            this.$.addClass('hidden');
+            this.$.addClass('d-none');
 
             $editor.off('focus', '.ProseMirror, textarea').off('blur', '.ProseMirror, textarea')
                 .on('focus', '.ProseMirror, textarea', (event) => {
-                    if (this.$.hasClass('hidden')) {
-                        this.$.removeClass('hidden');
+                    if (this.$.hasClass('d-none')) {
+                        this.$.removeClass('d-none');
                         const that = this;
 
                         $editor.on('keyup', (e) => {
@@ -315,7 +315,7 @@ class MenuBarView {
 
                     if (!$editor.is('.fullscreen') && !targetHasMenuBtn && !$(e.target).hasClass('cm-editor')) {
                         lastFocusedElement = null;
-                        this.$.addClass('hidden');
+                        this.$.addClass('d-none');
                     }
                 });
         }

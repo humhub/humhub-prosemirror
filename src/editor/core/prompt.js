@@ -65,7 +65,7 @@ class Promt {
 
         this.$buttons.append(document.createTextNode(' '));
 
-        $('<button type="button" class="btn btn-default">').addClass(prefix + "-cancel")
+        $('<button type="button" class="btn btn-secondary">').addClass(prefix + "-cancel")
             .text('Cancel').appendTo(this.$buttons)
             .on('click', () => this.close());
 

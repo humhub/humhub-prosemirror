@@ -1,13 +1,13 @@
 // ::- An icon or label that, when clicked, executes a command.
 import {getIcon} from "./icons";
 import {
-    setAttribute,
-    setClass,
-    setAttributesFromOptions,
-    setTabindex,
-    setTitle,
+    buildMenuClass,
     initMenuItemTrigger,
-    buildMenuClass
+    setAttribute,
+    setAttributesFromOptions,
+    setClass,
+    setTabindex,
+    setTitle
 } from "./menu-helper";
 
 // MenuItemSpec:: interface
@@ -176,7 +176,7 @@ export class MenuItem {
 
     setHidden(isHidden) {
         setAttribute(this.dom, 'aria-hidden', 'true', isHidden);
-        setClass(this.dom, 'hidden', isHidden);
+        setClass(this.dom, 'd-none', isHidden);
 
         if (this.isFocusable() && isHidden) {
             setAttribute(this.dom, 'tabindex', '-1', isHidden);
