@@ -2,13 +2,12 @@
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2017 HumHub GmbH & Co. KG
  * @license https://www.humhub.com/licences
- *
  */
 
-import {MarkdownParser} from "prosemirror-markdown"
-import {getPlugins, PresetManager} from "../core/plugins"
-import {getRenderer} from "./renderer"
-import {getSchema} from "../core/schema"
+import {MarkdownParser} from "prosemirror-markdown";
+import {getPlugins, PresetManager} from "../core/plugins";
+import {getRenderer} from "./renderer";
+import {getSchema} from "../core/schema";
 
 let presets = new PresetManager({
     name: 'parser',
@@ -30,16 +29,16 @@ let createParser = (context) => {
             return;
         }
 
-        let schemaSpecs = Object.assign({}, plugin.schema.nodes || {}, plugin.schema.marks || {});
+        const schemaSpecs = Object.assign({}, plugin.schema.nodes || {}, plugin.schema.marks || {});
 
         for (let key in schemaSpecs) {
             let spec = schemaSpecs[key];
             if (spec.parseMarkdown) {
-                if(spec.parseMarkdown.block || spec.parseMarkdown.node || spec.parseMarkdown.mark || spec.parseMarkdown.ignore) {
+                if (spec.parseMarkdown.block || spec.parseMarkdown.node || spec.parseMarkdown.mark || spec.parseMarkdown.ignore) {
                     tokens[key] = spec.parseMarkdown;
                 } else {
                     let tokenKey = Object.keys(spec.parseMarkdown)[0];
-                    tokens[tokenKey] = spec.parseMarkdown[tokenKey]
+                    tokens[tokenKey] = spec.parseMarkdown[tokenKey];
                 }
             }
         }
@@ -48,4 +47,4 @@ let createParser = (context) => {
     return new MarkdownParser(context.schema || getSchema(context), getRenderer(context), tokens);
 };
 
-export {getParser}
+export {getParser};

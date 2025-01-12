@@ -47,7 +47,21 @@ to your own `dist` directory e.g. `'/humhub-prosemirror/dist'` and to enable the
 ``` 
 git pull
 grunt rollup
-npm version 1.1.7
+npm version 2.1.x
 npm publish
 git push
-``` 
+```
+
+- Release new Version on GitHub: https://github.com/humhub/humhub-prosemirror/releases/new
+
+
+### Supported HumHub Versions
+
+
+| Version  | HumHub Versions  |
+|---|---|
+| 2.0  | v1.15  |
+| 2.1  | v1.16  |
+| 2.3  | v1.18  |
+
+

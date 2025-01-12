@@ -1,12 +1,12 @@
-import {getAltExtensionByFloat, FLOAT_NONE} from './imageFloat'
-import {filterFileUrl} from "../../humhub-bridge";
-import {validateHref} from "../../util/linkUtil";
-
 /*
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2017 HumHub GmbH & Co. KG
  * @license https://www.humhub.com/licences
  */
+
+import {getAltExtensionByFloat, FLOAT_NONE} from './imageFloat';
+import {filterFileUrl} from "../../humhub-bridge";
+import {validateHref} from "../../util/linkUtil";
 
 const schema = {
     nodes: {
@@ -37,7 +37,7 @@ const schema = {
                     }
                 }
             }],
-            toDOM: function toDOM(node) {
+            toDOM: (node) => {
                 return ['img', node.attrs];
             },
             parseMarkdown: {

@@ -76,8 +76,8 @@ module.exports.clearView = function (view) {
     }
 }
 
-module.exports.toHtml = function () {
-    return $("#stage .ProseMirror").html();
+module.exports.toHtml = function (selector = "#stage .ProseMirror") {
+    return $(selector).html();
 };
 
 module.exports.render = function (editor) {

@@ -1,6 +1,6 @@
 {
   "name": "humhub-prosemirror-richtext",
-  "version": "2.0.1",
+  "version": "2.1.5",
   "description": "Prosemirror based richtext implementation for the humhub social network",
   "license": "Apache-2.0",
   "main": "dist/humhub-editor.js",
@@ -30,16 +30,14 @@
     "chai": "^4.3.7",
     "emoji-name-map": "^1.2.9",
     "emoji-unicode-map": "^1.1.11",
-    "emojilib": "github:git-assassin/emojilib",
+    "emojilib": "3.0.11",
     "eslint": "^8.40.0",
     "eslint-plugin-mocha": "^10.1.0",
     "grunt": "^1.6.1",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-jshint": "^3.2.0",
-    "grunt-contrib-nodeunit": "^5.0.0",
     "grunt-contrib-uglify": "^5.2.2",
     "grunt-contrib-watch": "^1.1.0",
-    "grunt-rollup": "^12.0.0",
     "ist": "^1.1.7",
     "markdown-it": "^13.0.1",
     "markdown-it-anchor": "^8.6.7",
@@ -67,7 +65,8 @@
     "prosemirror-transform": "^1.7.3",
     "prosemirror-view": "^1.31.5",
     "rollup": "^3.26.2",
-    "twemoji": "^14.0.2"
+    "twemoji": "^14.0.2",
+    "unicode-emoji-json": "^0.4.0"
   },
   "scripts": {
     "build": "grunt rollup",

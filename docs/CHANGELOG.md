@@ -1,7 +1,45 @@
 Changelog
 =========
 
-2.0.0 (Unreleased)
+2.1.6 (Unreleased)
+-------------------
+- Enh #149: JS Dependency Updates
+- Enh #152: Grunt JS Dependency Updates
+
+2.1.5
+-----
+- Fix #147: Enable all file handlers on RichText editor toolbar
+- Fix #148: Keep focus on a list item after apply the list style
+
+2.1.3
+-----
+- Fix #146: Fix visibility of the edit image button
+
+2.1.1
+------------------
+- Fix #155: Prosemirror - Emoji Support Broken
+- Enh #16: Security Update
+
+2.1.0
+------------------
+- Fix #136: Allow relative URL for links
+- Enh #121: Use File handler
+- Fix #138: Emoji Implementation - In Twemoji there are some empty cards 
+
+2.0.4
+------------------
+- Enh #116: CodeMirror - Leave editor with Arrow/Up Down
+- Enh #115: Headline Anchor - Change Icon
+- Fix #122: Cannot copy & paste Codeblock
+- Fix #129: Build broken emojilib.git
+- Fix #130: Copied Codeblock gets in single line e.g.
+- Fix #135: Open file link in new tab
+
+2.0.2 (July 28, 2023)
+---------------------
+- Fix #113: Header anchors lost
+
+2.0.0
 -----------------------------------------
 - Enh #37: Add link mark to collapsed menu items
 - Fix: Initializing a new editor by constructor now destroys existing instances on the same node

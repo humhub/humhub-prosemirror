@@ -4,26 +4,41 @@
  * @license https://www.humhub.com/licences
  */
 
+import old_emojilib from "./emojilib-legacy";
 import emoji_shortcuts from "markdown-it-emoji/lib/data/shortcuts";
 import emojiNameMap from "emoji-name-map";
-import emojilib from "emojilib";
 import twemoji from "twemoji";
+import keywordSet from "emojilib";
+import emojiData from "unicode-emoji-json";
+import groupedEmojiData from "unicode-emoji-json/data-by-group";
 import {getEmojiConfig} from "../../humhub-bridge";
 
-let emoji_markdown_it_defs = {};
+const emoji_defs = {};
+const emoji_markdown_it_defs = {};
+const emoji_defs_by_char = (function() {
+    const result = {};
 
-let emoji_defs_by_char = (() => {
-    let result = {};
-    $.each(emojilib.lib, (name, def) => {
-        result[def['char']] = name;
-        emoji_markdown_it_defs[name] = def['char'];
+    $.each(emojiData, function (emoji, def) {
+        $.each(old_emojilib, function (key, item) {
+            if (emoji === item.char && key !== def.name) {
+                def.char = emoji;
+                def.keywords = item.keywords;
+                emoji_defs[key] = def;
+                emoji_markdown_it_defs[key] = emoji;
+                return false;
+            }
+        });
+
+        result[emoji] = def.name;
+        emojiNameMap.emoji[def.name] = emoji;
+        emoji_markdown_it_defs[def.name] = emoji;
     });
 
     return result;
 })();
 
 // Flatten shortcuts to simple object: { alias: emoji_name }
-let shortcuts = Object.keys(emoji_shortcuts).reduce((acc, key) => {
+const shortcuts = Object.keys(emoji_shortcuts).reduce((acc, key) => {
     if (Array.isArray(emoji_shortcuts[key])) {
         emoji_shortcuts[key].forEach((alias) => {
             acc[alias] = key;
@@ -35,8 +50,8 @@ let shortcuts = Object.keys(emoji_shortcuts).reduce((acc, key) => {
     return acc;
 }, {});
 
-let getEmojiDefinitionByShortcut = (shortcut) => {
-    let result = {
+const getEmojiDefinitionByShortcut = (shortcut) => {
+    const result = {
         name: getNameByShortcut(shortcut)
     };
 
@@ -51,24 +66,24 @@ let getEmojiDefinitionByShortcut = (shortcut) => {
     return result;
 };
 
-let getNameByShortcut = (shortcut) => {
+const getNameByShortcut = (shortcut) => {
     return String(shortcuts[shortcut]);
 };
 
-let getCharByName = (name) => {
+const getCharByName = (name) => {
     return emojiNameMap.get(name);
 };
 
-let getNameByChar = (emojiChar) => {
+const getNameByChar = (emojiChar) => {
     return String(emoji_defs_by_char[emojiChar]);
 };
 
-let getCharToDom = (emojiChar, name) => {
+const getCharToDom = (emojiChar, name) => {
     name = (typeof name !== 'undefined') ? name : emoji_defs_by_char[emojiChar];
     name = String(name);
 
-    let config = getEmojiConfig();
-    let twemojiConfig = config.twemoji || {};
+    const config = getEmojiConfig();
+    const twemojiConfig = config.twemoji || {};
     twemojiConfig.attributes = (icon, variant) => {
         return {
             'data-name': name,
@@ -76,11 +91,11 @@ let getCharToDom = (emojiChar, name) => {
         };
     };
 
-    let parsed = twemoji.parse(emojiChar, twemojiConfig);
+    const parsed = twemoji.parse(emojiChar, twemojiConfig);
 
     if (parsed && parsed.length) {
         try {
-            return $(parsed);
+            return $(parsed).first();
         } catch (e) {
             console.error(e);
         }
@@ -89,32 +104,31 @@ let getCharToDom = (emojiChar, name) => {
 };
 
 
-let byCategory = undefined;
+const byCategory = {};
 
-let getByCategory = (category) => {
-    if (!byCategory) {
-        byCategory = {};
-        emojilib.ordered.forEach((name) => {
-            let emojiDef = emojilib.lib[name];
-            emojiDef.name = String(name);
-            byCategory[emojiDef.category] = byCategory[emojiDef.category] || [];
-            byCategory[emojiDef.category].push(emojiDef);
+const getByCategory = (category) => {
+    if (category === 'Search')
+        return [];
+
+    if (!byCategory[category]) {
+        groupedEmojiData[category].forEach((emojiDef) => {
+            emojiDef.keywords = keywordSet[emojiDef.emoji];
         });
+        byCategory[category] = groupedEmojiData[category];
     }
 
     return byCategory[category];
 };
 
-let getMarkdownItOpts = () => {
+const getMarkdownItOpts = () => {
     return {defs: emoji_markdown_it_defs};
 };
 
 export {
     shortcuts,
+    twemoji,
     getNameByChar,
     getCharByName,
-    emojilib,
-    twemoji,
     getEmojiDefinitionByShortcut,
     getCharToDom,
     getMarkdownItOpts,

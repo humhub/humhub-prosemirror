@@ -2,7 +2,6 @@
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2017 HumHub GmbH & Co. KG
  * @license https://www.humhub.com/licences
- *
  */
 
 import {validateHref, DEFAULT_LINK_REL} from "../../util/linkUtil";
@@ -39,7 +38,7 @@ const schema = {
             toDOM(node) { let {href, title} = node.attrs; return ["a", {href, title}, 0] },
             parseMarkdown: {
                 mark: "link", getAttrs: function (tok) {
-                    let {url, guid} = filterFileUrl(tok.attrGet("href"));
+                    let {url, guid} = filterFileUrl(tok.attrGet("href"), 'view');
 
                     if (!validateHref(url))  {
                         url = '#';
@@ -63,4 +62,4 @@ const schema = {
     }
 };
 
-export {schema}
+export {schema};

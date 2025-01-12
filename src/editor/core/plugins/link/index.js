@@ -22,7 +22,7 @@ const link = {
         md.renderer.rules.link_open = function (tokens, idx, options, env, self) {
             const hrefIndex = tokens[idx].attrIndex('href');
 
-            let {url, guid} = filterFileUrl(tokens[idx].attrs[hrefIndex][1]);
+            let {url, guid} = filterFileUrl(tokens[idx].attrs[hrefIndex][1], 'view');
 
             tokens[idx].attrs[hrefIndex][1] = url;
 
@@ -30,10 +30,7 @@ const link = {
                 tokens[idx].attrPush(['data-file-guid', guid]); // add new attribute
                 tokens[idx].attrPush(['data-file-download', '']); // add new attribute
                 tokens[idx].attrPush(['data-file-url', url]); // add new attribute
-            }
-
-            if (!validateHref(url, {anchor: tokens[idx].anchor}))  {
-                tokens[idx].attrs[hrefIndex][1] = '#';
+                tokens[idx].attrPush(['data-target', '#globalModal']);
             }
 
             // If you are sure other plugins can't add `target` - drop check below
@@ -41,12 +38,18 @@ const link = {
 
             if (aIndex < 0) {
                 // Check if the link is external
-                const hrefUrl = new URL(tokens[idx].attrs[hrefIndex][1]);
-                if (hrefUrl.hostname !== window.location.hostname) {
-                    tokens[idx].attrPush(['target', '_blank']); // add new attribute
+                const href = tokens[idx].attrs[hrefIndex][1];
+
+                if (href[0] !== '#') {
+                    const hrefUrl = new URL(href);
+                    if (hrefUrl.hostname !== window.location.hostname || guid) {
+                        tokens[idx].attrPush(['target', '_blank']); // add new attribute
+                    }
+                } else {
+                    tokens[idx].attrPush(['target', '_self'])
                 }
             } else if (!tokens[idx].attrs[aIndex][1]) {
-                tokens[idx].attrs[aIndex][1] = '_blank';    // replace value of existing attr
+                tokens[idx].attrs[aIndex][1] = '_blank'; // replace value of existing attr
             }
 
             tokens[idx].attrPush(['rel', DEFAULT_LINK_REL]);

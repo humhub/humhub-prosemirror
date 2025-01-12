@@ -1,4 +1,4 @@
-import {tableNodes} from 'prosemirror-tables'
+import {tableNodes} from 'prosemirror-tables';
 
 let nodes = tableNodes({
     tableGroup: "block",
@@ -29,7 +29,7 @@ nodes = Object.assign(nodes, {
         isolating: false,
         group: "block",
         parseDOM: [{tag: "table"}],
-        toDOM: function toDOM() {
+        toDOM: () => {
             return ["table", ["tbody", 0]]
         },
         toMarkdown: (state, node) => {
@@ -41,7 +41,7 @@ nodes = Object.assign(nodes, {
         content: "table_row*",
         tableRole: "head",
         parseDOM: [{tag: "thead"}],
-        toDOM: function toDOM() {
+        toDOM: () => {
             return ["thead", 0]
         },
         parseMarkdown: {thead: {block: "table_head"}}
@@ -50,7 +50,7 @@ nodes = Object.assign(nodes, {
         content: "table_row*",
         tableRole: "body",
         parseDOM: [{tag: "tbody"}],
-        toDOM: function toDOM() {
+        toDOM: () => {
             return ["tbody", 0]
         },
         parseMarkdown: {tbody: {block: "table_body"}}
@@ -59,7 +59,7 @@ nodes = Object.assign(nodes, {
         content: "table_row*",
         tableRole: "foot",
         parseDOM: [{tag: "tfoot"}],
-        toDOM: function toDOM() {
+        toDOM: () => {
             return ["tfoot", 0]
         },
         parseMarkdown: {tfoot: {block: "table_foot"}}
@@ -127,4 +127,4 @@ const schema = {
     nodes: nodes
 };
 
-export {schema}
+export {schema};

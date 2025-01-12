@@ -2,8 +2,8 @@
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2017 HumHub GmbH & Co. KG
  * @license https://www.humhub.com/licences
- *
  */
+
 const schema = {
     nodes: {
         list_item: {
@@ -11,7 +11,7 @@ const schema = {
             content: "paragraph block*",
             defining: true,
             parseDOM: [{tag: "li"}],
-            toDOM: function toDOM() {
+            toDOM: () => {
                 return ["li", 0]
             },
             parseMarkdown: {block: "list_item"},
@@ -22,4 +22,4 @@ const schema = {
     }
 };
 
-export {schema}
+export {schema};
