@@ -6,6 +6,7 @@ Changelog
 - Enh #149: JS Dependency Updates
 - Enh #152: Grunt JS Dependency Updates
 - Fix #155: Fix Build workflow
+- Enh #157: Update npm packages
 
 2.1.5
 -----
