@@ -1,12 +1,12 @@
 Changelog
 =========
 
-2.2.1
+2.3.1
 -------------------
 - Fix #155: Fix Build workflow
 - Enh #157: Update npm packages
 
-2.2.0
+2.3.0
 -------------------
 - Enh #149: JS Dependency Updates
 - Enh #152: Grunt JS Dependency Updates
