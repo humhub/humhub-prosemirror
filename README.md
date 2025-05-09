@@ -50,6 +50,7 @@ grunt rollup
 npm version 2.1.x
 npm publish
 git push
+git push origin tag v2.1.x
 ```
 
 - Release new Version on GitHub: https://github.com/humhub/humhub-prosemirror/releases/new
