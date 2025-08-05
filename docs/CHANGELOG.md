@@ -1,6 +1,10 @@
 Changelog
 =========
 
+2.3.2
+-------------------
+- Enh #160: Add icon to menu item "Upload File"
+
 2.3.1
 -------------------
 - Fix #155: Fix Build workflow
