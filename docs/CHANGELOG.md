@@ -1,6 +1,10 @@
 Changelog
 =========
 
+2.3.3 (unreleased)
+-------------------
+- Fix #163: Fix image description field save functionality
+
 2.3.2
 -------------------
 - Enh #160: Add icon to menu item "Upload File"
