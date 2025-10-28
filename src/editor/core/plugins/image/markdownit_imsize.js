@@ -7,8 +7,6 @@
 // Process ![test]( x =100x200)
 //                    ^^^^^^^^ this size specification
 
-'use strict';
-
 const imageFloat = require('./imageFloat')
 const parseImageSize = require('./parse_image_size');
 
@@ -210,7 +208,7 @@ function image_with_size(md, options) {
             }
 
             token = state.push('image', 'img', 0);
-            token.attrs = attrs = [['src', href], ['alt', '']];
+            token.attrs = attrs = [['src', href]];
             token.children = tokens;
 
             // Parse image float extension
@@ -220,8 +218,10 @@ function image_with_size(md, options) {
                 let {float, alt} = imageFloat.parseFloatFromAlt(altTextToken['content']);
                 altTextToken['content'] = alt;
                 token.attrs.push(['float', float]);
+                token.attrs.push(['alt', alt]);
             } else {
                 token.attrs.push(['float', imageFloat.FLOAT_NONE]);
+                token.attrs.push(['alt', '']);
             }
 
             if (title) {
