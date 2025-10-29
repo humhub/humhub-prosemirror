@@ -4,6 +4,7 @@ Changelog
 2.3.3 (unreleased)
 -------------------
 - Fix #163: Fix image description field save functionality
+- Fix #164: Fix `hard line break`
 
 2.3.2
 -------------------
