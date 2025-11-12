@@ -315,7 +315,8 @@ class MenuBarView {
 
                     if (!$editor.is('.fullscreen') && !targetHasMenuBtn && !$(e.target).hasClass('cm-editor')) {
                         lastFocusedElement = null;
-                        this.$.addClass('d-none');
+                        const that = this.$;
+                        that.hide(100, function(){that.addClass('d-none');}); // Don't apply the d-none immediately to allow clicking on links which might move after hiding the toolbar
                     }
                 });
         }
