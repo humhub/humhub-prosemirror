@@ -5,7 +5,7 @@ Changelog
 -------------------
 - Fix #163: Fix image description field save functionality
 - Fix #164: Fix `hard line break`
-- Fix: When clicking outside form, the toolbar is hidden too fast, and the links above might not be clickable because the container is moved down before
+- Fix #165: When clicking outside form, the toolbar is hidden too fast, and the links above might not be clickable because the container is moved down before
 
 2.3.2
 -------------------
