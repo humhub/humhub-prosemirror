@@ -1,6 +1,10 @@
 Changelog
 =========
 
+2.3.3
+------------------
+- Fix #170: Fix menubar hiding on switch to markdown mode
+
 2.3.2
 ------------------
 - Fix #163: Fix image description field save functionality
