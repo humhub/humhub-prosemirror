@@ -294,6 +294,11 @@ class MenuBarView {
 
             $editor.off('focus', '.ProseMirror, textarea').off('blur', '.ProseMirror, textarea')
                 .on('focus', '.ProseMirror, textarea', (event) => {
+                    if (this.$.data('isHiding')) {
+                        this.$.data('isHiding', false)
+                            .addClass('d-none')
+                            .stop(true, false);
+                    }
                     if (this.$.hasClass('d-none')) {
                         this.$.removeClass('d-none');
                         const that = this;
@@ -316,7 +321,9 @@ class MenuBarView {
                     if (!$editor.is('.fullscreen') && !targetHasMenuBtn && !$(e.target).hasClass('cm-editor')) {
                         lastFocusedElement = null;
                         const that = this.$;
-                        that.hide(100, function(){that.addClass('d-none');}); // Don't apply the d-none immediately to allow clicking on links which might move after hiding the toolbar
+                        that.data('isHiding', true)
+                            // Don't apply the d-none immediately to allow clicking on links which might move after hiding the toolbar
+                            .hide(100, function(){that.addClass('d-none')});
                     }
                 });
         }
