@@ -44,7 +44,7 @@
     "markdown-it-emoji": "2.0.2",
     "markdown-it-imsize": "^2.0.1",
     "mocha": "^10.2.0",
-    "mocha-headless-chrome": "^4.0.0",
+    "mocha-headless-chrome": "^5.1.0",
     "moduleserve": "^0.9.1",
     "nyc": "^15.1.0",
     "prosemirror-commands": "^1.5.2",
