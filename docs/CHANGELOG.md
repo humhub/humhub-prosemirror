@@ -42,6 +42,7 @@ Changelog
 - Fix #136: Allow relative URL for links
 - Enh #121: Use File handler
 - Fix #138: Emoji Implementation - In Twemoji there are some empty cards 
+- Enh #131: Support `file:///` links
 
 2.0.4
 ------------------
