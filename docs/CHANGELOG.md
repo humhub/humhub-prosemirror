@@ -1,6 +1,10 @@
 Changelog
 =========
 
+2.3.4
+------------------
+- Enh #179: Support video tag
+
 2.3.3
 ------------------
 - Fix #170: Fix menubar hiding on switch to markdown mode

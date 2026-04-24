@@ -50,6 +50,13 @@ const image = {
                 imageToken.attrs.splice(imageToken.attrIndex('float'), 1);
             }
 
+            ['media-options', 'video', 'controls', 'autoplay', 'muted', 'loop'].forEach((attr) => {
+                const attrIndex = imageToken.attrIndex(attr);
+                if (attrIndex >= 0) {
+                    imageToken.attrs.splice(attrIndex, 1);
+                }
+            });
+
             // pass token to default renderer.
             return defaultRender(tokens, idx, options, env, self);
         };
