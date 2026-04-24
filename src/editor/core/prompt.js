@@ -225,3 +225,27 @@ export class SelectField extends Field {
         return select;
     }
 }
+
+// ::- A field class for checkbox fields.
+export class CheckboxField extends Field {
+    render() {
+        let input = document.createElement("input");
+        input.type = "checkbox";
+        input.className = "form-check-input";
+        input.checked = !!this.options.value;
+        return input;
+    }
+
+    read(dom) {
+        if (typeof dom.checked !== "undefined") {
+            return !!dom.checked;
+        }
+
+        let input = $(dom).find('input[type="checkbox"]')[0];
+        return !!(input && input.checked);
+    }
+
+    clean(value) {
+        return !!value;
+    }
+}

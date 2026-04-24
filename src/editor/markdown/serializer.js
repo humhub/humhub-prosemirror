@@ -6,6 +6,7 @@
 
 import {MarkdownSerializer, MarkdownSerializerState} from "prosemirror-markdown";
 import {getPlugins, PresetManager} from "../core/plugins";
+import {buildMediaOptionBlock} from "./mediaOptions";
 
 let presets = new PresetManager({
     name: 'serializer',
@@ -81,3 +82,4 @@ class HumHubMarkdownSerializerState extends MarkdownSerializerState {
 }
 
 export {getSerializer};
+export {buildMediaOptionBlock};

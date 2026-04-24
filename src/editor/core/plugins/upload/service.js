@@ -7,6 +7,36 @@
 
 import {loaderStart, replaceLoader, removeLoader} from "../loader/plugin";
 
+const isVideoFile = (file) => {
+    return !!((file.mimeIcon && file.mimeIcon.indexOf('mime-video') === 0) ||
+        (file.mimeType && file.mimeType.indexOf('video/') === 0) ||
+        (file.type && file.type.indexOf('video/') === 0));
+};
+
+const createNodeFromFile = function (context, file) {
+    if (file.error) {
+        return null;
+    }
+
+    const schema = context.schema;
+
+    if (file.mimeIcon === 'mime-image') {
+        return schema.nodes.image.create({src: file.url, title: file.name, alt: file.name, fileGuid: file.guid});
+    }
+
+    if (schema.nodes.video && isVideoFile(file)) {
+        return schema.nodes.video.create({
+            src: file.url,
+            title: file.name,
+            controls: true,
+            fileGuid: file.guid
+        });
+    }
+
+    const linkMark = schema.marks.link.create({href: file.url, fileGuid: file.guid});
+    return schema.text(file.name, [linkMark]);
+};
+
 const triggerUpload = function(state, view, context, files) {
     // A fresh object to act as the ID for this upload
     let id = {};
@@ -34,25 +64,15 @@ const triggerUpload = function(state, view, context, files) {
 }
 
 const createNodesFromResponse = function(context, response) {
-    const schema = context.schema;
     const nodes = [];
 
     // Otherwise, insert it at the placeholder's position, and remove the placeholder
     response.result.files.forEach((file) => {
-        let node;
+        const node = createNodeFromFile(context, file);
 
-        if (file.error) {
-            return;
+        if (node) {
+            nodes.push(node);
         }
-
-        if (file.mimeIcon === 'mime-image') {
-            node = schema.nodes.image.create({src : file.url, title: file.name, alt: file.name, fileGuid: file.guid});
-        } else {
-            const linkMark = schema.marks.link.create({href: file.url, fileGuid: file.guid});
-            node = schema.text(file.name, [linkMark]);
-        }
-
-        nodes.push(node);
     });
 
     return nodes;
@@ -61,4 +81,5 @@ const createNodesFromResponse = function(context, response) {
 export {
     triggerUpload,
     createNodesFromResponse,
+    createNodeFromFile,
 }

@@ -8,7 +8,7 @@
 import {isHumhub} from "../../humhub-bridge"
 import {canInsertLink, MenuItem} from "../../menu"
 import {loaderStart, replaceLoader, removeLoader} from "../loader/plugin"
-import {createNodesFromResponse} from "../upload/service"
+import {createNodeFromFile, createNodesFromResponse} from "../upload/service"
 
 const isActiveFileHandler = function () {
     return isHumhub() &&
@@ -47,7 +47,10 @@ const initFileHandler = function(context) {
     humhub.event.on('humhub:file:created', (evt, file) => {
         if (isActiveFileHandler() && typeof context.editor.view !== 'undefined') {
             const view = context.editor.view
-            view.dispatch(view.state.tr.replaceSelectionWith(createFileHandlerNode(context, file), false));
+            const node = createFileHandlerNode(context, file)
+            if (node) {
+                view.dispatch(view.state.tr.replaceSelectionWith(node, false));
+            }
         }
     })
 
@@ -71,17 +74,7 @@ const initFileHandler = function(context) {
 }
 
 const createFileHandlerNode = function(context, file) {
-    if (file.error) {
-        return
-    }
-
-    const schema = context.schema
-    if (file.mimeIcon === 'mime-image') {
-        return schema.nodes.image.create({src : file.url, title: file.name, alt: file.name, fileGuid: file.guid})
-    }
-
-    const linkMark = schema.marks.link.create({href: file.url, fileGuid: file.guid})
-    return schema.text(file.name).mark([linkMark])
+    return createNodeFromFile(context, file)
 }
 
 const getFileHandlerContainer = function (context) {

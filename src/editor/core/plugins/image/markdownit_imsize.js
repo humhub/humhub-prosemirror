@@ -10,6 +10,114 @@
 const imageFloat = require('./imageFloat')
 const parseImageSize = require('./parse_image_size');
 
+const MEDIA_TOKEN_MAP = {
+    video: 'video'
+};
+
+function parseMediaOptions(src, pos, max) {
+    const result = {
+        ok: false,
+        pos: pos,
+        options: ''
+    };
+
+    if (pos >= max || src.charCodeAt(pos) !== 0x7b /* { */) {
+        return result;
+    }
+
+    const endPos = src.indexOf('}', pos + 1);
+    if (endPos < 0 || endPos > max) {
+        return result;
+    }
+
+    const raw = src.slice(pos + 1, endPos).trim();
+    if (!raw.length) {
+        return result;
+    }
+
+    result.ok = true;
+    result.pos = endPos + 1;
+    result.options = raw;
+    return result;
+}
+
+function parseOptionFlags(rawOptions) {
+    return rawOptions.trim().split(/\s+/).filter(Boolean);
+}
+
+function parseMediaOptionsWithoutBraces(src, pos, max) {
+    const result = {
+        ok: false,
+        pos: pos,
+        options: ''
+    };
+
+    let pointer = pos;
+    let flags = [];
+
+    while (pointer < max) {
+        let code = src.charCodeAt(pointer);
+
+        if (code === 0x20 || code === 0x0A) {
+            pointer++;
+            continue;
+        }
+
+        if (code === 0x29 /* ) */ || code === 0x3d /* = */) {
+            break;
+        }
+
+        let start = pointer;
+        while (pointer < max) {
+            code = src.charCodeAt(pointer);
+            if (code === 0x20 || code === 0x0A || code === 0x29 || code === 0x3d) {
+                break;
+            }
+            pointer++;
+        }
+
+        const flag = src.slice(start, pointer).trim();
+        if (!flag.length) {
+            break;
+        }
+
+        flags.push(flag);
+    }
+
+    if (!flags.length) {
+        return result;
+    }
+
+    result.options = flags.join(' ');
+    if (!resolveMediaTokenType(result.options)) {
+        return result;
+    }
+
+    result.ok = true;
+    result.pos = pointer;
+    return result;
+}
+
+function resolveMediaTokenType(rawOptions) {
+    const flags = parseOptionFlags(rawOptions);
+    for (let i = 0; i < flags.length; i++) {
+        if (MEDIA_TOKEN_MAP[flags[i]]) {
+            return MEDIA_TOKEN_MAP[flags[i]];
+        }
+    }
+
+    return null;
+}
+
+function pushUniqueAttr(attrs, key, value) {
+    for (let i = 0; i < attrs.length; i++) {
+        if (attrs[i][0] === key) {
+            return;
+        }
+    }
+    attrs.push([key, value]);
+}
+
 function image_with_size(md, options) {
     return function (state, silent) {
         let attrs,
@@ -23,6 +131,7 @@ function image_with_size(md, options) {
             title,
             width = '',
             height = '',
+            mediaOptions = '',
             token,
             tokens,
             start,
@@ -104,22 +213,38 @@ function image_with_size(md, options) {
                 title = '';
             }
 
-            // [link](  <href>  "title" =WxH  )
-            //                          ^^^^ parsing image size
-            if (pos - 1 >= 0) {
+            // [link](  <href>  "title" {video ...} =WxH  )
+            //                         ^^^^^^^^^^^ ^^^^ parse optional media options and image size
+            while (pos - 1 >= 0) {
+                let hasChange = false;
                 code = state.src.charCodeAt(pos - 1);
 
-                // there must be at least one white spaces
-                // between previous field and the size
-                if (code === 0x20) {
-                    res = parseImageSize(state.src, pos, state.posMax);
-                    if (res.ok) {
-                        width = res.width;
-                        height = res.height;
-                        pos = res.pos;
+                // there must be at least one white spaces between previous field and the optional extension.
+                if (code !== 0x20) {
+                    break;
+                }
 
-                        // [link](  <href>  "title" =WxH  )
-                        //                              ^^ skipping these spaces
+                res = parseMediaOptions(state.src, pos, state.posMax);
+                if (res.ok) {
+                    mediaOptions = res.options;
+                    pos = res.pos;
+                    hasChange = true;
+
+                    for (; pos < max; pos++) {
+                        code = state.src.charCodeAt(pos);
+                        if (code !== 0x20 && code !== 0x0A) {
+                            break;
+                        }
+                    }
+                }
+
+                if (!mediaOptions) {
+                    res = parseMediaOptionsWithoutBraces(state.src, pos, state.posMax);
+                    if (res.ok) {
+                        mediaOptions = res.options;
+                        pos = res.pos;
+                        hasChange = true;
+
                         for (; pos < max; pos++) {
                             code = state.src.charCodeAt(pos);
                             if (code !== 0x20 && code !== 0x0A) {
@@ -127,6 +252,25 @@ function image_with_size(md, options) {
                             }
                         }
                     }
+                }
+
+                res = parseImageSize(state.src, pos, state.posMax);
+                if (res.ok) {
+                    width = res.width;
+                    height = res.height;
+                    pos = res.pos;
+                    hasChange = true;
+
+                    for (; pos < max; pos++) {
+                        code = state.src.charCodeAt(pos);
+                        if (code !== 0x20 && code !== 0x0A) {
+                            break;
+                        }
+                    }
+                }
+
+                if (!hasChange) {
+                    break;
                 }
             }
 
@@ -207,7 +351,11 @@ function image_with_size(md, options) {
                 }
             }
 
-            token = state.push('image', 'img', 0);
+            const mediaTokenType = mediaOptions ? resolveMediaTokenType(mediaOptions) : null;
+            const tokenType = mediaTokenType || 'image';
+            const tokenTag = mediaTokenType || 'img';
+
+            token = state.push(tokenType, tokenTag, 0);
             token.attrs = attrs = [['src', href]];
             token.children = tokens;
 
@@ -226,6 +374,15 @@ function image_with_size(md, options) {
 
             if (title) {
                 attrs.push(['title', title]);
+            }
+
+            if (mediaOptions) {
+                attrs.push(['media-options', mediaOptions]);
+                if (mediaTokenType) {
+                    parseOptionFlags(mediaOptions).forEach((flag) => {
+                        pushUniqueAttr(attrs, flag, flag);
+                    });
+                }
             }
 
             if (width !== '') {

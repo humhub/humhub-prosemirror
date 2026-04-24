@@ -8,6 +8,14 @@ import {MarkdownParser} from "prosemirror-markdown";
 import {getPlugins, PresetManager} from "../core/plugins";
 import {getRenderer} from "./renderer";
 import {getSchema} from "../core/schema";
+import {
+    DEFAULT_MEDIA_NODE_MAP,
+    getBooleanAttrsFromTokenFlags,
+    getMediaFlagsFromToken,
+    getMediaNodeNameFromFlags,
+    parseMediaOptionBlock,
+    parseMediaOptionFlags
+} from "./mediaOptions";
 
 let presets = new PresetManager({
     name: 'parser',
@@ -47,4 +55,12 @@ let createParser = (context) => {
     return new MarkdownParser(context.schema || getSchema(context), getRenderer(context), tokens);
 };
 
-export {getParser};
+export {
+    getParser,
+    DEFAULT_MEDIA_NODE_MAP,
+    parseMediaOptionFlags,
+    parseMediaOptionBlock,
+    getMediaFlagsFromToken,
+    getMediaNodeNameFromFlags,
+    getBooleanAttrsFromTokenFlags
+};
