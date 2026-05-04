@@ -50,7 +50,7 @@ const image = {
                 imageToken.attrs.splice(imageToken.attrIndex('float'), 1);
             }
 
-            ['media-options', 'video', 'controls', 'autoplay', 'muted', 'loop'].forEach((attr) => {
+            ['media-options', 'video', 'audio', 'controls', 'autoplay', 'muted', 'loop'].forEach((attr) => {
                 const attrIndex = imageToken.attrIndex(attr);
                 if (attrIndex >= 0) {
                     imageToken.attrs.splice(attrIndex, 1);

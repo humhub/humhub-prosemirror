@@ -28,5 +28,6 @@ require("./plugins/resize_nav/test-resizenav")
 require("./plugins/mention/test-mention")
 require("./plugins/tab_behavior/test-tab-behavior")
 require("./plugins/video/test-video")
+require("./plugins/audio/test-audio")
 
 mocha.run()

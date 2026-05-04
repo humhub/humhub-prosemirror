@@ -27941,7 +27941,7 @@ MarkdownIt$1.prototype.renderInline = function (src, env) {
 };/**
 Document schema for the data model used by CommonMark.
 */
-var schema$n = new Schema({
+var schema$o = new Schema({
     nodes: {
         doc: {
             content: "block+"
@@ -28273,7 +28273,7 @@ function listIsTight(tokens, i) {
 A parser parsing unextended [CommonMark](http://commonmark.org/),
 without inline HTML, and producing a document in the basic schema.
 */
-var defaultMarkdownParser = new MarkdownParser(schema$n, MarkdownIt$1("commonmark", { html: false }), {
+var defaultMarkdownParser = new MarkdownParser(schema$o, MarkdownIt$1("commonmark", { html: false }), {
     blockquote: { block: "blockquote" },
     paragraph: { block: "paragraph" },
     list_item: { block: "list_item" },
@@ -28807,7 +28807,7 @@ MarkdownSerializerState.prototype.getEnclosingWhitespace = function getEnclosing
  *
  */
 
-var schema$m = {
+var schema$n = {
     nodes: {
         doc: {
             sortOrder: 0,
@@ -28823,8 +28823,8 @@ var schema$m = {
 
 var doc$1 = {
     id: 'doc',
-    schema: schema$m
-};var schema$l = {
+    schema: schema$n
+};var schema$m = {
     nodes: {
         blockquote: {
             sortOrder: 200,
@@ -28877,7 +28877,7 @@ function menu$j(context) {
 
 var blockquote$1 = {
     id: 'blockquote',
-    schema: schema$l,
+    schema: schema$m,
     menu: function (context) { return menu$j(context); },
     inputRules: function (schema) {
         return [blockquoteRule(schema)]
@@ -28888,7 +28888,7 @@ var blockquote$1 = {
  * @license https://www.humhub.com/licences
  *
  */
-var schema$k = {
+var schema$l = {
     nodes: {
         bullet_list: {
             sortOrder: 700,
@@ -28957,7 +28957,7 @@ function menu$i(context) {
 
 var bullet_list = {
     id: 'bullet_list',
-    schema: schema$k,
+    schema: schema$l,
     menu: function (context) { return menu$i(context); },
     inputRules: function (schema) {return [bulletListRule(schema)]}
 };/*
@@ -28967,7 +28967,7 @@ var bullet_list = {
  *
  */
 
-var schema$j = {
+var schema$k = {
     marks: {
         code:{
             isCode: true,
@@ -29058,7 +29058,7 @@ function markInputRuleClosed(regexp, markType, getAttrs) {
 
 var code$1 = {
     id: 'code',
-    schema: schema$j,
+    schema: schema$k,
     menu: function (context) { return menu$h(context); },
     inputRules: function (schema) { return codeRules(schema); },
 };/*
@@ -29109,7 +29109,7 @@ var fence$1 = {
     }
 };
 
-var schema$i = {
+var schema$j = {
     nodes: { code_block: code_block$1, fence: fence$1 }
 };/*
  * @link https://www.humhub.org/
@@ -53242,7 +53242,7 @@ var codeBlockRule = function (schema) {
 
 var code_block = {
     id: 'code_block',
-    schema: schema$i,
+    schema: schema$j,
     menu: function (context) { return menu$g(context); },
     inputRules: function (schema) {return [codeBlockRule(schema)]},
     keymap: function () { return keymap$4(); },
@@ -53255,7 +53255,7 @@ var code_block = {
  * @license https://www.humhub.com/licences
  */
 
-var schema$h = {
+var schema$i = {
     marks: {
         em: {
             sortOrder: 100,
@@ -53307,11 +53307,11 @@ function menu$f(context) {
 
 var em = {
     id: 'em',
-    schema: schema$h,
+    schema: schema$i,
     menu: function (context) { return menu$f(context); }
 };/*! Copyright Twitter Inc. and other contributors. Licensed under MIT */
 var twemoji=function(){var twemoji={base:"https://twemoji.maxcdn.com/v/14.0.2/",ext:".png",size:"72x72",className:"emoji",convert:{fromCodePoint:fromCodePoint,toCodePoint:toCodePoint},onerror:function onerror(){if(this.parentNode){this.parentNode.replaceChild(createText(this.alt,false),this);}},parse:parse,replace:replace,test:test},escaper={"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"},re=/(?:\ud83d\udc68\ud83c\udffb\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83d\udc68\ud83c[\udffb-\udfff]|\ud83d\udc68\ud83c\udffc\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83d\udc68\ud83c[\udffb-\udfff]|\ud83d\udc68\ud83c\udffd\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83d\udc68\ud83c[\udffb-\udfff]|\ud83d\udc68\ud83c\udffe\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83d\udc68\ud83c[\udffb-\udfff]|\ud83d\udc68\ud83c\udfff\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83d\udc68\ud83c[\udffb-\udfff]|\ud83d\udc69\ud83c\udffb\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83d\udc68\ud83c[\udffb-\udfff]|\ud83d\udc69\ud83c\udffb\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83d\udc69\ud83c[\udffb-\udfff]|\ud83d\udc69\ud83c\udffc\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83d\udc68\ud83c[\udffb-\udfff]|\ud83d\udc69\ud83c\udffc\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83d\udc69\ud83c[\udffb-\udfff]|\ud83d\udc69\ud83c\udffd\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83d\udc68\ud83c[\udffb-\udfff]|\ud83d\udc69\ud83c\udffd\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83d\udc69\ud83c[\udffb-\udfff]|\ud83d\udc69\ud83c\udffe\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83d\udc68\ud83c[\udffb-\udfff]|\ud83d\udc69\ud83c\udffe\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83d\udc69\ud83c[\udffb-\udfff]|\ud83d\udc69\ud83c\udfff\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83d\udc68\ud83c[\udffb-\udfff]|\ud83d\udc69\ud83c\udfff\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83d\udc69\ud83c[\udffb-\udfff]|\ud83e\uddd1\ud83c\udffb\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83e\uddd1\ud83c[\udffc-\udfff]|\ud83e\uddd1\ud83c\udffc\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83e\uddd1\ud83c[\udffb\udffd-\udfff]|\ud83e\uddd1\ud83c\udffd\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83e\uddd1\ud83c[\udffb\udffc\udffe\udfff]|\ud83e\uddd1\ud83c\udffe\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83e\uddd1\ud83c[\udffb-\udffd\udfff]|\ud83e\uddd1\ud83c\udfff\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83e\uddd1\ud83c[\udffb-\udffe]|\ud83d\udc68\ud83c\udffb\u200d\u2764\ufe0f\u200d\ud83d\udc68\ud83c[\udffb-\udfff]|\ud83d\udc68\ud83c\udffb\u200d\ud83e\udd1d\u200d\ud83d\udc68\ud83c[\udffc-\udfff]|\ud83d\udc68\ud83c\udffc\u200d\u2764\ufe0f\u200d\ud83d\udc68\ud83c[\udffb-\udfff]|\ud83d\udc68\ud83c\udffc\u200d\ud83e\udd1d\u200d\ud83d\udc68\ud83c[\udffb\udffd-\udfff]|\ud83d\udc68\ud83c\udffd\u200d\u2764\ufe0f\u200d\ud83d\udc68\ud83c[\udffb-\udfff]|\ud83d\udc68\ud83c\udffd\u200d\ud83e\udd1d\u200d\ud83d\udc68\ud83c[\udffb\udffc\udffe\udfff]|\ud83d\udc68\ud83c\udffe\u200d\u2764\ufe0f\u200d\ud83d\udc68\ud83c[\udffb-\udfff]|\ud83d\udc68\ud83c\udffe\u200d\ud83e\udd1d\u200d\ud83d\udc68\ud83c[\udffb-\udffd\udfff]|\ud83d\udc68\ud83c\udfff\u200d\u2764\ufe0f\u200d\ud83d\udc68\ud83c[\udffb-\udfff]|\ud83d\udc68\ud83c\udfff\u200d\ud83e\udd1d\u200d\ud83d\udc68\ud83c[\udffb-\udffe]|\ud83d\udc69\ud83c\udffb\u200d\u2764\ufe0f\u200d\ud83d\udc68\ud83c[\udffb-\udfff]|\ud83d\udc69\ud83c\udffb\u200d\u2764\ufe0f\u200d\ud83d\udc69\ud83c[\udffb-\udfff]|\ud83d\udc69\ud83c\udffb\u200d\ud83e\udd1d\u200d\ud83d\udc68\ud83c[\udffc-\udfff]|\ud83d\udc69\ud83c\udffb\u200d\ud83e\udd1d\u200d\ud83d\udc69\ud83c[\udffc-\udfff]|\ud83d\udc69\ud83c\udffc\u200d\u2764\ufe0f\u200d\ud83d\udc68\ud83c[\udffb-\udfff]|\ud83d\udc69\ud83c\udffc\u200d\u2764\ufe0f\u200d\ud83d\udc69\ud83c[\udffb-\udfff]|\ud83d\udc69\ud83c\udffc\u200d\ud83e\udd1d\u200d\ud83d\udc68\ud83c[\udffb\udffd-\udfff]|\ud83d\udc69\ud83c\udffc\u200d\ud83e\udd1d\u200d\ud83d\udc69\ud83c[\udffb\udffd-\udfff]|\ud83d\udc69\ud83c\udffd\u200d\u2764\ufe0f\u200d\ud83d\udc68\ud83c[\udffb-\udfff]|\ud83d\udc69\ud83c\udffd\u200d\u2764\ufe0f\u200d\ud83d\udc69\ud83c[\udffb-\udfff]|\ud83d\udc69\ud83c\udffd\u200d\ud83e\udd1d\u200d\ud83d\udc68\ud83c[\udffb\udffc\udffe\udfff]|\ud83d\udc69\ud83c\udffd\u200d\ud83e\udd1d\u200d\ud83d\udc69\ud83c[\udffb\udffc\udffe\udfff]|\ud83d\udc69\ud83c\udffe\u200d\u2764\ufe0f\u200d\ud83d\udc68\ud83c[\udffb-\udfff]|\ud83d\udc69\ud83c\udffe\u200d\u2764\ufe0f\u200d\ud83d\udc69\ud83c[\udffb-\udfff]|\ud83d\udc69\ud83c\udffe\u200d\ud83e\udd1d\u200d\ud83d\udc68\ud83c[\udffb-\udffd\udfff]|\ud83d\udc69\ud83c\udffe\u200d\ud83e\udd1d\u200d\ud83d\udc69\ud83c[\udffb-\udffd\udfff]|\ud83d\udc69\ud83c\udfff\u200d\u2764\ufe0f\u200d\ud83d\udc68\ud83c[\udffb-\udfff]|\ud83d\udc69\ud83c\udfff\u200d\u2764\ufe0f\u200d\ud83d\udc69\ud83c[\udffb-\udfff]|\ud83d\udc69\ud83c\udfff\u200d\ud83e\udd1d\u200d\ud83d\udc68\ud83c[\udffb-\udffe]|\ud83d\udc69\ud83c\udfff\u200d\ud83e\udd1d\u200d\ud83d\udc69\ud83c[\udffb-\udffe]|\ud83e\uddd1\ud83c\udffb\u200d\u2764\ufe0f\u200d\ud83e\uddd1\ud83c[\udffc-\udfff]|\ud83e\uddd1\ud83c\udffb\u200d\ud83e\udd1d\u200d\ud83e\uddd1\ud83c[\udffb-\udfff]|\ud83e\uddd1\ud83c\udffc\u200d\u2764\ufe0f\u200d\ud83e\uddd1\ud83c[\udffb\udffd-\udfff]|\ud83e\uddd1\ud83c\udffc\u200d\ud83e\udd1d\u200d\ud83e\uddd1\ud83c[\udffb-\udfff]|\ud83e\uddd1\ud83c\udffd\u200d\u2764\ufe0f\u200d\ud83e\uddd1\ud83c[\udffb\udffc\udffe\udfff]|\ud83e\uddd1\ud83c\udffd\u200d\ud83e\udd1d\u200d\ud83e\uddd1\ud83c[\udffb-\udfff]|\ud83e\uddd1\ud83c\udffe\u200d\u2764\ufe0f\u200d\ud83e\uddd1\ud83c[\udffb-\udffd\udfff]|\ud83e\uddd1\ud83c\udffe\u200d\ud83e\udd1d\u200d\ud83e\uddd1\ud83c[\udffb-\udfff]|\ud83e\uddd1\ud83c\udfff\u200d\u2764\ufe0f\u200d\ud83e\uddd1\ud83c[\udffb-\udffe]|\ud83e\uddd1\ud83c\udfff\u200d\ud83e\udd1d\u200d\ud83e\uddd1\ud83c[\udffb-\udfff]|\ud83d\udc68\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83d\udc68|\ud83d\udc69\u200d\u2764\ufe0f\u200d\ud83d\udc8b\u200d\ud83d[\udc68\udc69]|\ud83e\udef1\ud83c\udffb\u200d\ud83e\udef2\ud83c[\udffc-\udfff]|\ud83e\udef1\ud83c\udffc\u200d\ud83e\udef2\ud83c[\udffb\udffd-\udfff]|\ud83e\udef1\ud83c\udffd\u200d\ud83e\udef2\ud83c[\udffb\udffc\udffe\udfff]|\ud83e\udef1\ud83c\udffe\u200d\ud83e\udef2\ud83c[\udffb-\udffd\udfff]|\ud83e\udef1\ud83c\udfff\u200d\ud83e\udef2\ud83c[\udffb-\udffe]|\ud83d\udc68\u200d\u2764\ufe0f\u200d\ud83d\udc68|\ud83d\udc69\u200d\u2764\ufe0f\u200d\ud83d[\udc68\udc69]|\ud83e\uddd1\u200d\ud83e\udd1d\u200d\ud83e\uddd1|\ud83d\udc6b\ud83c[\udffb-\udfff]|\ud83d\udc6c\ud83c[\udffb-\udfff]|\ud83d\udc6d\ud83c[\udffb-\udfff]|\ud83d\udc8f\ud83c[\udffb-\udfff]|\ud83d\udc91\ud83c[\udffb-\udfff]|\ud83e\udd1d\ud83c[\udffb-\udfff]|\ud83d[\udc6b-\udc6d\udc8f\udc91]|\ud83e\udd1d)|(?:\ud83d[\udc68\udc69]|\ud83e\uddd1)(?:\ud83c[\udffb-\udfff])?\u200d(?:\u2695\ufe0f|\u2696\ufe0f|\u2708\ufe0f|\ud83c[\udf3e\udf73\udf7c\udf84\udf93\udfa4\udfa8\udfeb\udfed]|\ud83d[\udcbb\udcbc\udd27\udd2c\ude80\ude92]|\ud83e[\uddaf-\uddb3\uddbc\uddbd])|(?:\ud83c[\udfcb\udfcc]|\ud83d[\udd74\udd75]|\u26f9)((?:\ud83c[\udffb-\udfff]|\ufe0f)\u200d[\u2640\u2642]\ufe0f)|(?:\ud83c[\udfc3\udfc4\udfca]|\ud83d[\udc6e\udc70\udc71\udc73\udc77\udc81\udc82\udc86\udc87\ude45-\ude47\ude4b\ude4d\ude4e\udea3\udeb4-\udeb6]|\ud83e[\udd26\udd35\udd37-\udd39\udd3d\udd3e\uddb8\uddb9\uddcd-\uddcf\uddd4\uddd6-\udddd])(?:\ud83c[\udffb-\udfff])?\u200d[\u2640\u2642]\ufe0f|(?:\ud83d\udc68\u200d\ud83d\udc68\u200d\ud83d\udc66\u200d\ud83d\udc66|\ud83d\udc68\u200d\ud83d\udc68\u200d\ud83d\udc67\u200d\ud83d[\udc66\udc67]|\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc66\u200d\ud83d\udc66|\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67\u200d\ud83d[\udc66\udc67]|\ud83d\udc69\u200d\ud83d\udc69\u200d\ud83d\udc66\u200d\ud83d\udc66|\ud83d\udc69\u200d\ud83d\udc69\u200d\ud83d\udc67\u200d\ud83d[\udc66\udc67]|\ud83d\udc68\u200d\ud83d\udc66\u200d\ud83d\udc66|\ud83d\udc68\u200d\ud83d\udc67\u200d\ud83d[\udc66\udc67]|\ud83d\udc68\u200d\ud83d\udc68\u200d\ud83d[\udc66\udc67]|\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d[\udc66\udc67]|\ud83d\udc69\u200d\ud83d\udc66\u200d\ud83d\udc66|\ud83d\udc69\u200d\ud83d\udc67\u200d\ud83d[\udc66\udc67]|\ud83d\udc69\u200d\ud83d\udc69\u200d\ud83d[\udc66\udc67]|\ud83c\udff3\ufe0f\u200d\u26a7\ufe0f|\ud83c\udff3\ufe0f\u200d\ud83c\udf08|\ud83d\ude36\u200d\ud83c\udf2b\ufe0f|\u2764\ufe0f\u200d\ud83d\udd25|\u2764\ufe0f\u200d\ud83e\ude79|\ud83c\udff4\u200d\u2620\ufe0f|\ud83d\udc15\u200d\ud83e\uddba|\ud83d\udc3b\u200d\u2744\ufe0f|\ud83d\udc41\u200d\ud83d\udde8|\ud83d\udc68\u200d\ud83d[\udc66\udc67]|\ud83d\udc69\u200d\ud83d[\udc66\udc67]|\ud83d\udc6f\u200d\u2640\ufe0f|\ud83d\udc6f\u200d\u2642\ufe0f|\ud83d\ude2e\u200d\ud83d\udca8|\ud83d\ude35\u200d\ud83d\udcab|\ud83e\udd3c\u200d\u2640\ufe0f|\ud83e\udd3c\u200d\u2642\ufe0f|\ud83e\uddde\u200d\u2640\ufe0f|\ud83e\uddde\u200d\u2642\ufe0f|\ud83e\udddf\u200d\u2640\ufe0f|\ud83e\udddf\u200d\u2642\ufe0f|\ud83d\udc08\u200d\u2b1b)|[#*0-9]\ufe0f?\u20e3|(?:[©®\u2122\u265f]\ufe0f)|(?:\ud83c[\udc04\udd70\udd71\udd7e\udd7f\ude02\ude1a\ude2f\ude37\udf21\udf24-\udf2c\udf36\udf7d\udf96\udf97\udf99-\udf9b\udf9e\udf9f\udfcd\udfce\udfd4-\udfdf\udff3\udff5\udff7]|\ud83d[\udc3f\udc41\udcfd\udd49\udd4a\udd6f\udd70\udd73\udd76-\udd79\udd87\udd8a-\udd8d\udda5\udda8\uddb1\uddb2\uddbc\uddc2-\uddc4\uddd1-\uddd3\udddc-\uddde\udde1\udde3\udde8\uddef\uddf3\uddfa\udecb\udecd-\udecf\udee0-\udee5\udee9\udef0\udef3]|[\u203c\u2049\u2139\u2194-\u2199\u21a9\u21aa\u231a\u231b\u2328\u23cf\u23ed-\u23ef\u23f1\u23f2\u23f8-\u23fa\u24c2\u25aa\u25ab\u25b6\u25c0\u25fb-\u25fe\u2600-\u2604\u260e\u2611\u2614\u2615\u2618\u2620\u2622\u2623\u2626\u262a\u262e\u262f\u2638-\u263a\u2640\u2642\u2648-\u2653\u2660\u2663\u2665\u2666\u2668\u267b\u267f\u2692-\u2697\u2699\u269b\u269c\u26a0\u26a1\u26a7\u26aa\u26ab\u26b0\u26b1\u26bd\u26be\u26c4\u26c5\u26c8\u26cf\u26d1\u26d3\u26d4\u26e9\u26ea\u26f0-\u26f5\u26f8\u26fa\u26fd\u2702\u2708\u2709\u270f\u2712\u2714\u2716\u271d\u2721\u2733\u2734\u2744\u2747\u2757\u2763\u2764\u27a1\u2934\u2935\u2b05-\u2b07\u2b1b\u2b1c\u2b50\u2b55\u3030\u303d\u3297\u3299])(?:\ufe0f|(?!\ufe0e))|(?:(?:\ud83c[\udfcb\udfcc]|\ud83d[\udd74\udd75\udd90]|[\u261d\u26f7\u26f9\u270c\u270d])(?:\ufe0f|(?!\ufe0e))|(?:\ud83c[\udf85\udfc2-\udfc4\udfc7\udfca]|\ud83d[\udc42\udc43\udc46-\udc50\udc66-\udc69\udc6e\udc70-\udc78\udc7c\udc81-\udc83\udc85-\udc87\udcaa\udd7a\udd95\udd96\ude45-\ude47\ude4b-\ude4f\udea3\udeb4-\udeb6\udec0\udecc]|\ud83e[\udd0c\udd0f\udd18-\udd1c\udd1e\udd1f\udd26\udd30-\udd39\udd3d\udd3e\udd77\uddb5\uddb6\uddb8\uddb9\uddbb\uddcd-\uddcf\uddd1-\udddd\udec3-\udec5\udef0-\udef6]|[\u270a\u270b]))(?:\ud83c[\udffb-\udfff])?|(?:\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc65\udb40\udc6e\udb40\udc67\udb40\udc7f|\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc73\udb40\udc63\udb40\udc74\udb40\udc7f|\ud83c\udff4\udb40\udc67\udb40\udc62\udb40\udc77\udb40\udc6c\udb40\udc73\udb40\udc7f|\ud83c\udde6\ud83c[\udde8-\uddec\uddee\uddf1\uddf2\uddf4\uddf6-\uddfa\uddfc\uddfd\uddff]|\ud83c\udde7\ud83c[\udde6\udde7\udde9-\uddef\uddf1-\uddf4\uddf6-\uddf9\uddfb\uddfc\uddfe\uddff]|\ud83c\udde8\ud83c[\udde6\udde8\udde9\uddeb-\uddee\uddf0-\uddf5\uddf7\uddfa-\uddff]|\ud83c\udde9\ud83c[\uddea\uddec\uddef\uddf0\uddf2\uddf4\uddff]|\ud83c\uddea\ud83c[\udde6\udde8\uddea\uddec\udded\uddf7-\uddfa]|\ud83c\uddeb\ud83c[\uddee-\uddf0\uddf2\uddf4\uddf7]|\ud83c\uddec\ud83c[\udde6\udde7\udde9-\uddee\uddf1-\uddf3\uddf5-\uddfa\uddfc\uddfe]|\ud83c\udded\ud83c[\uddf0\uddf2\uddf3\uddf7\uddf9\uddfa]|\ud83c\uddee\ud83c[\udde8-\uddea\uddf1-\uddf4\uddf6-\uddf9]|\ud83c\uddef\ud83c[\uddea\uddf2\uddf4\uddf5]|\ud83c\uddf0\ud83c[\uddea\uddec-\uddee\uddf2\uddf3\uddf5\uddf7\uddfc\uddfe\uddff]|\ud83c\uddf1\ud83c[\udde6-\udde8\uddee\uddf0\uddf7-\uddfb\uddfe]|\ud83c\uddf2\ud83c[\udde6\udde8-\udded\uddf0-\uddff]|\ud83c\uddf3\ud83c[\udde6\udde8\uddea-\uddec\uddee\uddf1\uddf4\uddf5\uddf7\uddfa\uddff]|\ud83c\uddf4\ud83c\uddf2|\ud83c\uddf5\ud83c[\udde6\uddea-\udded\uddf0-\uddf3\uddf7-\uddf9\uddfc\uddfe]|\ud83c\uddf6\ud83c\udde6|\ud83c\uddf7\ud83c[\uddea\uddf4\uddf8\uddfa\uddfc]|\ud83c\uddf8\ud83c[\udde6-\uddea\uddec-\uddf4\uddf7-\uddf9\uddfb\uddfd-\uddff]|\ud83c\uddf9\ud83c[\udde6\udde8\udde9\uddeb-\udded\uddef-\uddf4\uddf7\uddf9\uddfb\uddfc\uddff]|\ud83c\uddfa\ud83c[\udde6\uddec\uddf2\uddf3\uddf8\uddfe\uddff]|\ud83c\uddfb\ud83c[\udde6\udde8\uddea\uddec\uddee\uddf3\uddfa]|\ud83c\uddfc\ud83c[\uddeb\uddf8]|\ud83c\uddfd\ud83c\uddf0|\ud83c\uddfe\ud83c[\uddea\uddf9]|\ud83c\uddff\ud83c[\udde6\uddf2\uddfc]|\ud83c[\udccf\udd8e\udd91-\udd9a\udde6-\uddff\ude01\ude32-\ude36\ude38-\ude3a\ude50\ude51\udf00-\udf20\udf2d-\udf35\udf37-\udf7c\udf7e-\udf84\udf86-\udf93\udfa0-\udfc1\udfc5\udfc6\udfc8\udfc9\udfcf-\udfd3\udfe0-\udff0\udff4\udff8-\udfff]|\ud83d[\udc00-\udc3e\udc40\udc44\udc45\udc51-\udc65\udc6a\udc6f\udc79-\udc7b\udc7d-\udc80\udc84\udc88-\udc8e\udc90\udc92-\udca9\udcab-\udcfc\udcff-\udd3d\udd4b-\udd4e\udd50-\udd67\udda4\uddfb-\ude44\ude48-\ude4a\ude80-\udea2\udea4-\udeb3\udeb7-\udebf\udec1-\udec5\uded0-\uded2\uded5-\uded7\udedd-\udedf\udeeb\udeec\udef4-\udefc\udfe0-\udfeb\udff0]|\ud83e[\udd0d\udd0e\udd10-\udd17\udd20-\udd25\udd27-\udd2f\udd3a\udd3c\udd3f-\udd45\udd47-\udd76\udd78-\uddb4\uddb7\uddba\uddbc-\uddcc\uddd0\uddde-\uddff\ude70-\ude74\ude78-\ude7c\ude80-\ude86\ude90-\udeac\udeb0-\udeba\udec0-\udec2\uded0-\uded9\udee0-\udee7]|[\u23e9-\u23ec\u23f0\u23f3\u267e\u26ce\u2705\u2728\u274c\u274e\u2753-\u2755\u2795-\u2797\u27b0\u27bf\ue50a])|\ufe0f/g,UFE0Fg=/\uFE0F/g,U200D=String.fromCharCode(8205),rescaper=/[&<>'"]/g,shouldntBeParsed=/^(?:iframe|noframes|noscript|script|select|style|textarea)$/,fromCharCode=String.fromCharCode;return twemoji;function createText(text,clean){return document.createTextNode(clean?text.replace(UFE0Fg,""):text)}function escapeHTML(s){return s.replace(rescaper,replacer)}function defaultImageSrcGenerator(icon,options){return "".concat(options.base,options.size,"/",icon,options.ext)}function grabAllTextNodes(node,allText){var childNodes=node.childNodes,length=childNodes.length,subnode,nodeType;while(length--){subnode=childNodes[length];nodeType=subnode.nodeType;if(nodeType===3){allText.push(subnode);}else if(nodeType===1&&!("ownerSVGElement"in subnode)&&!shouldntBeParsed.test(subnode.nodeName.toLowerCase())){grabAllTextNodes(subnode,allText);}}return allText}function grabTheRightIcon(rawText){return toCodePoint(rawText.indexOf(U200D)<0?rawText.replace(UFE0Fg,""):rawText)}function parseNode(node,options){var allText=grabAllTextNodes(node,[]),length=allText.length,attrib,attrname,modified,fragment,subnode,text,match,i,index,img,rawText,iconId,src;while(length--){modified=false;fragment=document.createDocumentFragment();subnode=allText[length];text=subnode.nodeValue;i=0;while(match=re.exec(text)){index=match.index;if(index!==i){fragment.appendChild(createText(text.slice(i,index),true));}rawText=match[0];iconId=grabTheRightIcon(rawText);i=index+rawText.length;src=options.callback(iconId,options);if(iconId&&src){img=new Image;img.onerror=options.onerror;img.setAttribute("draggable","false");attrib=options.attributes(rawText,iconId);for(attrname in attrib){if(attrib.hasOwnProperty(attrname)&&attrname.indexOf("on")!==0&&!img.hasAttribute(attrname)){img.setAttribute(attrname,attrib[attrname]);}}img.className=options.className;img.alt=rawText;img.src=src;modified=true;fragment.appendChild(img);}if(!img){ fragment.appendChild(createText(rawText,false)); }img=null;}if(modified){if(i<text.length){fragment.appendChild(createText(text.slice(i),true));}subnode.parentNode.replaceChild(fragment,subnode);}}return node}function parseString(str,options){return replace(str,function(rawText){var ret=rawText,iconId=grabTheRightIcon(rawText),src=options.callback(iconId,options),attrib,attrname;if(iconId&&src){ret="<img ".concat('class="',options.className,'" ','draggable="false" ','alt="',rawText,'"',' src="',src,'"');attrib=options.attributes(rawText,iconId);for(attrname in attrib){if(attrib.hasOwnProperty(attrname)&&attrname.indexOf("on")!==0&&ret.indexOf(" "+attrname+"=")===-1){ret=ret.concat(" ",attrname,'="',escapeHTML(attrib[attrname]),'"');}}ret=ret.concat("/>");}return ret})}function replacer(m){return escaper[m]}function returnNull(){return null}function toSizeSquaredAsset(value){return typeof value==="number"?value+"x"+value:value}function fromCodePoint(codepoint){var code=typeof codepoint==="string"?parseInt(codepoint,16):codepoint;if(code<65536){return fromCharCode(code)}code-=65536;return fromCharCode(55296+(code>>10),56320+(code&1023))}function parse(what,how){if(!how||typeof how==="function"){how={callback:how};}return (typeof what==="string"?parseString:parseNode)(what,{callback:how.callback||defaultImageSrcGenerator,attributes:typeof how.attributes==="function"?how.attributes:returnNull,base:typeof how.base==="string"?how.base:twemoji.base,ext:how.ext||twemoji.ext,size:how.folder||toSizeSquaredAsset(how.size||twemoji.size),className:how.className||twemoji.className,onerror:how.onerror||twemoji.onerror})}function replace(text,callback){return String(text).replace(re,callback)}function test(text){re.lastIndex=0;var result=re.test(text);re.lastIndex=0;return result}function toCodePoint(unicodeSurrogates,sep){var r=[],c=0,p=0,i=0;while(i<unicodeSurrogates.length){c=unicodeSurrogates.charCodeAt(i++);if(p){r.push((65536+(p-55296<<10)+(c-56320)).toString(16));p=0;}else if(55296<=c&&c<=56319){p=c;}else {r.push(c.toString(16));}}return r.join(sep||"-")}}();
-var schema$g = {
+var schema$h = {
     nodes: {
         emoji: {
             attrs: {
@@ -141849,7 +141849,7 @@ function menu$e(context) {
 
 var emoji = {
     id: 'emoji',
-    schema: schema$g,
+    schema: schema$h,
     menu: function (context) { return menu$e(context); },
     inputRules: function (schema) {
         return [
@@ -141887,7 +141887,7 @@ var emoji = {
  *
  */
 
-var schema$f = {
+var schema$g = {
     nodes: {
         hard_break: {
             sortOrder: 1100,
@@ -154021,11 +154021,11 @@ function htmlBreak(state, silent) {
 
 var hard_break = {
     id: 'hard_break',
-    schema: schema$f,
+    schema: schema$g,
     registerMarkdownIt: function (markdownIt) {
         markdownIt.inline.ruler.before('newline','htmlbreak', htmlBreak);
     }
-};var schema$e = {
+};var schema$f = {
     nodes: {
         heading: {
             attrs: {level: {default: 1}},
@@ -154110,7 +154110,7 @@ function menu$d(context) {
 
 var heading = {
     id: 'heading',
-    schema: schema$e,
+    schema: schema$f,
     menu: function (context) { return menu$d(context); },
     inputRules: function (schema) {return [headingRule(schema)]}
 };/*
@@ -154154,7 +154154,7 @@ var historyPlugin = {
  * @license https://www.humhub.com/licences
  */
 
-var schema$d = {
+var schema$e = {
     nodes: {
         horizontal_rule: {
             sortOrder: 300,
@@ -154179,7 +154179,7 @@ var schema$d = {
 
 var horizontal_rule = {
     id: 'horizontal_rule',
-    schema: schema$d,
+    schema: schema$e,
     // menu: (context) => menu(context)
 };var FLOAT_NONE = 0;
 var FLOAT_LEFT = 1;
@@ -154296,7 +154296,7 @@ function buildLink(href, attrs, text, validate) {
  */
 
 
-var schema$c = {
+var schema$d = {
     nodes: {
         image: {
             sortOrder: 1000,
@@ -154453,7 +154453,8 @@ var imageFloat = require$$0;
 var parseImageSize = parse_image_size;
 
 var MEDIA_TOKEN_MAP = {
-    video: 'video'
+    video: 'video',
+    audio: 'audio'
 };
 
 function parseMediaOptions(src, pos, max) {
@@ -154855,7 +154856,7 @@ var imsize_plugin = /*@__PURE__*/getDefaultExportFromCjs(markdownit_imsize);/*
  */
 
 
-function editNode$2(node, context, view) {
+function editNode$3(node, context, view) {
     promt$1(context.translate("Edit image"), context, node.attrs, view, node);
 }
 
@@ -155019,7 +155020,7 @@ var ImageView = function ImageView(node, context) {
                 var view = context.editor.view;
                 var doc = view.state.doc;
                 view.dispatch(view.state.tr.setSelection(NodeSelection.create(doc, view.posAtDOM(this$1$1.dom))).scrollIntoView());
-                editNode$2(node, context, view);
+                editNode$3(node, context, view);
             });
 
         $('html').append($edit);
@@ -155054,7 +155055,7 @@ ImageView.prototype.createDom = function createDom (node) {
 
 var image = {
     id: 'image',
-    schema: schema$c,
+    schema: schema$d,
     // menu: (context) => menu(context),
     plugins: function (context) {
         return [
@@ -155090,7 +155091,7 @@ var image = {
                 imageToken.attrs.splice(imageToken.attrIndex('float'), 1);
             }
 
-            ['media-options', 'video', 'controls', 'autoplay', 'muted', 'loop'].forEach(function (attr) {
+            ['media-options', 'video', 'audio', 'controls', 'autoplay', 'muted', 'loop'].forEach(function (attr) {
                 var attrIndex = imageToken.attrIndex(attr);
                 if (attrIndex >= 0) {
                     imageToken.attrs.splice(attrIndex, 1);
@@ -155186,7 +155187,7 @@ var buildVideoDomAttrs = function (attrs) {
     return domAttrs;
 };
 
-var schema$b = {
+var schema$c = {
     nodes: {
         video: {
             sortOrder: 1010,
@@ -155276,7 +155277,7 @@ var schema$b = {
  */
 
 
-var BOOLEAN_FIELDS = ['controls', 'autoplay', 'muted', 'loop'];
+var BOOLEAN_FIELDS$1 = ['controls', 'autoplay', 'muted', 'loop'];
 var isDefined = function (obj) {
     if (arguments.length > 1) {
         var result = true;
@@ -155298,7 +155299,7 @@ var endsWith$1 = function (val, suffix) {
     return val.indexOf(suffix, val.length - suffix.length) !== -1;
 };
 
-var editNode$1 = function (node, context, view) {
+var editNode$2 = function (node, context, view) {
     var cleanDimension = function (val) {
         val = val.trim();
         if (endsWith$1(val, 'px')) {
@@ -155380,7 +155381,7 @@ var editNode$1 = function (node, context, view) {
             nextAttrs.width = attrs.width;
             nextAttrs.height = attrs.height;
             nextAttrs.float = parseInt(attrs.float);
-            BOOLEAN_FIELDS.forEach(function (field) {
+            BOOLEAN_FIELDS$1.forEach(function (field) {
                 nextAttrs[field] = !!attrs[field];
             });
 
@@ -155450,7 +155451,7 @@ var VideoView = function VideoView(node, context) {
                 var view = context.editor.view;
                 var doc = view.state.doc;
                 view.dispatch(view.state.tr.setSelection(NodeSelection.create(doc, view.posAtDOM(this$1$1.dom))).scrollIntoView());
-                editNode$1(node, context, view);
+                editNode$2(node, context, view);
             });
 
         $('html').append($edit);
@@ -155473,6 +155474,334 @@ VideoView.prototype.createDom = function createDom (node) {
         title: node.attrs.title || null,
         width: node.attrs.width || null,
         height: node.attrs.height || null,
+        class: getClassForFloat(node.attrs.float),
+        'data-file-guid': node.attrs.fileGuid || null
+    })[0];
+
+    ['controls', 'autoplay', 'muted', 'loop'].forEach(function (attr) {
+        if (node.attrs[attr]) {
+            this$1$1.dom.setAttribute(attr, attr);
+        }
+    });
+};/*
+ * @link https://www.humhub.org/
+ * @copyright Copyright (c) 2026 HumHub GmbH & Co. KG
+ * @license https://www.humhub.com/licences
+ */
+
+
+var hasFlag$1 = function (token, attr) {
+    if (token.attrGet(attr)) {
+        return true;
+    }
+
+    var options = token.attrGet('media-options');
+    if (!options) {
+        return false;
+    }
+
+    return parseMediaOptionFlags(options).includes(attr);
+};
+
+var setBooleanAttr$1 = function (token, attr) {
+    if (hasFlag$1(token, attr)) {
+        token.attrSet(attr, attr);
+    }
+};
+
+var removeAttr$1 = function (token, attr) {
+    var attrIndex = token.attrIndex(attr);
+    if (attrIndex >= 0) {
+        token.attrs.splice(attrIndex, 1);
+    }
+};
+
+var video = {
+    id: 'video',
+    schema: schema$c,
+    plugins: function (context) {
+        return [
+            videoPlugin(context)
+        ];
+    },
+    registerMarkdownIt: function (markdownIt) {
+        markdownIt.renderer.rules.video = function (tokens, idx, options, env, self) {
+            var token = tokens[idx];
+            var srcIndex = token.attrIndex('src');
+            var title = token.attrGet('title') || token.attrGet('alt');
+
+            if (srcIndex >= 0) {
+                var srcFilter = filterFileUrl(token.attrs[srcIndex][1]);
+                token.attrs[srcIndex][1] = validateHref(srcFilter.url) ? srcFilter.url : '#';
+
+                if (srcFilter.guid) {
+                    token.attrSet('data-file-guid', srcFilter.guid);
+                }
+            }
+
+            if (title) {
+                token.attrSet('title', title);
+            }
+
+            setBooleanAttr$1(token, 'controls');
+            setBooleanAttr$1(token, 'autoplay');
+            setBooleanAttr$1(token, 'muted');
+            setBooleanAttr$1(token, 'loop');
+            if (token.attrGet('float')) {
+                token.attrSet('class', getClassForFloat(token.attrGet('float')));
+            }
+            ['media-options', 'video', 'alt', 'float'].forEach(function (attr) { return removeAttr$1(token, attr); });
+
+            token.attrSet('playsinline', 'playsinline');
+            return '<video' + self.renderAttrs(token) + '></video>';
+        };
+    }
+};/*
+ * @link https://www.humhub.org/
+ * @copyright Copyright (c) 2026 HumHub GmbH & Co. KG
+ * @license https://www.humhub.com/licences
+ */
+
+
+var BOOLEAN_AUDIO_ATTRS = ['controls', 'autoplay', 'muted', 'loop'];
+
+var buildAudioDomAttrs = function (attrs) {
+    var domAttrs = {
+        src: attrs.src,
+        title: attrs.title || null,
+        class: getClassForFloat(attrs.float),
+        'data-file-guid': attrs.fileGuid || null
+    };
+
+    BOOLEAN_AUDIO_ATTRS.forEach(function (attr) {
+        if (attrs[attr]) {
+            domAttrs[attr] = attr;
+        }
+    });
+
+    return domAttrs;
+};
+
+var schema$b = {
+    nodes: {
+        audio: {
+            sortOrder: 1015,
+            group: "inline",
+            inline: true,
+            draggable: true,
+            attrs: {
+                src: {},
+                title: {default: null},
+                controls: {default: false},
+                autoplay: {default: false},
+                muted: {default: false},
+                loop: {default: false},
+                float: {default: FLOAT_NONE},
+                fileGuid: {default: null}
+            },
+            parseDOM: [{
+                tag: "audio[src]",
+                getAttrs: function (dom) {
+                    return {
+                        src: dom.getAttribute("src"),
+                        title: dom.getAttribute("title"),
+                        controls: dom.hasAttribute("controls"),
+                        autoplay: dom.hasAttribute("autoplay"),
+                        muted: dom.hasAttribute("muted"),
+                        loop: dom.hasAttribute("loop"),
+                        fileGuid: dom.getAttribute("data-file-guid")
+                    };
+                }
+            }],
+            toDOM: function (node) {
+                return ['audio', buildAudioDomAttrs(node.attrs)];
+            },
+            parseMarkdown: {
+                audio: {
+                    node: "audio",
+                    getAttrs: function (tok) {
+                        var ref = filterFileUrl(tok.attrGet("src"));
+                        var url = ref.url;
+                        var guid = ref.guid;
+
+                        if (!validateHref(url, {relative: true})) {
+                            url = '#';
+                        }
+
+                        return Object.assign({
+                            src: url,
+                            title: tok.attrGet("alt") || tok.attrGet("title") || null,
+                            float: tok.attrGet("float") || FLOAT_NONE,
+                            fileGuid: guid
+                        }, getBooleanAttrsFromTokenFlags(tok, BOOLEAN_AUDIO_ATTRS));
+                    }
+                }
+            },
+            toMarkdown: function (state, node) {
+                var src = node.attrs.fileGuid ? 'file-guid:' + node.attrs.fileGuid : node.attrs.src;
+                var options = ['audio'];
+                BOOLEAN_AUDIO_ATTRS.forEach(function (attr) {
+                    if (node.attrs[attr]) {
+                        options.push(attr);
+                    }
+                });
+                var title = (node.attrs.title || "") + getAltExtensionByFloat(node.attrs.float);
+                state.write("![" + state.esc(title) + "](" + state.esc(src) + " " + options.join(' ') + ")");
+            }
+        }
+    }
+};/*
+ * @link https://www.humhub.org/
+ * @copyright Copyright (c) 2026 HumHub GmbH & Co. KG
+ * @license https://www.humhub.com/licences
+ */
+
+
+var BOOLEAN_FIELDS = ['controls', 'autoplay', 'muted', 'loop'];
+
+var editNode$1 = function (node, context, view) {
+    var validateSource = function (val) {
+        if (!validateHref(val)) {
+            return context.translate('Invalid audio source.');
+        }
+    };
+
+    openPrompt({
+        title: context.translate("Edit audio"),
+        fields: {
+            src: new TextField({
+                label: context.translate("Location"),
+                required: true,
+                value: node.attrs.src,
+                validate: validateSource
+            }),
+            title: new TextField({
+                label: context.translate("Title"),
+                value: node.attrs.title
+            }),
+            float: new SelectField({
+                label: context.translate("Position"),
+                value: node.attrs.float,
+                options: [
+                    {label: context.translate("Normal"), value: 0},
+                    {label: context.translate("Left"), value: 1},
+                    {label: context.translate("Center"), value: 2},
+                    {label: context.translate("Right"), value: 3}
+                ]
+            }),
+            controls: new CheckboxField({
+                label: context.translate("Show controls"),
+                value: node.attrs.controls
+            }),
+            autoplay: new CheckboxField({
+                label: context.translate("Autoplay"),
+                value: node.attrs.autoplay
+            }),
+            muted: new CheckboxField({
+                label: context.translate("Muted"),
+                value: node.attrs.muted
+            }),
+            loop: new CheckboxField({
+                label: context.translate("Loop"),
+                value: node.attrs.loop
+            }),
+        },
+        callback: function callback(attrs) {
+            var nextAttrs = Object.assign({}, node.attrs);
+            nextAttrs.src = attrs.src;
+            nextAttrs.title = attrs.title;
+            nextAttrs.float = parseInt(attrs.float);
+            BOOLEAN_FIELDS.forEach(function (field) {
+                nextAttrs[field] = !!attrs[field];
+            });
+
+            view.dispatch(view.state.tr.replaceSelectionWith(context.schema.nodes.audio.create(nextAttrs)));
+            view.focus();
+        }
+    });
+};/*
+ * @link https://www.humhub.org/
+ * @copyright Copyright (c) 2026 HumHub GmbH & Co. KG
+ * @license https://www.humhub.com/licences
+ */
+
+
+var audioPlugin = function (context) {
+    context.editor.$.on('mouseleave', function (e) {
+        var target = e.toElement || e.relatedTarget;
+        if (!$(target).closest('.humhub-richtext-inline-menu').length) {
+            $('.humhub-richtext-inline-menu').remove();
+        }
+    });
+
+    return new Plugin({
+        props: {
+            nodeViews: {
+                audio: function audio(node) {
+                    return new AudioView(node, context);
+                }
+            }
+        },
+        filterTransaction: function (tr) {
+            if (!(tr.curSelection instanceof NodeSelection)) {
+                $('.humhub-richtext-audio-edit').remove();
+            }
+
+            return true;
+        }
+    });
+};
+
+var AudioView = function AudioView(node, context) {
+    var this$1$1 = this;
+
+    this.createDom(node);
+
+    context.event.on('clear, serialize', function () {
+        $('.humhub-richtext-inline-menu').remove();
+    });
+
+    this.dom.addEventListener("mouseenter", function () {
+        var $audio = $(this$1$1.dom);
+        var offset = $audio.offset();
+        var editorOffset = context.editor.$.offset();
+
+        if (offset.top < editorOffset.top) {
+            return;
+        }
+
+        var $edit = $('<div>').addClass('humhub-richtext-inline-menu').addClass('humhub-richtext-audio-edit')
+            .html('<button class="btn btn-primary btn-sm btn-icon-only"><i class="fa fa-pencil"></i></button>')
+            .css({
+                position: 'absolute',
+                left: offset.left + $audio.width() - 25,
+                top: offset.top + 5,
+                'z-index': 9999
+            }).on('mousedown', function () {
+                var view = context.editor.view;
+                var doc = view.state.doc;
+                view.dispatch(view.state.tr.setSelection(NodeSelection.create(doc, view.posAtDOM(this$1$1.dom))).scrollIntoView());
+                editNode$1(node, context, view);
+            });
+
+        $('html').append($edit);
+    });
+
+    this.dom.addEventListener("mouseleave", function (e) {
+        var target = e.toElement || e.relatedTarget;
+        if (!$(target).closest('.humhub-richtext-inline-menu').length) {
+            $('.humhub-richtext-inline-menu').remove();
+        }
+    });
+};
+
+AudioView.prototype.createDom = function createDom (node) {
+        var this$1$1 = this;
+
+    var src = validateHref(node.attrs.src) ? node.attrs.src : '#';
+    this.dom = $('<audio>').attr({
+        src: src,
+        title: node.attrs.title || null,
         class: getClassForFloat(node.attrs.float),
         'data-file-guid': node.attrs.fileGuid || null
     })[0];
@@ -155515,16 +155844,16 @@ var removeAttr = function (token, attr) {
     }
 };
 
-var video = {
-    id: 'video',
+var audio = {
+    id: 'audio',
     schema: schema$b,
     plugins: function (context) {
         return [
-            videoPlugin(context)
+            audioPlugin(context)
         ];
     },
     registerMarkdownIt: function (markdownIt) {
-        markdownIt.renderer.rules.video = function (tokens, idx, options, env, self) {
+        markdownIt.renderer.rules.audio = function (tokens, idx, options, env, self) {
             var token = tokens[idx];
             var srcIndex = token.attrIndex('src');
             var title = token.attrGet('title') || token.attrGet('alt');
@@ -155549,10 +155878,9 @@ var video = {
             if (token.attrGet('float')) {
                 token.attrSet('class', getClassForFloat(token.attrGet('float')));
             }
-            ['media-options', 'video', 'alt', 'float'].forEach(function (attr) { return removeAttr(token, attr); });
+            ['media-options', 'audio', 'alt', 'float'].forEach(function (attr) { return removeAttr(token, attr); });
 
-            token.attrSet('playsinline', 'playsinline');
-            return '<video' + self.renderAttrs(token) + '></video>';
+            return '<audio' + self.renderAttrs(token) + '></audio>';
         };
     }
 };/*
@@ -157538,6 +157866,12 @@ var isVideoFile = function (file) {
         (file.type && file.type.indexOf('video/') === 0));
 };
 
+var isAudioFile = function (file) {
+    return !!((file.mimeIcon && file.mimeIcon.indexOf('mime-audio') === 0) ||
+        (file.mimeType && file.mimeType.indexOf('audio/') === 0) ||
+        (file.type && file.type.indexOf('audio/') === 0));
+};
+
 var createNodeFromFile = function (context, file) {
     if (file.error) {
         return null;
@@ -157551,6 +157885,15 @@ var createNodeFromFile = function (context, file) {
 
     if (schema.nodes.video && isVideoFile(file)) {
         return schema.nodes.video.create({
+            src: file.url,
+            title: file.name,
+            controls: true,
+            fileGuid: file.guid
+        });
+    }
+
+    if (schema.nodes.audio && isAudioFile(file)) {
+        return schema.nodes.audio.create({
             src: file.url,
             title: file.name,
             controls: true,
@@ -158729,6 +159072,7 @@ registerPlugin(horizontal_rule, 'markdown');
 registerPlugin(file_handler, 'markdown');
 registerPlugin(image, 'markdown');
 registerPlugin(video, 'markdown');
+registerPlugin(audio, 'markdown');
 registerPlugin(list_item, 'markdown');
 registerPlugin(bullet_list, 'markdown');
 registerPlugin(ordered_list, 'markdown');
@@ -159126,7 +159470,7 @@ var HumHubMarkdownSerializerState = /*@__PURE__*/(function (MarkdownSerializerSt
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2017 HumHub GmbH & Co. KG
  * @license https://www.humhub.com/licences
- */var markdown=/*#__PURE__*/Object.freeze({__proto__:null,MarkdownParser:MarkdownParser,MarkdownSerializer:MarkdownSerializer,MarkdownSerializerState:MarkdownSerializerState,createLinkExtension:createLinkExtension,defaultMarkdownParser:defaultMarkdownParser,defaultMarkdownSerializer:defaultMarkdownSerializer,getParser:getParser,getRenderer:getRenderer,getSerializer:getSerializer,schema:schema$n});/**
+ */var markdown=/*#__PURE__*/Object.freeze({__proto__:null,MarkdownParser:MarkdownParser,MarkdownSerializer:MarkdownSerializer,MarkdownSerializerState:MarkdownSerializerState,createLinkExtension:createLinkExtension,defaultMarkdownParser:defaultMarkdownParser,defaultMarkdownSerializer:defaultMarkdownSerializer,getParser:getParser,getRenderer:getRenderer,getSerializer:getSerializer,schema:schema$o});/**
 Create a plugin that, when added to a ProseMirror instance,
 causes a decoration to show up at the drop position when something
 is dragged over the editor.

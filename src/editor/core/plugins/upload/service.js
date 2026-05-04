@@ -13,6 +13,12 @@ const isVideoFile = (file) => {
         (file.type && file.type.indexOf('video/') === 0));
 };
 
+const isAudioFile = (file) => {
+    return !!((file.mimeIcon && file.mimeIcon.indexOf('mime-audio') === 0) ||
+        (file.mimeType && file.mimeType.indexOf('audio/') === 0) ||
+        (file.type && file.type.indexOf('audio/') === 0));
+};
+
 const createNodeFromFile = function (context, file) {
     if (file.error) {
         return null;
@@ -26,6 +32,15 @@ const createNodeFromFile = function (context, file) {
 
     if (schema.nodes.video && isVideoFile(file)) {
         return schema.nodes.video.create({
+            src: file.url,
+            title: file.name,
+            controls: true,
+            fileGuid: file.guid
+        });
+    }
+
+    if (schema.nodes.audio && isAudioFile(file)) {
+        return schema.nodes.audio.create({
             src: file.url,
             title: file.name,
             controls: true,

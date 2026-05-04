@@ -11,7 +11,8 @@ const imageFloat = require('./imageFloat')
 const parseImageSize = require('./parse_image_size');
 
 const MEDIA_TOKEN_MAP = {
-    video: 'video'
+    video: 'video',
+    audio: 'audio'
 };
 
 function parseMediaOptions(src, pos, max) {

@@ -5,7 +5,8 @@
  */
 
 const DEFAULT_MEDIA_NODE_MAP = {
-    video: 'video'
+    video: 'video',
+    audio: 'audio'
 };
 
 const MEDIA_OPTION_BLOCK_REGEXP = /^\{([^{}]+)\}$/;

@@ -3,7 +3,7 @@ Changelog
 
 2.3.4
 ------------------
-- Enh #179: Support video tag
+- Enh #179: Support video and audio tags
 
 2.3.3
 ------------------
