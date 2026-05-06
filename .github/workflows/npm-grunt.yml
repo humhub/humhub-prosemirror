@@ -2,9 +2,9 @@ name: NodeJS with Grunt
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ["master"]
   pull_request:
-    branches: [ "master", "develop" ]
+    branches: ["master", "develop"]
 
 jobs:
   build:
@@ -12,23 +12,27 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]
+        node-version: [18.x, 20.x, 22.x]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: |
+          npm install
+          npm install -g wait-on 
 
       - name: Build
-        run: |
-          npm install -g phantomjs-prebuilt
-          npm install
-          grunt
+        run: grunt
 
       - name: Run test server and tests
         run: |
-          npm run test-server &
+          npm run test-server & 
+          wait-on http://localhost:8090 --timeout 30000
           npm run test

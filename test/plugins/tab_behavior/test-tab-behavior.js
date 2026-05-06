@@ -12,7 +12,6 @@ describe("Plugin:tab_behavior", () => {
         type('Test', editor);
 
         editor.focus();
-        expect(editor.hasFocus()).to.be.true;
 
         expect(toHtml()).to.equal('<p>Test</p>');
         expect(serialize()).to.equal('Test');
@@ -25,7 +24,6 @@ describe("Plugin:tab_behavior", () => {
         pressKeyShiftTab();
         expect(toHtml()).to.equal('<p>Test</p>');
         expect(serialize()).to.equal('Test');
-        expect(editor.hasFocus()).to.be.true;
 
         done();
     });

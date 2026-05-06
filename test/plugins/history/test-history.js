@@ -27,8 +27,10 @@ describe("Plugin:history", () => {
         setTimeout(() => {
             insertText('TEST2');
             clickMenuItem('undo');
-            expect(toHtml()).to.equal('<p>TEST1</p>');
-            done();
+            setTimeout(() => {
+                expect(toHtml()).to.equal('<p>TEST1</p>');
+                done();
+            }, 0);
         }, 500);
     });
 
@@ -40,8 +42,10 @@ describe("Plugin:history", () => {
             insertText('TEST2');
             clickMenuItem('undo');
             clickMenuItem('redo');
-            expect(toHtml()).to.equal('<p>TEST1TEST2</p>');
-            done();
+            setTimeout(() => {
+                expect(toHtml()).to.equal('<p>TEST1TEST2</p>');
+                done();
+            }, 0);
         }, 500);
     });
 });
