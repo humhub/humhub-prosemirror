@@ -79,7 +79,7 @@
   "scripts": {
     "build": "grunt rollup",
     "lint": "eslint . --ext .js --ignore-path .gitignore",
-    "test": "mocha-headless-chrome -f http://localhost:8090 -a no-sandbox -a disable-setuid-sandbox -a disable-backgrounding-occluded-windows -a disable-renderer-backgrounding -a disable-background-timer-throttling -a disable-features=CalculateNativeWinOcclusion",
+    "test": "mocha-headless-chrome -f http://localhost:8090 -a no-sandbox",
     "test-server": "moduleserve test --port 8090"
   },
   "type": "commonjs"
