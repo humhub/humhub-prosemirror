@@ -47,134 +47,161 @@ describe("Menu:accessibility", () => {
 
     const focusMenuItem = function (id) {
         id = id || 'type'; // first element
-        $('.ProseMirror-menu-' + id).trigger('focus');
+        const element = $('.ProseMirror-menu-' + id)[0];
+        if (element && element.focus) {
+            element.focus();
+        } else {
+            $('.ProseMirror-menu-' + id).trigger('focus');
+        }
     };
 
     it("test keyboard right arrow navigation", (done) => {
         initEditor();
         focusMenuItem();
-        expectFocus('type');
-        navigate(DIR_RIGHT, 'markStrong');
-        navigate(DIR_RIGHT, 'markEm');
-        navigate(DIR_RIGHT, 'markStrikethrough');
-        navigate(DIR_RIGHT, 'markCode');
-        navigate(DIR_RIGHT, 'linkItem');
-        navigate(DIR_RIGHT, 'insertEmoji');
-        navigate(DIR_RIGHT, 'insert-dropdown');
-        navigate(DIR_RIGHT, 'resizeNav');
-        done();
+        wait(() => {
+            expectFocus('type');
+            navigate(DIR_RIGHT, 'markStrong');
+            navigate(DIR_RIGHT, 'markEm');
+            navigate(DIR_RIGHT, 'markStrikethrough');
+            navigate(DIR_RIGHT, 'markCode');
+            navigate(DIR_RIGHT, 'linkItem');
+            navigate(DIR_RIGHT, 'insertEmoji');
+            navigate(DIR_RIGHT, 'insert-dropdown');
+            navigate(DIR_RIGHT, 'resizeNav');
+            done();
+        });
     });
 
     it("test keyboard left navigation", (done) => {
         initEditor();
         focusMenuItem('resizeNav');
-        expectFocus('resizeNav');
-        navigate(DIR_LEFT, 'insert-dropdown');
-        navigate(DIR_LEFT, 'insertEmoji');
-        navigate(DIR_LEFT, 'linkItem');
-        navigate(DIR_LEFT, 'markCode');
-        navigate(DIR_LEFT, 'markStrikethrough');
-        navigate(DIR_LEFT, 'markEm');
-        navigate(DIR_LEFT, 'markStrong');
-        navigate(DIR_LEFT, 'type');
-        done();
+        wait(() => {
+            expectFocus('resizeNav');
+            navigate(DIR_LEFT, 'insert-dropdown');
+            navigate(DIR_LEFT, 'insertEmoji');
+            navigate(DIR_LEFT, 'linkItem');
+            navigate(DIR_LEFT, 'markCode');
+            navigate(DIR_LEFT, 'markStrikethrough');
+            navigate(DIR_LEFT, 'markEm');
+            navigate(DIR_LEFT, 'markStrong');
+            navigate(DIR_LEFT, 'type');
+            done();
+        });
     });
 
     it("test open dropdown on ArrowDown", (done) => {
         initEditor();
         expect($('.ProseMirror-menu-dropdown-menu').is(':visible')).to.be.false;
         focusMenuItem();
-        expectFocus('type');
-        navigate(DIR_DOWN);
-        expect($('.ProseMirror-menu-dropdown-menu').is(':visible')).to.be.true;
-        done();
+        wait(() => {
+            expectFocus('type');
+            navigate(DIR_DOWN);
+            wait(() => {
+                expect($('.ProseMirror-menu-dropdown-menu').is(':visible')).to.be.true;
+                done();
+            });
+        });
     });
 
     it("test close dropdown on escape", (done) => {
         initEditor();
         expect($('.ProseMirror-menu-dropdown-menu').is(':visible')).to.be.false;
         focusMenuItem();
-        expectFocus('type');
-        navigate(DIR_DOWN);
-        pressEscape();
-        expect($('.ProseMirror-menu-dropdown-menu').is(':visible')).to.be.false;
-        done();
+        wait(() => {
+            expectFocus('type');
+            navigate(DIR_DOWN);
+            pressEscape();
+            wait(() => {
+                expect($('.ProseMirror-menu-dropdown-menu').is(':visible')).to.be.false;
+                done();
+            });
+        });
     });
 
     it("test open dropdown on enter", (done) => {
         initEditor();
         expect($('.ProseMirror-menu-dropdown-menu').is(':visible')).to.be.false;
         focusMenuItem();
-        expectFocus('type');
-        pressEnter();
-        expect($('.ProseMirror-menu-dropdown-menu').is(':visible')).to.be.true;
-        done();
+        wait(() => {
+            expectFocus('type');
+            pressEnter();
+            wait(() => {
+                expect($('.ProseMirror-menu-dropdown-menu').is(':visible')).to.be.true;
+                done();
+            });
+        });
     });
 
     it("test close dropdown on enter", (done) => {
         initEditor();
         expect($('.ProseMirror-menu-dropdown-menu').is(':visible')).to.be.false;
         focusMenuItem();
-        expectFocus('type');
-        pressEnter();
-        pressEnter();
-        expect($('.ProseMirror-menu-dropdown-menu').is(':visible')).to.be.false;
-        done();
+        wait(() => {
+            expectFocus('type');
+            pressEnter();
+            pressEnter();
+            wait(() => {
+                expect($('.ProseMirror-menu-dropdown-menu').is(':visible')).to.be.false;
+                done();
+            });
+        });
     });
 
     it("test navigate dropdown on ArrowDown", (done) => {
         initEditor();
         expect($('.ProseMirror-menu-dropdown-menu').is(':visible')).to.be.false;
         focusMenuItem();
-        expectFocus('type');
-        pressEnter();
-        navigate(DIR_DOWN, 'makeParagraph');
-        navigate(DIR_DOWN, 'makeHeading1');
-        navigate(DIR_DOWN, 'makeHeading2');
-        navigate(DIR_DOWN, 'makeHeading3');
-        navigate(DIR_DOWN, 'makeHeading4');
-        // navigate(DIR_DOWN, 'makeHeading5');
-        // navigate(DIR_DOWN, 'makeHeading6');
-        navigate(DIR_DOWN, 'makeCodeBlock');
-        navigate(DIR_DOWN, 'makeParagraph');
-        done();
+        wait(() => {
+            expectFocus('type');
+            pressEnter();
+            navigate(DIR_DOWN, 'makeParagraph');
+            navigate(DIR_DOWN, 'makeHeading1');
+            navigate(DIR_DOWN, 'makeHeading2');
+            navigate(DIR_DOWN, 'makeHeading3');
+            navigate(DIR_DOWN, 'makeHeading4');
+            navigate(DIR_DOWN, 'makeCodeBlock');
+            navigate(DIR_DOWN, 'makeParagraph');
+            done();
+        });
     });
 
     it("test navigate dropdown on ArrowUp", (done) => {
         initEditor();
         expect($('.ProseMirror-menu-dropdown-menu').is(':visible')).to.be.false;
         focusMenuItem();
-        expectFocus('type');
-        pressEnter();
-        navigate(DIR_DOWN, 'makeParagraph');
-        navigate(DIR_UP, 'makeCodeBlock');
-        // navigate(DIR_UP, 'makeHeading6');
-        // navigate(DIR_UP, 'makeHeading5');
-        navigate(DIR_UP, 'makeHeading4');
-        navigate(DIR_UP, 'makeHeading3');
-        navigate(DIR_UP, 'makeHeading2');
-        navigate(DIR_UP, 'makeHeading1');
-        navigate(DIR_UP, 'makeParagraph');
-        done();
+        wait(() => {
+            expectFocus('type');
+            pressEnter();
+            navigate(DIR_DOWN, 'makeParagraph');
+            navigate(DIR_UP, 'makeCodeBlock');
+            navigate(DIR_UP, 'makeHeading4');
+            navigate(DIR_UP, 'makeHeading3');
+            navigate(DIR_UP, 'makeHeading2');
+            navigate(DIR_UP, 'makeHeading1');
+            navigate(DIR_UP, 'makeParagraph');
+            done();
+        });
     });
 
     it("test enter sub menu on Enter", (done) => {
         initEditor();
         expect($('.ProseMirror-menu-dropdown-menu').is(':visible')).to.be.false;
         focusMenuItem();
-        expectFocus('type');
-        pressEnter();
-        navigate(DIR_DOWN, 'makeParagraph');
-        navigate(DIR_DOWN, 'makeHeading1');
-        navigate(DIR_DOWN, 'makeHeading2');
-        navigate(DIR_DOWN, 'makeHeading3');
-        navigate(DIR_DOWN, 'makeHeading4');
-        // navigate(DIR_DOWN, 'makeHeading5');
-        // navigate(DIR_DOWN, 'makeHeading6');
-        navigate(DIR_DOWN, 'makeCodeBlock');
-        pressEnter();
-        expect(toHtml('#stage .ProseMirror .cm-editor .cm-content')).to.equal('<div class="cm-line"><br></div>');
-        done();
+        wait(() => {
+            expectFocus('type');
+            pressEnter();
+            navigate(DIR_DOWN, 'makeParagraph');
+            navigate(DIR_DOWN, 'makeHeading1');
+            navigate(DIR_DOWN, 'makeHeading2');
+            navigate(DIR_DOWN, 'makeHeading3');
+            navigate(DIR_DOWN, 'makeHeading4');
+            navigate(DIR_DOWN, 'makeCodeBlock');
+            pressEnter();
+            wait(() => {
+                expect(toHtml('#stage .ProseMirror .cm-editor .cm-content')).to.equal('<div class="cm-line"><br></div>');
+                done();
+            });
+        });
     });
 
     // No more sub menu
@@ -258,3 +285,6 @@ describe("Menu:accessibility", () => {
         done();
     });*/
 });
+    const wait = function (callback, delay) {
+        setTimeout(callback, delay || 0);
+    };

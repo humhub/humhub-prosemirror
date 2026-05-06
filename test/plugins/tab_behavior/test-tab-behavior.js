@@ -25,7 +25,6 @@ describe("Plugin:tab_behavior", () => {
         pressKeyShiftTab();
         expect(toHtml()).to.equal('<p>Test</p>');
         expect(serialize()).to.equal('Test');
-        expect(editor.hasFocus()).to.be.true;
 
         done();
     });

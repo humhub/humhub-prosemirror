@@ -58,11 +58,15 @@ describe("Plugin:source", () => {
         const editor = initEditor('Test source mode');
         clickMenuItem('resizeNav');
         clickMenuItem('source');
-        expect(editor.hasFocus()).to.be.true;
-        expect(editor.context.$source.is(':focus')).to.be.true;
-        clickMenuItem('source');
-        expect($(editor.view.dom).is(':focus')).to.be.true;
-        expect(editor.hasFocus()).to.be.true;
-        done();
+        setTimeout(() => {
+            expect(editor.hasFocus()).to.be.true;
+            expect(editor.context.$source.is(':focus')).to.be.true;
+            clickMenuItem('source');
+            setTimeout(() => {
+                expect($(editor.view.dom).is(':focus')).to.be.true;
+                expect(editor.hasFocus()).to.be.true;
+                done();
+            }, 0);
+        }, 0);
     });
 });
