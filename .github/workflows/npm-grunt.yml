@@ -31,4 +31,5 @@ jobs:
       - name: Run test server and tests
         run: |
           npm run test-server &
+          npx wait-on http://localhost:8090
           npm run test
