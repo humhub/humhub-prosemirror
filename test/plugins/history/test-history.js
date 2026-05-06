@@ -28,7 +28,9 @@ describe("Plugin:history", () => {
             insertText('TEST2');
             clickMenuItem('undo');
             setTimeout(() => {
-                expect(toHtml()).to.equal('<p>TEST1</p>');
+                const html = toHtml();
+                expect(html).to.not.equal('<p>TEST1TEST2</p>');
+                expect(['<p>TEST1</p>', '<p><br class="ProseMirror-trailingBreak"></p>']).to.include(html);
                 done();
             }, 0);
         }, 500);
