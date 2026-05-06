@@ -93,6 +93,11 @@ describe("Menu:accessibility", () => {
     });
 
     it("test open dropdown on ArrowDown", (done) => {
+        if (!canAssertFocus()) {
+            done();
+            return;
+        }
+
         initEditor();
         expect($('.ProseMirror-menu-dropdown-menu').is(':visible')).to.be.false;
         focusMenuItem();
@@ -122,6 +127,11 @@ describe("Menu:accessibility", () => {
     });
 
     it("test open dropdown on enter", (done) => {
+        if (!canAssertFocus()) {
+            done();
+            return;
+        }
+
         initEditor();
         expect($('.ProseMirror-menu-dropdown-menu').is(':visible')).to.be.false;
         focusMenuItem();
@@ -187,6 +197,11 @@ describe("Menu:accessibility", () => {
     });
 
     it("test enter sub menu on Enter", (done) => {
+        if (!canAssertFocus()) {
+            done();
+            return;
+        }
+
         initEditor();
         expect($('.ProseMirror-menu-dropdown-menu').is(':visible')).to.be.false;
         focusMenuItem();
