@@ -10,6 +10,25 @@ import {getBooleanAttrsFromTokenFlags} from "../../../markdown/mediaOptions";
 import {FLOAT_NONE, getAltExtensionByFloat, getClassForFloat} from "../image/imageFloat";
 
 const BOOLEAN_VIDEO_ATTRS = ['controls', 'autoplay', 'muted', 'loop'];
+const FILE_GUID_PREFIX = 'file-guid:';
+
+const normalizeFileUrl = (raw, source) => {
+    if (raw && typeof raw === 'object') {
+        return raw;
+    }
+
+    if (typeof source === 'string' && source.indexOf(FILE_GUID_PREFIX) === 0) {
+        return {
+            url: source,
+            guid: source.substring(FILE_GUID_PREFIX.length)
+        };
+    }
+
+    return {
+        url: source,
+        guid: null
+    };
+};
 
 const buildVideoDomAttrs = (attrs) => {
     const domAttrs = {
@@ -72,10 +91,13 @@ const schema = {
                 video: {
                     node: "video",
                     getAttrs: (tok) => {
-                        let {url, guid} = filterFileUrl(tok.attrGet("src"));
+                        const src = tok.attrGet("src");
+                        let {url, guid} = normalizeFileUrl(filterFileUrl(src), src);
 
                         if (!validateHref(url, {relative: true})) {
-                            url = '#';
+                            if (!guid) {
+                                url = '#';
+                            }
                         }
 
                         return Object.assign({

@@ -11,6 +11,26 @@ import {validateHref} from "../../util/linkUtil";
 import {parseMediaOptionFlags} from "../../../markdown/mediaOptions";
 import {getClassForFloat} from "../image/imageFloat";
 
+const FILE_GUID_PREFIX = 'file-guid:';
+
+const normalizeFileUrl = (raw, source) => {
+    if (raw && typeof raw === 'object') {
+        return raw;
+    }
+
+    if (typeof source === 'string' && source.indexOf(FILE_GUID_PREFIX) === 0) {
+        return {
+            url: source,
+            guid: source.substring(FILE_GUID_PREFIX.length)
+        };
+    }
+
+    return {
+        url: source,
+        guid: null
+    };
+};
+
 const hasFlag = (token, attr) => {
     if (token.attrGet(attr)) {
         return true;
@@ -52,7 +72,8 @@ const video = {
             const title = token.attrGet('title') || token.attrGet('alt');
 
             if (srcIndex >= 0) {
-                let srcFilter = filterFileUrl(token.attrs[srcIndex][1]);
+                const source = token.attrs[srcIndex][1];
+                let srcFilter = normalizeFileUrl(filterFileUrl(source), source);
                 token.attrs[srcIndex][1] = validateHref(srcFilter.url) ? srcFilter.url : '#';
 
                 if (srcFilter.guid) {

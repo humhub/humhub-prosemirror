@@ -155167,6 +155167,25 @@ var getBooleanAttrsFromTokenFlags = function (token, booleanAttrs) {
 
 
 var BOOLEAN_VIDEO_ATTRS = ['controls', 'autoplay', 'muted', 'loop'];
+var FILE_GUID_PREFIX$3 = 'file-guid:';
+
+var normalizeFileUrl$3 = function (raw, source) {
+    if (raw && typeof raw === 'object') {
+        return raw;
+    }
+
+    if (typeof source === 'string' && source.indexOf(FILE_GUID_PREFIX$3) === 0) {
+        return {
+            url: source,
+            guid: source.substring(FILE_GUID_PREFIX$3.length)
+        };
+    }
+
+    return {
+        url: source,
+        guid: null
+    };
+};
 
 var buildVideoDomAttrs = function (attrs) {
     var domAttrs = {
@@ -155229,12 +155248,15 @@ var schema$c = {
                 video: {
                     node: "video",
                     getAttrs: function (tok) {
-                        var ref = filterFileUrl(tok.attrGet("src"));
+                        var src = tok.attrGet("src");
+                        var ref = normalizeFileUrl$3(filterFileUrl(src), src);
                         var url = ref.url;
                         var guid = ref.guid;
 
                         if (!validateHref(url, {relative: true})) {
-                            url = '#';
+                            if (!guid) {
+                                url = '#';
+                            }
                         }
 
                         return Object.assign({
@@ -155490,6 +155512,26 @@ VideoView.prototype.createDom = function createDom (node) {
  */
 
 
+var FILE_GUID_PREFIX$2 = 'file-guid:';
+
+var normalizeFileUrl$2 = function (raw, source) {
+    if (raw && typeof raw === 'object') {
+        return raw;
+    }
+
+    if (typeof source === 'string' && source.indexOf(FILE_GUID_PREFIX$2) === 0) {
+        return {
+            url: source,
+            guid: source.substring(FILE_GUID_PREFIX$2.length)
+        };
+    }
+
+    return {
+        url: source,
+        guid: null
+    };
+};
+
 var hasFlag$1 = function (token, attr) {
     if (token.attrGet(attr)) {
         return true;
@@ -155531,7 +155573,8 @@ var video = {
             var title = token.attrGet('title') || token.attrGet('alt');
 
             if (srcIndex >= 0) {
-                var srcFilter = filterFileUrl(token.attrs[srcIndex][1]);
+                var source = token.attrs[srcIndex][1];
+                var srcFilter = normalizeFileUrl$2(filterFileUrl(source), source);
                 token.attrs[srcIndex][1] = validateHref(srcFilter.url) ? srcFilter.url : '#';
 
                 if (srcFilter.guid) {
@@ -155564,6 +155607,25 @@ var video = {
 
 
 var BOOLEAN_AUDIO_ATTRS = ['controls', 'autoplay', 'muted', 'loop'];
+var FILE_GUID_PREFIX$1 = 'file-guid:';
+
+var normalizeFileUrl$1 = function (raw, source) {
+    if (raw && typeof raw === 'object') {
+        return raw;
+    }
+
+    if (typeof source === 'string' && source.indexOf(FILE_GUID_PREFIX$1) === 0) {
+        return {
+            url: source,
+            guid: source.substring(FILE_GUID_PREFIX$1.length)
+        };
+    }
+
+    return {
+        url: source,
+        guid: null
+    };
+};
 
 var buildAudioDomAttrs = function (attrs) {
     var domAttrs = {
@@ -155620,12 +155682,15 @@ var schema$b = {
                 audio: {
                     node: "audio",
                     getAttrs: function (tok) {
-                        var ref = filterFileUrl(tok.attrGet("src"));
+                        var src = tok.attrGet("src");
+                        var ref = normalizeFileUrl$1(filterFileUrl(src), src);
                         var url = ref.url;
                         var guid = ref.guid;
 
                         if (!validateHref(url, {relative: true})) {
-                            url = '#';
+                            if (!guid) {
+                                url = '#';
+                            }
                         }
 
                         return Object.assign({
@@ -155818,6 +155883,26 @@ AudioView.prototype.createDom = function createDom (node) {
  */
 
 
+var FILE_GUID_PREFIX = 'file-guid:';
+
+var normalizeFileUrl = function (raw, source) {
+    if (raw && typeof raw === 'object') {
+        return raw;
+    }
+
+    if (typeof source === 'string' && source.indexOf(FILE_GUID_PREFIX) === 0) {
+        return {
+            url: source,
+            guid: source.substring(FILE_GUID_PREFIX.length)
+        };
+    }
+
+    return {
+        url: source,
+        guid: null
+    };
+};
+
 var hasFlag = function (token, attr) {
     if (token.attrGet(attr)) {
         return true;
@@ -155859,7 +155944,8 @@ var audio = {
             var title = token.attrGet('title') || token.attrGet('alt');
 
             if (srcIndex >= 0) {
-                var srcFilter = filterFileUrl(token.attrs[srcIndex][1]);
+                var source = token.attrs[srcIndex][1];
+                var srcFilter = normalizeFileUrl(filterFileUrl(source), source);
                 token.attrs[srcIndex][1] = validateHref(srcFilter.url) ? srcFilter.url : '#';
 
                 if (srcFilter.guid) {
