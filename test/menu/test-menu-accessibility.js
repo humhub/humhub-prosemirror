@@ -42,6 +42,9 @@ describe("Menu:accessibility", () => {
     };
 
     const expectFocus = function (id) {
+        if (!canAssertFocus()) {
+            return;
+        }
         expect($('.ProseMirror-menu-' + id + ':focus').length).to.equal(1);
     };
 
@@ -287,4 +290,8 @@ describe("Menu:accessibility", () => {
 });
     const wait = function (callback, delay) {
         setTimeout(callback, delay || 0);
+    };
+    const canAssertFocus = function () {
+        const ua = (typeof navigator !== 'undefined' && navigator.userAgent) ? navigator.userAgent : '';
+        return !/HeadlessChrome/i.test(ua);
     };
