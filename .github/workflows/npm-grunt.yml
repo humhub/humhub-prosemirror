@@ -21,14 +21,18 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: |
+          npm install
+          npm install -g wait-on 
 
       - name: Build
-        run: |
-          npm install -g phantomjs-prebuilt
-          npm install
-          grunt
+        run: grunt
 
       - name: Run test server and tests
         run: |
-          npm run test-server &
+          npm run test-server & 
+          wait-on http://localhost:8090 --timeout 30000
           npm run test
