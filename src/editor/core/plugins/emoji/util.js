@@ -13,6 +13,10 @@ import emojiData from "unicode-emoji-json";
 import groupedEmojiData from "unicode-emoji-json/data-by-group";
 import {getEmojiConfig} from "../../humhub-bridge";
 
+// Fix shortcut ":)" from 😃 to 🙂
+emoji_shortcuts.slightly_smiling_face = emoji_shortcuts.smiley;
+delete emoji_shortcuts.smiley;
+
 const emoji_defs = {};
 const emoji_markdown_it_defs = {};
 const emoji_defs_by_char = (function() {

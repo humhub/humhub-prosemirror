@@ -140477,6 +140477,10 @@ var groupedEmojiData = {
  * @license https://www.humhub.com/licences
  */
 
+
+// Fix shortcut ":)" from 😃 to 🙂
+emoji_shortcuts.slightly_smiling_face = emoji_shortcuts.smiley;
+delete emoji_shortcuts.smiley;
 var emoji_markdown_it_defs = {};
 var emoji_defs_by_char = (function() {
     var result = {};

@@ -1,6 +1,10 @@
 Changelog
 =========
 
+2.3.5
+------------------
+- Enh #183: Fix rendering of shortcut ":)" from 😃 to 🙂
+
 2.3.4
 ------------------
 - Enh #179: Support video and audio tags
