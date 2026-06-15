@@ -46,7 +46,7 @@
     "mocha": "^10.2.0",
     "mocha-headless-chrome": "^5.1.0",
     "moduleserve": "^0.9.1",
-    "nyc": "^15.1.0",
+    "nyc": "^18.0.0",
     "prosemirror-commands": "^1.5.2",
     "prosemirror-dropcursor": "^1.8.1",
     "prosemirror-example-setup": "^1.2.2",
