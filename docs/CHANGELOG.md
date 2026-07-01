@@ -4,6 +4,7 @@ Changelog
 2.3.5
 ------------------
 - Enh #183: Fix rendering of shortcut ":)" from 😃 to 🙂
+- Fix #186: Fix rendering italic inside a word
 
 2.3.4
 ------------------

@@ -24,6 +24,8 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
+        env:
+          PUPPETEER_SKIP_DOWNLOAD: 'true'
         run: |
           npm install
           npm install -g wait-on 
@@ -32,6 +34,8 @@ jobs:
         run: grunt
 
       - name: Run test server and tests
+        env:
+          PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome-stable
         run: |
           npm run test-server & 
           wait-on http://localhost:8090 --timeout 30000

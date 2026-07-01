@@ -31,7 +31,7 @@ describe("Plugin:source", () => {
         clickMenuItem('source');
         selectSource(5, 11);
         clickMenuItem('markEm')
-        expect(serialize()).to.equal('Test _source_ mode')
+        expect(serialize()).to.equal('Test *source* mode')
         clickMenuItem('source');
         expect(toHtml()).to.equal('<p>Test <em>source</em> mode</p>')
         done();
