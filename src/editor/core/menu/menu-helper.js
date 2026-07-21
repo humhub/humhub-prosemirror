@@ -25,11 +25,15 @@ export function addClassId(dom, options) {
 }
 
 export function initMenuItemTrigger(view, options) {
-    let trigger = options.icon
-        ? getIcon(options.icon, options.htmlNode)
-        : options.label
-            ? crelt(options.htmlNode, {}, translate(view, options.label))
-            : null;
+    let trigger = null;
+    if (options.icon) {
+        trigger = getIcon(options.icon, options.htmlNode)
+    } else if (options.label) {
+        trigger = document.createElement(options.htmlNode);
+        trigger.innerHTML = translate(view, options.label).replace('</i>', '</i> ');
+    } else {
+        return null;
+    }
 
     trigger.classList.add(buildMenuClass('trigger'));
 

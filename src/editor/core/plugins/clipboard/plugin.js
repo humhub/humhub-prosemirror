@@ -2,32 +2,31 @@
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2017 HumHub GmbH & Co. KG
  * @license https://www.humhub.com/licences
- *
  */
 
-import { Plugin } from 'prosemirror-state';
-import { Node, Slice } from 'prosemirror-model'
-import { getParser } from "../../../markdown/parser"
-import {triggerUpload} from "../upload/service"
-import {$node} from "../../util/node"
+import {Plugin} from 'prosemirror-state';
+import {Node, Slice} from 'prosemirror-model';
+import {getParser} from "../../../markdown";
+import {triggerUpload} from "../upload/service";
+import {$node} from "../../util/node";
 
 const clipboardPlugin = (context) => {
-
     let parser = getParser(context);
+
     return new Plugin({
         props: {
             clipboardTextParser: $.proxy(parser.parse, parser),
             transformPasted: (slice) => {
-                if(slice && slice instanceof Node && slice.type == context.schema.nodes.doc) {
+                if (slice && slice instanceof Node && slice.type === context.schema.nodes.doc) {
                     return new Slice(slice.content, 0, 0)
                 } else {
                     try {
                         let selectionMarks = getSelectionMarks(context);
 
-                        if(selectionMarks && selectionMarks.length) {
+                        if (selectionMarks && selectionMarks.length) {
                             applyMarksToRawText(slice, selectionMarks)
                         }
-                    } catch(e) {
+                    } catch (e) {
                         console.warn(e);
                     }
                 }
@@ -36,7 +35,7 @@ const clipboardPlugin = (context) => {
             },
             handleDOMEvents: {
                 paste: (view, e) => {
-                    if(e.clipboardData.files && e.clipboardData.files.length) {
+                    if (e.clipboardData.files && e.clipboardData.files.length) {
                         triggerUpload(view.state, view, context, e.clipboardData.files);
                         e.preventDefault();
                     }
@@ -47,7 +46,7 @@ const clipboardPlugin = (context) => {
 };
 
 function getSelectionMarks(context) {
-    if(context.editor.view.state.storedMarks && context.editor.view.state.storedMarks.length) {
+    if (context.editor.view.state.storedMarks && context.editor.view.state.storedMarks.length) {
         return context.editor.view.state.storedMarks
     }
 
@@ -56,23 +55,21 @@ function getSelectionMarks(context) {
     return nodeBefore ? nodeBefore.marks : null;
 }
 
-function applyMarksToRawText(slice, marks)
-{
+function applyMarksToRawText(slice, marks) {
     let fragment = slice.content;
     let firstChild = fragment.firstChild;
 
-    if(!firstChild) {
+    if (!firstChild) {
         return;
-
     }
 
     let texts = $node(firstChild).find('text');
-    if(texts.flat.length) {
+    if (texts.flat.length) {
         let firstText = texts.flat[0];
-        if(firstText.isPlain()) {
+        if (firstText.isPlain()) {
             firstText.addMarks(marks);
         }
     }
 }
 
-export {clipboardPlugin}
+export {clipboardPlugin};

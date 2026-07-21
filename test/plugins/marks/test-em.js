@@ -5,14 +5,28 @@ describe("Plugin:em", () => {
     it("test init emphasized text", (done) => {
         initEditor('_This is emphasized_');
         expect(toHtml()).to.equal('<p><em>This is emphasized</em></p>');
-        expect(serialize()).to.equal('_This is emphasized_');
+        expect(serialize()).to.equal('*This is emphasized*');
         done();
     });
 
     it("test init emphasized text with asterisk", (done) => {
         initEditor('*This is emphasized*');
         expect(toHtml()).to.equal('<p><em>This is emphasized</em></p>');
-        expect(serialize()).to.equal('_This is emphasized_');
+        expect(serialize()).to.equal('*This is emphasized*');
+        done();
+    });
+
+    it("test init emphasized text inside a word", (done) => {
+        initEditor('This is em_phas_ized');
+        expect(toHtml()).to.equal('<p>This is em_phas_ized</p>');
+        expect(serialize()).to.equal('This is em_phas_ized');
+        done();
+    });
+
+    it("test init emphasized text with asterisk inside a word", (done) => {
+        initEditor('This is em*phas*ized');
+        expect(toHtml()).to.equal('<p>This is em<em>phas</em>ized</p>');
+        expect(serialize()).to.equal('This is em*phas*ized');
         done();
     });
 

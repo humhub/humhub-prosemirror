@@ -2,16 +2,18 @@
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2018 HumHub GmbH & Co. KG
  * @license https://www.humhub.com/licences
- *
  */
 
-// We don't use the official repo https://github.com/valeriangalliat/markdown-it-anchor/issues/39
-import markdown_it_anchor_plugin from "markdown-it-anchor"
+import anchor_plugin from "markdown-it-anchor";
+import {showSuccessNotify} from "../../humhub-bridge";
 
-const position = {
-    false: 'push',
-    true: 'unshift'
-};
+const copyHrefToClipboard = (target, context) => {
+    const href = target.href || target.parentElement.href;
+    if (href) {
+        const successMsg = context.translate('Link has been copied to clipboard');
+        navigator.clipboard.writeText(href).then(r => showSuccessNotify(successMsg));
+    }
+}
 
 const anchors = {
     id: 'anchor',
@@ -19,41 +21,25 @@ const anchors = {
     init: (context, isEdit) => {
         if (!isEdit) {
             context.editor.$.on('mouseenter', ':header', function () {
-                $(this).find('.header-anchor').show();
+                $(this).find('.header-anchor').show().on('click', (e) => copyHrefToClipboard(e.target, context));
             }).on('mouseleave', ':header', function () {
-                $(this).find('.header-anchor').hide();
+                $(this).find('.header-anchor').hide().off('click');
             });
         }
     },
     registerMarkdownIt: (markdownIt) => {
-        let anchorOptions = {permalink: true};
-        anchorOptions.renderPermalink = (slug, opts, state, idx) => {
-            const space = () => Object.assign(new state.Token('text', '', 0), {content: ' '});
-
-            const linkTokens = [
-                Object.assign(new state.Token('link_open', 'a', 1), {
-                    anchor: true,
-                    attrs: [
-                        ['class', opts.permalinkClass],
-                        ['href', opts.permalinkHref(slug, state)],
-                        ['style', 'display:none'],
-                        ['target', '_self'],
-                        ['aria-hidden', 'true']
-                    ]
-                }),
-                Object.assign(new state.Token('text', '', 0), {content: opts.permalinkSymbol}),
-                new state.Token('link_close', 'a', -1)
-            ];
-
-            // `push` or `unshift` according to position option.
-            // Space is at the opposite side.
-            let tokens = linkTokens[position[!opts.permalinkBefore]](space());
-            state.tokens[idx + 1].children[position[opts.permalinkBefore]](Object.assign({}, linkTokens))
+        const anchorOptions = {
+            permalink: anchor_plugin.permalink.linkInsideHeader({
+                symbol: '<i class="fa fa-chain"></i>',
+                placement: 'after',
+                ariaHidden: true,
+                renderAttrs: (slug, state) => {
+                    return {'style': 'display:none'};
+                }
+            })
         };
 
-        if (anchorOptions) {
-            markdownIt.use(markdown_it_anchor_plugin, anchorOptions);
-        }
+        markdownIt.use(anchor_plugin, anchorOptions);
     }
 };
 

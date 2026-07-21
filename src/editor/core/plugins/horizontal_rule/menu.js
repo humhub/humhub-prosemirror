@@ -4,13 +4,13 @@
  * @license https://www.humhub.com/licences
  *
  */
-import {MenuItem, canInsert} from "../../menu/"
+import {MenuItem, canInsert, icons} from "../../menu/"
 
 function insertHorizontalRule(context) {
     let hr = context.schema.nodes.horizontal_rule;
     return new MenuItem({
         title: context.translate("Insert horizontal rule"),
-        label: context.translate("Horizontal rule"),
+        icon: icons.horizontalRule,
         sortOrder: 200,
         enable(state) {
             return canInsert(state, hr)
@@ -26,7 +26,7 @@ export function menu(context) {
         {
             id: 'insertHorizontalRule',
             node: 'horizontal_rule',
-            group: 'insert',
+            // group: 'insert',
             item: insertHorizontalRule(context)
         }
     ]

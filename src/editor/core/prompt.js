@@ -65,7 +65,7 @@ class Promt {
 
         this.$buttons.append(document.createTextNode(' '));
 
-        $('<button type="button" class="btn btn-default">').addClass(prefix + "-cancel")
+        $('<button type="button" class="btn btn-secondary">').addClass(prefix + "-cancel")
             .text('Cancel').appendTo(this.$buttons)
             .on('click', () => this.close());
 
@@ -223,5 +223,29 @@ export class SelectField extends Field {
             opt.label = o.label;
         });
         return select;
+    }
+}
+
+// ::- A field class for checkbox fields.
+export class CheckboxField extends Field {
+    render() {
+        let input = document.createElement("input");
+        input.type = "checkbox";
+        input.className = "form-check-input";
+        input.checked = !!this.options.value;
+        return input;
+    }
+
+    read(dom) {
+        if (typeof dom.checked !== "undefined") {
+            return !!dom.checked;
+        }
+
+        let input = $(dom).find('input[type="checkbox"]')[0];
+        return !!(input && input.checked);
+    }
+
+    clean(value) {
+        return !!value;
     }
 }

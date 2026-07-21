@@ -1,0 +1,28 @@
+name: npm-publish
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .npmrc file to publish to npm
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x' # Use the Node.js version your project requires
+          registry-url: 'https://registry.npmjs.org'
+
+      #- name: Install Dependencies
+      #  run: npm install
+
+      - name: Publish to NPM
+        env:
+          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Leave this as is, it's automatically generated
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }} # You need to set this in your repo settings
+        run: npm publish

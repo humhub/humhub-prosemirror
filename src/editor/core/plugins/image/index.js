@@ -15,7 +15,7 @@ import {filterFileUrl} from "../../humhub-bridge";
 const image = {
     id: 'image',
     schema: schema,
-    menu: (context) => menu(context),
+    // menu: (context) => menu(context),
     plugins: (context) => {
         return [
             imagePlugin(context)
@@ -49,6 +49,13 @@ const image = {
                 imageToken.attrPush(['class', getClassForFloat(float)]);
                 imageToken.attrs.splice(imageToken.attrIndex('float'), 1);
             }
+
+            ['media-options', 'video', 'audio', 'controls', 'autoplay', 'muted', 'loop'].forEach((attr) => {
+                const attrIndex = imageToken.attrIndex(attr);
+                if (attrIndex >= 0) {
+                    imageToken.attrs.splice(attrIndex, 1);
+                }
+            });
 
             // pass token to default renderer.
             return defaultRender(tokens, idx, options, env, self);

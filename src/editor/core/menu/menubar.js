@@ -1,7 +1,7 @@
 import crelt from "crelt";
 import {Plugin} from "prosemirror-state";
 
-import {MenuItemGroup, MenuItem, icons, liftItem} from "./menu";
+import {icons, liftItem, MenuItem, MenuItemGroup} from "./menu";
 import {buildMenuClass} from "./menu-helper";
 
 const prefix = "ProseMirror-menubar";
@@ -26,7 +26,7 @@ function buildMenuItems(context) {
             sortOrder: 400,
             title: context.translate("Insert"),
             seperator: true,
-            icon: icons.image,
+            icon: icons.upload,
             items: []
         },
         helper: {
@@ -290,12 +290,17 @@ class MenuBarView {
 
         // Focus and blur editor handler
         if ($editor.is('.focusMenu')) {
-            this.$.addClass('hidden');
+            this.$.addClass('d-none');
 
             $editor.off('focus', '.ProseMirror, textarea').off('blur', '.ProseMirror, textarea')
                 .on('focus', '.ProseMirror, textarea', (event) => {
-                    if (this.$.hasClass('hidden')) {
-                        this.$.removeClass('hidden');
+                    if (this.$.data('isHiding')) {
+                        this.$.data('isHiding', false)
+                            .addClass('d-none')
+                            .stop(true, false);
+                    }
+                    if (this.$.hasClass('d-none')) {
+                        this.$.removeClass('d-none');
                         const that = this;
 
                         $editor.on('keyup', (e) => {
@@ -315,7 +320,10 @@ class MenuBarView {
 
                     if (!$editor.is('.fullscreen') && !targetHasMenuBtn && !$(e.target).hasClass('cm-editor')) {
                         lastFocusedElement = null;
-                        this.$.addClass('hidden');
+                        const that = this.$;
+                        that.data('isHiding', true)
+                            // Don't apply the d-none immediately to allow clicking on links which might move after hiding the toolbar
+                            .hide(100, function(){that.addClass('d-none')});
                     }
                 });
         }

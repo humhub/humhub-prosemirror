@@ -55,7 +55,7 @@ describe("MarkdownEditor:init", () => {
         let view = editor.transformToView();
         expect(viewToHtml(view)).equal('<h2>Initial content</h2>');
         editor = view.transformToEditor();
-        expect(toHtml(editor)).to.equal('<h2>Initial content</h2>');
+        expect(toHtml()).to.equal('<h2>Initial content</h2>');
         done();
     });
 });

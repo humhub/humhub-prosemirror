@@ -1,5 +1,6 @@
-import { Plugin } from 'prosemirror-state'
-import { Slice, Fragment } from "prosemirror-model"
+import {Plugin} from 'prosemirror-state';
+import {Slice, Fragment} from "prosemirror-model";
+
 import {editNode} from './menu';
 import {buildLink} from "../../util/linkUtil";
 
@@ -20,9 +21,7 @@ class LinkView {
     constructor(mark, context) {
         // The editor will use this as the node's DOM representation
         this.createDom(mark);
-        this.dom.addEventListener("click", e => {
-            editNode(this.dom, context);
-        });
+        this.dom.addEventListener("click", (e) => editNode(this.dom, context));
     }
 
     createDom(mark) {
@@ -35,18 +34,17 @@ class LinkView {
     stopEvent() { return true }
 }
 
-let clean = (val) => {
+const clean = (val) => {
     return (val) ? val.replace(/(["'])/g, '') : val;
 };
 
 // eslint-disable-next-line
 const HTTP_LINK_REGEX = /((https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,})|[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})/ig;
 
-
-let linkify = function(fragment, context) {
+const linkify = function(fragment, context) {
     let linkified = [];
     let urls = [];
-    fragment.forEach(function(child){
+    fragment.forEach((child) => {
         if (child.isText) {
             const text = child.text;
             let pos = 0, match;
@@ -58,7 +56,7 @@ let linkify = function(fragment, context) {
 
                 // simply copy across the text from before the match
                 if (start > 0) {
-                    linkified.push(child.cut(pos, start))
+                    linkified.push(child.cut(pos, start));
                 }
 
                 let urlText = text.slice(start, end);
@@ -71,22 +69,22 @@ let linkify = function(fragment, context) {
                 linkified.push(
                     child.cut(start, end).mark(link.create({href: urlText}).addToSet(child.marks))
                 );
-                pos = end
+                pos = end;
             }
 
             // copy over whatever is left
             if (pos < text.length) {
-                linkified.push(child.cut(pos))
+                linkified.push(child.cut(pos));
             }
         } else {
-            linkified.push(child.copy(linkify(child.content, context)))
+            linkified.push(child.copy(linkify(child.content, context)));
         }
     });
 
     if (urls.length) {
         context.event.trigger('linkified', [urls, linkified]);
     }
-    return Fragment.fromArray(linkified)
+    return Fragment.fromArray(linkified);
 };
 
-export {linkPlugin}
+export {linkPlugin};

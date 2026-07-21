@@ -48,9 +48,9 @@ let findUserFlag = () => {
             return getCharByName(directMapping[language]);
         }
 
-        $.each(getByCategory('flags'), (index, flag) => {
+        $.each(getByCategory('Flags'), (index, flag) => {
             if (flag && flag.keywords && flag.keywords.indexOf(language) >= 0) {
-                result = flag.char;
+                result = flag.emoji;
                 return false;
             }
         });
@@ -67,17 +67,29 @@ let chooser = undefined;
 class EmojiChooser {
     constructor(provider) {
         this.provider = provider;
-        this.categoryOrder = ['people', 'animals_and_nature', 'food_and_drink', 'activity', 'travel_and_places', 'objects', 'symbols', 'flags', 'search'];
+        this.categoryOrder = [
+            'Smileys & Emotion',
+            'People & Body',
+            'Animals & Nature',
+            'Food & Drink',
+            'Travel & Places',
+            'Activities',
+            'Objects',
+            'Symbols',
+            'Flags',
+            'Search'
+        ];
         this.categories = {
-            people: {$icon: getCharToDom('\uD83D\uDE00')},
-            animals_and_nature: {$icon: getCharToDom('\uD83D\uDC3B')},
-            food_and_drink: {$icon: getCharToDom('\uD83C\uDF82')},
-            activity: {$icon: getCharToDom('\u26BD')},
-            travel_and_places: {$icon: getCharToDom('\u2708\uFE0F')},
-            objects: {$icon: getCharToDom('\uD83D\uDDA5')},
-            symbols: {$icon: getCharToDom('\u2764\uFE0F')},
-            flags: {$icon: getCharToDom(findUserFlag())},
-            search: {$icon: getCharToDom('\uD83D\uDD0D')}
+            'Smileys & Emotion': {$icon: getCharToDom('\uD83D\uDE00')},
+            'People & Body': {$icon: getCharToDom('\uD83D\uDC4D')},
+            'Animals & Nature': {$icon: getCharToDom('\uD83D\uDC3B')},
+            'Food & Drink': {$icon: getCharToDom('\uD83C\uDF82')},
+            'Travel & Places': {$icon: getCharToDom('\u26BD')},
+            'Activities': {$icon: getCharToDom('\u2708\uFE0F')},
+            'Objects': {$icon: getCharToDom('\uD83D\uDDA5')},
+            'Symbols': {$icon: getCharToDom('\u2764\uFE0F')},
+            'Flags': {$icon: getCharToDom(findUserFlag())},
+            'Search': {$icon: getCharToDom('\uD83D\uDD0D')}
         };
     }
 
@@ -163,7 +175,7 @@ class EmojiChooser {
             }
 
             let currentlyActive = that.getActiveCategoryMenuItem().attr('data-emoji-nav-item');
-            if (currentlyActive !== 'search') {
+            if (currentlyActive !== 'Search') {
                 that.lastActiveCategory = currentlyActive;
             }
 
@@ -190,16 +202,16 @@ class EmojiChooser {
             $nav.append($item);
         });
 
-        $nav.find('[data-emoji-nav-item="search"]').hide();
+        $nav.find('[data-emoji-nav-item="Search"]').hide();
     }
 
     clearSearch() {
-        this.$.find('[data-emoji-nav-item="search"]').hide();
+        this.$.find('[data-emoji-nav-item="Search"]').hide();
         this.$.find('.humhub-emoji-chooser-search').val('');
     }
 
     updateSearch(searchStr) {
-        this.$.find('[data-emoji-nav-item="search"]').show();
+        this.$.find('[data-emoji-nav-item="Search"]').show();
         let result = [];
         let length = searchStr.length;
         this.categoryOrder.forEach((categoryName, index) => {
@@ -220,8 +232,8 @@ class EmojiChooser {
             });
         });
 
-        this.openCategory('search');
-        this.setCategoryItems('search', result);
+        this.openCategory('Search');
+        this.setCategoryItems('Search', result);
     }
 
     openCategory(categoryName) {
@@ -231,7 +243,7 @@ class EmojiChooser {
             this.initCategory(categoryName);
         }
 
-        if (categoryName !== 'search') {
+        if (categoryName !== 'Search') {
             this.clearSearch();
         }
 
@@ -255,7 +267,7 @@ class EmojiChooser {
     }
 
     setCategoryItems(categoryName, items) {
-        if (!items && categoryName !== 'search') {
+        if (!items && categoryName !== 'Search') {
             items = getByCategory(categoryName);
         }
 
@@ -263,15 +275,19 @@ class EmojiChooser {
             items = [];
         }
 
-        let $list = this.categories[categoryName].$.find('.humhub-emoji-chooser-item-list').empty();
+        const $list = this.categories[categoryName].$.find('.humhub-emoji-chooser-item-list').empty();
 
         items.forEach((emojiDef) => {
-            let $li = $('<li class="atwho-emoji-entry">').append(getCharToDom(emojiDef.char, emojiDef.name));
+            const $img = getCharToDom(emojiDef.emoji, emojiDef.name);
 
-            if (categoryName === 'flags' && emojiDef.char === findUserFlag()) {
-                $list.prepend($li);
-            } else {
-                $list.append($li);
+            if ($img && $img !== '' && $img.length) {
+                const $li = $('<li class="atwho-emoji-entry">').append($img);
+
+                if (categoryName === 'Flags' && emojiDef.emoji === findUserFlag()) {
+                    $list.prepend($li);
+                } else {
+                    $list.append($li);
+                }
             }
         });
 
@@ -310,7 +326,7 @@ class EmojiChooser {
     }
 
     nextCategory() {
-        let $next = this.getActiveCategoryMenuItem().next('[data-emoji-nav-item]:not([data-emoji-nav-item="search"])');
+        let $next = this.getActiveCategoryMenuItem().next('[data-emoji-nav-item]:not([data-emoji-nav-item="Search"])');
         if (!$next.length) {
             $next = this.$.find('[data-emoji-nav-item]:first');
         }

@@ -2,19 +2,18 @@
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2018 HumHub GmbH & Co. KG
  * @license https://www.humhub.com/licences
- *
  */
 
-import {isChromeWithSelectionBug} from "../index"
+import {isChromeWithSelectionBug} from "../index";
 
 export class EmojiQueryState {
     constructor(state, options) {
         this.state = state;
         this.provider = options.provider;
         this.provider.event.on('closed', () => {
-            if(this.active) {
-                const { emojiQuery } = this.state.schema.marks;
-                this.view.dispatch(this.state.tr.removeMark(0, this.state.doc.nodeSize -2, emojiQuery));
+            if (this.active) {
+                const {emojiQuery} = this.state.schema.marks;
+                this.view.dispatch(this.state.tr.removeMark(0, this.state.doc.nodeSize - 2, emojiQuery));
             }
         }).on('focus', () => {
             this.view.focus();
@@ -29,9 +28,9 @@ export class EmojiQueryState {
     update(state, view) {
         this.view = view;
         this.state = state;
-        const { emojiQuery } = state.schema.marks;
-        const { doc, selection } = state;
-        const { $from, from, to } = selection;
+        const {emojiQuery} = state.schema.marks;
+        const {doc, selection} = state;
+        const {$from, from, to} = selection;
 
         this.active = doc.rangeHasMark(from - 1, to, emojiQuery);
 
@@ -49,14 +48,14 @@ export class EmojiQueryState {
 
         let nodeBefore = $from.nodeBefore;
 
-        if(!nodeBefore.text.length || nodeBefore.text.length > 1) {
+        if (!nodeBefore.text.length || nodeBefore.text.length > 1) {
             this.provider.reset();
             return;
         }
 
         let query = nodeBefore.text.substr(1);
 
-        if(query != this.query) {
+        if (query != this.query) {
             this.query = query;
             this.provider.query(this, $query[0]);
         }
@@ -65,14 +64,14 @@ export class EmojiQueryState {
     reset() {
         this.active = false;
         this.query = null;
-        if(this.view) {
+        if (this.view) {
             this.provider.reset();
         }
     }
 
     addEmoji(item) {
-        const { emoji } = this.state.schema.nodes;
-        const { emojiQuery } = this.state.schema.marks;
+        const {emoji} = this.state.schema.nodes;
+        const {emojiQuery} = this.state.schema.marks;
 
         const nodes = [emoji.create({
             'data-name': String(item.name),
@@ -82,10 +81,10 @@ export class EmojiQueryState {
 
 
         let tr = this.state.tr
-            .removeMark(0, this.state.doc.nodeSize -2, emojiQuery)
+            .removeMark(0, this.state.doc.nodeSize - 2, emojiQuery)
             .replaceWith(this.queryMark.start, this.queryMark.end, nodes);
 
-        if(isChromeWithSelectionBug) {
+        if (isChromeWithSelectionBug) {
             document.getSelection().empty();
         }
 
@@ -94,7 +93,7 @@ export class EmojiQueryState {
     }
 }
 
-let endsWith = function(string, suffix) {
+let endsWith = function (string, suffix) {
     return string.indexOf(suffix, string.length - suffix.length) !== -1;
 };
 
@@ -102,7 +101,7 @@ export class SimpleEmojiState {
     constructor(provider) {
         this.provider = provider;
         this.provider.event.on('focus', () => {
-            if(this.view) {
+            if (this.view) {
                 this.view.focus();
             }
         });
@@ -116,14 +115,14 @@ export class SimpleEmojiState {
     }
 
     reset() {
-        if(this.view) {
+        if (this.view) {
             this.provider.reset();
             this.view.focus();
         }
     }
 
     addEmoji(item) {
-        const { emoji } = this.state.schema.nodes;
+        const {emoji} = this.state.schema.nodes;
 
         const node = emoji.create({
             'data-name': String(item.name),

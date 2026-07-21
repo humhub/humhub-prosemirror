@@ -2,10 +2,9 @@
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2017 HumHub GmbH & Co. KG
  * @license https://www.humhub.com/licences
- *
  */
 
-import {icons, cmdItem, wrapItem} from "../../menu/menu"
+import {icons, wrapItem} from "../../menu/menu";
 
 function wrapBlockQuote(context) {
     return wrapItem(context.schema.nodes.blockquote, {
@@ -17,12 +16,10 @@ function wrapBlockQuote(context) {
 }
 
 export function menu(context) {
-    return [
-        {
-            id: 'wrapBlockQuote',
-            node: 'blockquote',
-            group: 'format',
-            item: wrapBlockQuote(context)
-        }
-    ]
+    return [{
+        id: 'wrapBlockQuote',
+        node: 'blockquote',
+        group: 'format',
+        item: wrapBlockQuote(context)
+    }];
 }

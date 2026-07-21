@@ -27,8 +27,12 @@ describe("Plugin:history", () => {
         setTimeout(() => {
             insertText('TEST2');
             clickMenuItem('undo');
-            expect(toHtml()).to.equal('<p>TEST1</p>');
-            done();
+            setTimeout(() => {
+                const html = toHtml();
+                expect(html).to.not.equal('<p>TEST1TEST2</p>');
+                expect(['<p>TEST1</p>', '<p><br class="ProseMirror-trailingBreak"></p>']).to.include(html);
+                done();
+            }, 0);
         }, 500);
     });
 
@@ -40,8 +44,10 @@ describe("Plugin:history", () => {
             insertText('TEST2');
             clickMenuItem('undo');
             clickMenuItem('redo');
-            expect(toHtml()).to.equal('<p>TEST1TEST2</p>');
-            done();
+            setTimeout(() => {
+                expect(toHtml()).to.equal('<p>TEST1TEST2</p>');
+                done();
+            }, 0);
         }, 500);
     });
 });

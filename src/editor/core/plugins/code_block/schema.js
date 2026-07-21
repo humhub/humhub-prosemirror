@@ -12,11 +12,10 @@ const code_block = {
     isolating: true,
     marks: "",
     parseDOM: [{
-        tag: "pre",
-        preserveWhitespace: true,
+        tag: "pre"
     }],
     toDOM: () => {
-        return ["pre"];
+        return ["pre", 0];
     },
     parseMarkdown: {block: "code_block"},
     toMarkdown: (state, node) => {

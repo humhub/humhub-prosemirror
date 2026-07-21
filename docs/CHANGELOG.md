@@ -1,7 +1,71 @@
 Changelog
 =========
 
-2.0.0 (Unreleased)
+2.3.5
+------------------
+- Enh #183: Fix rendering of shortcut ":)" from 😃 to 🙂
+- Fix #186: Fix rendering italic inside a word
+
+2.3.4
+------------------
+- Enh #179: Support video and audio tags
+
+2.3.3
+------------------
+- Fix #170: Fix menubar hiding on switch to markdown mode
+
+2.3.2
+------------------
+- Fix #163: Fix image description field save functionality
+- Fix #164: Fix `hard line break`
+- Fix #165: When clicking outside form, the toolbar is hidden too fast, and the links above might not be clickable because the container is moved down before
+- Enh #160: Add icon to menu item "Upload File"
+
+2.3.1
+-------------------
+- Fix #155: Fix Build workflow
+- Enh #157: Update npm packages
+
+2.3.0
+-------------------
+- Enh #149: JS Dependency Updates
+- Enh #152: Grunt JS Dependency Updates
+- Enh: Migration to Bootstrap 5
+
+2.1.5
+-----
+- Fix #147: Enable all file handlers on RichText editor toolbar
+- Fix #148: Keep focus on a list item after apply the list style
+
+2.1.3
+-----
+- Fix #146: Fix visibility of the edit image button
+
+2.1.1
+------------------
+- Fix #155: Prosemirror - Emoji Support Broken
+- Enh #16: Security Update
+
+2.1.0
+------------------
+- Fix #136: Allow relative URL for links
+- Enh #121: Use File handler
+- Fix #138: Emoji Implementation - In Twemoji there are some empty cards 
+
+2.0.4
+------------------
+- Enh #116: CodeMirror - Leave editor with Arrow/Up Down
+- Enh #115: Headline Anchor - Change Icon
+- Fix #122: Cannot copy & paste Codeblock
+- Fix #129: Build broken emojilib.git
+- Fix #130: Copied Codeblock gets in single line e.g.
+- Fix #135: Open file link in new tab
+
+2.0.2 (July 28, 2023)
+---------------------
+- Fix #113: Header anchors lost
+
+2.0.0
 -----------------------------------------
 - Enh #37: Add link mark to collapsed menu items
 - Fix: Initializing a new editor by constructor now destroys existing instances on the same node

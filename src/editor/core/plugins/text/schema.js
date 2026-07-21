@@ -1,18 +1,15 @@
-import {$node} from '../../util/node';
-
-
 /*
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2017 HumHub GmbH & Co. KG
  * @license https://www.humhub.com/licences
- *
  */
+
 const schema = {
     nodes: {
         text: {
             sortOrder: 900,
             group: "inline",
-            toDOM: function toDOM(node) {
+            toDOM: (node) => {
                 return node.text
             },
             toMarkdown: (state, node) => {
@@ -35,4 +32,4 @@ const schema = {
     }
 };
 
-export {schema}
+export {schema};

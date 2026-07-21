@@ -2,12 +2,11 @@
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2017 HumHub GmbH & Co. KG
  * @license https://www.humhub.com/licences
- *
  */
 
-import {MarkdownSerializer, MarkdownSerializerState} from "prosemirror-markdown"
-import {getPlugins, PresetManager} from "../core/plugins"
-import {Mark} from "prosemirror-model";
+import {MarkdownSerializer, MarkdownSerializerState} from "prosemirror-markdown";
+import {getPlugins, PresetManager} from "../core/plugins";
+import {buildMediaOptionBlock} from "./mediaOptions";
 
 let presets = new PresetManager({
     name: 'serializer',
@@ -16,11 +15,11 @@ let presets = new PresetManager({
     }
 });
 
-let getSerializer = (context) => {
+const getSerializer = (context) => {
     return presets.check(context);
 };
 
-let createSerializer = (context) => {
+const createSerializer = (context) => {
     const plugins = getPlugins(context);
     let nodeSpec = {};
     let markSpec = {};
@@ -33,8 +32,8 @@ let createSerializer = (context) => {
 
         for (let key in nodes) {
             let node = nodes[key];
-            if(node.toMarkdown) {
-                nodeSpec[key] = node.toMarkdown
+            if (node.toMarkdown) {
+                nodeSpec[key] = node.toMarkdown;
             }
         }
 
@@ -42,8 +41,8 @@ let createSerializer = (context) => {
 
         for (let key in marks) {
             let mark = marks[key];
-            if(mark.toMarkdown) {
-                markSpec[key] = mark.toMarkdown
+            if (mark.toMarkdown) {
+                markSpec[key] = mark.toMarkdown;
             } else {
                 markSpec[key] = {open: '', close: ''};
             }
@@ -58,7 +57,7 @@ class HumHubMarkdownSerializer extends MarkdownSerializer {
     // Serialize the content of the given node to
     // [CommonMark](http://commonmark.org/).
     serialize(content, options) {
-        let state = new HumHubMarkdownSerializerState(
+        const state = new HumHubMarkdownSerializerState(
           this.nodes,
           this.marks,
           Object.assign(options || {}, {tightLists: false})
@@ -75,10 +74,12 @@ class HumHubMarkdownSerializerState extends MarkdownSerializerState {
     // has special meaning only at the start of the line.
     esc(str, startOfLine) {
         // eslint-disable-next-line
-        str = str.replace(/[|`*\\~\[\]]/g, "\\$&")
-        if (startOfLine) str = str.replace(/^[:#\-*+]/, "\\$&").replace(/^(\d+)\./, "$1\\.")
-        return str
+        str = str.replace(/[|`*\\~\[\]]/g, "\\$&");
+        if (startOfLine)
+            str = str.replace(/^[:#\-*+]/, "\\$&").replace(/^(\d+)\./, "$1\\.");
+        return str;
     }
 }
 
-export {getSerializer}
+export {getSerializer};
+export {buildMediaOptionBlock};

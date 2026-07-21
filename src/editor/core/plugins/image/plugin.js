@@ -4,7 +4,7 @@
  * @license https://www.humhub.com/licences
  */
 
-import {Plugin, NodeSelection} from 'prosemirror-state';
+import {NodeSelection, Plugin} from 'prosemirror-state';
 
 import {editNode} from './menu';
 import {getClassForFloat} from './imageFloat';
@@ -55,12 +55,12 @@ class ImageView {
             }
 
             let $edit = $('<div>').addClass('humhub-richtext-inline-menu').addClass('humhub-richtext-image-edit')
-                .html('<button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>')
+                .html('<button class="btn btn-primary btn-sm btn-icon-only"><i class="fa fa-pencil"></i></button>')
                 .css({
                     position: 'absolute',
                     left: offset.left + $img.width() - (25),
                     top: offset.top + 5,
-                    'z-index': 997
+                    'z-index': 9999
                 }).on('mousedown', (evt) => {
                     let view = context.editor.view;
                     let doc = view.state.doc;
