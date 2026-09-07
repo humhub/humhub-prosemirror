@@ -43,7 +43,7 @@
     "markdown-it-anchor": "^8.6.7",
     "markdown-it-emoji": "2.0.2",
     "markdown-it-imsize": "^2.0.1",
-    "mocha": "^10.2.0",
+    "mocha": "^12.0.0",
     "mocha-headless-chrome": "^5.1.0",
     "moduleserve": "^0.9.1",
     "nyc": "^18.0.0",
