@@ -39,7 +39,7 @@ const clean = (val) => {
 };
 
 // eslint-disable-next-line
-const HTTP_LINK_REGEX = /((https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,})|[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})/ig;
+const HTTP_LINK_REGEX = /((https?:\/\/(?:www\.|(?!www))[^\s".']+\.[^\s".']{2,})|[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})/ig;
 
 const linkify = function(fragment, context) {
     let linkified = [];

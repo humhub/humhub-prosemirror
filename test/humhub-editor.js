@@ -156191,7 +156191,7 @@ LinkView.prototype.createDom = function createDom (mark) {
 LinkView.prototype.stopEvent = function stopEvent () { return true };
 
 // eslint-disable-next-line
-var HTTP_LINK_REGEX = /((https?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,})|[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})/ig;
+var HTTP_LINK_REGEX = /((https?:\/\/(?:www\.|(?!www))[^\s".']+\.[^\s".']{2,})|[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})/ig;
 
 var linkify = function(fragment, context) {
     var linkified = [];

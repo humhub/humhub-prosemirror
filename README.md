@@ -24,7 +24,7 @@ rollup -c
 
 ```
 grunt
-npm test-server
+npm run test-server
 ```
 
 - Open [http://localhost:8090/](http://localhost:8090/)
