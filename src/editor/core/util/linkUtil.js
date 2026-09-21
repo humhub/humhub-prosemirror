@@ -6,6 +6,7 @@ export function validateHref(href, cfg) {
     return /^https?:\/\//i.test(href) //http:/https:
         || /^mailto:/i.test(href) //mailto:
         || /^ftps?:\/\//i.test(href) //ftp:/ftps:
+        || /^file:\/\/\//i.test(href) //file:///
         || (cfg.anchor && validateAnchor(href)) //anchor
         || (cfg.relative && validateRelative(href)); //relative
 }
