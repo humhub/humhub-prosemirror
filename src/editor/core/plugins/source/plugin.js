@@ -32,8 +32,24 @@ const textareaHandler = (event, context) => {
             const paddingTop = window.getComputedStyle(elem, null).getPropertyValue('padding-top');
             const paddingTopValue = parseFloat(paddingTop.replace('px', ''));
 
-            elem.style.cssText = 'height: auto';
-            elem.style.cssText = 'height:' + (elem.scrollHeight + paddingTopValue) + 'px';
+            // Resetting height to 'auto' collapses the textarea, and the
+            // browser re-scrolls to keep the focused caret in view - on a
+            // scrolled page this snapped to the top on every keystroke.
+            // Save/restore the scroll position around the resize, forcing
+            // scroll-behavior to 'auto' during the restore so a page-wide
+            // `scroll-behavior: smooth` doesn't turn it into a visible slide
+            // back down. `.style.height` (not `.style.cssText`) also avoids
+            // wiping other inline styles (e.g. `width`) set on this element.
+            const scroller = document.scrollingElement || document.documentElement;
+            const scrollTop = scroller.scrollTop;
+            const prevScrollBehavior = scroller.style.scrollBehavior;
+
+            elem.style.height = 'auto';
+            elem.style.height = (elem.scrollHeight + paddingTopValue) + 'px';
+
+            scroller.style.scrollBehavior = 'auto';
+            scroller.scrollTop = scrollTop;
+            scroller.style.scrollBehavior = prevScrollBehavior;
         }, 0);
     }
 };
