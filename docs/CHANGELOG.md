@@ -6,6 +6,7 @@ Changelog
 - Enh #183: Fix rendering of shortcut ":)" from 😃 to 🙂
 - Fix #186: Fix rendering italic inside a word
 - Fix #195: Fix autolink swallowing a trailing quote when pasting a quoted URL
+- Fix #196: Fix page scrolling to top while typing in Markdown source mode
 
 2.3.4
 ------------------
