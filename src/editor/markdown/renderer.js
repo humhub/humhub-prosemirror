@@ -21,6 +21,10 @@ const getRenderer = (context) => {
 const createRenderer = (context) => {
     const markdownItOptions = context && context.options.markdownIt || {html: false, breaks: true, linkify: true};
     const renderer = markdownit(markdownItOptions);
+    renderer.validateLink = function (url) {
+        const BAD_PROTOCOL_REGEXP = /^(vbscript|javascript|data):/;
+        return !BAD_PROTOCOL_REGEXP.test(url.trim().toLowerCase());
+    }
 
     const plugins = getPlugins(context);
     plugins.forEach((plugin) => {
