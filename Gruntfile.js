@@ -2,7 +2,7 @@ const path = require('path');
 const pluginNodeResolve = require('@rollup/plugin-node-resolve');
 const pluginEslint = require('@rollup/plugin-eslint');
 const pluginJson = require('@rollup/plugin-json');
-const pluginBuble = require('@rollup/plugin-buble');
+const pluginBabel = require('@rollup/plugin-babel').babel;
 const pluginReplace = require('@rollup/plugin-replace');
 const pluginCommonjs = require('@rollup/plugin-commonjs');
 const rollupTask = require('./src/grunt-rollup/tasks/rollup.js');
@@ -57,12 +57,19 @@ module.exports = function(grunt) {
                     }),
                     pluginJson(),
                     pluginCommonjs(),
-                    pluginBuble({
-                        objectAssign: 'Object.assign',
-                        transforms: {
-                            'forOf': false,
-                            'generator': false
-                        },
+                    pluginBabel({
+                        babelHelpers: 'bundled',
+                        babelrc: false,
+                        configFile: false,
+                        presets: [
+                            ['@babel/preset-env', {
+                                // Same ES5 output level as the previously used buble plugin
+                                targets: {ie: '11'},
+                                modules: false,
+                                // Keep for-of loops untouched (as buble did with `forOf: false`)
+                                exclude: ['transform-for-of', 'transform-regenerator'],
+                            }],
+                        ],
                         exclude: [
                             'node_modules/@lezer/**'
                         ]

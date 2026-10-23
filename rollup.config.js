@@ -6,7 +6,7 @@ import pluginEslint from "@rollup/plugin-eslint";
 import pluginResolve from "@rollup/plugin-node-resolve";
 import pluginJson from "@rollup/plugin-json";
 import pluginCommonjs from "@rollup/plugin-commonjs";
-import pluginBuble from "@rollup/plugin-buble";
+import { babel as pluginBabel } from "@rollup/plugin-babel";
 import pluginReplace from "@rollup/plugin-replace";
 
 export default {
@@ -25,12 +25,19 @@ export default {
         }),
         pluginJson(),
         pluginCommonjs(),
-        pluginBuble({
-            objectAssign: 'Object.assign',
-            transforms: {
-                forOf: false,
-                generator: false
-            },
+        pluginBabel({
+            babelHelpers: 'bundled',
+            babelrc: false,
+            configFile: false,
+            presets: [
+                ['@babel/preset-env', {
+                    // Same ES5 output level as the previously used buble plugin
+                    targets: {ie: '11'},
+                    modules: false,
+                    // Keep for-of loops untouched (as buble did with `forOf: false`)
+                    exclude: ['transform-for-of', 'transform-regenerator'],
+                }],
+            ],
             exclude: [
                 'node_modules/@lezer/**'
             ]

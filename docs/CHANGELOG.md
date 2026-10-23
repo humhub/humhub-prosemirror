@@ -8,6 +8,7 @@ Changelog
 - Fix #195: Fix autolink swallowing a trailing quote when pasting a quoted URL
 - Fix #196: Fix page scrolling to top while typing in Markdown source mode
 - Fix #203: Fix rendering failure on relative links
+- Fix #204: Build with Babel instead of Buble, which fails to parse optional chaining in `markdown-it` 14.3.1+
 
 2.3.4
 ------------------

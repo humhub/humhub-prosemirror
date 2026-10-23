@@ -20,7 +20,7 @@ class CodeBlockView {
             extensions: [
                 cmKeymap.of([
                     ...this.codeMirrorKeymap(),
-                    ...indentWithTab,
+                    indentWithTab,
                     ...defaultKeymap
                 ]),
                 drawSelection(),
