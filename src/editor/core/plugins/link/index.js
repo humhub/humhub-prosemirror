@@ -41,7 +41,7 @@ const link = {
                 const href = tokens[idx].attrs[hrefIndex][1];
 
                 if (href[0] !== '#') {
-                    const hrefUrl = new URL(href);
+                    const hrefUrl = new URL(href, window.location.href);
                     if (hrefUrl.hostname !== window.location.hostname || guid) {
                         tokens[idx].attrPush(['target', '_blank']); // add new attribute
                     }

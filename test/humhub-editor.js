@@ -20558,7 +20558,12 @@ function filterFileUrl(url, mode) {
       guid: null
     };
   }
-  return isHumhub() ? humhub.modules.file.filterFileUrl(url, mode) : url;
+  return isHumhub() ? humhub.modules.file.filterFileUrl(url, mode)
+  // Outside of HumHub there is no file module: return the same {url, guid} shape, resolving `file-guid:` urls
+  : {
+    url: url,
+    guid: typeof url === 'string' && url.indexOf('file-guid:') === 0 ? url.substring('file-guid:'.length) : null
+  };
 }
 function getLoaderWidget() {
   if (!window.humhub) {
@@ -144928,7 +144933,9 @@ var schema$a = {
         tag: "a[href]",
         getAttrs: function getAttrs(dom) {
           var href = dom.getAttribute("href");
-          if (!validateHref(href)) {
+          if (!validateHref(href, {
+            relative: true
+          })) {
             href = '#';
           }
           return {
@@ -144954,7 +144961,9 @@ var schema$a = {
           var _filterFileUrl = filterFileUrl(tok.attrGet("href"), 'view'),
             url = _filterFileUrl.url,
             guid = _filterFileUrl.guid;
-          if (!validateHref(url)) {
+          if (!validateHref(url, {
+            relative: true
+          })) {
             url = '#';
           }
           return {
@@ -145123,6 +145132,8 @@ var LinkView = /*#__PURE__*/function () {
       this.dom = $(buildLink(mark.attrs.href, {
         'data-file-guid': mark.attrs.fileGuid,
         target: mark.attrs.target || '_blank'
+      }, null, {
+        relative: true
       }))[0];
     }
   }, {
@@ -145210,7 +145221,7 @@ var link = {
         // Check if the link is external
         var href = tokens[idx].attrs[hrefIndex][1];
         if (href[0] !== '#') {
-          var hrefUrl = new URL(href);
+          var hrefUrl = new URL(href, window.location.href);
           if (hrefUrl.hostname !== window.location.hostname || guid) {
             tokens[idx].attrPush(['target', '_blank']); // add new attribute
           }
@@ -148031,7 +148042,9 @@ var schema = {
         tag: "a[href]",
         getAttrs: function getAttrs(dom) {
           var href = dom.getAttribute("href");
-          if (!validateHref(href)) {
+          if (!validateHref(href, {
+            relative: true
+          })) {
             href = '#';
           }
           return {
@@ -148052,7 +148065,9 @@ var schema = {
           var _filterFileUrl = filterFileUrl(tok.attrGet("href"), 'view'),
             url = _filterFileUrl.url,
             guid = _filterFileUrl.guid;
-          if (!validateHref(url)) {
+          if (!validateHref(url, {
+            relative: true
+          })) {
             url = '#';
           }
           return {
