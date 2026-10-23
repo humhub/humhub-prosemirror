@@ -28,7 +28,7 @@ class LinkView {
         this.dom = $(buildLink(mark.attrs.href, {
             'data-file-guid': mark.attrs.fileGuid,
             target: mark.attrs.target || '_blank'
-        }))[0];
+        }, null, {relative: true}))[0];
     }
 
     stopEvent() { return true }

@@ -22,7 +22,7 @@ const schema = {
             parseDOM: [{
                 tag: "a[href]", getAttrs: function getAttrs(dom) {
                     let href = dom.getAttribute("href");
-                    if (!validateHref(href))  {
+                    if (!validateHref(href, {relative: true}))  {
                         href = '#';
                     }
 
@@ -38,7 +38,7 @@ const schema = {
                 getAttrs: function (tok) {
                     let {url, guid} = filterFileUrl(tok.attrGet("href"), 'view');
 
-                    if (!validateHref(url))  {
+                    if (!validateHref(url, {relative: true}))  {
                         url = '#';
                     }
 
