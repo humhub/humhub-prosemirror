@@ -53,7 +53,13 @@ export function filterFileUrl(url, mode) {
         return {url: url, guid: null};
     }
 
-    return isHumhub() ? humhub.modules.file.filterFileUrl(url, mode) : url;
+    return isHumhub()
+        ? humhub.modules.file.filterFileUrl(url, mode)
+        // Outside of HumHub there is no file module: return the same {url, guid} shape, resolving `file-guid:` urls
+        : {
+            url: url,
+            guid: typeof url === 'string' && url.indexOf('file-guid:') === 0 ? url.substring('file-guid:'.length) : null,
+        };
 }
 
 export function getLoaderWidget() {

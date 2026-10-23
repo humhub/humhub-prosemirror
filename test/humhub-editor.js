@@ -19620,7 +19620,13 @@ function filterFileUrl(url, mode) {
         return {url: url, guid: null};
     }
 
-    return isHumhub() ? humhub.modules.file.filterFileUrl(url, mode) : url;
+    return isHumhub()
+        ? humhub.modules.file.filterFileUrl(url, mode)
+        // Outside of HumHub there is no file module: return the same {url, guid} shape, resolving `file-guid:` urls
+        : {
+            url: url,
+            guid: typeof url === 'string' && url.indexOf('file-guid:') === 0 ? url.substring('file-guid:'.length) : null,
+        };
 }
 
 function getLoaderWidget() {
@@ -155996,7 +156002,7 @@ var schema$a = {
                 [{
                     tag: "a[href]", getAttrs: function getAttrs(dom) {
                         var href = dom.getAttribute("href");
-                        if (!validateHref(href))  {
+                        if (!validateHref(href, {relative: true}))  {
                             href = '#';
                         }
 
@@ -156017,7 +156023,7 @@ var schema$a = {
                     var url = ref.url;
                     var guid = ref.guid;
 
-                    if (!validateHref(url))  {
+                    if (!validateHref(url, {relative: true}))  {
                         url = '#';
                     }
 
@@ -156185,7 +156191,7 @@ LinkView.prototype.createDom = function createDom (mark) {
     this.dom = $(buildLink(mark.attrs.href, {
         'data-file-guid': mark.attrs.fileGuid,
         target: mark.attrs.target || '_blank'
-    }))[0];
+    }, null, {relative: true}))[0];
 };
 
 LinkView.prototype.stopEvent = function stopEvent () { return true };
@@ -156277,7 +156283,7 @@ var link = {
                 var href = tokens[idx].attrs[hrefIndex][1];
 
                 if (href[0] !== '#') {
-                    var hrefUrl = new URL(href);
+                    var hrefUrl = new URL(href, window.location.href);
                     if (hrefUrl.hostname !== window.location.hostname || guid) {
                         tokens[idx].attrPush(['target', '_blank']); // add new attribute
                     }
@@ -159092,7 +159098,7 @@ var schema = {
             parseDOM: [{
                 tag: "a[href]", getAttrs: function getAttrs(dom) {
                     var href = dom.getAttribute("href");
-                    if (!validateHref(href))  {
+                    if (!validateHref(href, {relative: true}))  {
                         href = '#';
                     }
 
@@ -159111,7 +159117,7 @@ var schema = {
                     var url = ref.url;
                     var guid = ref.guid;
 
-                    if (!validateHref(url))  {
+                    if (!validateHref(url, {relative: true}))  {
                         url = '#';
                     }
 

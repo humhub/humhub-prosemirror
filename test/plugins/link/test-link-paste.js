@@ -31,4 +31,17 @@ describe("Plugin:link", () => {
 
         done();
     });
+
+    it("renders and serializes a relative link without throwing (#655)", (done) => {
+        initEditor({exclude: ['oembed']}, 'Test [link](/dashboard)');
+
+        const $link = $('#stage .ProseMirror a');
+
+        expect($link.length).to.equal(1);
+        expect($link.text()).to.equal('link');
+        expect($link.attr('href')).to.equal('/dashboard');
+        expect(serialize()).to.equal('Test [link](/dashboard)');
+
+        done();
+    });
 });
