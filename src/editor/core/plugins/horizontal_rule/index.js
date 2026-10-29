@@ -6,10 +6,12 @@
  */
 import {schema} from './schema'
 import {menu} from './menu'
+import {horizontalRuleRule} from './input-rules'
 
 const horizontal_rule = {
     id: 'horizontal_rule',
     schema: schema,
+    inputRules: (schema) => [horizontalRuleRule(schema)],
     // menu: (context) => menu(context)
 };
 

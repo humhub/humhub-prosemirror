@@ -13,6 +13,7 @@ require("./menu/test-menu-accessibility")
 require("./menu/test-menu-config")
 
 require("./plugins/blocks/test-blockquote")
+require("./plugins/blocks/test-horizontal-rule")
 require("./plugins/blocks/test-codeblock")
 
 require("./plugins/marks/test-strong")

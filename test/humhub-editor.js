@@ -143300,13 +143300,42 @@ var schema$e = {
   }
 };/*
  * @link https://www.humhub.org/
+ * @copyright Copyright (c) HumHub GmbH & Co. KG
+ * @license https://www.humhub.com/licences
+ */
+
+
+// : (Schema) → InputRule
+// Turns a paragraph containing only `---` into a horizontal rule.
+//
+// The default `emDash` rule converts `--` to `—` as soon as the second hyphen is typed,
+// so the third hyphen arrives after `—`. Both `---` and `—-` therefore have to be matched.
+var horizontalRuleRule = function horizontalRuleRule(schema) {
+  return new InputRule(/^(?:---|—-)$/, function (state, match, start, end) {
+    var hr = schema.nodes.horizontal_rule;
+    var $start = state.doc.resolve(start);
+    if (!hr || $start.parent.type !== schema.nodes.paragraph) {
+      return null;
+    }
+    var from = $start.before();
+    var to = $start.after();
+    var isLastBlock = $start.index($start.depth - 1) === $start.node($start.depth - 1).childCount - 1;
+    var nodes = isLastBlock ? [hr.create(), schema.nodes.paragraph.create()] : [hr.create()];
+    var tr = state.tr.replaceWith(from, to, nodes);
+    return tr.setSelection(TextSelection.near(tr.doc.resolve(from + hr.create().nodeSize), 1));
+  });
+};/*
+ * @link https://www.humhub.org/
  * @copyright Copyright (c) 2017 HumHub GmbH & Co. KG
  * @license https://www.humhub.com/licences
  *
  */
 var horizontal_rule = {
   id: 'horizontal_rule',
-  schema: schema$e
+  schema: schema$e,
+  inputRules: function inputRules(schema) {
+    return [horizontalRuleRule(schema)];
+  }
   // menu: (context) => menu(context)
 };var FLOAT_NONE = 0;
 var FLOAT_LEFT = 1;
