@@ -2,7 +2,7 @@
 /* jshint expr:true */
 
 const expect = require('chai').expect;
-const {initEditor, toHtml, serialize, simulateInputRule, type, insertText} = require('../../testEditor');
+const {initEditor, toHtml, serialize, simulateInputRule, type, insertText, pressKeyEnter} = require('../../testEditor');
 
 const HR = '<div contenteditable="false"><hr></div>';
 
@@ -38,6 +38,51 @@ describe("Plugin:horizontal rule", () => {
         expect(typeChar(editor, '-')).to.be.true; // `—-` -> horizontal rule
         expect(toHtml()).to.equal(HR + '<p><br class="ProseMirror-trailingBreak"></p>');
         expect(serialize()).to.equal('---');
+        done();
+    });
+
+    it("test underscores with space input rule creates a horizontal rule", (done) => {
+        initEditor();
+        expect(simulateInputRule('___ ')).to.be.true;
+        insertText('After');
+        expect(toHtml()).to.equal(HR + '<p>After</p>');
+        expect(serialize()).to.equal('---\n\nAfter');
+        done();
+    });
+
+    it("test asterisks with space input rule creates a horizontal rule", (done) => {
+        initEditor();
+        expect(simulateInputRule('*** ')).to.be.true;
+        insertText('After');
+        expect(toHtml()).to.equal(HR + '<p>After</p>');
+        expect(serialize()).to.equal('---\n\nAfter');
+        done();
+    });
+
+    ['___', '***', '---'].forEach((marker) => {
+        it("test Enter after " + marker + " creates a horizontal rule", (done) => {
+            initEditor();
+            type(marker);
+            pressKeyEnter();
+            insertText('After');
+            expect(toHtml()).to.equal(HR + '<p>After</p>');
+            expect(serialize()).to.equal('---\n\nAfter');
+            done();
+        });
+    });
+
+    it("test asterisks without space or Enter stay text", (done) => {
+        initEditor();
+        type('***');
+        expect(toHtml()).to.equal('<p>***</p>');
+        done();
+    });
+
+    it("test Enter after other text does not create a horizontal rule", (done) => {
+        initEditor();
+        type('Text ---');
+        pressKeyEnter();
+        expect(toHtml()).to.not.contain('<hr>');
         done();
     });
 

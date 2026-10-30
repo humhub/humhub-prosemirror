@@ -5,29 +5,19 @@
  */
 
 import {InputRule} from "prosemirror-inputrules";
-import {TextSelection} from "prosemirror-state";
+import {replaceParagraphWithRule} from "./command";
 
-// : (Schema) → InputRule
-// Turns a paragraph containing only `---` into a horizontal rule.
+// : () → InputRule
+// Turns a paragraph containing only a Markdown horizontal rule marker into a horizontal rule:
+// `---` right after the third hyphen, `___` and `***` after a confirming space.
+// The space avoids a collision with bold italic text like `***text***`; without the space
+// the marker is converted by pressing Enter (see keymap.js).
 //
 // The default `emDash` rule converts `--` to `—` as soon as the second hyphen is typed,
 // so the third hyphen arrives after `—`. Both `---` and `—-` therefore have to be matched.
-const horizontalRuleRule = (schema) => {
-    return new InputRule(/^(?:---|—-)$/, (state, match, start, end) => {
-        const hr = schema.nodes.horizontal_rule;
-        const $start = state.doc.resolve(start);
-
-        if (!hr || $start.parent.type !== schema.nodes.paragraph) {
-            return null;
-        }
-
-        const from = $start.before();
-        const to = $start.after();
-        const isLastBlock = $start.index($start.depth - 1) === $start.node($start.depth - 1).childCount - 1;
-        const nodes = isLastBlock ? [hr.create(), schema.nodes.paragraph.create()] : [hr.create()];
-        const tr = state.tr.replaceWith(from, to, nodes);
-
-        return tr.setSelection(TextSelection.near(tr.doc.resolve(from + hr.create().nodeSize), 1));
+const horizontalRuleRule = () => {
+    return new InputRule(/^(?:---|—-|___\s|\*\*\*\s)$/, (state, match, start) => {
+        return replaceParagraphWithRule(state, state.doc.resolve(start));
     });
 };
 

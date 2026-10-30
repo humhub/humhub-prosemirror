@@ -15934,7 +15934,7 @@ You can add multiple keymap plugins to an editor. The order in
 which they appear determines their precedence (the ones early in
 the array get to dispatch first).
 */
-function keymap$5(bindings) {
+function keymap$6(bindings) {
   return new Plugin({
     props: {
       handleKeyDown: keydownHandler(bindings)
@@ -15972,7 +15972,7 @@ function keydownHandler(bindings) {
     }
     return false;
   };
-}var keymap$6=/*#__PURE__*/Object.freeze({__proto__:null,keydownHandler:keydownHandler,keymap:keymap$5});function crelt() {
+}var keymap$7=/*#__PURE__*/Object.freeze({__proto__:null,keydownHandler:keydownHandler,keymap:keymap$6});function crelt() {
   var elt = arguments[0];
   if (typeof elt == "string") elt = document.createElement(elt);
   var i = 1,
@@ -29927,7 +29927,7 @@ function menu$g(context) {
     return false;
   };
 }
-var keymap$4 = function keymap() {
+var keymap$5 = function keymap() {
   return {
     ArrowLeft: arrowHandler("left"),
     ArrowRight: arrowHandler("right"),
@@ -44063,14 +44063,14 @@ determine their precedence (the ones specified early or with high
 priority get checked first). When a handler has returned `true`
 for a given key, no further handlers are called.
 */
-var keymap$3 = /*@__PURE__*/Facet.define({
+var keymap$4 = /*@__PURE__*/Facet.define({
   enables: handleKeyEvents
 });
 var Keymaps = /*@__PURE__*/new WeakMap();
 // This is hidden behind an indirection, rather than directly computed
 // by the facet, to keep internal types out of the facet's type.
 function getKeymap(state) {
-  var bindings = state.facet(keymap$3);
+  var bindings = state.facet(keymap$4);
   var map = Keymaps.get(bindings);
   if (!map) Keymaps.set(bindings, map = buildKeymap$1(bindings.reduce(function (a, b) {
     return a.concat(b);
@@ -53756,7 +53756,7 @@ var snippetKeymap = /*@__PURE__*/Facet.define({
     return maps.length ? maps[0] : defaultSnippetKeymap;
   }
 });
-var addSnippetKeymap = /*@__PURE__*/Prec.highest(/*@__PURE__*/keymap$3.compute([snippetKeymap], function (state) {
+var addSnippetKeymap = /*@__PURE__*/Prec.highest(/*@__PURE__*/keymap$4.compute([snippetKeymap], function (state) {
   return state.facet(snippetKeymap);
 }));
 /**
@@ -54155,7 +54155,7 @@ var autoCloseTags = /*@__PURE__*/EditorView.inputHandler.of(function (view, from
     // Create a CodeMirror instance
     this.cm = new EditorView({
       doc: this.node.textContent,
-      extensions: [keymap$3.of([].concat(_toConsumableArray(this.codeMirrorKeymap()), [indentWithTab], _toConsumableArray(defaultKeymap))), drawSelection(), lineNumbers(), javascript(), syntaxHighlighting(defaultHighlightStyle), EditorView.updateListener.of(function (update) {
+      extensions: [keymap$4.of([].concat(_toConsumableArray(this.codeMirrorKeymap()), [indentWithTab], _toConsumableArray(defaultKeymap))), drawSelection(), lineNumbers(), javascript(), syntaxHighlighting(defaultHighlightStyle), EditorView.updateListener.of(function (update) {
         return _this.forwardUpdate(update);
       })]
     });
@@ -54357,7 +54357,7 @@ var code_block = {
     return [codeBlockRule(schema)];
   },
   keymap: function keymap() {
-    return keymap$4();
+    return keymap$5();
   },
   plugins: function plugins(context) {
     return [codeBlockPlugin()];
@@ -142927,7 +142927,7 @@ var emojiChooser = function emojiChooser(schema) {
  * @license https://www.humhub.com/licences
  */
 
-var keymap$2 = function keymap() {
+var keymap$3 = function keymap() {
   return {
     'ArrowLeft': function ArrowLeft(state, dispatch) {
       var emojiState = pluginKey$2.getState(state);
@@ -143031,7 +143031,7 @@ var emoji = {
     return [emojiAutoCompleteRule(), emojiChooser(schema)];
   },
   keymap: function keymap(context) {
-    return keymap$2();
+    return keymap$3();
   },
   plugins: function plugins(context) {
     return [emojiPlugin(context)];
@@ -143305,25 +143305,70 @@ var schema$e = {
  */
 
 
-// : (Schema) → InputRule
-// Turns a paragraph containing only `---` into a horizontal rule.
+// : (EditorState, ResolvedPos) → ?Transaction
+// Replaces the paragraph around `$pos` with a horizontal rule.
+// If the paragraph was the last block an empty paragraph is added after the rule,
+// the cursor is placed in the block following the rule.
+var replaceParagraphWithRule = function replaceParagraphWithRule(state, $pos) {
+  var _state$schema$nodes = state.schema.nodes,
+    hr = _state$schema$nodes.horizontal_rule,
+    paragraph = _state$schema$nodes.paragraph;
+  if (!hr || $pos.parent.type !== paragraph) {
+    return null;
+  }
+  var rule = hr.create();
+  var from = $pos.before();
+  var to = $pos.after();
+  var isLastBlock = $pos.index($pos.depth - 1) === $pos.node($pos.depth - 1).childCount - 1;
+  var tr = state.tr.replaceWith(from, to, isLastBlock ? [rule, paragraph.create()] : [rule]);
+  return tr.setSelection(TextSelection.near(tr.doc.resolve(from + rule.nodeSize), 1));
+};/*
+ * @link https://www.humhub.org/
+ * @copyright Copyright (c) HumHub GmbH & Co. KG
+ * @license https://www.humhub.com/licences
+ */
+
+
+// : () → InputRule
+// Turns a paragraph containing only a Markdown horizontal rule marker into a horizontal rule:
+// `---` right after the third hyphen, `___` and `***` after a confirming space.
+// The space avoids a collision with bold italic text like `***text***`; without the space
+// the marker is converted by pressing Enter (see keymap.js).
 //
 // The default `emDash` rule converts `--` to `—` as soon as the second hyphen is typed,
 // so the third hyphen arrives after `—`. Both `---` and `—-` therefore have to be matched.
-var horizontalRuleRule = function horizontalRuleRule(schema) {
-  return new InputRule(/^(?:---|—-)$/, function (state, match, start, end) {
-    var hr = schema.nodes.horizontal_rule;
-    var $start = state.doc.resolve(start);
-    if (!hr || $start.parent.type !== schema.nodes.paragraph) {
-      return null;
-    }
-    var from = $start.before();
-    var to = $start.after();
-    var isLastBlock = $start.index($start.depth - 1) === $start.node($start.depth - 1).childCount - 1;
-    var nodes = isLastBlock ? [hr.create(), schema.nodes.paragraph.create()] : [hr.create()];
-    var tr = state.tr.replaceWith(from, to, nodes);
-    return tr.setSelection(TextSelection.near(tr.doc.resolve(from + hr.create().nodeSize), 1));
+var horizontalRuleRule = function horizontalRuleRule() {
+  return new InputRule(/^(?:---|—-|___\s|\*\*\*\s)$/, function (state, match, start) {
+    return replaceParagraphWithRule(state, state.doc.resolve(start));
   });
+};/*
+ * @link https://www.humhub.org/
+ * @copyright Copyright (c) HumHub GmbH & Co. KG
+ * @license https://www.humhub.com/licences
+ */
+
+
+// Enter in a paragraph that contains only `---`, `___` or `***` turns it into a horizontal rule.
+var enterHandler = function enterHandler(state, dispatch) {
+  var _state$selection = state.selection,
+    $from = _state$selection.$from,
+    empty = _state$selection.empty;
+  if (!empty || $from.parent.type !== state.schema.nodes.paragraph || $from.parentOffset !== $from.parent.content.size || !/^(?:---|___|\*\*\*)$/.test($from.parent.textContent)) {
+    return false;
+  }
+  var tr = replaceParagraphWithRule(state, $from);
+  if (!tr) {
+    return false;
+  }
+  if (dispatch) {
+    dispatch(tr.scrollIntoView());
+  }
+  return true;
+};
+var keymap$2 = function keymap() {
+  return {
+    Enter: enterHandler
+  };
 };/*
  * @link https://www.humhub.org/
  * @copyright Copyright (c) 2017 HumHub GmbH & Co. KG
@@ -143333,8 +143378,11 @@ var horizontalRuleRule = function horizontalRuleRule(schema) {
 var horizontal_rule = {
   id: 'horizontal_rule',
   schema: schema$e,
-  inputRules: function inputRules(schema) {
-    return [horizontalRuleRule(schema)];
+  inputRules: function inputRules() {
+    return [horizontalRuleRule()];
+  },
+  keymap: function keymap() {
+    return keymap$2();
   }
   // menu: (context) => menu(context)
 };var FLOAT_NONE = 0;
@@ -148323,7 +148371,7 @@ var buildPluginKeymap = function buildPluginKeymap(context) {
   var result = [];
   plugins.forEach(function (plugin) {
     if (plugin.keymap) {
-      result.push(keymap$5(plugin.keymap(context)));
+      result.push(keymap$6(plugin.keymap(context)));
     }
   });
   return result;
@@ -149163,7 +149211,7 @@ function buildKeymap(context) {
 //     Can be used to override the menu content.
 function setupPlugins(context) {
   var result = buildPluginKeymap(context);
-  result = result.concat([buildInputRules(context), keymap$5(buildKeymap(context)), keymap$5(baseKeymap), dropCursor(), gapCursor(), tableEditing(), buildMenuBar(context)]);
+  result = result.concat([buildInputRules(context), keymap$6(buildKeymap(context)), keymap$6(baseKeymap), dropCursor(), gapCursor(), tableEditing(), buildMenuBar(context)]);
   return result.concat(buildPlugins(context));
 }/*
  * @link https://www.humhub.org/
@@ -149720,7 +149768,7 @@ window.prosemirror = window.humhub.richtext = {
   model: model,
   commands: commands,
   history: history$1,
-  keymap: keymap$6,
+  keymap: keymap$7,
   menu: menu$k,
   loader: loader$1,
   pmmenu: pmmenu,

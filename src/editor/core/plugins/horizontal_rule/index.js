@@ -7,11 +7,13 @@
 import {schema} from './schema'
 import {menu} from './menu'
 import {horizontalRuleRule} from './input-rules'
+import {keymap} from './keymap'
 
 const horizontal_rule = {
     id: 'horizontal_rule',
     schema: schema,
-    inputRules: (schema) => [horizontalRuleRule(schema)],
+    inputRules: () => [horizontalRuleRule()],
+    keymap: () => keymap(),
     // menu: (context) => menu(context)
 };
 
