@@ -31,7 +31,7 @@ jobs:
           npm install -g wait-on 
 
       - name: Build
-        run: grunt
+        run: npx grunt
 
       - name: Run test server and tests
         env:
