@@ -10,6 +10,7 @@ Changelog
 - Fix #203: Fix rendering failure on relative links
 - Fix #204: Build with Babel instead of Buble, which fails to parse optional chaining in `markdown-it` 14.3.1+
 - Enh #205: Convert --- to a horizontal rule
+- Fix #208: Fix empty post after deleting an uploaded file from the editor; insert dropped files into the editor
 
 2.3.4
 ------------------
