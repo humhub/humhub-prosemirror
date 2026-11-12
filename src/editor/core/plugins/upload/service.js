@@ -6,6 +6,7 @@
  */
 
 import {loaderStart, replaceLoader, removeLoader} from "../loader/plugin";
+import {trackUploadedFile} from "./plugin";
 
 const isVideoFile = (file) => {
     return !!((file.mimeIcon && file.mimeIcon.indexOf('mime-video') === 0) ||
@@ -25,6 +26,8 @@ const createNodeFromFile = function (context, file) {
     }
 
     const schema = context.schema;
+
+    trackUploadedFile(context, file.guid);
 
     if (file.mimeIcon === 'mime-image') {
         return schema.nodes.image.create({src: file.url, title: file.name, alt: file.name, fileGuid: file.guid});
@@ -52,11 +55,19 @@ const createNodeFromFile = function (context, file) {
     return schema.text(file.name, [linkMark]);
 };
 
+const getUploadWidget = function(context) {
+    return humhub.require('ui.widget.Widget').instance($('#'+context.id+'-file-upload'));
+};
+
+const hasUploadWidget = function(context) {
+    return !!(window.humhub && humhub.require && getUploadWidget(context));
+};
+
 const triggerUpload = function(state, view, context, files) {
     // A fresh object to act as the ID for this upload
     let id = {};
 
-    let uploadWidget = humhub.require('ui.widget.Widget').instance($('#'+context.id+'-file-upload'));
+    let uploadWidget = getUploadWidget(context);
 
     if (uploadWidget) {
         uploadWidget.off('uploadStart.richtext').on('uploadStart.richtext', (evt, response) => {
@@ -95,6 +106,7 @@ const createNodesFromResponse = function(context, response) {
 
 export {
     triggerUpload,
+    hasUploadWidget,
     createNodesFromResponse,
     createNodeFromFile,
 }

@@ -6,9 +6,11 @@
  */
 
 import {menu} from './menu'
+import {fileSyncPlugin} from './plugin'
 
 const upload = {
     id: 'upload',
+    plugins: (context) => [fileSyncPlugin(context)],
     menu:  (context) => menu(context)
 };
 

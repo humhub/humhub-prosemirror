@@ -4,10 +4,10 @@
  * @license https://www.humhub.com/licences
  */
 
-import {Plugin} from 'prosemirror-state';
+import {Plugin, Selection} from 'prosemirror-state';
 import {Node, Slice} from 'prosemirror-model';
 import {getParser} from "../../../markdown";
-import {triggerUpload} from "../upload/service";
+import {triggerUpload, hasUploadWidget} from "../upload/service";
 import {$node} from "../../util/node";
 
 const clipboardPlugin = (context) => {
@@ -39,6 +39,25 @@ const clipboardPlugin = (context) => {
                         triggerUpload(view.state, view, context, e.clipboardData.files);
                         e.preventDefault();
                     }
+                },
+                drop: (view, e) => {
+                    const files = e.dataTransfer && e.dataTransfer.files;
+                    if (!files || !files.length || !hasUploadWidget(context)) {
+                        return false;
+                    }
+
+                    // Insert the dropped files into the text at the drop position, instead of attaching them
+                    // by the form upload widget, which would not show them in the editor.
+                    const coords = view.posAtCoords({left: e.clientX, top: e.clientY});
+                    if (coords) {
+                        const selection = Selection.near(view.state.doc.resolve(coords.pos));
+                        view.dispatch(view.state.tr.setSelection(selection));
+                    }
+
+                    triggerUpload(view.state, view, context, files);
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return true;
                 }
             }
         },
